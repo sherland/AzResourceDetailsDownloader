@@ -1,0 +1,1900 @@
+{
+  "$schemaVersion": 1,
+  "resourceTypes": [
+    {
+      "armType": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2023-05-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "st{rand8}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 24 },
+      "requestBody": {
+        "sku": { "name": "Standard_LRS" },
+        "kind": "StorageV2",
+        "properties": { "accessTier": "Hot", "minimumTlsVersion": "TLS1_2" }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Compute/disks",
+      "apiVersion": "2023-10-02",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "disk{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "sku": { "name": "Standard_LRS" },
+        "properties": { "creationData": { "createOption": "Empty" }, "diskSizeGB": 4 }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "vnet{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": {
+        "properties": { "addressSpace": { "addressPrefixes": ["10.10.0.0/16"] } }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "{prereq.vnet.name}/subnet{rand6}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": { "addressPrefix": "10.10.1.0/24" }
+      },
+      "prerequisites": [
+        {
+          "alias": "vnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": {
+            "properties": { "addressSpace": { "addressPrefixes": ["10.10.0.0/16"] } }
+          }
+        }
+      ],
+      "notes": "Subnet is a child resource of Virtual Network."
+    },
+    {
+      "armType": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "nsg{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2023-09-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "pip{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "sku": { "name": "Standard" },
+        "properties": { "publicIPAllocationMethod": "Static" }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Network/loadBalancers",
+      "apiVersion": "2023-09-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "lb{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "sku": { "name": "Standard" },
+        "properties": {
+          "frontendIPConfigurations": [
+            {
+              "name": "feConfig",
+              "properties": { "publicIPAddress": { "id": "{prereq.publicIp.id}" } }
+            }
+          ]
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "publicIp",
+          "armType": "Microsoft.Network/publicIPAddresses",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "pip{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": {
+            "sku": { "name": "Standard" },
+            "properties": { "publicIPAllocationMethod": "Static" }
+          }
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Network/privateDnsZones",
+      "apiVersion": "2020-06-01",
+      "costTier": "Low",
+      "location": "global",
+      "nameTemplate": "ardl{rand8}.private.contoso.com",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 63 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": "Name must look like a DNS zone; location is always 'global' for this resource type."
+    },
+    {
+      "armType": "Microsoft.Sql/servers",
+      "apiVersion": "2023-08-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "sql{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": {
+        "properties": {
+          "administratorLogin": "azrddadmin",
+          "administratorLoginPassword": "{secret.sqlAdminPassword}",
+          "version": "12.0",
+          "minimalTlsVersion": "1.2"
+        }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2023-08-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "{prereq.sqlServer.name}/db{rand6}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 128 },
+      "requestBody": {
+        "sku": { "name": "Basic" },
+        "properties": { "collation": "SQL_Latin1_General_CP1_CI_AS" }
+      },
+      "prerequisites": [
+        {
+          "alias": "sqlServer",
+          "armType": "Microsoft.Sql/servers",
+          "apiVersion": "2023-08-01",
+          "nameTemplate": "sql{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+          "requestBody": {
+            "properties": {
+              "administratorLogin": "azrddadmin",
+              "administratorLoginPassword": "{secret.sqlAdminPassword}",
+              "version": "12.0",
+              "minimalTlsVersion": "1.2"
+            }
+          }
+        }
+      ],
+      "notes": "SQL Database is a child resource of SQL Server; nameTemplate uses the server's generated name as a path segment."
+    },
+    {
+      "armType": "Microsoft.DocumentDB/databaseAccounts",
+      "apiVersion": "2024-05-15",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "cosmos{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 44 },
+      "requestBody": {
+        "kind": "GlobalDocumentDB",
+        "properties": {
+          "databaseAccountOfferType": "Standard",
+          "locations": [{ "locationName": "westeurope", "failoverPriority": 0 }],
+          "capabilities": [{ "name": "EnableServerless" }],
+          "minimalTlsVersion": "Tls12"
+        }
+      },
+      "prerequisites": [],
+      "notes": "Serverless capacity mode keeps this near-zero cost for a short-lived capture."
+    },
+    {
+      "armType": "Microsoft.Cache/redis",
+      "apiVersion": "2024-03-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "redis{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": {
+        "properties": {
+          "sku": { "name": "Basic", "family": "C", "capacity": 0 },
+          "minimumTlsVersion": "1.2"
+        }
+      },
+      "prerequisites": [],
+      "notes": "Microsoft.Cache/redis is an ARM exception where sku nests inside properties, unlike most resource types.",
+      "estimatedProvisionMinutes": 15,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2023-07-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "kv{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 24 },
+      "requestBody": {
+        "properties": {
+          "sku": { "family": "A", "name": "standard" },
+          "tenantId": "{secret.tenantId}",
+          "enableRbacAuthorization": true,
+          "enablePurgeProtection": true
+        }
+      },
+      "prerequisites": [],
+      "notes": "tenantId is supplied via the 'secret' mechanism even though it's not sensitive, since it's an environment-specific value the config file shouldn't hardcode."
+    },
+    {
+      "armType": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "apiVersion": "2023-01-31",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "id{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 128 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "law{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": {
+        "properties": { "sku": { "name": "PerGB2018" }, "retentionInDays": 30 }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "ai{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": {
+        "kind": "web",
+        "properties": {
+          "Application_Type": "web",
+          "WorkspaceResourceId": "{prereq.logAnalytics.id}"
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "logAnalytics",
+          "armType": "Microsoft.OperationalInsights/workspaces",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "law{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+          "requestBody": {
+            "properties": { "sku": { "name": "PerGB2018" }, "retentionInDays": 30 }
+          }
+        }
+      ],
+      "notes": "Workspace-based Application Insights requires a Log Analytics Workspace prerequisite."
+    },
+    {
+      "armType": "Microsoft.Insights/actionGroups",
+      "apiVersion": "2023-01-01",
+      "costTier": "Free",
+      "location": "global",
+      "nameTemplate": "ag{rand8}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 260 },
+      "requestBody": {
+        "properties": { "groupShortName": "ardlag", "enabled": true }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Automation/automationAccounts",
+      "apiVersion": "2023-11-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "aa{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+      "requestBody": {
+        "properties": { "sku": { "name": "Basic" } }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Web/serverfarms",
+      "apiVersion": "2023-12-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "plan{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 40 },
+      "requestBody": {
+        "sku": { "name": "B1", "tier": "Basic" },
+        "properties": { "reserved": true }
+      },
+      "prerequisites": [],
+      "notes": "reserved:true selects the Linux plan; matches the Web App entry below."
+    },
+    {
+      "armType": "Microsoft.Web/sites",
+      "apiVersion": "2023-12-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "app{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 60 },
+      "requestBody": {
+        "properties": {
+          "serverFarmId": "{prereq.appServicePlan.id}",
+          "httpsOnly": true,
+          "siteConfig": { "linuxFxVersion": "NODE|20-lts", "minTlsVersion": "1.2" }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "appServicePlan",
+          "armType": "Microsoft.Web/serverfarms",
+          "apiVersion": "2023-12-01",
+          "nameTemplate": "plan{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 40 },
+          "requestBody": {
+            "sku": { "name": "B1", "tier": "Basic" },
+            "properties": { "reserved": true }
+          }
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Web/staticSites",
+      "apiVersion": "2023-12-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "stapp{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 40 },
+      "requestBody": {
+        "sku": { "name": "Free", "tier": "Free" },
+        "properties": {}
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.ContainerRegistry/registries",
+      "apiVersion": "2023-11-01-preview",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "acr{rand8}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 50 },
+      "requestBody": {
+        "sku": { "name": "Basic" },
+        "properties": { "adminUserEnabled": false }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.ContainerInstance/containerGroups",
+      "apiVersion": "2023-05-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "aci{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": {
+        "properties": {
+          "osType": "Linux",
+          "restartPolicy": "Never",
+          "containers": [
+            {
+              "name": "main",
+              "properties": {
+                "image": "mcr.microsoft.com/azuredocs/aci-helloworld",
+                "resources": { "requests": { "cpu": 1, "memoryInGB": 1 } }
+              }
+            }
+          ]
+        }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.ServiceBus/namespaces",
+      "apiVersion": "2022-10-01-preview",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "sb{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+      "requestBody": {
+        "sku": { "name": "Basic", "tier": "Basic" },
+        "properties": {}
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.ServiceBus/namespaces/queues",
+      "apiVersion": "2022-10-01-preview",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "{prereq.sbNamespace.name}/queue{rand6}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 260 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [
+        {
+          "alias": "sbNamespace",
+          "armType": "Microsoft.ServiceBus/namespaces",
+          "apiVersion": "2022-10-01-preview",
+          "nameTemplate": "sb{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+          "requestBody": {
+            "sku": { "name": "Basic", "tier": "Basic" },
+            "properties": {}
+          }
+        }
+      ],
+      "notes": "Service Bus Queue is a child resource of a Service Bus Namespace."
+    },
+    {
+      "armType": "Microsoft.EventGrid/topics",
+      "apiVersion": "2023-12-15-preview",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "egt{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+      "requestBody": {
+        "properties": { "inputSchema": "EventGridSchema" }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Network/virtualNetworkGateways",
+      "apiVersion": "2023-09-01",
+      "costTier": "Medium",
+      "location": null,
+      "nameTemplate": "vgw{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": {
+          "gatewayType": "Vpn",
+          "vpnType": "RouteBased",
+          "sku": { "name": "VpnGw1AZ", "tier": "VpnGw1AZ" },
+          "ipConfigurations": [
+            {
+              "name": "vnetGatewayConfig",
+              "properties": {
+                "subnet": { "id": "{prereq.gatewaySubnet.id}" },
+                "publicIPAddress": { "id": "{prereq.gatewayPip.id}" }
+              }
+            }
+          ]
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "gatewayVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": {
+            "properties": { "addressSpace": { "addressPrefixes": ["10.20.0.0/16"] } }
+          }
+        },
+        {
+          "alias": "gatewaySubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.gatewayVnet.name}/GatewaySubnet",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": {
+            "properties": { "addressPrefix": "10.20.255.0/27" }
+          }
+        },
+        {
+          "alias": "gatewayPip",
+          "armType": "Microsoft.Network/publicIPAddresses",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "pip{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": {
+            "sku": { "name": "Standard" },
+            "zones": ["1", "2", "3"],
+            "properties": { "publicIPAllocationMethod": "Static" }
+          }
+        }
+      ],
+      "notes": "VPN Gateway provisioning commonly takes 20-45 minutes. Live-verified (~36 min). Requires the AZ-suffixed SKU (VpnGw1AZ, not VpnGw1 — non-AZ SKUs are deprecated) and the gateway's Public IP must have zones configured.",
+      "estimatedProvisionMinutes": 30,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2024-03-01",
+      "costTier": "Medium",
+      "location": null,
+      "nameTemplate": "vm{rand6}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 15 },
+      "requestBody": {
+        "properties": {
+          "hardwareProfile": { "vmSize": "Standard_D2s_v5" },
+          "osProfile": {
+            "computerName": "ardlvm",
+            "adminUsername": "azrddadmin",
+            "adminPassword": "{secret.vmAdminPassword}"
+          },
+          "storageProfile": {
+            "imageReference": {
+              "publisher": "Canonical",
+              "offer": "0001-com-ubuntu-server-jammy",
+              "sku": "22_04-lts",
+              "version": "latest"
+            }
+          },
+          "networkProfile": {
+            "networkInterfaces": [{ "id": "{prereq.nic.id}" }]
+          }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "vmVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": {
+            "properties": { "addressSpace": { "addressPrefixes": ["10.30.0.0/16"] } }
+          }
+        },
+        {
+          "alias": "vmSubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.vmVnet.name}/default",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": {
+            "properties": { "addressPrefix": "10.30.0.0/24" }
+          }
+        },
+        {
+          "alias": "nic",
+          "armType": "Microsoft.Network/networkInterfaces",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "nic{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": {
+            "properties": {
+              "ipConfigurations": [
+                {
+                  "name": "ipconfig1",
+                  "properties": { "subnet": { "id": "{prereq.vmSubnet.id}" } }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "notes": "VNet/Subnet/NIC chain provisions fine; VM creation itself is rejected in this tenant by a custom naming-convention policy (pol-ssg-prd-restriction-naming_convention). Confirmed solvable — the policy's actual rule (decoded via 'az policy definition show') only denies when BOTH of two sub-conditions hold, so satisfying just one (name starts with 'swaz'/'slaz', <=15 chars, ends in two digits) passes it. But doing so just uncovers a SECOND, independent tenant policy (managed-disk-restriction) rejecting the VM's auto-generated OS disk name, which would need its own decoded workaround, and potentially more layers beyond that. Not a bug in this tool or a dead end — a different tenant, or one without these specific policies, should succeed with this nameTemplate as-is. Left unresolved here deliberately: chasing tenant-specific naming policies one layer at a time isn't a good trade for a catalog meant to stay portable across tenants.",
+      "estimatedProvisionMinutes": 10,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2023-09-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "nic{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": { "ipConfigurations": [ { "name": "ipconfig1", "properties": { "subnet": { "id": "{prereq.subnet.id}" } } } ] }
+      },
+      "prerequisites": [
+        {
+          "alias": "vnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": { "properties": { "addressSpace": { "addressPrefixes": ["10.41.0.0/16"] } } }
+        },
+        {
+          "alias": "subnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.vnet.name}/default",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "properties": { "addressPrefix": "10.41.0.0/24" } }
+        }
+      ],
+      "notes": "Standalone NIC (independent of the inline NIC used as a VM prerequisite)."
+    },
+    {
+      "armType": "Microsoft.Compute/snapshots",
+      "apiVersion": "2023-10-02",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "snap{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": { "creationData": { "createOption": "Copy", "sourceResourceId": "{prereq.sourceDisk.id}" } }
+      },
+      "prerequisites": [
+        {
+          "alias": "sourceDisk",
+          "armType": "Microsoft.Compute/disks",
+          "apiVersion": "2023-10-02",
+          "nameTemplate": "disk{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "sku": { "name": "Standard_LRS" }, "properties": { "creationData": { "createOption": "Empty" }, "diskSizeGB": 4 } }
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Network/privateEndpoints",
+      "apiVersion": "2023-09-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "pe{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": {
+        "properties": {
+          "subnet": { "id": "{prereq.peSubnet.id}" },
+          "privateLinkServiceConnections": [
+            {
+              "name": "peconn1",
+              "properties": {
+                "privateLinkServiceId": "{prereq.targetStorage.id}",
+                "groupIds": ["blob"]
+              }
+            }
+          ]
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "peVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": { "properties": { "addressSpace": { "addressPrefixes": ["10.42.0.0/16"] } } }
+        },
+        {
+          "alias": "peSubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.peVnet.name}/default",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "properties": { "addressPrefix": "10.42.0.0/24", "privateEndpointNetworkPolicies": "Disabled" } }
+        },
+        {
+          "alias": "targetStorage",
+          "armType": "Microsoft.Storage/storageAccounts",
+          "apiVersion": "2023-05-01",
+          "nameTemplate": "st{rand8}",
+          "nameRules": { "charset": "lowerAlnum", "maxLength": 24 },
+          "requestBody": { "sku": { "name": "Standard_LRS" }, "kind": "StorageV2", "properties": { "accessTier": "Hot", "minimumTlsVersion": "TLS1_2" } }
+        }
+      ],
+      "notes": "Links to a fresh Storage Account (blob sub-resource) created as a prerequisite in the same unit."
+    },
+    {
+      "armType": "Microsoft.Network/routeTables",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "rt{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Compute/sshPublicKeys",
+      "apiVersion": "2024-03-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "sshkey{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": { "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMf4Pa+FlecNaDqyuITzNaZErfcsxCCRt5SGvBMi7+xZc6A87B+uo4bdYyrKVS+pfdHXUtOkGn7IYj/UMqx8V2QVni32cUQa08zxj1d9Hv9yT2P+2apXNbEAfZ2gKtcFj4HgtXMR+gtCG5IOu16c8MsPytK52qgfYcw6L2AwhYCV3bNuEBW/cLEA8Kh9FmdCEkp0QWOXlwVq6XO7w01ORLtpZMx9+urnzq8s0uUcgSolVynmMTWeNMhJbQPu1iKygYU4dl+YSE+dKXqm863CQBvnpcmeRcIVHsCVBqV82mpF1mMGa0xqUA45Hu4FLuNVHJWYuJN5IuFwFBpjQDuRqH ardl@example.com" }
+      },
+      "prerequisites": [],
+      "notes": "Dummy key material — this is never actually used to log into anything."
+    },
+    {
+      "armType": "Microsoft.Compute/availabilitySets",
+      "apiVersion": "2024-03-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "avset{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "sku": { "name": "Aligned" },
+        "properties": { "platformFaultDomainCount": 2, "platformUpdateDomainCount": 2 }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.EventHub/namespaces",
+      "apiVersion": "2024-01-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "ehns{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+      "requestBody": {
+        "sku": { "name": "Basic", "tier": "Basic" },
+        "properties": {}
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.AppConfiguration/configurationStores",
+      "apiVersion": "2024-05-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "appcs{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+      "requestBody": {
+        "sku": { "name": "free" },
+        "properties": {}
+      },
+      "prerequisites": [],
+      "notes": "Free tier is limited to one per subscription."
+    },
+    {
+      "armType": "Microsoft.Network/localNetworkGateways",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "lng{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": {
+          "gatewayIpAddress": "203.0.113.1",
+          "localNetworkAddressSpace": { "addressPrefixes": ["192.168.100.0/24"] }
+        }
+      },
+      "prerequisites": [],
+      "notes": "Represents an on-prem side; the IP/address-space are placeholders, no real on-prem gateway needed."
+    },
+    {
+      "armType": "Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "waf{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": {
+          "policySettings": { "state": "Enabled", "mode": "Prevention" },
+          "managedRules": { "managedRuleSets": [ { "ruleSetType": "OWASP", "ruleSetVersion": "3.2" } ] }
+        }
+      },
+      "prerequisites": [],
+      "notes": "Standalone WAF policy — no Application Gateway needed to create this."
+    },
+    {
+      "armType": "Microsoft.Network/natGateways",
+      "apiVersion": "2023-09-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "nat{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "sku": { "name": "Standard" },
+        "properties": { "publicIpAddresses": [ { "id": "{prereq.natPip.id}" } ] }
+      },
+      "prerequisites": [
+        {
+          "alias": "natPip",
+          "armType": "Microsoft.Network/publicIPAddresses",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "pip{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "sku": { "name": "Standard" }, "properties": { "publicIPAllocationMethod": "Static" } }
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Network/firewallPolicies",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "afwp{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": "Standalone Firewall Policy — no Azure Firewall needed to create this."
+    },
+    {
+      "armType": "Microsoft.OperationalInsights/querypacks",
+      "apiVersion": "2019-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "qp{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Cdn/profiles",
+      "apiVersion": "2024-02-01",
+      "costTier": "Low",
+      "location": "global",
+      "nameTemplate": "cdn{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": {
+        "sku": { "name": "Standard_AzureFrontDoor" },
+        "properties": {}
+      },
+      "prerequisites": [],
+      "notes": "Standard_AzureFrontDoor SKU chosen so the afdEndpoints entry below can attach to it."
+    },
+    {
+      "armType": "Microsoft.Cdn/profiles/afdEndpoints",
+      "apiVersion": "2024-02-01",
+      "costTier": "Low",
+      "location": "global",
+      "nameTemplate": "{prereq.cdnProfile.name}/afdep{rand6}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": { "properties": { "enabledState": "Enabled" } },
+      "prerequisites": [
+        {
+          "alias": "cdnProfile",
+          "armType": "Microsoft.Cdn/profiles",
+          "apiVersion": "2024-02-01",
+          "location": "global",
+          "nameTemplate": "cdn{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": { "sku": { "name": "Standard_AzureFrontDoor" }, "properties": {} }
+        }
+      ],
+      "notes": "Child of a Front Door (Standard_AzureFrontDoor) CDN profile."
+    },
+    {
+      "armType": "Microsoft.Compute/galleries",
+      "apiVersion": "2024-03-03",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "gal{rand8}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 80 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Compute/galleries/images",
+      "apiVersion": "2024-03-03",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "{prereq.gallery.name}/img{rand6}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 80 },
+      "requestBody": {
+        "properties": {
+          "osType": "Linux",
+          "osState": "Generalized",
+          "identifier": { "publisher": "ardl", "offer": "ardl-offer", "sku": "ardl-sku" }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "gallery",
+          "armType": "Microsoft.Compute/galleries",
+          "apiVersion": "2024-03-03",
+          "nameTemplate": "gal{rand8}",
+          "nameRules": { "charset": "lowerAlnum", "maxLength": 80 },
+          "requestBody": { "properties": {} }
+        }
+      ],
+      "notes": "Image definition only — no image version (which would need an actual source disk/VM) is created."
+    },
+    {
+      "armType": "Microsoft.Maintenance/maintenanceConfigurations",
+      "apiVersion": "2023-04-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "mc{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": {
+          "maintenanceScope": "InGuestPatch",
+          "extensionProperties": { "InGuestPatchMode": "User" },
+          "maintenanceWindow": { "startDateTime": "2030-01-01 00:00", "duration": "03:00", "timeZone": "UTC", "recurEvery": "1Day" },
+          "installPatches": {
+            "linuxParameters": { "classificationsToInclude": ["Critical", "Security"] },
+            "windowsParameters": { "classificationsToInclude": ["Critical", "Security"] },
+            "rebootSetting": "IfRequired"
+          }
+        }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.App/managedEnvironments",
+      "apiVersion": "2024-03-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "cae{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 60 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": "",
+      "estimatedProvisionMinutes": 5
+    },
+    {
+      "armType": "Microsoft.App/containerApps",
+      "apiVersion": "2024-03-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "ca{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 32 },
+      "requestBody": {
+        "properties": {
+          "managedEnvironmentId": "{prereq.containerAppsEnv.id}",
+          "configuration": { "ingress": { "external": true, "targetPort": 80 } },
+          "template": {
+            "containers": [ { "name": "main", "image": "mcr.microsoft.com/azuredocs/aci-helloworld" } ]
+          }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "containerAppsEnv",
+          "armType": "Microsoft.App/managedEnvironments",
+          "apiVersion": "2024-03-01",
+          "nameTemplate": "cae{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 60 },
+          "requestBody": { "properties": {} }
+        }
+      ],
+      "notes": "",
+      "estimatedProvisionMinutes": 8,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.ContainerRegistry/registries/webhooks",
+      "apiVersion": "2023-11-01-preview",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "{prereq.acr.name}/wh{rand6}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 50 },
+      "requestBody": {
+        "properties": {
+          "serviceUri": "https://example.com/webhook",
+          "actions": ["push"],
+          "status": "disabled"
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "acr",
+          "armType": "Microsoft.ContainerRegistry/registries",
+          "apiVersion": "2023-11-01-preview",
+          "nameTemplate": "acr{rand8}",
+          "nameRules": { "charset": "lowerAlnum", "maxLength": 50 },
+          "requestBody": { "sku": { "name": "Standard" }, "properties": { "adminUserEnabled": false } }
+        }
+      ],
+      "notes": "Webhooks require ACR Standard/Premium tier, hence the Standard SKU on the prerequisite (Basic doesn't support webhooks). status:disabled so it never actually fires."
+    },
+    {
+      "armType": "Microsoft.Monitor/accounts",
+      "apiVersion": "2023-04-03",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "amon{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 54 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": "Azure Monitor workspace (for Managed Prometheus), distinct from a Log Analytics workspace."
+    },
+    {
+      "armType": "Microsoft.SignalRService/signalR",
+      "apiVersion": "2024-03-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "sigr{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": {
+        "sku": { "name": "Free_F1", "tier": "Free", "capacity": 1 },
+        "properties": {}
+      },
+      "prerequisites": [],
+      "notes": "Free_F1 tier is limited to one per subscription."
+    },
+    {
+      "armType": "Microsoft.Dashboard/grafana",
+      "apiVersion": "2023-09-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "grf{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 23 },
+      "requestBody": {
+        "sku": { "name": "Standard" },
+        "properties": {}
+      },
+      "prerequisites": [],
+      "notes": "Azure Managed Grafana has no free tier; Standard is the minimum."
+    },
+    {
+      "armType": "Microsoft.DesktopVirtualization/workspaces",
+      "apiVersion": "2024-04-03",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "avdws{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": "AVD workspace metadata resource — no session hosts/VMs involved, no cost."
+    },
+    {
+      "armType": "Microsoft.DesktopVirtualization/hostPools",
+      "apiVersion": "2024-04-03",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "avdhp{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": {
+        "properties": { "hostPoolType": "Pooled", "loadBalancerType": "BreadthFirst", "preferredAppGroupType": "Desktop" }
+      },
+      "prerequisites": [],
+      "notes": "Metadata resource only — no session hosts/VMs are created."
+    },
+    {
+      "armType": "Microsoft.DesktopVirtualization/applicationGroups",
+      "apiVersion": "2024-04-03",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "avdag{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": {
+        "properties": { "hostPoolArmPath": "{prereq.hostPool.id}", "applicationGroupType": "Desktop" }
+      },
+      "prerequisites": [
+        {
+          "alias": "hostPool",
+          "armType": "Microsoft.DesktopVirtualization/hostPools",
+          "apiVersion": "2024-04-03",
+          "nameTemplate": "avdhp{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": { "properties": { "hostPoolType": "Pooled", "loadBalancerType": "BreadthFirst", "preferredAppGroupType": "Desktop" } }
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Resources/templateSpecs",
+      "apiVersion": "2022-02-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "ts{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 90 },
+      "requestBody": { "properties": { "displayName": "ARDL Template Spec" } },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Resources/templateSpecs/versions",
+      "apiVersion": "2022-02-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "{prereq.templateSpec.name}/v1",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 90 },
+      "requestBody": {
+        "properties": {
+          "mainTemplate": { "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#", "contentVersion": "1.0.0.0", "resources": [] }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "templateSpec",
+          "armType": "Microsoft.Resources/templateSpecs",
+          "apiVersion": "2022-02-01",
+          "nameTemplate": "ts{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 90 },
+          "requestBody": { "properties": { "displayName": "ARDL Template Spec" } }
+        }
+      ],
+      "notes": "Version content is an empty/no-op ARM template — never actually deployed."
+    },
+    {
+      "armType": "Microsoft.ResourceGraph/queries",
+      "apiVersion": "2024-04-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "rgq{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": {
+        "properties": { "query": "Resources | take 1" }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Search/searchServices",
+      "apiVersion": "2024-06-01-preview",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "srch{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 60 },
+      "requestBody": {
+        "sku": { "name": "free" },
+        "properties": {}
+      },
+      "prerequisites": [],
+      "notes": "Free tier is limited to one per subscription."
+    },
+    {
+      "armType": "Microsoft.Network/virtualWans",
+      "apiVersion": "2023-09-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "vwan{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": { "properties": { "type": "Standard" } },
+      "prerequisites": [],
+      "notes": "Virtual WAN resource itself has no meaningful ongoing cost; hubs attached to it do."
+    },
+    {
+      "armType": "Microsoft.NotificationHubs/namespaces",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "nhns{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+      "requestBody": { "sku": { "name": "Free" }, "properties": {} },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "apiVersion": "2023-09-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "{prereq.nhNamespace.name}/hub{rand6}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 260 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [
+        {
+          "alias": "nhNamespace",
+          "armType": "Microsoft.NotificationHubs/namespaces",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "nhns{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+          "requestBody": { "sku": { "name": "Free" }, "properties": {} }
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Sql/servers/elasticPools",
+      "apiVersion": "2023-08-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "{prereq.sqlServer.name}/pool{rand6}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 128 },
+      "requestBody": { "sku": { "name": "BasicPool", "tier": "Basic", "capacity": 50 }, "properties": {} },
+      "prerequisites": [
+        {
+          "alias": "sqlServer",
+          "armType": "Microsoft.Sql/servers",
+          "apiVersion": "2023-08-01",
+          "nameTemplate": "sql{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+          "requestBody": {
+            "properties": {
+              "administratorLogin": "azrddadmin",
+              "administratorLoginPassword": "{secret.sqlAdminPassword}",
+              "version": "12.0",
+              "minimalTlsVersion": "1.2"
+            }
+          }
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Communication/communicationServices",
+      "apiVersion": "2023-04-01",
+      "costTier": "Low",
+      "location": "global",
+      "nameTemplate": "acs{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": { "properties": { "dataLocation": "Europe" } },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Communication/emailServices",
+      "apiVersion": "2023-04-01",
+      "costTier": "Low",
+      "location": "global",
+      "nameTemplate": "acsemail{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": { "properties": { "dataLocation": "Europe" } },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.CognitiveServices/accounts",
+      "apiVersion": "2024-10-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "cog{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": {
+        "sku": { "name": "S0" },
+        "kind": "CognitiveServices",
+        "properties": { "customSubDomainName": "ardlcog{rand8}" }
+      },
+      "prerequisites": [],
+      "notes": "The 'CognitiveServices' (multi-service) kind doesn't support the F0 free SKU — S0 (Standard, pay-as-you-go with no monthly minimum) is the cheapest available tier for this kind."
+    },
+    {
+      "armType": "Microsoft.EventGrid/systemTopics",
+      "apiVersion": "2023-12-15-preview",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "egst{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 128 },
+      "requestBody": {
+        "properties": {
+          "source": "{prereq.sourceStorage.id}",
+          "topicType": "Microsoft.Storage.StorageAccounts"
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "sourceStorage",
+          "armType": "Microsoft.Storage/storageAccounts",
+          "apiVersion": "2023-05-01",
+          "nameTemplate": "st{rand8}",
+          "nameRules": { "charset": "lowerAlnum", "maxLength": 24 },
+          "requestBody": { "sku": { "name": "Standard_LRS" }, "kind": "StorageV2", "properties": { "accessTier": "Hot", "minimumTlsVersion": "TLS1_2" } }
+        }
+      ],
+      "notes": "Unlike a plain EventGrid topic, a system topic must attach to an existing Azure resource as its event source."
+    },
+    {
+      "armType": "Microsoft.Insights/metricAlerts",
+      "apiVersion": "2018-03-01",
+      "costTier": "Low",
+      "location": "global",
+      "nameTemplate": "ma{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 260 },
+      "requestBody": {
+        "properties": {
+          "severity": 3,
+          "enabled": true,
+          "scopes": ["{prereq.targetStorage.id}"],
+          "evaluationFrequency": "PT5M",
+          "windowSize": "PT15M",
+          "criteria": {
+            "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
+            "allOf": [ { "name": "cond1", "metricName": "Transactions", "operator": "GreaterThan", "threshold": 1000000, "timeAggregation": "Total", "criterionType": "StaticThresholdCriterion" } ]
+          }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "targetStorage",
+          "armType": "Microsoft.Storage/storageAccounts",
+          "apiVersion": "2023-05-01",
+          "nameTemplate": "st{rand8}",
+          "nameRules": { "charset": "lowerAlnum", "maxLength": 24 },
+          "requestBody": { "sku": { "name": "Standard_LRS" }, "kind": "StorageV2", "properties": { "accessTier": "Hot", "minimumTlsVersion": "TLS1_2" } }
+        }
+      ],
+      "notes": "Threshold is set unreasonably high on purpose so it never actually fires."
+    },
+    {
+      "armType": "Microsoft.Insights/scheduledQueryRules",
+      "apiVersion": "2023-03-15-preview",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "sqr{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 260 },
+      "requestBody": {
+        "kind": "LogAlert",
+        "properties": {
+          "displayName": "ARDL sample alert",
+          "severity": 3,
+          "enabled": true,
+          "scopes": ["{prereq.logAnalytics.id}"],
+          "evaluationFrequency": "PT15M",
+          "windowSize": "PT15M",
+          "criteria": { "allOf": [ { "query": "Heartbeat | take 1", "timeAggregation": "Count", "operator": "GreaterThan", "threshold": 1000000 } ] }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "logAnalytics",
+          "armType": "Microsoft.OperationalInsights/workspaces",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "law{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+          "requestBody": { "properties": { "sku": { "name": "PerGB2018" }, "retentionInDays": 30 } }
+        }
+      ],
+      "notes": "Threshold is set unreasonably high on purpose so it never actually fires."
+    },
+    {
+      "armType": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "dcr{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": {
+        "properties": {
+          "dataSources": {
+            "performanceCounters": [
+              { "name": "perfCounter1", "streams": ["Microsoft-Perf"], "samplingFrequencyInSeconds": 60, "counterSpecifiers": ["\\Processor(_Total)\\% Processor Time"] }
+            ]
+          },
+          "destinations": {
+            "logAnalytics": [ { "workspaceResourceId": "{prereq.logAnalytics.id}", "name": "destination-log" } ]
+          },
+          "dataFlows": [ { "streams": ["Microsoft-Perf"], "destinations": ["destination-log"] } ]
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "logAnalytics",
+          "armType": "Microsoft.OperationalInsights/workspaces",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "law{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+          "requestBody": { "properties": { "sku": { "name": "PerGB2018" }, "retentionInDays": 30 } }
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Insights/dataCollectionEndpoints",
+      "apiVersion": "2023-03-11",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "dce{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Insights/activityLogAlerts",
+      "apiVersion": "2020-10-01",
+      "costTier": "Free",
+      "location": "global",
+      "nameTemplate": "ala{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 260 },
+      "requestBody": {
+        "properties": {
+          "scopes": ["/subscriptions/{secret.subscriptionId}"],
+          "condition": { "allOf": [ { "field": "category", "equals": "ServiceHealth" } ] },
+          "enabled": true
+        }
+      },
+      "prerequisites": [],
+      "notes": "Scoped to the whole subscription (via {secret.subscriptionId}, the same value the pipeline already resolves for itself) since activity log alerts don't target a single resource."
+    },
+    {
+      "armType": "Microsoft.Insights/autoscalesettings",
+      "apiVersion": "2022-10-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "as{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 260 },
+      "requestBody": {
+        "properties": {
+          "targetResourceUri": "{prereq.targetPlan.id}",
+          "enabled": true,
+          "profiles": [
+            {
+              "name": "default",
+              "capacity": { "minimum": "1", "maximum": "1", "default": "1" },
+              "rules": []
+            }
+          ]
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "targetPlan",
+          "armType": "Microsoft.Web/serverfarms",
+          "apiVersion": "2023-12-01",
+          "nameTemplate": "plan{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 40 },
+          "requestBody": { "sku": { "name": "S1", "tier": "Standard" }, "properties": { "reserved": true } }
+        }
+      ],
+      "notes": "Autoscale requires a Standard+ tier App Service Plan (Basic doesn't support scale-out), hence S1 here rather than B1. In this tenant, a policy restricts App Service Plan SKUs to F1/B1/B2/B3/Y1/FC1/Consumption only — none of which support autoscale — so this entry cannot succeed here. Not a bug in this tool; a tenant without that SKU restriction should succeed with this body as-is."
+    },
+    {
+      "armType": "Microsoft.Insights/workbooks",
+      "apiVersion": "2023-06-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "{rand8}-{rand4}-{rand4}-{rand4}-{rand12}",
+      "nameRules": { "charset": "hex", "maxLength": 36 },
+      "requestBody": {
+        "kind": "shared",
+        "properties": {
+          "displayName": "ARDL sample workbook",
+          "serializedData": "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":1,\"content\":{\"json\":\"# ARDL sample workbook\"}}]}",
+          "category": "workbook",
+          "sourceId": "{prereq.logAnalytics.id}"
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "logAnalytics",
+          "armType": "Microsoft.OperationalInsights/workspaces",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "law{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+          "requestBody": { "properties": { "sku": { "name": "PerGB2018" }, "retentionInDays": 30 } }
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Insights/webtests",
+      "apiVersion": "2022-06-15",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "wt{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 260 },
+      "requestBody": {
+        "kind": "ping",
+        "tags": { "hidden-link:{prereq.appInsights.id}": "Resource" },
+        "properties": {
+          "SyntheticMonitorId": "ardl-webtest",
+          "Name": "ARDL ping test",
+          "Enabled": true,
+          "Frequency": 300,
+          "Timeout": 30,
+          "Kind": "ping",
+          "Locations": [ { "Id": "us-tx-sn1-azr" } ],
+          "Configuration": { "WebTest": "<WebTest Name='ARDL' Enabled='True' Timeout='30' xmlns='http://microsoft.com/schemas/VisualStudio/TeamTest/2010'><Items><Request Method='GET' Url='https://www.microsoft.com' ThinkTime='0' Timeout='30' ParseDependentRequests='False' FollowRedirects='True' RecordResult='True' Cache='False' ResponseTimeGoal='0' Encoding='utf-8' ExpectedHttpStatusCode='200' ExpectedResponseUrl='' ReportingName='' IgnoreHttpStatusCode='False' /></Items></WebTest>" }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "appInsights",
+          "armType": "Microsoft.Insights/components",
+          "apiVersion": "2020-02-02",
+          "nameTemplate": "ai{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+          "requestBody": { "kind": "web", "properties": { "Application_Type": "web" } }
+        }
+      ],
+      "notes": "The 'hidden-link:{resourceId}' tag KEY (not just value) is dynamically resolved via the same token substitution used for values — it happens on the raw JSON text before parsing, so token placement inside a key works the same as inside a value."
+    },
+    {
+      "armType": "Microsoft.Automation/automationAccounts/runbooks",
+      "apiVersion": "2023-11-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "{prereq.automationAccount.name}/runbook{rand6}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": {
+        "properties": { "runbookType": "PowerShell", "logProgress": false, "logVerbose": false }
+      },
+      "prerequisites": [
+        {
+          "alias": "automationAccount",
+          "armType": "Microsoft.Automation/automationAccounts",
+          "apiVersion": "2023-11-01",
+          "nameTemplate": "aa{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+          "requestBody": { "properties": { "sku": { "name": "Basic" } } }
+        }
+      ],
+      "notes": "Creates an empty runbook shell (no published content)."
+    },
+    {
+      "armType": "Microsoft.Portal/dashboards",
+      "apiVersion": "2020-09-01-preview",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "dash{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+      "requestBody": {
+        "tags": { "hidden-title": "ARDL Dashboard" },
+        "properties": { "lenses": [] }
+      },
+      "prerequisites": [],
+      "notes": ""
+    },
+    {
+      "armType": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "apiVersion": "2020-06-01",
+      "costTier": "Free",
+      "location": "global",
+      "nameTemplate": "{prereq.dnsZone.name}/link{rand6}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 80 },
+      "requestBody": {
+        "properties": { "virtualNetwork": { "id": "{prereq.linkVnet.id}" }, "registrationEnabled": false }
+      },
+      "prerequisites": [
+        {
+          "alias": "dnsZone",
+          "armType": "Microsoft.Network/privateDnsZones",
+          "apiVersion": "2020-06-01",
+          "location": "global",
+          "nameTemplate": "ardl{rand8}.private.contoso.com",
+          "nameRules": { "charset": "lowerAlnum", "maxLength": 63 },
+          "requestBody": { "properties": {} }
+        },
+        {
+          "alias": "linkVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": { "properties": { "addressSpace": { "addressPrefixes": ["10.43.0.0/16"] } } }
+        }
+      ],
+      "notes": "Child of Private DNS Zone; links it to a fresh VNet created as a prerequisite."
+    },
+    {
+      "armType": "Microsoft.Network/dnsZones",
+      "apiVersion": "2023-07-01-preview",
+      "costTier": "Low",
+      "location": "global",
+      "nameTemplate": "ardl{rand8}.contoso.com",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 63 },
+      "requestBody": { "properties": {} },
+      "prerequisites": [],
+      "notes": "Public DNS zone (distinct from Private DNS Zone above)."
+    },
+    {
+      "armType": "Microsoft.RecoveryServices/vaults",
+      "apiVersion": "2024-04-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "rsv{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+      "requestBody": {
+        "sku": { "name": "Standard" },
+        "properties": { "publicNetworkAccess": "Enabled" }
+      },
+      "prerequisites": [],
+      "notes": "An empty vault (no backup policy/items attached) has no meaningful cost."
+    },
+    {
+      "armType": "Microsoft.DocumentDB/mongoClusters",
+      "apiVersion": "2024-07-01",
+      "costTier": "Medium",
+      "location": null,
+      "nameTemplate": "mc{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 40 },
+      "requestBody": {
+        "properties": {
+          "administrator": { "userName": "azrddadmin", "password": "{secret.sqlAdminPassword}" },
+          "serverVersion": "7.0",
+          "compute": { "tier": "M10" },
+          "storage": { "sizeGb": 32 },
+          "sharding": { "shardCount": 1 },
+          "highAvailability": { "targetMode": "Disabled" }
+        }
+      },
+      "prerequisites": [],
+      "notes": "Cosmos DB for MongoDB (vCore) has no free/serverless tier — M10 is the smallest available compute tier and has a real, non-trivial hourly cost.",
+      "estimatedProvisionMinutes": 10,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.OperationsManagement/solutions",
+      "apiVersion": "2015-11-01-preview",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "AzureActivity({prereq.logAnalytics.name})",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 260 },
+      "requestBody": {
+        "plan": { "name": "AzureActivity({prereq.logAnalytics.name})", "publisher": "Microsoft", "product": "OMSGallery/AzureActivity", "promotionCode": "" },
+        "properties": { "workspaceResourceId": "{prereq.logAnalytics.id}" }
+      },
+      "prerequisites": [
+        {
+          "alias": "logAnalytics",
+          "armType": "Microsoft.OperationalInsights/workspaces",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "law{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+          "requestBody": { "properties": { "sku": { "name": "PerGB2018" }, "retentionInDays": 30 } }
+        }
+      ],
+      "notes": "Legacy Log Analytics 'solutions' gallery, largely superseded by Azure Monitor — schema/behavior may be unreliable going forward; included for real-usage coverage but lowest-confidence entry in the catalog."
+    },
+    {
+      "armType": "Microsoft.Logic/workflows",
+      "apiVersion": "2019-05-01",
+      "costTier": "Free",
+      "location": null,
+      "nameTemplate": "logic{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": {
+          "definition": {
+            "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+            "contentVersion": "1.0.0.0",
+            "triggers": {},
+            "actions": {}
+          }
+        }
+      },
+      "prerequisites": [],
+      "notes": "Empty trigger/action definition — Consumption-plan Logic Apps are billed per-execution, so an unused empty workflow has no real cost."
+    },
+    {
+      "armType": "Microsoft.ApiManagement/service",
+      "apiVersion": "2023-09-01-preview",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "apim{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+      "requestBody": {
+        "sku": { "name": "Consumption", "capacity": 0 },
+        "properties": { "publisherEmail": "ardl@example.com", "publisherName": "ARDL" }
+      },
+      "prerequisites": [],
+      "notes": "Consumption SKU only — Developer/Basic/Standard/Premium tiers take 30-45+ minutes to provision and were deliberately avoided.",
+      "estimatedProvisionMinutes": 5
+    },
+    {
+      "armType": "Microsoft.ContainerService/managedClusters",
+      "apiVersion": "2024-05-01",
+      "costTier": "Medium",
+      "location": null,
+      "nameTemplate": "aks{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": {
+        "properties": {
+          "dnsPrefix": "ardlaks{rand6}",
+          "agentPoolProfiles": [ { "name": "agentpool", "count": 1, "vmSize": "Standard_D2s_v5", "mode": "System", "osType": "Linux" } ]
+        },
+        "identity": { "type": "SystemAssigned" }
+      },
+      "prerequisites": [],
+      "notes": "identity is a top-level ARM property alongside sku/kind/properties/tags — same generic-body mechanism handles it since it's just another top-level key. This tenant's policy restricts AKS node-pool VM sizes to specific D-series SKUs (no B-series), hence Standard_D2s_v5.",
+      "estimatedProvisionMinutes": 15,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.Network/bastionHosts",
+      "apiVersion": "2023-09-01",
+      "costTier": "Medium",
+      "location": null,
+      "nameTemplate": "bastion{rand6}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "sku": { "name": "Basic" },
+        "properties": {
+          "ipConfigurations": [
+            {
+              "name": "bastionIpConfig",
+              "properties": {
+                "subnet": { "id": "{prereq.bastionSubnet.id}" },
+                "publicIPAddress": { "id": "{prereq.bastionPip.id}" }
+              }
+            }
+          ]
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "bastionVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": { "properties": { "addressSpace": { "addressPrefixes": ["10.44.0.0/16"] } } }
+        },
+        {
+          "alias": "bastionSubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.bastionVnet.name}/AzureBastionSubnet",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "properties": { "addressPrefix": "10.44.255.0/26" } }
+        },
+        {
+          "alias": "bastionPip",
+          "armType": "Microsoft.Network/publicIPAddresses",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "pip{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "sku": { "name": "Standard" }, "properties": { "publicIPAllocationMethod": "Static" } }
+        }
+      ],
+      "notes": "Subnet must be named exactly 'AzureBastionSubnet'.",
+      "estimatedProvisionMinutes": 10,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.DBforPostgreSQL/flexibleServers",
+      "apiVersion": "2024-08-01",
+      "costTier": "Medium",
+      "location": null,
+      "nameTemplate": "pg{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 63 },
+      "requestBody": {
+        "sku": { "name": "Standard_B1ms", "tier": "Burstable" },
+        "properties": {
+          "administratorLogin": "azrddadmin",
+          "administratorLoginPassword": "{secret.sqlAdminPassword}",
+          "version": "16",
+          "storage": { "storageSizeGB": 32 }
+        }
+      },
+      "prerequisites": [],
+      "notes": "Burstable B1ms is the cheapest available SKU; no free tier exists for Postgres Flexible Server.",
+      "estimatedProvisionMinutes": 15,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.Network/azureFirewalls",
+      "apiVersion": "2023-09-01",
+      "costTier": "Medium",
+      "location": null,
+      "nameTemplate": "afw{rand6}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+      "requestBody": {
+        "properties": {
+          "sku": { "name": "AZFW_VNet", "tier": "Basic" },
+          "ipConfigurations": [
+            {
+              "name": "afwIpConfig",
+              "properties": {
+                "subnet": { "id": "{prereq.afwSubnet.id}" },
+                "publicIPAddress": { "id": "{prereq.afwPip.id}" }
+              }
+            }
+          ],
+          "managementIpConfiguration": {
+            "name": "afwMgmtIpConfig",
+            "properties": {
+              "subnet": { "id": "{prereq.afwMgmtSubnet.id}" },
+              "publicIPAddress": { "id": "{prereq.afwMgmtPip.id}" }
+            }
+          }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "afwVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": { "properties": { "addressSpace": { "addressPrefixes": ["10.45.0.0/16"] } } }
+        },
+        {
+          "alias": "afwSubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.afwVnet.name}/AzureFirewallSubnet",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "properties": { "addressPrefix": "10.45.255.0/26" } }
+        },
+        {
+          "alias": "afwMgmtSubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.afwVnet.name}/AzureFirewallManagementSubnet",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "properties": { "addressPrefix": "10.45.254.0/26" } }
+        },
+        {
+          "alias": "afwPip",
+          "armType": "Microsoft.Network/publicIPAddresses",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "pip{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "sku": { "name": "Standard" }, "properties": { "publicIPAllocationMethod": "Static" } }
+        },
+        {
+          "alias": "afwMgmtPip",
+          "armType": "Microsoft.Network/publicIPAddresses",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "pip{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "sku": { "name": "Standard" }, "properties": { "publicIPAllocationMethod": "Static" } }
+        }
+      ],
+      "notes": "Subnets must be named exactly 'AzureFirewallSubnet' and 'AzureFirewallManagementSubnet'. Basic tier chosen to minimize cost, but Basic SKU specifically requires a separate Management IP configuration/subnet/public IP (Standard/Premium tiers don't).",
+      "estimatedProvisionMinutes": 15,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.Compute/virtualMachineScaleSets",
+      "apiVersion": "2024-03-01",
+      "costTier": "Medium",
+      "location": null,
+      "nameTemplate": "vmss{rand6}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 61 },
+      "requestBody": {
+        "sku": { "name": "Standard_D2s_v5", "tier": "Standard", "capacity": 1 },
+        "properties": {
+          "upgradePolicy": { "mode": "Manual" },
+          "virtualMachineProfile": {
+            "osProfile": { "computerNamePrefix": "ardlvmss", "adminUsername": "azrddadmin", "adminPassword": "{secret.vmAdminPassword}" },
+            "storageProfile": { "imageReference": { "publisher": "Canonical", "offer": "0001-com-ubuntu-server-jammy", "sku": "22_04-lts", "version": "latest" } },
+            "networkProfile": {
+              "networkInterfaceConfigurations": [
+                {
+                  "name": "nicconfig1",
+                  "properties": {
+                    "primary": true,
+                    "ipConfigurations": [ { "name": "ipconfig1", "properties": { "subnet": { "id": "{prereq.vmssSubnet.id}" } } } ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "vmssVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": { "properties": { "addressSpace": { "addressPrefixes": ["10.46.0.0/16"] } } }
+        },
+        {
+          "alias": "vmssSubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.vmssVnet.name}/default",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "properties": { "addressPrefix": "10.46.0.0/24" } }
+        }
+      ],
+      "notes": "Likely to hit the same tenant-specific VM naming-convention policy seen on the standalone VM entry in this environment.",
+      "estimatedProvisionMinutes": 10,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.Devices/IotHubs",
+      "apiVersion": "2023-06-30",
+      "costTier": "Medium",
+      "location": null,
+      "nameTemplate": "iot{rand8}",
+      "nameRules": { "charset": "lowerAlnumDash", "maxLength": 50 },
+      "requestBody": {
+        "sku": { "name": "F1", "capacity": 1 },
+        "properties": {}
+      },
+      "prerequisites": [],
+      "notes": "F1 (free) tier is limited to ONE per subscription — if this subscription already has one elsewhere, this will fail with a quota error, not a bug in this tool."
+    }
+  ]
+}

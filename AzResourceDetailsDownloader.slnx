@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AzResourceDetailsDownloader/AzResourceDetailsDownloader.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AzResourceDetailsDownloader.Tests/AzResourceDetailsDownloader.Tests.csproj" />
+  </Folder>
+</Solution>

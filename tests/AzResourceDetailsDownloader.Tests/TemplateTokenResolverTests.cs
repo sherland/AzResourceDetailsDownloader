@@ -1,0 +1,56 @@
+using AzResourceDetailsDownloader.Provisioning;
+
+namespace AzResourceDetailsDownloader.Tests;
+
+public class TemplateTokenResolverTests
+{
+    [Fact]
+    public void FindPrereqAliasReferences_ReturnsDistinctAliases()
+    {
+        const string text = "{prereq.sqlServer.name}/db-{prereq.sqlServer.id}-{prereq.vnet.name}";
+
+        var aliases = TemplateTokenResolver.FindPrereqAliasReferences(text).ToList();
+
+        Assert.Equal(["sqlServer", "vnet"], aliases);
+    }
+
+    [Fact]
+    public void FindPrereqAliasReferences_ReturnsEmpty_WhenNoTokensPresent()
+    {
+        Assert.Empty(TemplateTokenResolver.FindPrereqAliasReferences("plain-name"));
+    }
+
+    [Fact]
+    public void ResolvePrereqTokens_SubstitutesIdAndName()
+    {
+        var resolved = new Dictionary<string, ProvisionedResourceRef>
+        {
+            ["sqlServer"] = new ProvisionedResourceRef("/subscriptions/x/.../sql1", "sql1")
+        };
+
+        var result = TemplateTokenResolver.ResolvePrereqTokens("{prereq.sqlServer.name}/db1", resolved);
+
+        Assert.Equal("sql1/db1", result);
+    }
+
+    [Fact]
+    public void ResolvePrereqTokens_Throws_WhenAliasUnresolved()
+    {
+        var resolved = new Dictionary<string, ProvisionedResourceRef>();
+
+        Assert.Throws<InvalidOperationException>(() =>
+            TemplateTokenResolver.ResolvePrereqTokens("{prereq.missing.name}", resolved));
+    }
+
+    [Fact]
+    public void ResolveRandomTokens_ProducesRequestedLength_AndRespectsCharset()
+    {
+        var random = new Random(42);
+
+        var result = TemplateTokenResolver.ResolveRandomTokens("st{rand8}", "lowerAlnum", random);
+
+        Assert.Equal("st", result[..2]);
+        Assert.Equal(10, result.Length);
+        Assert.All(result[2..], c => Assert.True(char.IsLower(c) || char.IsDigit(c)));
+    }
+}
