@@ -28,6 +28,16 @@ dotnet run --login
 
 This opens a real (maximized, non-headless) Chromium window at `portal.azure.com` — log in there, including MFA. Once the URL shows you're past login, the session is saved to `.auth/storage_state.json` (gitignored) and reused headlessly by every subsequent `--run`. The whole batch reuses one browser session/tab rather than opening a new one per resource, which is what avoids re-triggering MFA.
 
+### Both auth surfaces at once
+
+The ARM/CLI session (`az login`) and the portal browser session above are two independent auth surfaces — either can expire without the other doing so. In a tenant with a conditional-access sign-in-frequency policy, the `az` CLI session expires periodically (symptom: `AADSTS70043`), and a plain `az login` can silently reuse an existing SSO session without actually resetting that clock. `authenticate.ps1` refreshes both properly in one go:
+
+```
+./authenticate.ps1
+```
+
+It runs `az logout` first (to force a genuine interactive re-auth, not a silent SSO reuse), then `az login`, then this tool's own `--login` mode for the portal session.
+
 ## Usage
 
 ```
@@ -78,6 +88,7 @@ None of this is permanent — the catalog is just JSON, so any of these can be a
 - **Resource-provider registration**: a subscription that has never used a given Azure service needs that resource provider registered once (`az provider register --namespace Microsoft.X`) before the first resource of that type can be created there. This is a one-time, no-cost, reversible subscription setting, not something this tool does automatically.
 - **Tenant policy**: organizations often have Azure Policy guardrails (e.g. requiring `minimalTlsVersion`, `httpsOnly`, purge protection, or restricting resource-group regions) that reject a naively-minimal request body. `config/resource-types.json` entries were tuned against this project's actual tenant; a different tenant's policies may require further adjustments to specific `requestBody` values.
 - **Portal interstitials**: the Azure Portal occasionally shows a promotional banner or an NPS survey popup over the Overview blade. The capture step doesn't try to dismiss these — they're a real (if rare) reason a `portal.png` might have an overlay in it.
+- **Occasional incomplete-render screenshots**: rarely (observed on `Microsoft.AppConfiguration/configurationStores` and `Microsoft.Automation/automationAccounts/runbooks`, apparently a one-off cold-start delay right after resource creation rather than something specific to those types — retries reproduced a fully-rendered blade every time), a `portal.png` can capture a still-loading blade (a shimmer placeholder or spinner instead of real content) if the blade takes longer than usual to populate. The capture step waits for the "Essentials" text/heading *and* for common Fluent UI loading indicators (`role="progressbar"`, `aria-busy`, shimmer/skeleton classes) to clear before screenshotting, with a reload-and-retry if the content marker never appears — but on a genuinely slow render this is still a best-effort wait, not a guarantee, so a stuck-loading screenshot is possible in principle. If you spot one, the type is worth re-running individually (`--only <armType>`) to get a clean capture.
 - **Hard crash / power loss**: the try/finally around each unit guarantees resource-group teardown for ordinary exceptions, but a hard process kill or power loss could still leave an ephemeral resource group behind. Also seen in practice: a resource-group delete can be *accepted* and briefly show `Deleting`, then silently fail in the background and revert to `Succeeded` — this tool doesn't poll delete-to-completion (a deliberate speed/simplicity tradeoff), so it's worth an occasional manual sweep. Every resource group created by this tool is tagged `purpose=az-resource-details-downloader`, so stragglers can be found and cleaned up with:
   ```
   az group list --tag purpose=az-resource-details-downloader -o table
