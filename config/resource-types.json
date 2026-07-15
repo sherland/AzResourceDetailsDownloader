@@ -3683,10 +3683,7 @@
           "msaAppMSIResourceId": "{prereq.botIdentity.id}"
         },
         "identity": {
-          "type": "UserAssigned",
-          "userAssignedIdentities": {
-            "{prereq.botIdentity.id}": {}
-          }
+          "type": "None"
         }
       },
       "prerequisites": [
@@ -3704,7 +3701,7 @@
           }
         }
       ],
-      "notes": "F0 free SKU, one per subscription. Bot Service normally needs a real Azure AD app registration (msaAppId) — using UserAssignedMSI auth type with a fresh managed identity sidesteps that, but this is the least-certain entry in the catalog regarding whether ARM accepts it without also supplying a valid msaAppId GUID; expect this to need live-test iteration."
+      "notes": "F0 free SKU, one per subscription. Live-verified fix: the top-level ARM `identity` block must be `{\"type\": \"None\"}` — Bot Service rejects `UserAssigned` there with `CannotSetResourceIdentity` ('The supported types are None'), even though `properties.msaAppType: UserAssignedMSI` still references the managed identity's resource ID directly via `msaAppMSIResourceId`, without needing the resource's own ARM identity assignment to match."
     },
     {
       "armType": "Microsoft.Maps/accounts",
@@ -3998,7 +3995,7 @@
     {
       "armType": "Microsoft.Compute/restorePointCollections",
       "apiVersion": "2024-03-01",
-      "costTier": "Free",
+      "costTier": "Medium",
       "location": null,
       "nameTemplate": "rpc{rand8}",
       "nameRules": {
@@ -4006,10 +4003,57 @@
         "maxLength": 80
       },
       "requestBody": {
-        "properties": {}
+        "properties": {
+          "source": { "id": "{prereq.rpcVm.id}" }
+        }
       },
-      "prerequisites": [],
-      "notes": "Empty collection — no restore points are actually created."
+      "prerequisites": [
+        {
+          "alias": "rpcVmVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
+          "requestBody": { "properties": { "addressSpace": { "addressPrefixes": ["10.70.0.0/16"] } } }
+        },
+        {
+          "alias": "rpcVmSubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.rpcVmVnet.name}/default",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "properties": { "addressPrefix": "10.70.0.0/24" } }
+        },
+        {
+          "alias": "rpcVmNic",
+          "armType": "Microsoft.Network/networkInterfaces",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "nic{rand8}",
+          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
+          "requestBody": { "properties": { "ipConfigurations": [ { "name": "ipconfig1", "properties": { "subnet": { "id": "{prereq.rpcVmSubnet.id}" } } } ] } }
+        },
+        {
+          "alias": "rpcVm",
+          "armType": "Microsoft.Compute/virtualMachines",
+          "apiVersion": "2024-03-01",
+          "nameTemplate": "swaz{rand9}02",
+          "nameRules": { "charset": "lowerAlnum", "maxLength": 15 },
+          "requestBody": {
+            "properties": {
+              "hardwareProfile": { "vmSize": "Standard_D2s_v5" },
+              "osProfile": { "computerName": "ardlvm2", "adminUsername": "azrddadmin", "adminPassword": "{secret.vmAdminPassword}" },
+              "storageProfile": {
+                "imageReference": { "publisher": "Canonical", "offer": "0001-com-ubuntu-server-jammy", "sku": "22_04-lts", "version": "latest" },
+                "osDisk": { "createOption": "FromImage", "managedDisk": { "storageAccountType": "StandardSSD_LRS" } }
+              },
+              "networkProfile": { "networkInterfaces": [ { "id": "{prereq.rpcVmNic.id}" } ] }
+            }
+          }
+        }
+      ],
+      "notes": "Live-verified fix: 'properties.source.id' (a VM resource ID) is required even to create an empty collection, contrary to the original assumption that a source-less empty collection was possible — so this needed a full VM prerequisite chain (reusing the same naming-convention-policy and disk-SKU-policy fixes as the standalone Microsoft.Compute/virtualMachines entry), and the cost tier moved from Free to Medium accordingly.",
+      "estimatedProvisionMinutes": 10,
+      "slowProvisioning": true
     },
     {
       "armType": "Microsoft.App/jobs",
@@ -4856,7 +4900,7 @@
       "location": "global",
       "nameTemplate": "fdwaf{rand8}",
       "nameRules": {
-        "charset": "lowerAlnumDash",
+        "charset": "lowerAlnum",
         "maxLength": 80
       },
       "requestBody": {
@@ -4871,7 +4915,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "WAF policy for Front Door Standard/Premium — distinct from the Application Gateway WAF policy entry above, though it shares the same base armType prefix historically used by classic Front Door too."
+      "notes": "WAF policy for Front Door Standard/Premium — distinct from the Application Gateway WAF policy entry above, though it shares the same base armType prefix historically used by classic Front Door too. Live-verified fix: the name must be alphanumeric only — a dash (from the lowerAlnumDash charset used elsewhere in this catalog) triggers a 400 'Policy ArmResourceId has incorrect formatting' error, so this entry uses the lowerAlnum charset instead."
     },
     {
       "armType": "Microsoft.AnalysisServices/servers",
