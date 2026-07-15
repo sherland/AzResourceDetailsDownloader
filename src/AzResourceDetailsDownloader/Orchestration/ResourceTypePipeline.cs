@@ -19,6 +19,7 @@ public sealed class ResourceTypePipeline(
     string outputRoot,
     PortalCaptureService portalCapture,
     IacExportService iacExport,
+    CategoryResolver categoryResolver,
     IReadOnlyDictionary<string, string> secrets,
     int defaultProvisioningTimeoutMinutes,
     int provisioningTimeoutHeadroomMinutes,
@@ -107,8 +108,9 @@ public sealed class ResourceTypePipeline(
             var bicep = await iacExport.TryExportBicepAsync(rgName, unitLogger, ct);
             var terraform = await iacExport.TryExportTerraformAsync(subscriptionId, rgName, unitLogger, ct);
 
+            var category = categoryResolver.ResolveCategory(def.ArmType);
             await OutputWriter.WriteAsync(
-                outputRoot, def.ArmType, rawJson, capture.Screenshot,
+                outputRoot, def.ArmType, category, rawJson, capture.Screenshot,
                 subscriptionId, secrets["tenantId"], rgName,
                 bicep, terraform, capture.Notices, ct);
 

@@ -57,6 +57,16 @@ if (parsedArgs.Mode == RunMode.Login)
 var catalogPath = RepoPaths.Resolve(repoRoot, options.CatalogPath);
 var catalog = ResourceTypeCatalogLoader.Load(catalogPath);
 
+var abbreviationsPath = RepoPaths.Resolve(repoRoot, options.AbbreviationsConfigPath);
+var abbreviationsCatalog = ResourceAbbreviationsLoader.TryLoad(abbreviationsPath);
+var categoryResolver = new CategoryResolver(abbreviationsCatalog);
+if (abbreviationsCatalog is null)
+{
+    logger.LogInformation(
+        "No abbreviations config found at '{Path}' — every entry will fall into the '{Uncategorized}' output folder. Run fetch-resource-abbreviations.ps1 to populate it.",
+        abbreviationsPath, CategoryResolver.Uncategorized);
+}
+
 var maxCostTier = Enum.Parse<CostTier>(parsedArgs.MaxCostTierOverride ?? options.MaxCostTier, ignoreCase: true);
 
 var filtered = catalog.ResourceTypes
@@ -72,7 +82,7 @@ if (parsedArgs.Mode == RunMode.DryRun)
 {
     foreach (var def in filtered)
     {
-        PrintPlannedUnit(def, options.DefaultLocation);
+        PrintPlannedUnit(def, options.DefaultLocation, categoryResolver);
     }
 
     return 0;
@@ -102,8 +112,9 @@ await using var portalCapture = await PortalCaptureService.CreateAsync(
 
 var outputRoot = RepoPaths.Resolve(repoRoot, options.OutputRoot);
 var pipeline = new ResourceTypePipeline(
-    armClient, rawArmClient, subscriptionId, options.DefaultLocation, outputRoot, portalCapture, iacExport, secrets,
-    options.DefaultProvisioningTimeoutMinutes, options.ProvisioningTimeoutHeadroomMinutes, logger);
+    armClient, rawArmClient, subscriptionId, options.DefaultLocation, outputRoot, portalCapture, iacExport,
+    categoryResolver, secrets, options.DefaultProvisioningTimeoutMinutes, options.ProvisioningTimeoutHeadroomMinutes,
+    logger);
 
 var maxConcurrency = parsedArgs.MaxConcurrencyOverride ?? options.MaxConcurrentUnits;
 logger.LogInformation("Running with max concurrency {MaxConcurrency}", maxConcurrency);
@@ -158,7 +169,7 @@ foreach (var result in summary.Results)
 
 return summary.Results.Any(r => !r.Success) ? 1 : 0;
 
-static void PrintPlannedUnit(ResourceTypeDefinition def, string defaultLocation)
+static void PrintPlannedUnit(ResourceTypeDefinition def, string defaultLocation, CategoryResolver categoryResolver)
 {
     var random = new Random();
     var resolvedPrereqs = new Dictionary<string, ProvisionedResourceRef>(StringComparer.OrdinalIgnoreCase);
@@ -188,6 +199,7 @@ static void PrintPlannedUnit(ResourceTypeDefinition def, string defaultLocation)
     var namePreview = TemplateTokenResolver.ResolveRandomTokens(
         nameWithPrereqsResolved, def.NameRules?.Charset ?? "lowerAlnum", random);
     Console.WriteLine($"  target name preview: '{namePreview}'");
-    Console.WriteLine($"  output folder: output/{ArmTypeKey.From(def.ArmType)}/");
+    var category = categoryResolver.ResolveCategory(def.ArmType);
+    Console.WriteLine($"  output folder: output/{CategoryKey.From(category)}/{ArmTypeKey.From(def.ArmType)}/");
     Console.WriteLine();
 }

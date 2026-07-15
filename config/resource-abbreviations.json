@@ -1,0 +1,1448 @@
+{
+  "sourceUrl": "https://raw.githubusercontent.com/MicrosoftDocs/cloud-adoption-framework/main/docs/ready/azure-best-practices/resource-abbreviations.md",
+  "fetchedUtc": "2026-07-15T09:07:49.4019910Z",
+  "entries": [
+    {
+      "category": "AI + machine learning",
+      "resource": "AI Search",
+      "resourceProviderNamespace": "Microsoft.Search/searchServices",
+      "kindQualifier": null,
+      "abbreviation": "srch"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Foundry Tools (multi-service account)",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `CognitiveServices`",
+      "abbreviation": "ais"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Foundry account",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `AIServices`",
+      "abbreviation": "aif"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Foundry account project",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts/projects",
+      "kindQualifier": null,
+      "abbreviation": "proj"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Foundry hub",
+      "resourceProviderNamespace": "Microsoft.MachineLearningServices/workspaces",
+      "kindQualifier": "kind: `Hub`",
+      "abbreviation": "hub"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Foundry hub project",
+      "resourceProviderNamespace": "Microsoft.MachineLearningServices/workspaces",
+      "kindQualifier": "kind: `Project`",
+      "abbreviation": "proj"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Azure AI Video Indexer",
+      "resourceProviderNamespace": "Microsoft.VideoIndexer/accounts",
+      "kindQualifier": null,
+      "abbreviation": "avi"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Azure Machine Learning workspace",
+      "resourceProviderNamespace": "Microsoft.MachineLearningServices/workspaces",
+      "kindQualifier": null,
+      "abbreviation": "mlw"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Azure OpenAI Service",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `OpenAI`",
+      "abbreviation": "oai"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Bot service",
+      "resourceProviderNamespace": "Microsoft.BotService/botServices",
+      "kindQualifier": "kind: `azurebot`",
+      "abbreviation": "bot"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Computer vision",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `ComputerVision`",
+      "abbreviation": "cv"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Content moderator",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `ContentModerator`",
+      "abbreviation": "cm"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Content safety",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `ContentSafety`",
+      "abbreviation": "cs"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Custom vision (prediction)",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `CustomVision.Prediction`",
+      "abbreviation": "cstv"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Custom vision (training)",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `CustomVision.Training`",
+      "abbreviation": "cstvt"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Document intelligence",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `FormRecognizer`",
+      "abbreviation": "di"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Face API",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `Face`",
+      "abbreviation": "face"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Health Insights",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `HealthInsights`",
+      "abbreviation": "hi"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Immersive reader",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `ImmersiveReader`",
+      "abbreviation": "ir"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Language service",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `TextAnalytics`",
+      "abbreviation": "lang"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Speech service",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `SpeechServices`",
+      "abbreviation": "spch"
+    },
+    {
+      "category": "AI + machine learning",
+      "resource": "Translator",
+      "resourceProviderNamespace": "Microsoft.CognitiveServices/accounts",
+      "kindQualifier": "kind: `TextTranslation`",
+      "abbreviation": "trsl"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Analysis Services server",
+      "resourceProviderNamespace": "Microsoft.AnalysisServices/servers",
+      "kindQualifier": null,
+      "abbreviation": "as"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Databricks Access Connector",
+      "resourceProviderNamespace": "Microsoft.Databricks/workspaces/accessConnectors",
+      "kindQualifier": null,
+      "abbreviation": "dbac"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Databricks workspace",
+      "resourceProviderNamespace": "Microsoft.Databricks/workspaces",
+      "kindQualifier": null,
+      "abbreviation": "dbw"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Data Explorer cluster",
+      "resourceProviderNamespace": "Microsoft.Kusto/clusters",
+      "kindQualifier": null,
+      "abbreviation": "dec"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Data Explorer cluster database",
+      "resourceProviderNamespace": "Microsoft.Kusto/clusters/databases",
+      "kindQualifier": null,
+      "abbreviation": "dedb"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Data Factory",
+      "resourceProviderNamespace": "Microsoft.DataFactory/factories",
+      "kindQualifier": null,
+      "abbreviation": "adf"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Digital Twin instance",
+      "resourceProviderNamespace": "Microsoft.DigitalTwins/digitalTwinsInstances",
+      "kindQualifier": null,
+      "abbreviation": "dt"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Stream Analytics",
+      "resourceProviderNamespace": "Microsoft.StreamAnalytics/cluster",
+      "kindQualifier": null,
+      "abbreviation": "asa"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Synapse Analytics private link hub",
+      "resourceProviderNamespace": "Microsoft.Synapse/privateLinkHubs",
+      "kindQualifier": null,
+      "abbreviation": "synplh"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Synapse Analytics SQL Dedicated Pool",
+      "resourceProviderNamespace": "Microsoft.Synapse/workspaces/sqlPools",
+      "kindQualifier": null,
+      "abbreviation": "syndp"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Synapse Analytics Spark Pool",
+      "resourceProviderNamespace": "Microsoft.Synapse/workspaces/bigDataPools",
+      "kindQualifier": null,
+      "abbreviation": "synsp"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Azure Synapse Analytics workspaces",
+      "resourceProviderNamespace": "Microsoft.Synapse/workspaces",
+      "kindQualifier": null,
+      "abbreviation": "synw"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Data Lake Store account",
+      "resourceProviderNamespace": "Microsoft.DataLakeStore/accounts",
+      "kindQualifier": null,
+      "abbreviation": "dls"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Event Hubs namespace",
+      "resourceProviderNamespace": "Microsoft.EventHub/namespaces",
+      "kindQualifier": null,
+      "abbreviation": "evhns"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Event hub",
+      "resourceProviderNamespace": "Microsoft.EventHub/namespaces/eventHubs",
+      "kindQualifier": null,
+      "abbreviation": "evh"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Event Grid domain",
+      "resourceProviderNamespace": "Microsoft.EventGrid/domains",
+      "kindQualifier": null,
+      "abbreviation": "evgd"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Event Grid namespace",
+      "resourceProviderNamespace": "Microsoft.EventGrid/namespaces",
+      "kindQualifier": null,
+      "abbreviation": "evgns"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Event Grid subscriptions",
+      "resourceProviderNamespace": "Microsoft.EventGrid/eventSubscriptions",
+      "kindQualifier": null,
+      "abbreviation": "evgs"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Event Grid topic",
+      "resourceProviderNamespace": "Microsoft.EventGrid/domains/topics",
+      "kindQualifier": null,
+      "abbreviation": "evgt"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Event Grid system topic",
+      "resourceProviderNamespace": "Microsoft.EventGrid/systemTopics",
+      "kindQualifier": null,
+      "abbreviation": "egst"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Fabric Capacity",
+      "resourceProviderNamespace": "Microsoft.Fabric/capacities",
+      "kindQualifier": null,
+      "abbreviation": "fc"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "HDInsight - Hadoop cluster",
+      "resourceProviderNamespace": "Microsoft.HDInsight/clusters",
+      "kindQualifier": null,
+      "abbreviation": "hadoop"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "HDInsight - HBase cluster",
+      "resourceProviderNamespace": "Microsoft.HDInsight/clusters",
+      "kindQualifier": null,
+      "abbreviation": "hbase"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "HDInsight - Kafka cluster",
+      "resourceProviderNamespace": "Microsoft.HDInsight/clusters",
+      "kindQualifier": null,
+      "abbreviation": "kafka"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "HDInsight - Spark cluster",
+      "resourceProviderNamespace": "Microsoft.HDInsight/clusters",
+      "kindQualifier": null,
+      "abbreviation": "spark"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "HDInsight - Storm cluster",
+      "resourceProviderNamespace": "Microsoft.HDInsight/clusters",
+      "kindQualifier": null,
+      "abbreviation": "storm"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "HDInsight - ML Services cluster",
+      "resourceProviderNamespace": "Microsoft.HDInsight/clusters",
+      "kindQualifier": null,
+      "abbreviation": "mls"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "IoT hub",
+      "resourceProviderNamespace": "Microsoft.Devices/IotHubs",
+      "kindQualifier": null,
+      "abbreviation": "iot"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Provisioning services",
+      "resourceProviderNamespace": "Microsoft.Devices/provisioningServices",
+      "kindQualifier": null,
+      "abbreviation": "provs"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Provisioning services certificate",
+      "resourceProviderNamespace": "Microsoft.Devices/provisioningServices/certificates",
+      "kindQualifier": null,
+      "abbreviation": "pcert"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Power BI Embedded",
+      "resourceProviderNamespace": "Microsoft.PowerBIDedicated/capacities",
+      "kindQualifier": null,
+      "abbreviation": "pbi"
+    },
+    {
+      "category": "Analytics and IoT",
+      "resource": "Time Series Insights environment",
+      "resourceProviderNamespace": "Microsoft.TimeSeriesInsights/environments",
+      "kindQualifier": null,
+      "abbreviation": "tsi"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "App Service environment",
+      "resourceProviderNamespace": "Microsoft.Web/hostingEnvironments",
+      "kindQualifier": null,
+      "abbreviation": "ase"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "App Service plan",
+      "resourceProviderNamespace": "Microsoft.Web/serverFarms",
+      "kindQualifier": null,
+      "abbreviation": "asp"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Azure Load Testing instance",
+      "resourceProviderNamespace": "Microsoft.LoadTestService/loadTests",
+      "kindQualifier": null,
+      "abbreviation": "lt"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Availability set",
+      "resourceProviderNamespace": "Microsoft.Compute/availabilitySets",
+      "kindQualifier": null,
+      "abbreviation": "avail"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Azure Arc enabled server",
+      "resourceProviderNamespace": "Microsoft.HybridCompute/machines",
+      "kindQualifier": null,
+      "abbreviation": "arcs"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Azure Arc enabled Kubernetes cluster",
+      "resourceProviderNamespace": "Microsoft.Kubernetes/connectedClusters",
+      "kindQualifier": null,
+      "abbreviation": "arck"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Azure Arc private link scope",
+      "resourceProviderNamespace": "Microsoft.HybridCompute/privateLinkScopes",
+      "kindQualifier": null,
+      "abbreviation": "pls"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Azure Arc gateway",
+      "resourceProviderNamespace": "Microsoft.HybridCompute/gateways",
+      "kindQualifier": null,
+      "abbreviation": "arcgw"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Batch accounts",
+      "resourceProviderNamespace": "Microsoft.Batch/batchAccounts",
+      "kindQualifier": null,
+      "abbreviation": "ba"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Cloud service",
+      "resourceProviderNamespace": "Microsoft.Compute/cloudServices",
+      "kindQualifier": null,
+      "abbreviation": "cld"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Communication Services",
+      "resourceProviderNamespace": "Microsoft.Communication/communicationServices",
+      "kindQualifier": null,
+      "abbreviation": "acs"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Disk encryption set",
+      "resourceProviderNamespace": "Microsoft.Compute/diskEncryptionSets",
+      "kindQualifier": null,
+      "abbreviation": "des"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Function app",
+      "resourceProviderNamespace": "Microsoft.Web/sites",
+      "kindQualifier": null,
+      "abbreviation": "func"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Gallery",
+      "resourceProviderNamespace": "Microsoft.Compute/galleries",
+      "kindQualifier": null,
+      "abbreviation": "gal"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Hosting environment",
+      "resourceProviderNamespace": "Microsoft.Web/hostingEnvironments",
+      "kindQualifier": null,
+      "abbreviation": "host"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Image template",
+      "resourceProviderNamespace": "Microsoft.VirtualMachineImages/imageTemplates",
+      "kindQualifier": null,
+      "abbreviation": "it"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Managed disk (OS)",
+      "resourceProviderNamespace": "Microsoft.Compute/disks",
+      "kindQualifier": null,
+      "abbreviation": "osdisk"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Managed disk (data)",
+      "resourceProviderNamespace": "Microsoft.Compute/disks",
+      "kindQualifier": null,
+      "abbreviation": "disk"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Notification Hubs",
+      "resourceProviderNamespace": "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "kindQualifier": null,
+      "abbreviation": "ntf"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Notification Hubs namespace",
+      "resourceProviderNamespace": "Microsoft.NotificationHubs/namespaces",
+      "kindQualifier": null,
+      "abbreviation": "ntfns"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Proximity placement group",
+      "resourceProviderNamespace": "Microsoft.Compute/proximityPlacementGroups",
+      "kindQualifier": null,
+      "abbreviation": "ppg"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Restore point collection",
+      "resourceProviderNamespace": "Microsoft.Compute/restorePointCollections",
+      "kindQualifier": null,
+      "abbreviation": "rpc"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Snapshot",
+      "resourceProviderNamespace": "Microsoft.Compute/snapshots",
+      "kindQualifier": null,
+      "abbreviation": "snap"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Static web app",
+      "resourceProviderNamespace": "Microsoft.Web/staticSites",
+      "kindQualifier": null,
+      "abbreviation": "stapp"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Virtual machine",
+      "resourceProviderNamespace": "Microsoft.Compute/virtualMachines",
+      "kindQualifier": null,
+      "abbreviation": "vm"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Virtual machine scale set",
+      "resourceProviderNamespace": "Microsoft.Compute/virtualMachineScaleSets",
+      "kindQualifier": null,
+      "abbreviation": "vmss"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Virtual machine maintenance configuration",
+      "resourceProviderNamespace": "Microsoft.Maintenance/maintenanceConfigurations",
+      "kindQualifier": null,
+      "abbreviation": "mc"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "VM storage account",
+      "resourceProviderNamespace": "Microsoft.Storage/storageAccounts",
+      "kindQualifier": null,
+      "abbreviation": "stvm"
+    },
+    {
+      "category": "Compute and web",
+      "resource": "Web app",
+      "resourceProviderNamespace": "Microsoft.Web/sites",
+      "kindQualifier": null,
+      "abbreviation": "app"
+    },
+    {
+      "category": "Containers",
+      "resource": "AKS cluster",
+      "resourceProviderNamespace": "Microsoft.ContainerService/managedClusters",
+      "kindQualifier": null,
+      "abbreviation": "aks"
+    },
+    {
+      "category": "Containers",
+      "resource": "AKS system node pool",
+      "resourceProviderNamespace": "Microsoft.ContainerService/managedClusters/agentPools",
+      "kindQualifier": "mode: `System`",
+      "abbreviation": "npsystem"
+    },
+    {
+      "category": "Containers",
+      "resource": "AKS user node pool",
+      "resourceProviderNamespace": "Microsoft.ContainerService/managedClusters/agentPools",
+      "kindQualifier": "mode: `User`",
+      "abbreviation": "np"
+    },
+    {
+      "category": "Containers",
+      "resource": "Container apps",
+      "resourceProviderNamespace": "Microsoft.App/containerApps",
+      "kindQualifier": null,
+      "abbreviation": "ca"
+    },
+    {
+      "category": "Containers",
+      "resource": "Container apps environment",
+      "resourceProviderNamespace": "Microsoft.App/managedEnvironments",
+      "kindQualifier": null,
+      "abbreviation": "cae"
+    },
+    {
+      "category": "Containers",
+      "resource": "Container apps job",
+      "resourceProviderNamespace": "Microsoft.App/jobs",
+      "kindQualifier": null,
+      "abbreviation": "caj"
+    },
+    {
+      "category": "Containers",
+      "resource": "Container registry",
+      "resourceProviderNamespace": "Microsoft.ContainerRegistry/registries",
+      "kindQualifier": null,
+      "abbreviation": "cr"
+    },
+    {
+      "category": "Containers",
+      "resource": "Container instance",
+      "resourceProviderNamespace": "Microsoft.ContainerInstance/containerGroups",
+      "kindQualifier": null,
+      "abbreviation": "ci"
+    },
+    {
+      "category": "Containers",
+      "resource": "Service Fabric cluster",
+      "resourceProviderNamespace": "Microsoft.ServiceFabric/clusters",
+      "kindQualifier": null,
+      "abbreviation": "sf"
+    },
+    {
+      "category": "Containers",
+      "resource": "Service Fabric managed cluster",
+      "resourceProviderNamespace": "Microsoft.ServiceFabric/managedClusters",
+      "kindQualifier": null,
+      "abbreviation": "sfmc"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure Cosmos DB database",
+      "resourceProviderNamespace": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "kindQualifier": null,
+      "abbreviation": "cosmos"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure Cosmos DB for Apache Cassandra account",
+      "resourceProviderNamespace": "Microsoft.DocumentDB/databaseAccounts",
+      "kindQualifier": null,
+      "abbreviation": "coscas"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure Cosmos DB for MongoDB account",
+      "resourceProviderNamespace": "Microsoft.DocumentDB/databaseAccounts",
+      "kindQualifier": null,
+      "abbreviation": "cosmon"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure Cosmos DB for NoSQL account",
+      "resourceProviderNamespace": "Microsoft.DocumentDb/databaseAccounts",
+      "kindQualifier": null,
+      "abbreviation": "cosno"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure Cosmos DB for Table account",
+      "resourceProviderNamespace": "Microsoft.DocumentDb/databaseAccounts",
+      "kindQualifier": null,
+      "abbreviation": "costab"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure Cosmos DB for Apache Gremlin account",
+      "resourceProviderNamespace": "Microsoft.DocumentDb/databaseAccounts",
+      "kindQualifier": null,
+      "abbreviation": "cosgrm"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure Cosmos DB PostgreSQL cluster",
+      "resourceProviderNamespace": "Microsoft.DBforPostgreSQL/serverGroupsv2",
+      "kindQualifier": null,
+      "abbreviation": "cospos"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure Managed Redis",
+      "resourceProviderNamespace": "Microsoft.Cache/RedisEnterprise",
+      "kindQualifier": null,
+      "abbreviation": "amr"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure SQL Database server",
+      "resourceProviderNamespace": "Microsoft.Sql/servers",
+      "kindQualifier": null,
+      "abbreviation": "sql"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure SQL database",
+      "resourceProviderNamespace": "Microsoft.Sql/servers/databases",
+      "kindQualifier": null,
+      "abbreviation": "sqldb"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure SQL Elastic Job agent",
+      "resourceProviderNamespace": "Microsoft.Sql/servers/jobAgents",
+      "kindQualifier": null,
+      "abbreviation": "sqlja"
+    },
+    {
+      "category": "Databases",
+      "resource": "Azure SQL Elastic Pool",
+      "resourceProviderNamespace": "Microsoft.Sql/servers/elasticpool",
+      "kindQualifier": null,
+      "abbreviation": "sqlep"
+    },
+    {
+      "category": "Databases",
+      "resource": "MySQL database",
+      "resourceProviderNamespace": "Microsoft.DBforMySQL/servers",
+      "kindQualifier": null,
+      "abbreviation": "mysql"
+    },
+    {
+      "category": "Databases",
+      "resource": "PostgreSQL flexible server",
+      "resourceProviderNamespace": "Microsoft.DBforPostgreSQL/flexibleServers",
+      "kindQualifier": null,
+      "abbreviation": "pgsql"
+    },
+    {
+      "category": "Databases",
+      "resource": "SQL Managed Instance",
+      "resourceProviderNamespace": "Microsoft.Sql/managedInstances",
+      "kindQualifier": null,
+      "abbreviation": "sqlmi"
+    },
+    {
+      "category": "Developer tools",
+      "resource": "App Configuration store",
+      "resourceProviderNamespace": "Microsoft.AppConfiguration/configurationStores",
+      "kindQualifier": null,
+      "abbreviation": "appcs"
+    },
+    {
+      "category": "Developer tools",
+      "resource": "Maps account",
+      "resourceProviderNamespace": "Microsoft.Maps/accounts",
+      "kindQualifier": null,
+      "abbreviation": "map"
+    },
+    {
+      "category": "Developer tools",
+      "resource": "SignalR",
+      "resourceProviderNamespace": "Microsoft.SignalRService/SignalR",
+      "kindQualifier": null,
+      "abbreviation": "sigr"
+    },
+    {
+      "category": "Developer tools",
+      "resource": "WebPubSub",
+      "resourceProviderNamespace": "Microsoft.SignalRService/webPubSub",
+      "kindQualifier": null,
+      "abbreviation": "wps"
+    },
+    {
+      "category": "DevOps",
+      "resource": "Azure Managed Grafana",
+      "resourceProviderNamespace": "Microsoft.Dashboard/grafana",
+      "kindQualifier": null,
+      "abbreviation": "amg"
+    },
+    {
+      "category": "DevOps",
+      "resource": "Managed DevOps Pools",
+      "resourceProviderNamespace": "Microsoft.DevOpsInfrastructure/pools",
+      "kindQualifier": null,
+      "abbreviation": "mdp"
+    },
+    {
+      "category": "Integration",
+      "resource": "API management service instance",
+      "resourceProviderNamespace": "Microsoft.ApiManagement/service",
+      "kindQualifier": null,
+      "abbreviation": "apim"
+    },
+    {
+      "category": "Integration",
+      "resource": "Integration account",
+      "resourceProviderNamespace": "Microsoft.Logic/integrationAccounts",
+      "kindQualifier": null,
+      "abbreviation": "ia"
+    },
+    {
+      "category": "Integration",
+      "resource": "Logic app",
+      "resourceProviderNamespace": "Microsoft.Logic/workflows",
+      "kindQualifier": null,
+      "abbreviation": "logic"
+    },
+    {
+      "category": "Integration",
+      "resource": "Service Bus namespace",
+      "resourceProviderNamespace": "Microsoft.ServiceBus/namespaces",
+      "kindQualifier": null,
+      "abbreviation": "sbns"
+    },
+    {
+      "category": "Integration",
+      "resource": "Service Bus queue",
+      "resourceProviderNamespace": "Microsoft.ServiceBus/namespaces/queues",
+      "kindQualifier": null,
+      "abbreviation": "sbq"
+    },
+    {
+      "category": "Integration",
+      "resource": "Service Bus topic",
+      "resourceProviderNamespace": "Microsoft.ServiceBus/namespaces/topics",
+      "kindQualifier": null,
+      "abbreviation": "sbt"
+    },
+    {
+      "category": "Integration",
+      "resource": "Service Bus topic subscription",
+      "resourceProviderNamespace": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+      "kindQualifier": null,
+      "abbreviation": "sbts"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Automation account",
+      "resourceProviderNamespace": "Microsoft.Automation/automationAccounts",
+      "kindQualifier": null,
+      "abbreviation": "aa"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Azure Policy definition",
+      "resourceProviderNamespace": "Microsoft.Authorization/policyDefinitions",
+      "kindQualifier": null,
+      "abbreviation": "<*descriptive*>"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Application Insights",
+      "resourceProviderNamespace": "Microsoft.Insights/components",
+      "kindQualifier": null,
+      "abbreviation": "appi"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Azure Monitor action group",
+      "resourceProviderNamespace": "Microsoft.Insights/actionGroups",
+      "kindQualifier": null,
+      "abbreviation": "ag"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Azure Monitor data collection rule",
+      "resourceProviderNamespace": "Microsoft.Insights/dataCollectionRules",
+      "kindQualifier": null,
+      "abbreviation": "dcr"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Azure Monitor alert processing rule",
+      "resourceProviderNamespace": "Microsoft.AlertsManagement/actionRules",
+      "kindQualifier": null,
+      "abbreviation": "apr"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Data collection endpoint",
+      "resourceProviderNamespace": "Microsoft.Insights/dataCollectionEndpoints",
+      "kindQualifier": null,
+      "abbreviation": "dce"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Deployment scripts",
+      "resourceProviderNamespace": "Microsoft.Resources/deploymentScripts",
+      "kindQualifier": null,
+      "abbreviation": "script"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Log Analytics workspace",
+      "resourceProviderNamespace": "Microsoft.OperationalInsights/workspaces",
+      "kindQualifier": null,
+      "abbreviation": "log"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Log Analytics query packs",
+      "resourceProviderNamespace": "Microsoft.OperationalInsights/querypacks",
+      "kindQualifier": null,
+      "abbreviation": "pack"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Management group",
+      "resourceProviderNamespace": "Microsoft.Management/managementGroups",
+      "kindQualifier": null,
+      "abbreviation": "mg"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Microsoft Purview instance",
+      "resourceProviderNamespace": "Microsoft.Purview/accounts",
+      "kindQualifier": null,
+      "abbreviation": "pview"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Resource group",
+      "resourceProviderNamespace": "Microsoft.Resources/resourceGroups",
+      "kindQualifier": null,
+      "abbreviation": "rg"
+    },
+    {
+      "category": "Management and governance",
+      "resource": "Template specs name",
+      "resourceProviderNamespace": "Microsoft.Resources/templateSpecs",
+      "kindQualifier": null,
+      "abbreviation": "ts"
+    },
+    {
+      "category": "Migration",
+      "resource": "Azure Migrate project",
+      "resourceProviderNamespace": "Microsoft.Migrate/assessmentProjects",
+      "kindQualifier": null,
+      "abbreviation": "migr"
+    },
+    {
+      "category": "Migration",
+      "resource": "Database Migration Service instance",
+      "resourceProviderNamespace": "Microsoft.DataMigration/services",
+      "kindQualifier": null,
+      "abbreviation": "dms"
+    },
+    {
+      "category": "Migration",
+      "resource": "Recovery Services vault",
+      "resourceProviderNamespace": "Microsoft.RecoveryServices/vaults",
+      "kindQualifier": null,
+      "abbreviation": "rsv"
+    },
+    {
+      "category": "Networking",
+      "resource": "Application gateway",
+      "resourceProviderNamespace": "Microsoft.Network/applicationGateways",
+      "kindQualifier": null,
+      "abbreviation": "agw"
+    },
+    {
+      "category": "Networking",
+      "resource": "Application security group (ASG)",
+      "resourceProviderNamespace": "Microsoft.Network/applicationSecurityGroups",
+      "kindQualifier": null,
+      "abbreviation": "asg"
+    },
+    {
+      "category": "Networking",
+      "resource": "CDN profile",
+      "resourceProviderNamespace": "Microsoft.Cdn/profiles",
+      "kindQualifier": null,
+      "abbreviation": "cdnp"
+    },
+    {
+      "category": "Networking",
+      "resource": "CDN endpoint",
+      "resourceProviderNamespace": "Microsoft.Cdn/profiles/endpoints",
+      "kindQualifier": null,
+      "abbreviation": "cdne"
+    },
+    {
+      "category": "Networking",
+      "resource": "Connections",
+      "resourceProviderNamespace": "Microsoft.Network/connections",
+      "kindQualifier": null,
+      "abbreviation": "con"
+    },
+    {
+      "category": "Networking",
+      "resource": "DNS",
+      "resourceProviderNamespace": "Microsoft.Network/dnsZones",
+      "kindQualifier": null,
+      "abbreviation": "\\<*DNS domain name*>"
+    },
+    {
+      "category": "Networking",
+      "resource": "DNS forwarding ruleset",
+      "resourceProviderNamespace": "Microsoft.Network/dnsForwardingRulesets",
+      "kindQualifier": null,
+      "abbreviation": "dnsfrs"
+    },
+    {
+      "category": "Networking",
+      "resource": "DNS private resolver",
+      "resourceProviderNamespace": "Microsoft.Network/dnsResolvers",
+      "kindQualifier": null,
+      "abbreviation": "dnspr"
+    },
+    {
+      "category": "Networking",
+      "resource": "DNS private resolver inbound endpoint",
+      "resourceProviderNamespace": "Microsoft.Network/dnsResolvers/inboundEndpoints",
+      "kindQualifier": null,
+      "abbreviation": "in"
+    },
+    {
+      "category": "Networking",
+      "resource": "DNS private resolver outbound endpoint",
+      "resourceProviderNamespace": "Microsoft.Network/dnsResolvers/outboundEndpoints",
+      "kindQualifier": null,
+      "abbreviation": "out"
+    },
+    {
+      "category": "Networking",
+      "resource": "DNS zone",
+      "resourceProviderNamespace": "Microsoft.Network/privateDnsZones",
+      "kindQualifier": null,
+      "abbreviation": "\\<*DNS domain name*>"
+    },
+    {
+      "category": "Networking",
+      "resource": "Firewall",
+      "resourceProviderNamespace": "Microsoft.Network/azureFirewalls",
+      "kindQualifier": null,
+      "abbreviation": "afw"
+    },
+    {
+      "category": "Networking",
+      "resource": "Firewall policy",
+      "resourceProviderNamespace": "Microsoft.Network/firewallPolicies",
+      "kindQualifier": null,
+      "abbreviation": "afwp"
+    },
+    {
+      "category": "Networking",
+      "resource": "ExpressRoute circuit",
+      "resourceProviderNamespace": "Microsoft.Network/expressRouteCircuits",
+      "kindQualifier": null,
+      "abbreviation": "erc"
+    },
+    {
+      "category": "Networking",
+      "resource": "ExpressRoute direct",
+      "resourceProviderNamespace": "Microsoft.Network/expressRoutePorts",
+      "kindQualifier": null,
+      "abbreviation": "erd"
+    },
+    {
+      "category": "Networking",
+      "resource": "ExpressRoute gateway",
+      "resourceProviderNamespace": "Microsoft.Network/virtualNetworkGateways",
+      "kindQualifier": null,
+      "abbreviation": "ergw"
+    },
+    {
+      "category": "Networking",
+      "resource": "Front Door (Standard/Premium) profile",
+      "resourceProviderNamespace": "Microsoft.Cdn/profiles",
+      "kindQualifier": null,
+      "abbreviation": "afd"
+    },
+    {
+      "category": "Networking",
+      "resource": "Front Door (Standard/Premium) endpoint",
+      "resourceProviderNamespace": "Microsoft.Cdn/profiles/afdEndpoints",
+      "kindQualifier": null,
+      "abbreviation": "fde"
+    },
+    {
+      "category": "Networking",
+      "resource": "Front Door firewall policy",
+      "resourceProviderNamespace": "Microsoft.Network/frontdoorWebApplicationFirewallPolicies",
+      "kindQualifier": null,
+      "abbreviation": "fdfp"
+    },
+    {
+      "category": "Networking",
+      "resource": "Front Door (classic)",
+      "resourceProviderNamespace": "Microsoft.Network/frontDoors",
+      "kindQualifier": null,
+      "abbreviation": "afd"
+    },
+    {
+      "category": "Networking",
+      "resource": "IP group",
+      "resourceProviderNamespace": "Microsoft.Network/ipGroups",
+      "kindQualifier": null,
+      "abbreviation": "ipg"
+    },
+    {
+      "category": "Networking",
+      "resource": "Load balancer (internal)",
+      "resourceProviderNamespace": "Microsoft.Network/loadBalancers",
+      "kindQualifier": null,
+      "abbreviation": "lbi"
+    },
+    {
+      "category": "Networking",
+      "resource": "Load balancer (external)",
+      "resourceProviderNamespace": "Microsoft.Network/loadBalancers",
+      "kindQualifier": null,
+      "abbreviation": "lbe"
+    },
+    {
+      "category": "Networking",
+      "resource": "Load balancer rule",
+      "resourceProviderNamespace": "Microsoft.Network/loadBalancers/inboundNatRules",
+      "kindQualifier": null,
+      "abbreviation": "rule"
+    },
+    {
+      "category": "Networking",
+      "resource": "Local network gateway",
+      "resourceProviderNamespace": "Microsoft.Network/localNetworkGateways",
+      "kindQualifier": null,
+      "abbreviation": "lgw"
+    },
+    {
+      "category": "Networking",
+      "resource": "NAT gateway",
+      "resourceProviderNamespace": "Microsoft.Network/natGateways",
+      "kindQualifier": null,
+      "abbreviation": "ng"
+    },
+    {
+      "category": "Networking",
+      "resource": "Network interface (NIC)",
+      "resourceProviderNamespace": "Microsoft.Network/networkInterfaces",
+      "kindQualifier": null,
+      "abbreviation": "nic"
+    },
+    {
+      "category": "Networking",
+      "resource": "Network security perimeter",
+      "resourceProviderNamespace": "Microsoft.Network/networkSecurityPerimeters",
+      "kindQualifier": null,
+      "abbreviation": "nsp"
+    },
+    {
+      "category": "Networking",
+      "resource": "Network security group (NSG)",
+      "resourceProviderNamespace": "Microsoft.Network/networkSecurityGroups",
+      "kindQualifier": null,
+      "abbreviation": "nsg"
+    },
+    {
+      "category": "Networking",
+      "resource": "Network security group (NSG) security rules",
+      "resourceProviderNamespace": "Microsoft.Network/networkSecurityGroups/securityRules",
+      "kindQualifier": null,
+      "abbreviation": "nsgsr"
+    },
+    {
+      "category": "Networking",
+      "resource": "Network Watcher",
+      "resourceProviderNamespace": "Microsoft.Network/networkWatchers",
+      "kindQualifier": null,
+      "abbreviation": "nw"
+    },
+    {
+      "category": "Networking",
+      "resource": "Private Link",
+      "resourceProviderNamespace": "Microsoft.Network/privateLinkServices",
+      "kindQualifier": null,
+      "abbreviation": "pl"
+    },
+    {
+      "category": "Networking",
+      "resource": "Private endpoint",
+      "resourceProviderNamespace": "Microsoft.Network/privateEndpoints",
+      "kindQualifier": null,
+      "abbreviation": "pep"
+    },
+    {
+      "category": "Networking",
+      "resource": "Public IP address",
+      "resourceProviderNamespace": "Microsoft.Network/publicIPAddresses",
+      "kindQualifier": null,
+      "abbreviation": "pip"
+    },
+    {
+      "category": "Networking",
+      "resource": "Public IP address prefix",
+      "resourceProviderNamespace": "Microsoft.Network/publicIPPrefixes",
+      "kindQualifier": null,
+      "abbreviation": "ippre"
+    },
+    {
+      "category": "Networking",
+      "resource": "Route filter",
+      "resourceProviderNamespace": "Microsoft.Network/routeFilters",
+      "kindQualifier": null,
+      "abbreviation": "rf"
+    },
+    {
+      "category": "Networking",
+      "resource": "Route server",
+      "resourceProviderNamespace": "Microsoft.Network/virtualHubs",
+      "kindQualifier": null,
+      "abbreviation": "rtserv"
+    },
+    {
+      "category": "Networking",
+      "resource": "Route table",
+      "resourceProviderNamespace": "Microsoft.Network/routeTables",
+      "kindQualifier": null,
+      "abbreviation": "rt"
+    },
+    {
+      "category": "Networking",
+      "resource": "Service endpoint policy",
+      "resourceProviderNamespace": "Microsoft.Network/serviceEndPointPolicies",
+      "kindQualifier": null,
+      "abbreviation": "se"
+    },
+    {
+      "category": "Networking",
+      "resource": "Traffic Manager profile",
+      "resourceProviderNamespace": "Microsoft.Network/trafficManagerProfiles",
+      "kindQualifier": null,
+      "abbreviation": "traf"
+    },
+    {
+      "category": "Networking",
+      "resource": "User defined route (UDR)",
+      "resourceProviderNamespace": "Microsoft.Network/routeTables/routes",
+      "kindQualifier": null,
+      "abbreviation": "udr"
+    },
+    {
+      "category": "Networking",
+      "resource": "Virtual network",
+      "resourceProviderNamespace": "Microsoft.Network/virtualNetworks",
+      "kindQualifier": null,
+      "abbreviation": "vnet"
+    },
+    {
+      "category": "Networking",
+      "resource": "Virtual network gateway",
+      "resourceProviderNamespace": "Microsoft.Network/virtualNetworkGateways",
+      "kindQualifier": null,
+      "abbreviation": "vgw"
+    },
+    {
+      "category": "Networking",
+      "resource": "Virtual network manager",
+      "resourceProviderNamespace": "Microsoft.Network/networkManagers",
+      "kindQualifier": null,
+      "abbreviation": "vnm"
+    },
+    {
+      "category": "Networking",
+      "resource": "Virtual network peering",
+      "resourceProviderNamespace": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+      "kindQualifier": null,
+      "abbreviation": "peer"
+    },
+    {
+      "category": "Networking",
+      "resource": "Virtual network subnet",
+      "resourceProviderNamespace": "Microsoft.Network/virtualNetworks/subnets",
+      "kindQualifier": null,
+      "abbreviation": "snet"
+    },
+    {
+      "category": "Networking",
+      "resource": "Virtual WAN",
+      "resourceProviderNamespace": "Microsoft.Network/virtualWans",
+      "kindQualifier": null,
+      "abbreviation": "vwan"
+    },
+    {
+      "category": "Networking",
+      "resource": "Virtual WAN Hub",
+      "resourceProviderNamespace": "Microsoft.Network/virtualHubs",
+      "kindQualifier": null,
+      "abbreviation": "vhub"
+    },
+    {
+      "category": "Security",
+      "resource": "Azure Bastion",
+      "resourceProviderNamespace": "Microsoft.Network/bastionHosts",
+      "kindQualifier": null,
+      "abbreviation": "bas"
+    },
+    {
+      "category": "Security",
+      "resource": "Key vault",
+      "resourceProviderNamespace": "Microsoft.KeyVault/vaults",
+      "kindQualifier": null,
+      "abbreviation": "kv"
+    },
+    {
+      "category": "Security",
+      "resource": "Key Vault Managed HSM",
+      "resourceProviderNamespace": "Microsoft.KeyVault/managedHSMs",
+      "kindQualifier": null,
+      "abbreviation": "kvmhsm"
+    },
+    {
+      "category": "Security",
+      "resource": "Managed identity",
+      "resourceProviderNamespace": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "kindQualifier": null,
+      "abbreviation": "id"
+    },
+    {
+      "category": "Security",
+      "resource": "SSH key",
+      "resourceProviderNamespace": "Microsoft.Compute/sshPublicKeys",
+      "kindQualifier": null,
+      "abbreviation": "sshkey"
+    },
+    {
+      "category": "Security",
+      "resource": "VPN Gateway",
+      "resourceProviderNamespace": "Microsoft.Network/vpnGateways",
+      "kindQualifier": null,
+      "abbreviation": "vpng"
+    },
+    {
+      "category": "Security",
+      "resource": "VPN connection",
+      "resourceProviderNamespace": "Microsoft.Network/vpnGateways/vpnConnections",
+      "kindQualifier": null,
+      "abbreviation": "vcn"
+    },
+    {
+      "category": "Security",
+      "resource": "VPN site",
+      "resourceProviderNamespace": "Microsoft.Network/vpnGateways/vpnSites",
+      "kindQualifier": null,
+      "abbreviation": "vst"
+    },
+    {
+      "category": "Security",
+      "resource": "Web Application Firewall (WAF) policy",
+      "resourceProviderNamespace": "Microsoft.Network/firewallPolicies",
+      "kindQualifier": null,
+      "abbreviation": "waf"
+    },
+    {
+      "category": "Security",
+      "resource": "Web Application Firewall (WAF) policy rule group",
+      "resourceProviderNamespace": "Microsoft.Network/firewallPolicies/ruleGroups",
+      "kindQualifier": null,
+      "abbreviation": "wafrg"
+    },
+    {
+      "category": "Storage",
+      "resource": "Azure Backup Resource Guard",
+      "resourceProviderNamespace": "Microsoft.DataProtection/resourceGuards",
+      "kindQualifier": null,
+      "abbreviation": "rgd"
+    },
+    {
+      "category": "Storage",
+      "resource": "Backup Vault name",
+      "resourceProviderNamespace": "Microsoft.DataProtection/backupVaults",
+      "kindQualifier": null,
+      "abbreviation": "bvault"
+    },
+    {
+      "category": "Storage",
+      "resource": "Backup Vault policy",
+      "resourceProviderNamespace": "Microsoft.DataProtection/backupVaults/backupPolicies",
+      "kindQualifier": null,
+      "abbreviation": "bkpol"
+    },
+    {
+      "category": "Storage",
+      "resource": "File share",
+      "resourceProviderNamespace": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "kindQualifier": null,
+      "abbreviation": "share"
+    },
+    {
+      "category": "Storage",
+      "resource": "Storage account",
+      "resourceProviderNamespace": "Microsoft.Storage/storageAccounts",
+      "kindQualifier": null,
+      "abbreviation": "st"
+    },
+    {
+      "category": "Storage",
+      "resource": "Storage Sync Service name",
+      "resourceProviderNamespace": "Microsoft.StorageSync/storageSyncServices",
+      "kindQualifier": null,
+      "abbreviation": "sss"
+    },
+    {
+      "category": "Virtual desktop infrastructure",
+      "resource": "Virtual desktop host pool",
+      "resourceProviderNamespace": "Microsoft.DesktopVirtualization/hostPools",
+      "kindQualifier": null,
+      "abbreviation": "vdpool"
+    },
+    {
+      "category": "Virtual desktop infrastructure",
+      "resource": "Virtual desktop application group",
+      "resourceProviderNamespace": "Microsoft.DesktopVirtualization/applicationGroups",
+      "kindQualifier": null,
+      "abbreviation": "vdag"
+    },
+    {
+      "category": "Virtual desktop infrastructure",
+      "resource": "Virtual desktop workspace",
+      "resourceProviderNamespace": "Microsoft.DesktopVirtualization/workspaces",
+      "kindQualifier": null,
+      "abbreviation": "vdws"
+    },
+    {
+      "category": "Virtual desktop infrastructure",
+      "resource": "Virtual desktop scaling plan",
+      "resourceProviderNamespace": "Microsoft.DesktopVirtualization/scalingPlans",
+      "kindQualifier": null,
+      "abbreviation": "vdscaling"
+    }
+  ]
+}
