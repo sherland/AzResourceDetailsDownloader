@@ -5255,7 +5255,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "~$2,300-3,200/month, billed from creation and cannot be paused — genuinely the most expensive entry in this catalog, hence VeryHigh. Mandatory purge protection (unlike regular Key Vault, not even optional here) means DeterministicNaming exempts this armType the same way it does Microsoft.KeyVault/vaults. initialAdminObjectIds requires at least one real AAD principal, sourced from {secret.adminPrincipalId} (same mechanism as Microsoft.AnalysisServices/servers and Microsoft.Fabric/capacities). Not live-tested — deliberately, given the cost of even a brief test."
+      "notes": "$3.20/hour for the Standard_B1 SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/key-vault/, verified — not estimated), billed from creation and cannot be paused — genuinely the most expensive entry in this catalog, hence VeryHigh. Billing stops at deletion (confirmed: \"only deletion ends charges\") — the mandatory ~90-day purge-protection retention blocks reusing the name/data, not ongoing billing. Mandatory purge protection (unlike regular Key Vault, not even optional here) means DeterministicNaming exempts this armType the same way it does Microsoft.KeyVault/vaults. initialAdminObjectIds requires at least one real AAD principal, sourced from {secret.adminPrincipalId} (same mechanism as Microsoft.AnalysisServices/servers and Microsoft.Fabric/capacities). Not live-tested — deliberately, given the cost of even a brief test."
     },
     {
       "armType": "Microsoft.Sql/managedInstances",
@@ -5327,7 +5327,7 @@
           }
         }
       ],
-      "notes": "~$800-2,000+/month minimum (4 vCore General Purpose), hours to provision — one of the most expensive and slowest entries in this catalog. Needs a dedicated subnet delegated to Microsoft.Sql/managedInstances (plus, in a real deployment, an NSG and route table with specific required rules this minimal body omits). Reconstructed from general schema knowledge, not confirmed live — lowest-confidence entry alongside Microsoft.HDInsight/clusters and Microsoft.ServiceFabric/clusters below. Not live-tested — deliberately, given the cost/time of even a brief test.",
+      "notes": "$0.61/hour for General Purpose, Gen5, 4 vCore (the minimum vCore count allowed) — source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/azure-sql-managed-instance/single/, verified, not estimated. Billing is a genuine hourly-minimum, quoted verbatim from Microsoft: \"You are billed for each hour that a managed instance exists ... regardless of whether the server was active for less than an hour.\" Combined with the real several-hour provisioning time (see estimatedProvisionMinutes below), a single brief test costs roughly $0.61 x actual hours alive, not a fraction of an hour. Needs a dedicated subnet delegated to Microsoft.Sql/managedInstances (plus, in a real deployment, an NSG and route table with specific required rules this minimal body omits). Reconstructed from general schema knowledge, not confirmed live — lowest-confidence entry alongside Microsoft.HDInsight/clusters and Microsoft.ServiceFabric/clusters below. Not live-tested — deliberately, given the cost/time of even a brief test.",
       "estimatedProvisionMinutes": 240,
       "slowProvisioning": true
     },
@@ -5433,7 +5433,7 @@
           }
         }
       ],
-      "notes": "Multi-VM cluster (2 head + 1 worker + 3 zookeeper nodes minimum for a Spark cluster with HA), several hundred+/month, hours to provision — the most complex and least training-certain entry in this catalog. The storage account's access key can't be resolved via this tool's {prereq.*.id/name/location} tokens (only those three properties are supported, not a dynamically-issued key), so 'key' uses a placeholder secret ({secret.hdiStorageKeyPlaceholder}) that would need to be supplied out-of-band (e.g. fetched via `az storage account keys list` and set in appsettings.Development.json) before this entry could actually run — a real gap, not just an untested guess. Not live-tested.",
+      "notes": "Multi-VM cluster (2 head + 1 worker + 3 zookeeper nodes minimum for a Spark cluster with HA). Confirmed billing granularity, quoted verbatim from Microsoft: \"We charge for the number of minutes your cluster is running, rounded to the nearest minute, not hour\" — genuine per-minute proration, no hourly-minimum trap. Confirmed VM rates (Azure Retail Prices API, East US): Standard_D3_v2 ~$0.29/hour, Standard_D1_v2 ~$0.07/hour — for the 6-node layout below (2x D3_v2 head + 1x D3_v2 worker + 3x A4_v2 zookeeper), expect roughly $1-1.50/hour total compute while running (A4_v2's exact rate wasn't separately confirmed), for however many minutes it actually takes (this entry is configured with a 60-minute estimate, not confirmed live). The most complex and least training-certain entry in this catalog. The storage account's access key can't be resolved via this tool's {prereq.*.id/name/location} tokens (only those three properties are supported, not a dynamically-issued key), so 'key' uses a placeholder secret ({secret.hdiStorageKeyPlaceholder}) that would need to be supplied out-of-band (e.g. fetched via `az storage account keys list` and set in appsettings.Development.json) before this entry could actually run — a real gap, not just an untested guess. Not live-tested.",
       "estimatedProvisionMinutes": 60,
       "slowProvisioning": true
     },
@@ -5485,7 +5485,7 @@
           }
         }
       ],
-      "notes": "Classic/legacy Service Fabric cluster — in a real deployment this also needs a VMSS backing each node type, a certificate in Key Vault for cluster security, and diagnostics storage accounts, none of which this minimal body includes; a real PUT would very likely fail without them. Left in the catalog as a structural placeholder rather than fully worked out, given this type is legacy and increasingly superseded by Microsoft.ServiceFabric/managedClusters below. Lowest-confidence entry in this catalog alongside Microsoft.Sql/managedInstances and Microsoft.HDInsight/clusters. Not live-tested."
+      "notes": "Confirmed: Service Fabric itself has no charge at all — quoted verbatim from Microsoft's pricing page: \"You are only charged for the compute instances, storage, networking resources, and IP addresses you choose when creating a Service Fabric cluster. There is no charge for the service offered by Service Fabric itself.\" Cost is entirely whatever VMSS/VMs actually back the cluster. In a real deployment this also needs a VMSS backing each node type, a certificate in Key Vault for cluster security, and diagnostics storage accounts, none of which this minimal body includes; a real PUT would very likely fail without them — meaning this specific entry's actual Azure cost is likely ~$0 (fails before any VM is provisioned), not because the resource type is free, but because this minimal body doesn't get far enough to create billable compute. Left in the catalog as a structural placeholder rather than fully worked out, given this type is legacy and increasingly superseded by Microsoft.ServiceFabric/managedClusters below. Lowest-confidence entry in this catalog alongside Microsoft.Sql/managedInstances and Microsoft.HDInsight/clusters. Not live-tested."
     },
     {
       "armType": "Microsoft.ServiceFabric/managedClusters",
@@ -5510,7 +5510,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "Simpler than classic Service Fabric (VMSS/networking are managed internally), but still needs a separate Microsoft.ServiceFabric/managedclusters/nodetypes child resource with real VMs to actually function — this entry captures the cluster shell only. Multi-VM, real ongoing cost even at Basic SKU. Moderate confidence; not live-tested."
+      "notes": "Confirmed: no separate control-plane/management charge exists for managed clusters either — quoted verbatim from Microsoft Learn: \"There's no extra cost for Service Fabric managed clusters beyond the cost of underlying resources required for the cluster.\" Simpler than classic Service Fabric (VMSS/networking are managed internally), but still needs a separate Microsoft.ServiceFabric/managedclusters/nodetypes child resource with real VMs to actually function — this entry captures the cluster shell only, so its actual Azure cost is likely ~$0 (no nodetype VMs are ever created by this minimal body) rather than the \"real ongoing cost\" a fully-functional managed cluster would have. Moderate confidence; not live-tested."
     },
     {
       "armType": "Microsoft.PowerBIDedicated/capacities",
@@ -5536,7 +5536,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "~$735+/month (A1, smallest SKU) — already named in this README's 'deliberately skipped' list before this catalog expansion; re-added here at VeryHigh instead of omitted, for full architectural coverage. administration.members needs a real AAD principal, sourced from {secret.adminPrincipalId} (same as Analysis Services/Fabric). Not live-tested."
+      "notes": "$1.0081/hour for the A1 SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/power-bi-embedded/, verified). Confirmed genuine per-second proration despite hourly-rate framing — quoted verbatim: \"Actual usage is computed to the second and billed hourly. For example, if an instance exists for 12 hours and 15 minutes in a month, your bill will show usage of 12.25 hours. If your instance is only active for 6 minutes, your bill will show usage of 0.1 hour.\" So a brief few-minute test genuinely costs a small fraction of $1.0081, not a full hour. Already named in this README's 'deliberately skipped' list before this catalog expansion; re-added here at VeryHigh instead of omitted, for full architectural coverage. administration.members needs a real AAD principal, sourced from {secret.adminPrincipalId} (same as Analysis Services/Fabric). Not live-tested."
     },
     {
       "armType": "Microsoft.Synapse/workspaces/sqlPools",
@@ -5616,7 +5616,7 @@
           }
         }
       ],
-      "notes": "The genuinely expensive part of Synapse (real hourly cost while running, unlike the parent workspace which is idle-free — see Microsoft.Synapse/workspaces above, cataloged at High). DW100c is the smallest SKU. Needs its own workspace + HNS storage + container prerequisite chain (duplicated here rather than reusing the standalone workspace entry, since PrerequisiteDefinition can't itself declare nested prerequisites — see the flat-prerequisite-chain pattern used throughout this catalog). Not live-tested."
+      "notes": "$1.51/hour for the DW100c SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/synapse-analytics/, verified). Confirmed hourly-minimum billing (no sub-hour proration) — quoted verbatim: \"Compute usage is charged on an hourly basis... If your data warehouse exists for only 30 minutes in a month, you will be billed for 1 hour,\" and for the create/teardown window specifically: \"DWUs are billed for each hour a pool exists using the highest compute size (DWU) that applied during that hour, regardless [of] the number of minutes used during that hour.\" So even a brief few-minute test costs the full $1.51. This is the genuinely expensive part of Synapse (the parent workspace itself is idle-free — see Microsoft.Synapse/workspaces above, cataloged at High). Needs its own workspace + HNS storage + container prerequisite chain (duplicated here rather than reusing the standalone workspace entry, since PrerequisiteDefinition can't itself declare nested prerequisites — see the flat-prerequisite-chain pattern used throughout this catalog). Not live-tested."
     },
     {
       "armType": "Microsoft.DataMigration/services",
@@ -5672,7 +5672,7 @@
           }
         }
       ],
-      "notes": "VM-based service instance, real ongoing cost while it exists — needs a delegated VNet/subnet. Moderate confidence on exact SKU name; not live-tested."
+      "notes": "$0.31/hour for the Premium tier, 4 vCore SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/database-migration/, verified — meaningfully cheaper than an earlier unverified guess of $0.84-1.68/hour for this entry). Notably, Microsoft's pricing page states the first 6 months (183 days) of 4-vCore Premium tier usage is free per subscription from service creation — if this subscription has never used DMS Premium before, a brief test may cost $0. Billing granularity not explicitly confirmed (hourly-minimum vs. prorated) — treat $0.31 as a per-hour-or-less ceiling. VM-based service instance — needs a delegated VNet/subnet. Moderate confidence on exact SKU name; not live-tested."
     },
     {
       "armType": "Microsoft.DBforPostgreSQL/serverGroupsv2",
@@ -5696,7 +5696,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "Cosmos DB for PostgreSQL (Citus) cluster — coordinator + worker nodes, real ongoing cost. nodeCount:0 (coordinator-only, no worker nodes) used here to keep this as minimal/cheap as this resource type allows, still a real GeneralPurpose 4-vCore coordinator cost. Not live-tested."
+      "notes": "$0.110232/vCore-hour for General Purpose coordinator compute (source: Azure Retail Prices API, verified) — at the 4-vCore minimum used here, ~$0.44/hour, billed per vCore-hour. nodeCount:0 (coordinator-only, no worker nodes) used here to keep this as minimal/cheap as this resource type allows. Note: Microsoft Learn flags this service (Cosmos DB for PostgreSQL) as \"on a retirement path and no longer recommended for new projects,\" recommending Azure Database for PostgreSQL Elastic Clusters instead — worth reconsidering whether to keep this entry as-is next time this catalog is revisited. Cosmos DB for PostgreSQL (Citus) cluster — coordinator + worker nodes, real ongoing cost. Not live-tested."
     },
     {
       "armType": "Microsoft.Purview/accounts",
@@ -5717,7 +5717,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "Base capacity unit cost plus a complex managed-resource-group setup. Like Microsoft.Databricks/workspaces, this creates a SECOND resource group (managedResourceGroupName) outside this tool's normal one-RG-per-unit teardown model — expect the same orphaned-resource-group risk documented there. Not live-tested."
+      "notes": "$0.411/hour minimum, confirmed to apply from account creation with zero usage — quoted verbatim from Microsoft Learn: \"All Microsoft Purview accounts, by default, start with one capacity unit and elastically grow based on usage,\" and \"The Data Map is billed hourly. The billing process considers the maximum Data Map capacity units needed within the hour, with a minimum of one capacity unit.\" So creating this resource for even a brief test genuinely incurs a real charge, not just a theoretical one (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/purview/, verified). Also creates a SECOND resource group (managedResourceGroupName) outside this tool's normal one-RG-per-unit teardown model, like Microsoft.Databricks/workspaces — expect the same orphaned-resource-group risk documented there. Not live-tested."
     }
   ]
 }
