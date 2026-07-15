@@ -74,6 +74,11 @@
       "armType": "Microsoft.ResourceGraph/queries",
       "category": "Management and governance",
       "reason": "No sibling in the abbreviations table; a cross-resource query/governance tool — domain-knowledge assignment."
+    },
+    {
+      "armType": "Microsoft.Databricks/accessConnectors",
+      "category": "Analytics and IoT",
+      "reason": "Microsoft's abbreviations table lists this as 'Microsoft.Databricks/workspaces/accessConnectors' (nested under workspaces), but the real ARM type is the top-level 'Microsoft.Databricks/accessConnectors' — the parent-type walk can't match a 2-segment armType against a 3-segment table entry, so it needs an explicit override. Sibling type Microsoft.Databricks/workspaces is covered under Analytics and IoT in the abbreviations table."
     }
   ]
 }
