@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
@@ -10,6 +11,8 @@ public sealed class RawArmClient(TokenCredential credential) : IDisposable
     private static readonly string[] Scopes = ["https://management.azure.com/.default"];
     private static readonly TimeSpan DefaultProvisioningTimeout = TimeSpan.FromMinutes(10);
     private static readonly TimeSpan PollInterval = TimeSpan.FromSeconds(4);
+    private const int Max429Retries = 4;
+    private static readonly TimeSpan Default429RetryDelay = TimeSpan.FromSeconds(10);
 
     private readonly HttpClient _httpClient = new();
 
@@ -63,7 +66,14 @@ public sealed class RawArmClient(TokenCredential credential) : IDisposable
             if (string.Equals(state, "Failed", StringComparison.OrdinalIgnoreCase)
                 || string.Equals(state, "Canceled", StringComparison.OrdinalIgnoreCase))
             {
-                throw new InvalidOperationException($"Resource '{resourceId}' provisioning ended in state '{state}'.");
+                // The bare provisioningState alone hides the actual reason (e.g. Container Apps environments
+                // surface a `deploymentErrors` string with the real ARM/backend error) — different resource
+                // types nest failure detail under different property names, so include the whole `properties`
+                // object rather than guessing which field to look for.
+                var detail = TryGetPropertiesRawText(doc);
+                throw new InvalidOperationException(
+                    $"Resource '{resourceId}' provisioning ended in state '{state}'."
+                    + (detail is null ? "" : $" Properties: {detail}"));
             }
 
             if (DateTime.UtcNow >= deadline)
@@ -81,27 +91,45 @@ public sealed class RawArmClient(TokenCredential credential) : IDisposable
             ? stateElement.GetString()
             : null;
 
+    private static string? TryGetPropertiesRawText(JsonDocument doc) =>
+        doc.RootElement.TryGetProperty("properties", out var props) ? props.GetRawText() : null;
+
     private async Task<JsonDocument?> SendAsync(HttpMethod method, string resourceId, string apiVersion, string? body, CancellationToken ct)
     {
-        var token = await credential.GetTokenAsync(new TokenRequestContext(Scopes), ct);
-
-        using var request = new HttpRequestMessage(method, $"https://management.azure.com{resourceId}?api-version={apiVersion}");
-        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Token);
-        if (body is not null)
+        // 429 is ARM's own way of saying "back off and retry" — live-observed running units concurrently:
+        // a VPN Gateway operation in flight can make the networking RP throw a 429 "RetryableError" /
+        // "RetryableErrorDueToAnotherOperation" at completely unrelated VNet-touching operations elsewhere in
+        // the subscription, not just at the gateway's own resource group. Respect Retry-After if ARM sends one.
+        for (var attempt = 0; ; attempt++)
         {
-            request.Content = new StringContent(body, Encoding.UTF8, "application/json");
+            var token = await credential.GetTokenAsync(new TokenRequestContext(Scopes), ct);
+
+            using var request = new HttpRequestMessage(method, $"https://management.azure.com{resourceId}?api-version={apiVersion}");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Token);
+            if (body is not null)
+            {
+                request.Content = new StringContent(body, Encoding.UTF8, "application/json");
+            }
+
+            using var response = await _httpClient.SendAsync(request, ct);
+
+            if (response.StatusCode == HttpStatusCode.TooManyRequests && attempt < Max429Retries)
+            {
+                var delay = response.Headers.RetryAfter?.Delta ?? Default429RetryDelay;
+                await Task.Delay(delay, ct);
+                continue;
+            }
+
+            var responseBody = await response.Content.ReadAsStringAsync(ct);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException(
+                    $"ARM {method} '{resourceId}' (api {apiVersion}) failed with {(int)response.StatusCode}: {responseBody}");
+            }
+
+            return string.IsNullOrWhiteSpace(responseBody) ? null : JsonDocument.Parse(responseBody);
         }
-
-        using var response = await _httpClient.SendAsync(request, ct);
-        var responseBody = await response.Content.ReadAsStringAsync(ct);
-
-        if (!response.IsSuccessStatusCode)
-        {
-            throw new InvalidOperationException(
-                $"ARM {method} '{resourceId}' (api {apiVersion}) failed with {(int)response.StatusCode}: {responseBody}");
-        }
-
-        return string.IsNullOrWhiteSpace(responseBody) ? null : JsonDocument.Parse(responseBody);
     }
 
     public void Dispose() => _httpClient.Dispose();

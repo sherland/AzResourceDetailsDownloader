@@ -21,7 +21,7 @@ public sealed class ArmResourceProvisioner(RawArmClient armClient)
 
         await armClient.PutAsync(resourceId.ToString(), apiVersion, body, provisioningTimeout, ct);
 
-        return new ProvisionedResourceRef(resourceId.ToString(), name);
+        return new ProvisionedResourceRef(resourceId.ToString(), name, location);
     }
 
     private static string BuildRequestBody(string location, JsonElement requestBody)

@@ -1,6 +1,8 @@
 using System.Diagnostics;
+using System.Text.Json;
 using AzResourceDetailsDownloader.Capture;
 using AzResourceDetailsDownloader.Config;
+using AzResourceDetailsDownloader.Logging;
 using AzResourceDetailsDownloader.Output;
 using AzResourceDetailsDownloader.Provisioning;
 using AzResourceDetailsDownloader.Reporting;
@@ -16,7 +18,10 @@ public sealed class ResourceTypePipeline(
     string defaultLocation,
     string outputRoot,
     PortalCaptureService portalCapture,
+    IacExportService iacExport,
     IReadOnlyDictionary<string, string> secrets,
+    int defaultProvisioningTimeoutMinutes,
+    int provisioningTimeoutHeadroomMinutes,
     ILogger logger)
 {
     public async Task<RunResult> RunAsync(ResourceTypeDefinition def, CancellationToken ct = default)
@@ -27,10 +32,13 @@ public sealed class ResourceTypePipeline(
         // disallows resource groups in "global", even though individual resources (Action Groups, Private DNS
         // Zones, etc.) legitimately report "global" as their own location.
         var rgLocation = defaultLocation;
-        var resourceLocation = def.Location ?? defaultLocation;
         var random = new Random();
+        // Units run concurrently (see Program.cs's Parallel.ForEachAsync), so log lines from different units
+        // interleave on the shared console — prefix every line from this unit with its ArmType to keep them
+        // distinguishable, without needing to touch every LogInformation call site individually.
+        var unitLogger = new PrefixedLogger(logger, $"[{def.ArmType}] ");
 
-        logger.LogInformation("Provisioning unit for '{ArmType}' in ephemeral resource group '{RgName}'", def.ArmType, rgName);
+        unitLogger.LogInformation("Provisioning unit for '{ArmType}' in ephemeral resource group '{RgName}'", def.ArmType, rgName);
 
         var tags = new Dictionary<string, string>
         {
@@ -42,7 +50,7 @@ public sealed class ResourceTypePipeline(
         try
         {
             await using var scope = await EphemeralResourceGroupScope.CreateAsync(
-                armClient, subscriptionId, rgName, rgLocation, tags, logger, ct);
+                armClient, subscriptionId, rgName, rgLocation, tags, unitLogger, ct);
 
             var provisioner = new ArmResourceProvisioner(rawArmClient);
             var resolvedPrereqs = new Dictionary<string, ProvisionedResourceRef>(StringComparer.OrdinalIgnoreCase);
@@ -52,51 +60,125 @@ public sealed class ResourceTypePipeline(
                 var charset = prereq.NameRules?.Charset ?? "lowerAlnum";
                 // Each prerequisite gets its own location independent of the target's — a target that is
                 // itself "global" (e.g. a Metric Alert or a Private DNS Zone Link) must not force "global"
-                // onto a prerequisite (e.g. a Storage Account or VNet) that doesn't support it.
-                var prereqLocation = prereq.Location ?? defaultLocation;
+                // onto a prerequisite (e.g. a Storage Account or VNet) that doesn't support it. A prerequisite
+                // may also reference an earlier prerequisite's *actual* location via `{prereq.alias.location}`
+                // for cases where two resources must land in the same region as each other.
+                var prereqLocation = TemplateTokenResolver.ResolvePrereqTokens(prereq.Location ?? defaultLocation, resolvedPrereqs);
                 var prereqNameWithPrereqsResolved = TemplateTokenResolver.ResolvePrereqTokens(prereq.NameTemplate, resolvedPrereqs);
-                var name = TemplateTokenResolver.ResolveRandomTokens(prereqNameWithPrereqsResolved, charset, random);
                 var body = TemplateTokenResolver.ResolveAllTokens(prereq.RequestBody, resolvedPrereqs, secrets, charset, random);
 
-                logger.LogInformation("  provisioning prerequisite '{Alias}': {ArmType} '{Name}'", prereq.Alias, prereq.ArmType, name);
-
-                var reference = await provisioner.CreateOrUpdateAsync(
-                    subscriptionId, rgName, prereq.ArmType, prereq.ApiVersion, name, prereqLocation, body,
-                    ProvisioningTimeoutFor(prereq.EstimatedProvisionMinutes), ct);
+                var reference = await ProvisionWithLocationFallbackAsync(
+                    provisioner, rgName, prereq.ArmType, prereq.ApiVersion, prereqNameWithPrereqsResolved, charset,
+                    random, prereqLocation, prereq.LocationFallbacks, body,
+                    ProvisioningTimeoutFor(prereq.EstimatedProvisionMinutes), $"prerequisite '{prereq.Alias}'", unitLogger, ct);
 
                 resolvedPrereqs[prereq.Alias] = reference;
             }
 
             var targetCharset = def.NameRules?.Charset ?? "lowerAlnum";
             var nameWithPrereqsResolved = TemplateTokenResolver.ResolvePrereqTokens(def.NameTemplate, resolvedPrereqs);
-            var targetName = TemplateTokenResolver.ResolveRandomTokens(nameWithPrereqsResolved, targetCharset, random);
             var targetBody = TemplateTokenResolver.ResolveAllTokens(def.RequestBody, resolvedPrereqs, secrets, targetCharset, random);
+            // Same `{prereq.alias.location}` support as prerequisites — needed for a target that must land in
+            // whatever region its prerequisite actually did (e.g. a Container App must share its Managed
+            // Environment's region; if the environment's own location-fallback kicked in, the target has to
+            // follow it there, not independently resolve to the default location).
+            var targetLocation = TemplateTokenResolver.ResolvePrereqTokens(def.Location ?? defaultLocation, resolvedPrereqs);
 
-            logger.LogInformation("  provisioning target: {ArmType} '{Name}'", def.ArmType, targetName);
-
-            var targetRef = await provisioner.CreateOrUpdateAsync(
-                subscriptionId, rgName, def.ArmType, def.ApiVersion, targetName, resourceLocation, targetBody,
-                ProvisioningTimeoutFor(def.EstimatedProvisionMinutes), ct);
+            var targetRef = await ProvisionWithLocationFallbackAsync(
+                provisioner, rgName, def.ArmType, def.ApiVersion, nameWithPrereqsResolved, targetCharset,
+                random, targetLocation, def.LocationFallbacks, targetBody,
+                ProvisioningTimeoutFor(def.EstimatedProvisionMinutes), "target", unitLogger, ct);
+            var targetName = targetRef.Name;
 
             using var rawJson = await rawArmClient.GetRawAsync(targetRef.Id, def.ApiVersion, ct);
 
-            logger.LogInformation("  capturing portal screenshot for '{Name}'", targetName);
-            var screenshot = await portalCapture.CaptureAsync(targetRef.Id, targetName, ct);
+            unitLogger.LogInformation("  capturing portal screenshot for '{Name}'", targetName);
+            var capture = await portalCapture.CaptureAsync(targetRef.Id, targetName, unitLogger, ct);
 
-            await OutputWriter.WriteAsync(outputRoot, def.ArmType, rawJson, screenshot, ct);
+            // Exported at resource-group scope (not per-resource) so the target and its prerequisites — all
+            // provisioned into this one ephemeral group — come back together with cross-references resolved,
+            // matching the JSON/screenshot capture's existing per-unit granularity. Best-effort: a failure
+            // here is logged and skipped, not fatal to the unit, since the ARM JSON capture is the core
+            // artifact and IaC exports are a supplementary convenience.
+            unitLogger.LogInformation("  exporting bicep/terraform for resource group '{RgName}'", rgName);
+            var bicep = await iacExport.TryExportBicepAsync(rgName, unitLogger, ct);
+            var terraform = await iacExport.TryExportTerraformAsync(subscriptionId, rgName, unitLogger, ct);
 
-            logger.LogInformation("  captured '{ArmType}' successfully in {Elapsed}", def.ArmType, stopwatch.Elapsed);
+            await OutputWriter.WriteAsync(
+                outputRoot, def.ArmType, rawJson, capture.Screenshot, bicep, terraform, capture.Notices, ct);
+
+            unitLogger.LogInformation("  captured '{ArmType}' successfully in {Elapsed}", def.ArmType, stopwatch.Elapsed);
             return new RunResult(def.ArmType, true, stopwatch.Elapsed, null);
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Failed to provision/capture '{ArmType}'", def.ArmType);
+            unitLogger.LogError(ex, "Failed to provision/capture '{ArmType}'", def.ArmType);
             return new RunResult(def.ArmType, false, stopwatch.Elapsed, ex.Message);
         }
     }
 
+    // Tries `primaryLocation` first, then each of `locationFallbacks` in order, but only advances to the next
+    // location on a *known capacity/availability* error (see CapacityErrorDetector) — any other failure
+    // (bad request body, policy violation, quota) would fail identically everywhere, so it propagates
+    // immediately instead of burning time retrying elsewhere. A fresh name is generated per attempt: live
+    // testing confirmed ARM's `location` is immutable on an existing resource name (a same-name retry in a
+    // different region 409s with InvalidResourceLocation), and that a failed resource can sit in a
+    // ScheduledForDelete state for ~45-60s before actually clearing — reusing a new name sidesteps both,
+    // and the abandoned same-named resource in the original region is cleaned up regardless by this unit's
+    // own ephemeral-resource-group teardown.
+    private async Task<ProvisionedResourceRef> ProvisionWithLocationFallbackAsync(
+        ArmResourceProvisioner provisioner,
+        string rgName,
+        string armType,
+        string apiVersion,
+        string nameTemplateWithPrereqsResolved,
+        string charset,
+        Random random,
+        string primaryLocation,
+        IReadOnlyList<string>? locationFallbacks,
+        JsonElement body,
+        TimeSpan? timeout,
+        string logLabel,
+        ILogger unitLogger,
+        CancellationToken ct)
+    {
+        var locations = new List<string> { primaryLocation };
+        if (locationFallbacks is { Count: > 0 })
+        {
+            locations.AddRange(locationFallbacks);
+        }
+
+        for (var i = 0; i < locations.Count; i++)
+        {
+            var location = locations[i];
+            var name = TemplateTokenResolver.ResolveRandomTokens(nameTemplateWithPrereqsResolved, charset, random);
+
+            try
+            {
+                unitLogger.LogInformation(
+                    "  provisioning {Label}: {ArmType} '{Name}' in '{Location}'", logLabel, armType, name, location);
+                return await provisioner.CreateOrUpdateAsync(
+                    subscriptionId, rgName, armType, apiVersion, name, location, body, timeout, ct);
+            }
+            catch (InvalidOperationException ex) when (i < locations.Count - 1 && CapacityErrorDetector.IsCapacityError(ex.Message))
+            {
+                unitLogger.LogWarning(
+                    "  {ArmType} hit a capacity error in '{Location}'; retrying in fallback location '{NextLocation}'.",
+                    armType, location, locations[i + 1]);
+            }
+        }
+
+        // Unreachable: the loop above either returns on success or lets the final location's exception
+        // propagate uncaught (the `when` guard is false on the last iteration).
+        throw new UnreachableException();
+    }
+
     // Give slow-provisioning types (per config's estimatedProvisionMinutes) enough headroom beyond their
-    // estimate — Redis Cache, for example, is documented at ~15 min but can occasionally run longer.
-    private static TimeSpan? ProvisioningTimeoutFor(int? estimatedProvisionMinutes) =>
-        estimatedProvisionMinutes is { } minutes ? TimeSpan.FromMinutes(minutes + 10) : null;
+    // estimate — Redis Cache, for example, is documented at ~15-25 min but can occasionally run longer.
+    // Both the headroom and the fallback for types without an estimate are configurable (Pipeline section
+    // in appsettings.json) rather than hardcoded, so a slow/flaky resource type can be tuned without a rebuild.
+    private TimeSpan ProvisioningTimeoutFor(int? estimatedProvisionMinutes) =>
+        TimeSpan.FromMinutes(estimatedProvisionMinutes is { } minutes
+            ? minutes + provisioningTimeoutHeadroomMinutes
+            : defaultProvisioningTimeoutMinutes);
 }

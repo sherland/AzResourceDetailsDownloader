@@ -3,6 +3,12 @@ using Microsoft.Playwright;
 
 namespace AzResourceDetailsDownloader.Capture;
 
+public sealed record PortalCaptureResult(byte[] Screenshot, IReadOnlyList<string> Notices);
+
+// Thread-safe: multiple units can call CaptureAsync concurrently (each running its own ARM provisioning
+// in parallel), but there is only one browser page/tab — reused deliberately across the whole batch to
+// avoid re-triggering MFA — so actual page navigation/screenshot work is serialized behind `_captureLock`.
+// Callers don't need their own locking; queueing here is transparent to them.
 public sealed class PortalCaptureService : IAsyncDisposable
 {
     private readonly IPlaywright _playwright;
@@ -11,11 +17,11 @@ public sealed class PortalCaptureService : IAsyncDisposable
     private readonly IPage _page;
     private readonly string _portalBaseUrl;
     private readonly string _tenantId;
-    private readonly ILogger _logger;
+    private readonly SemaphoreSlim _captureLock = new(1, 1);
 
     private PortalCaptureService(
         IPlaywright playwright, IBrowser browser, IBrowserContext context, IPage page,
-        string portalBaseUrl, string tenantId, ILogger logger)
+        string portalBaseUrl, string tenantId)
     {
         _playwright = playwright;
         _browser = browser;
@@ -23,11 +29,10 @@ public sealed class PortalCaptureService : IAsyncDisposable
         _page = page;
         _portalBaseUrl = portalBaseUrl;
         _tenantId = tenantId;
-        _logger = logger;
     }
 
     public static async Task<PortalCaptureService> CreateAsync(
-        string portalBaseUrl, string tenantId, string storageStatePath, ILogger logger, bool headless = true)
+        string portalBaseUrl, string tenantId, string storageStatePath, bool headless = true)
     {
         if (!File.Exists(storageStatePath))
         {
@@ -43,43 +48,61 @@ public sealed class PortalCaptureService : IAsyncDisposable
         });
         var page = await context.NewPageAsync();
 
-        return new PortalCaptureService(playwright, browser, context, page, portalBaseUrl, tenantId, logger);
+        return new PortalCaptureService(playwright, browser, context, page, portalBaseUrl, tenantId);
     }
 
     private static readonly TimeSpan HardCaptureTimeout = TimeSpan.FromSeconds(90);
 
-    public async Task<byte[]> CaptureAsync(string resourceId, string resourceName, CancellationToken ct = default)
+    public async Task<PortalCaptureResult> CaptureAsync(string resourceId, string resourceName, ILogger logger, CancellationToken ct = default)
     {
-        // Belt-and-suspenders: StableRenderWaiter already bounds its own waits, but this hard ceiling
-        // guarantees one stuck capture can never stall the whole batch, whatever the root cause turns
-        // out to be. Navigating the shared page to the next resource's URL implicitly abandons whatever
-        // this call left in flight.
-        var captureTask = CaptureCoreAsync(resourceId, resourceName, ct);
-        var timeoutTask = Task.Delay(HardCaptureTimeout, ct);
-
-        var winner = await Task.WhenAny(captureTask, timeoutTask);
-        if (winner == timeoutTask)
+        // Queueing for the lock is unbounded on purpose — it just means another unit's screenshot is in
+        // progress, not that anything is stuck. The hard timeout below only starts counting once this
+        // unit actually has the page to itself.
+        await _captureLock.WaitAsync(ct);
+        try
         {
-            throw new TimeoutException(
-                $"Portal capture for '{resourceId}' ('{resourceName}') did not complete within {HardCaptureTimeout.TotalSeconds}s.");
-        }
+            // Belt-and-suspenders: StableRenderWaiter already bounds its own waits, but this hard ceiling
+            // guarantees one stuck capture can never stall the whole batch, whatever the root cause turns
+            // out to be. Navigating the shared page to the next resource's URL implicitly abandons whatever
+            // this call left in flight.
+            var captureTask = CaptureCoreAsync(resourceId, resourceName, logger, ct);
+            var timeoutTask = Task.Delay(HardCaptureTimeout, ct);
 
-        return await captureTask;
+            var winner = await Task.WhenAny(captureTask, timeoutTask);
+            if (winner == timeoutTask)
+            {
+                throw new TimeoutException(
+                    $"Portal capture for '{resourceId}' ('{resourceName}') did not complete within {HardCaptureTimeout.TotalSeconds}s.");
+            }
+
+            return await captureTask;
+        }
+        finally
+        {
+            _captureLock.Release();
+        }
     }
 
-    private async Task<byte[]> CaptureCoreAsync(string resourceId, string resourceName, CancellationToken ct)
+    private async Task<PortalCaptureResult> CaptureCoreAsync(string resourceId, string resourceName, ILogger logger, CancellationToken ct)
     {
         var url = PortalUrlBuilder.BuildOverviewUrl(_portalBaseUrl, _tenantId, resourceId);
-        _logger.LogInformation("    portal: navigating to {Url}", url);
+        logger.LogInformation("    portal: navigating to {Url}", url);
         await _page.GotoAsync(url, new PageGotoOptions { WaitUntil = WaitUntilState.DOMContentLoaded });
 
-        _logger.LogInformation("    portal: navigation complete, waiting for stable render");
-        await StableRenderWaiter.WaitForStableRenderAsync(_page, resourceName, _logger, ct);
+        logger.LogInformation("    portal: navigation complete, waiting for stable render");
+        await StableRenderWaiter.WaitForStableRenderAsync(_page, resourceName, logger, ct);
 
-        _logger.LogInformation("    portal: render stable, taking screenshot");
+        logger.LogInformation("    portal: render stable, taking screenshot");
         var bytes = await _page.ScreenshotAsync(new PageScreenshotOptions { FullPage = true });
-        _logger.LogInformation("    portal: screenshot captured ({Bytes} bytes)", bytes.Length);
-        return bytes;
+        logger.LogInformation("    portal: screenshot captured ({Bytes} bytes)", bytes.Length);
+
+        var notices = await BannerExtractor.ExtractAsync(_page);
+        if (notices.Count > 0)
+        {
+            logger.LogInformation("    portal: found {Count} banner notice(s) on the page", notices.Count);
+        }
+
+        return new PortalCaptureResult(bytes, notices);
     }
 
     public async ValueTask DisposeAsync()
@@ -87,5 +110,6 @@ public sealed class PortalCaptureService : IAsyncDisposable
         await _context.DisposeAsync();
         await _browser.DisposeAsync();
         _playwright.Dispose();
+        _captureLock.Dispose();
     }
 }

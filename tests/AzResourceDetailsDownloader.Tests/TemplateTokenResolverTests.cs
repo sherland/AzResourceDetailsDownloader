@@ -25,12 +25,25 @@ public class TemplateTokenResolverTests
     {
         var resolved = new Dictionary<string, ProvisionedResourceRef>
         {
-            ["sqlServer"] = new ProvisionedResourceRef("/subscriptions/x/.../sql1", "sql1")
+            ["sqlServer"] = new ProvisionedResourceRef("/subscriptions/x/.../sql1", "sql1", "westeurope")
         };
 
         var result = TemplateTokenResolver.ResolvePrereqTokens("{prereq.sqlServer.name}/db1", resolved);
 
         Assert.Equal("sql1/db1", result);
+    }
+
+    [Fact]
+    public void ResolvePrereqTokens_SubstitutesLocation()
+    {
+        var resolved = new Dictionary<string, ProvisionedResourceRef>
+        {
+            ["containerAppsEnv"] = new ProvisionedResourceRef("/subscriptions/x/.../cae1", "cae1", "swedencentral")
+        };
+
+        var result = TemplateTokenResolver.ResolvePrereqTokens("{prereq.containerAppsEnv.location}", resolved);
+
+        Assert.Equal("swedencentral", result);
     }
 
     [Fact]

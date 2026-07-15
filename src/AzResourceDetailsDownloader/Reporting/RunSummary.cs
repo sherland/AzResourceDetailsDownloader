@@ -2,13 +2,33 @@ using System.Text.Json;
 
 namespace AzResourceDetailsDownloader.Reporting;
 
+// Add() is called concurrently once units run in parallel, so it's guarded by a lock — reads (Results,
+// WriteAsync) are only ever called after all units have finished, once concurrent writes have stopped.
 public sealed class RunSummary
 {
     private readonly List<RunResult> _results = [];
+    private readonly Lock _lock = new();
 
     public IReadOnlyList<RunResult> Results => _results;
 
-    public void Add(RunResult result) => _results.Add(result);
+    public void Add(RunResult result)
+    {
+        lock (_lock)
+        {
+            _results.Add(result);
+        }
+    }
+
+    // Used by the quota-error retry pass: a unit that failed in the main run and is retried afterward should
+    // replace its original (failed) entry, not add a second one for the same ArmType.
+    public void ReplaceOrAdd(RunResult result)
+    {
+        lock (_lock)
+        {
+            _results.RemoveAll(r => r.ArmType == result.ArmType);
+            _results.Add(result);
+        }
+    }
 
     public async Task WriteAsync(string outputRoot, CancellationToken ct = default)
     {

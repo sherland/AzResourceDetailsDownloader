@@ -217,9 +217,44 @@
         }
       },
       "prerequisites": [],
-      "notes": "Microsoft.Cache/redis is an ARM exception where sku nests inside properties, unlike most resource types.",
-      "estimatedProvisionMinutes": 15,
+      "notes": "Microsoft.Cache/redis is an ARM exception where sku nests inside properties, unlike most resource types. Live-tested twice: Basic tier took ~25.1-25.2 min both times in this tenant/region, right at the edge of (or past) the previous 15+10=25 min timeout — bumped the estimate to give real margin rather than guessing a fix. The portal itself now shows a retirement notice: new creation requests are blocked starting 2026-10-01, existing instances retire 2028-09-30, in favor of Microsoft.Cache/redisEnterprise ('Azure Managed Redis', see below) — kept in the catalog for now since it's still creatable and the notice has real lead time, but expect this entry to need removal once creation is actually blocked.",
+      "estimatedProvisionMinutes": 25,
       "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.Cache/redisEnterprise",
+      "apiVersion": "2025-04-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "redisent{rand8}",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 60 },
+      "requestBody": {
+        "sku": { "name": "Balanced_B0" }
+      },
+      "prerequisites": [],
+      "notes": "'Azure Managed Redis', the successor Microsoft now recommends over Microsoft.Cache/redis (see its retirement notice above) — live-verified this is a genuinely low-cost entry point via the newer 'Balanced_B0' SKU (~$12-15/mo), not the old, much pricier Redis Enterprise tier (which used SKUs like Enterprise_E10 starting in the hundreds of $/mo and was excluded from this catalog for that reason). The response's `kind: \"v2\"` confirms it's the new Managed Redis architecture, distinct from `kind: \"Enterprise\"` for the legacy Enterprise tier on the same ARM type. SKU name discovered by live probing (an invalid SKU's error didn't enumerate allowed values) rather than guessed. Needs a Microsoft.Cache/redisEnterprise/databases child resource to actually be usable — see that entry.",
+      "estimatedProvisionMinutes": 6
+    },
+    {
+      "armType": "Microsoft.Cache/redisEnterprise/databases",
+      "apiVersion": "2025-04-01",
+      "costTier": "Low",
+      "location": null,
+      "nameTemplate": "{prereq.redisEnterpriseCluster.name}/default",
+      "nameRules": { "charset": "lowerAlnum", "maxLength": 60 },
+      "requestBody": {},
+      "prerequisites": [
+        {
+          "alias": "redisEnterpriseCluster",
+          "armType": "Microsoft.Cache/redisEnterprise",
+          "apiVersion": "2025-04-01",
+          "nameTemplate": "redisent{rand8}",
+          "nameRules": { "charset": "lowerAlnum", "maxLength": 60 },
+          "requestBody": { "sku": { "name": "Balanced_B0" } }
+        }
+      ],
+      "notes": "The child database resource under an Azure Managed Redis cluster. Live-verified an empty {} request body works — Azure fills in sensible defaults (OSSCluster clustering policy, VolatileLRU eviction, Redis 7.4, port 10000). The name is conventionally 'default' (one database per cluster in this tier) — live-verified literally that name works, not guessed.",
+      "estimatedProvisionMinutes": 6
     },
     {
       "armType": "Microsoft.KeyVault/vaults",
@@ -529,8 +564,9 @@
       "apiVersion": "2024-03-01",
       "costTier": "Medium",
       "location": null,
-      "nameTemplate": "vm{rand6}",
+      "nameTemplate": "swaz{rand9}01",
       "nameRules": { "charset": "lowerAlnum", "maxLength": 15 },
+      "notes": "Two independent tenant policies had to be satisfied here, both decoded via `az policy definition show`/live reproduction rather than guessed from error text. (1) Naming-convention policy (pol-ssg-prd-restriction-naming_convention): denies Microsoft.Compute/virtualMachines names unless (for names <=15 chars) they start with 'swaz'/'slaz' (case-insensitive) AND end in 2 digits (or dash+digit) — 'swaz{rand9}01' satisfies both with a fixed prefix/suffix and 9 random middle chars, exactly 15 chars total. (2) Disk-SKU policy (pol-ssg-prd-restriction-ssd-disks): the VM's auto-generated OS disk defaults to Premium_LRS, which isn't in this tenant's allowed disk SKUs (Standard_LRS/StandardSSD_LRS) — fixed by explicitly setting osDisk.managedDisk.storageAccountType to StandardSSD_LRS instead of leaving it to Azure's default. Both fixes are tenant-specific catalog config, not portable defaults — a tenant without these policies works fine either way.",
       "requestBody": {
         "properties": {
           "hardwareProfile": { "vmSize": "Standard_D2s_v5" },
@@ -545,6 +581,10 @@
               "offer": "0001-com-ubuntu-server-jammy",
               "sku": "22_04-lts",
               "version": "latest"
+            },
+            "osDisk": {
+              "createOption": "FromImage",
+              "managedDisk": { "storageAccountType": "StandardSSD_LRS" }
             }
           },
           "networkProfile": {
@@ -591,7 +631,6 @@
           }
         }
       ],
-      "notes": "VNet/Subnet/NIC chain provisions fine; VM creation itself is rejected in this tenant by a custom naming-convention policy (pol-ssg-prd-restriction-naming_convention). Confirmed solvable — the policy's actual rule (decoded via 'az policy definition show') only denies when BOTH of two sub-conditions hold, so satisfying just one (name starts with 'swaz'/'slaz', <=15 chars, ends in two digits) passes it. But doing so just uncovers a SECOND, independent tenant policy (managed-disk-restriction) rejecting the VM's auto-generated OS disk name, which would need its own decoded workaround, and potentially more layers beyond that. Not a bug in this tool or a dead end — a different tenant, or one without these specific policies, should succeed with this nameTemplate as-is. Left unresolved here deliberately: chasing tenant-specific naming policies one layer at a time isn't a good trade for a catalog meant to stay portable across tenants.",
       "estimatedProvisionMinutes": 10,
       "slowProvisioning": true
     },
@@ -938,18 +977,19 @@
       "apiVersion": "2024-03-01",
       "costTier": "Low",
       "location": null,
+      "locationFallbacks": ["francecentral", "swedencentral", "eastus"],
       "nameTemplate": "cae{rand8}",
       "nameRules": { "charset": "lowerAlnumDash", "maxLength": 60 },
       "requestBody": { "properties": {} },
       "prerequisites": [],
-      "notes": "",
+      "notes": "Can fail with ManagedEnvironmentCapacityHeavyUsageError (a real Azure regional-capacity constraint, observed repeatedly in westeurope, not a bug or policy block) — locationFallbacks lists this tenant's other allowed regions (per its Azure Policy allowed-locations list) to retry in automatically.",
       "estimatedProvisionMinutes": 5
     },
     {
       "armType": "Microsoft.App/containerApps",
       "apiVersion": "2024-03-01",
       "costTier": "Low",
-      "location": null,
+      "location": "{prereq.containerAppsEnv.location}",
       "nameTemplate": "ca{rand8}",
       "nameRules": { "charset": "lowerAlnumDash", "maxLength": 32 },
       "requestBody": {
@@ -968,10 +1008,11 @@
           "apiVersion": "2024-03-01",
           "nameTemplate": "cae{rand8}",
           "nameRules": { "charset": "lowerAlnumDash", "maxLength": 60 },
-          "requestBody": { "properties": {} }
+          "requestBody": { "properties": {} },
+          "locationFallbacks": ["francecentral", "swedencentral", "eastus"]
         }
       ],
-      "notes": "",
+      "notes": "containerAppsEnv prerequisite has locationFallbacks for the same regional-capacity reason as the standalone Microsoft.App/managedEnvironments entry above. The target's own location is set to {prereq.containerAppsEnv.location} rather than a fixed region — live-verified that a Container App's location must match its Managed Environment's actual location (a mismatch fails with ManagedEnvironmentNotFound, not a generic validation error), so if the environment's location-fallback kicks in, the target must follow it there.",
       "estimatedProvisionMinutes": 8,
       "slowProvisioning": true
     },

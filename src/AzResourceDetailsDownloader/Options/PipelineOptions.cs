@@ -10,4 +10,16 @@ public sealed class PipelineOptions
     public required string StorageStatePath { get; set; }
     public required string MaxCostTier { get; set; }
     public required string PortalBaseUrl { get; set; }
+    public int DefaultProvisioningTimeoutMinutes { get; set; } = 10;
+    public int ProvisioningTimeoutHeadroomMinutes { get; set; } = 10;
+    // Units run concurrently up to this limit — each does its own ARM provisioning/polling in parallel, while
+    // portal screenshot capture is serialized internally (one shared browser page). Kept modest by default:
+    // heavy compute-family resource types (VMs, AKS, VMSS) share the subscription's regional vCPU quota, so
+    // running many of them at once risks quota exhaustion rather than being purely a speed/safety tradeoff.
+    public int MaxConcurrentUnits { get; set; } = 4;
+    // After the main pass, any unit that failed with a detected subscription-quota error (see
+    // QuotaErrorDetector) is retried once at this (lower) concurrency — quota exhaustion is usually an
+    // artifact of running too many compute-heavy units at once, not a real per-unit failure, so a quieter
+    // retry pass often succeeds where the crowded first pass didn't.
+    public int QuotaRetryConcurrency { get; set; } = 1;
 }

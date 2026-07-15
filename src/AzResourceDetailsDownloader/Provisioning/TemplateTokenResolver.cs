@@ -3,12 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace AzResourceDetailsDownloader.Provisioning;
 
-public sealed record ProvisionedResourceRef(string Id, string Name);
+public sealed record ProvisionedResourceRef(string Id, string Name, string Location);
 
 public static class TemplateTokenResolver
 {
     private static readonly Regex PrereqTokenRegex = new(
-        @"\{prereq\.(?<alias>[A-Za-z0-9_]+)\.(?<field>id|name)\}", RegexOptions.Compiled);
+        @"\{prereq\.(?<alias>[A-Za-z0-9_]+)\.(?<field>id|name|location)\}", RegexOptions.Compiled);
 
     private static readonly Regex RandTokenRegex = new(
         @"\{rand(?<len>\d+)\}", RegexOptions.Compiled);
@@ -30,7 +30,12 @@ public static class TemplateTokenResolver
                 throw new InvalidOperationException($"Unresolved prerequisite alias '{alias}'.");
             }
 
-            return m.Groups["field"].Value == "id" ? reference.Id : reference.Name;
+            return m.Groups["field"].Value switch
+            {
+                "id" => reference.Id,
+                "name" => reference.Name,
+                _ => reference.Location
+            };
         });
 
     public static string ResolveRandomTokens(string text, string charset, Random random) =>

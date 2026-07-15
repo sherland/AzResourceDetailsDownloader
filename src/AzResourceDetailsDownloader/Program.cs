@@ -19,7 +19,8 @@ try
 catch (ArgumentException ex)
 {
     Console.Error.WriteLine(ex.Message);
-    Console.Error.WriteLine("Usage: [--dry-run | --login | --run] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High]");
+    Console.Error.WriteLine(
+        "Usage: [--dry-run | --login | --run] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High] [--max-concurrency <n>]");
     return 1;
 }
 
@@ -95,18 +96,54 @@ secrets["tenantId"] = tenantId;
 var credential = new AzureCliCredential();
 var armClient = new ArmClient(credential, subscriptionId);
 using var rawArmClient = new RawArmClient(credential);
+using var iacExport = new IacExportService(credential);
 await using var portalCapture = await PortalCaptureService.CreateAsync(
-    options.PortalBaseUrl, tenantId, storageStatePath, logger);
+    options.PortalBaseUrl, tenantId, storageStatePath);
 
 var outputRoot = RepoPaths.Resolve(repoRoot, options.OutputRoot);
 var pipeline = new ResourceTypePipeline(
-    armClient, rawArmClient, subscriptionId, options.DefaultLocation, outputRoot, portalCapture, secrets, logger);
+    armClient, rawArmClient, subscriptionId, options.DefaultLocation, outputRoot, portalCapture, iacExport, secrets,
+    options.DefaultProvisioningTimeoutMinutes, options.ProvisioningTimeoutHeadroomMinutes, logger);
 
+var maxConcurrency = parsedArgs.MaxConcurrencyOverride ?? options.MaxConcurrentUnits;
+logger.LogInformation("Running with max concurrency {MaxConcurrency}", maxConcurrency);
+
+// Units run concurrently — each does its own ARM provisioning/polling independently, while portal screenshot
+// capture is serialized inside PortalCaptureService (one shared browser page/tab, kept single deliberately
+// to avoid re-triggering MFA). RunSummary.Add is lock-guarded for concurrent writers.
 var summary = new RunSummary();
-foreach (var def in filtered)
+await Parallel.ForEachAsync(
+    filtered,
+    new ParallelOptions { MaxDegreeOfParallelism = maxConcurrency },
+    async (def, ct) =>
+    {
+        var result = await pipeline.RunAsync(def, ct);
+        summary.Add(result);
+    });
+
+// Quota exhaustion (see QuotaErrorDetector) is usually a symptom of running too many compute-heavy units
+// at once, not a real per-unit failure — a quieter retry pass at lower concurrency often succeeds where the
+// crowded main pass didn't, without needing the user to manually re-run --only for each one afterward.
+var quotaFailedDefs = summary.Results
+    .Where(r => !r.Success && QuotaErrorDetector.IsQuotaError(r.Error))
+    .Select(r => filtered.First(d => d.ArmType == r.ArmType))
+    .ToList();
+
+if (quotaFailedDefs.Count > 0)
 {
-    var result = await pipeline.RunAsync(def);
-    summary.Add(result);
+    var quotaRetryConcurrency = options.QuotaRetryConcurrency;
+    logger.LogWarning(
+        "{Count} unit(s) failed with a subscription-quota error; retrying at concurrency {RetryConcurrency}: {ArmTypes}",
+        quotaFailedDefs.Count, quotaRetryConcurrency, string.Join(", ", quotaFailedDefs.Select(d => d.ArmType)));
+
+    await Parallel.ForEachAsync(
+        quotaFailedDefs,
+        new ParallelOptions { MaxDegreeOfParallelism = quotaRetryConcurrency },
+        async (def, ct) =>
+        {
+            var result = await pipeline.RunAsync(def, ct);
+            summary.ReplaceOrAdd(result);
+        });
 }
 
 await summary.WriteAsync(outputRoot);
@@ -127,7 +164,6 @@ static void PrintPlannedUnit(ResourceTypeDefinition def, string defaultLocation)
     var resolvedPrereqs = new Dictionary<string, ProvisionedResourceRef>(StringComparer.OrdinalIgnoreCase);
 
     Console.WriteLine($"[{def.CostTier}] {def.ArmType} (api {def.ApiVersion})");
-    Console.WriteLine($"  location: {def.Location ?? defaultLocation}");
     if (def.SlowProvisioning || def.EstimatedProvisionMinutes is not null)
     {
         Console.WriteLine($"  slow-provisioning: ~{def.EstimatedProvisionMinutes?.ToString() ?? "?"} min");
@@ -136,11 +172,17 @@ static void PrintPlannedUnit(ResourceTypeDefinition def, string defaultLocation)
     foreach (var prereq in def.Prerequisites)
     {
         var charset = prereq.NameRules?.Charset ?? "lowerAlnum";
+        var previewLocation = TemplateTokenResolver.ResolvePrereqTokens(prereq.Location ?? defaultLocation, resolvedPrereqs);
         var nameWithPrereqsResolvedPreview = TemplateTokenResolver.ResolvePrereqTokens(prereq.NameTemplate, resolvedPrereqs);
         var previewName = TemplateTokenResolver.ResolveRandomTokens(nameWithPrereqsResolvedPreview, charset, random);
-        resolvedPrereqs[prereq.Alias] = new ProvisionedResourceRef($"<resolved-id-of-{prereq.Alias}>", previewName);
-        Console.WriteLine($"  prereq '{prereq.Alias}': {prereq.ArmType} -> name preview '{previewName}'");
+        resolvedPrereqs[prereq.Alias] = new ProvisionedResourceRef($"<resolved-id-of-{prereq.Alias}>", previewName, previewLocation);
+        var fallbackSuffix = prereq.LocationFallbacks is { Count: > 0 } f ? $" (fallbacks: {string.Join(", ", f)})" : "";
+        Console.WriteLine($"  prereq '{prereq.Alias}': {prereq.ArmType} -> name preview '{previewName}', location '{previewLocation}'{fallbackSuffix}");
     }
+
+    var targetLocationPreview = TemplateTokenResolver.ResolvePrereqTokens(def.Location ?? defaultLocation, resolvedPrereqs);
+    var targetFallbackSuffix = def.LocationFallbacks is { Count: > 0 } tf ? $" (fallbacks: {string.Join(", ", tf)})" : "";
+    Console.WriteLine($"  location: {targetLocationPreview}{targetFallbackSuffix}");
 
     var nameWithPrereqsResolved = TemplateTokenResolver.ResolvePrereqTokens(def.NameTemplate, resolvedPrereqs);
     var namePreview = TemplateTokenResolver.ResolveRandomTokens(

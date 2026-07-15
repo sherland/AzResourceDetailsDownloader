@@ -7,13 +7,14 @@ public enum RunMode
     Run
 }
 
-public sealed record ParsedArgs(RunMode Mode, IReadOnlySet<string>? OnlyArmTypes, string? MaxCostTierOverride)
+public sealed record ParsedArgs(RunMode Mode, IReadOnlySet<string>? OnlyArmTypes, string? MaxCostTierOverride, int? MaxConcurrencyOverride)
 {
     public static ParsedArgs Parse(string[] args)
     {
         var mode = RunMode.DryRun;
         HashSet<string>? only = null;
         string? maxCostTier = null;
+        int? maxConcurrency = null;
 
         for (var i = 0; i < args.Length; i++)
         {
@@ -36,12 +37,20 @@ public sealed record ParsedArgs(RunMode Mode, IReadOnlySet<string>? OnlyArmTypes
                 case "--max-cost-tier":
                     maxCostTier = RequireValue(args, ref i, "--max-cost-tier");
                     break;
+                case "--max-concurrency":
+                    var raw = RequireValue(args, ref i, "--max-concurrency");
+                    if (!int.TryParse(raw, out var parsed) || parsed < 1)
+                    {
+                        throw new ArgumentException($"'--max-concurrency' must be a positive integer, got '{raw}'.");
+                    }
+                    maxConcurrency = parsed;
+                    break;
                 default:
                     throw new ArgumentException($"Unrecognized argument '{args[i]}'.");
             }
         }
 
-        return new ParsedArgs(mode, only, maxCostTier);
+        return new ParsedArgs(mode, only, maxCostTier, maxConcurrency);
     }
 
     private static string RequireValue(string[] args, ref int index, string flag)
