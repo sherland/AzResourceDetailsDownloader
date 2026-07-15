@@ -1,6 +1,6 @@
 bin/
 obj/
-output/
+/output/
 .auth/
 appsettings.Development.json
 *.user

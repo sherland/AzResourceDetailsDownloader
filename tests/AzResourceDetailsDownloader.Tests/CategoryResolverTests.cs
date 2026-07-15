@@ -99,4 +99,54 @@ public class CategoryResolverTests
         Assert.Equal("Storage", resolverGenericFirst.ResolveCategory("Microsoft.Storage/storageAccounts"));
         Assert.Equal("Storage", resolverSpecificFirst.ResolveCategory("Microsoft.Storage/storageAccounts"));
     }
+
+    private static CategoryOverridesCatalog BuildOverrides(params (string ArmType, string Category)[] rows) =>
+        new()
+        {
+            Overrides = rows.Select(r => new CategoryOverride
+            {
+                ArmType = r.ArmType,
+                Category = r.Category,
+                Reason = "test"
+            }).ToList()
+        };
+
+    [Fact]
+    public void ResolveCategory_UsesOverride_WhenAbbreviationsTableHasNoMatch()
+    {
+        var resolver = new CategoryResolver(
+            BuildCatalog(("Microsoft.Storage/storageAccounts", "Storage")),
+            BuildOverrides(("Microsoft.Portal/dashboards", "Management and governance")));
+
+        Assert.Equal("Management and governance", resolver.ResolveCategory("Microsoft.Portal/dashboards"));
+    }
+
+    [Fact]
+    public void ResolveCategory_PrefersAbbreviationsTableMatch_OverOverride()
+    {
+        var resolver = new CategoryResolver(
+            BuildCatalog(("Microsoft.Storage/storageAccounts", "Storage")),
+            BuildOverrides(("Microsoft.Storage/storageAccounts", "Compute and web")));
+
+        Assert.Equal("Storage", resolver.ResolveCategory("Microsoft.Storage/storageAccounts"));
+    }
+
+    [Fact]
+    public void ResolveCategory_ReturnsUncategorized_WhenNoOverrideAndNoAbbreviationsMatch()
+    {
+        var resolver = new CategoryResolver(
+            BuildCatalog(("Microsoft.Storage/storageAccounts", "Storage")),
+            BuildOverrides(("Microsoft.Portal/dashboards", "Management and governance")));
+
+        Assert.Equal(CategoryResolver.Uncategorized, resolver.ResolveCategory("Microsoft.Something/notInTableOrOverrides"));
+    }
+
+    [Fact]
+    public void ResolveCategory_FallsThroughToUncategorized_WhenOverridesCatalogIsNull()
+    {
+        var resolver = new CategoryResolver(BuildCatalog(("Microsoft.Storage/storageAccounts", "Storage")), null);
+
+        Assert.Equal("Storage", resolver.ResolveCategory("Microsoft.Storage/storageAccounts"));
+        Assert.Equal(CategoryResolver.Uncategorized, resolver.ResolveCategory("Microsoft.Portal/dashboards"));
+    }
 }
