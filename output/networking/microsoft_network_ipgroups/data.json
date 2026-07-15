@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "firewalls": [],
+    "firewallPolicies": [],
+    "ipAddresses": [
+      "10.50.0.0/24"
+    ],
+    "provisioningState": "Succeeded"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a6f2232c1cae065f/providers/Microsoft.Network/ipGroups/ipg9dzw5niw",
+  "name": "ipg9dzw5niw",
+  "type": "Microsoft.Network/IpGroups",
+  "etag": "2e2de9c6-7e7e-4662-b698-5a0c39d46466",
+  "location": "westeurope"
+}

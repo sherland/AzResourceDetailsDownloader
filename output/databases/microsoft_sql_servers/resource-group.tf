@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.80.0"
+      version = "4.66.0"
     }
   }
 }
@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-d2d1e6175e7bd2ef"
   tags = {
     armType    = "Microsoft.Sql/servers"
-    createdUtc = "2026-07-15T08:58:36.0847152Z"
+    createdUtc = "2026-07-15T18:22:13.6558559Z"
     purpose    = "az-resource-details-downloader"
   }
 }

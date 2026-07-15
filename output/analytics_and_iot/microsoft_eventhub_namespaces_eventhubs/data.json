@@ -1,0 +1,20 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-39c48c262400e678/providers/Microsoft.EventHub/namespaces/ehns2z7d7gyo/eventhubs/ehu6z-fa",
+  "name": "ehu6z-fa",
+  "type": "Microsoft.EventHub/namespaces/eventhubs",
+  "location": "westeurope",
+  "properties": {
+    "retentionDescription": {
+      "cleanupPolicy": "Delete",
+      "retentionTimeInHours": 24
+    },
+    "messageRetentionInDays": 1,
+    "partitionCount": 1,
+    "status": "Active",
+    "createdAt": "2026-07-15T19:11:02.24",
+    "updatedAt": "2026-07-15T19:11:02.423",
+    "partitionIds": [
+      "0"
+    ]
+  }
+}

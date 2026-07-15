@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-4360456b29424ef8"
   tags = {
     armType    = "Microsoft.App/managedEnvironments"
-    createdUtc = "2026-07-15T09:21:29.9324322Z"
+    createdUtc = "2026-07-15T18:41:29.7213621Z"
     purpose    = "az-resource-details-downloader"
   }
 }

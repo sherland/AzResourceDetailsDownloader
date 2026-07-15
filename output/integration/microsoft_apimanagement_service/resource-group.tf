@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-4f4d76db12ba6ca3"
   tags = {
     armType    = "Microsoft.ApiManagement/service"
-    createdUtc = "2026-07-15T09:37:35.8836416Z"
+    createdUtc = "2026-07-15T18:57:50.7515464Z"
     purpose    = "az-resource-details-downloader"
   }
 }

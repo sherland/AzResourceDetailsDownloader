@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-2b885a3134f70ff5"
   tags = {
     armType    = "Microsoft.Network/localNetworkGateways"
-    createdUtc = "2026-07-15T09:16:13.6978172Z"
+    createdUtc = "2026-07-15T18:36:23.0051744Z"
     purpose    = "az-resource-details-downloader"
   }
 }

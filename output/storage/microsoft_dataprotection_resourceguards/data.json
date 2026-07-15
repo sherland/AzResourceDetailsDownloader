@@ -1,0 +1,109 @@
+{
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "resourceGuardOperations": [
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems/delete",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/deleteProtectedItemRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems/write",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/updateProtectedItemRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupPolicies/write",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/updateProtectionPolicyRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupResourceGuardProxies/delete",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/deleteResourceGuardProxyRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupSecurityPIN/action",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/getBackupSecurityPINRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupconfig/write",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/disableSoftDeleteRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/write#modifyEncryptionSettings",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/modifyEncryptionSettings"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems/write#stopProtectionWithRetainData",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/stopProtectionWithRetainDataRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/write#reduceImmutabilityState",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/reduceImmutabilityStateRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/write#modifyImmutabilityDuration",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/modifyImmutabilityDurationRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems/recoveryPoints/restore/action",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/triggerRestoreRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/registeredIdentities/delete",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/deleteMABIdentityRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupCrossTenantVaultMappings/write",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/configureCrossTenantVaultMappingRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupCrossTenantVaultMappings/remove/action",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/deleteCrossTenantVaultMappingRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.RecoveryServices/vaults/backupCrossTenantVaultMappings/backupFabrics/protectionContainers/protectedItems/recoveryPoints/restore/action",
+        "requestResourceType": "Microsoft.DataProtection/resourceGuards/crossTenantTriggerRestoreRequests"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.DataProtection/backupVaults/backupInstances/delete",
+        "requestResourceType": "Microsoft.DataProtection/backupVaults/backupInstances/delete"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.DataProtection/backupVaults/backupResourceGuardProxies/delete",
+        "requestResourceType": "Microsoft.DataProtection/backupVaults/backupResourceGuardProxies/delete"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.DataProtection/backupVaults/write#reduceImmutabilityState",
+        "requestResourceType": "Microsoft.DataProtection/backupVaults/write#reduceImmutabilityState"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.DataProtection/backupVaults/write#reduceSoftDeleteSecurity",
+        "requestResourceType": "Microsoft.DataProtection/backupVaults/write#reduceSoftDeleteSecurity"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.DataProtection/backupVaults/write#modifyEncryptionSettings",
+        "requestResourceType": "Microsoft.DataProtection/backupVaults/write#modifyEncryptionSettings"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.DataProtection/backupVaults/backupInstances/stopProtection/action",
+        "requestResourceType": "Microsoft.DataProtection/backupVaults/backupInstances/stopProtection/action"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.DataProtection/backupVaults/backupInstances/suspendBackups/action",
+        "requestResourceType": "Microsoft.DataProtection/backupVaults/backupInstances/suspendBackups/action"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.DataProtection/backupVaults/backupInstances/write",
+        "requestResourceType": "Microsoft.DataProtection/backupVaults/backupInstances/write"
+      },
+      {
+        "vaultCriticalOperation": "Microsoft.DataProtection/backupVaults/backupInstances/restore/action",
+        "requestResourceType": "Microsoft.DataProtection/backupVaults/backupInstances/restore/action"
+      }
+    ],
+    "vaultCriticalOperationExclusionList": [],
+    "allowAutoApprovals": true
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3786f3c2c1905852/providers/Microsoft.DataProtection/resourceGuards/guardd9o3-acn",
+  "name": "guardd9o3-acn",
+  "type": "Microsoft.DataProtection/resourceGuards"
+}

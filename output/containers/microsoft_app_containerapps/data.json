@@ -6,10 +6,10 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T09:24:09.0887623",
+    "createdAt": "2026-07-15T18:44:16.9141041",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T09:24:09.0887623"
+    "lastModifiedAt": "2026-07-15T18:44:16.9141041"
   },
   "properties": {
     "provisioningState": "Succeeded",
@@ -18,17 +18,17 @@
     "environmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83e0b3aed1165e3b/providers/Microsoft.App/managedEnvironments/caesiujm-j3",
     "workloadProfileName": null,
     "outboundIpAddresses": [
-      "20.19.222.167"
+      "20.19.234.238"
     ],
-    "latestRevisionName": "ca453klp91--dyx8j70",
-    "latestReadyRevisionName": "ca453klp91--dyx8j70",
-    "latestRevisionFqdn": "ca453klp91--dyx8j70.bravemeadow-c974bb79.francecentral.azurecontainerapps.io",
+    "latestRevisionName": "ca453klp91--8izy30q",
+    "latestReadyRevisionName": "ca453klp91--8izy30q",
+    "latestRevisionFqdn": "ca453klp91--8izy30q.thankfulisland-9896a8f5.francecentral.azurecontainerapps.io",
     "customDomainVerificationId": "E31949349EB9F5625B0C70237EDF2918CFBB1F4C2A4A12251A94BA4296BB01D4",
     "configuration": {
       "secrets": null,
       "activeRevisionsMode": "Single",
       "ingress": {
-        "fqdn": "ca453klp91.bravemeadow-c974bb79.francecentral.azurecontainerapps.io",
+        "fqdn": "ca453klp91.thankfulisland-9896a8f5.francecentral.azurecontainerapps.io",
         "external": true,
         "targetPort": 80,
         "exposedPort": 0,

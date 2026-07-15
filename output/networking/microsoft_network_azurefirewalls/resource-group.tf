@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-286cff30700da727"
   tags = {
     armType    = "Microsoft.Network/azureFirewalls"
-    createdUtc = "2026-07-15T10:09:24.0653636Z"
+    createdUtc = "2026-07-15T19:04:39.8696670Z"
     purpose    = "az-resource-details-downloader"
   }
 }

@@ -1,15 +1,15 @@
 {
   "name": "nicoq4tq3cl",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nicoq4tq3cl",
-  "etag": "W/\u002202a326c4-4992-4578-9dc0-549d9b33f911\u0022",
+  "etag": "W/\u00222751fde8-b500-4418-abda-63ab0833661d\u0022",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "854240ee-8f37-46b3-bf04-964e347d68f1",
+    "resourceGuid": "10969d82-05ac-433f-ad0d-79735139fcb6",
     "ipConfigurations": [
       {
         "name": "ipconfig1",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nicoq4tq3cl/ipConfigurations/ipconfig1",
-        "etag": "W/\u002202a326c4-4992-4578-9dc0-549d9b33f911\u0022",
+        "etag": "W/\u00222751fde8-b500-4418-abda-63ab0833661d\u0022",
         "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
         "properties": {
           "provisioningState": "Succeeded",
@@ -26,7 +26,7 @@
     "dnsSettings": {
       "dnsServers": [],
       "appliedDnsServers": [],
-      "internalDomainNameSuffix": "bz20ejdj2g0elfrcywitl45jlg.ax.internal.cloudapp.net"
+      "internalDomainNameSuffix": "wcj5dwu3jv1ezclfykdvmlluhg.ax.internal.cloudapp.net"
     },
     "enableAcceleratedNetworking": false,
     "vnetEncryptionSupported": false,

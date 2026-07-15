@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-7f83b649b73888fd"
   tags = {
     armType    = "Microsoft.RecoveryServices/vaults"
-    createdUtc = "2026-07-15T09:35:41.0351452Z"
+    createdUtc = "2026-07-15T18:55:58.7152936Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -43,7 +43,7 @@ resource "azurerm_backup_policy_vm" "res-2" {
     frequency     = "Daily"
     hour_duration = 0
     hour_interval = 0
-    time          = "19:30"
+    time          = "04:30"
     weekdays      = []
   }
   retention_daily {
@@ -96,7 +96,7 @@ resource "azurerm_backup_policy_vm_workload" "res-4" {
     backup {
       frequency            = "Daily"
       frequency_in_minutes = 0
-      time                 = "19:30"
+      time                 = "04:30"
       weekdays             = []
     }
     retention_daily {

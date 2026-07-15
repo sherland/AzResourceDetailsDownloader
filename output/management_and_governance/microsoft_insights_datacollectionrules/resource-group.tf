@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-1c6da0a56560fd63"
   tags = {
     armType    = "Microsoft.Insights/dataCollectionRules"
-    createdUtc = "2026-07-15T09:31:42.8861849Z"
+    createdUtc = "2026-07-15T18:52:01.1113166Z"
     purpose    = "az-resource-details-downloader"
   }
 }

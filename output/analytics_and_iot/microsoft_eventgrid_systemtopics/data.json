@@ -3,7 +3,7 @@
     "provisioningState": "Succeeded",
     "source": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.Storage/storageAccounts/sthhoywda2",
     "topicType": "Microsoft.Storage.StorageAccounts",
-    "metricResourceId": "83add69c-596e-4430-9adc-404852651066"
+    "metricResourceId": "b24d4716-ab2b-4ab3-a343-0392a5dd4c3a"
   },
   "systemData": null,
   "location": "westeurope",

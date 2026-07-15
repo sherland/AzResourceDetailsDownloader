@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "provisioningState": "Succeeded",
+    "minimumTlsVersionAllowed": "1.0",
+    "endpoint": "https://egduzo-u3om.westeurope-1.eventgrid.azure.net/api/events",
+    "inputSchema": "EventGridSchema",
+    "metricResourceId": "a53bcc93-6e68-4791-8afb-895ce8ec8555",
+    "publicNetworkAccess": "Enabled",
+    "dataResidencyBoundary": "WithinGeopair"
+  },
+  "sku": {
+    "name": "Basic"
+  },
+  "systemData": null,
+  "location": "westeurope",
+  "tags": null,
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-247f5bd34103ba1e/providers/Microsoft.EventGrid/domains/egduzo-u3om",
+  "name": "egduzo-u3om",
+  "type": "Microsoft.EventGrid/domains"
+}

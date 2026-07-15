@@ -1,12 +1,12 @@
 {
   "name": "vnetazg63ied",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d9119f4e0aa21cf8/providers/Microsoft.Network/virtualNetworks/vnetazg63ied",
-  "etag": "W/\u00222df65678-d605-4627-946d-4abe8462a054\u0022",
+  "etag": "W/\u0022f4207b0a-7d47-4d2f-8c84-36b2b0982585\u0022",
   "type": "Microsoft.Network/virtualNetworks",
   "location": "westeurope",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "776e63b4-b561-46d8-ab77-a0efd6324a5b",
+    "resourceGuid": "268101bb-5fc2-4522-9dd3-8f24f3652504",
     "addressSpace": {
       "addressPrefixes": [
         "10.10.0.0/16"

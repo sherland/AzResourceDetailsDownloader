@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-6a40d03fb53e43c5"
   tags = {
     armType    = "Microsoft.Portal/dashboards"
-    createdUtc = "2026-07-15T11:15:55.7829158Z"
+    createdUtc = "2026-07-15T18:55:26.0367249Z"
     purpose    = "az-resource-details-downloader"
   }
 }

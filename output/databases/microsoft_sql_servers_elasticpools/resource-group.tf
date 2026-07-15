@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-b5f32dd1b32c637f"
   tags = {
     armType    = "Microsoft.Sql/servers/elasticPools"
-    createdUtc = "2026-07-15T09:29:11.1684014Z"
+    createdUtc = "2026-07-15T18:49:37.1337715Z"
     purpose    = "az-resource-details-downloader"
   }
 }

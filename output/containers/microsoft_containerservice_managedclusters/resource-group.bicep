@@ -83,8 +83,8 @@ resource managedClusters_akshrjtt6wn_name_resource 'Microsoft.ContainerService/m
     identityProfile: {
       kubeletidentity: {
         resourceId: userAssignedIdentities_akshrjtt6wn_agentpool_externalid
-        clientId: 'c74680b0-9df6-422c-929f-9ab5dc0ff1e7'
-        objectId: '731dd9af-fb0b-49aa-b000-f893e368d5de'
+        clientId: '2268de74-cc0f-44b7-a44b-65633282a318'
+        objectId: '2505dd1a-06b9-4059-8560-e83102fc6442'
       }
     }
     autoUpgradeProfile: {
@@ -166,9 +166,9 @@ resource managedClusters_akshrjtt6wn_name_agentpool 'Microsoft.ContainerService/
   }
 }
 
-resource managedClusters_akshrjtt6wn_name_agentpool_aks_agentpool_12930148_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
+resource managedClusters_akshrjtt6wn_name_agentpool_aks_agentpool_29666209_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
   parent: managedClusters_akshrjtt6wn_name_agentpool
-  name: 'aks-agentpool-12930148-vmss000000'
+  name: 'aks-agentpool-29666209-vmss000000'
   properties: {
     network: {}
   }

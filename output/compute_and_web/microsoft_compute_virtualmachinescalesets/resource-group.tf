@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-a482ee03d0d47514"
   tags = {
     armType    = "Microsoft.Compute/virtualMachineScaleSets"
-    createdUtc = "2026-07-15T09:45:51.2929757Z"
+    createdUtc = "2026-07-15T19:04:56.2458069Z"
     purpose    = "az-resource-details-downloader"
   }
 }

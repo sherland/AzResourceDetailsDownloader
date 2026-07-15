@@ -4,7 +4,7 @@
   "type": "Microsoft.Automation/AutomationAccounts/Runbooks",
   "location": "westeurope",
   "tags": {},
-  "etag": "\u0022639197048615570000\u0022",
+  "etag": "\u0022639197384866230000\u0022",
   "properties": {
     "description": null,
     "logVerbose": false,
@@ -17,8 +17,8 @@
     "provisioningState": "Succeeded",
     "serviceManagementTags": null,
     "outputTypes": [],
-    "creationTime": "2026-07-15T09:34:21.557\u002B00:00",
+    "creationTime": "2026-07-15T18:54:46.623\u002B00:00",
     "lastModifiedBy": null,
-    "lastModifiedTime": "2026-07-15T09:34:21.557\u002B00:00"
+    "lastModifiedTime": "2026-07-15T18:54:46.623\u002B00:00"
   }
 }

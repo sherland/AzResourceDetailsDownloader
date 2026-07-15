@@ -1,12 +1,12 @@
 {
   "name": "natatj1p-oe",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ac2c66a7d1df5255/providers/Microsoft.Network/natGateways/natatj1p-oe",
-  "etag": "W/\u0022418e26fb-2594-469c-ad6f-e9d380281e13\u0022",
+  "etag": "W/\u00228525642f-83d9-4728-af01-439669d47324\u0022",
   "type": "Microsoft.Network/natGateways",
   "location": "westeurope",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "4865f6aa-155c-4c8a-bad6-cf4b5fca7e4b",
+    "resourceGuid": "3ff932e3-c86b-4f73-8d6b-256152398ad5",
     "idleTimeoutInMinutes": 4,
     "publicIpAddresses": [
       {

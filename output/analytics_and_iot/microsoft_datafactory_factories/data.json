@@ -1,0 +1,23 @@
+{
+  "name": "adfl4uvvuld",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9f7012d5f41c8fa4/providers/Microsoft.DataFactory/factories/adfl4uvvuld",
+  "type": "Microsoft.DataFactory/factories",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "createTime": "2026-07-15T19:17:39.6088041Z",
+    "version": "2018-06-01",
+    "factoryStatistics": {
+      "totalResourceCount": 0,
+      "maxAllowedResourceCount": 0,
+      "factorySizeInGbUnits": 0,
+      "maxAllowedFactorySizeInGbUnits": 0
+    },
+    "trustModeClaimForMi": {
+      "value": "Enabled",
+      "editable": true
+    }
+  },
+  "eTag": "\u0022120155ef-0000-0d00-0000-6a57dcd30000\u0022",
+  "location": "westeurope",
+  "tags": {}
+}

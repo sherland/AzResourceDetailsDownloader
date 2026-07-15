@@ -1,0 +1,55 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/jobs/cajouo-dwv4",
+  "name": "cajouo-dwv4",
+  "type": "Microsoft.App/jobs",
+  "location": "West Europe",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T19:29:38.8100234",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T19:29:38.8100234"
+  },
+  "properties": {
+    "provisioningState": "Succeeded",
+    "environmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/managedEnvironments/caepmpb42xg",
+    "workloadProfileName": null,
+    "outboundIpAddresses": [
+      "4.245.107.22"
+    ],
+    "configuration": {
+      "secrets": null,
+      "triggerType": "Manual",
+      "replicaTimeout": 300,
+      "replicaRetryLimit": 0,
+      "manualTriggerConfig": {
+        "replicaCompletionCount": 1,
+        "parallelism": 1
+      },
+      "scheduleTriggerConfig": null,
+      "eventTriggerConfig": null,
+      "registries": null,
+      "dapr": null
+    },
+    "template": {
+      "containers": [
+        {
+          "image": "mcr.microsoft.com/azuredocs/aci-helloworld",
+          "name": "main",
+          "resources": {
+            "cpu": 0.5,
+            "memory": "1Gi",
+            "ephemeralStorage": "2Gi"
+          }
+        }
+      ],
+      "initContainers": null,
+      "volumes": null
+    },
+    "eventStreamEndpoint": "https://westeurope.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/containerApps/cajouo-dwv4/eventstream"
+  },
+  "identity": {
+    "type": "None"
+  }
+}

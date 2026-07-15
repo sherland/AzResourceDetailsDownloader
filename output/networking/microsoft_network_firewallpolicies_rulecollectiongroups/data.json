@@ -1,0 +1,13 @@
+{
+  "properties": {
+    "size": "0.00121212 MB",
+    "priority": 100,
+    "ruleCollections": [],
+    "provisioningState": "Succeeded"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1411ef2d4c4edba8/providers/Microsoft.Network/firewallPolicies/afwpd0fjxhjx/ruleCollectionGroups/rulecollz2xglx",
+  "name": "rulecollz2xglx",
+  "type": "Microsoft.Network/FirewallPolicies/RuleCollectionGroups",
+  "etag": "a0ae50b0-74b9-4323-84a8-7cb31e03cd96",
+  "location": "westeurope"
+}

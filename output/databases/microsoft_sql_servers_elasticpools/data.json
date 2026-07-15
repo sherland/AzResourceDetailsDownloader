@@ -7,7 +7,7 @@
   "kind": "pool",
   "properties": {
     "state": "Creating",
-    "creationDate": "2026-07-15T09:30:15.157Z",
+    "creationDate": "2026-07-15T18:50:54.27Z",
     "maxSizeBytes": 5242880000,
     "perDatabaseSettings": {
       "minCapacity": 0.0,

@@ -1,8 +1,8 @@
 {
   "name": "aa8ln-7a5l",
   "systemData": {
-    "createdAt": "2026-07-15T09:07:57.603\u002B00:00",
-    "lastModifiedAt": "2026-07-15T09:07:57.603\u002B00:00"
+    "createdAt": "2026-07-15T18:28:17.057\u002B00:00",
+    "lastModifiedAt": "2026-07-15T18:28:17.057\u002B00:00"
   },
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7ab2ffe44d702d19/providers/Microsoft.Automation/automationAccounts/aa8ln-7a5l",
   "type": "Microsoft.Automation/AutomationAccounts",
@@ -17,7 +17,7 @@
       "capacity": null
     },
     "state": "Ok",
-    "RegistrationUrl": "https://f241725c-0f44-4bc6-bd8a-5aa87e8766b1.agentsvc.we.azure-automation.net/accounts/f241725c-0f44-4bc6-bd8a-5aa87e8766b1",
+    "RegistrationUrl": "https://010d4b70-2974-45f2-8865-2d176c928bcb.agentsvc.we.azure-automation.net/accounts/010d4b70-2974-45f2-8865-2d176c928bcb",
     "encryption": {
       "keySource": "Microsoft.Automation",
       "identity": {
@@ -25,7 +25,7 @@
       }
     },
     "privateEndpointConnections": [],
-    "automationHybridServiceUrl": "https://f241725c-0f44-4bc6-bd8a-5aa87e8766b1.jrds.we.azure-automation.net/automationAccounts/f241725c-0f44-4bc6-bd8a-5aa87e8766b1",
+    "automationHybridServiceUrl": "https://010d4b70-2974-45f2-8865-2d176c928bcb.jrds.we.azure-automation.net/automationAccounts/010d4b70-2974-45f2-8865-2d176c928bcb",
     "RuntimeConfiguration": {
       "powershell": {
         "builtinModules": {
@@ -43,8 +43,8 @@
         }
       }
     },
-    "creationTime": "2026-07-15T09:07:57.603\u002B00:00",
+    "creationTime": "2026-07-15T18:28:17.057\u002B00:00",
     "lastModifiedBy": null,
-    "lastModifiedTime": "2026-07-15T09:07:57.603\u002B00:00"
+    "lastModifiedTime": "2026-07-15T18:28:17.057\u002B00:00"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "virtualNetwork": {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-cfd84dd43feb6f85/providers/Microsoft.Network/virtualNetworks/vnetkh0jx-02"
+    },
+    "dnsResolverState": "Connected",
+    "provisioningState": "Succeeded",
+    "resourceGuid": "c94cb23b-41b9-4515-bc71-5df647153394"
+  },
+  "etag": "\u0022670062e4-0000-0d00-0000-6a57deff0000\u0022",
+  "location": "westeurope",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-cfd84dd43feb6f85/providers/Microsoft.Network/dnsResolvers/dnsr1f3k6j-x",
+  "name": "dnsr1f3k6j-x",
+  "type": "Microsoft.Network/dnsResolvers",
+  "systemData": {
+    "createdAt": "2026-07-15T19:26:52.004052Z",
+    "createdByType": "User",
+    "lastModifiedAt": "2026-07-15T19:26:52.004052Z",
+    "lastModifiedByType": "User"
+  }
+}

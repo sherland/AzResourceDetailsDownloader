@@ -1,0 +1,13 @@
+{
+  "properties": {
+    "state": "Enabled",
+    "provisioningState": "Succeeded"
+  },
+  "sku": {
+    "name": "Free"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e58bdfd29b0c6f5a/providers/Microsoft.Logic/integrationAccounts/iani6kgc-1",
+  "name": "iani6kgc-1",
+  "type": "Microsoft.Logic/integrationAccounts",
+  "location": "westeurope"
+}

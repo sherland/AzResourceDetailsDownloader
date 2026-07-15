@@ -32,6 +32,9 @@ resource virtualNetworks_vnetb5ylw2_a_name_resource 'Microsoft.Network/virtualNe
 resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtualMachines@2025-11-01' = {
   name: virtualMachines_swazfidx9hmdq01_name
   location: 'westeurope'
+  tags: {
+    DISIT_OS_PATCHING: 'automatic'
+  }
   identity: {
     type: 'SystemAssigned'
   }
@@ -48,14 +51,14 @@ resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtua
       }
       osDisk: {
         osType: 'Linux'
-        name: '${virtualMachines_swazfidx9hmdq01_name}_disk1_4696e8adaaf540ff9b7961e44f327d8d'
+        name: '${virtualMachines_swazfidx9hmdq01_name}_OsDisk_1_5f07031c175e4af88811964818ec7a29'
         createOption: 'FromImage'
         caching: 'ReadWrite'
         managedDisk: {
           storageAccountType: 'StandardSSD_LRS'
           id: resourceId(
             'Microsoft.Compute/disks',
-            '${virtualMachines_swazfidx9hmdq01_name}_disk1_4696e8adaaf540ff9b7961e44f327d8d'
+            '${virtualMachines_swazfidx9hmdq01_name}_OsDisk_1_5f07031c175e4af88811964818ec7a29'
           )
         }
         deleteOption: 'Detach'
@@ -69,8 +72,11 @@ resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtua
         disablePasswordAuthentication: false
         provisionVMAgent: true
         patchSettings: {
-          patchMode: 'ImageDefault'
-          assessmentMode: 'ImageDefault'
+          patchMode: 'AutomaticByPlatform'
+          automaticByPlatformSettings: {
+            bypassPlatformSafetyChecksOnUserSchedule: true
+          }
+          assessmentMode: 'AutomaticByPlatform'
         }
       }
       secrets: []

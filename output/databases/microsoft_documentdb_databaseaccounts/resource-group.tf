@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-657bd609e27aba5f"
   tags = {
     armType    = "Microsoft.DocumentDB/databaseAccounts"
-    createdUtc = "2026-07-15T08:59:07.4686579Z"
+    createdUtc = "2026-07-15T18:22:51.9442401Z"
     purpose    = "az-resource-details-downloader"
   }
 }

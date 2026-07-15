@@ -4,7 +4,7 @@ resource dataCollectionEndpoints_dcemegmb_xy_name_resource 'Microsoft.Insights/d
   name: dataCollectionEndpoints_dcemegmb_xy_name
   location: 'westeurope'
   properties: {
-    immutableId: 'dce-ca2ae64a89d043eab3b5de7ef37615f9'
+    immutableId: 'dce-8ae9e0dda4d44b0bb45d3213d8761428'
     configurationAccess: {}
     logsIngestion: {}
     metricsIngestion: {}

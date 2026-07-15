@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-74933ead8c5e44f6"
   tags = {
     armType    = "Microsoft.Communication/emailServices"
-    createdUtc = "2026-07-15T11:13:04.7851751Z"
+    createdUtc = "2026-07-15T18:50:10.9996288Z"
     purpose    = "az-resource-details-downloader"
   }
 }

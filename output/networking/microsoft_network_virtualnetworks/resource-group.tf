@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-d9119f4e0aa21cf8"
   tags = {
     armType    = "Microsoft.Network/virtualNetworks"
-    createdUtc = "2026-07-15T08:56:22.7272905Z"
+    createdUtc = "2026-07-15T18:20:02.1979800Z"
     purpose    = "az-resource-details-downloader"
   }
 }

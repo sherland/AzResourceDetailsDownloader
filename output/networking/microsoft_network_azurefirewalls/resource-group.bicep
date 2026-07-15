@@ -11,7 +11,7 @@ resource publicIPAddresses_piph5_e48_s_name_resource 'Microsoft.Network/publicIP
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '20.105.131.10'
+    ipAddress: '104.214.220.37'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -30,7 +30,7 @@ resource publicIPAddresses_pipunesj_jt_name_resource 'Microsoft.Network/publicIP
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '20.23.224.126'
+    ipAddress: '40.114.227.172'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

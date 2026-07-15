@@ -1,0 +1,26 @@
+{
+  "name": "avdspc4cwd2-4",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-ec59d008cf062ae8/providers/Microsoft.DesktopVirtualization/scalingplans/avdspc4cwd2-4",
+  "type": "Microsoft.DesktopVirtualization/scalingplans",
+  "location": "westeurope",
+  "tags": null,
+  "kind": null,
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T19:22:56.52Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T19:22:56.52Z"
+  },
+  "properties": {
+    "description": "",
+    "friendlyName": "",
+    "timeZone": "UTC",
+    "hostPoolType": "Pooled",
+    "exclusionTag": "",
+    "schedules": [],
+    "hostPoolReferences": [],
+    "objectId": "e51533a8-4559-4408-aa54-28099e78659b"
+  }
+}

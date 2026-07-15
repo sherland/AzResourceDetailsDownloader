@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-c966974de34ce9d7"
   tags = {
     armType    = "Microsoft.Compute/sshPublicKeys"
-    createdUtc = "2026-07-15T09:14:24.8341928Z"
+    createdUtc = "2026-07-15T18:34:49.0798720Z"
     purpose    = "az-resource-details-downloader"
   }
 }

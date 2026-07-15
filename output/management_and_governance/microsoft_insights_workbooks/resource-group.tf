@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-64cf3419204392ef"
   tags = {
     armType    = "Microsoft.Insights/workbooks"
-    createdUtc = "2026-07-15T11:14:34.8024097Z"
+    createdUtc = "2026-07-15T18:54:01.8190057Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -772,6 +772,15 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-77" {
 }
 resource "azurerm_log_analytics_workspace_table_custom_log" "res-78" {
   description             = ""
+  display_name            = "ACSCallAutomationStreamingUsage"
+  name                    = "ACSCallAutomationStreamingUsage"
+  plan                    = "Analytics"
+  retention_in_days       = 0
+  total_retention_in_days = 0
+  workspace_id            = azurerm_log_analytics_workspace.res-2.id
+}
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-79" {
+  description             = ""
   display_name            = "ACSCallClientMediaStatsTimeSeries"
   name                    = "ACSCallClientMediaStatsTimeSeries"
   plan                    = "Analytics"
@@ -779,7 +788,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-78" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-79" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-80" {
   description             = ""
   display_name            = "ACSCallClientOperations"
   name                    = "ACSCallClientOperations"
@@ -788,7 +797,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-79" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-80" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-81" {
   description             = ""
   display_name            = "ACSCallClientServiceRequestAndOutcome"
   name                    = "ACSCallClientServiceRequestAndOutcome"
@@ -797,7 +806,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-80" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-81" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-82" {
   description             = ""
   display_name            = "ACSCallClosedCaptionsSummary"
   name                    = "ACSCallClosedCaptionsSummary"
@@ -806,7 +815,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-81" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-82" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-83" {
   description             = ""
   display_name            = "ACSCallDiagnostics"
   name                    = "ACSCallDiagnostics"
@@ -815,7 +824,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-82" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-83" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-84" {
   description             = ""
   display_name            = "ACSCallDiagnosticsUpdates"
   name                    = "ACSCallDiagnosticsUpdates"
@@ -824,7 +833,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-83" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-84" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-85" {
   description             = ""
   display_name            = "ACSCallRecordingIncomingOperations"
   name                    = "ACSCallRecordingIncomingOperations"
@@ -833,7 +842,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-84" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-85" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-86" {
   description             = ""
   display_name            = "ACSCallRecordingSummary"
   name                    = "ACSCallRecordingSummary"
@@ -842,7 +851,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-85" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-86" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-87" {
   description             = ""
   display_name            = "ACSCallSummary"
   name                    = "ACSCallSummary"
@@ -851,7 +860,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-86" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-87" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-88" {
   description             = ""
   display_name            = "ACSCallSummaryUpdates"
   name                    = "ACSCallSummaryUpdates"
@@ -860,7 +869,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-87" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-88" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-89" {
   description             = ""
   display_name            = "ACSCallSurvey"
   name                    = "ACSCallSurvey"
@@ -869,7 +878,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-88" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-89" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-90" {
   description             = ""
   display_name            = "ACSCallingMetrics"
   name                    = "ACSCallingMetrics"
@@ -878,7 +887,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-89" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-90" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-91" {
   description             = ""
   display_name            = "ACSChatIncomingOperations"
   name                    = "ACSChatIncomingOperations"
@@ -887,7 +896,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-90" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-91" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-92" {
   description             = ""
   display_name            = "ACSEmailSendMailOperational"
   name                    = "ACSEmailSendMailOperational"
@@ -896,7 +905,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-91" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-92" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-93" {
   description             = ""
   display_name            = "ACSEmailStatusUpdateOperational"
   name                    = "ACSEmailStatusUpdateOperational"
@@ -905,7 +914,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-92" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-93" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-94" {
   description             = ""
   display_name            = "ACSEmailUserEngagementOperational"
   name                    = "ACSEmailUserEngagementOperational"
@@ -914,7 +923,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-93" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-94" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-95" {
   description             = ""
   display_name            = "ACSJobRouterIncomingOperations"
   name                    = "ACSJobRouterIncomingOperations"
@@ -923,7 +932,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-94" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-95" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-96" {
   description             = ""
   display_name            = "ACSOptOutManagementOperations"
   name                    = "ACSOptOutManagementOperations"
@@ -932,7 +941,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-95" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-96" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-97" {
   description             = ""
   display_name            = "ACSRoomsIncomingOperations"
   name                    = "ACSRoomsIncomingOperations"
@@ -941,7 +950,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-96" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-97" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-98" {
   description             = ""
   display_name            = "ACSSMSIncomingOperations"
   name                    = "ACSSMSIncomingOperations"
@@ -950,7 +959,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-97" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-98" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-99" {
   description             = ""
   display_name            = "ADAssessmentRecommendation"
   name                    = "ADAssessmentRecommendation"
@@ -959,7 +968,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-98" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-99" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-100" {
   description             = ""
   display_name            = "ADFActivityRun"
   name                    = "ADFActivityRun"
@@ -968,7 +977,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-99" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-100" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-101" {
   description             = ""
   display_name            = "ADFAirflowSchedulerLogs"
   name                    = "ADFAirflowSchedulerLogs"
@@ -977,7 +986,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-100" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-101" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-102" {
   description             = ""
   display_name            = "ADFAirflowTaskLogs"
   name                    = "ADFAirflowTaskLogs"
@@ -986,7 +995,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-101" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-102" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-103" {
   description             = ""
   display_name            = "ADFAirflowWebLogs"
   name                    = "ADFAirflowWebLogs"
@@ -995,7 +1004,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-102" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-103" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-104" {
   description             = ""
   display_name            = "ADFAirflowWorkerLogs"
   name                    = "ADFAirflowWorkerLogs"
@@ -1004,7 +1013,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-103" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-104" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-105" {
   description             = ""
   display_name            = "ADFPipelineRun"
   name                    = "ADFPipelineRun"
@@ -1013,7 +1022,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-104" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-105" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-106" {
   description             = ""
   display_name            = "ADFSSISIntegrationRuntimeLogs"
   name                    = "ADFSSISIntegrationRuntimeLogs"
@@ -1022,7 +1031,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-105" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-106" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-107" {
   description             = ""
   display_name            = "ADFSSISPackageEventMessageContext"
   name                    = "ADFSSISPackageEventMessageContext"
@@ -1031,7 +1040,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-106" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-107" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-108" {
   description             = ""
   display_name            = "ADFSSISPackageEventMessages"
   name                    = "ADFSSISPackageEventMessages"
@@ -1040,7 +1049,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-107" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-108" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-109" {
   description             = ""
   display_name            = "ADFSSISPackageExecutableStatistics"
   name                    = "ADFSSISPackageExecutableStatistics"
@@ -1049,7 +1058,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-108" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-109" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-110" {
   description             = ""
   display_name            = "ADFSSISPackageExecutionComponentPhases"
   name                    = "ADFSSISPackageExecutionComponentPhases"
@@ -1058,7 +1067,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-109" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-110" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-111" {
   description             = ""
   display_name            = "ADFSSISPackageExecutionDataStatistics"
   name                    = "ADFSSISPackageExecutionDataStatistics"
@@ -1067,7 +1076,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-110" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-111" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-112" {
   description             = ""
   display_name            = "ADFSSignInLogs"
   name                    = "ADFSSignInLogs"
@@ -1076,7 +1085,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-111" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-112" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-113" {
   description             = ""
   display_name            = "ADFSandboxActivityRun"
   name                    = "ADFSandboxActivityRun"
@@ -1085,7 +1094,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-112" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-113" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-114" {
   description             = ""
   display_name            = "ADFSandboxPipelineRun"
   name                    = "ADFSandboxPipelineRun"
@@ -1094,7 +1103,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-113" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-114" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-115" {
   description             = ""
   display_name            = "ADFTriggerRun"
   name                    = "ADFTriggerRun"
@@ -1103,7 +1112,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-114" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-115" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-116" {
   description             = ""
   display_name            = "ADGSyslogEvent"
   name                    = "ADGSyslogEvent"
@@ -1112,7 +1121,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-115" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-116" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-117" {
   description             = ""
   display_name            = "ADReplicationResult"
   name                    = "ADReplicationResult"
@@ -1121,7 +1130,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-116" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-117" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-118" {
   description             = ""
   display_name            = "ADSecurityAssessmentRecommendation"
   name                    = "ADSecurityAssessmentRecommendation"
@@ -1130,7 +1139,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-117" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-118" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-119" {
   description             = ""
   display_name            = "ADTDataHistoryOperation"
   name                    = "ADTDataHistoryOperation"
@@ -1139,7 +1148,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-118" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-119" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-120" {
   description             = ""
   display_name            = "ADTDigitalTwinsOperation"
   name                    = "ADTDigitalTwinsOperation"
@@ -1148,7 +1157,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-119" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-120" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-121" {
   description             = ""
   display_name            = "ADTEventRoutesOperation"
   name                    = "ADTEventRoutesOperation"
@@ -1157,7 +1166,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-120" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-121" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-122" {
   description             = ""
   display_name            = "ADTModelsOperation"
   name                    = "ADTModelsOperation"
@@ -1166,7 +1175,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-121" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-122" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-123" {
   description             = ""
   display_name            = "ADTQueryOperation"
   name                    = "ADTQueryOperation"
@@ -1175,7 +1184,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-122" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-123" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-124" {
   description             = ""
   display_name            = "ADXCommand"
   name                    = "ADXCommand"
@@ -1184,7 +1193,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-123" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-124" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-125" {
   description             = ""
   display_name            = "ADXDataOperation"
   name                    = "ADXDataOperation"
@@ -1193,7 +1202,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-124" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-125" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-126" {
   description             = ""
   display_name            = "ADXIngestionBatching"
   name                    = "ADXIngestionBatching"
@@ -1202,7 +1211,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-125" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-126" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-127" {
   description             = ""
   display_name            = "ADXJournal"
   name                    = "ADXJournal"
@@ -1211,7 +1220,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-126" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-127" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-128" {
   description             = ""
   display_name            = "ADXQuery"
   name                    = "ADXQuery"
@@ -1220,7 +1229,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-127" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-128" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-129" {
   description             = ""
   display_name            = "ADXTableDetails"
   name                    = "ADXTableDetails"
@@ -1229,7 +1238,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-128" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-129" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-130" {
   description             = ""
   display_name            = "ADXTableUsageStatistics"
   name                    = "ADXTableUsageStatistics"
@@ -1238,7 +1247,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-129" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-130" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-131" {
   description             = ""
   display_name            = "AEWAssignmentBlobLogs"
   name                    = "AEWAssignmentBlobLogs"
@@ -1247,7 +1256,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-130" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-131" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-132" {
   description             = ""
   display_name            = "AEWAuditLogs"
   name                    = "AEWAuditLogs"
@@ -1256,7 +1265,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-131" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-132" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-133" {
   description             = ""
   display_name            = "AEWComputePipelinesLogs"
   name                    = "AEWComputePipelinesLogs"
@@ -1265,7 +1274,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-132" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-133" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-134" {
   description             = ""
   display_name            = "AEWExperimentAssignmentSummary"
   name                    = "AEWExperimentAssignmentSummary"
@@ -1274,7 +1283,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-133" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-134" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-135" {
   description             = ""
   display_name            = "AEWExperimentScorecardMetricPairs"
   name                    = "AEWExperimentScorecardMetricPairs"
@@ -1283,7 +1292,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-134" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-135" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-136" {
   description             = ""
   display_name            = "AEWExperimentScorecards"
   name                    = "AEWExperimentScorecards"
@@ -1292,7 +1301,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-135" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-136" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-137" {
   description             = ""
   display_name            = "AFSAuditLogs"
   name                    = "AFSAuditLogs"
@@ -1301,7 +1310,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-136" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-137" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-138" {
   description             = ""
   display_name            = "AGCAccessLogs"
   name                    = "AGCAccessLogs"
@@ -1310,7 +1319,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-137" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-138" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-139" {
   description             = ""
   display_name            = "AGCFirewallLogs"
   name                    = "AGCFirewallLogs"
@@ -1319,7 +1328,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-138" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-139" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-140" {
   description             = ""
   display_name            = "AGSGrafanaLoginEvents"
   name                    = "AGSGrafanaLoginEvents"
@@ -1328,7 +1337,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-139" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-140" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-141" {
   description             = ""
   display_name            = "AGSGrafanaUsageInsightsEvents"
   name                    = "AGSGrafanaUsageInsightsEvents"
@@ -1337,7 +1346,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-140" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-141" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-142" {
   description             = ""
   display_name            = "AGSUpdateEvents"
   name                    = "AGSUpdateEvents"
@@ -1346,7 +1355,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-141" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-142" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-143" {
   description             = ""
   display_name            = "AGWAccessLogs"
   name                    = "AGWAccessLogs"
@@ -1355,7 +1364,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-142" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-143" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-144" {
   description             = ""
   display_name            = "AGWFirewallLogs"
   name                    = "AGWFirewallLogs"
@@ -1364,7 +1373,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-143" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-144" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-145" {
   description             = ""
   display_name            = "AGWPerformanceLogs"
   name                    = "AGWPerformanceLogs"
@@ -1373,7 +1382,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-144" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-145" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-146" {
   description             = ""
   display_name            = "AHCIDiagnosticLogs"
   name                    = "AHCIDiagnosticLogs"
@@ -1382,7 +1391,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-145" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-146" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-147" {
   description             = ""
   display_name            = "AHDSDeidAuditLogs"
   name                    = "AHDSDeidAuditLogs"
@@ -1391,7 +1400,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-146" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-147" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-148" {
   description             = ""
   display_name            = "AHDSDicomAuditLogs"
   name                    = "AHDSDicomAuditLogs"
@@ -1400,7 +1409,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-147" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-148" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-149" {
   description             = ""
   display_name            = "AHDSDicomDiagnosticLogs"
   name                    = "AHDSDicomDiagnosticLogs"
@@ -1409,7 +1418,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-148" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-149" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-150" {
   description             = ""
   display_name            = "AHDSMedTechDiagnosticLogs"
   name                    = "AHDSMedTechDiagnosticLogs"
@@ -1418,7 +1427,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-149" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-150" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-151" {
   description             = ""
   display_name            = "AKSAudit"
   name                    = "AKSAudit"
@@ -1427,7 +1436,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-150" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-151" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-152" {
   description             = ""
   display_name            = "AKSAuditAdmin"
   name                    = "AKSAuditAdmin"
@@ -1436,7 +1445,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-151" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-152" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-153" {
   description             = ""
   display_name            = "AKSControlPlane"
   name                    = "AKSControlPlane"
@@ -1445,7 +1454,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-152" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-153" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-154" {
   description             = ""
   display_name            = "ALBHealthEvent"
   name                    = "ALBHealthEvent"
@@ -1454,7 +1463,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-153" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-154" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-155" {
   description             = ""
   display_name            = "AMAHealth"
   name                    = "AMAHealth"
@@ -1463,7 +1472,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-154" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-155" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-156" {
   description             = ""
   display_name            = "AMSKeyDeliveryRequests"
   name                    = "AMSKeyDeliveryRequests"
@@ -1472,7 +1481,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-155" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-156" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-157" {
   description             = ""
   display_name            = "AMSLiveEventOperations"
   name                    = "AMSLiveEventOperations"
@@ -1481,7 +1490,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-156" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-157" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-158" {
   description             = ""
   display_name            = "AMSMediaAccountHealth"
   name                    = "AMSMediaAccountHealth"
@@ -1490,7 +1499,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-157" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-158" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-159" {
   description             = ""
   display_name            = "AMSStreamingEndpointRequests"
   name                    = "AMSStreamingEndpointRequests"
@@ -1499,7 +1508,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-158" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-159" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-160" {
   description             = ""
   display_name            = "AMWMetricsUsageDetails"
   name                    = "AMWMetricsUsageDetails"
@@ -1508,7 +1517,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-159" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-160" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-161" {
   description             = ""
   display_name            = "ANFFileAccess"
   name                    = "ANFFileAccess"
@@ -1517,7 +1526,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-160" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-161" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-162" {
   description             = ""
   display_name            = "ANFTopClientReadIOPS"
   name                    = "ANFTopClientReadIOPS"
@@ -1526,7 +1535,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-161" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-162" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-163" {
   description             = ""
   display_name            = "ANFTopClientWriteIOPS"
   name                    = "ANFTopClientWriteIOPS"
@@ -1535,7 +1544,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-162" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-163" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-164" {
   description             = ""
   display_name            = "ANFTopFileReadIOPS"
   name                    = "ANFTopFileReadIOPS"
@@ -1544,7 +1553,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-163" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-164" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-165" {
   description             = ""
   display_name            = "ANFTopFileWriteIOPS"
   name                    = "ANFTopFileWriteIOPS"
@@ -1553,7 +1562,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-164" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-165" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-166" {
   description             = ""
   display_name            = "AOIDatabaseQuery"
   name                    = "AOIDatabaseQuery"
@@ -1562,7 +1571,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-165" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-166" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-167" {
   description             = ""
   display_name            = "AOIDigestion"
   name                    = "AOIDigestion"
@@ -1571,7 +1580,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-166" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-167" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-168" {
   description             = ""
   display_name            = "AOIStorage"
   name                    = "AOIStorage"
@@ -1580,7 +1589,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-167" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-168" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-169" {
   description             = ""
   display_name            = "APIMDevPortalAuditDiagnosticLog"
   name                    = "APIMDevPortalAuditDiagnosticLog"
@@ -1589,7 +1598,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-168" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-169" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-170" {
   description             = ""
   display_name            = "ASCAuditLogs"
   name                    = "ASCAuditLogs"
@@ -1598,7 +1607,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-169" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-170" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-171" {
   description             = ""
   display_name            = "ASCDeviceEvents"
   name                    = "ASCDeviceEvents"
@@ -1607,7 +1616,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-170" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-171" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-172" {
   description             = ""
   display_name            = "ASRJobs"
   name                    = "ASRJobs"
@@ -1616,7 +1625,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-171" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-172" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-173" {
   description             = ""
   display_name            = "ASRReplicatedItems"
   name                    = "ASRReplicatedItems"
@@ -1625,7 +1634,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-172" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-173" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-174" {
   description             = ""
   display_name            = "ASRv2HealthEvents"
   name                    = "ASRv2HealthEvents"
@@ -1634,7 +1643,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-173" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-174" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-175" {
   description             = ""
   display_name            = "ASRv2JobEvents"
   name                    = "ASRv2JobEvents"
@@ -1643,7 +1652,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-174" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-175" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-176" {
   description             = ""
   display_name            = "ASRv2ProtectedItems"
   name                    = "ASRv2ProtectedItems"
@@ -1652,7 +1661,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-175" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-176" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-177" {
   description             = ""
   display_name            = "ASRv2ReplicationExtensions"
   name                    = "ASRv2ReplicationExtensions"
@@ -1661,7 +1670,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-176" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-177" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-178" {
   description             = ""
   display_name            = "ASRv2ReplicationPolicies"
   name                    = "ASRv2ReplicationPolicies"
@@ -1670,7 +1679,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-177" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-178" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-179" {
   description             = ""
   display_name            = "ASRv2ReplicationVaults"
   name                    = "ASRv2ReplicationVaults"
@@ -1679,7 +1688,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-178" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-179" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-180" {
   description             = ""
   display_name            = "ATCExpressRouteCircuitIpfix"
   name                    = "ATCExpressRouteCircuitIpfix"
@@ -1688,7 +1697,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-179" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-180" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-181" {
   description             = ""
   display_name            = "ATCMicrosoftPeeringMetadata"
   name                    = "ATCMicrosoftPeeringMetadata"
@@ -1697,7 +1706,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-180" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-181" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-182" {
   description             = ""
   display_name            = "ATCPrivatePeeringMetadata"
   name                    = "ATCPrivatePeeringMetadata"
@@ -1706,7 +1715,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-181" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-182" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-183" {
   description             = ""
   display_name            = "AVNMConnectivityConfigurationChange"
   name                    = "AVNMConnectivityConfigurationChange"
@@ -1715,7 +1724,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-182" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-183" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-184" {
   description             = ""
   display_name            = "AVNMIPAMPoolAllocationChange"
   name                    = "AVNMIPAMPoolAllocationChange"
@@ -1724,7 +1733,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-183" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-184" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-185" {
   description             = ""
   display_name            = "AVNMNetworkGroupMembershipChange"
   name                    = "AVNMNetworkGroupMembershipChange"
@@ -1733,7 +1742,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-184" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-185" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-186" {
   description             = ""
   display_name            = "AVNMRuleCollectionChange"
   name                    = "AVNMRuleCollectionChange"
@@ -1742,7 +1751,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-185" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-186" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-187" {
   description             = ""
   display_name            = "AVSEsxiFirewallSyslog"
   name                    = "AVSEsxiFirewallSyslog"
@@ -1751,7 +1760,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-186" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-187" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-188" {
   description             = ""
   display_name            = "AVSEsxiSyslog"
   name                    = "AVSEsxiSyslog"
@@ -1760,7 +1769,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-187" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-188" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-189" {
   description             = ""
   display_name            = "AVSNsxEdgeSyslog"
   name                    = "AVSNsxEdgeSyslog"
@@ -1769,7 +1778,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-188" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-189" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-190" {
   description             = ""
   display_name            = "AVSNsxManagerSyslog"
   name                    = "AVSNsxManagerSyslog"
@@ -1778,7 +1787,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-189" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-190" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-191" {
   description             = ""
   display_name            = "AVSSyslog"
   name                    = "AVSSyslog"
@@ -1787,7 +1796,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-190" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-191" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-192" {
   description             = ""
   display_name            = "AVSVcSyslog"
   name                    = "AVSVcSyslog"
@@ -1796,7 +1805,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-191" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-192" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-193" {
   description             = ""
   display_name            = "AZFWApplicationRule"
   name                    = "AZFWApplicationRule"
@@ -1805,7 +1814,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-192" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-193" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-194" {
   description             = ""
   display_name            = "AZFWApplicationRuleAggregation"
   name                    = "AZFWApplicationRuleAggregation"
@@ -1814,7 +1823,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-193" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-194" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-195" {
   description             = ""
   display_name            = "AZFWDnsFlowTrace"
   name                    = "AZFWDnsFlowTrace"
@@ -1823,7 +1832,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-194" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-195" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-196" {
   description             = ""
   display_name            = "AZFWDnsQuery"
   name                    = "AZFWDnsQuery"
@@ -1832,7 +1841,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-195" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-196" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-197" {
   description             = ""
   display_name            = "AZFWFatFlow"
   name                    = "AZFWFatFlow"
@@ -1841,7 +1850,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-196" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-197" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-198" {
   description             = ""
   display_name            = "AZFWFlowTrace"
   name                    = "AZFWFlowTrace"
@@ -1850,7 +1859,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-197" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-198" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-199" {
   description             = ""
   display_name            = "AZFWIdpsSignature"
   name                    = "AZFWIdpsSignature"
@@ -1859,7 +1868,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-198" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-199" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-200" {
   description             = ""
   display_name            = "AZFWInternalFqdnResolutionFailure"
   name                    = "AZFWInternalFqdnResolutionFailure"
@@ -1868,7 +1877,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-199" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-200" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-201" {
   description             = ""
   display_name            = "AZFWNatRule"
   name                    = "AZFWNatRule"
@@ -1877,7 +1886,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-200" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-201" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-202" {
   description             = ""
   display_name            = "AZFWNatRuleAggregation"
   name                    = "AZFWNatRuleAggregation"
@@ -1886,7 +1895,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-201" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-202" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-203" {
   description             = ""
   display_name            = "AZFWNetworkRule"
   name                    = "AZFWNetworkRule"
@@ -1895,7 +1904,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-202" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-203" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-204" {
   description             = ""
   display_name            = "AZFWNetworkRuleAggregation"
   name                    = "AZFWNetworkRuleAggregation"
@@ -1904,7 +1913,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-203" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-204" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-205" {
   description             = ""
   display_name            = "AZFWThreatIntel"
   name                    = "AZFWThreatIntel"
@@ -1913,7 +1922,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-204" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-205" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-206" {
   description             = ""
   display_name            = "AZKVAuditLogs"
   name                    = "AZKVAuditLogs"
@@ -1922,7 +1931,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-205" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-206" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-207" {
   description             = ""
   display_name            = "AZKVPolicyEvaluationDetailsLogs"
   name                    = "AZKVPolicyEvaluationDetailsLogs"
@@ -1931,7 +1940,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-206" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-207" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-208" {
   description             = ""
   display_name            = "AZMSApplicationMetricLogs"
   name                    = "AZMSApplicationMetricLogs"
@@ -1940,7 +1949,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-207" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-208" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-209" {
   description             = ""
   display_name            = "AZMSArchiveLogs"
   name                    = "AZMSArchiveLogs"
@@ -1949,7 +1958,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-208" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-209" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-210" {
   description             = ""
   display_name            = "AZMSAutoscaleLogs"
   name                    = "AZMSAutoscaleLogs"
@@ -1958,7 +1967,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-209" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-210" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-211" {
   description             = ""
   display_name            = "AZMSCustomerManagedKeyUserLogs"
   name                    = "AZMSCustomerManagedKeyUserLogs"
@@ -1967,7 +1976,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-210" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-211" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-212" {
   description             = ""
   display_name            = "AZMSDiagnosticErrorLogs"
   name                    = "AZMSDiagnosticErrorLogs"
@@ -1976,7 +1985,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-211" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-212" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-213" {
   description             = ""
   display_name            = "AZMSHybridConnectionsEvents"
   name                    = "AZMSHybridConnectionsEvents"
@@ -1985,7 +1994,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-212" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-213" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-214" {
   description             = ""
   display_name            = "AZMSKafkaCoordinatorLogs"
   name                    = "AZMSKafkaCoordinatorLogs"
@@ -1994,7 +2003,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-213" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-214" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-215" {
   description             = ""
   display_name            = "AZMSKafkaUserErrorLogs"
   name                    = "AZMSKafkaUserErrorLogs"
@@ -2003,7 +2012,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-214" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-215" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-216" {
   description             = ""
   display_name            = "AZMSOperationalLogs"
   name                    = "AZMSOperationalLogs"
@@ -2012,7 +2021,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-215" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-216" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-217" {
   description             = ""
   display_name            = "AZMSRunTimeAuditLogs"
   name                    = "AZMSRunTimeAuditLogs"
@@ -2021,19 +2030,10 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-216" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-217" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-218" {
   description             = ""
   display_name            = "AZMSVnetConnectionEvents"
   name                    = "AZMSVnetConnectionEvents"
-  plan                    = "Analytics"
-  retention_in_days       = 0
-  total_retention_in_days = 0
-  workspace_id            = azurerm_log_analytics_workspace.res-2.id
-}
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-218" {
-  description             = "Communication Services Call Automation Media Streaming features usage information. Every entry corresponds to a streaming session between a Start and Stop operation for MediaStreaming or Transcription and records information about the session such as session start time, duration, sessionId, etc. In unmixed streaming cases, participantId of the stream being billed is also included."
-  display_name            = "AcsCallAutomationStreamingUsage"
-  name                    = "AcsCallAutomationStreamingUsage"
   plan                    = "Analytics"
   retention_in_days       = 0
   total_retention_in_days = 0
@@ -6836,567 +6836,567 @@ import {
   to = azurerm_log_analytics_workspace_table_custom_log.res-77
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallClientMediaStatsTimeSeries"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallAutomationStreamingUsage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-78
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallClientOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallClientMediaStatsTimeSeries"
   to = azurerm_log_analytics_workspace_table_custom_log.res-79
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallClientServiceRequestAndOutcome"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallClientOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-80
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallClosedCaptionsSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallClientServiceRequestAndOutcome"
   to = azurerm_log_analytics_workspace_table_custom_log.res-81
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallDiagnostics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallClosedCaptionsSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-82
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallDiagnosticsUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallDiagnostics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-83
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallRecordingIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallDiagnosticsUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-84
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallRecordingSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallRecordingIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-85
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallRecordingSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-86
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallSummaryUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-87
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallSurvey"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallSummaryUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-88
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallingMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallSurvey"
   to = azurerm_log_analytics_workspace_table_custom_log.res-89
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSChatIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSCallingMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-90
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSEmailSendMailOperational"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSChatIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-91
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSEmailStatusUpdateOperational"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSEmailSendMailOperational"
   to = azurerm_log_analytics_workspace_table_custom_log.res-92
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSEmailUserEngagementOperational"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSEmailStatusUpdateOperational"
   to = azurerm_log_analytics_workspace_table_custom_log.res-93
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSJobRouterIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSEmailUserEngagementOperational"
   to = azurerm_log_analytics_workspace_table_custom_log.res-94
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSOptOutManagementOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSJobRouterIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-95
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSRoomsIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSOptOutManagementOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-96
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSSMSIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSRoomsIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-97
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ACSSMSIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-98
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFActivityRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-99
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFAirflowSchedulerLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFActivityRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-100
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFAirflowTaskLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFAirflowSchedulerLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-101
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFAirflowWebLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFAirflowTaskLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-102
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFAirflowWorkerLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFAirflowWebLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-103
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFPipelineRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFAirflowWorkerLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-104
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISIntegrationRuntimeLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFPipelineRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-105
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageEventMessageContext"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISIntegrationRuntimeLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-106
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageEventMessages"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageEventMessageContext"
   to = azurerm_log_analytics_workspace_table_custom_log.res-107
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageExecutableStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageEventMessages"
   to = azurerm_log_analytics_workspace_table_custom_log.res-108
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageExecutionComponentPhases"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageExecutableStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-109
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageExecutionDataStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageExecutionComponentPhases"
   to = azurerm_log_analytics_workspace_table_custom_log.res-110
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSignInLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSISPackageExecutionDataStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-111
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSandboxActivityRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSSignInLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-112
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSandboxPipelineRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSandboxActivityRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-113
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFTriggerRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFSandboxPipelineRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-114
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADGSyslogEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADFTriggerRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-115
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADReplicationResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADGSyslogEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-116
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADSecurityAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADReplicationResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-117
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTDataHistoryOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADSecurityAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-118
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTDigitalTwinsOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTDataHistoryOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-119
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTEventRoutesOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTDigitalTwinsOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-120
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTModelsOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTEventRoutesOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-121
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTQueryOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTModelsOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-122
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXCommand"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADTQueryOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-123
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXDataOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXCommand"
   to = azurerm_log_analytics_workspace_table_custom_log.res-124
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXIngestionBatching"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXDataOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-125
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXJournal"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXIngestionBatching"
   to = azurerm_log_analytics_workspace_table_custom_log.res-126
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXJournal"
   to = azurerm_log_analytics_workspace_table_custom_log.res-127
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXTableDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-128
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXTableUsageStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXTableDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-129
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWAssignmentBlobLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ADXTableUsageStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-130
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWAssignmentBlobLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-131
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWComputePipelinesLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-132
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWExperimentAssignmentSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWComputePipelinesLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-133
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWExperimentScorecardMetricPairs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWExperimentAssignmentSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-134
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWExperimentScorecards"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWExperimentScorecardMetricPairs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-135
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AFSAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AEWExperimentScorecards"
   to = azurerm_log_analytics_workspace_table_custom_log.res-136
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGCAccessLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AFSAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-137
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGCFirewallLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGCAccessLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-138
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGSGrafanaLoginEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGCFirewallLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-139
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGSGrafanaUsageInsightsEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGSGrafanaLoginEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-140
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGSUpdateEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGSGrafanaUsageInsightsEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-141
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGWAccessLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGSUpdateEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-142
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGWFirewallLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGWAccessLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-143
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGWPerformanceLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGWFirewallLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-144
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHCIDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AGWPerformanceLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-145
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHDSDeidAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHCIDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-146
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHDSDicomAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHDSDeidAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-147
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHDSDicomDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHDSDicomAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-148
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHDSMedTechDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHDSDicomDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-149
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AKSAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AHDSMedTechDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-150
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AKSAuditAdmin"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AKSAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-151
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AKSControlPlane"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AKSAuditAdmin"
   to = azurerm_log_analytics_workspace_table_custom_log.res-152
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ALBHealthEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AKSControlPlane"
   to = azurerm_log_analytics_workspace_table_custom_log.res-153
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMAHealth"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ALBHealthEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-154
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMSKeyDeliveryRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMAHealth"
   to = azurerm_log_analytics_workspace_table_custom_log.res-155
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMSLiveEventOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMSKeyDeliveryRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-156
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMSMediaAccountHealth"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMSLiveEventOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-157
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMSStreamingEndpointRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMSMediaAccountHealth"
   to = azurerm_log_analytics_workspace_table_custom_log.res-158
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMWMetricsUsageDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMSStreamingEndpointRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-159
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFFileAccess"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AMWMetricsUsageDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-160
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFTopClientReadIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFFileAccess"
   to = azurerm_log_analytics_workspace_table_custom_log.res-161
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFTopClientWriteIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFTopClientReadIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-162
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFTopFileReadIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFTopClientWriteIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-163
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFTopFileWriteIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFTopFileReadIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-164
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AOIDatabaseQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ANFTopFileWriteIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-165
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AOIDigestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AOIDatabaseQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-166
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AOIStorage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AOIDigestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-167
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/APIMDevPortalAuditDiagnosticLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AOIStorage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-168
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASCAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/APIMDevPortalAuditDiagnosticLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-169
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASCDeviceEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASCAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-170
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRJobs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASCDeviceEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-171
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRReplicatedItems"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRJobs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-172
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2HealthEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRReplicatedItems"
   to = azurerm_log_analytics_workspace_table_custom_log.res-173
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2JobEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2HealthEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-174
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2ProtectedItems"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2JobEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-175
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2ReplicationExtensions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2ProtectedItems"
   to = azurerm_log_analytics_workspace_table_custom_log.res-176
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2ReplicationPolicies"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2ReplicationExtensions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-177
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2ReplicationVaults"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2ReplicationPolicies"
   to = azurerm_log_analytics_workspace_table_custom_log.res-178
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ATCExpressRouteCircuitIpfix"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ASRv2ReplicationVaults"
   to = azurerm_log_analytics_workspace_table_custom_log.res-179
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ATCMicrosoftPeeringMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ATCExpressRouteCircuitIpfix"
   to = azurerm_log_analytics_workspace_table_custom_log.res-180
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ATCPrivatePeeringMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ATCMicrosoftPeeringMetadata"
   to = azurerm_log_analytics_workspace_table_custom_log.res-181
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVNMConnectivityConfigurationChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/ATCPrivatePeeringMetadata"
   to = azurerm_log_analytics_workspace_table_custom_log.res-182
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVNMIPAMPoolAllocationChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVNMConnectivityConfigurationChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-183
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVNMNetworkGroupMembershipChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVNMIPAMPoolAllocationChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-184
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVNMRuleCollectionChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVNMNetworkGroupMembershipChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-185
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSEsxiFirewallSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVNMRuleCollectionChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-186
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSEsxiSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSEsxiFirewallSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-187
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSNsxEdgeSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSEsxiSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-188
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSNsxManagerSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSNsxEdgeSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-189
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSNsxManagerSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-190
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSVcSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-191
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWApplicationRule"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AVSVcSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-192
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWApplicationRuleAggregation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWApplicationRule"
   to = azurerm_log_analytics_workspace_table_custom_log.res-193
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWDnsFlowTrace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWApplicationRuleAggregation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-194
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWDnsQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWDnsFlowTrace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-195
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWFatFlow"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWDnsQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-196
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWFlowTrace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWFatFlow"
   to = azurerm_log_analytics_workspace_table_custom_log.res-197
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWIdpsSignature"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWFlowTrace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-198
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWInternalFqdnResolutionFailure"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWIdpsSignature"
   to = azurerm_log_analytics_workspace_table_custom_log.res-199
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWNatRule"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWInternalFqdnResolutionFailure"
   to = azurerm_log_analytics_workspace_table_custom_log.res-200
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWNatRuleAggregation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWNatRule"
   to = azurerm_log_analytics_workspace_table_custom_log.res-201
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWNetworkRule"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWNatRuleAggregation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-202
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWNetworkRuleAggregation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWNetworkRule"
   to = azurerm_log_analytics_workspace_table_custom_log.res-203
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWThreatIntel"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWNetworkRuleAggregation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-204
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZKVAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZFWThreatIntel"
   to = azurerm_log_analytics_workspace_table_custom_log.res-205
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZKVPolicyEvaluationDetailsLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZKVAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-206
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSApplicationMetricLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZKVPolicyEvaluationDetailsLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-207
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSArchiveLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSApplicationMetricLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-208
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSAutoscaleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSArchiveLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-209
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSCustomerManagedKeyUserLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSAutoscaleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-210
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSDiagnosticErrorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSCustomerManagedKeyUserLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-211
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSHybridConnectionsEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSDiagnosticErrorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-212
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSKafkaCoordinatorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSHybridConnectionsEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-213
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSKafkaUserErrorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSKafkaCoordinatorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-214
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSOperationalLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSKafkaUserErrorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-215
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSRunTimeAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSOperationalLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-216
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSVnetConnectionEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSRunTimeAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-217
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AcsCallAutomationStreamingUsage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.OperationalInsights/workspaces/lawprs-6ffd/tables/AZMSVnetConnectionEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-218
 }
 import {

@@ -15,22 +15,11 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-0b1b89abf1e402c6"
   tags = {
     armType    = "Microsoft.DesktopVirtualization/applicationGroups"
-    createdUtc = "2026-07-15T09:26:23.6869876Z"
+    createdUtc = "2026-07-15T18:46:53.1763713Z"
     purpose    = "az-resource-details-downloader"
   }
 }
-resource "azurerm_virtual_desktop_application_group" "res-1" {
-  default_desktop_display_name = "SessionDesktop"
-  description                  = ""
-  friendly_name                = ""
-  host_pool_id                 = azurerm_virtual_desktop_host_pool.res-2.id
-  location                     = "westeurope"
-  name                         = "avdagc-7s-3r1"
-  resource_group_name          = azurerm_resource_group.res-0.name
-  tags                         = {}
-  type                         = "Desktop"
-}
-resource "azurerm_virtual_desktop_host_pool" "res-2" {
+resource "azurerm_virtual_desktop_host_pool" "res-1" {
   custom_rdp_properties            = "drivestoredirect:s:;usbdevicestoredirect:s:;redirectclipboard:i:0;redirectprinters:i:0;audiomode:i:0;videoplaybackmode:i:1;devicestoredirect:s:*;redirectcomports:i:1;redirectsmartcards:i:1;enablecredsspsupport:i:1;redirectwebauthn:i:1;use multimon:i:1;"
   description                      = ""
   friendly_name                    = ""
@@ -55,10 +44,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0b1b89abf1e402c6/providers/Microsoft.DesktopVirtualization/applicationGroups/avdagc-7s-3r1"
-  to = azurerm_virtual_desktop_application_group.res-1
-}
-import {
   id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0b1b89abf1e402c6/providers/Microsoft.DesktopVirtualization/hostPools/avdhpz-3v-b-9"
-  to = azurerm_virtual_desktop_host_pool.res-2
+  to = azurerm_virtual_desktop_host_pool.res-1
 }

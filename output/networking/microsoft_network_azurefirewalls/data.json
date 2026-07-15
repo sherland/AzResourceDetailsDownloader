@@ -1,7 +1,7 @@
 {
   "name": "afwd5edfm",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm",
-  "etag": "W/\u0022168759ff-fec1-4b8a-89de-84d65df90f73\u0022",
+  "etag": "W/\u002214923183-761c-4356-bacc-a871ee4a96f6\u0022",
   "type": "Microsoft.Network/azureFirewalls",
   "location": "westeurope",
   "properties": {
@@ -15,7 +15,7 @@
     "managementIpConfiguration": {
       "name": "afwMgmtIpConfig",
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm/azureFirewallIpConfigurations/afwMgmtIpConfig",
-      "etag": "W/\u0022168759ff-fec1-4b8a-89de-84d65df90f73\u0022",
+      "etag": "W/\u002214923183-761c-4356-bacc-a871ee4a96f6\u0022",
       "type": "Microsoft.Network/azureFirewalls/azureFirewallIpConfigurations",
       "properties": {
         "provisioningState": "Succeeded",
@@ -32,7 +32,7 @@
       {
         "name": "afwIpConfig",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm/azureFirewallIpConfigurations/afwIpConfig",
-        "etag": "W/\u0022168759ff-fec1-4b8a-89de-84d65df90f73\u0022",
+        "etag": "W/\u002214923183-761c-4356-bacc-a871ee4a96f6\u0022",
         "type": "Microsoft.Network/azureFirewalls/azureFirewallIpConfigurations",
         "properties": {
           "provisioningState": "Succeeded",

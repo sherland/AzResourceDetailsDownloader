@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-7babd697af7caa22"
   tags = {
     armType    = "Microsoft.Network/bastionHosts"
-    createdUtc = "2026-07-15T09:42:01.2194034Z"
+    createdUtc = "2026-07-15T19:02:20.3290061Z"
     purpose    = "az-resource-details-downloader"
   }
 }

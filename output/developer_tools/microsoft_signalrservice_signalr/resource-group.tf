@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-d06e581e9c4c92a1"
   tags = {
     armType    = "Microsoft.SignalRService/signalR"
-    createdUtc = "2026-07-15T09:24:55.6674380Z"
+    createdUtc = "2026-07-15T18:45:02.2754435Z"
     purpose    = "az-resource-details-downloader"
   }
 }

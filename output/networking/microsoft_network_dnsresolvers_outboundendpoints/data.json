@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "subnet": {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9ba774595fc4a14a/providers/Microsoft.Network/virtualNetworks/vnet5jlfehrw/subnets/outbound"
+    },
+    "provisioningState": "Succeeded",
+    "resourceGuid": "cf940073-c2f0-4cd0-9757-199f2080521c"
+  },
+  "etag": "\u0022db0012dd-0000-0d00-0000-6a57dfcc0000\u0022",
+  "location": "westeurope",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9ba774595fc4a14a/providers/Microsoft.Network/dnsResolvers/dnsrqragsytf/outboundEndpoints/outboundngye8c",
+  "name": "outboundngye8c",
+  "type": "Microsoft.Network/dnsResolvers/outboundEndpoints",
+  "systemData": {
+    "createdAt": "2026-07-15T19:28:06.8329593Z",
+    "createdByType": "User",
+    "lastModifiedAt": "2026-07-15T19:28:06.8329593Z",
+    "lastModifiedByType": "User"
+  }
+}

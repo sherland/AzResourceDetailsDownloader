@@ -6,7 +6,7 @@
   "kind": "GlobalDocumentDB",
   "tags": {},
   "systemData": {
-    "createdAt": "2026-07-15T09:00:14.8672703Z"
+    "createdAt": "2026-07-15T18:23:50.6712739Z"
   },
   "properties": {
     "provisioningState": "Succeeded",
@@ -25,7 +25,7 @@
     "analyticalStorageConfiguration": {
       "schemaType": "WellDefined"
     },
-    "instanceId": "6561e9ad-9006-4a2c-bec1-dc4ad73d708c",
+    "instanceId": "bba1d0c3-e17c-477b-965e-d08e3cc9090b",
     "databaseAccountOfferType": "Standard",
     "defaultIdentity": "FirstPartyIdentity",
     "networkAclBypass": "None",
@@ -94,16 +94,16 @@
     "networkAclBypassResourceIds": [],
     "keysMetadata": {
       "primaryMasterKey": {
-        "generationTime": "2026-07-15T09:00:14.8672703Z"
+        "generationTime": "2026-07-15T18:23:50.6712739Z"
       },
       "secondaryMasterKey": {
-        "generationTime": "2026-07-15T09:00:14.8672703Z"
+        "generationTime": "2026-07-15T18:23:50.6712739Z"
       },
       "primaryReadonlyMasterKey": {
-        "generationTime": "2026-07-15T09:00:14.8672703Z"
+        "generationTime": "2026-07-15T18:23:50.6712739Z"
       },
       "secondaryReadonlyMasterKey": {
-        "generationTime": "2026-07-15T09:00:14.8672703Z"
+        "generationTime": "2026-07-15T18:23:50.6712739Z"
       }
     }
   },

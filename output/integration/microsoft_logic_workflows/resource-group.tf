@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-872102314c593a7d"
   tags = {
     armType    = "Microsoft.Logic/workflows"
-    createdUtc = "2026-07-15T09:37:00.1658410Z"
+    createdUtc = "2026-07-15T18:57:15.6949137Z"
     purpose    = "az-resource-details-downloader"
   }
 }

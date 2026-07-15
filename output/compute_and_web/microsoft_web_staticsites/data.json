@@ -4,7 +4,7 @@
   "type": "Microsoft.Web/staticSites",
   "location": "West Europe",
   "properties": {
-    "defaultHostname": "gray-forest-00c7b4903.7.azurestaticapps.net",
+    "defaultHostname": "nice-flower-0f8984303.7.azurestaticapps.net",
     "repositoryUrl": null,
     "branch": null,
     "customDomains": [],

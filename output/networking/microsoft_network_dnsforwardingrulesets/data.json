@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "dnsResolverOutboundEndpoints": [
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-77c0bcdddf92bb37/providers/Microsoft.Network/dnsResolvers/dnsrg5d-jfb6/outboundEndpoints/outboundtnd-yz"
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "resourceGuid": "6306a875-9ba9-427c-b8f6-b1967469a940"
+  },
+  "etag": "\u00228f0209f4-0000-0d00-0000-6a57dfc50000\u0022",
+  "location": "westeurope",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-77c0bcdddf92bb37/providers/Microsoft.Network/dnsForwardingRulesets/dfrsd-86-jjd",
+  "name": "dfrsd-86-jjd",
+  "type": "Microsoft.Network/dnsForwardingRulesets",
+  "systemData": {
+    "createdAt": "2026-07-15T19:30:08.898762Z",
+    "createdByType": "User",
+    "lastModifiedAt": "2026-07-15T19:30:08.898762Z",
+    "lastModifiedByType": "User"
+  }
+}

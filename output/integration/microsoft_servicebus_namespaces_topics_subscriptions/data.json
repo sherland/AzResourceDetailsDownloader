@@ -1,0 +1,29 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9e05ace8d6857eb2/providers/Microsoft.ServiceBus/namespaces/sbg0yna0pz/topics/topicvj-o3e/subscriptions/subuea0ba",
+  "name": "subuea0ba",
+  "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+  "location": "westeurope",
+  "properties": {
+    "isClientAffine": false,
+    "lockDuration": "PT1M",
+    "requiresSession": false,
+    "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+    "deadLetteringOnMessageExpiration": false,
+    "deadLetteringOnFilterEvaluationExceptions": true,
+    "messageCount": 0,
+    "maxDeliveryCount": 10,
+    "status": "Active",
+    "enableBatchedOperations": true,
+    "createdAt": "2026-07-15T19:11:56.7914973Z",
+    "updatedAt": "2026-07-15T19:11:56.7914973Z",
+    "accessedAt": "2026-07-15T19:11:56.7914973Z",
+    "countDetails": {
+      "activeMessageCount": 0,
+      "deadLetterMessageCount": 0,
+      "scheduledMessageCount": 0,
+      "transferMessageCount": 0,
+      "transferDeadLetterMessageCount": 0
+    },
+    "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S"
+  }
+}

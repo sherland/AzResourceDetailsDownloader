@@ -1,0 +1,20 @@
+{
+  "name": "natrulewegbj7",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f39f3facaeacfc79/providers/Microsoft.Network/loadBalancers/lbumojaw4n/inboundNatRules/natrulewegbj7",
+  "etag": "W/\u0022c317bb57-3c2a-44ab-88b6-29cc8d24bcb8\u0022",
+  "type": "Microsoft.Network/loadBalancers/inboundNatRules",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "frontendIPConfiguration": {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f39f3facaeacfc79/providers/Microsoft.Network/loadBalancers/lbumojaw4n/frontendIPConfigurations/feConfig"
+    },
+    "frontendPort": 5000,
+    "backendPort": 22,
+    "enableFloatingIP": false,
+    "idleTimeoutInMinutes": 4,
+    "protocol": "Tcp",
+    "enableDestinationServiceEndpoint": false,
+    "enableTcpReset": false,
+    "allowBackendPortConflict": false
+  }
+}

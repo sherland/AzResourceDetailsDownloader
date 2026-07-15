@@ -15,11 +15,33 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-04193cb7b9ed5985"
   tags = {
     armType    = "Microsoft.Insights/metricAlerts"
-    createdUtc = "2026-07-15T11:13:13.8713357Z"
+    createdUtc = "2026-07-15T18:51:40.5685583Z"
     purpose    = "az-resource-details-downloader"
   }
 }
-resource "azurerm_storage_account" "res-1" {
+resource "azurerm_monitor_metric_alert" "res-1" {
+  auto_mitigate            = false
+  description              = ""
+  enabled                  = true
+  frequency                = "PT5M"
+  name                     = "maxwws0ziv"
+  resource_group_name      = azurerm_resource_group.res-0.name
+  scopes                   = [azurerm_storage_account.res-2.id]
+  severity                 = 3
+  tags                     = {}
+  target_resource_location = ""
+  target_resource_type     = ""
+  window_size              = "PT15M"
+  criteria {
+    aggregation            = "Total"
+    metric_name            = "Transactions"
+    metric_namespace       = ""
+    operator               = "GreaterThan"
+    skip_metric_validation = false
+    threshold              = 1000000
+  }
+}
+resource "azurerm_storage_account" "res-2" {
   access_tier                       = "Hot"
   account_kind                      = "StorageV2"
   account_replication_type          = "LRS"
@@ -79,10 +101,14 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/stagf5ppwn"
-  to = azurerm_storage_account.res-1
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Insights/metricAlerts/maxwws0ziv"
+  to = azurerm_monitor_metric_alert.res-1
 }
 import {
   id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/stagf5ppwn"
-  to = azurerm_storage_account_queue_properties.res-4
+  to = azurerm_storage_account.res-2
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/stagf5ppwn"
+  to = azurerm_storage_account_queue_properties.res-5
 }

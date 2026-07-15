@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-3556a0936d77e0d2"
   tags = {
     armType    = "Microsoft.Network/privateEndpoints"
-    createdUtc = "2026-07-15T09:13:19.5508983Z"
+    createdUtc = "2026-07-15T18:33:24.1620822Z"
     purpose    = "az-resource-details-downloader"
   }
 }

@@ -19,10 +19,10 @@
     },
     "networkAccessPolicy": "AllowAll",
     "publicNetworkAccess": "Enabled",
-    "timeCreated": "2026-07-15T08:56:29.5517497\u002B00:00",
+    "timeCreated": "2026-07-15T18:20:10.3367783\u002B00:00",
     "provisioningState": "Succeeded",
     "diskState": "Unattached",
     "diskSizeBytes": 4294967296,
-    "uniqueId": "361d8586-a83b-4093-971d-b67208421e51"
+    "uniqueId": "1440dbbe-f391-4b0a-8e2d-9c7c29ac90d9"
   }
 }

@@ -1,17 +1,17 @@
 {
   "name": "penzc8co-v",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/privateEndpoints/penzc8co-v",
-  "etag": "W/\u00220ba43ef2-7d96-4fde-bd3b-bbfd5f5b7bfb\u0022",
+  "etag": "W/\u0022fd226412-50b0-456b-915e-57f02fa2bedd\u0022",
   "type": "Microsoft.Network/privateEndpoints",
   "location": "westeurope",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "4ec1a4bf-4e9b-4e50-992d-b812dd071738",
+    "resourceGuid": "7a925a6f-2b97-4b5b-ba12-b226c311b200",
     "privateLinkServiceConnections": [
       {
         "name": "peconn1",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/privateEndpoints/penzc8co-v/privateLinkServiceConnections/peconn1",
-        "etag": "W/\u00220ba43ef2-7d96-4fde-bd3b-bbfd5f5b7bfb\u0022",
+        "etag": "W/\u0022fd226412-50b0-456b-915e-57f02fa2bedd\u0022",
         "properties": {
           "provisioningState": "Succeeded",
           "privateLinkServiceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Storage/storageAccounts/st9crnw0b9",
@@ -35,7 +35,7 @@
     "ipConfigurations": [],
     "networkInterfaces": [
       {
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/networkInterfaces/penzc8co-v.nic.9f90be97-46fd-4081-a6d3-0aa1a8d5609b"
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/networkInterfaces/penzc8co-v.nic.13368636-eb09-48be-84ee-7bd000774179"
       }
     ],
     "customDnsConfigs": [

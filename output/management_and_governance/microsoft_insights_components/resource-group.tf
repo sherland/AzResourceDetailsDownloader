@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.80.0"
+      version = "4.66.0"
     }
   }
 }
@@ -15,22 +15,21 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-ecd5aa9f59a501e8"
   tags = {
     armType    = "Microsoft.Insights/components"
-    createdUtc = "2026-07-15T09:05:11.3377781Z"
+    createdUtc = "2026-07-15T18:26:53.7306162Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_application_insights" "res-1" {
   application_type                      = "web"
+  connection_string                     = "" # Masked sensitive attribute
   daily_data_cap_in_gb                  = 100
   daily_data_cap_notifications_disabled = false
-  daily_data_cap_notifications_enabled  = true
   disable_ip_masking                    = false
   force_customer_storage_for_profiler   = false
+  instrumentation_key                   = "" # Masked sensitive attribute
   internet_ingestion_enabled            = true
   internet_query_enabled                = true
-  ip_masking_enabled                    = true
   local_authentication_disabled         = false
-  local_authentication_enabled          = true
   location                              = "westeurope"
   name                                  = "ai9eqss-g5"
   resource_group_name                   = azurerm_resource_group.res-0.name
@@ -49,8 +48,10 @@ resource "azurerm_log_analytics_workspace" "res-2" {
   internet_query_enabled                  = true
   location                                = "westeurope"
   name                                    = "lawr-uvykju"
+  primary_shared_key                      = "" # Masked sensitive attribute
   resource_group_name                     = azurerm_resource_group.res-0.name
   retention_in_days                       = 30
+  secondary_shared_key                    = "" # Masked sensitive attribute
   sku                                     = "PerGB2018"
   tags                                    = {}
 }

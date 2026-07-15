@@ -1,0 +1,31 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-72e8c58f3ece7542/providers/Microsoft.ContainerService/managedClusters/aks5fhg-mju/agentPools/pool2",
+  "name": "pool2",
+  "type": "Microsoft.ContainerService/managedClusters/agentPools",
+  "properties": {
+    "count": 1,
+    "vmSize": "Standard_D2s_v5",
+    "osDiskSizeGB": 128,
+    "osDiskType": "Managed",
+    "kubeletDiskType": "OS",
+    "maxPods": 250,
+    "type": "VirtualMachineScaleSets",
+    "enableAutoScaling": false,
+    "scaleDownMode": "Delete",
+    "provisioningState": "Succeeded",
+    "powerState": {
+      "code": "Running"
+    },
+    "orchestratorVersion": "1.35",
+    "currentOrchestratorVersion": "1.35.5",
+    "enableNodePublicIP": false,
+    "mode": "User",
+    "osType": "Linux",
+    "osSKU": "Ubuntu",
+    "nodeImageVersion": "AKSUbuntu-2404gen2containerd-202606.19.0",
+    "upgradeSettings": {
+      "maxSurge": "10%"
+    },
+    "enableFIPS": false
+  }
+}

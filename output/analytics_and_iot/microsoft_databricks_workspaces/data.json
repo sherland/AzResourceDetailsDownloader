@@ -1,0 +1,75 @@
+{
+  "properties": {
+    "isUcEnabled": true,
+    "privateEndpointConnections": [],
+    "managedResourceGroupId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ardl-dbx-managed-xm1ddvc7",
+    "parameters": {
+      "enableFedRampCertification": {
+        "type": "Bool",
+        "value": false
+      },
+      "enableNoPublicIp": {
+        "type": "Bool",
+        "value": true
+      },
+      "prepareEncryption": {
+        "type": "Bool",
+        "value": false
+      },
+      "requireInfrastructureEncryption": {
+        "type": "Bool",
+        "value": false
+      },
+      "resourceTags": {
+        "type": "Object",
+        "value": {
+          "application": "databricks",
+          "databricks-environment": "true"
+        }
+      },
+      "storageAccountName": {
+        "type": "String",
+        "value": "dbstoragedguzdlfcbcmes"
+      },
+      "storageAccountSkuName": {
+        "type": "String",
+        "value": "Standard_ZRS"
+      }
+    },
+    "provisioningState": "Succeeded",
+    "authorizations": [
+      {
+        "principalId": "9a74af6f-d153-4348-988a-e2672920bee9",
+        "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+      }
+    ],
+    "createdBy": {
+      "oid": "f79b144e-8ba2-493b-ad36-11208b55ca03",
+      "puid": "1003200344702947",
+      "applicationId": "04b07795-8ddb-461a-bbee-02f9e1bf7b46"
+    },
+    "updatedBy": {
+      "oid": "f79b144e-8ba2-493b-ad36-11208b55ca03",
+      "puid": "1003200344702947",
+      "applicationId": "04b07795-8ddb-461a-bbee-02f9e1bf7b46"
+    },
+    "workspaceId": "7405614149474584",
+    "workspaceUrl": "adb-7405614149474584.4.azuredatabricks.net",
+    "createdDateTime": "2026-07-15T20:05:16.8036114Z"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fba1943833ef0847/providers/Microsoft.Databricks/workspaces/dbx21a20-w4",
+  "name": "dbx21a20-w4",
+  "type": "Microsoft.Databricks/workspaces",
+  "sku": {
+    "name": "premium"
+  },
+  "location": "westeurope",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T20:05:16.6192967\u002B00:00",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T20:05:16.6192967\u002B00:00"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "systemData": null,
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4bfc2889e6ff55e5/providers/Microsoft.EventGrid/domains/egdy-n1aqei/topics/topicc-yh-q",
+  "name": "topicc-yh-q",
+  "type": "Microsoft.EventGrid/domains/topics"
+}

@@ -10,7 +10,7 @@ resource publicIPAddresses_pipos_z0e42_name_resource 'Microsoft.Network/publicIP
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '74.234.209.211'
+    ipAddress: '20.61.105.1'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -68,7 +68,7 @@ resource bastionHosts_bastiont9y5_i_name_resource 'Microsoft.Network/bastionHost
     name: 'Basic'
   }
   properties: {
-    dnsName: 'bst-3f9bce02-16d2-4999-9bd5-644d3b08eed3.bastion.azure.com'
+    dnsName: 'bst-8b1ffbd0-c388-44b2-9ae8-4e9b7cc09a91.bastion.azure.com'
     scaleUnits: 2
     ipConfigurations: [
       {

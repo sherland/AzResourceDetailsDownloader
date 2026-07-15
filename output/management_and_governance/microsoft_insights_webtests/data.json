@@ -1,6 +1,6 @@
 {
   "kind": "ping",
-  "etag": "\u002267023afe-0000-0200-0000-6a576bb90000\u0022",
+  "etag": "\u00228702210a-0000-0200-0000-6a57d7660000\u0022",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ca095e8942b47ed/providers/microsoft.insights/webtests/wt9s8-znrt",
   "name": "wt9s8-znrt",
   "type": "microsoft.insights/webtests",

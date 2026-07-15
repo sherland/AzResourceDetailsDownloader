@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.80.0"
+      version = "4.66.0"
     }
   }
 }
@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-84606906df9032ba"
   tags = {
     armType    = "Microsoft.Automation/automationAccounts/runbooks"
-    createdUtc = "2026-07-15T09:34:11.2327550Z"
+    createdUtc = "2026-07-15T18:54:37.4130046Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -1083,198 +1083,6 @@ resource "azurerm_automation_runtime_environment" "res-201" {
   runtime_version  = "5.1"
   tags             = {}
 }
-resource "azurerm_automation_runtime_environment_package" "res-202" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "AuditPolicyDsc"
-}
-resource "azurerm_automation_runtime_environment_package" "res-203" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Azure"
-}
-resource "azurerm_automation_runtime_environment_package" "res-204" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Azure.Storage"
-}
-resource "azurerm_automation_runtime_environment_package" "res-205" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "AzureRM.Automation"
-}
-resource "azurerm_automation_runtime_environment_package" "res-206" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "AzureRM.Compute"
-}
-resource "azurerm_automation_runtime_environment_package" "res-207" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "AzureRM.Profile"
-}
-resource "azurerm_automation_runtime_environment_package" "res-208" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "AzureRM.Resources"
-}
-resource "azurerm_automation_runtime_environment_package" "res-209" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "AzureRM.Sql"
-}
-resource "azurerm_automation_runtime_environment_package" "res-210" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "AzureRM.Storage"
-}
-resource "azurerm_automation_runtime_environment_package" "res-211" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "ComputerManagementDsc"
-}
-resource "azurerm_automation_runtime_environment_package" "res-212" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "GPRegistryPolicyParser"
-}
-resource "azurerm_automation_runtime_environment_package" "res-213" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Microsoft.PowerShell.Core"
-}
-resource "azurerm_automation_runtime_environment_package" "res-214" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Microsoft.PowerShell.Diagnostics"
-}
-resource "azurerm_automation_runtime_environment_package" "res-215" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Microsoft.PowerShell.Management"
-}
-resource "azurerm_automation_runtime_environment_package" "res-216" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Microsoft.PowerShell.Security"
-}
-resource "azurerm_automation_runtime_environment_package" "res-217" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Microsoft.PowerShell.Utility"
-}
-resource "azurerm_automation_runtime_environment_package" "res-218" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Microsoft.WSMan.Management"
-}
-resource "azurerm_automation_runtime_environment_package" "res-219" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Orchestrator.AssetManagement.Cmdlets"
-}
-resource "azurerm_automation_runtime_environment_package" "res-220" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "PSDscResources"
-}
-resource "azurerm_automation_runtime_environment_package" "res-221" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "SecurityPolicyDsc"
-}
-resource "azurerm_automation_runtime_environment_package" "res-222" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "StateConfigCompositeResources"
-}
-resource "azurerm_automation_runtime_environment_package" "res-223" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "xDSCDomainjoin"
-}
-resource "azurerm_automation_runtime_environment_package" "res-224" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "xPowerShellExecutionPolicy"
-}
-resource "azurerm_automation_runtime_environment_package" "res-225" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-201.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "xRemoteDesktopAdmin"
-}
 resource "azurerm_automation_runtime_environment" "res-226" {
   automation_account_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k"
   description           = "System-generated Runtime Environment for your Automation account with Runtime language: PowerShell & Runtime version: 7.1. It automatically populates Packages defined for PowerShell 7.1 runtime version in your Automation account. This Runtime environment is non-editable. "
@@ -1286,14 +1094,6 @@ resource "azurerm_automation_runtime_environment" "res-226" {
   runtime_language = "PowerShell"
   runtime_version  = "7.1"
   tags             = {}
-}
-resource "azurerm_automation_runtime_environment_package" "res-227" {
-  automation_runtime_environment_id = azurerm_automation_runtime_environment.res-226.id
-  content_uri                       = ""
-  content_version                   = ""
-  hash_algorithm                    = ""
-  hash_value                        = ""
-  name                              = "Orchestrator.AssetManagement.Cmdlets"
 }
 resource "azurerm_automation_runtime_environment" "res-228" {
   automation_account_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k"
@@ -2164,108 +1964,8 @@ import {
   to = azurerm_automation_runtime_environment.res-201
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/AuditPolicyDsc"
-  to = azurerm_automation_runtime_environment_package.res-202
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/Azure"
-  to = azurerm_automation_runtime_environment_package.res-203
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/Azure.Storage"
-  to = azurerm_automation_runtime_environment_package.res-204
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/AzureRM.Automation"
-  to = azurerm_automation_runtime_environment_package.res-205
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/AzureRM.Compute"
-  to = azurerm_automation_runtime_environment_package.res-206
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/AzureRM.Profile"
-  to = azurerm_automation_runtime_environment_package.res-207
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/AzureRM.Resources"
-  to = azurerm_automation_runtime_environment_package.res-208
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/AzureRM.Sql"
-  to = azurerm_automation_runtime_environment_package.res-209
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/AzureRM.Storage"
-  to = azurerm_automation_runtime_environment_package.res-210
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/ComputerManagementDsc"
-  to = azurerm_automation_runtime_environment_package.res-211
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/GPRegistryPolicyParser"
-  to = azurerm_automation_runtime_environment_package.res-212
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/Microsoft.PowerShell.Core"
-  to = azurerm_automation_runtime_environment_package.res-213
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/Microsoft.PowerShell.Diagnostics"
-  to = azurerm_automation_runtime_environment_package.res-214
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/Microsoft.PowerShell.Management"
-  to = azurerm_automation_runtime_environment_package.res-215
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/Microsoft.PowerShell.Security"
-  to = azurerm_automation_runtime_environment_package.res-216
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/Microsoft.PowerShell.Utility"
-  to = azurerm_automation_runtime_environment_package.res-217
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/Microsoft.WSMan.Management"
-  to = azurerm_automation_runtime_environment_package.res-218
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/Orchestrator.AssetManagement.Cmdlets"
-  to = azurerm_automation_runtime_environment_package.res-219
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/PSDscResources"
-  to = azurerm_automation_runtime_environment_package.res-220
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/SecurityPolicyDsc"
-  to = azurerm_automation_runtime_environment_package.res-221
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/StateConfigCompositeResources"
-  to = azurerm_automation_runtime_environment_package.res-222
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/xDSCDomainjoin"
-  to = azurerm_automation_runtime_environment_package.res-223
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/xPowerShellExecutionPolicy"
-  to = azurerm_automation_runtime_environment_package.res-224
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-5.1/packages/xRemoteDesktopAdmin"
-  to = azurerm_automation_runtime_environment_package.res-225
-}
-import {
   id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-7.1"
   to = azurerm_automation_runtime_environment.res-226
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-7.1/packages/Orchestrator.AssetManagement.Cmdlets"
-  to = azurerm_automation_runtime_environment_package.res-227
 }
 import {
   id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runtimeEnvironments/PowerShell-7.2"

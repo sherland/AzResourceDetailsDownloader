@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-7ab2ffe44d702d19"
   tags = {
     armType    = "Microsoft.Automation/automationAccounts"
-    createdUtc = "2026-07-15T09:07:51.9063087Z"
+    createdUtc = "2026-07-15T18:28:12.2758025Z"
     purpose    = "az-resource-details-downloader"
   }
 }

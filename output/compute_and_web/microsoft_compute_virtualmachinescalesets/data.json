@@ -70,13 +70,13 @@
           }
         ]
       },
-      "timeCreated": "2026-07-15T09:46:06.2498704\u002B00:00"
+      "timeCreated": "2026-07-15T19:05:12.197815\u002B00:00"
     },
     "provisioningState": "Succeeded",
     "overprovision": true,
     "doNotRunExtensionsOnOverprovisionedVMs": false,
-    "uniqueId": "99c4deca-c818-4493-a8c5-30effd5aaae4",
+    "uniqueId": "1bacfe6c-4fd8-48f0-9206-7f33e00a20a8",
     "platformFaultDomainCount": 5,
-    "timeCreated": "2026-07-15T09:46:06.2498704\u002B00:00"
+    "timeCreated": "2026-07-15T19:05:12.197815\u002B00:00"
   }
 }

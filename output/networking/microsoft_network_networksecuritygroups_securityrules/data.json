@@ -1,0 +1,21 @@
+{
+  "name": "rulebbsk-0",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2bfb77d8be121449/providers/Microsoft.Network/networkSecurityGroups/nsgzd-p-0so/securityRules/rulebbsk-0",
+  "etag": "W/\u002216bc23c7-c20f-4cfe-951e-2b266294fe52\u0022",
+  "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "protocol": "Tcp",
+    "sourcePortRange": "*",
+    "destinationPortRange": "443",
+    "sourceAddressPrefix": "*",
+    "destinationAddressPrefix": "*",
+    "access": "Allow",
+    "priority": 100,
+    "direction": "Inbound",
+    "sourcePortRanges": [],
+    "destinationPortRanges": [],
+    "sourceAddressPrefixes": [],
+    "destinationAddressPrefixes": []
+  }
+}
