@@ -7,6 +7,10 @@ public sealed class PipelineOptions
     public required string DefaultLocation { get; set; }
     public required string OutputRoot { get; set; }
     public required string CatalogPath { get; set; }
+    // Produced by the separate fetch-resource-abbreviations.ps1 script, not this app — optional, since a
+    // fresh checkout (or a run before that script has ever been executed) should still work, just with
+    // everything falling into CategoryResolver's "uncategorized" bucket.
+    public string AbbreviationsConfigPath { get; set; } = "config/resource-abbreviations.json";
     public required string StorageStatePath { get; set; }
     public required string MaxCostTier { get; set; }
     public required string PortalBaseUrl { get; set; }
