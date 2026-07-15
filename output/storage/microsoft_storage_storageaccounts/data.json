@@ -1,0 +1,58 @@
+{
+  "sku": {
+    "name": "Standard_LRS",
+    "tier": "Standard"
+  },
+  "kind": "StorageV2",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/sti13arhgp",
+  "name": "sti13arhgp",
+  "type": "Microsoft.Storage/storageAccounts",
+  "location": "westeurope",
+  "tags": {},
+  "properties": {
+    "keyCreationTime": {
+      "key1": "2026-07-15T08:56:30.6297986Z",
+      "key2": "2026-07-15T08:56:30.6297986Z"
+    },
+    "allowCrossTenantReplication": false,
+    "privateEndpointConnections": [],
+    "minimumTlsVersion": "TLS1_2",
+    "allowBlobPublicAccess": false,
+    "networkAcls": {
+      "ipv6Rules": [],
+      "bypass": "None",
+      "virtualNetworkRules": [],
+      "ipRules": [],
+      "defaultAction": "Allow"
+    },
+    "supportsHttpsTrafficOnly": true,
+    "encryption": {
+      "services": {
+        "file": {
+          "keyType": "Account",
+          "enabled": true,
+          "lastEnabledTime": "2026-07-15T08:56:30.6399543Z"
+        },
+        "blob": {
+          "keyType": "Account",
+          "enabled": true,
+          "lastEnabledTime": "2026-07-15T08:56:30.6399543Z"
+        }
+      },
+      "keySource": "Microsoft.Storage"
+    },
+    "accessTier": "Hot",
+    "provisioningState": "Succeeded",
+    "creationTime": "2026-07-15T08:56:30.1570298Z",
+    "primaryEndpoints": {
+      "dfs": "https://sti13arhgp.dfs.core.windows.net/",
+      "web": "https://sti13arhgp.z6.web.core.windows.net/",
+      "blob": "https://sti13arhgp.blob.core.windows.net/",
+      "queue": "https://sti13arhgp.queue.core.windows.net/",
+      "table": "https://sti13arhgp.table.core.windows.net/",
+      "file": "https://sti13arhgp.file.core.windows.net/"
+    },
+    "primaryLocation": "westeurope",
+    "statusOfPrimary": "available"
+  }
+}

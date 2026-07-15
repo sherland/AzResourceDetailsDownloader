@@ -1,0 +1,12 @@
+{
+  "location": "westeurope",
+  "tags": {},
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-dbfce973e1674818/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id9smfdnx8",
+  "name": "id9smfdnx8",
+  "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+  "properties": {
+    "tenantId": "11111111-1111-1111-1111-111111111111",
+    "principalId": "c8dd7e0c-1f09-451c-b8da-de67d824418d",
+    "clientId": "273f92cb-f0b3-438e-b1dc-8d2d33ac5f92"
+  }
+}

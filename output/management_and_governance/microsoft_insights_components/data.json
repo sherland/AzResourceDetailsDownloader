@@ -1,0 +1,29 @@
+{
+  "kind": "web",
+  "etag": "\u002263024d79-0000-0200-0000-6a574d5e0000\u0022",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ecd5aa9f59a501e8/providers/microsoft.insights/components/ai9eqss-g5",
+  "name": "ai9eqss-g5",
+  "type": "microsoft.insights/components",
+  "location": "westeurope",
+  "tags": {},
+  "properties": {
+    "ApplicationId": "ai9eqss-g5",
+    "AppId": "6c3d971e-8f3a-462d-8aac-d93b82dd4ebe",
+    "Application_Type": "web",
+    "Flow_Type": null,
+    "Request_Source": null,
+    "InstrumentationKey": "d777338f-c201-447f-b43b-4fb1c85d60c4",
+    "ConnectionString": "InstrumentationKey=d777338f-c201-447f-b43b-4fb1c85d60c4;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=6c3d971e-8f3a-462d-8aac-d93b82dd4ebe",
+    "Name": "ai9eqss-g5",
+    "CreationDate": "2026-07-15T09:05:33.9815076\u002B00:00",
+    "TenantId": "00000000-0000-0000-0000-000000000000",
+    "provisioningState": "Succeeded",
+    "SamplingPercentage": null,
+    "RetentionInDays": 90,
+    "WorkspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ecd5aa9f59a501e8/providers/Microsoft.OperationalInsights/workspaces/lawr-uvykju",
+    "IngestionMode": "LogAnalytics",
+    "publicNetworkAccessForIngestion": "Enabled",
+    "publicNetworkAccessForQuery": "Enabled",
+    "Ver": "v2"
+  }
+}

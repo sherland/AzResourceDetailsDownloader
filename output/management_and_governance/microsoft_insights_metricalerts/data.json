@@ -1,0 +1,29 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Insights/metricAlerts/maxwws0ziv",
+  "name": "maxwws0ziv",
+  "type": "Microsoft.Insights/metricAlerts",
+  "location": "global",
+  "properties": {
+    "severity": 3,
+    "enabled": true,
+    "scopes": [
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/stagf5ppwn"
+    ],
+    "evaluationFrequency": "PT5M",
+    "windowSize": "PT15M",
+    "criteria": {
+      "allOf": [
+        {
+          "threshold": 1000000.0,
+          "name": "cond1",
+          "metricName": "Transactions",
+          "operator": "GreaterThan",
+          "timeAggregation": "Total",
+          "criterionType": "StaticThresholdCriterion"
+        }
+      ],
+      "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+    },
+    "actions": []
+  }
+}

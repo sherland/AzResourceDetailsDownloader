@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "provisioningState": "Succeeded",
+    "endpoint": "https://egt1y0so60i.westeurope-1.eventgrid.azure.net/api/events",
+    "minimumTlsVersionAllowed": "1.0",
+    "inputSchema": "EventGridSchema",
+    "metricResourceId": "db100e59-dc75-4a01-a1c4-71e750c97919",
+    "publicNetworkAccess": "Enabled",
+    "dataResidencyBoundary": "WithinGeopair"
+  },
+  "sku": {
+    "name": "Basic"
+  },
+  "kind": "Azure",
+  "systemData": null,
+  "location": "westeurope",
+  "tags": null,
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2eaf0495e72b2415/providers/Microsoft.EventGrid/topics/egt1y0so60i",
+  "name": "egt1y0so60i",
+  "type": "Microsoft.EventGrid/topics"
+}

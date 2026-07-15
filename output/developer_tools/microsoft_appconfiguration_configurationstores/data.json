@@ -1,0 +1,34 @@
+{
+  "type": "Microsoft.AppConfiguration/configurationStores",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "creationDate": "2026-07-15T09:15:57\u002B00:00",
+    "endpoint": "https://appcs1y-1kv59.azconfig.io",
+    "encryption": {
+      "keyVaultProperties": null
+    },
+    "privateEndpointConnections": null,
+    "disableLocalAuth": false,
+    "softDeleteRetentionInDays": 0,
+    "enablePurgeProtection": false,
+    "dataPlaneProxy": {
+      "authenticationMode": "Local",
+      "privateLinkDelegation": "Disabled"
+    }
+  },
+  "sku": {
+    "name": "free"
+  },
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:15:57\u002B00:00",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:15:57\u002B00:00"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-833890ef5c1b6d5f/providers/Microsoft.AppConfiguration/configurationStores/appcs1y-1kv59",
+  "name": "appcs1y-1kv59",
+  "tags": {}
+}

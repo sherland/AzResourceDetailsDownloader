@@ -1,0 +1,13 @@
+{
+  "name": "subnetcua-vp",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83d5300c87a0f865/providers/Microsoft.Network/virtualNetworks/vnet93wy8s69/subnets/subnetcua-vp",
+  "etag": "W/\u0022835f3b1c-6420-459c-aafd-90570189fa34\u0022",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "addressPrefix": "10.10.1.0/24",
+    "delegations": [],
+    "privateEndpointNetworkPolicies": "Disabled",
+    "privateLinkServiceNetworkPolicies": "Enabled"
+  },
+  "type": "Microsoft.Network/virtualNetworks/subnets"
+}

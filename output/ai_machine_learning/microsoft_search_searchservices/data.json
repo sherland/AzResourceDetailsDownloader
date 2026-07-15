@@ -1,0 +1,35 @@
+{
+  "location": "West Europe",
+  "tags": {},
+  "properties": {
+    "replicaCount": 1,
+    "partitionCount": 1,
+    "status": "running",
+    "statusDetails": "",
+    "provisioningState": "Succeeded",
+    "hostingMode": "Default",
+    "publicNetworkAccess": "Enabled",
+    "networkRuleSet": {
+      "ipRules": [],
+      "bypass": "None"
+    },
+    "privateEndpointConnections": [],
+    "sharedPrivateLinkResources": [],
+    "encryptionWithCmk": {
+      "enforcement": "Unspecified",
+      "encryptionComplianceStatus": "Compliant"
+    },
+    "disableLocalAuth": false,
+    "authOptions": {
+      "apiKeyOnly": {}
+    },
+    "disabledDataExfiltrationOptions": [],
+    "semanticSearch": "free"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ea2c4413f84d4d7/providers/Microsoft.Search/searchServices/srchqyqp-wtf",
+  "name": "srchqyqp-wtf",
+  "type": "Microsoft.Search/searchServices",
+  "sku": {
+    "name": "free"
+  }
+}

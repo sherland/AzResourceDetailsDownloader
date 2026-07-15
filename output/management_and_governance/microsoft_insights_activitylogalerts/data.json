@@ -1,0 +1,20 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0b366a4f497d75e9/providers/Microsoft.Insights/activityLogAlerts/ala5t-j-5-o",
+  "name": "ala5t-j-5-o",
+  "type": "Microsoft.Insights/ActivityLogAlerts",
+  "location": "global",
+  "properties": {
+    "scopes": [
+      "/subscriptions/00000000-0000-0000-0000-000000000000"
+    ],
+    "condition": {
+      "allOf": [
+        {
+          "field": "category",
+          "equals": "ServiceHealth"
+        }
+      ]
+    },
+    "enabled": true
+  }
+}

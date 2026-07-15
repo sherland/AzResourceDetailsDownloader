@@ -1,0 +1,50 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-50afc5ec1d1fef44/providers/Microsoft.Web/staticSites/stapp9n53-4-v",
+  "name": "stapp9n53-4-v",
+  "type": "Microsoft.Web/staticSites",
+  "location": "West Europe",
+  "properties": {
+    "defaultHostname": "gray-forest-00c7b4903.7.azurestaticapps.net",
+    "repositoryUrl": null,
+    "branch": null,
+    "customDomains": [],
+    "stableInboundIP": "9.163.40.246",
+    "privateEndpointConnections": [],
+    "stagingEnvironmentPolicy": "Enabled",
+    "allowConfigFileUpdates": true,
+    "contentDistributionEndpoint": "https://content-am2.infrastructure.7.azurestaticapps.net",
+    "keyVaultReferenceIdentity": "SystemAssigned",
+    "userProvidedFunctionApps": null,
+    "linkedBackends": [],
+    "provider": "None",
+    "enterpriseGradeCdnStatus": "Disabled",
+    "publicNetworkAccess": null,
+    "databaseConnections": [],
+    "trafficSplitting": {
+      "environmentDistribution": {
+        "default": 100
+      }
+    },
+    "targetResourceGroupResourceId": null,
+    "trialExpirationTimeUtc": null,
+    "prettyNameStatus": null,
+    "prettyName": null,
+    "prettyNameHostname": null,
+    "backendRegion": {
+      "regionName": null,
+      "status": null
+    },
+    "stagingEnvironmentRegion": null,
+    "deploymentAuthPolicy": "DeploymentToken",
+    "federatedIdentityTenantId": null,
+    "federatedIdentityClientId": null,
+    "federatedIdentitySubscriptionId": null,
+    "deploymentStorageAccountResourceId": null,
+    "deploymentStorageAccountReferenceIdentity": null,
+    "networkConfigurations": null
+  },
+  "sku": {
+    "name": "Free",
+    "tier": "Free"
+  }
+}

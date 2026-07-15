@@ -1,0 +1,24 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-84606906df9032ba/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k/runbooks/runbookoc1r8f",
+  "name": "runbookoc1r8f",
+  "type": "Microsoft.Automation/AutomationAccounts/Runbooks",
+  "location": "westeurope",
+  "tags": {},
+  "etag": "\u0022639197048615570000\u0022",
+  "properties": {
+    "description": null,
+    "logVerbose": false,
+    "logProgress": false,
+    "logActivityTrace": 0,
+    "runbookType": "PowerShell",
+    "parameters": {},
+    "state": "New",
+    "jobCount": 0,
+    "provisioningState": "Succeeded",
+    "serviceManagementTags": null,
+    "outputTypes": [],
+    "creationTime": "2026-07-15T09:34:21.557\u002B00:00",
+    "lastModifiedBy": null,
+    "lastModifiedTime": "2026-07-15T09:34:21.557\u002B00:00"
+  }
+}

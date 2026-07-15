@@ -1,0 +1,34 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d9387f30331fd3f1/providers/Microsoft.ServiceBus/namespaces/sbookpd3-f/queues/queuee2e7-c",
+  "name": "queuee2e7-c",
+  "type": "Microsoft.ServiceBus/namespaces/queues",
+  "location": "westeurope",
+  "properties": {
+    "maxMessageSizeInKilobytes": 256,
+    "lockDuration": "PT1M",
+    "maxSizeInMegabytes": 1024,
+    "requiresDuplicateDetection": false,
+    "requiresSession": false,
+    "defaultMessageTimeToLive": "P14D",
+    "deadLetteringOnMessageExpiration": false,
+    "enableBatchedOperations": true,
+    "duplicateDetectionHistoryTimeWindow": "PT10M",
+    "maxDeliveryCount": 10,
+    "sizeInBytes": 0,
+    "messageCount": 0,
+    "status": "Active",
+    "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+    "enablePartitioning": false,
+    "enableExpress": false,
+    "countDetails": {
+      "activeMessageCount": 0,
+      "deadLetterMessageCount": 0,
+      "scheduledMessageCount": 0,
+      "transferMessageCount": 0,
+      "transferDeadLetterMessageCount": 0
+    },
+    "createdAt": "2026-07-15T09:11:06.92Z",
+    "updatedAt": "2026-07-15T09:11:07.14Z",
+    "accessedAt": "0001-01-01T00:00:00Z"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmoscibdp-jn",
+  "name": "cosmoscibdp-jn",
+  "location": "West Europe",
+  "type": "Microsoft.DocumentDB/databaseAccounts",
+  "kind": "GlobalDocumentDB",
+  "tags": {},
+  "systemData": {
+    "createdAt": "2026-07-15T09:00:14.8672703Z"
+  },
+  "properties": {
+    "provisioningState": "Succeeded",
+    "documentEndpoint": "https://cosmoscibdp-jn.documents.azure.com:443/",
+    "sqlEndpoint": "https://cosmoscibdp-jn.documents.azure.com:443/",
+    "publicNetworkAccess": "Enabled",
+    "enableAutomaticFailover": true,
+    "enableMultipleWriteLocations": false,
+    "enablePartitionKeyMonitor": false,
+    "isVirtualNetworkFilterEnabled": false,
+    "virtualNetworkRules": [],
+    "EnabledApiTypes": "Sql",
+    "disableKeyBasedMetadataWriteAccess": false,
+    "enableFreeTier": false,
+    "enableAnalyticalStorage": false,
+    "analyticalStorageConfiguration": {
+      "schemaType": "WellDefined"
+    },
+    "instanceId": "6561e9ad-9006-4a2c-bec1-dc4ad73d708c",
+    "databaseAccountOfferType": "Standard",
+    "defaultIdentity": "FirstPartyIdentity",
+    "networkAclBypass": "None",
+    "disableLocalAuth": false,
+    "enablePartitionMerge": false,
+    "enableBurstCapacity": false,
+    "minimalTlsVersion": "Tls12",
+    "consistencyPolicy": {
+      "defaultConsistencyLevel": "Session",
+      "maxIntervalInSeconds": 5,
+      "maxStalenessPrefix": 100
+    },
+    "configurationOverrides": {},
+    "writeLocations": [
+      {
+        "id": "cosmoscibdp-jn-westeurope",
+        "locationName": "West Europe",
+        "documentEndpoint": "https://cosmoscibdp-jn-westeurope.documents.azure.com:443/",
+        "provisioningState": "Succeeded",
+        "failoverPriority": 0,
+        "isZoneRedundant": false
+      }
+    ],
+    "readLocations": [
+      {
+        "id": "cosmoscibdp-jn-westeurope",
+        "locationName": "West Europe",
+        "documentEndpoint": "https://cosmoscibdp-jn-westeurope.documents.azure.com:443/",
+        "provisioningState": "Succeeded",
+        "failoverPriority": 0,
+        "isZoneRedundant": false
+      }
+    ],
+    "locations": [
+      {
+        "id": "cosmoscibdp-jn-westeurope",
+        "locationName": "West Europe",
+        "documentEndpoint": "https://cosmoscibdp-jn-westeurope.documents.azure.com:443/",
+        "provisioningState": "Succeeded",
+        "failoverPriority": 0,
+        "isZoneRedundant": false
+      }
+    ],
+    "failoverPolicies": [
+      {
+        "id": "cosmoscibdp-jn-westeurope",
+        "locationName": "West Europe",
+        "failoverPriority": 0
+      }
+    ],
+    "cors": [],
+    "capabilities": [
+      {
+        "name": "EnableServerless"
+      }
+    ],
+    "ipRules": [],
+    "backupPolicy": {
+      "type": "Periodic",
+      "periodicModeProperties": {
+        "backupIntervalInMinutes": 240,
+        "backupRetentionIntervalInHours": 8,
+        "backupStorageRedundancy": "Geo"
+      }
+    },
+    "networkAclBypassResourceIds": [],
+    "keysMetadata": {
+      "primaryMasterKey": {
+        "generationTime": "2026-07-15T09:00:14.8672703Z"
+      },
+      "secondaryMasterKey": {
+        "generationTime": "2026-07-15T09:00:14.8672703Z"
+      },
+      "primaryReadonlyMasterKey": {
+        "generationTime": "2026-07-15T09:00:14.8672703Z"
+      },
+      "secondaryReadonlyMasterKey": {
+        "generationTime": "2026-07-15T09:00:14.8672703Z"
+      }
+    }
+  },
+  "identity": {
+    "type": "None"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "afwd5edfm",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm",
+  "etag": "W/\u0022168759ff-fec1-4b8a-89de-84d65df90f73\u0022",
+  "type": "Microsoft.Network/azureFirewalls",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "sku": {
+      "name": "AZFW_VNet",
+      "tier": "Basic"
+    },
+    "threatIntelMode": "Alert",
+    "additionalProperties": {},
+    "managementIpConfiguration": {
+      "name": "afwMgmtIpConfig",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm/azureFirewallIpConfigurations/afwMgmtIpConfig",
+      "etag": "W/\u0022168759ff-fec1-4b8a-89de-84d65df90f73\u0022",
+      "type": "Microsoft.Network/azureFirewalls/azureFirewallIpConfigurations",
+      "properties": {
+        "provisioningState": "Succeeded",
+        "privateIPAllocationMethod": "Dynamic",
+        "publicIPAddress": {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/pipunesj-jt"
+        },
+        "subnet": {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetw4qxan-j/subnets/AzureFirewallManagementSubnet"
+        }
+      }
+    },
+    "ipConfigurations": [
+      {
+        "name": "afwIpConfig",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm/azureFirewallIpConfigurations/afwIpConfig",
+        "etag": "W/\u0022168759ff-fec1-4b8a-89de-84d65df90f73\u0022",
+        "type": "Microsoft.Network/azureFirewalls/azureFirewallIpConfigurations",
+        "properties": {
+          "provisioningState": "Succeeded",
+          "privateIPAddress": "10.45.255.4",
+          "privateIPAllocationMethod": "Dynamic",
+          "publicIPAddress": {
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/piph5-e48-s"
+          },
+          "subnet": {
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetw4qxan-j/subnets/AzureFirewallSubnet"
+          }
+        }
+      }
+    ],
+    "networkRuleCollections": [],
+    "applicationRuleCollections": [],
+    "natRuleCollections": []
+  }
+}

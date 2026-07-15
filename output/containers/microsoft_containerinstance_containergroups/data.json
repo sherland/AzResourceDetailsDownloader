@@ -1,0 +1,47 @@
+{
+  "properties": {
+    "sku": "Standard",
+    "isCreatedFromStandbyPool": false,
+    "provisioningState": "Succeeded",
+    "provisioningTimeoutInSeconds": 1800,
+    "isCustomProvisioningTimeout": false,
+    "containers": [
+      {
+        "name": "main",
+        "properties": {
+          "image": "mcr.microsoft.com/azuredocs/aci-helloworld",
+          "ports": [],
+          "environmentVariables": [],
+          "configMap": {
+            "keyValuePairs": {}
+          },
+          "instanceView": {
+            "restartCount": 0,
+            "currentState": {
+              "state": "Running",
+              "startTime": "2026-07-15T09:10:00.775Z",
+              "detailStatus": ""
+            }
+          },
+          "resources": {
+            "requests": {
+              "memoryInGB": 1.0,
+              "cpu": 1.0
+            }
+          }
+        }
+      }
+    ],
+    "initContainers": [],
+    "restartPolicy": "Never",
+    "osType": "Linux",
+    "instanceView": {
+      "events": [],
+      "state": "Running"
+    }
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bdf6a4dadf2c40ee/providers/Microsoft.ContainerInstance/containerGroups/acitk-i-5-3",
+  "name": "acitk-i-5-3",
+  "type": "Microsoft.ContainerInstance/containerGroups",
+  "location": "westeurope"
+}

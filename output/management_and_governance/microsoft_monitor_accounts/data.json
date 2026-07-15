@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "accountId": "75e38f8d-c897-4e4c-832f-3115ab441c1d",
+    "metrics": {
+      "prometheusQueryEndpoint": "https://amona-g-1-e5-cve2arfpg8ghgec6.westeurope.prometheus.monitor.azure.com",
+      "internalId": "mac_75e38f8d-c897-4e4c-832f-3115ab441c1d"
+    },
+    "provisioningState": "Succeeded",
+    "defaultIngestionSettings": {
+      "dataCollectionRuleResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MA_amona-g-1-e5_westeurope_managed/providers/Microsoft.Insights/dataCollectionRules/amona-g-1-e5",
+      "dataCollectionEndpointResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MA_amona-g-1-e5_westeurope_managed/providers/Microsoft.Insights/dataCollectionEndpoints/amona-g-1-e5"
+    },
+    "publicNetworkAccess": "Enabled"
+  },
+  "location": "westeurope",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-3255b6ea5eb259ce/providers/microsoft.monitor/accounts/amona-g-1-e5",
+  "name": "amona-g-1-e5",
+  "type": "Microsoft.Monitor/accounts",
+  "etag": "\u002216014e7a-0000-0c00-0000-6a576b120000\u0022",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T11:12:00.7897778Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T11:12:00.7897778Z"
+  }
+}

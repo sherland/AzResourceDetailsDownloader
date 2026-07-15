@@ -1,0 +1,25 @@
+{
+  "name": "avdwsut7n7sj2",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-19d479b8c5681686/providers/Microsoft.DesktopVirtualization/workspaces/avdwsut7n7sj2",
+  "type": "Microsoft.DesktopVirtualization/workspaces",
+  "location": "westeurope",
+  "tags": {},
+  "kind": null,
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:25:32.74Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:25:32.74Z"
+  },
+  "properties": {
+    "privateEndpointConnections": [],
+    "publicNetworkAccess": "Enabled",
+    "description": null,
+    "friendlyName": null,
+    "applicationGroupReferences": [],
+    "cloudPcResource": false,
+    "objectId": "ef5f1982-801c-4e69-bca0-ee1860a4ecc8"
+  }
+}

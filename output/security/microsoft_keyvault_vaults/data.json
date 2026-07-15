@@ -1,0 +1,31 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-08aa11195db40102/providers/Microsoft.KeyVault/vaults/kv8-9k4hh9",
+  "name": "kv8-9k4hh9",
+  "type": "Microsoft.KeyVault/vaults",
+  "location": "westeurope",
+  "tags": {},
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:02:09.017Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:02:09.017Z"
+  },
+  "properties": {
+    "sku": {
+      "family": "A",
+      "name": "standard"
+    },
+    "tenantId": "11111111-1111-1111-1111-111111111111",
+    "accessPolicies": [],
+    "enabledForDeployment": false,
+    "enableSoftDelete": true,
+    "softDeleteRetentionInDays": 90,
+    "enableRbacAuthorization": true,
+    "enablePurgeProtection": true,
+    "vaultUri": "https://kv8-9k4hh9.vault.azure.net/",
+    "provisioningState": "Succeeded",
+    "publicNetworkAccess": "Enabled"
+  }
+}

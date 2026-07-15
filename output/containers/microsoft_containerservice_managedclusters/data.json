@@ -1,0 +1,125 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-7c2bfad159d510c2/providers/Microsoft.ContainerService/managedClusters/akshrjtt6wn",
+  "location": "westeurope",
+  "name": "akshrjtt6wn",
+  "type": "Microsoft.ContainerService/ManagedClusters",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "powerState": {
+      "code": "Running"
+    },
+    "kubernetesVersion": "1.35",
+    "currentKubernetesVersion": "1.35.5",
+    "dnsPrefix": "ardlaksz2p-af",
+    "fqdn": "ardlaksz2p-af-yd0dgns0.hcp.westeurope.azmk8s.io",
+    "azurePortalFQDN": "ardlaksz2p-af-yd0dgns0.portal.hcp.westeurope.azmk8s.io",
+    "agentPoolProfiles": [
+      {
+        "name": "agentpool",
+        "count": 1,
+        "vmSize": "Standard_D2s_v5",
+        "osDiskSizeGB": 128,
+        "osDiskType": "Managed",
+        "kubeletDiskType": "OS",
+        "maxPods": 250,
+        "type": "VirtualMachineScaleSets",
+        "scaleDownMode": "Delete",
+        "provisioningState": "Succeeded",
+        "powerState": {
+          "code": "Running"
+        },
+        "orchestratorVersion": "1.35",
+        "currentOrchestratorVersion": "1.35.5",
+        "enableNodePublicIP": false,
+        "mode": "System",
+        "osType": "Linux",
+        "osSKU": "Ubuntu",
+        "nodeImageVersion": "AKSUbuntu-2404gen2containerd-202606.19.0",
+        "upgradeSettings": {
+          "maxSurge": "10%"
+        },
+        "enableFIPS": false
+      }
+    ],
+    "servicePrincipalProfile": {
+      "clientId": "msi"
+    },
+    "nodeResourceGroup": "MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope",
+    "enableRBAC": true,
+    "supportPlan": "KubernetesOfficial",
+    "networkProfile": {
+      "networkPlugin": "azure",
+      "networkPluginMode": "overlay",
+      "networkPolicy": "none",
+      "networkDataplane": "azure",
+      "loadBalancerSku": "standard",
+      "loadBalancerProfile": {
+        "managedOutboundIPs": {
+          "count": 1
+        },
+        "effectiveOutboundIPs": [
+          {
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope/providers/Microsoft.Network/publicIPAddresses/2d567314-f7f6-4516-b4f2-14021709221f"
+          }
+        ],
+        "backendPoolType": "nodeIPConfiguration"
+      },
+      "podCidr": "10.244.0.0/16",
+      "serviceCidr": "10.0.0.0/16",
+      "dnsServiceIP": "10.0.0.10",
+      "outboundType": "loadBalancer",
+      "podCidrs": [
+        "10.244.0.0/16"
+      ],
+      "serviceCidrs": [
+        "10.0.0.0/16"
+      ],
+      "ipFamilies": [
+        "IPv4"
+      ]
+    },
+    "maxAgentPools": 100,
+    "identityProfile": {
+      "kubeletidentity": {
+        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/akshrjtt6wn-agentpool",
+        "clientId": "c74680b0-9df6-422c-929f-9ab5dc0ff1e7",
+        "objectId": "731dd9af-fb0b-49aa-b000-f893e368d5de"
+      }
+    },
+    "autoUpgradeProfile": {
+      "nodeOSUpgradeChannel": "NodeImage"
+    },
+    "securityProfile": {},
+    "storageProfile": {
+      "diskCSIDriver": {
+        "enabled": true
+      },
+      "fileCSIDriver": {
+        "enabled": true
+      },
+      "snapshotController": {
+        "enabled": true
+      }
+    },
+    "oidcIssuerProfile": {
+      "enabled": true,
+      "issuerURL": "https://westeurope.oic.prod-aks.azure.com/11111111-1111-1111-1111-111111111111/7f226497-160e-4ac6-841c-83eb68a691bb/"
+    },
+    "workloadAutoScalerProfile": {},
+    "resourceUID": "6a57550486985b0001b47d03",
+    "metricsProfile": {
+      "costAnalysis": {
+        "enabled": false
+      }
+    }
+  },
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": "9ff1aa1a-08e4-4746-8082-b330949d49fd",
+    "tenantId": "11111111-1111-1111-1111-111111111111"
+  },
+  "sku": {
+    "name": "Base",
+    "tier": "Free"
+  }
+}

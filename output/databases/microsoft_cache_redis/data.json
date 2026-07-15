@@ -1,0 +1,39 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e7dcd4c69ba978b0/providers/Microsoft.Cache/Redis/redisziu0dj94",
+  "location": "West Europe",
+  "name": "redisziu0dj94",
+  "type": "Microsoft.Cache/Redis",
+  "tags": {},
+  "properties": {
+    "provisioningState": "Succeeded",
+    "redisVersion": "6.0",
+    "sku": {
+      "name": "Basic",
+      "family": "C",
+      "capacity": 0
+    },
+    "enableNonSslPort": false,
+    "instances": [
+      {
+        "sslPort": 15000,
+        "isMaster": true,
+        "isPrimary": true
+      }
+    ],
+    "minimumTlsVersion": "1.2",
+    "publicNetworkAccess": "Enabled",
+    "redisConfiguration": {
+      "maxclients": "256",
+      "maxmemory-reserved": "30",
+      "maxfragmentationmemory-reserved": "30",
+      "maxmemory-delta": "30"
+    },
+    "accessKeys": null,
+    "hostName": "redisziu0dj94.redis.cache.windows.net",
+    "port": 6379,
+    "sslPort": 6380,
+    "linkedServers": [],
+    "updateChannel": "Stable",
+    "disableAccessKeyAuthentication": false
+  }
+}

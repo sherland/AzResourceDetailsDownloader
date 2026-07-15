@@ -1,0 +1,14 @@
+{
+  "name": "vwanln-0o-eh",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7a9beee1f910a260/providers/Microsoft.Network/virtualWans/vwanln-0o-eh",
+  "etag": "W/\u00220c760c1e-b041-43f2-b506-d16c613acba3\u0022",
+  "type": "Microsoft.Network/virtualWans",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "disableVpnEncryption": false,
+    "allowBranchToBranchTraffic": true,
+    "office365LocalBreakoutCategory": "None",
+    "type": "Standard"
+  }
+}

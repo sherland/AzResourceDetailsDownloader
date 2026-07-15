@@ -1,0 +1,44 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "azurerm"
+      version = "4.66.0"
+    }
+  }
+}
+provider "azurerm" {
+  features {}
+}
+resource "azurerm_resource_group" "res-0" {
+  location   = "westeurope"
+  managed_by = ""
+  name       = "rg-ardl-9c207da75b61d6f9"
+  tags = {
+    armType    = "Microsoft.Dashboard/grafana"
+    createdUtc = "2026-07-15T09:25:12.0540187Z"
+    purpose    = "az-resource-details-downloader"
+  }
+}
+resource "azurerm_dashboard_grafana" "res-1" {
+  api_key_enabled                        = false
+  auto_generated_domain_name_label_scope = "TenantReuse"
+  deterministic_outbound_ip_enabled      = false
+  grafana_major_version                  = "12"
+  location                               = "westeurope"
+  name                                   = "grfvkgyyrfx"
+  public_network_access_enabled          = true
+  resource_group_name                    = azurerm_resource_group.res-0.name
+  sku                                    = "Standard"
+  tags                                   = {}
+  zone_redundancy_enabled                = false
+}
+
+
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9c207da75b61d6f9"
+  to = azurerm_resource_group.res-0
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9c207da75b61d6f9/providers/Microsoft.Dashboard/grafana/grfvkgyyrfx"
+  to = azurerm_dashboard_grafana.res-1
+}

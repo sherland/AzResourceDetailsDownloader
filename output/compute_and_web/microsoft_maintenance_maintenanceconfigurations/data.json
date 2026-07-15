@@ -1,0 +1,36 @@
+{
+  "location": "westeurope",
+  "tags": {},
+  "properties": {
+    "extensionProperties": {
+      "InGuestPatchMode": "User"
+    },
+    "maintenanceScope": "InGuestPatch",
+    "maintenanceWindow": {
+      "startDateTime": "2030-01-01 00:00",
+      "duration": "03:00",
+      "timeZone": "UTC",
+      "recurEvery": "1Day"
+    },
+    "visibility": "Custom",
+    "installPatches": {
+      "rebootSetting": "IfRequired",
+      "windowsParameters": {
+        "classificationsToInclude": [
+          "Critical",
+          "Security"
+        ]
+      },
+      "linuxParameters": {
+        "classificationsToInclude": [
+          "Critical",
+          "Security"
+        ]
+      }
+    },
+    "configurationType": "Regular"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-dd78496389a3f338/providers/microsoft.maintenance/maintenanceconfigurations/mclpeogsoh",
+  "name": "mclpeogsoh",
+  "type": "Microsoft.Maintenance/maintenanceConfigurations"
+}

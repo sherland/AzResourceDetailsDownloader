@@ -1,0 +1,32 @@
+{
+  "kind": "ping",
+  "etag": "\u002267023afe-0000-0200-0000-6a576bb90000\u0022",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ca095e8942b47ed/providers/microsoft.insights/webtests/wt9s8-znrt",
+  "name": "wt9s8-znrt",
+  "type": "microsoft.insights/webtests",
+  "location": "westeurope",
+  "tags": {
+    "hidden-link:/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ca095e8942b47ed/providers/Microsoft.Insights/components/aic-x782c5": "Resource"
+  },
+  "properties": {
+    "SyntheticMonitorId": "wt9s8-znrt",
+    "Name": "ARDL ping test",
+    "Description": null,
+    "Enabled": true,
+    "Frequency": 300,
+    "Timeout": 30,
+    "Kind": "ping",
+    "RetryEnabled": null,
+    "Locations": [
+      {
+        "Id": "us-tx-sn1-azr"
+      }
+    ],
+    "Configuration": {
+      "WebTest": "\u003CWebTest Name=\u0027ARDL\u0027 Enabled=\u0027True\u0027 Timeout=\u002730\u0027 xmlns=\u0027http://microsoft.com/schemas/VisualStudio/TeamTest/2010\u0027\u003E\u003CItems\u003E\u003CRequest Method=\u0027GET\u0027 Url=\u0027https://www.microsoft.com\u0027 ThinkTime=\u00270\u0027 Timeout=\u002730\u0027 ParseDependentRequests=\u0027False\u0027 FollowRedirects=\u0027True\u0027 RecordResult=\u0027True\u0027 Cache=\u0027False\u0027 ResponseTimeGoal=\u00270\u0027 Encoding=\u0027utf-8\u0027 ExpectedHttpStatusCode=\u0027200\u0027 ExpectedResponseUrl=\u0027\u0027 ReportingName=\u0027\u0027 IgnoreHttpStatusCode=\u0027False\u0027 /\u003E\u003C/Items\u003E\u003C/WebTest\u003E"
+    },
+    "Request": null,
+    "ValidationRules": null,
+    "provisioningState": "Succeeded"
+  }
+}

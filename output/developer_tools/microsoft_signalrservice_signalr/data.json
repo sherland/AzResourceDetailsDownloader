@@ -1,0 +1,99 @@
+{
+  "sku": {
+    "name": "Free_F1",
+    "tier": "Free",
+    "size": "F1",
+    "capacity": 1
+  },
+  "properties": {
+    "provisioningState": "Succeeded",
+    "externalIP": "20.86.94.179",
+    "hostName": "sigrx1nr-0wu.service.signalr.net",
+    "publicPort": 443,
+    "serverPort": 443,
+    "version": "1.0",
+    "privateEndpointConnections": [],
+    "sharedPrivateLinkResources": [],
+    "tls": {
+      "clientCertEnabled": false
+    },
+    "hostNamePrefix": "sigrx1nr-0wu",
+    "features": [
+      {
+        "flag": "ServiceMode",
+        "value": "Default",
+        "properties": {}
+      },
+      {
+        "flag": "EnableConnectivityLogs",
+        "value": "False",
+        "properties": {}
+      },
+      {
+        "flag": "EnableMessagingLogs",
+        "value": "False",
+        "properties": {}
+      },
+      {
+        "flag": "EnableLiveTrace",
+        "value": "False",
+        "properties": {}
+      }
+    ],
+    "liveTraceConfiguration": null,
+    "resourceLogConfiguration": null,
+    "cors": {
+      "allowedOrigins": [
+        "*"
+      ]
+    },
+    "serverless": {
+      "connectionTimeoutInSeconds": 30
+    },
+    "upstream": {
+      "templates": null
+    },
+    "networkACLs": {
+      "defaultAction": "Deny",
+      "publicNetwork": {
+        "allow": [
+          "ServerConnection",
+          "ClientConnection",
+          "RESTAPI",
+          "Trace"
+        ],
+        "deny": null
+      },
+      "privateEndpoints": [],
+      "ipRules": [
+        {
+          "value": "0.0.0.0/0",
+          "action": "Allow"
+        },
+        {
+          "value": "::/0",
+          "action": "Allow"
+        }
+      ]
+    },
+    "publicNetworkAccess": "Enabled",
+    "disableLocalAuth": false,
+    "disableAadAuth": false,
+    "regionEndpointEnabled": "Enabled",
+    "resourceStopped": "false"
+  },
+  "kind": "SignalR",
+  "location": "westeurope",
+  "tags": null,
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d06e581e9c4c92a1/providers/Microsoft.SignalRService/SignalR/sigrx1nr-0wu",
+  "name": "sigrx1nr-0wu",
+  "type": "Microsoft.SignalRService/SignalR",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:24:59.7269375Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:24:59.7269375Z"
+  }
+}
