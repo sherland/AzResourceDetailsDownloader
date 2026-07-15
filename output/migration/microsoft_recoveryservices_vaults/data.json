@@ -1,0 +1,27 @@
+{
+  "location": "westeurope",
+  "name": "rsvb07c4h-s",
+  "etag": "W/\u0022datetime\u00272026-07-15T09%3A35%3A47.5587791Z\u0027\u0022",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "privateEndpointStateForBackup": "None",
+    "privateEndpointStateForSiteRecovery": "None",
+    "redundancySettings": {
+      "standardTierStorageRedundancy": "GeoRedundant",
+      "crossRegionRestore": "Disabled"
+    },
+    "secureScore": "None",
+    "bcdrSecurityLevel": "Poor",
+    "publicNetworkAccess": "Enabled",
+    "restoreSettings": {
+      "crossSubscriptionRestoreSettings": {
+        "crossSubscriptionRestoreState": "Enabled"
+      }
+    }
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7f83b649b73888fd/providers/Microsoft.RecoveryServices/vaults/rsvb07c4h-s",
+  "type": "Microsoft.RecoveryServices/vaults",
+  "sku": {
+    "name": "Standard"
+  }
+}

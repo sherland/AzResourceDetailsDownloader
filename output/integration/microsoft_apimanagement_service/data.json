@@ -1,0 +1,79 @@
+{
+  "etag": "AAAAAQjA\u002B9Y=",
+  "properties": {
+    "publisherEmail": "ardl@example.com",
+    "publisherName": "ARDL",
+    "notificationSenderEmail": "apimgmt-noreply@mail.windowsazure.com",
+    "provisioningState": "Succeeded",
+    "targetProvisioningState": "",
+    "createdAtUtc": "2026-07-15T09:39:05.3521995Z",
+    "gatewayUrl": "https://apimqboznhhd.azure-api.net",
+    "gatewayRegionalUrl": null,
+    "portalUrl": null,
+    "developerPortalUrl": null,
+    "dataApiUrl": null,
+    "managementApiUrl": null,
+    "scmUrl": null,
+    "hostnameConfigurations": [
+      {
+        "type": "Proxy",
+        "hostName": "apimqboznhhd.azure-api.net",
+        "encodedCertificate": null,
+        "keyVaultId": null,
+        "certificatePassword": null,
+        "negotiateClientCertificate": false,
+        "certificate": null,
+        "defaultSslBinding": true,
+        "identityClientId": null,
+        "certificateSource": "BuiltIn",
+        "certificateStatus": null
+      }
+    ],
+    "publicIPAddresses": null,
+    "privateIPAddresses": null,
+    "additionalLocations": null,
+    "virtualNetworkConfiguration": null,
+    "customProperties": {
+      "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls10": "False",
+      "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls11": "False",
+      "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls10": "False",
+      "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls11": "False",
+      "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Ssl30": "False",
+      "Microsoft.WindowsAzure.ApiManagement.Gateway.Protocols.Server.Http2": "False"
+    },
+    "virtualNetworkType": "None",
+    "certificates": null,
+    "disableGateway": false,
+    "natGatewayState": "Unsupported",
+    "outboundPublicIPAddresses": null,
+    "apiVersionConstraint": {
+      "minApiVersion": null
+    },
+    "publicIpAddressId": null,
+    "publicNetworkAccess": "Enabled",
+    "privateEndpointConnections": null,
+    "platformVersion": "mtv1",
+    "configurationApi": null,
+    "legacyPortalStatus": "Disabled",
+    "developerPortalStatus": "Enabled"
+  },
+  "sku": {
+    "name": "Consumption",
+    "capacity": 0
+  },
+  "identity": null,
+  "zones": null,
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:39:05.1890917Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:39:05.1890917Z"
+  },
+  "location": "West Europe",
+  "tags": {},
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f4d76db12ba6ca3/providers/Microsoft.ApiManagement/service/apimqboznhhd",
+  "name": "apimqboznhhd",
+  "type": "Microsoft.ApiManagement/service"
+}

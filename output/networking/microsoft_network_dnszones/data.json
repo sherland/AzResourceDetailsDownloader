@@ -1,0 +1,20 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fc5ae4a395470e0a/providers/Microsoft.Network/dnszones/ardllnkmwt9n.contoso.com",
+  "name": "ardllnkmwt9n.contoso.com",
+  "type": "Microsoft.Network/dnszones",
+  "etag": "cb12cc81-c722-47d7-a9f5-982a34f818ff",
+  "location": "global",
+  "tags": {},
+  "properties": {
+    "maxNumberOfRecordSets": 10000,
+    "maxNumberOfRecordsPerRecordSet": null,
+    "nameServers": [
+      "ns1-02.azure-dns.com.",
+      "ns2-02.azure-dns.net.",
+      "ns3-02.azure-dns.org.",
+      "ns4-02.azure-dns.info."
+    ],
+    "numberOfRecordSets": 2,
+    "zoneType": "Public"
+  }
+}

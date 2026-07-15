@@ -1,0 +1,82 @@
+{
+  "name": "vmsswdgknl",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Compute/virtualMachineScaleSets/vmsswdgknl",
+  "type": "Microsoft.Compute/virtualMachineScaleSets",
+  "location": "westeurope",
+  "sku": {
+    "name": "Standard_D2s_v5",
+    "tier": "Standard",
+    "capacity": 1
+  },
+  "etag": "\u00221\u0022",
+  "properties": {
+    "singlePlacementGroup": true,
+    "orchestrationMode": "Uniform",
+    "upgradePolicy": {
+      "mode": "Manual"
+    },
+    "virtualMachineProfile": {
+      "osProfile": {
+        "computerNamePrefix": "ardlvmss",
+        "linuxConfiguration": {
+          "disablePasswordAuthentication": false,
+          "provisionVMAgent": true
+        },
+        "secrets": [],
+        "allowExtensionOperations": true,
+        "requireGuestProvisionSignal": true,
+        "adminUsername": "azrddadmin"
+      },
+      "storageProfile": {
+        "osDisk": {
+          "osType": "Linux",
+          "createOption": "FromImage",
+          "caching": "None",
+          "managedDisk": {
+            "storageAccountType": "Premium_LRS"
+          },
+          "diskSizeGB": 30
+        },
+        "imageReference": {
+          "publisher": "Canonical",
+          "offer": "0001-com-ubuntu-server-jammy",
+          "sku": "22_04-lts",
+          "version": "latest"
+        }
+      },
+      "networkProfile": {
+        "networkInterfaceConfigurations": [
+          {
+            "name": "nicconfig1",
+            "properties": {
+              "primary": true,
+              "disableTcpStateTracking": false,
+              "dnsSettings": {
+                "dnsServers": []
+              },
+              "enableIPForwarding": false,
+              "ipConfigurations": [
+                {
+                  "name": "ipconfig1",
+                  "properties": {
+                    "subnet": {
+                      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Network/virtualNetworks/vnetd7-ts-wt/subnets/default"
+                    },
+                    "privateIPAddressVersion": "IPv4"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "timeCreated": "2026-07-15T09:46:06.2498704\u002B00:00"
+    },
+    "provisioningState": "Succeeded",
+    "overprovision": true,
+    "doNotRunExtensionsOnOverprovisionedVMs": false,
+    "uniqueId": "99c4deca-c818-4493-a8c5-30effd5aaae4",
+    "platformFaultDomainCount": 5,
+    "timeCreated": "2026-07-15T09:46:06.2498704\u002B00:00"
+  }
+}

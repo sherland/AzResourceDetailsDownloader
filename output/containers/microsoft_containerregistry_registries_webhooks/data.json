@@ -1,0 +1,23 @@
+{
+  "type": "Microsoft.ContainerRegistry/registries/webhooks",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-86a49318bbcdb3bd/providers/Microsoft.ContainerRegistry/registries/acrhuv0ipc0/webhooks/wh8jol6k",
+  "name": "wh8jol6k",
+  "location": "westeurope",
+  "tags": {},
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:23:40.7500919\u002B00:00",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:23:40.7500919\u002B00:00"
+  },
+  "properties": {
+    "status": "disabled",
+    "scope": "",
+    "actions": [
+      "push"
+    ],
+    "provisioningState": "Succeeded"
+  }
+}

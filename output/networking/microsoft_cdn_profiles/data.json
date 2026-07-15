@@ -1,0 +1,19 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-25ff70224f326e0e/providers/Microsoft.Cdn/profiles/cdncz-d9z3m",
+  "type": "Microsoft.Cdn/profiles",
+  "name": "cdncz-d9z3m",
+  "location": "Global",
+  "kind": "frontdoor",
+  "tags": {},
+  "sku": {
+    "name": "Standard_AzureFrontDoor"
+  },
+  "properties": {
+    "originResponseTimeoutSeconds": 30,
+    "logScrubbing": null,
+    "frontDoorId": "37d0fecf-f364-4207-8489-15c0410795ac",
+    "extendedProperties": {},
+    "resourceState": "Active",
+    "provisioningState": "Succeeded"
+  }
+}

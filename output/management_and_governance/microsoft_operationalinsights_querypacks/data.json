@@ -1,0 +1,15 @@
+{
+  "kind": null,
+  "etag": "\u00220a025212-0000-0200-0000-6a5750740000\u0022",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1fe5141e0d0dffeb/providers/Microsoft.OperationalInsights/querypacks/qpdn2pzyb4",
+  "name": "qpdn2pzyb4",
+  "type": "microsoft.operationalinsights/querypacks",
+  "location": "westeurope",
+  "tags": {},
+  "properties": {
+    "queryPackId": "bfb33702-85d7-422f-bb75-e6f2d79c22eb",
+    "timeCreated": "2026-07-15T09:18:44.4510796Z",
+    "timeModified": "2026-07-15T09:18:44.4510796Z",
+    "provisioningState": "Succeeded"
+  }
+}

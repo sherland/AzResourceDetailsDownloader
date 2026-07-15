@@ -1,0 +1,92 @@
+{
+  "generatedUtc": "2026-07-15T11:37:05.4788846Z",
+  "total": 14,
+  "succeeded": 14,
+  "failed": 0,
+  "results": [
+    {
+      "armType": "Microsoft.EventGrid/topics",
+      "success": true,
+      "elapsedSeconds": 64.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies",
+      "success": true,
+      "elapsedSeconds": 69.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Monitor/accounts",
+      "success": true,
+      "elapsedSeconds": 78.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ResourceGraph/queries",
+      "success": true,
+      "elapsedSeconds": 36.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Communication/emailServices",
+      "success": true,
+      "elapsedSeconds": 52.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/metricAlerts",
+      "success": true,
+      "elapsedSeconds": 80.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/activityLogAlerts",
+      "success": true,
+      "elapsedSeconds": 51.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/webtests",
+      "success": true,
+      "elapsedSeconds": 66.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/scheduledQueryRules",
+      "success": true,
+      "elapsedSeconds": 141.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/workbooks",
+      "success": true,
+      "elapsedSeconds": 100.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Portal/dashboards",
+      "success": true,
+      "elapsedSeconds": 33.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.OperationsManagement/solutions",
+      "success": true,
+      "elapsedSeconds": 86.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DocumentDB/mongoClusters",
+      "success": true,
+      "elapsedSeconds": 556.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Cache/redis",
+      "success": true,
+      "elapsedSeconds": 1508.6,
+      "error": null
+    }
+  ]
+}

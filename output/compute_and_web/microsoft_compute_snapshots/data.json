@@ -1,0 +1,29 @@
+{
+  "name": "snapw3td1qq0",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/snapshots/snapw3td1qq0",
+  "type": "Microsoft.Compute/snapshots",
+  "location": "westeurope",
+  "sku": {
+    "name": "Standard_LRS",
+    "tier": "Standard"
+  },
+  "properties": {
+    "creationData": {
+      "createOption": "Copy",
+      "sourceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/disks/diskgxpe04sm",
+      "sourceUniqueId": "27fd45e4-30d1-49e0-ad50-d3392ed214bb"
+    },
+    "diskSizeGB": 4,
+    "encryption": {
+      "type": "EncryptionAtRestWithPlatformKey"
+    },
+    "incremental": false,
+    "networkAccessPolicy": "AllowAll",
+    "publicNetworkAccess": "Enabled",
+    "timeCreated": "2026-07-15T09:12:53.6474578\u002B00:00",
+    "provisioningState": "Succeeded",
+    "diskState": "Unattached",
+    "diskSizeBytes": 4294967296,
+    "uniqueId": "a6ebe44d-7879-446f-8bf6-517eb14eb491"
+  }
+}

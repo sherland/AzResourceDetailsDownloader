@@ -1,0 +1,19 @@
+{
+  "name": "vnetazg63ied",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d9119f4e0aa21cf8/providers/Microsoft.Network/virtualNetworks/vnetazg63ied",
+  "etag": "W/\u00222df65678-d605-4627-946d-4abe8462a054\u0022",
+  "type": "Microsoft.Network/virtualNetworks",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "resourceGuid": "776e63b4-b561-46d8-ab77-a0efd6324a5b",
+    "addressSpace": {
+      "addressPrefixes": [
+        "10.10.0.0/16"
+      ]
+    },
+    "subnets": [],
+    "virtualNetworkPeerings": [],
+    "enableDdosProtection": false
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "wafiorgu-xh",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-582b196a4c103d52/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/wafiorgu-xh",
+  "etag": "W/\u00221070240f-0be5-46d5-b618-6f082ec415f8\u0022",
+  "type": "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "customRules": [],
+    "policySettings": {
+      "requestBodyCheck": true,
+      "maxRequestBodySizeInKb": 128,
+      "fileUploadLimitInMb": 100,
+      "state": "Enabled",
+      "mode": "Prevention",
+      "requestBodyInspectLimitInKB": 128,
+      "fileUploadEnforcement": true,
+      "requestBodyEnforcement": true
+    },
+    "managedRules": {
+      "managedRuleSets": [
+        {
+          "ruleSetType": "OWASP",
+          "ruleSetVersion": "3.2",
+          "ruleGroupOverrides": []
+        }
+      ],
+      "exclusions": []
+    }
+  }
+}

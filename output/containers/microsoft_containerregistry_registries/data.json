@@ -1,0 +1,61 @@
+{
+  "sku": {
+    "name": "Basic",
+    "tier": "Basic"
+  },
+  "type": "Microsoft.ContainerRegistry/registries",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1bbbd6c0728e9e29/providers/Microsoft.ContainerRegistry/registries/acrp0etmvv1",
+  "name": "acrp0etmvv1",
+  "location": "westeurope",
+  "tags": {},
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:09:08.7878892\u002B00:00",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:09:08.7878892\u002B00:00"
+  },
+  "properties": {
+    "loginServer": "acrp0etmvv1.azurecr.io",
+    "creationDate": "2026-07-15T09:09:08.7878892Z",
+    "provisioningState": "Succeeded",
+    "adminUserEnabled": false,
+    "policies": {
+      "quarantinePolicy": {
+        "status": "disabled"
+      },
+      "trustPolicy": {
+        "type": "Notary",
+        "status": "disabled"
+      },
+      "retentionPolicy": {
+        "days": 7,
+        "lastUpdatedTime": "2026-07-15T09:09:20.4003228\u002B00:00",
+        "status": "disabled"
+      },
+      "exportPolicy": {
+        "status": "enabled"
+      },
+      "azureADAuthenticationAsArmPolicy": {
+        "status": "enabled"
+      },
+      "softDeletePolicy": {
+        "retentionDays": 7,
+        "lastUpdatedTime": "2026-07-15T09:09:20.4003682\u002B00:00",
+        "status": "disabled"
+      }
+    },
+    "encryption": {
+      "status": "disabled"
+    },
+    "dataEndpointEnabled": false,
+    "dataEndpointHostNames": [],
+    "privateEndpointConnections": [],
+    "publicNetworkAccess": "Enabled",
+    "networkRuleBypassOptions": "AzureServices",
+    "zoneRedundancy": "Disabled",
+    "anonymousPullEnabled": false,
+    "metadataSearch": "Disabled"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74933ead8c5e44f6/providers/Microsoft.Communication/emailServices/acsemailgkz-9e-3",
+  "name": "acsemailgkz-9e-3",
+  "type": "microsoft.communication/emailservices",
+  "location": "global",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T11:13:09.632725Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T11:13:09.632725Z"
+  },
+  "properties": {
+    "provisioningState": "Succeeded",
+    "dataLocation": "Europe"
+  }
+}

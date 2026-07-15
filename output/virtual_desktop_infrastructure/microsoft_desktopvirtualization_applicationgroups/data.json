@@ -1,0 +1,27 @@
+{
+  "name": "avdagc-7s-3r1",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-0b1b89abf1e402c6/providers/Microsoft.DesktopVirtualization/applicationgroups/avdagc-7s-3r1",
+  "type": "Microsoft.DesktopVirtualization/applicationgroups",
+  "location": "westeurope",
+  "tags": null,
+  "kind": "Desktop",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:26:30.28Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:26:30.28Z"
+  },
+  "properties": {
+    "showInFeed": null,
+    "hostPoolArmPath": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-0b1b89abf1e402c6/providers/Microsoft.DesktopVirtualization/hostpools/avdhpz-3v-b-9",
+    "workspaceArmPath": null,
+    "description": null,
+    "friendlyName": null,
+    "applicationGroupType": "Desktop",
+    "migrationRequest": null,
+    "cloudPcResource": false,
+    "objectId": "c52bba7e-2ebc-4d03-95ab-807f34c31763"
+  }
+}

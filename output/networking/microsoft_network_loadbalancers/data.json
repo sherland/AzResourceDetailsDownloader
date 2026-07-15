@@ -1,0 +1,36 @@
+{
+  "name": "lbi1py-djf",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lbi1py-djf",
+  "etag": "W/\u002207b5366b-c242-4468-b24e-10d69faf7bb5\u0022",
+  "type": "Microsoft.Network/loadBalancers",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "resourceGuid": "dace8ece-6a6f-4133-a2d1-5b42825bf524",
+    "frontendIPConfigurations": [
+      {
+        "name": "feConfig",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lbi1py-djf/frontendIPConfigurations/feConfig",
+        "etag": "W/\u002207b5366b-c242-4468-b24e-10d69faf7bb5\u0022",
+        "type": "Microsoft.Network/loadBalancers/frontendIPConfigurations",
+        "properties": {
+          "provisioningState": "Succeeded",
+          "privateIPAllocationMethod": "Dynamic",
+          "publicIPAddress": {
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/publicIPAddresses/pip4esx-wt9"
+          }
+        }
+      }
+    ],
+    "backendAddressPools": [],
+    "loadBalancingRules": [],
+    "probes": [],
+    "inboundNatRules": [],
+    "outboundRules": [],
+    "inboundNatPools": []
+  },
+  "sku": {
+    "name": "Standard",
+    "tier": "Regional"
+  }
+}

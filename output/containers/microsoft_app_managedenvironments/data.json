@@ -1,0 +1,55 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/providers/Microsoft.App/managedEnvironments/caez-5-26-t",
+  "name": "caez-5-26-t",
+  "type": "Microsoft.App/managedEnvironments",
+  "location": "France Central",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:22:00.335169",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:22:00.335169"
+  },
+  "properties": {
+    "provisioningState": "Succeeded",
+    "daprAIInstrumentationKey": null,
+    "daprAIConnectionString": null,
+    "vnetConfiguration": null,
+    "defaultDomain": "graysky-5a21ae9f.francecentral.azurecontainerapps.io",
+    "staticIp": "51.11.252.204",
+    "appLogsConfiguration": {
+      "destination": null,
+      "logAnalyticsConfiguration": null
+    },
+    "zoneRedundant": false,
+    "kedaConfiguration": {
+      "version": "2.18.1"
+    },
+    "daprConfiguration": {
+      "version": "1.16.4-msft.9"
+    },
+    "eventStreamEndpoint": "https://francecentral.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/managedEnvironments/caez-5-26-t/eventstream",
+    "customDomainConfiguration": {
+      "customDomainVerificationId": "E31949349EB9F5625B0C70237EDF2918CFBB1F4C2A4A12251A94BA4296BB01D4",
+      "dnsSuffix": null,
+      "certificateValue": null,
+      "certificatePassword": null,
+      "thumbprint": null,
+      "subjectName": null,
+      "expirationDate": null
+    },
+    "workloadProfiles": null,
+    "infrastructureResourceGroup": null,
+    "peerAuthentication": {
+      "mtls": {
+        "enabled": false
+      }
+    },
+    "peerTrafficConfiguration": {
+      "encryption": {
+        "enabled": false
+      }
+    }
+  }
+}

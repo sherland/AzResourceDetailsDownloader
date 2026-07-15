@@ -1,0 +1,53 @@
+param dnszones_ardllnkmwt9n_contoso_com_name string
+
+resource dnszones_ardllnkmwt9n_contoso_com_name_resource 'Microsoft.Network/dnszones@2023-07-01-preview' = {
+  name: dnszones_ardllnkmwt9n_contoso_com_name
+  location: 'global'
+  properties: {
+    zoneType: 'Public'
+  }
+}
+
+resource Microsoft_Network_dnszones_NS_dnszones_ardllnkmwt9n_contoso_com_name 'Microsoft.Network/dnszones/NS@2023-07-01-preview' = {
+  parent: dnszones_ardllnkmwt9n_contoso_com_name_resource
+  name: '@'
+  properties: {
+    TTL: 172800
+    NSRecords: [
+      {
+        nsdname: 'ns1-02.azure-dns.com.'
+      }
+      {
+        nsdname: 'ns2-02.azure-dns.net.'
+      }
+      {
+        nsdname: 'ns3-02.azure-dns.org.'
+      }
+      {
+        nsdname: 'ns4-02.azure-dns.info.'
+      }
+    ]
+    targetResource: {}
+    trafficManagementProfile: {}
+  }
+}
+
+resource Microsoft_Network_dnszones_SOA_dnszones_ardllnkmwt9n_contoso_com_name 'Microsoft.Network/dnszones/SOA@2023-07-01-preview' = {
+  parent: dnszones_ardllnkmwt9n_contoso_com_name_resource
+  name: '@'
+  properties: {
+    TTL: 3600
+    SOARecord: {
+      email: 'azuredns-hostmaster.microsoft.com'
+      expireTime: 2419200
+      host: 'ns1-02.azure-dns.com.'
+      minimumTTL: 300
+      refreshTime: 3600
+      retryTime: 300
+      serialNumber: 1
+    }
+    targetResource: {}
+    trafficManagementProfile: {}
+  }
+}
+

@@ -1,0 +1,17 @@
+{
+  "name": "lngrd5p5kd4",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2b885a3134f70ff5/providers/Microsoft.Network/localNetworkGateways/lngrd5p5kd4",
+  "etag": "W/\u00221af2ba5a-c614-48a2-bed2-32a1678bd4c4\u0022",
+  "type": "Microsoft.Network/localNetworkGateways",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "resourceGuid": "0161905b-c051-4bc5-8d9f-521d7d25eb1b",
+    "localNetworkAddressSpace": {
+      "addressPrefixes": [
+        "192.168.100.0/24"
+      ]
+    },
+    "gatewayIpAddress": "203.0.113.1"
+  }
+}

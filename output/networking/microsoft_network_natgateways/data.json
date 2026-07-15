@@ -1,0 +1,21 @@
+{
+  "name": "natatj1p-oe",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ac2c66a7d1df5255/providers/Microsoft.Network/natGateways/natatj1p-oe",
+  "etag": "W/\u0022418e26fb-2594-469c-ad6f-e9d380281e13\u0022",
+  "type": "Microsoft.Network/natGateways",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "resourceGuid": "4865f6aa-155c-4c8a-bad6-cf4b5fca7e4b",
+    "idleTimeoutInMinutes": 4,
+    "publicIpAddresses": [
+      {
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ac2c66a7d1df5255/providers/Microsoft.Network/publicIPAddresses/pipx9-c-rky"
+      }
+    ]
+  },
+  "sku": {
+    "name": "Standard",
+    "tier": "Regional"
+  }
+}

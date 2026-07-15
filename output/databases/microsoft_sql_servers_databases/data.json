@@ -1,0 +1,36 @@
+{
+  "sku": {
+    "name": "Basic",
+    "tier": "Basic",
+    "capacity": 5
+  },
+  "kind": "v12.0,user",
+  "properties": {
+    "collation": "SQL_Latin1_General_CP1_CI_AS",
+    "maxSizeBytes": 2147483648,
+    "status": "Online",
+    "databaseId": "5101836b-ca7c-4ee9-947b-3556661239de",
+    "creationDate": "2026-07-15T09:01:05.93Z",
+    "currentServiceObjectiveName": "Basic",
+    "requestedServiceObjectiveName": "Basic",
+    "defaultSecondaryLocation": "northeurope",
+    "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+    "zoneRedundant": false,
+    "readScale": "Disabled",
+    "currentSku": {
+      "name": "Basic",
+      "tier": "Basic",
+      "capacity": 5
+    },
+    "currentBackupStorageRedundancy": "Geo",
+    "requestedBackupStorageRedundancy": "Geo",
+    "maintenanceConfigurationId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default",
+    "isLedgerOn": false,
+    "isInfraEncryptionEnabled": false,
+    "availabilityZone": "NoPreference"
+  },
+  "location": "westeurope",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b7061c5cd70d41ff/providers/Microsoft.Sql/servers/sqly-x0m6x3/databases/dbz6i9eq",
+  "name": "dbz6i9eq",
+  "type": "Microsoft.Sql/servers/databases"
+}

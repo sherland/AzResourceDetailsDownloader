@@ -1,0 +1,70 @@
+{
+  "name": "vgwhk9b25pp",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d410a1d9804bdd65/providers/Microsoft.Network/virtualNetworkGateways/vgwhk9b25pp",
+  "etag": "W/\u00227bf142b0-914c-4b32-86c9-1106a600aaeb\u0022",
+  "type": "Microsoft.Network/virtualNetworkGateways",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "resourceGuid": "f83110bc-5332-40e2-9866-c68bc9f47cdf",
+    "packetCaptureDiagnosticState": "None",
+    "enablePrivateIpAddress": false,
+    "isMigrateToCSES": false,
+    "virtualNetworkGatewayMigrationStatus": {
+      "state": "None",
+      "phase": "None",
+      "errorMessage": ""
+    },
+    "ipConfigurations": [
+      {
+        "name": "vnetGatewayConfig",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d410a1d9804bdd65/providers/Microsoft.Network/virtualNetworkGateways/vgwhk9b25pp/ipConfigurations/vnetGatewayConfig",
+        "etag": "W/\u00227bf142b0-914c-4b32-86c9-1106a600aaeb\u0022",
+        "type": "Microsoft.Network/virtualNetworkGateways/ipConfigurations",
+        "properties": {
+          "provisioningState": "Succeeded",
+          "privateIPAllocationMethod": "Dynamic",
+          "publicIPAddress": {
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d410a1d9804bdd65/providers/Microsoft.Network/publicIPAddresses/pipn1pda-f4"
+          },
+          "subnet": {
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d410a1d9804bdd65/providers/Microsoft.Network/virtualNetworks/vnetj03y6p07/subnets/GatewaySubnet"
+          }
+        }
+      }
+    ],
+    "natRules": [],
+    "virtualNetworkGatewayPolicyGroups": [],
+    "enableBgpRouteTranslationForNat": false,
+    "disableIPSecReplayProtection": false,
+    "sku": {
+      "name": "VpnGw1AZ",
+      "tier": "VpnGw1AZ",
+      "capacity": 2
+    },
+    "gatewayType": "Vpn",
+    "vpnType": "RouteBased",
+    "enableBgp": false,
+    "activeActive": false,
+    "bgpSettings": {
+      "asn": 65515,
+      "bgpPeeringAddress": "10.20.255.30",
+      "peerWeight": 0,
+      "bgpPeeringAddresses": [
+        {
+          "ipconfigurationId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d410a1d9804bdd65/providers/Microsoft.Network/virtualNetworkGateways/vgwhk9b25pp/ipConfigurations/vnetGatewayConfig",
+          "defaultBgpIpAddresses": [
+            "10.20.255.30"
+          ],
+          "customBgpIpAddresses": [],
+          "tunnelIpAddresses": [
+            "20.101.8.56"
+          ]
+        }
+      ]
+    },
+    "vpnGatewayGeneration": "Generation1",
+    "allowRemoteVnetTraffic": false,
+    "allowVirtualWanTraffic": false
+  }
+}

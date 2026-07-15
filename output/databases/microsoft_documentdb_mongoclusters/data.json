@@ -1,0 +1,44 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74a9554cec74d742/providers/Microsoft.DocumentDB/mongoClusters/mc7id9mtlp",
+  "name": "mc7id9mtlp",
+  "type": "Microsoft.DocumentDB/mongoClusters",
+  "tags": {},
+  "location": "westeurope",
+  "systemData": {
+    "createdAt": "2026-07-15T11:16:04.5645159Z",
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "lastModifiedAt": "2026-07-15T11:16:04.5645159Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User"
+  },
+  "properties": {
+    "provisioningState": "Succeeded",
+    "clusterStatus": "Ready",
+    "administrator": {
+      "userName": "azrddadmin"
+    },
+    "serverVersion": "7.0",
+    "compute": {
+      "tier": "M10"
+    },
+    "storage": {
+      "sizeGb": 32
+    },
+    "sharding": {
+      "shardCount": 1
+    },
+    "highAvailability": {
+      "targetMode": "Disabled"
+    },
+    "connectionString": "mongodb\u002Bsrv://\u003Cuser\u003E:\u003Cpassword\u003E@mc7id9mtlp.mongocluster.cosmos.azure.com/?tls=true\u0026authMechanism=SCRAM-SHA-256\u0026retrywrites=false\u0026maxIdleTimeMS=120000",
+    "backup": {},
+    "privateEndpointConnections": [],
+    "publicNetworkAccess": "Enabled",
+    "replica": {
+      "role": "Primary",
+      "replicationState": "Active"
+    },
+    "infrastructureVersion": "2.0"
+  }
+}

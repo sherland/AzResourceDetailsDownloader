@@ -1,0 +1,58 @@
+{
+  "sku": {
+    "name": "Standard_B1ms",
+    "tier": "Burstable"
+  },
+  "systemData": {
+    "createdAt": "2026-07-15T09:44:04.8642661Z"
+  },
+  "properties": {
+    "replica": {
+      "role": "Primary",
+      "capacity": 5
+    },
+    "storage": {
+      "type": "Premium_LRS",
+      "iops": 120,
+      "tier": "P4",
+      "storageSizeGB": 32,
+      "autoGrow": "Disabled"
+    },
+    "network": {
+      "publicNetworkAccess": "Enabled"
+    },
+    "privateEndpointConnections": [],
+    "dataEncryption": {
+      "type": "SystemManaged"
+    },
+    "authConfig": {
+      "activeDirectoryAuth": "Disabled",
+      "passwordAuth": "Enabled"
+    },
+    "fullyQualifiedDomainName": "pgfd6vwwi6.postgres.database.azure.com",
+    "version": "16",
+    "administratorLogin": "azrddadmin",
+    "state": "Provisioning",
+    "availabilityZone": "2",
+    "backup": {
+      "backupRetentionDays": 7,
+      "geoRedundantBackup": "Disabled"
+    },
+    "highAvailability": {
+      "mode": "Disabled",
+      "state": ""
+    },
+    "maintenanceWindow": {
+      "customWindow": "Disabled",
+      "dayOfWeek": 0,
+      "startHour": 0,
+      "startMinute": 0
+    },
+    "replicationRole": "Primary",
+    "replicaCapacity": 5
+  },
+  "location": "West Europe",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8dd0677652d313d5/providers/Microsoft.DBforPostgreSQL/flexibleServers/pgfd6vwwi6",
+  "name": "pgfd6vwwi6",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers"
+}

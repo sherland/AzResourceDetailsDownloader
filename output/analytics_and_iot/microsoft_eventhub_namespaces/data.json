@@ -1,0 +1,38 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dced82a8791f5059/providers/Microsoft.EventHub/namespaces/ehnsw2y13x4d",
+  "name": "ehnsw2y13x4d",
+  "type": "Microsoft.EventHub/Namespaces",
+  "location": "westeurope",
+  "tags": {},
+  "properties": {
+    "errors": [],
+    "geoDataReplication": {
+      "maxReplicationLagDurationInSeconds": 0,
+      "locations": [
+        {
+          "locationName": "westeurope",
+          "roleType": "Primary",
+          "replicaState": "Ready"
+        }
+      ]
+    },
+    "minimumTlsVersion": "1.2",
+    "publicNetworkAccess": "Enabled",
+    "disableLocalAuth": false,
+    "zoneRedundant": true,
+    "isAutoInflateEnabled": false,
+    "maximumThroughputUnits": 0,
+    "kafkaEnabled": true,
+    "provisioningState": "Succeeded",
+    "status": "Active",
+    "createdAt": "2026-07-15T06:42:49.813254Z",
+    "updatedAt": "2026-07-15T09:15:42Z",
+    "metricId": "00000000-0000-0000-0000-000000000000:ehnsw2y13x4d",
+    "serviceBusEndpoint": "https://ehnsw2y13x4d.servicebus.windows.net:443/"
+  },
+  "sku": {
+    "name": "Basic",
+    "tier": "Basic",
+    "capacity": 1
+  }
+}

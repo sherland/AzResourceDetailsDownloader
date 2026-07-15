@@ -1,0 +1,15 @@
+# Portal notices
+
+Text automatically extracted from info/warning boxes on the Overview blade at capture time (deprecation notices, security recommendations, breaking-change warnings, etc.) for `Microsoft.Insights/webtests`.
+
+- This resource has exceeded its daily cap limit within the last two days. To avoid this issue in the future, increase the daily cap here
+
+- This resource has exceeded its daily data cap limit within the last week. To avoid this issue in the future, increase the daily cap here
+
+- Classic Application Insights was retired on February 29, 2024 Microsoft will begin an automatic phased approach to migrating classic resources to workspace-based resources beginning in May 2024. We don't have estimated dates for when specific resources, subscriptions, or regions will migrate. Click here to migrate now
+
+- Classic Application Insights was retired on February 29, 2024 Microsoft will begin an automatic phased approach to migrating classic resources to workspace-based resources beginning in May 2024. We don't have estimated dates for when specific resources, subscriptions, or regions will migrate. Contact a resource owner to migrate now.
+
+- Migrate your Application Insights resource to Workspace-based now to continue receiving data As previously communicated, we've begun shutting down ingestion for classic Application Insights resources on July 31st, 2025, incrementally, on a resource-by-resource basis. This process is expected to be completed for all resources over the course of several weeks. To avoid service interruption and data loss, <strong>please migrate your Classic resource to Workspace-based immediately</strong>.<br/><br/>Once ingestion is turned off, no data will be collected. Previously collected data will be accessible in Classic Application Insights according to the retention setting, which is 90 days by default. To re-enable ingestion, you must migrate your Classic Application Insights resource to Workspace-based.<br/><br/>Click here to migrate now
+
+- Migrate your Application Insights resource to Workspace-based now to continue receiving data As previously communicated, we've begun shutting down ingestion for classic Application Insights resources on July 31st, 2025, incrementally, on a resource-by-resource basis. This process is expected to be completed for all resources over the course of several weeks. To avoid service interruption and data loss, <strong>please migrate your Classic resource to Workspace-based immediately</strong>.<br/><br/>Once ingestion is turned off, no data will be collected. Previously collected data will be accessible in Classic Application Insights according to the retention setting, which is 90 days by default. To re-enable ingestion, you must migrate your Classic Application Insights resource to Workspace-based.<br/><br/>Contact a resource owner to migrate now

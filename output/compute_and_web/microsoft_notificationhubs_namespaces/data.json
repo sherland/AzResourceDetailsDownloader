@@ -1,0 +1,26 @@
+{
+  "sku": {
+    "name": "Free"
+  },
+  "properties": {
+    "name": "nhnsfb-y-5-5",
+    "provisioningState": "Succeeded",
+    "status": "Created",
+    "enabled": true,
+    "critical": false,
+    "subscriptionId": "00000000-0000-0000-0000-000000000000",
+    "createdAt": "2026-07-15T06:54:33.25\u002B00:00",
+    "updatedAt": "2026-07-15T09:28:41.667\u002B00:00",
+    "namespaceType": "NotificationHub",
+    "zoneRedundancy": "Disabled",
+    "networkAcls": {},
+    "serviceBusEndpoint": "https://nhnsfb-y-5-5.servicebus.windows.net:443/",
+    "privateEndpointConnections": [],
+    "publicNetworkAccess": "Enabled"
+  },
+  "location": "West Europe",
+  "tags": {},
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-523affa83da0c585/providers/Microsoft.NotificationHubs/namespaces/nhnsfb-y-5-5",
+  "name": "nhnsfb-y-5-5",
+  "type": "Microsoft.NotificationHubs/namespaces"
+}

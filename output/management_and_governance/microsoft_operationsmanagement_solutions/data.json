@@ -1,0 +1,30 @@
+{
+  "plan": {
+    "name": "AzureActivity(lawnh-iule2)",
+    "publisher": "Microsoft",
+    "promotionCode": "",
+    "product": "OMSGallery/AzureActivity"
+  },
+  "properties": {
+    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f7c118d11c094db/providers/Microsoft.OperationalInsights/workspaces/lawnh-iule2",
+    "provisioningState": "Succeeded",
+    "creationTime": "Wed, 15 Jul 2026 11:16:38 GMT",
+    "lastModifiedTime": "Wed, 15 Jul 2026 11:16:38 GMT",
+    "containedResources": [
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f7c118d11c094db/providers/Microsoft.OperationalInsights/workspaces/lawnh-iule2/views/AzureActivity(lawnh-iule2)"
+    ],
+    "workbookTemplates": [
+      {
+        "source": "url",
+        "id": {
+          "public": "https://azmonsolutions.blob.core.windows.net/workbooktemplates/Azure%20Activity%20Log/Azure%20Activity%20Log.workbook"
+        }
+      }
+    ]
+  },
+  "location": "westeurope",
+  "tags": {},
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f7c118d11c094db/providers/Microsoft.OperationsManagement/solutions/AzureActivity(lawnh-iule2)",
+  "name": "AzureActivity(lawnh-iule2)",
+  "type": "Microsoft.OperationsManagement/solutions"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sshkey89-8y7sp",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c966974de34ce9d7/providers/Microsoft.Compute/sshPublicKeys/sshkey89-8y7sp",
+  "location": "westeurope",
+  "properties": {
+    "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMf4Pa\u002BFlecNaDqyuITzNaZErfcsxCCRt5SGvBMi7\u002BxZc6A87B\u002Buo4bdYyrKVS\u002BpfdHXUtOkGn7IYj/UMqx8V2QVni32cUQa08zxj1d9Hv9yT2P\u002B2apXNbEAfZ2gKtcFj4HgtXMR\u002BgtCG5IOu16c8MsPytK52qgfYcw6L2AwhYCV3bNuEBW/cLEA8Kh9FmdCEkp0QWOXlwVq6XO7w01ORLtpZMx9\u002Burnzq8s0uUcgSolVynmMTWeNMhJbQPu1iKygYU4dl\u002BYSE\u002BdKXqm863CQBvnpcmeRcIVHsCVBqV82mpF1mMGa0xqUA45Hu4FLuNVHJWYuJN5IuFwFBpjQDuRqH ardl@example.com"
+  }
+}

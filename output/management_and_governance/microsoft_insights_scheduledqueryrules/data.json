@@ -1,0 +1,36 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a4f15f69c700674b/providers/microsoft.insights/scheduledqueryrules/sqrst2-ds-v",
+  "name": "sqrst2-ds-v",
+  "type": "Microsoft.Insights/scheduledQueryRules",
+  "location": "westeurope",
+  "kind": "LogAlert",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T11:14:01.1417568Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T11:14:01.1417568Z"
+  },
+  "properties": {
+    "createdWithApiVersion": "2023-03-15-preview",
+    "displayName": "ARDL sample alert",
+    "severity": 3,
+    "enabled": true,
+    "evaluationFrequency": "PT15M",
+    "scopes": [
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a4f15f69c700674b/providers/Microsoft.OperationalInsights/workspaces/law502o85tb"
+    ],
+    "windowSize": "PT15M",
+    "criteria": {
+      "allOf": [
+        {
+          "query": "Heartbeat | take 1",
+          "timeAggregation": "Count",
+          "operator": "GreaterThan",
+          "threshold": 1000000.0
+        }
+      ]
+    }
+  }
+}

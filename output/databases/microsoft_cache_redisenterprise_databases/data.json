@@ -1,0 +1,16 @@
+{
+  "name": "default",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b793c055bdb1ae6b/providers/Microsoft.Cache/redisEnterprise/redisent61yjsz2q/databases/default",
+  "type": "Microsoft.Cache/redisEnterprise/databases",
+  "properties": {
+    "clientProtocol": "Encrypted",
+    "port": 10000,
+    "provisioningState": "Succeeded",
+    "resourceState": "Running",
+    "clusteringPolicy": "OSSCluster",
+    "evictionPolicy": "VolatileLRU",
+    "deferUpgrade": "NotDeferred",
+    "redisVersion": "7.4",
+    "accessKeysAuthentication": "Enabled"
+  }
+}

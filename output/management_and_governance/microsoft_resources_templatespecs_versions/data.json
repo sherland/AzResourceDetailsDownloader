@@ -1,0 +1,21 @@
+{
+  "location": "westeurope",
+  "properties": {
+    "mainTemplate": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "resources": []
+    }
+  },
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T09:27:07.5329912Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T09:27:07.5329912Z"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4965fec5d0d82612/providers/Microsoft.Resources/templateSpecs/ts3l4-yx-a/versions/v1",
+  "type": "Microsoft.Resources/templateSpecs/versions",
+  "name": "v1"
+}

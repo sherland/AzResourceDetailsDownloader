@@ -1,0 +1,95 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9453358d1e4e04fe/providers/Microsoft.Devices/IotHubs/iot19ncaw4p",
+  "name": "iot19ncaw4p",
+  "type": "Microsoft.Devices/IotHubs",
+  "location": "westeurope",
+  "tags": {},
+  "subscriptionid": "00000000-0000-0000-0000-000000000000",
+  "resourcegroup": "rg-ardl-9453358d1e4e04fe",
+  "etag": "AAAAAAYAAAA=",
+  "properties": {
+    "locations": [
+      {
+        "location": "West Europe",
+        "role": "primary"
+      },
+      {
+        "location": "North Europe",
+        "role": "secondary"
+      }
+    ],
+    "state": "Active",
+    "provisioningState": "Succeeded",
+    "ipFilterRules": [],
+    "hostName": "iot19ncaw4p.azure-devices.net",
+    "eventHubEndpoints": {
+      "events": {
+        "retentionTimeInDays": 1,
+        "partitionCount": 2,
+        "partitionIds": [
+          "0",
+          "1"
+        ],
+        "path": "iothub-ehub-iot19ncaw4-68036845-045004b43a",
+        "endpoint": "sb://ihsuprodamres104dednamespace.servicebus.windows.net/"
+      }
+    },
+    "routing": {
+      "endpoints": {
+        "serviceBusQueues": [],
+        "serviceBusTopics": [],
+        "eventHubs": [],
+        "storageContainers": [],
+        "cosmosDBSqlContainers": []
+      },
+      "routes": [],
+      "fallbackRoute": {
+        "name": "$fallback",
+        "source": "DeviceMessages",
+        "condition": "true",
+        "endpointNames": [
+          "events"
+        ],
+        "isEnabled": true
+      }
+    },
+    "storageEndpoints": {
+      "$default": {
+        "sasTtlAsIso8601": "PT1H",
+        "connectionString": "",
+        "containerName": ""
+      }
+    },
+    "messagingEndpoints": {
+      "fileNotifications": {
+        "lockDurationAsIso8601": "PT1M",
+        "ttlAsIso8601": "PT1H",
+        "maxDeliveryCount": 10
+      }
+    },
+    "enableFileUploadNotifications": false,
+    "cloudToDevice": {
+      "maxDeliveryCount": 10,
+      "defaultTtlAsIso8601": "PT1H",
+      "feedback": {
+        "lockDurationAsIso8601": "PT1M",
+        "ttlAsIso8601": "PT1H",
+        "maxDeliveryCount": 10
+      }
+    },
+    "features": "RootCertificateV2",
+    "minTlsVersion": "1.2",
+    "allowedFqdnList": []
+  },
+  "sku": {
+    "name": "F1",
+    "tier": "Free",
+    "capacity": 1
+  },
+  "identity": {
+    "type": "None"
+  },
+  "systemData": {
+    "createdAt": "2026-07-15T09:48:26.9666667Z"
+  }
+}

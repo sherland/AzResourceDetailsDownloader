@@ -1,0 +1,18 @@
+{
+  "name": "imgjq43aq",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-eecb9a7ad07dc5a9/providers/Microsoft.Compute/galleries/galor6b8wuj/images/imgjq43aq",
+  "type": "Microsoft.Compute/galleries/images",
+  "location": "westeurope",
+  "properties": {
+    "hyperVGeneration": "V1",
+    "architecture": "x64",
+    "osType": "Linux",
+    "osState": "Generalized",
+    "identifier": {
+      "publisher": "ardl",
+      "offer": "ardl-offer",
+      "sku": "ardl-sku"
+    },
+    "provisioningState": "Succeeded"
+  }
+}

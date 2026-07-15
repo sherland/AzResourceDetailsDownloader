@@ -1,0 +1,28 @@
+{
+  "name": "diskbpe8-oy2",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ab7325b8645ba734/providers/Microsoft.Compute/disks/diskbpe8-oy2",
+  "type": "Microsoft.Compute/disks",
+  "location": "westeurope",
+  "sku": {
+    "name": "Standard_LRS",
+    "tier": "Standard"
+  },
+  "properties": {
+    "creationData": {
+      "createOption": "Empty"
+    },
+    "diskSizeGB": 4,
+    "diskIOPSReadWrite": 500,
+    "diskMBpsReadWrite": 60,
+    "encryption": {
+      "type": "EncryptionAtRestWithPlatformKey"
+    },
+    "networkAccessPolicy": "AllowAll",
+    "publicNetworkAccess": "Enabled",
+    "timeCreated": "2026-07-15T08:56:29.5517497\u002B00:00",
+    "provisioningState": "Succeeded",
+    "diskState": "Unattached",
+    "diskSizeBytes": 4294967296,
+    "uniqueId": "361d8586-a83b-4093-971d-b67208421e51"
+  }
+}

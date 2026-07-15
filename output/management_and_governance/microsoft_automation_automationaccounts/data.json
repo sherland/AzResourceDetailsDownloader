@@ -1,0 +1,50 @@
+{
+  "name": "aa8ln-7a5l",
+  "systemData": {
+    "createdAt": "2026-07-15T09:07:57.603\u002B00:00",
+    "lastModifiedAt": "2026-07-15T09:07:57.603\u002B00:00"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7ab2ffe44d702d19/providers/Microsoft.Automation/automationAccounts/aa8ln-7a5l",
+  "type": "Microsoft.Automation/AutomationAccounts",
+  "location": "westeurope",
+  "tags": {},
+  "etag": null,
+  "properties": {
+    "disableLocalAuth": false,
+    "sku": {
+      "name": "Basic",
+      "family": null,
+      "capacity": null
+    },
+    "state": "Ok",
+    "RegistrationUrl": "https://f241725c-0f44-4bc6-bd8a-5aa87e8766b1.agentsvc.we.azure-automation.net/accounts/f241725c-0f44-4bc6-bd8a-5aa87e8766b1",
+    "encryption": {
+      "keySource": "Microsoft.Automation",
+      "identity": {
+        "userAssignedIdentity": null
+      }
+    },
+    "privateEndpointConnections": [],
+    "automationHybridServiceUrl": "https://f241725c-0f44-4bc6-bd8a-5aa87e8766b1.jrds.we.azure-automation.net/automationAccounts/f241725c-0f44-4bc6-bd8a-5aa87e8766b1",
+    "RuntimeConfiguration": {
+      "powershell": {
+        "builtinModules": {
+          "Az": "11.2.0"
+        }
+      },
+      "powershell7": {
+        "builtinModules": {
+          "Az": "8.0.0"
+        }
+      },
+      "powershell72": {
+        "builtinModules": {
+          "Az": "11.2.0"
+        }
+      }
+    },
+    "creationTime": "2026-07-15T09:07:57.603\u002B00:00",
+    "lastModifiedBy": null,
+    "lastModifiedTime": "2026-07-15T09:07:57.603\u002B00:00"
+  }
+}
