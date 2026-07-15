@@ -3662,48 +3662,6 @@
       "notes": ""
     },
     {
-      "armType": "Microsoft.BotService/botServices",
-      "apiVersion": "2022-09-15",
-      "costTier": "Free",
-      "location": "global",
-      "nameTemplate": "bot{rand8}",
-      "nameRules": {
-        "charset": "lowerAlnumDash",
-        "maxLength": 64
-      },
-      "requestBody": {
-        "sku": {
-          "name": "F0"
-        },
-        "kind": "azurebot",
-        "properties": {
-          "displayName": "ARDL bot",
-          "endpoint": "https://example.com/api/messages",
-          "msaAppType": "UserAssignedMSI",
-          "msaAppMSIResourceId": "{prereq.botIdentity.id}"
-        },
-        "identity": {
-          "type": "None"
-        }
-      },
-      "prerequisites": [
-        {
-          "alias": "botIdentity",
-          "armType": "Microsoft.ManagedIdentity/userAssignedIdentities",
-          "apiVersion": "2023-01-31",
-          "nameTemplate": "id{rand8}",
-          "nameRules": {
-            "charset": "lowerAlnumDash",
-            "maxLength": 128
-          },
-          "requestBody": {
-            "properties": {}
-          }
-        }
-      ],
-      "notes": "F0 free SKU, one per subscription. Live-verified fix: the top-level ARM `identity` block must be `{\"type\": \"None\"}` — Bot Service rejects `UserAssigned` there with `CannotSetResourceIdentity` ('The supported types are None'), even though `properties.msaAppType: UserAssignedMSI` still references the managed identity's resource ID directly via `msaAppMSIResourceId`, without needing the resource's own ARM identity assignment to match."
-    },
-    {
       "armType": "Microsoft.Maps/accounts",
       "apiVersion": "2023-06-01",
       "costTier": "Free",
@@ -4301,19 +4259,18 @@
       },
       "requestBody": {
         "properties": {
-          "scope": {
-            "scopeType": "Subscription",
-            "values": [
-              "/subscriptions/{secret.subscriptionId}"
-            ]
-          },
-          "conditions": {},
+          "scopes": [
+            "/subscriptions/{secret.subscriptionId}"
+          ],
+          "actions": [
+            { "actionType": "RemoveAllActionGroups" }
+          ],
           "status": "Enabled"
         },
         "kind": "Suppression"
       },
       "prerequisites": [],
-      "notes": "Alert processing rule (formerly 'action rule'), scoped to the whole subscription like Microsoft.Insights/activityLogAlerts above. Reconstructed from general schema knowledge rather than confirmed against a live example — lower confidence."
+      "notes": "Alert processing rule (formerly 'action rule'), scoped to the whole subscription like Microsoft.Insights/activityLogAlerts above (same flat 'scopes' array property, not a nested 'scope.values' object). Live-verified through three rounds of 400 errors: 'scope.values' had to become a flat 'scopes' array; 'properties.actions' must specify at least one action (RemoveAllActionGroups needs no target, avoiding a dependency on a real action group); and 'properties.conditions' must be omitted entirely when there's no condition — ARM rejects an explicit empty array with 'If no condition is configured, it shouldn't be configured.'"
     },
     {
       "armType": "Microsoft.Databricks/accessConnectors",
