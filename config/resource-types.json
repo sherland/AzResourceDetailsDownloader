@@ -3551,7 +3551,7 @@
         {
           "alias": "aiFoundryAccount",
           "armType": "Microsoft.CognitiveServices/accounts",
-          "apiVersion": "2024-10-01",
+          "apiVersion": "2025-04-01-preview",
           "nameTemplate": "aif{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -3572,7 +3572,7 @@
           }
         }
       ],
-      "notes": "'Foundry account project', a 2025-era feature — needs the parent account's kind to be 'AIServices' (not the 'CognitiveServices' multi-service kind used by the plain accounts entry above) with allowProjectManagement enabled. This is this catalog's newest/least-training-certain schema; expect likely iteration once live-tested."
+      "notes": "'Foundry account project', a 2025-era feature — needs the parent account's kind to be 'AIServices' (not the 'CognitiveServices' multi-service kind used by the plain accounts entry above) with allowProjectManagement enabled. Live-verified fix #1: the parent account's own apiVersion must be recent enough to actually persist allowProjectManagement — 2024-10-01 silently ignored the flag (ARM accepted the PUT, but the resulting account still rejected project creation with 'Project can only be created under AIServices Kind account with allowProjectManagement set to true'); bumped to 2025-04-01-preview, matching the project child resource's own apiVersion. Still unresolved after that fix: project creation now fails with 'Unsupported configuration. To create projects, you must enable a managed identity on your resource' even though the account body already sets identity.type=SystemAssigned — root cause unclear (possibly an identity-propagation lag between the account's provisioningState reporting Succeeded and its identity being visible to the Projects API, or an additional undocumented requirement). Left as the catalog's lowest-confidence, still-not-live-verified entry rather than guess further at a bleeding-edge preview API."
     },
     {
       "armType": "Microsoft.Sql/servers/jobAgents",
@@ -3619,7 +3619,7 @@
           },
           "requestBody": {
             "sku": {
-              "name": "Basic"
+              "name": "S0"
             },
             "properties": {
               "collation": "SQL_Latin1_General_CP1_CI_AS"
@@ -3627,7 +3627,7 @@
           }
         }
       ],
-      "notes": "Elastic Job Agent needs a dedicated database to store its job metadata — Azure initializes that schema automatically on first use."
+      "notes": "Elastic Job Agent needs a dedicated database to store its job metadata — Azure initializes that schema automatically on first use. Live-verified fix: the job database must be at least Standard tier (S0) — Basic tier let the PUT accept and return successfully, but the job agent never actually finished provisioning (polling GET kept 404ing with 'JobAgentNotFound' until the timeout, ~13 minutes wasted before failing)."
     },
     {
       "armType": "Microsoft.EventGrid/domains/topics",
@@ -3816,7 +3816,8 @@
         "properties": {
           "friendlyName": "ARDL ML workspace",
           "storageAccount": "{prereq.mlStorage.id}",
-          "keyVault": "{prereq.mlKeyVault.id}"
+          "keyVault": "{prereq.mlKeyVault.id}",
+          "applicationInsights": "{prereq.mlAppInsights.id}"
         }
       },
       "prerequisites": [
@@ -3860,9 +3861,42 @@
               "enablePurgeProtection": true
             }
           }
+        },
+        {
+          "alias": "mlLogAnalytics",
+          "armType": "Microsoft.OperationalInsights/workspaces",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "law{rand8}",
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 63
+          },
+          "requestBody": {
+            "properties": {
+              "sku": { "name": "PerGB2018" },
+              "retentionInDays": 30
+            }
+          }
+        },
+        {
+          "alias": "mlAppInsights",
+          "armType": "Microsoft.Insights/components",
+          "apiVersion": "2020-02-02",
+          "nameTemplate": "ai{rand8}",
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 63
+          },
+          "requestBody": {
+            "kind": "web",
+            "properties": {
+              "Application_Type": "web",
+              "WorkspaceResourceId": "{prereq.mlLogAnalytics.id}"
+            }
+          }
         }
       ],
-      "notes": "Also referred to as an AI Foundry hub in newer tooling — same underlying ARM resource type. Needs its own Storage Account + Key Vault (Application Insights is optional and omitted here for simplicity). This tenant's mandatory purge-protection policy applies to the Key Vault prerequisite the same way it does to the standalone Key Vault entry."
+      "notes": "Also referred to as an AI Foundry hub in newer tooling — same underlying ARM resource type. Needs its own Storage Account + Key Vault + Application Insights (which itself needs a Log Analytics Workspace, reusing the same prerequisite pattern as the standalone Microsoft.Insights/components entry). Live-verified fix: Application Insights is NOT optional, contrary to the original assumption — omitting it fails with 'Missing dependent resources in workspace json'. This tenant's mandatory purge-protection policy applies to the Key Vault prerequisite the same way it does to the standalone Key Vault entry. Separately, this entry surfaced a real bug in DeterministicNaming/ResourceTypePipeline: the Key Vault exemption from deterministic naming only checked the *unit's target* armType, not each *prerequisite's own* armType, so a Key Vault used as a prerequisite (as here) got a deterministic name anyway and collided with an earlier attempt's purge-protected vault (VaultAlreadyExists) — fixed in ResourceTypePipeline.cs to check exemption per-prerequisite."
     },
     {
       "armType": "Microsoft.EventGrid/domains",

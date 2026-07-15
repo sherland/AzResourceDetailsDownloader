@@ -62,6 +62,11 @@ public sealed class ResourceTypePipeline(
             foreach (var prereq in def.Prerequisites)
             {
                 var charset = prereq.NameRules?.Charset ?? "lowerAlnum";
+                // A prerequisite whose own armType is exempt from deterministic naming (currently just
+                // Microsoft.KeyVault/vaults) needs its own genuinely-random source here — the shared `random`
+                // above is seeded from the *unit's target* armType, which only covers the case where the
+                // target itself is the exempt type, not where it merely appears as a prerequisite.
+                var prereqRandom = DeterministicNaming.IsExemptFromDeterminism(prereq.ArmType) ? new Random() : random;
                 // Each prerequisite gets its own location independent of the target's — a target that is
                 // itself "global" (e.g. a Metric Alert or a Private DNS Zone Link) must not force "global"
                 // onto a prerequisite (e.g. a Storage Account or VNet) that doesn't support it. A prerequisite
@@ -69,11 +74,11 @@ public sealed class ResourceTypePipeline(
                 // for cases where two resources must land in the same region as each other.
                 var prereqLocation = TemplateTokenResolver.ResolvePrereqTokens(prereq.Location ?? defaultLocation, resolvedPrereqs);
                 var prereqNameWithPrereqsResolved = TemplateTokenResolver.ResolvePrereqTokens(prereq.NameTemplate, resolvedPrereqs);
-                var body = TemplateTokenResolver.ResolveAllTokens(prereq.RequestBody, resolvedPrereqs, secrets, charset, random);
+                var body = TemplateTokenResolver.ResolveAllTokens(prereq.RequestBody, resolvedPrereqs, secrets, charset, prereqRandom);
 
                 var reference = await ProvisionWithLocationFallbackAsync(
                     provisioner, rgName, prereq.ArmType, prereq.ApiVersion, prereqNameWithPrereqsResolved, charset,
-                    random, prereqLocation, prereq.LocationFallbacks, body,
+                    prereqRandom, prereqLocation, prereq.LocationFallbacks, body,
                     ProvisioningTimeoutFor(prereq.EstimatedProvisionMinutes), $"prerequisite '{prereq.Alias}'", unitLogger, ct);
 
                 resolvedPrereqs[prereq.Alias] = reference;
@@ -169,14 +174,31 @@ public sealed class ResourceTypePipeline(
 
                 unitLogger.LogInformation(
                     "  provisioning {Label}: {ArmType} '{Name}' in '{Location}'", logLabel, armType, name, location);
-                return await provisioner.CreateOrUpdateAsync(
-                    subscriptionId, rgName, armType, apiVersion, name, location, body, timeout, ct);
+                return await CreateWithRegistrationRetryAsync(
+                    provisioner, armType, apiVersion, rgName, name, location, body, timeout, ct);
             }
             catch (InvalidOperationException ex) when (i < locations.Count - 1 && CapacityErrorDetector.IsCapacityError(ex.Message))
             {
                 unitLogger.LogWarning(
                     "  {ArmType} hit a capacity error in '{Location}'; retrying in fallback location '{NextLocation}'.",
                     armType, location, locations[i + 1]);
+            }
+
+            async Task<ProvisionedResourceRef> CreateWithRegistrationRetryAsync(
+                ArmResourceProvisioner p, string t, string v, string rg, string n, string loc, JsonElement b, TimeSpan? to, CancellationToken token)
+            {
+                try
+                {
+                    return await p.CreateOrUpdateAsync(subscriptionId, rg, t, v, n, loc, b, to, token);
+                }
+                catch (InvalidOperationException ex) when (ResourceProviderRegistrationErrorDetector.TryGetUnregisteredNamespace(ex.Message, out var ns))
+                {
+                    unitLogger.LogWarning(
+                        "  {ArmType} needs resource provider '{Namespace}', which isn't registered on this subscription yet — registering it now (one-time, no-cost) and retrying.",
+                        t, ns);
+                    await rawArmClient.RegisterResourceProviderAsync(subscriptionId, ns, token);
+                    return await p.CreateOrUpdateAsync(subscriptionId, rg, t, v, n, loc, b, to, token);
+                }
             }
         }
 
