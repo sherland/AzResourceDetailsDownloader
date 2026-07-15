@@ -1,0 +1,79 @@
+{
+  "overrides": [
+    {
+      "armType": "Microsoft.Insights/activityLogAlerts",
+      "category": "Management and governance",
+      "reason": "Sibling types actionGroups/components/dataCollectionRules/dataCollectionEndpoints under Microsoft.Insights are all covered under this category in Microsoft's abbreviations table."
+    },
+    {
+      "armType": "Microsoft.Insights/autoscalesettings",
+      "category": "Management and governance",
+      "reason": "Same sibling evidence as Microsoft.Insights/activityLogAlerts. Never shows up as an actual output/uncategorized folder because provisioning for this armType is permanently blocked by tenant policy, but it still resolves through CategoryResolver during dry-run planning."
+    },
+    {
+      "armType": "Microsoft.Insights/metricAlerts",
+      "category": "Management and governance",
+      "reason": "Same sibling evidence as Microsoft.Insights/activityLogAlerts."
+    },
+    {
+      "armType": "Microsoft.Insights/scheduledQueryRules",
+      "category": "Management and governance",
+      "reason": "Same sibling evidence as Microsoft.Insights/activityLogAlerts."
+    },
+    {
+      "armType": "Microsoft.Insights/webtests",
+      "category": "Management and governance",
+      "reason": "Same sibling evidence as Microsoft.Insights/activityLogAlerts."
+    },
+    {
+      "armType": "Microsoft.Insights/workbooks",
+      "category": "Management and governance",
+      "reason": "Same sibling evidence as Microsoft.Insights/activityLogAlerts."
+    },
+    {
+      "armType": "Microsoft.Monitor/accounts",
+      "category": "Management and governance",
+      "reason": "No direct sibling in the abbreviations table, but same product family as Microsoft.Insights/* (Azure Monitor), which is covered under this category — domain-knowledge assignment."
+    },
+    {
+      "armType": "Microsoft.Cache/redis",
+      "category": "Databases",
+      "reason": "Sibling type Microsoft.Cache/redisEnterprise is covered under Databases in Microsoft's abbreviations table."
+    },
+    {
+      "armType": "Microsoft.EventGrid/topics",
+      "category": "Analytics and IoT",
+      "reason": "Sibling types domains/namespaces/eventSubscriptions/systemTopics under Microsoft.EventGrid are all covered under Analytics and IoT in Microsoft's abbreviations table."
+    },
+    {
+      "armType": "Microsoft.Communication/emailServices",
+      "category": "Compute and web",
+      "reason": "Sibling type communicationServices under Microsoft.Communication is covered under Compute and web in Microsoft's abbreviations table."
+    },
+    {
+      "armType": "Microsoft.DocumentDB/mongoClusters",
+      "category": "Databases",
+      "reason": "Sibling type databaseAccounts under Microsoft.DocumentDB is covered under Databases in Microsoft's abbreviations table."
+    },
+    {
+      "armType": "Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies",
+      "category": "Networking",
+      "reason": "Associated resource applicationGateways under Microsoft.Network is covered under Networking in Microsoft's abbreviations table."
+    },
+    {
+      "armType": "Microsoft.OperationsManagement/solutions",
+      "category": "Management and governance",
+      "reason": "No sibling in the abbreviations table; Log Analytics solutions gallery is a monitoring/governance tool — domain-knowledge assignment."
+    },
+    {
+      "armType": "Microsoft.Portal/dashboards",
+      "category": "Management and governance",
+      "reason": "No sibling in the abbreviations table; a custom-dashboard management tool — domain-knowledge assignment."
+    },
+    {
+      "armType": "Microsoft.ResourceGraph/queries",
+      "category": "Management and governance",
+      "reason": "No sibling in the abbreviations table; a cross-resource query/governance tool — domain-knowledge assignment."
+    }
+  ]
+}

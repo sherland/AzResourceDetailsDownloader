@@ -59,13 +59,16 @@ var catalog = ResourceTypeCatalogLoader.Load(catalogPath);
 
 var abbreviationsPath = RepoPaths.Resolve(repoRoot, options.AbbreviationsConfigPath);
 var abbreviationsCatalog = ResourceAbbreviationsLoader.TryLoad(abbreviationsPath);
-var categoryResolver = new CategoryResolver(abbreviationsCatalog);
 if (abbreviationsCatalog is null)
 {
     logger.LogInformation(
         "No abbreviations config found at '{Path}' — every entry will fall into the '{Uncategorized}' output folder. Run fetch-resource-abbreviations.ps1 to populate it.",
         abbreviationsPath, CategoryResolver.Uncategorized);
 }
+
+var categoryOverridesPath = RepoPaths.Resolve(repoRoot, options.CategoryOverridesConfigPath);
+var categoryOverridesCatalog = CategoryOverridesLoader.TryLoad(categoryOverridesPath);
+var categoryResolver = new CategoryResolver(abbreviationsCatalog, categoryOverridesCatalog);
 
 var maxCostTier = Enum.Parse<CostTier>(parsedArgs.MaxCostTierOverride ?? options.MaxCostTier, ignoreCase: true);
 
