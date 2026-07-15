@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-50afc5ec1d1fef44"
   tags = {
     armType    = "Microsoft.Web/staticSites"
-    createdUtc = "2026-07-15T09:08:55.9615942Z"
+    createdUtc = "2026-07-15T18:29:01.1602698Z"
     purpose    = "az-resource-details-downloader"
   }
 }

@@ -30,8 +30,8 @@
           "0",
           "1"
         ],
-        "path": "iothub-ehub-iot19ncaw4-68036845-045004b43a",
-        "endpoint": "sb://ihsuprodamres104dednamespace.servicebus.windows.net/"
+        "path": "iothub-ehub-iot19ncaw4-68041885-8a53b1fadf",
+        "endpoint": "sb://ihsuprodamres048dednamespace.servicebus.windows.net/"
       }
     },
     "routing": {
@@ -90,6 +90,6 @@
     "type": "None"
   },
   "systemData": {
-    "createdAt": "2026-07-15T09:48:26.9666667Z"
+    "createdAt": "2026-07-15T19:08:18.6433333Z"
   }
 }

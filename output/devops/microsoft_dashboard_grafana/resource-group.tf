@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-9c207da75b61d6f9"
   tags = {
     armType    = "Microsoft.Dashboard/grafana"
-    createdUtc = "2026-07-15T09:25:12.0540187Z"
+    createdUtc = "2026-07-15T18:45:19.8571720Z"
     purpose    = "az-resource-details-downloader"
   }
 }

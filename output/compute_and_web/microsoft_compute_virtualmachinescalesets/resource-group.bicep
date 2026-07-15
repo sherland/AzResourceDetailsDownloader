@@ -1,6 +1,6 @@
 param virtualNetworks_vnetd7_ts_wt_name string
 param virtualMachineScaleSets_vmsswdgknl_name string
-param disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_3903b4610f264eb0baa06194b2aa59d6_externalid string
+param disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_798a6bf0bd504e57956c2c868dc809fc_externalid string
 
 resource virtualNetworks_vnetd7_ts_wt_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnetd7_ts_wt_name
@@ -169,12 +169,12 @@ resource virtualMachineScaleSets_vmsswdgknl_name_0 'Microsoft.Compute/virtualMac
       }
       osDisk: {
         osType: 'Linux'
-        name: 'vmsswdgknl_vmsswdgknl_0_OsDisk_1_3903b4610f264eb0baa06194b2aa59d6'
+        name: 'vmsswdgknl_vmsswdgknl_0_OsDisk_1_798a6bf0bd504e57956c2c868dc809fc'
         createOption: 'FromImage'
         caching: 'None'
         managedDisk: {
           storageAccountType: 'Premium_LRS'
-          id: disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_3903b4610f264eb0baa06194b2aa59d6_externalid
+          id: disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_798a6bf0bd504e57956c2c868dc809fc_externalid
         }
         diskSizeGB: 30
       }

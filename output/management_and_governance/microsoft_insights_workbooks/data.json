@@ -1,6 +1,6 @@
 {
   "kind": "shared",
-  "etag": "\u0022670206fb-0000-0200-0000-6a576bb20000\u0022",
+  "etag": "\u002287020009-0000-0200-0000-6a57d7600000\u0022",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-64cf3419204392ef/providers/microsoft.insights/workbooks/9e0b6142-f857-813e-2eeb-f20bf1b515ee",
   "name": "9e0b6142-f857-813e-2eeb-f20bf1b515ee",
   "type": null,
@@ -15,9 +15,9 @@
     "category": "workbook",
     "userId": "f79b144e-8ba2-493b-ad36-11208b55ca03",
     "sourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-64cf3419204392ef/providers/microsoft.operationalinsights/workspaces/lawprs-6ffd",
-    "timeModified": "2026-07-15T11:14:57.9761211Z",
+    "timeModified": "2026-07-15T18:54:24.1615711Z",
     "tags": null,
     "storageUri": null,
-    "revision": "c47f0ce0a7934fb4a8a3115d07f6ffc4"
+    "revision": "baa80acfcee940258f310d5e6d7f1caf"
   }
 }

@@ -7,7 +7,7 @@
   },
   "properties": {
     "provisioningState": "Succeeded",
-    "externalIP": "20.86.94.179",
+    "externalIP": "20.86.94.183",
     "hostName": "sigrx1nr-0wu.service.signalr.net",
     "publicPort": 443,
     "serverPort": 443,
@@ -91,9 +91,9 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T09:24:59.7269375Z",
+    "createdAt": "2026-07-15T18:45:06.1858851Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T09:24:59.7269375Z"
+    "lastModifiedAt": "2026-07-15T18:45:06.1858851Z"
   }
 }

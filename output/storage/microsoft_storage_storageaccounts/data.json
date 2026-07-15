@@ -11,8 +11,8 @@
   "tags": {},
   "properties": {
     "keyCreationTime": {
-      "key1": "2026-07-15T08:56:30.6297986Z",
-      "key2": "2026-07-15T08:56:30.6297986Z"
+      "key1": "2026-07-15T18:20:09.7982902Z",
+      "key2": "2026-07-15T18:20:09.7982902Z"
     },
     "allowCrossTenantReplication": false,
     "privateEndpointConnections": [],
@@ -31,19 +31,19 @@
         "file": {
           "keyType": "Account",
           "enabled": true,
-          "lastEnabledTime": "2026-07-15T08:56:30.6399543Z"
+          "lastEnabledTime": "2026-07-15T18:20:09.8107382Z"
         },
         "blob": {
           "keyType": "Account",
           "enabled": true,
-          "lastEnabledTime": "2026-07-15T08:56:30.6399543Z"
+          "lastEnabledTime": "2026-07-15T18:20:09.8107382Z"
         }
       },
       "keySource": "Microsoft.Storage"
     },
     "accessTier": "Hot",
     "provisioningState": "Succeeded",
-    "creationTime": "2026-07-15T08:56:30.1570298Z",
+    "creationTime": "2026-07-15T18:20:09.4286924Z",
     "primaryEndpoints": {
       "dfs": "https://sti13arhgp.dfs.core.windows.net/",
       "web": "https://sti13arhgp.z6.web.core.windows.net/",

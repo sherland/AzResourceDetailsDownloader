@@ -1,17 +1,26 @@
 {
   "location": "westeurope",
   "name": "rsvb07c4h-s",
-  "etag": "W/\u0022datetime\u00272026-07-15T09%3A35%3A47.5587791Z\u0027\u0022",
+  "etag": "W/\u0022datetime\u00272026-07-15T18%3A56%3A04.8391669Z\u0027\u0022",
   "properties": {
     "provisioningState": "Succeeded",
     "privateEndpointStateForBackup": "None",
     "privateEndpointStateForSiteRecovery": "None",
+    "backupStorageVersion": "Unassigned",
+    "securitySettings": {
+      "softDeleteSettings": {
+        "softDeleteRetentionPeriodInDays": 14,
+        "softDeleteState": "Enabled",
+        "enhancedSecurityState": "Enabled"
+      },
+      "multiUserAuthorization": "Disabled"
+    },
     "redundancySettings": {
       "standardTierStorageRedundancy": "GeoRedundant",
       "crossRegionRestore": "Disabled"
     },
-    "secureScore": "None",
-    "bcdrSecurityLevel": "Poor",
+    "secureScore": "Adequate",
+    "bcdrSecurityLevel": "Good",
     "publicNetworkAccess": "Enabled",
     "restoreSettings": {
       "crossSubscriptionRestoreSettings": {

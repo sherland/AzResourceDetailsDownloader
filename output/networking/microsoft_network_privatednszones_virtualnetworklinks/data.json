@@ -2,7 +2,7 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75df539555d183d9/providers/Microsoft.Network/privateDnsZones/ardltawm47lo.private.contoso.com/virtualNetworkLinks/linkjqxt8p",
   "name": "linkjqxt8p",
   "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
-  "etag": "\u0022d5039b50-0000-0100-0000-6a57548a0000\u0022",
+  "etag": "\u00228405cfdf-0000-0100-0000-6a57d7d60000\u0022",
   "location": "global",
   "properties": {
     "provisioningState": "Succeeded",

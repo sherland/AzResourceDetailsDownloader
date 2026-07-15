@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.80.0"
+      version = "4.66.0"
     }
   }
 }
@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-652dbcc623f75a16"
   tags = {
     armType    = "Microsoft.Storage/storageAccounts"
-    createdUtc = "2026-07-15T08:56:22.7272908Z"
+    createdUtc = "2026-07-15T18:20:02.1979801Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -39,10 +39,16 @@ resource "azurerm_storage_account" "res-1" {
   min_tls_version                   = "TLS1_2"
   name                              = "sti13arhgp"
   nfsv3_enabled                     = false
+  primary_access_key                = "" # Masked sensitive attribute
+  primary_blob_connection_string    = "" # Masked sensitive attribute
+  primary_connection_string         = "" # Masked sensitive attribute
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
   queue_encryption_key_type         = "Service"
   resource_group_name               = azurerm_resource_group.res-0.name
+  secondary_access_key              = "" # Masked sensitive attribute
+  secondary_blob_connection_string  = "" # Masked sensitive attribute
+  secondary_connection_string       = "" # Masked sensitive attribute
   sftp_enabled                      = false
   shared_access_key_enabled         = true
   table_encryption_key_type         = "Service"

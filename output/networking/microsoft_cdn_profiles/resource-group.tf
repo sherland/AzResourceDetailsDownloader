@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-25ff70224f326e0e"
   tags = {
     armType    = "Microsoft.Cdn/profiles"
-    createdUtc = "2026-07-15T09:18:57.8081699Z"
+    createdUtc = "2026-07-15T18:39:01.6008949Z"
     purpose    = "az-resource-details-downloader"
   }
 }

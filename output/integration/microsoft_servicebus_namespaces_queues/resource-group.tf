@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-d9387f30331fd3f1"
   tags = {
     armType    = "Microsoft.ServiceBus/namespaces/queues"
-    createdUtc = "2026-07-15T09:10:51.6766963Z"
+    createdUtc = "2026-07-15T18:30:37.9906482Z"
     purpose    = "az-resource-details-downloader"
   }
 }

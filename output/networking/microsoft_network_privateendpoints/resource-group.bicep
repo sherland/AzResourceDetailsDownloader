@@ -121,9 +121,9 @@ resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st9crnw0
   }
 }
 
-resource storageAccounts_st9crnw0b9_name_storageAccounts_st9crnw0b9_name_2c7ebe21_2797_4632_9a3c_3764034b7ca9 'Microsoft.Storage/storageAccounts/privateEndpointConnections@2026-04-01' = {
+resource storageAccounts_st9crnw0b9_name_storageAccounts_st9crnw0b9_name_d5fd1759_e3ca_4c6b_9890_18a76a4e423d 'Microsoft.Storage/storageAccounts/privateEndpointConnections@2026-04-01' = {
   parent: storageAccounts_st9crnw0b9_name_resource
-  name: '${storageAccounts_st9crnw0b9_name}.2c7ebe21-2797-4632-9a3c-3764034b7ca9'
+  name: '${storageAccounts_st9crnw0b9_name}.d5fd1759-e3ca-4c6b-9890-18a76a4e423d'
   properties: {
     privateEndpoint: {}
     privateLinkServiceConnectionState: {

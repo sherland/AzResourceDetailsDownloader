@@ -1,14 +1,14 @@
 {
   "properties": {
-    "immutableId": "dce-ca2ae64a89d043eab3b5de7ef37615f9",
+    "immutableId": "dce-8ae9e0dda4d44b0bb45d3213d8761428",
     "configurationAccess": {
-      "endpoint": "https://dcemegmb-xy-4yvt.westeurope-1.handler.control.monitor.azure.com"
+      "endpoint": "https://dcemegmb-xy-gtf3.westeurope-1.handler.control.monitor.azure.com"
     },
     "logsIngestion": {
-      "endpoint": "https://dcemegmb-xy-4yvt.westeurope-1.ingest.monitor.azure.com"
+      "endpoint": "https://dcemegmb-xy-gtf3.westeurope-1.ingest.monitor.azure.com"
     },
     "metricsIngestion": {
-      "endpoint": "https://dcemegmb-xy-4yvt.westeurope-1.metrics.ingest.monitor.azure.com"
+      "endpoint": "https://dcemegmb-xy-gtf3.westeurope-1.metrics.ingest.monitor.azure.com"
     },
     "networkAcls": {
       "publicNetworkAccess": "Enabled"
@@ -19,13 +19,13 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f7a06090e7544e58/providers/Microsoft.Insights/dataCollectionEndpoints/dcemegmb-xy",
   "name": "dcemegmb-xy",
   "type": "Microsoft.Insights/dataCollectionEndpoints",
-  "etag": "\u0022ff000a4e-0000-0d00-0000-6a5753ba0000\u0022",
+  "etag": "\u00223001f390-0000-0d00-0000-6a57d7260000\u0022",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T09:32:40.5898461Z",
+    "createdAt": "2026-07-15T18:53:24.3565465Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T09:32:40.5898461Z"
+    "lastModifiedAt": "2026-07-15T18:53:24.3565465Z"
   }
 }

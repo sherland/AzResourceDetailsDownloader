@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-08aa11195db40102"
   tags = {
     armType    = "Microsoft.KeyVault/vaults"
-    createdUtc = "2026-07-15T09:02:04.4239331Z"
+    createdUtc = "2026-07-15T18:25:55.6829731Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -26,7 +26,7 @@ resource "azurerm_key_vault" "res-1" {
   enabled_for_disk_encryption     = false
   enabled_for_template_deployment = false
   location                        = "westeurope"
-  name                            = "kv8-9k4hh9"
+  name                            = "kvr0fb-t-v"
   public_network_access_enabled   = true
   purge_protection_enabled        = true
   rbac_authorization_enabled      = true
@@ -49,6 +49,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-08aa11195db40102/providers/Microsoft.KeyVault/vaults/kv8-9k4hh9"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-08aa11195db40102/providers/Microsoft.KeyVault/vaults/kvr0fb-t-v"
   to = azurerm_key_vault.res-1
 }

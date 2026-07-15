@@ -1,0 +1,12 @@
+{
+  "name": "sepaibfiwep",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d94a1e445813b7b4/providers/Microsoft.Network/serviceEndpointPolicies/sepaibfiwep",
+  "etag": "W/\u00220893980d-2ce9-45a0-8ffe-42715fb672fc\u0022",
+  "type": "Microsoft.Network/serviceEndpointPolicies",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "resourceGuid": "bbd577f2-a8e3-4325-a707-ef3fb708d89e",
+    "serviceEndpointPolicyDefinitions": []
+  }
+}

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-9453358d1e4e04fe"
   tags = {
     armType    = "Microsoft.Devices/IotHubs"
-    createdUtc = "2026-07-15T09:47:56.8205109Z"
+    createdUtc = "2026-07-15T19:07:49.9216292Z"
     purpose    = "az-resource-details-downloader"
   }
 }

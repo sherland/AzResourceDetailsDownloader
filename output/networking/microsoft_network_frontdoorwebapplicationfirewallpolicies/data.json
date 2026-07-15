@@ -1,0 +1,32 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-376bac41699b1ff1/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/fdwafkpcnurup",
+  "type": "Microsoft.Network/frontdoorwebapplicationfirewallpolicies",
+  "name": "fdwafkpcnurup",
+  "location": "Global",
+  "tags": {},
+  "sku": {
+    "name": "Standard_AzureFrontDoor"
+  },
+  "properties": {
+    "policySettings": {
+      "enabledState": "Enabled",
+      "mode": "Prevention",
+      "redirectUrl": null,
+      "customBlockResponseStatusCode": null,
+      "customBlockResponseBody": null,
+      "requestBodyCheck": "Enabled",
+      "javascriptChallengeExpirationInMinutes": null,
+      "logScrubbing": null
+    },
+    "customRules": {
+      "rules": []
+    },
+    "managedRules": {
+      "managedRuleSets": []
+    },
+    "frontendEndpointLinks": [],
+    "securityPolicyLinks": [],
+    "resourceState": "Enabled",
+    "provisioningState": "Succeeded"
+  }
+}

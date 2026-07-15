@@ -1,12 +1,12 @@
 {
-  "etag": "AAAAAQjA\u002B9Y=",
+  "etag": "AAAAAQjnWQo=",
   "properties": {
     "publisherEmail": "ardl@example.com",
     "publisherName": "ARDL",
     "notificationSenderEmail": "apimgmt-noreply@mail.windowsazure.com",
     "provisioningState": "Succeeded",
     "targetProvisioningState": "",
-    "createdAtUtc": "2026-07-15T09:39:05.3521995Z",
+    "createdAtUtc": "2026-07-15T18:59:20.3804282Z",
     "gatewayUrl": "https://apimqboznhhd.azure-api.net",
     "gatewayRegionalUrl": null,
     "portalUrl": null,
@@ -66,10 +66,10 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T09:39:05.1890917Z",
+    "createdAt": "2026-07-15T18:59:20.3081603Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T09:39:05.1890917Z"
+    "lastModifiedAt": "2026-07-15T18:59:20.3081603Z"
   },
   "location": "West Europe",
   "tags": {},

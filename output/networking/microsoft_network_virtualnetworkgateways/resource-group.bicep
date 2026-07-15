@@ -15,7 +15,7 @@ resource publicIPAddresses_pipn1pda_f4_name_resource 'Microsoft.Network/publicIP
     '3'
   ]
   properties: {
-    ipAddress: '20.101.8.56'
+    ipAddress: '20.8.26.208'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

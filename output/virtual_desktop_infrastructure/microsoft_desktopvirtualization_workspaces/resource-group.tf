@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-19d479b8c5681686"
   tags = {
     armType    = "Microsoft.DesktopVirtualization/workspaces"
-    createdUtc = "2026-07-15T09:25:29.0137933Z"
+    createdUtc = "2026-07-15T18:46:19.9881391Z"
     purpose    = "az-resource-details-downloader"
   }
 }

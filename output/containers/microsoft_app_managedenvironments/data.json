@@ -6,18 +6,18 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T09:22:00.335169",
+    "createdAt": "2026-07-15T18:41:59.1730812",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T09:22:00.335169"
+    "lastModifiedAt": "2026-07-15T18:41:59.1730812"
   },
   "properties": {
     "provisioningState": "Succeeded",
     "daprAIInstrumentationKey": null,
     "daprAIConnectionString": null,
     "vnetConfiguration": null,
-    "defaultDomain": "graysky-5a21ae9f.francecentral.azurecontainerapps.io",
-    "staticIp": "51.11.252.204",
+    "defaultDomain": "salmonstone-29e18e0c.francecentral.azurecontainerapps.io",
+    "staticIp": "20.19.147.228",
     "appLogsConfiguration": {
       "destination": null,
       "logAnalyticsConfiguration": null

@@ -1,0 +1,31 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7213c5cee239bcf7/providers/Microsoft.ServiceBus/namespaces/sbalnbuxtr/topics/topicv0fcfy",
+  "name": "topicv0fcfy",
+  "type": "Microsoft.ServiceBus/namespaces/topics",
+  "location": "westeurope",
+  "properties": {
+    "maxMessageSizeInKilobytes": 256,
+    "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+    "maxSizeInMegabytes": 1024,
+    "requiresDuplicateDetection": false,
+    "duplicateDetectionHistoryTimeWindow": "PT10M",
+    "enableBatchedOperations": true,
+    "sizeInBytes": 0,
+    "status": "Active",
+    "supportOrdering": true,
+    "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+    "enablePartitioning": false,
+    "enableExpress": false,
+    "createdAt": "2026-07-15T19:11:10.557Z",
+    "updatedAt": "2026-07-15T19:11:10.607Z",
+    "accessedAt": "0001-01-01T00:00:00Z",
+    "subscriptionCount": 0,
+    "countDetails": {
+      "activeMessageCount": 0,
+      "deadLetterMessageCount": 0,
+      "scheduledMessageCount": 0,
+      "transferMessageCount": 0,
+      "transferDeadLetterMessageCount": 0
+    }
+  }
+}

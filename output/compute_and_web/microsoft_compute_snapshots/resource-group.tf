@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-e1235e71e818a48b"
   tags = {
     armType    = "Microsoft.Compute/snapshots"
-    createdUtc = "2026-07-15T09:12:46.5538137Z"
+    createdUtc = "2026-07-15T18:33:09.1430879Z"
     purpose    = "az-resource-details-downloader"
   }
 }

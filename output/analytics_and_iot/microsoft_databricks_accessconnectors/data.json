@@ -1,0 +1,22 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8cbf4e82338a582d/providers/Microsoft.Databricks/accessConnectors/dbacarwx6-ka",
+  "name": "dbacarwx6-ka",
+  "type": "Microsoft.Databricks/accessConnectors",
+  "location": "westeurope",
+  "identity": {
+    "principalId": "d34f00b9-568f-4ab3-bd7e-538d9c9106b7",
+    "tenantId": "11111111-1111-1111-1111-111111111111",
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T19:23:46.2795732\u002B00:00",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T19:23:46.2795732\u002B00:00"
+  }
+}

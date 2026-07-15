@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-8ca095e8942b47ed"
   tags = {
     armType    = "Microsoft.Insights/webtests"
-    createdUtc = "2026-07-15T11:14:48.9982240Z"
+    createdUtc = "2026-07-15T18:54:16.0265479Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -36,7 +36,7 @@ resource "azurerm_application_insights" "res-1" {
   retention_in_days                     = 90
   sampling_percentage                   = 0
   tags                                  = {}
-  workspace_id                          = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ai_aic-x782c5_af62d100-a4ab-43a4-b128-0173465fbe0a_managed/providers/Microsoft.OperationalInsights/workspaces/managed-aic-x782c5-ws"
+  workspace_id                          = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ai_aic-x782c5_0bc99930-86ff-4ca5-962a-4150cfcf5fba_managed/providers/Microsoft.OperationalInsights/workspaces/managed-aic-x782c5-ws"
 }
 resource "azurerm_application_insights_web_test" "res-2" {
   application_insights_id = azurerm_application_insights.res-1.id

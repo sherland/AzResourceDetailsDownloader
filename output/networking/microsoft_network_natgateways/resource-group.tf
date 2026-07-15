@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-ac2c66a7d1df5255"
   tags = {
     armType    = "Microsoft.Network/natGateways"
-    createdUtc = "2026-07-15T09:17:28.1552957Z"
+    createdUtc = "2026-07-15T18:37:34.1400084Z"
     purpose    = "az-resource-details-downloader"
   }
 }

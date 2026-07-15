@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-45b6f9f7d6eb1a2f"
   tags = {
     armType    = "Microsoft.EventGrid/systemTopics"
-    createdUtc = "2026-07-15T09:30:42.6528009Z"
+    createdUtc = "2026-07-15T18:51:03.3563831Z"
     purpose    = "az-resource-details-downloader"
   }
 }

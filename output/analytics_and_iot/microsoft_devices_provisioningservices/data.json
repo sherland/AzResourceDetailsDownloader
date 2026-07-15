@@ -1,0 +1,24 @@
+{
+  "etag": "AAAAAC4S2Bk=",
+  "name": "dpsu79-smow",
+  "location": "westeurope",
+  "properties": {
+    "state": "Active",
+    "provisioningState": "Succeeded",
+    "iotHubs": [],
+    "allocationPolicy": "Hashed",
+    "serviceOperationsHostName": "dpsu79-smow.azure-devices-provisioning.net",
+    "deviceProvisioningHostName": "global.azure-devices-provisioning.net",
+    "idScope": "0ne0124C369"
+  },
+  "resourcegroup": "rg-ardl-ea290fed5655d3db",
+  "type": "Microsoft.Devices/provisioningServices",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ea290fed5655d3db/providers/Microsoft.Devices/provisioningServices/dpsu79-smow",
+  "subscriptionid": "00000000-0000-0000-0000-000000000000",
+  "tags": {},
+  "sku": {
+    "name": "S1",
+    "tier": "Standard",
+    "capacity": 1
+  }
+}

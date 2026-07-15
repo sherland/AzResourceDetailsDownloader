@@ -13,6 +13,6 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b6cb64ed3b9bae27/providers/Microsoft.Network/firewallPolicies/afwpgkb-kyp1",
   "name": "afwpgkb-kyp1",
   "type": "Microsoft.Network/FirewallPolicies",
-  "etag": "2d1a0906-7bc9-4951-a7b0-6be1ca3cc96d",
+  "etag": "0cf16c8b-7beb-4220-924a-25e1d3c9f82b",
   "location": "westeurope"
 }

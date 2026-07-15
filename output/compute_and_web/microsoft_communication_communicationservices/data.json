@@ -6,15 +6,15 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T09:29:35.8411062Z",
+    "createdAt": "2026-07-15T18:50:01.0898124Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T09:29:35.8411062Z"
+    "lastModifiedAt": "2026-07-15T18:50:01.0898124Z"
   },
   "properties": {
     "provisioningState": "Succeeded",
     "hostName": "acso-awg-qq.europe.communication.azure.com",
-    "immutableResourceId": "af4ef853-8d7e-46b3-839d-94f42e02da92",
+    "immutableResourceId": "80f76976-9710-48ea-a846-c55f6cda0bd3",
     "dataLocation": "Europe"
   }
 }

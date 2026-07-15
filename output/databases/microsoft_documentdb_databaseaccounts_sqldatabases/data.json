@@ -1,0 +1,16 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmosn-fqah24/sqlDatabases/sqldb",
+  "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+  "name": "sqldb",
+  "properties": {
+    "resource": {
+      "id": "sqldb",
+      "_rid": "m6h5AA==",
+      "_self": "dbs/m6h5AA==/",
+      "_etag": "\u002200005101-0000-0d00-0000-6a57dc050000\u0022",
+      "_colls": "colls/",
+      "_users": "users/",
+      "_ts": 1784142853
+    }
+  }
+}

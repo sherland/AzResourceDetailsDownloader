@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-e7dcd4c69ba978b0"
   tags = {
     armType    = "Microsoft.Cache/redis"
-    createdUtc = "2026-07-15T11:11:54.7221922Z"
+    createdUtc = "2026-07-15T18:23:03.9649979Z"
     purpose    = "az-resource-details-downloader"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "vwanln-0o-eh",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7a9beee1f910a260/providers/Microsoft.Network/virtualWans/vwanln-0o-eh",
-  "etag": "W/\u00220c760c1e-b041-43f2-b506-d16c613acba3\u0022",
+  "etag": "W/\u0022b0915f9b-a264-418d-b813-e3d1af4f9b29\u0022",
   "type": "Microsoft.Network/virtualWans",
   "location": "westeurope",
   "properties": {

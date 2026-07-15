@@ -11,7 +11,7 @@
   "properties": {
     "originResponseTimeoutSeconds": 30,
     "logScrubbing": null,
-    "frontDoorId": "37d0fecf-f364-4207-8489-15c0410795ac",
+    "frontDoorId": "09f0ef42-c3eb-4470-9b43-03ea5093272b",
     "extendedProperties": {},
     "resourceState": "Active",
     "provisioningState": "Succeeded"

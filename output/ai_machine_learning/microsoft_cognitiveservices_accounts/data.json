@@ -2,7 +2,7 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b1d8ed6affe79ba7/providers/Microsoft.CognitiveServices/accounts/cogojuhykh8",
   "name": "cogojuhykh8",
   "type": "Microsoft.CognitiveServices/accounts",
-  "etag": "\u00221600dd30-0000-0d00-0000-6a5753400000\u0022",
+  "etag": "\u00221600ed6d-0000-0d00-0000-6a57d6920000\u0022",
   "location": "westeurope",
   "sku": {
     "name": "S0"
@@ -10,8 +10,8 @@
   "kind": "CognitiveServices",
   "properties": {
     "endpoint": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
-    "internalId": "d56d1d31add8494ab4dc8a43ae819ee2",
-    "dateCreated": "2026-07-15T09:30:37.9984145Z",
+    "internalId": "ad56cba0678243278f1f87713b93be72",
+    "dateCreated": "2026-07-15T18:50:57.2062066Z",
     "apiProperties": {},
     "callRateLimit": {
       "rules": [
@@ -1461,9 +1461,9 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T09:30:37.4570872Z",
+    "createdAt": "2026-07-15T18:50:56.0944612Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T09:30:37.4570872Z"
+    "lastModifiedAt": "2026-07-15T18:50:56.0944612Z"
   }
 }

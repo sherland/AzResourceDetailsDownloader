@@ -1,0 +1,67 @@
+{
+  "sku": {
+    "name": "Free_F1",
+    "tier": "Free",
+    "size": "F1",
+    "capacity": 1
+  },
+  "properties": {
+    "provisioningState": "Succeeded",
+    "externalIP": "20.86.94.51",
+    "hostName": "wpswbqd8-py.webpubsub.azure.com",
+    "publicPort": 443,
+    "serverPort": 443,
+    "version": "1.0",
+    "privateEndpointConnections": [],
+    "sharedPrivateLinkResources": [],
+    "tls": {
+      "clientCertEnabled": false
+    },
+    "hostNamePrefix": "wpswbqd8-py",
+    "liveTraceConfiguration": null,
+    "resourceLogConfiguration": null,
+    "networkACLs": {
+      "defaultAction": "Deny",
+      "publicNetwork": {
+        "allow": [
+          "ServerConnection",
+          "ClientConnection",
+          "RESTAPI",
+          "Trace"
+        ],
+        "deny": null
+      },
+      "privateEndpoints": [],
+      "ipRules": [
+        {
+          "value": "0.0.0.0/0",
+          "action": "Allow"
+        },
+        {
+          "value": "::/0",
+          "action": "Allow"
+        }
+      ]
+    },
+    "publicNetworkAccess": "Enabled",
+    "disableLocalAuth": false,
+    "disableAadAuth": false,
+    "regionEndpointEnabled": "Enabled",
+    "resourceStopped": "false",
+    "socketIO": null
+  },
+  "kind": "WebPubSub",
+  "location": "westeurope",
+  "tags": null,
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-91e7d15b849117c3/providers/Microsoft.SignalRService/WebPubSub/wpswbqd8-py",
+  "name": "wpswbqd8-py",
+  "type": "Microsoft.SignalRService/WebPubSub",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T19:16:48.6248703Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T19:16:48.6248703Z"
+  }
+}

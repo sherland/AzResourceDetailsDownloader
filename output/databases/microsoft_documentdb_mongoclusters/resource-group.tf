@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-74a9554cec74d742"
   tags = {
     armType    = "Microsoft.DocumentDB/mongoClusters"
-    createdUtc = "2026-07-15T11:15:58.9325524Z"
+    createdUtc = "2026-07-15T18:56:36.9508228Z"
     purpose    = "az-resource-details-downloader"
   }
 }

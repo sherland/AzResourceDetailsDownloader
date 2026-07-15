@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-75df539555d183d9"
   tags = {
     armType    = "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
-    createdUtc = "2026-07-15T09:35:25.7885664Z"
+    createdUtc = "2026-07-15T18:55:37.6324556Z"
     purpose    = "az-resource-details-downloader"
   }
 }

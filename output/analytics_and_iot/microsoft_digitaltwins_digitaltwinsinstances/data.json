@@ -1,0 +1,24 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c8862d85f1cc8103/providers/Microsoft.DigitalTwins/digitalTwinsInstances/dt4wdx8el0",
+  "name": "dt4wdx8el0",
+  "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "createdTime": "2026-07-15T19:17:58.6838115Z",
+    "lastUpdatedTime": "2026-07-15T19:18:40.3655629Z",
+    "hostName": "dt4wdx8el0.api.weu.digitaltwins.azure.net",
+    "privateEndpointConnections": [],
+    "publicNetworkAccess": "Enabled"
+  },
+  "location": "westeurope",
+  "identity": null,
+  "tags": null,
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T19:17:58.6345942Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T19:17:58.6345942Z"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "ipConfigurations": [
+      {
+        "subnet": {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c4b711f9f1eb7a59/providers/Microsoft.Network/virtualNetworks/vnet3f-jfiwn/subnets/inbound"
+        },
+        "privateIpAddress": "10.62.0.4",
+        "privateIpAllocationMethod": "Dynamic"
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "resourceGuid": "8e621615-4988-4cdc-b15f-88d7167a41db"
+  },
+  "etag": "\u0022db00dad5-0000-0d00-0000-6a57df990000\u0022",
+  "location": "westeurope",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c4b711f9f1eb7a59/providers/Microsoft.Network/dnsResolvers/dnsrb-031p-1/inboundEndpoints/inbound61hwdf",
+  "name": "inbound61hwdf",
+  "type": "Microsoft.Network/dnsResolvers/inboundEndpoints",
+  "systemData": {
+    "createdAt": "2026-07-15T19:27:39.3799155Z",
+    "createdByType": "User",
+    "lastModifiedAt": "2026-07-15T19:27:39.3799155Z",
+    "lastModifiedByType": "User"
+  }
+}

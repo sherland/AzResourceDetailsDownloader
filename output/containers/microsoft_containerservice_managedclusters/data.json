@@ -11,8 +11,8 @@
     "kubernetesVersion": "1.35",
     "currentKubernetesVersion": "1.35.5",
     "dnsPrefix": "ardlaksz2p-af",
-    "fqdn": "ardlaksz2p-af-yd0dgns0.hcp.westeurope.azmk8s.io",
-    "azurePortalFQDN": "ardlaksz2p-af-yd0dgns0.portal.hcp.westeurope.azmk8s.io",
+    "fqdn": "ardlaksz2p-af-zco4avvv.hcp.westeurope.azmk8s.io",
+    "azurePortalFQDN": "ardlaksz2p-af-zco4avvv.portal.hcp.westeurope.azmk8s.io",
     "agentPoolProfiles": [
       {
         "name": "agentpool",
@@ -59,7 +59,7 @@
         },
         "effectiveOutboundIPs": [
           {
-            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope/providers/Microsoft.Network/publicIPAddresses/2d567314-f7f6-4516-b4f2-14021709221f"
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope/providers/Microsoft.Network/publicIPAddresses/00259adf-ff3c-4c83-90eb-07ae954f83d3"
           }
         ],
         "backendPoolType": "nodeIPConfiguration"
@@ -82,8 +82,8 @@
     "identityProfile": {
       "kubeletidentity": {
         "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/akshrjtt6wn-agentpool",
-        "clientId": "c74680b0-9df6-422c-929f-9ab5dc0ff1e7",
-        "objectId": "731dd9af-fb0b-49aa-b000-f893e368d5de"
+        "clientId": "2268de74-cc0f-44b7-a44b-65633282a318",
+        "objectId": "2505dd1a-06b9-4059-8560-e83102fc6442"
       }
     },
     "autoUpgradeProfile": {
@@ -103,10 +103,10 @@
     },
     "oidcIssuerProfile": {
       "enabled": true,
-      "issuerURL": "https://westeurope.oic.prod-aks.azure.com/11111111-1111-1111-1111-111111111111/7f226497-160e-4ac6-841c-83eb68a691bb/"
+      "issuerURL": "https://westeurope.oic.prod-aks.azure.com/11111111-1111-1111-1111-111111111111/9e6c71d8-f91e-433a-9d72-cb63d95884fd/"
     },
     "workloadAutoScalerProfile": {},
-    "resourceUID": "6a57550486985b0001b47d03",
+    "resourceUID": "6a57d85108ee4700012669de",
     "metricsProfile": {
       "costAnalysis": {
         "enabled": false
@@ -115,7 +115,7 @@
   },
   "identity": {
     "type": "SystemAssigned",
-    "principalId": "9ff1aa1a-08e4-4746-8082-b330949d49fd",
+    "principalId": "12224e9d-b0b3-457d-8b8e-4495d35864a0",
     "tenantId": "11111111-1111-1111-1111-111111111111"
   },
   "sku": {

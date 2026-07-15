@@ -4,7 +4,7 @@
     "endpoint": "https://egt1y0so60i.westeurope-1.eventgrid.azure.net/api/events",
     "minimumTlsVersionAllowed": "1.0",
     "inputSchema": "EventGridSchema",
-    "metricResourceId": "db100e59-dc75-4a01-a1c4-71e750c97919",
+    "metricResourceId": "75746600-f420-4f69-9a85-4d6d2ad28a7a",
     "publicNetworkAccess": "Enabled",
     "dataResidencyBoundary": "WithinGeopair"
   },

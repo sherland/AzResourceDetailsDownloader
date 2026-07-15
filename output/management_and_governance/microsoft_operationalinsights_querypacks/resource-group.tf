@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-1fe5141e0d0dffeb"
   tags = {
     armType    = "Microsoft.OperationalInsights/querypacks"
-    createdUtc = "2026-07-15T09:18:39.8537793Z"
+    createdUtc = "2026-07-15T18:38:44.2143921Z"
     purpose    = "az-resource-details-downloader"
   }
 }

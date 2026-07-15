@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-b7061c5cd70d41ff"
   tags = {
     armType    = "Microsoft.Sql/servers/databases"
-    createdUtc = "2026-07-15T08:58:51.3440192Z"
+    createdUtc = "2026-07-15T18:22:31.8980259Z"
     purpose    = "az-resource-details-downloader"
   }
 }

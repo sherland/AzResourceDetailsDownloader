@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-c6c6c5710a932f1f"
   tags = {
     armType    = "Microsoft.DesktopVirtualization/hostPools"
-    createdUtc = "2026-07-15T09:26:03.8352586Z"
+    createdUtc = "2026-07-15T18:46:36.1364571Z"
     purpose    = "az-resource-details-downloader"
   }
 }

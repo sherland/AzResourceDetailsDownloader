@@ -1,0 +1,19 @@
+{
+  "name": "pippfxwtr6ge",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6dd711334648bb28/providers/Microsoft.Network/publicIPPrefixes/pippfxwtr6ge",
+  "etag": "W/\u00222f03cbdc-d940-4a93-a664-a4cf8042ed60\u0022",
+  "type": "Microsoft.Network/publicIPPrefixes",
+  "location": "westeurope",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "resourceGuid": "301aa91a-e9ca-4f3c-83c7-91b1deb66eb8",
+    "prefixLength": 28,
+    "publicIPAddressVersion": "IPv4",
+    "ipPrefix": "172.205.189.192/28",
+    "ipTags": []
+  },
+  "sku": {
+    "name": "Standard",
+    "tier": "Regional"
+  }
+}

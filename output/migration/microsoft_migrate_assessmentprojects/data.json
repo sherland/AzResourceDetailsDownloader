@@ -1,0 +1,20 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-76e93665472ab9d8/providers/Microsoft.Migrate/assessmentProjects/migprojjd7-v5em",
+  "name": "migprojjd7-v5em",
+  "type": "Microsoft.Migrate/assessmentProjects",
+  "etag": "\u00227002d54e-0000-0d00-0000-6a57de220000\u0022",
+  "location": "westeurope",
+  "properties": {
+    "privateEndpointConnections": [],
+    "publicNetworkAccess": "Enabled",
+    "customerStorageAccountArmId": null,
+    "createdTimestamp": "2026-07-15T19:23:14.4691417Z",
+    "updatedTimestamp": "2026-07-15T19:23:14.4691417Z",
+    "serviceEndpoint": "https://asmsrv.we.prod.migration.windowsazure.com/",
+    "assessmentSolutionId": null,
+    "projectStatus": "Active",
+    "customerWorkspaceId": null,
+    "customerWorkspaceLocation": null,
+    "provisioningState": "Succeeded"
+  }
+}

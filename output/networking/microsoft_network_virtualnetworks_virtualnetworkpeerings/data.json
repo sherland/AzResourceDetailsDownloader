@@ -1,0 +1,32 @@
+{
+  "name": "peer-to-b",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-958b9ff2a7840139/providers/Microsoft.Network/virtualNetworks/vnet5nvk-1-n/virtualNetworkPeerings/peer-to-b",
+  "etag": "W/\u00225de0d04d-3b9f-4c37-888c-f5ccc499b9a6\u0022",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "resourceGuid": "907b9370-86e0-04b1-0578-3b8685e6366c",
+    "peeringState": "Initiated",
+    "peeringSyncLevel": "RemoteNotInSync",
+    "remoteVirtualNetwork": {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-958b9ff2a7840139/providers/Microsoft.Network/virtualNetworks/vneteeas9wos"
+    },
+    "allowVirtualNetworkAccess": true,
+    "allowForwardedTraffic": false,
+    "allowGatewayTransit": false,
+    "useRemoteGateways": false,
+    "doNotVerifyRemoteGateways": false,
+    "peerCompleteVnets": true,
+    "remoteAddressSpace": {
+      "addressPrefixes": [
+        "10.91.0.0/16"
+      ]
+    },
+    "remoteVirtualNetworkAddressSpace": {
+      "addressPrefixes": [
+        "10.91.0.0/16"
+      ]
+    },
+    "routeServiceVips": {}
+  },
+  "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+}

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-81fcf0828790336e"
   tags = {
     armType    = "Microsoft.Network/publicIPAddresses"
-    createdUtc = "2026-07-15T08:57:43.6866246Z"
+    createdUtc = "2026-07-15T18:21:24.2373109Z"
     purpose    = "az-resource-details-downloader"
   }
 }

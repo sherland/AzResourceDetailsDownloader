@@ -11,7 +11,7 @@
     "creationData": {
       "createOption": "Copy",
       "sourceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/disks/diskgxpe04sm",
-      "sourceUniqueId": "27fd45e4-30d1-49e0-ad50-d3392ed214bb"
+      "sourceUniqueId": "82da4421-611f-45ed-a02c-31299884ba1e"
     },
     "diskSizeGB": 4,
     "encryption": {
@@ -20,10 +20,10 @@
     "incremental": false,
     "networkAccessPolicy": "AllowAll",
     "publicNetworkAccess": "Enabled",
-    "timeCreated": "2026-07-15T09:12:53.6474578\u002B00:00",
+    "timeCreated": "2026-07-15T18:33:16.8526486\u002B00:00",
     "provisioningState": "Succeeded",
     "diskState": "Unattached",
     "diskSizeBytes": 4294967296,
-    "uniqueId": "a6ebe44d-7879-446f-8bf6-517eb14eb491"
+    "uniqueId": "9af21714-ca82-4210-b46f-37b694a2b8a4"
   }
 }

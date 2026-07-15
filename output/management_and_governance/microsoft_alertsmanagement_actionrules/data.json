@@ -1,0 +1,25 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a24d83ecaa8ef94f/providers/Microsoft.AlertsManagement/actionRules/apryflw03-r",
+  "name": "apryflw03-r",
+  "type": "Microsoft.AlertsManagement/actionRules",
+  "location": "global",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T19:23:28.6097782Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T19:23:28.6097782Z"
+  },
+  "properties": {
+    "scopes": [
+      "/subscriptions/00000000-0000-0000-0000-000000000000"
+    ],
+    "enabled": true,
+    "actions": [
+      {
+        "actionType": "RemoveAllActionGroups"
+      }
+    ]
+  }
+}

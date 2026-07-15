@@ -1,0 +1,29 @@
+{
+  "properties": {
+    "provisioningState": "Succeeded",
+    "topicsConfiguration": {
+      "hostname": "egns153-8-ez.westeurope-1.eventgrid.azure.net"
+    },
+    "isZoneRedundant": true,
+    "publicNetworkAccess": "Enabled",
+    "inboundIpRules": null,
+    "minimumTlsVersionAllowed": "1.2"
+  },
+  "sku": {
+    "name": "Standard",
+    "capacity": 1
+  },
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T19:19:12.8968472Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T19:19:12.8968472Z"
+  },
+  "location": "westeurope",
+  "tags": null,
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-13ff285457fead7a/providers/Microsoft.EventGrid/namespaces/egns153-8-ez",
+  "name": "egns153-8-ez",
+  "type": "Microsoft.EventGrid/namespaces"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f7e533e01923b0a9/providers/Microsoft.MachineLearningServices/workspaces/mlwb-8bzexm",
+  "name": "mlwb-8bzexm",
+  "type": "Microsoft.MachineLearningServices/workspaces",
+  "location": "westeurope",
+  "tags": {},
+  "etag": null,
+  "properties": {
+    "friendlyName": "ARDL ML workspace",
+    "description": "",
+    "storageAccount": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f7e533e01923b0a9/providers/Microsoft.Storage/storageAccounts/st8g41vyg3",
+    "keyVault": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f7e533e01923b0a9/providers/Microsoft.Keyvault/vaults/kvfx4-8l4f",
+    "applicationInsights": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f7e533e01923b0a9/providers/Microsoft.insights/components/aixa1t-bdf",
+    "hbiWorkspace": false,
+    "tenantId": "11111111-1111-1111-1111-111111111111",
+    "imageBuildCompute": null,
+    "provisioningState": "Succeeded",
+    "allowRoleAssignmentOnRG": true,
+    "v1LegacyMode": false,
+    "softDeleteEnabled": false,
+    "creationTime": "2026-07-15T19:19:52.4862271Z",
+    "notebookInfo": {
+      "resourceId": "a90024a995a942eb98a9d1c0c5ca898a",
+      "fqdn": "ml-mlwb-8bzexm-westeurope-d8295493-1c28-4ac1-857a-47fc74059f14.westeurope.notebooks.azure.net",
+      "isPrivateLinkEnabled": false,
+      "notebookPreparationError": null
+    },
+    "storageHnsEnabled": false,
+    "workspaceId": "d8295493-1c28-4ac1-857a-47fc74059f14",
+    "linkedModelInventoryArmId": null,
+    "privateLinkCount": 0,
+    "publicNetworkAccess": "Enabled",
+    "ipAllowlist": [],
+    "networkAcls": {
+      "defaultAction": "Allow",
+      "bypass": "",
+      "ipRules": [],
+      "resourceAccessRules": []
+    },
+    "discoveryUrl": "https://westeurope.api.azureml.ms/discovery",
+    "mlFlowTrackingUri": "azureml://westeurope.api.azureml.ms/mlflow/v1.0/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f7e533e01923b0a9/providers/Microsoft.MachineLearningServices/workspaces/mlwb-8bzexm",
+    "serverlessComputeSettings": null,
+    "EnableSoftwareBillOfMaterials": false,
+    "sdkTelemetryAppInsightsKey": "9ac578de-874f-4fea-85bc-7e4cefd0d47f",
+    "enableDataIsolation": false
+  },
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": "54b76802-a889-42d2-8e84-e1fde6657291",
+    "tenantId": "11111111-1111-1111-1111-111111111111"
+  },
+  "kind": "Default",
+  "sku": {
+    "name": "Basic",
+    "tier": "Basic"
+  },
+  "systemData": {
+    "createdAt": "2026-07-15T19:19:52.4862271Z",
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "lastModifiedAt": "2026-07-15T19:19:52.4862271Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User"
+  }
+}

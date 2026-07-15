@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "storageSyncServiceStatus": 0,
+    "incomingTrafficPolicy": "AllowAllTraffic",
+    "privateEndpointConnections": [],
+    "provisioningState": "Succeeded",
+    "lastWorkflowId": "storageSyncServices/sssir56p9bl/workflows/164d98af-f896-4f6d-9b1a-eaeb68f056b2",
+    "lastOperationName": "ICreateStorageSyncServiceWorkflow2"
+  },
+  "location": "westeurope",
+  "tags": {},
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c264a49334b4408f/providers/Microsoft.StorageSync/storageSyncServices/sssir56p9bl",
+  "name": "sssir56p9bl",
+  "type": "Microsoft.StorageSync/storageSyncServices",
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-07-15T19:22:29.5708171Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-07-15T19:22:29.5708171Z"
+  }
+}

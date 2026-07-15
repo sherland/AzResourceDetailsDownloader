@@ -1,11 +1,11 @@
 {
   "properties": {
     "provisioningState": "Succeeded",
-    "createdTime": "2026-07-15T09:37:04.3811216Z",
-    "changedTime": "2026-07-15T09:37:04.3701903Z",
+    "createdTime": "2026-07-15T18:57:19.5725788Z",
+    "changedTime": "2026-07-15T18:57:19.5651623Z",
     "state": "Enabled",
-    "version": "08584174986611967718",
-    "accessEndpoint": "https://prod-253.westeurope.logic.azure.com:443/workflows/e94b0483b37e45bdb9d8e54e4b509983",
+    "version": "08584174650459531813",
+    "accessEndpoint": "https://prod-195.westeurope.logic.azure.com:443/workflows/5bbdecd7786848f58f05be25cdd849bf",
     "definition": {
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",

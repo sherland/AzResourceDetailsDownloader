@@ -1,92 +1,20 @@
 {
-  "generatedUtc": "2026-07-15T11:37:05.4788846Z",
-  "total": 14,
-  "succeeded": 14,
-  "failed": 0,
+  "generatedUtc": "2026-07-15T20:10:51.2198328Z",
+  "total": 2,
+  "succeeded": 0,
+  "failed": 2,
   "results": [
     {
-      "armType": "Microsoft.EventGrid/topics",
-      "success": true,
-      "elapsedSeconds": 64.3,
-      "error": null
+      "armType": "Microsoft.Cache/redisEnterprise/databases",
+      "success": false,
+      "elapsedSeconds": 8.2,
+      "error": "ARM PUT \u0027/subscriptions/e78cb18c-eccd-4470-9986-29c3a1a58654/resourceGroups/rg-ardl-c685a180ccfd45e7/providers/Microsoft.Cache/redisEnterprise/redisent61yjsz2q\u0027 (api 2025-04-01) failed with 400: {\r\n  \u0022error\u0022: {\r\n    \u0022code\u0022: \u0022BadRequest\u0022,\r\n    \u0022message\u0022: \u0022The name redisent61yjsz2q is not available. CorrelationID=06bd933e-9fa0-45c5-94a2-694e7a0aa38d RequestID=92a3b2e7-4402-4c00-8d9a-f76bac052ba7 Timestamp=07/15/2026 20:10:49 (UTC)\u0022,\r\n    \u0022target\u0022: null\r\n  }\r\n}"
     },
     {
-      "armType": "Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies",
-      "success": true,
-      "elapsedSeconds": 69.4,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Monitor/accounts",
-      "success": true,
-      "elapsedSeconds": 78.3,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.ResourceGraph/queries",
-      "success": true,
-      "elapsedSeconds": 36.5,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Communication/emailServices",
-      "success": true,
-      "elapsedSeconds": 52.1,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Insights/metricAlerts",
-      "success": true,
-      "elapsedSeconds": 80.4,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Insights/activityLogAlerts",
-      "success": true,
-      "elapsedSeconds": 51.3,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Insights/webtests",
-      "success": true,
-      "elapsedSeconds": 66.5,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Insights/scheduledQueryRules",
-      "success": true,
-      "elapsedSeconds": 141.9,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Insights/workbooks",
-      "success": true,
-      "elapsedSeconds": 100.9,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Portal/dashboards",
-      "success": true,
-      "elapsedSeconds": 33.3,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.OperationsManagement/solutions",
-      "success": true,
-      "elapsedSeconds": 86.3,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.DocumentDB/mongoClusters",
-      "success": true,
-      "elapsedSeconds": 556.3,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Cache/redis",
-      "success": true,
-      "elapsedSeconds": 1508.6,
-      "error": null
+      "armType": "Microsoft.Cache/redisEnterprise",
+      "success": false,
+      "elapsedSeconds": 9.1,
+      "error": "ARM PUT \u0027/subscriptions/e78cb18c-eccd-4470-9986-29c3a1a58654/resourceGroups/rg-ardl-57ac2ab1b59d4f66/providers/Microsoft.Cache/redisEnterprise/redisentmvtyn0j0\u0027 (api 2025-04-01) failed with 400: {\r\n  \u0022error\u0022: {\r\n    \u0022code\u0022: \u0022BadRequest\u0022,\r\n    \u0022message\u0022: \u0022The name redisentmvtyn0j0 is not available. CorrelationID=ff78352f-3363-49cf-bbee-541df76e8069 RequestID=88a2865f-6f43-4dfd-be75-4d77a429f667 Timestamp=07/15/2026 20:10:50 (UTC)\u0022,\r\n    \u0022target\u0022: null\r\n  }\r\n}"
     }
   ]
 }

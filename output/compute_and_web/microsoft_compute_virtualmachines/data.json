@@ -5,7 +5,7 @@
   "location": "westeurope",
   "identity": {
     "type": "SystemAssigned",
-    "principalId": "983bbb30-49e2-47a4-a659-9302e5f4c0fa",
+    "principalId": "0344c2ef-fb63-4583-98d1-403ec92f4225",
     "tenantId": "11111111-1111-1111-1111-111111111111"
   },
   "properties": {
@@ -13,7 +13,7 @@
       "vmSize": "Standard_D2s_v5"
     },
     "provisioningState": "Succeeded",
-    "vmId": "eedf1bf9-c918-4e80-8591-1ab4a260d1e4",
+    "vmId": "f2226b25-cd32-4145-8fa9-e37850a943a1",
     "storageProfile": {
       "imageReference": {
         "publisher": "Canonical",
@@ -24,12 +24,12 @@
       },
       "osDisk": {
         "osType": "Linux",
-        "name": "swazfidx9hmdq01_disk1_4696e8adaaf540ff9b7961e44f327d8d",
+        "name": "swazfidx9hmdq01_OsDisk_1_5f07031c175e4af88811964818ec7a29",
         "createOption": "FromImage",
         "caching": "ReadWrite",
         "managedDisk": {
           "storageAccountType": "StandardSSD_LRS",
-          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Compute/disks/swazfidx9hmdq01_disk1_4696e8adaaf540ff9b7961e44f327d8d"
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Compute/disks/swazfidx9hmdq01_OsDisk_1_5f07031c175e4af88811964818ec7a29"
         },
         "deleteOption": "Detach",
         "diskSizeGB": 30
@@ -58,7 +58,7 @@
         }
       ]
     },
-    "timeCreated": "2026-07-15T09:12:04.7760461\u002B00:00"
+    "timeCreated": "2026-07-15T18:31:45.8062321\u002B00:00"
   },
   "etag": "\u00222\u0022"
 }

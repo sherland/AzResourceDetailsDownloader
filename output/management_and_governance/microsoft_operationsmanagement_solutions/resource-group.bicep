@@ -955,15 +955,15 @@ resource workspaces_lawnh_iule2_name_ACSCallAutomationMediaSummary 'Microsoft.Op
   }
 }
 
-resource workspaces_lawnh_iule2_name_AcsCallAutomationStreamingUsage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+resource workspaces_lawnh_iule2_name_ACSCallAutomationStreamingUsage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   parent: workspaces_lawnh_iule2_name_resource
-  name: 'AcsCallAutomationStreamingUsage'
+  name: 'ACSCallAutomationStreamingUsage'
   properties: {
     totalRetentionInDays: 30
     plan: 'Analytics'
     schema: {
-      name: 'AcsCallAutomationStreamingUsage'
-      displayName: 'AcsCallAutomationStreamingUsage'
+      name: 'ACSCallAutomationStreamingUsage'
+      displayName: 'ACSCallAutomationStreamingUsage'
     }
     retentionInDays: 30
   }
