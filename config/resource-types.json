@@ -332,6 +332,7 @@
       "apiVersion": "2025-04-01",
       "costTier": "Low",
       "location": null,
+      "locationFallbacks": ["francecentral", "swedencentral", "eastus"],
       "nameTemplate": "redisent{rand8}",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -340,17 +341,20 @@
       "requestBody": {
         "sku": {
           "name": "Balanced_B0"
+        },
+        "properties": {
+          "highAvailability": "Disabled"
         }
       },
       "prerequisites": [],
-      "notes": "'Azure Managed Redis', the successor Microsoft now recommends over Microsoft.Cache/redis (see its retirement notice above) — live-verified this is a genuinely low-cost entry point via the newer 'Balanced_B0' SKU (~$12-15/mo), not the old, much pricier Redis Enterprise tier (which used SKUs like Enterprise_E10 starting in the hundreds of $/mo and was excluded from this catalog for that reason). The response's `kind: \"v2\"` confirms it's the new Managed Redis architecture, distinct from `kind: \"Enterprise\"` for the legacy Enterprise tier on the same ARM type. SKU name discovered by live probing (an invalid SKU's error didn't enumerate allowed values) rather than guessed. Needs a Microsoft.Cache/redisEnterprise/databases child resource to actually be usable — see that entry.",
+      "notes": "'Azure Managed Redis', the successor Microsoft now recommends over Microsoft.Cache/redis (see its retirement notice above) — live-verified this is a genuinely low-cost entry point via the newer 'Balanced_B0' SKU (~$12-15/mo), not the old, much pricier Redis Enterprise tier (which used SKUs like Enterprise_E10 starting in the hundreds of $/mo and was excluded from this catalog for that reason). The response's `kind: \"v2\"` confirms it's the new Managed Redis architecture, distinct from `kind: \"Enterprise\"` for the legacy Enterprise tier on the same ARM type. SKU name discovered by live probing (an invalid SKU's error didn't enumerate allowed values) rather than guessed. Needs a Microsoft.Cache/redisEnterprise/databases child resource to actually be usable — see that entry. Regression found via full-catalog re-verification, root-caused across four live attempts: first suspected the `highAvailability`/`redundancyMode: ZR` default (disabled it explicitly — harmless simplification, kept, but wasn't the actual cause); the real cause, confirmed via `az monitor activity-log list`, is `AllocationFailed` — \"Request failed due to insufficient capacity\" in westeurope for this SKU, the same class of transient regional-capacity error `CapacityErrorDetector`/`locationFallbacks` already exist to handle elsewhere in this catalog (e.g. `Microsoft.App/managedEnvironments`) — this entry just never had any configured, now added. A 4th attempt (immediately after adding the fallback) hit yet another distinct error, 'The name is not available' — Redis Enterprise hostnames are globally unique like Storage Accounts, and after repeated same-day attempts at this exact deterministic name (including the AllocationFailed ones above), the name appears to stay temporarily reserved — the same class of quirk already documented on `Microsoft.Kusto/clusters`. Not a config bug; should clear with time.",
       "estimatedProvisionMinutes": 6
     },
     {
       "armType": "Microsoft.Cache/redisEnterprise/databases",
       "apiVersion": "2025-04-01",
       "costTier": "Low",
-      "location": null,
+      "location": "{prereq.redisEnterpriseCluster.location}",
       "nameTemplate": "{prereq.redisEnterpriseCluster.name}/default",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -362,6 +366,7 @@
           "alias": "redisEnterpriseCluster",
           "armType": "Microsoft.Cache/redisEnterprise",
           "apiVersion": "2025-04-01",
+          "locationFallbacks": ["francecentral", "swedencentral", "eastus"],
           "nameTemplate": "redisent{rand8}",
           "nameRules": {
             "charset": "lowerAlnum",
@@ -370,11 +375,14 @@
           "requestBody": {
             "sku": {
               "name": "Balanced_B0"
+            },
+            "properties": {
+              "highAvailability": "Disabled"
             }
           }
         }
       ],
-      "notes": "The child database resource under an Azure Managed Redis cluster. Live-verified an empty {} request body works — Azure fills in sensible defaults (OSSCluster clustering policy, VolatileLRU eviction, Redis 7.4, port 10000). The name is conventionally 'default' (one database per cluster in this tier) — live-verified literally that name works, not guessed.",
+      "notes": "The child database resource under an Azure Managed Redis cluster. Live-verified an empty {} request body works — Azure fills in sensible defaults (OSSCluster clustering policy, VolatileLRU eviction, Redis 7.4, port 10000). The name is conventionally 'default' (one database per cluster in this tier) — live-verified literally that name works, not guessed. Its own redisEnterpriseCluster prerequisite hit the same AllocationFailed/locationFallbacks gap as the standalone Microsoft.Cache/redisEnterprise entry above — see its notes; fixed the same way here (including following the cluster's actual location via {prereq.redisEnterpriseCluster.location} in case its fallback ever kicks in, same pattern as Microsoft.App/containerApps).",
       "estimatedProvisionMinutes": 6
     },
     {
