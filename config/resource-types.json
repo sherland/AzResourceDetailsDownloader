@@ -272,7 +272,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "tenantId is supplied via the 'secret' mechanism even though it's not sensitive, since it's an environment-specific value the config file shouldn't hardcode."
+      "notes": "tenantId is supplied via the 'secret' mechanism even though it's not sensitive, since it's an environment-specific value the config file shouldn't hardcode. enablePurgeProtection is mandatory here, not optional — this tenant's Azure Policy ('Key vaults should have deletion protection enabled') denies creation without it, live-verified. That makes Key Vault fundamentally incompatible with reusable deterministic naming in this tenant: a purge-protected vault can never be purged before its ~90-day scheduledPurgeDate, no matter what (confirmed live — an early attempt to omit this property to enable auto-purge-and-reuse just got denied by policy instead). DeterministicNaming.cs deliberately exempts Microsoft.KeyVault/vaults from deterministic naming for exactly this reason — it keeps genuine per-run randomness, same as before this feature existed."
     },
     {
       "armType": "Microsoft.ManagedIdentity/userAssignedIdentities",
@@ -1774,8 +1774,8 @@
           "requestBody": { "sku": { "name": "Standard" }, "properties": { "publicIPAllocationMethod": "Static" } }
         }
       ],
-      "notes": "Subnet must be named exactly 'AzureBastionSubnet'.",
-      "estimatedProvisionMinutes": 10,
+      "notes": "Subnet must be named exactly 'AzureBastionSubnet'. Usually takes ~8-10 min, but live-observed one run that hit 'Updating' state past 20 min and timed out (10+10 min headroom) — bumped the estimate to give real margin rather than assume the first timing was representative.",
+      "estimatedProvisionMinutes": 20,
       "slowProvisioning": true
     },
     {

@@ -32,7 +32,10 @@ public sealed class ResourceTypePipeline(
         // disallows resource groups in "global", even though individual resources (Action Groups, Private DNS
         // Zones, etc.) legitimately report "global" as their own location.
         var rgLocation = defaultLocation;
-        var random = new Random();
+        // Seeded deterministically from the target's armType — see DeterministicNaming — so the same
+        // catalog entry produces the same resolved names every run, keeping committed output files
+        // (data.json, bicep/tf, and the resource name visible in portal.png) diff-stable across re-runs.
+        var random = DeterministicNaming.CreateSeededRandom(def.ArmType);
         // Units run concurrently (see Program.cs's Parallel.ForEachAsync), so log lines from different units
         // interleave on the shared console — prefix every line from this unit with its ArmType to keep them
         // distinguishable, without needing to touch every LogInformation call site individually.
@@ -105,7 +108,9 @@ public sealed class ResourceTypePipeline(
             var terraform = await iacExport.TryExportTerraformAsync(subscriptionId, rgName, unitLogger, ct);
 
             await OutputWriter.WriteAsync(
-                outputRoot, def.ArmType, rawJson, capture.Screenshot, bicep, terraform, capture.Notices, ct);
+                outputRoot, def.ArmType, rawJson, capture.Screenshot,
+                subscriptionId, secrets["tenantId"], rgName,
+                bicep, terraform, capture.Notices, ct);
 
             unitLogger.LogInformation("  captured '{ArmType}' successfully in {Elapsed}", def.ArmType, stopwatch.Elapsed);
             return new RunResult(def.ArmType, true, stopwatch.Elapsed, null);
@@ -155,6 +160,11 @@ public sealed class ResourceTypePipeline(
 
             try
             {
+                // Deterministic naming means a previous run's soft-deleted resource (Key Vault, Cognitive
+                // Services, App Configuration, API Management) can still reserve this exact name — clear it
+                // first so a second run of the same catalog entry doesn't fail. No-op for every other type.
+                await SoftDeletePurger.PurgeIfSoftDeletedAsync(armType, name, location, unitLogger, ct);
+
                 unitLogger.LogInformation(
                     "  provisioning {Label}: {ArmType} '{Name}' in '{Location}'", logLabel, armType, name, location);
                 return await provisioner.CreateOrUpdateAsync(
