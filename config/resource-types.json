@@ -5020,7 +5020,7 @@
         "properties": {}
       },
       "prerequisites": [],
-      "notes": "Dev/Test (No SLA) SKU — single node, no Azure Data Explorer markup, the lowest-cost configuration available. Still tagged High since it's a real, non-trivial ongoing cost, not Free/Low-tier trivial.",
+      "notes": "Dev/Test (No SLA) SKU — single node, no Azure Data Explorer markup, the lowest-cost configuration available. Still tagged High since it's a real, non-trivial ongoing cost, not Free/Low-tier trivial. Live-tested twice, hit the same real operational quirk both times: the initial PUT returned a 504 GatewayTimeout ('The gateway did not receive a response from Microsoft.Kusto within the specified time period'), but the cluster appears to have actually been created server-side despite the client-visible failure — a retry with the same deterministic name then failed with 'InvalidClusterName ... is already taken', even after the containing (failed) unit's resource group had already been torn down. This looks like a genuine Kusto-side name-reservation lag outliving its own resource group's deletion, not a bug in this tool's catalog config or retry logic — if it recurs, consider whether Kusto cluster names need the same kind of purge-before-reuse handling SoftDeletePurger already does for Key Vault/App Configuration/API Management/Cognitive Services.",
       "estimatedProvisionMinutes": 15,
       "slowProvisioning": true
     },
@@ -5060,7 +5060,7 @@
           }
         }
       ],
-      "notes": "Child database under a Dev/Test Kusto cluster.",
+      "notes": "Child database under a Dev/Test Kusto cluster. Hit the same 504-then-name-collision issue as the standalone Microsoft.Kusto/clusters entry above when live-tested (see its notes) — its own cluster prerequisite never got far enough to test the database step itself.",
       "estimatedProvisionMinutes": 15,
       "slowProvisioning": true
     },
