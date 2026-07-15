@@ -20,7 +20,7 @@ catch (ArgumentException ex)
 {
     Console.Error.WriteLine(ex.Message);
     Console.Error.WriteLine(
-        "Usage: [--dry-run | --login | --run] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High] [--max-concurrency <n>]");
+        "Usage: [--dry-run | --login | --run] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High|VeryHigh] [--max-concurrency <n>]");
     return 1;
 }
 

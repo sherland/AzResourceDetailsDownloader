@@ -3873,7 +3873,9 @@
           },
           "requestBody": {
             "properties": {
-              "sku": { "name": "PerGB2018" },
+              "sku": {
+                "name": "PerGB2018"
+              },
               "retentionInDays": 30
             }
           }
@@ -3996,7 +3998,9 @@
       },
       "requestBody": {
         "properties": {
-          "source": { "id": "{prereq.rpcVm.id}" }
+          "source": {
+            "id": "{prereq.rpcVm.id}"
+          }
         }
       },
       "prerequisites": [
@@ -4005,40 +4009,99 @@
           "armType": "Microsoft.Network/virtualNetworks",
           "apiVersion": "2023-09-01",
           "nameTemplate": "vnet{rand8}",
-          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 64 },
-          "requestBody": { "properties": { "addressSpace": { "addressPrefixes": ["10.70.0.0/16"] } } }
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 64
+          },
+          "requestBody": {
+            "properties": {
+              "addressSpace": {
+                "addressPrefixes": [
+                  "10.70.0.0/16"
+                ]
+              }
+            }
+          }
         },
         {
           "alias": "rpcVmSubnet",
           "armType": "Microsoft.Network/virtualNetworks/subnets",
           "apiVersion": "2023-09-01",
           "nameTemplate": "{prereq.rpcVmVnet.name}/default",
-          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
-          "requestBody": { "properties": { "addressPrefix": "10.70.0.0/24" } }
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 80
+          },
+          "requestBody": {
+            "properties": {
+              "addressPrefix": "10.70.0.0/24"
+            }
+          }
         },
         {
           "alias": "rpcVmNic",
           "armType": "Microsoft.Network/networkInterfaces",
           "apiVersion": "2023-09-01",
           "nameTemplate": "nic{rand8}",
-          "nameRules": { "charset": "lowerAlnumDash", "maxLength": 80 },
-          "requestBody": { "properties": { "ipConfigurations": [ { "name": "ipconfig1", "properties": { "subnet": { "id": "{prereq.rpcVmSubnet.id}" } } } ] } }
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 80
+          },
+          "requestBody": {
+            "properties": {
+              "ipConfigurations": [
+                {
+                  "name": "ipconfig1",
+                  "properties": {
+                    "subnet": {
+                      "id": "{prereq.rpcVmSubnet.id}"
+                    }
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "alias": "rpcVm",
           "armType": "Microsoft.Compute/virtualMachines",
           "apiVersion": "2024-03-01",
           "nameTemplate": "swaz{rand9}02",
-          "nameRules": { "charset": "lowerAlnum", "maxLength": 15 },
+          "nameRules": {
+            "charset": "lowerAlnum",
+            "maxLength": 15
+          },
           "requestBody": {
             "properties": {
-              "hardwareProfile": { "vmSize": "Standard_D2s_v5" },
-              "osProfile": { "computerName": "ardlvm2", "adminUsername": "azrddadmin", "adminPassword": "{secret.vmAdminPassword}" },
-              "storageProfile": {
-                "imageReference": { "publisher": "Canonical", "offer": "0001-com-ubuntu-server-jammy", "sku": "22_04-lts", "version": "latest" },
-                "osDisk": { "createOption": "FromImage", "managedDisk": { "storageAccountType": "StandardSSD_LRS" } }
+              "hardwareProfile": {
+                "vmSize": "Standard_D2s_v5"
               },
-              "networkProfile": { "networkInterfaces": [ { "id": "{prereq.rpcVmNic.id}" } ] }
+              "osProfile": {
+                "computerName": "ardlvm2",
+                "adminUsername": "azrddadmin",
+                "adminPassword": "{secret.vmAdminPassword}"
+              },
+              "storageProfile": {
+                "imageReference": {
+                  "publisher": "Canonical",
+                  "offer": "0001-com-ubuntu-server-jammy",
+                  "sku": "22_04-lts",
+                  "version": "latest"
+                },
+                "osDisk": {
+                  "createOption": "FromImage",
+                  "managedDisk": {
+                    "storageAccountType": "StandardSSD_LRS"
+                  }
+                }
+              },
+              "networkProfile": {
+                "networkInterfaces": [
+                  {
+                    "id": "{prereq.rpcVmNic.id}"
+                  }
+                ]
+              }
             }
           }
         }
@@ -4297,7 +4360,9 @@
             "/subscriptions/{secret.subscriptionId}"
           ],
           "actions": [
-            { "actionType": "RemoveAllActionGroups" }
+            {
+              "actionType": "RemoveAllActionGroups"
+            }
           ],
           "status": "Enabled"
         },
@@ -5157,6 +5222,494 @@
       "notes": "Adds a second ('User' mode) node pool to a fresh AKS cluster — tagged High since it compounds the already-Medium-tier AKS cluster's cost/time with a second node pool.",
       "estimatedProvisionMinutes": 18,
       "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.KeyVault/managedHSMs",
+      "apiVersion": "2023-07-01",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "hsm{rand8}",
+      "nameRules": {
+        "charset": "lowerAlnumDash",
+        "maxLength": 24
+      },
+      "requestBody": {
+        "sku": {
+          "family": "B",
+          "name": "Standard_B1"
+        },
+        "properties": {
+          "tenantId": "{secret.tenantId}",
+          "initialAdminObjectIds": [
+            "{secret.adminPrincipalId}"
+          ],
+          "enablePurgeProtection": true
+        }
+      },
+      "prerequisites": [],
+      "notes": "~$2,300-3,200/month, billed from creation and cannot be paused — genuinely the most expensive entry in this catalog, hence VeryHigh. Mandatory purge protection (unlike regular Key Vault, not even optional here) means DeterministicNaming exempts this armType the same way it does Microsoft.KeyVault/vaults. initialAdminObjectIds requires at least one real AAD principal, sourced from {secret.adminPrincipalId} (same mechanism as Microsoft.AnalysisServices/servers and Microsoft.Fabric/capacities). Not live-tested — deliberately, given the cost of even a brief test."
+    },
+    {
+      "armType": "Microsoft.Sql/managedInstances",
+      "apiVersion": "2023-08-01",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "sqlmi{rand8}",
+      "nameRules": {
+        "charset": "lowerAlnumDash",
+        "maxLength": 63
+      },
+      "requestBody": {
+        "sku": {
+          "name": "GP_Gen5",
+          "tier": "GeneralPurpose",
+          "family": "Gen5",
+          "capacity": 4
+        },
+        "properties": {
+          "administratorLogin": "azrddadmin",
+          "administratorLoginPassword": "{secret.sqlAdminPassword}",
+          "subnetId": "{prereq.miSubnet.id}",
+          "licenseType": "LicenseIncluded",
+          "vCores": 4,
+          "storageSizeInGB": 32
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "miVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 64
+          },
+          "requestBody": {
+            "properties": {
+              "addressSpace": {
+                "addressPrefixes": [
+                  "10.80.0.0/16"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "alias": "miSubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.miVnet.name}/managedinstance",
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 80
+          },
+          "requestBody": {
+            "properties": {
+              "addressPrefix": "10.80.0.0/24",
+              "delegations": [
+                {
+                  "name": "miDelegation",
+                  "properties": {
+                    "serviceName": "Microsoft.Sql/managedInstances"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "notes": "~$800-2,000+/month minimum (4 vCore General Purpose), hours to provision — one of the most expensive and slowest entries in this catalog. Needs a dedicated subnet delegated to Microsoft.Sql/managedInstances (plus, in a real deployment, an NSG and route table with specific required rules this minimal body omits). Reconstructed from general schema knowledge, not confirmed live — lowest-confidence entry alongside Microsoft.HDInsight/clusters and Microsoft.ServiceFabric/clusters below. Not live-tested — deliberately, given the cost/time of even a brief test.",
+      "estimatedProvisionMinutes": 240,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.HDInsight/clusters",
+      "apiVersion": "2023-08-15-preview",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "hdi{rand8}",
+      "nameRules": {
+        "charset": "lowerAlnumDash",
+        "maxLength": 59
+      },
+      "requestBody": {
+        "properties": {
+          "clusterVersion": "5.1",
+          "osType": "Linux",
+          "tier": "Standard",
+          "clusterDefinition": {
+            "kind": "spark",
+            "configurations": {
+              "gateway": {
+                "restAuthCredential.isEnabled": true,
+                "restAuthCredential.username": "azrddadmin",
+                "restAuthCredential.password": "{secret.vmAdminPassword}"
+              }
+            }
+          },
+          "storageProfile": {
+            "storageaccounts": [
+              {
+                "name": "{prereq.hdiStorage.name}.blob.core.windows.net",
+                "isDefault": true,
+                "container": "hdicontainer",
+                "key": "{secret.hdiStorageKeyPlaceholder}"
+              }
+            ]
+          },
+          "computeProfile": {
+            "roles": [
+              {
+                "name": "headnode",
+                "targetInstanceCount": 2,
+                "hardwareProfile": {
+                  "vmSize": "Standard_D3_v2"
+                },
+                "osProfile": {
+                  "linuxOperatingSystemProfile": {
+                    "username": "azrddadmin",
+                    "password": "{secret.vmAdminPassword}"
+                  }
+                }
+              },
+              {
+                "name": "workernode",
+                "targetInstanceCount": 1,
+                "hardwareProfile": {
+                  "vmSize": "Standard_D3_v2"
+                },
+                "osProfile": {
+                  "linuxOperatingSystemProfile": {
+                    "username": "azrddadmin",
+                    "password": "{secret.vmAdminPassword}"
+                  }
+                }
+              },
+              {
+                "name": "zookeepernode",
+                "targetInstanceCount": 3,
+                "hardwareProfile": {
+                  "vmSize": "Standard_A4_v2"
+                },
+                "osProfile": {
+                  "linuxOperatingSystemProfile": {
+                    "username": "azrddadmin",
+                    "password": "{secret.vmAdminPassword}"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "hdiStorage",
+          "armType": "Microsoft.Storage/storageAccounts",
+          "apiVersion": "2023-05-01",
+          "nameTemplate": "st{rand8}",
+          "nameRules": {
+            "charset": "lowerAlnum",
+            "maxLength": 24
+          },
+          "requestBody": {
+            "sku": {
+              "name": "Standard_LRS"
+            },
+            "kind": "StorageV2",
+            "properties": {
+              "accessTier": "Hot",
+              "minimumTlsVersion": "TLS1_2"
+            }
+          }
+        }
+      ],
+      "notes": "Multi-VM cluster (2 head + 1 worker + 3 zookeeper nodes minimum for a Spark cluster with HA), several hundred+/month, hours to provision — the most complex and least training-certain entry in this catalog. The storage account's access key can't be resolved via this tool's {prereq.*.id/name/location} tokens (only those three properties are supported, not a dynamically-issued key), so 'key' uses a placeholder secret ({secret.hdiStorageKeyPlaceholder}) that would need to be supplied out-of-band (e.g. fetched via `az storage account keys list` and set in appsettings.Development.json) before this entry could actually run — a real gap, not just an untested guess. Not live-tested.",
+      "estimatedProvisionMinutes": 60,
+      "slowProvisioning": true
+    },
+    {
+      "armType": "Microsoft.ServiceFabric/clusters",
+      "apiVersion": "2021-06-01",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "sf{rand8}",
+      "nameRules": {
+        "charset": "lowerAlnumDash",
+        "maxLength": 63
+      },
+      "requestBody": {
+        "properties": {
+          "managementEndpoint": "https://{prereq.sfPip.id}:19080",
+          "reliabilityLevel": "Bronze",
+          "upgradeMode": "Automatic",
+          "vmImage": "Linux",
+          "nodeTypes": [
+            {
+              "name": "nt1",
+              "clientConnectionEndpointPort": 19000,
+              "httpGatewayEndpointPort": 19080,
+              "isPrimary": true,
+              "vmInstanceCount": 3,
+              "durabilityLevel": "Bronze"
+            }
+          ]
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "sfPip",
+          "armType": "Microsoft.Network/publicIPAddresses",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "pip{rand8}",
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 80
+          },
+          "requestBody": {
+            "sku": {
+              "name": "Standard"
+            },
+            "properties": {
+              "publicIPAllocationMethod": "Static"
+            }
+          }
+        }
+      ],
+      "notes": "Classic/legacy Service Fabric cluster — in a real deployment this also needs a VMSS backing each node type, a certificate in Key Vault for cluster security, and diagnostics storage accounts, none of which this minimal body includes; a real PUT would very likely fail without them. Left in the catalog as a structural placeholder rather than fully worked out, given this type is legacy and increasingly superseded by Microsoft.ServiceFabric/managedClusters below. Lowest-confidence entry in this catalog alongside Microsoft.Sql/managedInstances and Microsoft.HDInsight/clusters. Not live-tested."
+    },
+    {
+      "armType": "Microsoft.ServiceFabric/managedClusters",
+      "apiVersion": "2023-12-01-preview",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "sfmc{rand8}",
+      "nameRules": {
+        "charset": "lowerAlnumDash",
+        "maxLength": 30
+      },
+      "requestBody": {
+        "sku": {
+          "name": "Basic"
+        },
+        "properties": {
+          "adminUserName": "azrddadmin",
+          "adminPassword": "{secret.vmAdminPassword}",
+          "dnsName": "ardlsfmc{rand6}",
+          "clientConnectionPort": 19000,
+          "httpGatewayConnectionPort": 19080
+        }
+      },
+      "prerequisites": [],
+      "notes": "Simpler than classic Service Fabric (VMSS/networking are managed internally), but still needs a separate Microsoft.ServiceFabric/managedclusters/nodetypes child resource with real VMs to actually function — this entry captures the cluster shell only. Multi-VM, real ongoing cost even at Basic SKU. Moderate confidence; not live-tested."
+    },
+    {
+      "armType": "Microsoft.PowerBIDedicated/capacities",
+      "apiVersion": "2021-01-01",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "pbi{rand8}",
+      "nameRules": {
+        "charset": "lowerAlnum",
+        "maxLength": 63
+      },
+      "requestBody": {
+        "sku": {
+          "name": "A1",
+          "tier": "PBIE_Azure"
+        },
+        "properties": {
+          "administration": {
+            "members": [
+              "{secret.adminPrincipalId}"
+            ]
+          }
+        }
+      },
+      "prerequisites": [],
+      "notes": "~$735+/month (A1, smallest SKU) — already named in this README's 'deliberately skipped' list before this catalog expansion; re-added here at VeryHigh instead of omitted, for full architectural coverage. administration.members needs a real AAD principal, sourced from {secret.adminPrincipalId} (same as Analysis Services/Fabric). Not live-tested."
+    },
+    {
+      "armType": "Microsoft.Synapse/workspaces/sqlPools",
+      "apiVersion": "2021-06-01",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "{prereq.sqlPoolWorkspace.name}/sqlpool1",
+      "nameRules": {
+        "charset": "lowerAlnum",
+        "maxLength": 60
+      },
+      "requestBody": {
+        "sku": {
+          "name": "DW100c"
+        },
+        "properties": {
+          "createMode": "Default",
+          "collation": "SQL_Latin1_General_CP1_CI_AS"
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "sqlPoolStorage",
+          "armType": "Microsoft.Storage/storageAccounts",
+          "apiVersion": "2023-05-01",
+          "nameTemplate": "st{rand8}",
+          "nameRules": {
+            "charset": "lowerAlnum",
+            "maxLength": 24
+          },
+          "requestBody": {
+            "sku": {
+              "name": "Standard_LRS"
+            },
+            "kind": "StorageV2",
+            "properties": {
+              "accessTier": "Hot",
+              "minimumTlsVersion": "TLS1_2",
+              "isHnsEnabled": true
+            }
+          }
+        },
+        {
+          "alias": "sqlPoolContainer",
+          "armType": "Microsoft.Storage/storageAccounts/blobServices/containers",
+          "apiVersion": "2023-05-01",
+          "nameTemplate": "{prereq.sqlPoolStorage.name}/default/synapsefs",
+          "nameRules": {
+            "charset": "lowerAlnum",
+            "maxLength": 63
+          },
+          "requestBody": {
+            "properties": {}
+          }
+        },
+        {
+          "alias": "sqlPoolWorkspace",
+          "armType": "Microsoft.Synapse/workspaces",
+          "apiVersion": "2021-06-01",
+          "nameTemplate": "syn{rand8}",
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 50
+          },
+          "requestBody": {
+            "identity": {
+              "type": "SystemAssigned"
+            },
+            "properties": {
+              "defaultDataLakeStorage": {
+                "accountUrl": "https://{prereq.sqlPoolStorage.name}.dfs.core.windows.net",
+                "filesystem": "synapsefs"
+              },
+              "sqlAdministratorLogin": "azrddadmin",
+              "sqlAdministratorLoginPassword": "{secret.sqlAdminPassword}"
+            }
+          }
+        }
+      ],
+      "notes": "The genuinely expensive part of Synapse (real hourly cost while running, unlike the parent workspace which is idle-free — see Microsoft.Synapse/workspaces above, cataloged at High). DW100c is the smallest SKU. Needs its own workspace + HNS storage + container prerequisite chain (duplicated here rather than reusing the standalone workspace entry, since PrerequisiteDefinition can't itself declare nested prerequisites — see the flat-prerequisite-chain pattern used throughout this catalog). Not live-tested."
+    },
+    {
+      "armType": "Microsoft.DataMigration/services",
+      "apiVersion": "2021-06-30",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "dms{rand8}",
+      "nameRules": {
+        "charset": "lowerAlnumDash",
+        "maxLength": 62
+      },
+      "requestBody": {
+        "sku": {
+          "name": "Premium_4vCores"
+        },
+        "properties": {
+          "virtualSubnetId": "{prereq.dmsSubnet.id}"
+        }
+      },
+      "prerequisites": [
+        {
+          "alias": "dmsVnet",
+          "armType": "Microsoft.Network/virtualNetworks",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "vnet{rand8}",
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 64
+          },
+          "requestBody": {
+            "properties": {
+              "addressSpace": {
+                "addressPrefixes": [
+                  "10.81.0.0/16"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "alias": "dmsSubnet",
+          "armType": "Microsoft.Network/virtualNetworks/subnets",
+          "apiVersion": "2023-09-01",
+          "nameTemplate": "{prereq.dmsVnet.name}/default",
+          "nameRules": {
+            "charset": "lowerAlnumDash",
+            "maxLength": 80
+          },
+          "requestBody": {
+            "properties": {
+              "addressPrefix": "10.81.0.0/24"
+            }
+          }
+        }
+      ],
+      "notes": "VM-based service instance, real ongoing cost while it exists — needs a delegated VNet/subnet. Moderate confidence on exact SKU name; not live-tested."
+    },
+    {
+      "armType": "Microsoft.DBforPostgreSQL/serverGroupsv2",
+      "apiVersion": "2023-03-02-preview",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "pgc{rand8}",
+      "nameRules": {
+        "charset": "lowerAlnumDash",
+        "maxLength": 40
+      },
+      "requestBody": {
+        "properties": {
+          "administratorLoginPassword": "{secret.sqlAdminPassword}",
+          "postgresqlVersion": "16",
+          "coordinatorEnabled": true,
+          "coordinatorVCores": 4,
+          "coordinatorServerEdition": "GeneralPurpose",
+          "coordinatorStorageQuotaInMb": 131072,
+          "nodeCount": 0
+        }
+      },
+      "prerequisites": [],
+      "notes": "Cosmos DB for PostgreSQL (Citus) cluster — coordinator + worker nodes, real ongoing cost. nodeCount:0 (coordinator-only, no worker nodes) used here to keep this as minimal/cheap as this resource type allows, still a real GeneralPurpose 4-vCore coordinator cost. Not live-tested."
+    },
+    {
+      "armType": "Microsoft.Purview/accounts",
+      "apiVersion": "2021-12-01",
+      "costTier": "VeryHigh",
+      "location": null,
+      "nameTemplate": "pview{rand8}",
+      "nameRules": {
+        "charset": "lowerAlnumDash",
+        "maxLength": 63
+      },
+      "requestBody": {
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "properties": {
+          "managedResourceGroupName": "ardl-purview-managed-{rand8}"
+        }
+      },
+      "prerequisites": [],
+      "notes": "Base capacity unit cost plus a complex managed-resource-group setup. Like Microsoft.Databricks/workspaces, this creates a SECOND resource group (managedResourceGroupName) outside this tool's normal one-RG-per-unit teardown model — expect the same orphaned-resource-group risk documented there. Not live-tested."
     }
   ]
 }

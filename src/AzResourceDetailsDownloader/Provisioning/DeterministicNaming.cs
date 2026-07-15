@@ -20,7 +20,11 @@ public static class DeterministicNaming
     // (same as before this feature existed) is the only thing that actually works here.
     private static readonly HashSet<string> ExemptFromDeterminism = new(StringComparer.OrdinalIgnoreCase)
     {
-        "Microsoft.KeyVault/vaults"
+        "Microsoft.KeyVault/vaults",
+        // Managed HSM pools have the same permanent-purge-protection problem as regular vaults (mandatory,
+        // not optional here — cannot be disabled at all), so a fixed name would only ever work once per
+        // ~90-day scheduledPurgeDate.
+        "Microsoft.KeyVault/managedHSMs"
     };
 
     public static Random CreateSeededRandom(string armType) =>
