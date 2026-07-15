@@ -16,9 +16,41 @@ public sealed class RawArmClient(TokenCredential credential) : IDisposable
 
     private readonly HttpClient _httpClient = new();
 
+    private const string ProviderRegistrationApiVersion = "2022-12-01";
+    private static readonly TimeSpan ProviderRegistrationTimeout = TimeSpan.FromMinutes(5);
+
     public async Task<JsonDocument> GetRawAsync(string resourceId, string apiVersion, CancellationToken ct = default) =>
         await SendAsync(HttpMethod.Get, resourceId, apiVersion, body: null, ct)
             ?? throw new InvalidOperationException($"ARM GET '{resourceId}' (api {apiVersion}) returned an empty body.");
+
+    // Registration itself is asynchronous (state moves Registering -> Registered), so this both kicks it off
+    // and polls until it actually completes — live-observed taking anywhere from under a minute to ~5 minutes
+    // depending on the namespace.
+    public async Task RegisterResourceProviderAsync(string subscriptionId, string namespaceName, CancellationToken ct = default)
+    {
+        var providerPath = $"/subscriptions/{subscriptionId}/providers/{namespaceName}";
+        using var _ = await SendAsync(HttpMethod.Post, $"{providerPath}/register", ProviderRegistrationApiVersion, body: null, ct);
+
+        var deadline = DateTime.UtcNow + ProviderRegistrationTimeout;
+        while (true)
+        {
+            using var doc = await GetRawAsync(providerPath, ProviderRegistrationApiVersion, ct);
+            var state = doc.RootElement.TryGetProperty("registrationState", out var stateElement) ? stateElement.GetString() : null;
+
+            if (string.Equals(state, "Registered", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            if (DateTime.UtcNow >= deadline)
+            {
+                throw new TimeoutException(
+                    $"Timed out waiting for resource provider '{namespaceName}' to finish registering (last state: '{state}').");
+            }
+
+            await Task.Delay(PollInterval, ct);
+        }
+    }
 
     public async Task PutAsync(
         string resourceId, string apiVersion, string jsonBody, TimeSpan? provisioningTimeout = null, CancellationToken ct = default)

@@ -35,4 +35,28 @@ public class ErrorDetectorTests
     {
         Assert.False(QuotaErrorDetector.IsQuotaError("OperationNotAllowed: the operation is not supported for this resource type"));
     }
+
+    [Fact]
+    public void ResourceProviderRegistrationErrorDetector_ExtractsNamespace()
+    {
+        var found = ResourceProviderRegistrationErrorDetector.TryGetUnregisteredNamespace(
+            "{\"error\":{\"code\":\"MissingSubscriptionRegistration\",\"message\":\"The subscription is not registered to use namespace 'Microsoft.Maps'. See https://aka.ms/rps-not-found for how to register subscriptions.\"}}",
+            out var namespaceName);
+
+        Assert.True(found);
+        Assert.Equal("Microsoft.Maps", namespaceName);
+    }
+
+    [Fact]
+    public void ResourceProviderRegistrationErrorDetector_IgnoresUnrelatedError()
+    {
+        Assert.False(ResourceProviderRegistrationErrorDetector.TryGetUnregisteredNamespace(
+            "OperationNotAllowed: the operation is not supported for this resource type", out _));
+    }
+
+    [Fact]
+    public void ResourceProviderRegistrationErrorDetector_IgnoresNullMessage()
+    {
+        Assert.False(ResourceProviderRegistrationErrorDetector.TryGetUnregisteredNamespace(null, out _));
+    }
 }

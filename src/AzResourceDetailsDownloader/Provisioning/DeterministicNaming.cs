@@ -26,6 +26,14 @@ public static class DeterministicNaming
     public static Random CreateSeededRandom(string armType) =>
         ExemptFromDeterminism.Contains(armType) ? new Random() : new(SeedFor(armType));
 
+    // Exposed separately from CreateSeededRandom because a unit's shared Random is seeded from its *target's*
+    // armType alone (see ResourceTypePipeline.RunAsync) — a prerequisite of a different, non-exempt armType
+    // (e.g. Microsoft.KeyVault/vaults as a prerequisite of Microsoft.MachineLearningServices/workspaces) would
+    // otherwise silently inherit deterministic naming anyway, defeating the whole point of this exemption.
+    // Live-verified this exact gap: an ML workspace's Key Vault prerequisite got the same deterministic name
+    // on a retry, and — being purge-protected — failed with VaultAlreadyExists instead of just recreating.
+    public static bool IsExemptFromDeterminism(string armType) => ExemptFromDeterminism.Contains(armType);
+
     private static int SeedFor(string armType)
     {
         var hash = SHA256.HashData(Encoding.UTF8.GetBytes(armType));
