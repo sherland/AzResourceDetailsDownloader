@@ -1,10 +1,13 @@
 {
   "$schemaVersion": 1,
+  "pricingFetchedUtc": "2026-07-16T11:40:41.9650993Z",
   "resourceTypes": [
     {
       "armType": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2023-05-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "st{rand8}",
       "nameRules": {
@@ -27,7 +30,18 @@
     {
       "armType": "Microsoft.Compute/disks",
       "apiVersion": "2023-10-02",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1/Month",
+        "perUnitRate": 1.536,
+        "minimumUnits": 1,
+        "perHour": 0.0021041095890410958904109589,
+        "meterId": "17fff823-37f4-4e7c-904d-063ea1a0470f",
+        "meterName": "S4 LRS Disk",
+        "productName": "Standard HDD Managed Disks",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.0021041095890411
+      },
       "location": null,
       "nameTemplate": "disk{rand8}",
       "nameRules": {
@@ -51,7 +65,9 @@
     {
       "armType": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "vnet{rand8}",
       "nameRules": {
@@ -73,7 +89,9 @@
     {
       "armType": "Microsoft.Network/virtualNetworks/subnets",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.vnet.name}/subnet{rand6}",
       "nameRules": {
@@ -111,7 +129,9 @@
     {
       "armType": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "nsg{rand8}",
       "nameRules": {
@@ -127,7 +147,17 @@
     {
       "armType": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2023-09-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.005,
+        "perHour": 0.005,
+        "meterId": "9c150bf9-2bad-430e-a53c-c213804f49ef",
+        "meterName": "Standard IPv4 Static Public IP",
+        "productName": "IP Addresses",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.005
+      },
       "location": null,
       "nameTemplate": "pip{rand8}",
       "nameRules": {
@@ -148,7 +178,10 @@
     {
       "armType": "Microsoft.Network/loadBalancers",
       "apiVersion": "2023-09-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.005
+      },
       "location": null,
       "nameTemplate": "lb{rand8}",
       "nameRules": {
@@ -189,7 +222,8 @@
             "properties": {
               "publicIPAllocationMethod": "Static"
             }
-          }
+          },
+          "perHour": 0.005
         }
       ],
       "notes": ""
@@ -197,7 +231,14 @@
     {
       "armType": "Microsoft.Network/privateDnsZones",
       "apiVersion": "2020-06-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.000685,
+        "minimumUnits": 1,
+        "perHour": 0.000685,
+        "perHourAccumulated": 0.000685
+      },
       "location": "global",
       "nameTemplate": "ardl{rand8}.private.contoso.com",
       "nameRules": {
@@ -213,7 +254,9 @@
     {
       "armType": "Microsoft.Sql/servers",
       "apiVersion": "2023-08-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "sql{rand8}",
       "nameRules": {
@@ -234,7 +277,18 @@
     {
       "armType": "Microsoft.Sql/servers/databases",
       "apiVersion": "2023-08-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1/Day",
+        "perUnitRate": 0.161,
+        "minimumUnits": 1,
+        "perHour": 0.0067083333333333333333333333,
+        "meterId": "cae64797-9ecf-4906-b517-6238c80c045f",
+        "meterName": "B DTU",
+        "productName": "SQL Database Single Basic",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.00670833333333333
+      },
       "location": null,
       "nameTemplate": "{prereq.sqlServer.name}/db{rand6}",
       "nameRules": {
@@ -274,7 +328,9 @@
     {
       "armType": "Microsoft.DocumentDB/databaseAccounts",
       "apiVersion": "2024-05-15",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "cosmos{rand8}",
       "nameRules": {
@@ -305,7 +361,17 @@
     {
       "armType": "Microsoft.Cache/redis",
       "apiVersion": "2024-03-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.022,
+        "perHour": 0.022,
+        "meterId": "c7107dc5-43b9-4d42-9ba8-161345a976a3",
+        "meterName": "C0 Cache",
+        "productName": "Azure Redis Cache Basic",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.022
+      },
       "location": null,
       "nameTemplate": "redis{rand8}",
       "nameRules": {
@@ -330,9 +396,23 @@
     {
       "armType": "Microsoft.Cache/redisEnterprise",
       "apiVersion": "2025-04-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.019,
+        "perHour": 0.019,
+        "meterId": "5421867a-b973-5b51-bb38-c2cfc9129a92",
+        "meterName": "B0 Cache Instance",
+        "productName": "Azure Managed Redis - Balanced",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.019
+      },
       "location": null,
-      "locationFallbacks": ["francecentral", "swedencentral", "eastus"],
+      "locationFallbacks": [
+        "francecentral",
+        "swedencentral",
+        "eastus"
+      ],
       "nameTemplate": "redisent{rand8}",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -353,7 +433,10 @@
     {
       "armType": "Microsoft.Cache/redisEnterprise/databases",
       "apiVersion": "2025-04-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.019
+      },
       "location": "{prereq.redisEnterpriseCluster.location}",
       "nameTemplate": "{prereq.redisEnterpriseCluster.name}/default",
       "nameRules": {
@@ -366,7 +449,11 @@
           "alias": "redisEnterpriseCluster",
           "armType": "Microsoft.Cache/redisEnterprise",
           "apiVersion": "2025-04-01",
-          "locationFallbacks": ["francecentral", "swedencentral", "eastus"],
+          "locationFallbacks": [
+            "francecentral",
+            "swedencentral",
+            "eastus"
+          ],
           "nameTemplate": "redisent{rand8}",
           "nameRules": {
             "charset": "lowerAlnum",
@@ -379,7 +466,8 @@
             "properties": {
               "highAvailability": "Disabled"
             }
-          }
+          },
+          "perHour": 0.019
         }
       ],
       "notes": "The child database resource under an Azure Managed Redis cluster. Live-verified an empty {} request body works — Azure fills in sensible defaults (OSSCluster clustering policy, VolatileLRU eviction, Redis 7.4, port 10000). The name is conventionally 'default' (one database per cluster in this tier) — live-verified literally that name works, not guessed. Its own redisEnterpriseCluster prerequisite hit the same AllocationFailed/locationFallbacks gap as the standalone Microsoft.Cache/redisEnterprise entry above — see its notes; fixed the same way here (including following the cluster's actual location via {prereq.redisEnterpriseCluster.location} in case its fallback ever kicks in, same pattern as Microsoft.App/containerApps).",
@@ -388,7 +476,9 @@
     {
       "armType": "Microsoft.KeyVault/vaults",
       "apiVersion": "2023-07-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "kv{rand8}",
       "nameRules": {
@@ -412,7 +502,9 @@
     {
       "armType": "Microsoft.ManagedIdentity/userAssignedIdentities",
       "apiVersion": "2023-01-31",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "id{rand8}",
       "nameRules": {
@@ -428,7 +520,9 @@
     {
       "armType": "Microsoft.OperationalInsights/workspaces",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "law{rand8}",
       "nameRules": {
@@ -449,7 +543,9 @@
     {
       "armType": "Microsoft.Insights/components",
       "apiVersion": "2020-02-02",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "ai{rand8}",
       "nameRules": {
@@ -488,7 +584,9 @@
     {
       "armType": "Microsoft.Insights/actionGroups",
       "apiVersion": "2023-01-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "global",
       "nameTemplate": "ag{rand8}",
       "nameRules": {
@@ -507,7 +605,9 @@
     {
       "armType": "Microsoft.Automation/automationAccounts",
       "apiVersion": "2023-11-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "aa{rand8}",
       "nameRules": {
@@ -527,7 +627,17 @@
     {
       "armType": "Microsoft.Web/serverfarms",
       "apiVersion": "2023-12-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.018,
+        "perHour": 0.018,
+        "meterId": "e08d4be1-d8c1-49ba-a814-6369d6f14c34",
+        "meterName": "B1",
+        "productName": "Azure App Service Basic Plan - Linux",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.018
+      },
       "location": null,
       "nameTemplate": "plan{rand8}",
       "nameRules": {
@@ -549,7 +659,10 @@
     {
       "armType": "Microsoft.Web/sites",
       "apiVersion": "2023-12-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.018
+      },
       "location": null,
       "nameTemplate": "app{rand8}",
       "nameRules": {
@@ -584,7 +697,8 @@
             "properties": {
               "reserved": true
             }
-          }
+          },
+          "perHour": 0.018
         }
       ],
       "notes": ""
@@ -592,7 +706,9 @@
     {
       "armType": "Microsoft.Web/staticSites",
       "apiVersion": "2023-12-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "stapp{rand8}",
       "nameRules": {
@@ -612,7 +728,18 @@
     {
       "armType": "Microsoft.ContainerRegistry/registries",
       "apiVersion": "2023-11-01-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1/Day",
+        "perUnitRate": 0.1666,
+        "minimumUnits": 1,
+        "perHour": 0.0069416666666666666666666667,
+        "meterId": "5c9e7a65-5784-494c-9718-7749d4075dd9",
+        "meterName": "Basic Registry Unit",
+        "productName": "Container Registry",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.00694166666666667
+      },
       "location": null,
       "nameTemplate": "acr{rand8}",
       "nameRules": {
@@ -633,7 +760,14 @@
     {
       "armType": "Microsoft.ContainerInstance/containerGroups",
       "apiVersion": "2023-05-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.05171,
+        "minimumUnits": 1,
+        "perHour": 0.05171,
+        "perHourAccumulated": 0.05171
+      },
       "location": null,
       "nameTemplate": "aci{rand8}",
       "nameRules": {
@@ -666,7 +800,9 @@
     {
       "armType": "Microsoft.ServiceBus/namespaces",
       "apiVersion": "2022-10-01-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "sb{rand8}",
       "nameRules": {
@@ -686,7 +822,9 @@
     {
       "armType": "Microsoft.ServiceBus/namespaces/queues",
       "apiVersion": "2022-10-01-preview",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.sbNamespace.name}/queue{rand6}",
       "nameRules": {
@@ -720,7 +858,9 @@
     {
       "armType": "Microsoft.EventGrid/topics",
       "apiVersion": "2023-12-15-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "egt{rand8}",
       "nameRules": {
@@ -738,7 +878,17 @@
     {
       "armType": "Microsoft.Network/virtualNetworkGateways",
       "apiVersion": "2023-09-01",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.21,
+        "perHour": 0.21,
+        "meterId": "f7f36e66-5b21-445a-9df1-f192e56ed76c",
+        "meterName": "VpnGw1AZ",
+        "productName": "VPN Gateway",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.215
+      },
       "location": null,
       "nameTemplate": "vgw{rand8}",
       "nameRules": {
@@ -824,7 +974,8 @@
             "properties": {
               "publicIPAllocationMethod": "Static"
             }
-          }
+          },
+          "perHour": 0.005
         }
       ],
       "notes": "VPN Gateway provisioning commonly takes 20-45 minutes. Live-verified (~36 min). Requires the AZ-suffixed SKU (VpnGw1AZ, not VpnGw1 — non-AZ SKUs are deprecated) and the gateway's Public IP must have zones configured.",
@@ -834,14 +985,23 @@
     {
       "armType": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2024-03-01",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.115,
+        "perHour": 0.115,
+        "meterId": "0561adcb-1c48-542e-9e0c-10dea22fc392",
+        "meterName": "D2s v5",
+        "productName": "Virtual Machines Dsv5 Series",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.115
+      },
       "location": null,
       "nameTemplate": "swaz{rand9}01",
       "nameRules": {
         "charset": "lowerAlnum",
         "maxLength": 15
       },
-      "notes": "Two independent tenant policies had to be satisfied here, both decoded via `az policy definition show`/live reproduction rather than guessed from error text. (1) Naming-convention policy (pol-ssg-prd-restriction-naming_convention): denies Microsoft.Compute/virtualMachines names unless (for names <=15 chars) they start with 'swaz'/'slaz' (case-insensitive) AND end in 2 digits (or dash+digit) — 'swaz{rand9}01' satisfies both with a fixed prefix/suffix and 9 random middle chars, exactly 15 chars total. (2) Disk-SKU policy (pol-ssg-prd-restriction-ssd-disks): the VM's auto-generated OS disk defaults to Premium_LRS, which isn't in this tenant's allowed disk SKUs (Standard_LRS/StandardSSD_LRS) — fixed by explicitly setting osDisk.managedDisk.storageAccountType to StandardSSD_LRS instead of leaving it to Azure's default. Both fixes are tenant-specific catalog config, not portable defaults — a tenant without these policies works fine either way.",
       "requestBody": {
         "properties": {
           "hardwareProfile": {
@@ -935,13 +1095,16 @@
           }
         }
       ],
+      "notes": "Two independent tenant policies had to be satisfied here, both decoded via `az policy definition show`/live reproduction rather than guessed from error text. (1) Naming-convention policy (pol-ssg-prd-restriction-naming_convention): denies Microsoft.Compute/virtualMachines names unless (for names <=15 chars) they start with 'swaz'/'slaz' (case-insensitive) AND end in 2 digits (or dash+digit) — 'swaz{rand9}01' satisfies both with a fixed prefix/suffix and 9 random middle chars, exactly 15 chars total. (2) Disk-SKU policy (pol-ssg-prd-restriction-ssd-disks): the VM's auto-generated OS disk defaults to Premium_LRS, which isn't in this tenant's allowed disk SKUs (Standard_LRS/StandardSSD_LRS) — fixed by explicitly setting osDisk.managedDisk.storageAccountType to StandardSSD_LRS instead of leaving it to Azure's default. Both fixes are tenant-specific catalog config, not portable defaults — a tenant without these policies works fine either way.",
       "estimatedProvisionMinutes": 10,
       "slowProvisioning": true
     },
     {
       "armType": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2023-09-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "nic{rand8}",
       "nameRules": {
@@ -1003,7 +1166,10 @@
     {
       "armType": "Microsoft.Compute/snapshots",
       "apiVersion": "2023-10-02",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.0021041095890411
+      },
       "location": null,
       "nameTemplate": "snap{rand8}",
       "nameRules": {
@@ -1038,7 +1204,8 @@
               },
               "diskSizeGB": 4
             }
-          }
+          },
+          "perHour": 0.0021041095890410958904109589
         }
       ],
       "notes": ""
@@ -1046,7 +1213,14 @@
     {
       "armType": "Microsoft.Network/privateEndpoints",
       "apiVersion": "2023-09-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.01,
+        "minimumUnits": 1,
+        "perHour": 0.01,
+        "perHourAccumulated": 0.01
+      },
       "location": null,
       "nameTemplate": "pe{rand8}",
       "nameRules": {
@@ -1133,7 +1307,9 @@
     {
       "armType": "Microsoft.Network/routeTables",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "rt{rand8}",
       "nameRules": {
@@ -1149,7 +1325,9 @@
     {
       "armType": "Microsoft.Compute/sshPublicKeys",
       "apiVersion": "2024-03-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "sshkey{rand8}",
       "nameRules": {
@@ -1167,7 +1345,9 @@
     {
       "armType": "Microsoft.Compute/availabilitySets",
       "apiVersion": "2024-03-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "avset{rand8}",
       "nameRules": {
@@ -1189,7 +1369,18 @@
     {
       "armType": "Microsoft.EventHub/namespaces",
       "apiVersion": "2024-01-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.015,
+        "minimumUnits": 1,
+        "perHour": 0.015,
+        "meterId": "177ee643-5434-4c04-ae11-9e01672ed87e",
+        "meterName": "Basic Throughput Unit",
+        "productName": "Event Hubs",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.015
+      },
       "location": null,
       "nameTemplate": "ehns{rand8}",
       "nameRules": {
@@ -1209,7 +1400,9 @@
     {
       "armType": "Microsoft.AppConfiguration/configurationStores",
       "apiVersion": "2024-05-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "appcs{rand8}",
       "nameRules": {
@@ -1228,7 +1421,9 @@
     {
       "armType": "Microsoft.Network/localNetworkGateways",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "lng{rand8}",
       "nameRules": {
@@ -1251,7 +1446,9 @@
     {
       "armType": "Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "waf{rand8}",
       "nameRules": {
@@ -1280,7 +1477,17 @@
     {
       "armType": "Microsoft.Network/natGateways",
       "apiVersion": "2023-09-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.045,
+        "perHour": 0.045,
+        "meterId": "ae30040a-67f5-485b-b0f4-a6ef50504d9c",
+        "meterName": "Standard Gateway",
+        "productName": "NAT Gateway",
+        "armRegionName": "Global",
+        "perHourAccumulated": 0.05
+      },
       "location": null,
       "nameTemplate": "nat{rand8}",
       "nameRules": {
@@ -1316,7 +1523,8 @@
             "properties": {
               "publicIPAllocationMethod": "Static"
             }
-          }
+          },
+          "perHour": 0.005
         }
       ],
       "notes": ""
@@ -1324,7 +1532,18 @@
     {
       "armType": "Microsoft.Network/firewallPolicies",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1/Month",
+        "perUnitRate": 100.0,
+        "minimumUnits": 1,
+        "perHour": 0.136986301369863013698630137,
+        "meterId": "d0fdb15e-11ac-4440-9c2b-d02e7dc5806a",
+        "meterName": "Standard Policy per Region",
+        "productName": "Azure Firewall Manager",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.136986301369863
+      },
       "location": null,
       "nameTemplate": "afwp{rand8}",
       "nameRules": {
@@ -1340,7 +1559,9 @@
     {
       "armType": "Microsoft.OperationalInsights/querypacks",
       "apiVersion": "2019-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "qp{rand8}",
       "nameRules": {
@@ -1356,7 +1577,14 @@
     {
       "armType": "Microsoft.Cdn/profiles",
       "apiVersion": "2024-02-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.047945,
+        "minimumUnits": 1,
+        "perHour": 0.047945,
+        "perHourAccumulated": 0.047945
+      },
       "location": "global",
       "nameTemplate": "cdn{rand8}",
       "nameRules": {
@@ -1375,7 +1603,10 @@
     {
       "armType": "Microsoft.Cdn/profiles/afdEndpoints",
       "apiVersion": "2024-02-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.047945
+      },
       "location": "global",
       "nameTemplate": "{prereq.cdnProfile.name}/afdep{rand6}",
       "nameRules": {
@@ -1403,7 +1634,8 @@
               "name": "Standard_AzureFrontDoor"
             },
             "properties": {}
-          }
+          },
+          "perHour": 0.047945
         }
       ],
       "notes": "Child of a Front Door (Standard_AzureFrontDoor) CDN profile."
@@ -1411,7 +1643,9 @@
     {
       "armType": "Microsoft.Compute/galleries",
       "apiVersion": "2024-03-03",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "gal{rand8}",
       "nameRules": {
@@ -1427,7 +1661,9 @@
     {
       "armType": "Microsoft.Compute/galleries/images",
       "apiVersion": "2024-03-03",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.gallery.name}/img{rand6}",
       "nameRules": {
@@ -1465,7 +1701,9 @@
     {
       "armType": "Microsoft.Maintenance/maintenanceConfigurations",
       "apiVersion": "2023-04-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "mc{rand8}",
       "nameRules": {
@@ -1507,7 +1745,9 @@
     {
       "armType": "Microsoft.App/managedEnvironments",
       "apiVersion": "2024-03-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "locationFallbacks": [
         "francecentral",
@@ -1529,7 +1769,9 @@
     {
       "armType": "Microsoft.App/containerApps",
       "apiVersion": "2024-03-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "{prereq.containerAppsEnv.location}",
       "nameTemplate": "ca{rand8}",
       "nameRules": {
@@ -1560,6 +1802,11 @@
           "alias": "containerAppsEnv",
           "armType": "Microsoft.App/managedEnvironments",
           "apiVersion": "2024-03-01",
+          "locationFallbacks": [
+            "francecentral",
+            "swedencentral",
+            "eastus"
+          ],
           "nameTemplate": "cae{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -1567,12 +1814,7 @@
           },
           "requestBody": {
             "properties": {}
-          },
-          "locationFallbacks": [
-            "francecentral",
-            "swedencentral",
-            "eastus"
-          ]
+          }
         }
       ],
       "notes": "containerAppsEnv prerequisite has locationFallbacks for the same regional-capacity reason as the standalone Microsoft.App/managedEnvironments entry above. The target's own location is set to {prereq.containerAppsEnv.location} rather than a fixed region — live-verified that a Container App's location must match its Managed Environment's actual location (a mismatch fails with ManagedEnvironmentNotFound, not a generic validation error), so if the environment's location-fallback kicks in, the target must follow it there.",
@@ -1582,7 +1824,10 @@
     {
       "armType": "Microsoft.ContainerRegistry/registries/webhooks",
       "apiVersion": "2023-11-01-preview",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.00694166666666667
+      },
       "location": null,
       "nameTemplate": "{prereq.acr.name}/wh{rand6}",
       "nameRules": {
@@ -1615,7 +1860,8 @@
             "properties": {
               "adminUserEnabled": false
             }
-          }
+          },
+          "perHour": 0.0069416666666666666666666667
         }
       ],
       "notes": "Webhooks require ACR Standard/Premium tier, hence the Standard SKU on the prerequisite (Basic doesn't support webhooks). status:disabled so it never actually fires."
@@ -1623,7 +1869,9 @@
     {
       "armType": "Microsoft.Monitor/accounts",
       "apiVersion": "2023-04-03",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "amon{rand8}",
       "nameRules": {
@@ -1639,7 +1887,9 @@
     {
       "armType": "Microsoft.SignalRService/signalR",
       "apiVersion": "2024-03-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "sigr{rand8}",
       "nameRules": {
@@ -1660,7 +1910,18 @@
     {
       "armType": "Microsoft.Dashboard/grafana",
       "apiVersion": "2023-09-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1/Hour",
+        "perUnitRate": 0.0445,
+        "minimumUnits": 1,
+        "perHour": 0.0445,
+        "meterId": "0ac71480-39ee-5538-b344-4d7e3fb8932d",
+        "meterName": "Standard Node",
+        "productName": "Azure Managed Grafana",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.0445
+      },
       "location": null,
       "nameTemplate": "grf{rand8}",
       "nameRules": {
@@ -1679,7 +1940,9 @@
     {
       "armType": "Microsoft.DesktopVirtualization/workspaces",
       "apiVersion": "2024-04-03",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "avdws{rand8}",
       "nameRules": {
@@ -1695,7 +1958,9 @@
     {
       "armType": "Microsoft.DesktopVirtualization/hostPools",
       "apiVersion": "2024-04-03",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "avdhp{rand8}",
       "nameRules": {
@@ -1715,7 +1980,9 @@
     {
       "armType": "Microsoft.DesktopVirtualization/applicationGroups",
       "apiVersion": "2024-04-03",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "avdag{rand8}",
       "nameRules": {
@@ -1752,7 +2019,9 @@
     {
       "armType": "Microsoft.Resources/templateSpecs",
       "apiVersion": "2022-02-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "ts{rand8}",
       "nameRules": {
@@ -1770,7 +2039,9 @@
     {
       "armType": "Microsoft.Resources/templateSpecs/versions",
       "apiVersion": "2022-02-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.templateSpec.name}/v1",
       "nameRules": {
@@ -1808,7 +2079,9 @@
     {
       "armType": "Microsoft.ResourceGraph/queries",
       "apiVersion": "2024-04-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "rgq{rand8}",
       "nameRules": {
@@ -1826,7 +2099,9 @@
     {
       "armType": "Microsoft.Search/searchServices",
       "apiVersion": "2024-06-01-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "srch{rand8}",
       "nameRules": {
@@ -1845,7 +2120,9 @@
     {
       "armType": "Microsoft.Network/virtualWans",
       "apiVersion": "2023-09-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "vwan{rand8}",
       "nameRules": {
@@ -1863,7 +2140,9 @@
     {
       "armType": "Microsoft.NotificationHubs/namespaces",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "nhns{rand8}",
       "nameRules": {
@@ -1882,7 +2161,9 @@
     {
       "armType": "Microsoft.NotificationHubs/namespaces/notificationHubs",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.nhNamespace.name}/hub{rand6}",
       "nameRules": {
@@ -1915,7 +2196,18 @@
     {
       "armType": "Microsoft.Sql/servers/elasticPools",
       "apiVersion": "2023-08-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1/Day",
+        "perUnitRate": 2.42,
+        "minimumUnits": 1,
+        "perHour": 0.1008333333333333333333333333,
+        "meterId": "ed5ea410-f2d6-45fa-9fcc-5ff1621c874d",
+        "meterName": "eDTUs",
+        "productName": "SQL Database Elastic Pool - Basic",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.100833333333333
+      },
       "location": null,
       "nameTemplate": "{prereq.sqlServer.name}/pool{rand6}",
       "nameRules": {
@@ -1955,7 +2247,9 @@
     {
       "armType": "Microsoft.Communication/communicationServices",
       "apiVersion": "2023-04-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "global",
       "nameTemplate": "acs{rand8}",
       "nameRules": {
@@ -1973,7 +2267,9 @@
     {
       "armType": "Microsoft.Communication/emailServices",
       "apiVersion": "2023-04-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "global",
       "nameTemplate": "acsemail{rand8}",
       "nameRules": {
@@ -1991,7 +2287,9 @@
     {
       "armType": "Microsoft.CognitiveServices/accounts",
       "apiVersion": "2024-10-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "cog{rand8}",
       "nameRules": {
@@ -2013,7 +2311,9 @@
     {
       "armType": "Microsoft.EventGrid/systemTopics",
       "apiVersion": "2023-12-15-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "egst{rand8}",
       "nameRules": {
@@ -2053,7 +2353,18 @@
     {
       "armType": "Microsoft.Insights/metricAlerts",
       "apiVersion": "2018-03-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1/Month",
+        "perUnitRate": 0.15,
+        "minimumUnits": 1,
+        "perHour": 0.0002054794520547945205479452,
+        "meterId": "25bbac3f-6637-54eb-89f2-30d9afed34a0",
+        "meterName": "Alerts Resource Monitored at 5 Minute Frequency",
+        "productName": "Azure Monitor",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.000205479452054794
+      },
       "location": "global",
       "nameTemplate": "ma{rand8}",
       "nameRules": {
@@ -2111,7 +2422,18 @@
     {
       "armType": "Microsoft.Insights/scheduledQueryRules",
       "apiVersion": "2023-03-15-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1/Month",
+        "perUnitRate": 0.5,
+        "minimumUnits": 1,
+        "perHour": 0.0006849315068493150684931507,
+        "meterId": "cf20b9c8-d39b-40df-8a95-35f38bbd6ed2",
+        "meterName": "Alerts System Log Monitored at 15 Minute Frequency",
+        "productName": "Azure Monitor",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.000684931506849315
+      },
       "location": null,
       "nameTemplate": "sqr{rand8}",
       "nameRules": {
@@ -2166,7 +2488,9 @@
     {
       "armType": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "dcr{rand8}",
       "nameRules": {
@@ -2234,7 +2558,9 @@
     {
       "armType": "Microsoft.Insights/dataCollectionEndpoints",
       "apiVersion": "2023-03-11",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "dce{rand8}",
       "nameRules": {
@@ -2250,7 +2576,9 @@
     {
       "armType": "Microsoft.Insights/activityLogAlerts",
       "apiVersion": "2020-10-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "global",
       "nameTemplate": "ala{rand8}",
       "nameRules": {
@@ -2279,7 +2607,10 @@
     {
       "armType": "Microsoft.Insights/autoscalesettings",
       "apiVersion": "2022-10-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.018
+      },
       "location": null,
       "nameTemplate": "as{rand8}",
       "nameRules": {
@@ -2321,7 +2652,8 @@
             "properties": {
               "reserved": true
             }
-          }
+          },
+          "perHour": 0.018
         }
       ],
       "notes": "Autoscale requires a Standard+ tier App Service Plan (Basic doesn't support scale-out), hence S1 here rather than B1. In this tenant, a policy restricts App Service Plan SKUs to F1/B1/B2/B3/Y1/FC1/Consumption only — none of which support autoscale — so this entry cannot succeed here. Not a bug in this tool; a tenant without that SKU restriction should succeed with this body as-is."
@@ -2329,7 +2661,9 @@
     {
       "armType": "Microsoft.Insights/workbooks",
       "apiVersion": "2023-06-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{rand8}-{rand4}-{rand4}-{rand4}-{rand12}",
       "nameRules": {
@@ -2370,7 +2704,9 @@
     {
       "armType": "Microsoft.Insights/webtests",
       "apiVersion": "2022-06-15",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "wt{rand8}",
       "nameRules": {
@@ -2422,7 +2758,9 @@
     {
       "armType": "Microsoft.Automation/automationAccounts/runbooks",
       "apiVersion": "2023-11-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.automationAccount.name}/runbook{rand6}",
       "nameRules": {
@@ -2460,7 +2798,9 @@
     {
       "armType": "Microsoft.Portal/dashboards",
       "apiVersion": "2020-09-01-preview",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "dash{rand8}",
       "nameRules": {
@@ -2481,7 +2821,10 @@
     {
       "armType": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
       "apiVersion": "2020-06-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.000685
+      },
       "location": "global",
       "nameTemplate": "{prereq.dnsZone.name}/link{rand6}",
       "nameRules": {
@@ -2509,7 +2852,8 @@
           },
           "requestBody": {
             "properties": {}
-          }
+          },
+          "perHour": 0.000685
         },
         {
           "alias": "linkVnet",
@@ -2536,7 +2880,14 @@
     {
       "armType": "Microsoft.Network/dnsZones",
       "apiVersion": "2023-07-01-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.000685,
+        "minimumUnits": 1,
+        "perHour": 0.000685,
+        "perHourAccumulated": 0.000685
+      },
       "location": "global",
       "nameTemplate": "ardl{rand8}.contoso.com",
       "nameRules": {
@@ -2552,7 +2903,9 @@
     {
       "armType": "Microsoft.RecoveryServices/vaults",
       "apiVersion": "2024-04-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "rsv{rand8}",
       "nameRules": {
@@ -2573,7 +2926,13 @@
     {
       "armType": "Microsoft.DocumentDB/mongoClusters",
       "apiVersion": "2024-07-01",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.0191,
+        "perHour": 0.0191,
+        "perHourAccumulated": 0.0191
+      },
       "location": null,
       "nameTemplate": "mc{rand8}",
       "nameRules": {
@@ -2609,7 +2968,9 @@
     {
       "armType": "Microsoft.OperationsManagement/solutions",
       "apiVersion": "2015-11-01-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "AzureActivity({prereq.logAnalytics.name})",
       "nameRules": {
@@ -2652,7 +3013,9 @@
     {
       "armType": "Microsoft.Logic/workflows",
       "apiVersion": "2019-05-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "logic{rand8}",
       "nameRules": {
@@ -2675,7 +3038,9 @@
     {
       "armType": "Microsoft.ApiManagement/service",
       "apiVersion": "2023-09-01-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "apim{rand8}",
       "nameRules": {
@@ -2699,7 +3064,9 @@
     {
       "armType": "Microsoft.ContainerService/managedClusters",
       "apiVersion": "2024-05-01",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "aks{rand8}",
       "nameRules": {
@@ -2731,7 +3098,17 @@
     {
       "armType": "Microsoft.Network/bastionHosts",
       "apiVersion": "2023-09-01",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.19,
+        "perHour": 0.19,
+        "meterId": "c6d29001-2ec1-43ce-8ec8-8c753399ff6c",
+        "meterName": "Basic Gateway",
+        "productName": "Azure Bastion",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.195
+      },
       "location": null,
       "nameTemplate": "bastion{rand6}",
       "nameRules": {
@@ -2809,7 +3186,8 @@
             "properties": {
               "publicIPAllocationMethod": "Static"
             }
-          }
+          },
+          "perHour": 0.005
         }
       ],
       "notes": "Subnet must be named exactly 'AzureBastionSubnet'. Usually takes ~8-10 min, but live-observed one run that hit 'Updating' state past 20 min and timed out (10+10 min headroom) — bumped the estimate to give real margin rather than assume the first timing was representative.",
@@ -2819,7 +3197,17 @@
     {
       "armType": "Microsoft.DBforPostgreSQL/flexibleServers",
       "apiVersion": "2024-08-01",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.0199,
+        "perHour": 0.0199,
+        "meterId": "5e31969e-0b91-5186-81a1-7475fabe1262",
+        "meterName": "B1MS",
+        "productName": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.0199
+      },
       "location": null,
       "nameTemplate": "pg{rand8}",
       "nameRules": {
@@ -2848,7 +3236,17 @@
     {
       "armType": "Microsoft.Network/azureFirewalls",
       "apiVersion": "2023-09-01",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "High",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.395,
+        "perHour": 0.395,
+        "meterId": "70c60dc4-0568-5d4e-839f-3c3345f46d55",
+        "meterName": "Basic Deployment",
+        "productName": "Azure Firewall",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.405
+      },
       "location": null,
       "nameTemplate": "afw{rand6}",
       "nameRules": {
@@ -2953,7 +3351,8 @@
             "properties": {
               "publicIPAllocationMethod": "Static"
             }
-          }
+          },
+          "perHour": 0.005
         },
         {
           "alias": "afwMgmtPip",
@@ -2971,7 +3370,8 @@
             "properties": {
               "publicIPAllocationMethod": "Static"
             }
-          }
+          },
+          "perHour": 0.005
         }
       ],
       "notes": "Subnets must be named exactly 'AzureFirewallSubnet' and 'AzureFirewallManagementSubnet'. Basic tier chosen to minimize cost, but Basic SKU specifically requires a separate Management IP configuration/subnet/public IP (Standard/Premium tiers don't).",
@@ -2981,7 +3381,17 @@
     {
       "armType": "Microsoft.Compute/virtualMachineScaleSets",
       "apiVersion": "2024-03-01",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.115,
+        "perHour": 0.115,
+        "meterId": "0561adcb-1c48-542e-9e0c-10dea22fc392",
+        "meterName": "D2s v5",
+        "productName": "Virtual Machines Dsv5 Series",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.115
+      },
       "location": null,
       "nameTemplate": "vmss{rand6}",
       "nameRules": {
@@ -3078,7 +3488,9 @@
     {
       "armType": "Microsoft.Devices/IotHubs",
       "apiVersion": "2023-06-30",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "iot{rand8}",
       "nameRules": {
@@ -3098,7 +3510,10 @@
     {
       "armType": "Microsoft.EventHub/namespaces/eventHubs",
       "apiVersion": "2024-01-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.015
+      },
       "location": null,
       "nameTemplate": "{prereq.ehNamespace.name}/eh{rand6}",
       "nameRules": {
@@ -3127,7 +3542,8 @@
               "tier": "Basic"
             },
             "properties": {}
-          }
+          },
+          "perHour": 0.015
         }
       ],
       "notes": "Event Hub is a child resource of an Event Hub Namespace."
@@ -3135,7 +3551,9 @@
     {
       "armType": "Microsoft.ServiceBus/namespaces/topics",
       "apiVersion": "2022-10-01-preview",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.sbTopicNamespace.name}/topic{rand6}",
       "nameRules": {
@@ -3169,7 +3587,9 @@
     {
       "armType": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
       "apiVersion": "2022-10-01-preview",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.sbSubTopic.name}/sub{rand6}",
       "nameRules": {
@@ -3216,7 +3636,9 @@
     {
       "armType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
       "apiVersion": "2024-05-15",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.cosmosSqlAccount.name}/sqldb",
       "nameRules": {
@@ -3266,7 +3688,9 @@
     {
       "armType": "Microsoft.Network/networkSecurityGroups/securityRules",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.secRuleNsg.name}/rule{rand6}",
       "nameRules": {
@@ -3305,7 +3729,9 @@
     {
       "armType": "Microsoft.Network/routeTables/routes",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.routeRt.name}/route{rand6}",
       "nameRules": {
@@ -3339,7 +3765,10 @@
     {
       "armType": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Medium",
+        "perHourAccumulated": 0.136986301369863
+      },
       "location": null,
       "nameTemplate": "{prereq.rcgFwPolicy.name}/rulecoll{rand6}",
       "nameRules": {
@@ -3364,7 +3793,8 @@
           },
           "requestBody": {
             "properties": {}
-          }
+          },
+          "perHour": 0.136986301369863013698630137
         }
       ],
       "notes": "Microsoft's abbreviations table calls this 'ruleGroups', but the real ARM child type is 'ruleCollectionGroups' — same kind of naming inconsistency already found for Microsoft.Sql/servers/elasticPools."
@@ -3372,7 +3802,10 @@
     {
       "armType": "Microsoft.Network/loadBalancers/inboundNatRules",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.005
+      },
       "location": null,
       "nameTemplate": "{prereq.natRuleLb.name}/natrule{rand6}",
       "nameRules": {
@@ -3406,7 +3839,8 @@
             "properties": {
               "publicIPAllocationMethod": "Static"
             }
-          }
+          },
+          "perHour": 0.005
         },
         {
           "alias": "natRuleLb",
@@ -3441,7 +3875,9 @@
     {
       "armType": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.peerVnetA.name}/peer-to-b",
       "nameRules": {
@@ -3504,7 +3940,9 @@
     {
       "armType": "Microsoft.Storage/storageAccounts/fileServices/shares",
       "apiVersion": "2023-05-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.shareStorage.name}/default/share{rand6}",
       "nameRules": {
@@ -3543,7 +3981,9 @@
     {
       "armType": "Microsoft.CognitiveServices/accounts/projects",
       "apiVersion": "2025-04-01-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.aiFoundryAccount.name}/proj{rand6}",
       "nameRules": {
@@ -3585,7 +4025,17 @@
     {
       "armType": "Microsoft.Sql/servers/jobAgents",
       "apiVersion": "2023-08-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.038,
+        "perHour": 0.038,
+        "meterId": "ab475a2b-78ce-5327-90e5-300f26f931b9",
+        "meterName": "JA100 Job Agent",
+        "productName": "SQL Database - Elastic Jobs Agent",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.0447083333333333
+      },
       "location": null,
       "nameTemplate": "{prereq.jobAgentServer.name}/jobagent{rand6}",
       "nameRules": {
@@ -3632,7 +4082,8 @@
             "properties": {
               "collation": "SQL_Latin1_General_CP1_CI_AS"
             }
-          }
+          },
+          "perHour": 0.0067083333333333333333333333
         }
       ],
       "notes": "Elastic Job Agent needs a dedicated database to store its job metadata — Azure initializes that schema automatically on first use. Live-verified fix: the job database must be at least Standard tier (S0) — Basic tier let the PUT accept and return successfully, but the job agent never actually finished provisioning (polling GET kept 404ing with 'JobAgentNotFound' until the timeout, ~13 minutes wasted before failing)."
@@ -3640,7 +4091,9 @@
     {
       "armType": "Microsoft.EventGrid/domains/topics",
       "apiVersion": "2023-12-15-preview",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.egDomainForTopic.name}/topic{rand6}",
       "nameRules": {
@@ -3672,7 +4125,9 @@
     {
       "armType": "Microsoft.Maps/accounts",
       "apiVersion": "2023-06-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "global",
       "nameTemplate": "maps{rand8}",
       "nameRules": {
@@ -3692,7 +4147,9 @@
     {
       "armType": "Microsoft.SignalRService/webPubSub",
       "apiVersion": "2024-03-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "wps{rand8}",
       "nameRules": {
@@ -3713,7 +4170,9 @@
     {
       "armType": "Microsoft.Logic/integrationAccounts",
       "apiVersion": "2019-05-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "ia{rand8}",
       "nameRules": {
@@ -3734,7 +4193,9 @@
     {
       "armType": "Microsoft.DataFactory/factories",
       "apiVersion": "2018-06-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "adf{rand8}",
       "nameRules": {
@@ -3750,7 +4211,9 @@
     {
       "armType": "Microsoft.DigitalTwins/digitalTwinsInstances",
       "apiVersion": "2023-01-31",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "dt{rand8}",
       "nameRules": {
@@ -3766,7 +4229,9 @@
     {
       "armType": "Microsoft.VideoIndexer/accounts",
       "apiVersion": "2024-01-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "avi{rand8}",
       "nameRules": {
@@ -3810,7 +4275,9 @@
     {
       "armType": "Microsoft.MachineLearningServices/workspaces",
       "apiVersion": "2024-10-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "mlw{rand8}",
       "nameRules": {
@@ -3911,7 +4378,9 @@
     {
       "armType": "Microsoft.EventGrid/domains",
       "apiVersion": "2023-12-15-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "egd{rand8}",
       "nameRules": {
@@ -3929,7 +4398,18 @@
     {
       "armType": "Microsoft.EventGrid/namespaces",
       "apiVersion": "2023-12-15-preview",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Low",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.04,
+        "minimumUnits": 1,
+        "perHour": 0.04,
+        "meterId": "e25dfd03-6fc0-5da6-aab0-8e6dd4e0d8ad",
+        "meterName": "Standard Throughput Unit",
+        "productName": "Event Grid",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.04
+      },
       "location": null,
       "nameTemplate": "egns{rand8}",
       "nameRules": {
@@ -3945,7 +4425,9 @@
     {
       "armType": "Microsoft.Devices/provisioningServices",
       "apiVersion": "2022-02-05",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "dps{rand8}",
       "nameRules": {
@@ -3965,7 +4447,9 @@
     {
       "armType": "Microsoft.Batch/batchAccounts",
       "apiVersion": "2024-07-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "batch{rand8}",
       "nameRules": {
@@ -3981,7 +4465,9 @@
     {
       "armType": "Microsoft.Compute/proximityPlacementGroups",
       "apiVersion": "2024-03-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "ppg{rand8}",
       "nameRules": {
@@ -3997,7 +4483,10 @@
     {
       "armType": "Microsoft.Compute/restorePointCollections",
       "apiVersion": "2024-03-01",
-      "costTier": "Medium",
+      "cost": {
+        "tier": "Medium",
+        "perHourAccumulated": 0.115
+      },
       "location": null,
       "nameTemplate": "rpc{rand8}",
       "nameRules": {
@@ -4111,7 +4600,8 @@
                 ]
               }
             }
-          }
+          },
+          "perHour": 0.115
         }
       ],
       "notes": "Live-verified fix: 'properties.source.id' (a VM resource ID) is required even to create an empty collection, contrary to the original assumption that a source-less empty collection was possible — so this needed a full VM prerequisite chain (reusing the same naming-convention-policy and disk-SKU-policy fixes as the standalone Microsoft.Compute/virtualMachines entry), and the cost tier moved from Free to Medium accordingly.",
@@ -4121,7 +4611,9 @@
     {
       "armType": "Microsoft.App/jobs",
       "apiVersion": "2024-03-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "{prereq.jobsEnv.location}",
       "nameTemplate": "caj{rand8}",
       "nameRules": {
@@ -4154,6 +4646,11 @@
           "alias": "jobsEnv",
           "armType": "Microsoft.App/managedEnvironments",
           "apiVersion": "2024-03-01",
+          "locationFallbacks": [
+            "francecentral",
+            "swedencentral",
+            "eastus"
+          ],
           "nameTemplate": "cae{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -4161,12 +4658,7 @@
           },
           "requestBody": {
             "properties": {}
-          },
-          "locationFallbacks": [
-            "francecentral",
-            "swedencentral",
-            "eastus"
-          ]
+          }
         }
       ],
       "notes": "Reuses the same Managed Environment pattern (and location-fallback reasoning) as Microsoft.App/containerApps — a Container Apps Job never actually runs (Manual trigger, never invoked), so no compute cost is incurred.",
@@ -4176,7 +4668,9 @@
     {
       "armType": "Microsoft.LoadTestService/loadTests",
       "apiVersion": "2022-12-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "lt{rand8}",
       "nameRules": {
@@ -4197,7 +4691,9 @@
     {
       "armType": "Microsoft.DataProtection/resourceGuards",
       "apiVersion": "2024-04-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "guard{rand8}",
       "nameRules": {
@@ -4213,7 +4709,9 @@
     {
       "armType": "Microsoft.DataProtection/backupVaults",
       "apiVersion": "2024-04-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "bvault{rand8}",
       "nameRules": {
@@ -4239,7 +4737,9 @@
     {
       "armType": "Microsoft.DataProtection/backupVaults/backupPolicies",
       "apiVersion": "2024-04-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "{prereq.policyVault.name}/policy{rand6}",
       "nameRules": {
@@ -4303,7 +4803,9 @@
     {
       "armType": "Microsoft.StorageSync/storageSyncServices",
       "apiVersion": "2022-06-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "sss{rand8}",
       "nameRules": {
@@ -4319,7 +4821,9 @@
     {
       "armType": "Microsoft.DesktopVirtualization/scalingPlans",
       "apiVersion": "2024-04-03",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "avdsp{rand8}",
       "nameRules": {
@@ -4339,7 +4843,9 @@
     {
       "armType": "Microsoft.Migrate/assessmentProjects",
       "apiVersion": "2023-03-15",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "migproj{rand8}",
       "nameRules": {
@@ -4355,7 +4861,9 @@
     {
       "armType": "Microsoft.AlertsManagement/actionRules",
       "apiVersion": "2021-08-08",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "global",
       "nameTemplate": "apr{rand8}",
       "nameRules": {
@@ -4382,7 +4890,9 @@
     {
       "armType": "Microsoft.Databricks/accessConnectors",
       "apiVersion": "2023-05-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "dbac{rand8}",
       "nameRules": {
@@ -4401,7 +4911,9 @@
     {
       "armType": "Microsoft.Network/applicationSecurityGroups",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "asg{rand8}",
       "nameRules": {
@@ -4417,7 +4929,9 @@
     {
       "armType": "Microsoft.Network/ipGroups",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "ipg{rand8}",
       "nameRules": {
@@ -4437,7 +4951,14 @@
     {
       "armType": "Microsoft.Network/publicIPPrefixes",
       "apiVersion": "2023-09-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.096,
+        "minimumUnits": 16,
+        "perHour": 0.096,
+        "perHourAccumulated": 0.096
+      },
       "location": null,
       "nameTemplate": "pippfx{rand6}",
       "nameRules": {
@@ -4458,7 +4979,9 @@
     {
       "armType": "Microsoft.Network/routeFilters",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "rf{rand8}",
       "nameRules": {
@@ -4474,7 +4997,9 @@
     {
       "armType": "Microsoft.Network/trafficManagerProfiles",
       "apiVersion": "2022-04-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "global",
       "nameTemplate": "tm{rand8}",
       "nameRules": {
@@ -4502,7 +5027,9 @@
     {
       "armType": "Microsoft.Network/networkSecurityPerimeters",
       "apiVersion": "2024-07-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "nsp{rand8}",
       "nameRules": {
@@ -4518,7 +5045,9 @@
     {
       "armType": "Microsoft.Network/networkManagers",
       "apiVersion": "2024-05-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "vnm{rand8}",
       "nameRules": {
@@ -4544,7 +5073,13 @@
     {
       "armType": "Microsoft.Network/dnsForwardingRulesets",
       "apiVersion": "2022-07-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.003425,
+        "perHour": 0.003425,
+        "perHourAccumulated": 0.25
+      },
       "location": null,
       "nameTemplate": "dfrs{rand8}",
       "nameRules": {
@@ -4635,7 +5170,8 @@
                 "id": "{prereq.dnsOutboundSubnet.id}"
               }
             }
-          }
+          },
+          "perHour": 0.246575
         }
       ],
       "notes": "Requires a full DNS Private Resolver chain (VNet -> delegated subnet -> resolver -> outbound endpoint) since a ruleset must reference at least one outbound endpoint."
@@ -4643,7 +5179,9 @@
     {
       "armType": "Microsoft.Network/dnsResolvers",
       "apiVersion": "2022-07-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "dnsr{rand8}",
       "nameRules": {
@@ -4683,7 +5221,13 @@
     {
       "armType": "Microsoft.Network/dnsResolvers/inboundEndpoints",
       "apiVersion": "2022-07-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.246575,
+        "perHour": 0.246575,
+        "perHourAccumulated": 0.246575
+      },
       "location": null,
       "nameTemplate": "{prereq.inboundResolver.name}/inbound{rand6}",
       "nameRules": {
@@ -4768,7 +5312,13 @@
     {
       "armType": "Microsoft.Network/dnsResolvers/outboundEndpoints",
       "apiVersion": "2022-07-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.246575,
+        "perHour": 0.246575,
+        "perHourAccumulated": 0.246575
+      },
       "location": null,
       "nameTemplate": "{prereq.outboundResolver.name}/outbound{rand6}",
       "nameRules": {
@@ -4848,7 +5398,9 @@
     {
       "armType": "Microsoft.Network/privateLinkServices",
       "apiVersion": "2023-09-01",
-      "costTier": "Low",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "pls{rand8}",
       "nameRules": {
@@ -4944,7 +5496,9 @@
     {
       "armType": "Microsoft.Network/serviceEndPointPolicies",
       "apiVersion": "2023-09-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "sep{rand8}",
       "nameRules": {
@@ -4960,7 +5514,9 @@
     {
       "armType": "Microsoft.Network/frontdoorWebApplicationFirewallPolicies",
       "apiVersion": "2024-02-01",
-      "costTier": "Free",
+      "cost": {
+        "tier": "Free"
+      },
       "location": "global",
       "nameTemplate": "fdwaf{rand8}",
       "nameRules": {
@@ -4984,7 +5540,17 @@
     {
       "armType": "Microsoft.AnalysisServices/servers",
       "apiVersion": "2017-08-01",
-      "costTier": "High",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.132,
+        "perHour": 0.132,
+        "meterId": "8e338e85-4baa-4d2b-b688-9b9ef57414d8",
+        "meterName": "Developer",
+        "productName": "Azure Analysis Services Developer",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.132
+      },
       "location": null,
       "nameTemplate": "as{rand8}",
       "nameRules": {
@@ -5012,7 +5578,13 @@
     {
       "armType": "Microsoft.Kusto/clusters",
       "apiVersion": "2023-08-15",
-      "costTier": "High",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.152,
+        "perHour": 0.152,
+        "perHourAccumulated": 0.152
+      },
       "location": null,
       "nameTemplate": "adx{rand8}",
       "nameRules": {
@@ -5035,7 +5607,10 @@
     {
       "armType": "Microsoft.Kusto/clusters/databases",
       "apiVersion": "2023-08-15",
-      "costTier": "High",
+      "cost": {
+        "tier": "Medium",
+        "perHourAccumulated": 0.152
+      },
       "location": null,
       "nameTemplate": "{prereq.kustoCluster.name}/db{rand6}",
       "nameRules": {
@@ -5065,7 +5640,8 @@
               "capacity": 1
             },
             "properties": {}
-          }
+          },
+          "perHour": 0.152
         }
       ],
       "notes": "Child database under a Dev/Test Kusto cluster. Hit the same 504-then-name-collision issue as the standalone Microsoft.Kusto/clusters entry above when live-tested (see its notes) — its own cluster prerequisite never got far enough to test the database step itself.",
@@ -5075,7 +5651,17 @@
     {
       "armType": "Microsoft.Fabric/capacities",
       "apiVersion": "2023-11-01",
-      "costTier": "High",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.22,
+        "perHour": 0.22,
+        "meterId": "f129c15e-c3d3-5fbc-aecf-dc055434cffe",
+        "meterName": "dbt job Capacity Usage CU",
+        "productName": "Fabric Capacity",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.22
+      },
       "location": null,
       "nameTemplate": "fab{rand8}",
       "nameRules": {
@@ -5101,7 +5687,9 @@
     {
       "armType": "Microsoft.Synapse/workspaces",
       "apiVersion": "2021-06-01",
-      "costTier": "High",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "syn{rand8}",
       "nameRules": {
@@ -5162,7 +5750,9 @@
     {
       "armType": "Microsoft.Databricks/workspaces",
       "apiVersion": "2024-05-01",
-      "costTier": "High",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "dbx{rand8}",
       "nameRules": {
@@ -5183,7 +5773,17 @@
     {
       "armType": "Microsoft.ContainerService/managedClusters/agentPools",
       "apiVersion": "2024-05-01",
-      "costTier": "High",
+      "cost": {
+        "tier": "Medium",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.115,
+        "perHour": 0.115,
+        "meterId": "0561adcb-1c48-542e-9e0c-10dea22fc392",
+        "meterName": "D2s v5",
+        "productName": "Virtual Machines Dsv5 Series",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.115
+      },
       "location": null,
       "nameTemplate": "{prereq.agentPoolCluster.name}/pool2",
       "nameRules": {
@@ -5234,7 +5834,14 @@
     {
       "armType": "Microsoft.KeyVault/managedHSMs",
       "apiVersion": "2023-07-01",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "VeryHigh",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 3.2,
+        "minimumUnits": 1,
+        "perHour": 3.2,
+        "perHourAccumulated": 3.2
+      },
       "location": null,
       "nameTemplate": "hsm{rand8}",
       "nameRules": {
@@ -5260,7 +5867,18 @@
     {
       "armType": "Microsoft.Sql/managedInstances",
       "apiVersion": "2023-08-01",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "VeryHigh",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.167439,
+        "minimumUnits": 4,
+        "perHour": 0.669756,
+        "meterId": "6d867de4-dbc5-4dd4-833e-2ea2cfed8838",
+        "meterName": "vCore",
+        "productName": "SQL Managed Instance General Purpose - Compute Gen5",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.669756
+      },
       "location": null,
       "nameTemplate": "sqlmi{rand8}",
       "nameRules": {
@@ -5334,7 +5952,13 @@
     {
       "armType": "Microsoft.HDInsight/clusters",
       "apiVersion": "2023-08-15-preview",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "High",
+        "billingUnit": "1 Minute (per-minute proration, not hourly-minimum)",
+        "perUnitRate": 1.25,
+        "perHour": 1.25,
+        "perHourAccumulated": 1.25
+      },
       "location": null,
       "nameTemplate": "hdi{rand8}",
       "nameRules": {
@@ -5440,7 +6064,10 @@
     {
       "armType": "Microsoft.ServiceFabric/clusters",
       "apiVersion": "2021-06-01",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "Low",
+        "perHourAccumulated": 0.005
+      },
       "location": null,
       "nameTemplate": "sf{rand8}",
       "nameRules": {
@@ -5482,7 +6109,8 @@
             "properties": {
               "publicIPAllocationMethod": "Static"
             }
-          }
+          },
+          "perHour": 0.005
         }
       ],
       "notes": "Confirmed: Service Fabric itself has no charge at all — quoted verbatim from Microsoft's pricing page: \"You are only charged for the compute instances, storage, networking resources, and IP addresses you choose when creating a Service Fabric cluster. There is no charge for the service offered by Service Fabric itself.\" Cost is entirely whatever VMSS/VMs actually back the cluster. In a real deployment this also needs a VMSS backing each node type, a certificate in Key Vault for cluster security, and diagnostics storage accounts, none of which this minimal body includes; a real PUT would very likely fail without them — meaning this specific entry's actual Azure cost is likely ~$0 (fails before any VM is provisioned), not because the resource type is free, but because this minimal body doesn't get far enough to create billable compute. Left in the catalog as a structural placeholder rather than fully worked out, given this type is legacy and increasingly superseded by Microsoft.ServiceFabric/managedClusters below. Lowest-confidence entry in this catalog alongside Microsoft.Sql/managedInstances and Microsoft.HDInsight/clusters. Not live-tested."
@@ -5490,7 +6118,9 @@
     {
       "armType": "Microsoft.ServiceFabric/managedClusters",
       "apiVersion": "2023-12-01-preview",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "Free"
+      },
       "location": null,
       "nameTemplate": "sfmc{rand8}",
       "nameRules": {
@@ -5515,7 +6145,18 @@
     {
       "armType": "Microsoft.PowerBIDedicated/capacities",
       "apiVersion": "2021-01-01",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "High",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 1.0081,
+        "minimumUnits": 1,
+        "perHour": 1.0081,
+        "meterId": "b7e5d08b-32bb-4c42-87c5-8823c7aa6f30",
+        "meterName": "A1 Node",
+        "productName": "Power BI Embedded",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 1.0081
+      },
       "location": null,
       "nameTemplate": "pbi{rand8}",
       "nameRules": {
@@ -5541,7 +6182,18 @@
     {
       "armType": "Microsoft.Synapse/workspaces/sqlPools",
       "apiVersion": "2021-06-01",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "High",
+        "billingUnit": "1/Hour",
+        "perUnitRate": 1.51,
+        "minimumUnits": 1,
+        "perHour": 1.51,
+        "meterId": "74d767a6-ec36-4152-b86f-c1a25730fe5a",
+        "meterName": "100 DWUs",
+        "productName": "Azure Synapse Analytics Dedicated SQL Pool",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 1.51
+      },
       "location": null,
       "nameTemplate": "{prereq.sqlPoolWorkspace.name}/sqlpool1",
       "nameRules": {
@@ -5621,7 +6273,17 @@
     {
       "armType": "Microsoft.DataMigration/services",
       "apiVersion": "2021-06-30",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "High",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.393,
+        "perHour": 0.393,
+        "meterId": "27142d75-89ec-472c-837f-b9e3c34d541e",
+        "meterName": "4 vCore",
+        "productName": "Azure Database Migration Service Premium Compute",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.393
+      },
       "location": null,
       "nameTemplate": "dms{rand8}",
       "nameRules": {
@@ -5677,7 +6339,17 @@
     {
       "armType": "Microsoft.DBforPostgreSQL/serverGroupsv2",
       "apiVersion": "2023-03-02-preview",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "High",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.131287,
+        "perHour": 0.525148,
+        "meterId": "a57be976-9d97-4a4a-8c5f-f4aa10373d73",
+        "meterName": "vCore",
+        "productName": "Azure Cosmos DB for PostgreSQL Compute- Coordinator Node",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.525148
+      },
       "location": null,
       "nameTemplate": "pgc{rand8}",
       "nameRules": {
@@ -5701,7 +6373,18 @@
     {
       "armType": "Microsoft.Purview/accounts",
       "apiVersion": "2021-12-01",
-      "costTier": "VeryHigh",
+      "cost": {
+        "tier": "High",
+        "billingUnit": "1 Hour",
+        "perUnitRate": 0.411,
+        "minimumUnits": 1,
+        "perHour": 0.411,
+        "meterId": "0745df0d-ce4f-52db-ac31-ac574d4dcfe5",
+        "meterName": "Standard Capacity Unit",
+        "productName": "Azure Purview Data Map",
+        "armRegionName": "westeurope",
+        "perHourAccumulated": 0.411
+      },
       "location": null,
       "nameTemplate": "pview{rand8}",
       "nameRules": {

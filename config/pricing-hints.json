@@ -1,0 +1,335 @@
+{
+  "$schemaVersion": 1,
+  "hints": [
+    {
+      "armType": "Microsoft.Sql/managedInstances",
+      "serviceName": "SQL Managed Instance",
+      "productNameContains": "General Purpose - Compute Gen5",
+      "meterNameEquals": "vCore",
+      "skuNameEquals": "vCore",
+      "quantityJsonPath": "sku.capacity",
+      "minimumUnits": 4,
+      "reason": "Bills per-vCore-hour, not a flat SKU rate. IMPORTANT: this productName family exposes ~18 rows, one per fixed vCore-count SKU (skuName '1 vCore', '4 vCore', ..., '80 vCore', plus Zone Redundancy variants) that are each ALREADY pre-multiplied by their vCore count (e.g. '4 vCore' = $0.669756 = 4 x $0.167439) — matching on 'meterNameContains: vCore' alone (a first run's mistake) pulls in all of them plus the true per-unit rate, and multiplying an already-multiplied row by this hint's own quantityJsonPath would double- or quadruple-count. skuNameEquals 'vCore' (exact, not contains) isolates just the single true per-vCore-hour base rate row (skuName literally 'vCore', armSkuName 'SQLMI_GP_Compute_Gen5'); meterNameEquals 'vCore' excludes the separate 'Zone Redundancy vCore' meter. Confirmed via Azure Retail Prices API, westeurope: $0.167439/vCore-hour. At this catalog's 4-vCore requestBody (also Azure's own real floor for General Purpose), that's 4 x $0.167439 = $0.669756/hour. Also see https://azure.microsoft.com/en-us/pricing/details/azure-sql-managed-instance/single/ for the billing-granularity quote already in this catalog's notes."
+    },
+    {
+      "armType": "Microsoft.KeyVault/managedHSMs",
+      "minimumUnits": 1,
+      "manualPerHour": 3.2,
+      "manualBillingUnit": "1 Hour",
+      "reason": "$3.20/hour for the Standard_B1 SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/key-vault/, verified this session). Manual rate used because the exact meterName string for this meter wasn't captured verbatim during that research pass — re-derive live serviceName/meterNameContains next time this hint is revisited rather than trusting this fixed number indefinitely. Only one SKU exists for Managed HSM (no smaller option), so minimumUnits is 1 pool."
+    },
+    {
+      "armType": "Microsoft.HDInsight/clusters",
+      "manualPerHour": 1.25,
+      "manualBillingUnit": "1 Minute (per-minute proration, not hourly-minimum)",
+      "reason": "Multi-VM cluster (2x Standard_D3_v2 head + 1x Standard_D3_v2 worker + 3x Standard_A4_v2 zookeeper nodes) — no single Retail Prices API meter represents this; it's a sum across 6 VM instances of 2 different sizes. Confirmed rates this session: D3_v2 ~$0.29/hour, D1_v2 ~$0.07/hour (A4_v2's exact rate wasn't separately confirmed). $1.25/hour is a midpoint estimate within the ~$1-1.50/hour range this session computed for the 6-node layout, NOT independently re-verified per-node — lowest-confidence entry in this catalog's cost data alongside the two ServiceFabric cluster types. Billing is genuinely per-minute (quoted verbatim from Microsoft: \"We charge for the number of minutes your cluster is running, rounded to the nearest minute, not hour\"), so a brief test costs less than a full hour's worth."
+    },
+    {
+      "armType": "Microsoft.PowerBIDedicated/capacities",
+      "serviceName": "Power BI Embedded",
+      "meterNameContains": "A1",
+      "minimumUnits": 1,
+      "reason": "$1.0081/hour for the A1 SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/power-bi-embedded/, verified this session). Confirmed genuine per-second proration despite hourly-rate framing — quoted verbatim: \"Actual usage is computed to the second and billed hourly.\" A1 is the smallest available capacity SKU, hence minimumUnits 1."
+    },
+    {
+      "armType": "Microsoft.Synapse/workspaces/sqlPools",
+      "serviceName": "Azure Synapse Analytics",
+      "meterNameContains": "100 DWU",
+      "productNameContains": "Dedicated SQL Pool",
+      "skuNameContains": "DW100c",
+      "minimumUnits": 1,
+      "reason": "$1.51/hour for the DW100c SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/synapse-analytics/, verified this session — corrected the meterNameContains after a first run found zero matches: the real meterName is the generic '100 DWUs' for every performance tier of this product, with the actual tier disambiguated only by skuName, e.g. 'DW100c'/'DW200c'/.../'DW30000c', all sharing that same meterName). Confirmed hourly-minimum billing (no sub-hour proration), quoted verbatim: \"If your data warehouse exists for only 30 minutes in a month, you will be billed for 1 hour.\" DW100c is the smallest performance level Synapse dedicated SQL pools offer, hence minimumUnits 1 (sold as a fixed named tier, not linearly per-DWU)."
+    },
+    {
+      "armType": "Microsoft.DataMigration/services",
+      "serviceName": "Azure Database Migration Service",
+      "meterNameContains": "4 vCore",
+      "productNameContains": "Premium",
+      "reason": "$0.31/hour for the Premium tier, 4 vCore SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/database-migration/, verified this session — meaningfully cheaper than an earlier unverified guess of $0.84-1.68/hour). This is a flat named-SKU meter (the '4 vCore' qualifier is baked into the meter itself, like Synapse's DW100c or PowerBI's A1), NOT a per-vCore-hour linear rate — deliberately no quantityJsonPath/minimumUnits here, since multiplying $0.31 by a vCore count would quadruple it incorrectly. Microsoft's pricing page states the first 6 months of 4-vCore Premium usage is free per subscription from service creation, so a brief first-time test may show $0 — not reflected in this static rate. Billing granularity (hourly-minimum vs. prorated) not explicitly confirmed; treat $0.31 as a per-hour-or-less ceiling."
+    },
+    {
+      "armType": "Microsoft.DBforPostgreSQL/serverGroupsv2",
+      "serviceName": "Azure Database for PostgreSQL",
+      "productNameContains": "Coordinator Node",
+      "meterNameContains": "vCore",
+      "skuNameContains": "vCore",
+      "quantityJsonPath": "properties.coordinatorVCores",
+      "reason": "$0.131287/vCore-hour for coordinator compute (source: Azure Retail Prices API, verified this session — corrected after a first run found zero matches: this resource's real serviceName in the API is 'Azure Database for PostgreSQL', not 'Azure Cosmos DB for PostgreSQL'; the product is 'Azure Cosmos DB for PostgreSQL Compute- Coordinator Node'). skuNameContains 'vCore' excludes a same-serviceName, same-meterName 'Free' tier row priced at $0. At this catalog's 4-vCore requestBody, ~$0.525/hour. No confirmed mandatory minimum vCore count found for this specific tier during this session, so minimumUnits is intentionally omitted rather than assumed — quantity comes entirely from the requestBody. Microsoft Learn flags this service as on a retirement path in favor of Azure Database for PostgreSQL Elastic Clusters — worth reconsidering whether to keep this catalog entry next time it's revisited, separate from the cost figure itself."
+    },
+    {
+      "armType": "Microsoft.Purview/accounts",
+      "serviceName": "Azure Purview",
+      "meterNameContains": "Standard Capacity Unit",
+      "productNameContains": "Azure Purview Data Map",
+      "minimumUnits": 1,
+      "reason": "$0.411/hour minimum, confirmed to apply from account creation with zero usage (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/purview/, verified this session — corrected the meterNameContains after a first run found zero matches: the real meterName is 'Standard Capacity Unit', not 'Data Map Elastic Capacity Unit'). Quoted verbatim from Microsoft Learn: \"The Data Map is billed hourly. The billing process considers the maximum Data Map capacity units needed within the hour, with a minimum of one capacity unit.\""
+    },
+    {
+      "armType": "Microsoft.Network/virtualNetworkGateways",
+      "serviceName": "VPN Gateway",
+      "meterNameContains": "VpnGw1AZ",
+      "reason": "Azure Retail Prices API, westeurope: meterName='VpnGw1AZ', skuName='VpnGw1AZ', retailPrice=$0.21/hour (matches this catalog's requestBody sku.name). CAUTION for whoever revisits this: a second, unrelated meter also carries skuName='VpnGw1AZ' but meterName='S2S Connection' at $0.015/hr (a per-connection add-on, not the base gateway rate) — the fetch script must match on meterName, not skuName, and should flag this pair if its ambiguity check ever fires here."
+    },
+    {
+      "armType": "Microsoft.Compute/virtualMachines",
+      "serviceName": "Virtual Machines",
+      "meterNameContains": "D2s v5",
+      "productNameContains": "Virtual Machines Dsv5 Series",
+      "productNameExcludes": "Windows",
+      "reason": "Catalog requestBody uses Standard_D2s_v5 with an Ubuntu 22.04 (Linux) image. Azure Retail Prices API, westeurope: Linux productName='Virtual Machines Dsv5 Series' (retailPrice=$0.115/hour), Windows productName='Virtual Machines Dsv5 Series Windows' (retailPrice=$0.207/hour) — the Windows productName contains the Linux one as a substring, so productNameExcludes is required, not just productNameContains, to avoid picking the Windows row. meterName='D2s v5' (not 'D2s v5 Spot' or 'D2s v5 Low Priority', both of which contain 'D2s v5' as a substring too — the fetch script's shortest-meterName tie-break resolves this correctly since the base on-demand name is the shortest of the three)."
+    },
+    {
+      "armType": "Microsoft.DocumentDB/mongoClusters",
+      "quantityJsonPath": "properties.sharding.shardCount",
+      "manualPerHour": 0.0191,
+      "manualBillingUnit": "1 Hour",
+      "reason": "MEDIUM CONFIDENCE — not from the Retail Prices API. Extensive querying this session (contains(productName,'Mongo'), contains(meterName,'Mongo'), contains(skuName,'M10'), across all regions and the whole Databases service family) found zero matches for Cosmos DB for MongoDB vCore-cluster (M10/M20/M30) tier pricing; it appears to be a genuine gap in the public API (the only 'M10' hits anywhere belong to unrelated Redis Cache SKUs). Fallback source: Microsoft's own Cosmos DB engineering blog (devblogs.microsoft.com/cosmosdb/making-mongodb-workloads-affordable/) states verbatim the M10 tier is '1.9 cents/hour' ($0.0191/hr), corroborated by learn.microsoft.com/en-us/azure/documentdb/compute-storage confirming M10 = 1 burstable vCore / 2 GiB RAM (matches this catalog's tier). Recommend a manual Azure Pricing Calculator spot-check before trusting this number for anything beyond a rough tier classification, given this exact resource type's pricing history in this project."
+    },
+    {
+      "armType": "Microsoft.Network/bastionHosts",
+      "serviceName": "Azure Bastion",
+      "meterNameContains": "Basic Gateway",
+      "reason": "Azure Retail Prices API, westeurope: meterName='Basic Gateway', skuName='Basic' (matches this catalog's requestBody), retailPrice=$0.19/hour. Distinct from 'Basic Data Transfer Out', a separate tiered per-GB egress meter, not part of the fixed hourly gateway fee."
+    },
+    {
+      "armType": "Microsoft.DBforPostgreSQL/flexibleServers",
+      "serviceName": "Azure Database for PostgreSQL",
+      "meterNameContains": "B1MS",
+      "productNameContains": "Flexible Server Burstable BS Series Compute",
+      "reason": "Catalog requestBody uses sku.name Standard_B1ms, tier Burstable. Azure Retail Prices API, westeurope: meterName='B1MS', productName='Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute', retailPrice=$0.0199/hour. Storage (32GB in requestBody) is billed separately per-GB and not included in this hourly figure."
+    },
+    {
+      "armType": "Microsoft.Network/azureFirewalls",
+      "serviceName": "Azure Firewall",
+      "meterNameContains": "Basic Deployment",
+      "reason": "Catalog requestBody uses sku.tier Basic. Azure Retail Prices API, westeurope: meterName='Basic Deployment', skuName='Basic', retailPrice=$0.395/hour. Distinct from 'Basic Data Processed' ($0.065/GB, usage-based), not part of the fixed hourly deployment fee."
+    },
+    {
+      "armType": "Microsoft.Compute/virtualMachineScaleSets",
+      "serviceName": "Virtual Machines",
+      "meterNameContains": "D2s v5",
+      "productNameContains": "Virtual Machines Dsv5 Series",
+      "productNameExcludes": "Windows",
+      "quantityJsonPath": "sku.capacity",
+      "reason": "Same VM size (Standard_D2s_v5, Linux) and meter as Microsoft.Compute/virtualMachines above — VMSS instances bill as regular VM instances of the chosen size (sku.tier='Standard' here is the VMSS orchestration tier, unrelated to Compute pricing tiers). $0.115/hour per instance, scaled by sku.capacity (this catalog's requestBody currently sets capacity 1). productNameExcludes 'Windows' avoids the Windows-priced row, whose productName otherwise contains the Linux productName as a substring."
+    },
+    {
+      "armType": "Microsoft.AnalysisServices/servers",
+      "serviceName": "Azure Analysis Services",
+      "meterNameContains": "Developer",
+      "productNameContains": "Azure Analysis Services Developer",
+      "reason": "Catalog requestBody uses sku.name D1, sku.tier Development. Azure Retail Prices API, westeurope: exactly one Developer-tier row, meterName='Developer', productName='Azure Analysis Services Developer', retailPrice=$0.132/hour — no separate D1/D2/D4 meter breakdown exists. Corrects this catalog's prior guessed note of '~$0.75+/hr' downward."
+    },
+    {
+      "armType": "Microsoft.Kusto/clusters",
+      "manualPerHour": 0.152,
+      "manualBillingUnit": "1 Hour",
+      "reason": "PARTIAL/INCOMPLETE — catalog requestBody uses the Dev/Test SKU (Dev(No SLA)_Standard_E2a_v4). Microsoft Learn confirms Azure Data Explorer's markup meter isn't charged for development clusters, so the ADX-specific markup ($0.11/hr in westeurope for Standard tier) doesn't apply. Base engine VM cost confirmed via Retail Prices API for Standard_E2a_v4 (productName 'Virtual Machines Eav4 Series', Linux, Consumption): $0.152/hour. HOWEVER Microsoft Learn also states a Dev/Test cluster provisions a SEPARATE, auto-sized data-management (DM) node ('the size and VM SKU of the data management cluster are fully managed by the Azure Data Explorer service') whose exact price could not be confirmed from any source this session — real total hourly cost is genuinely higher than $0.152/hr, but the DM node cost is deliberately excluded here rather than guessed. Re-research if a more complete number is needed."
+    },
+    {
+      "armType": "Microsoft.Fabric/capacities",
+      "serviceName": "Microsoft Fabric",
+      "meterNameContains": "Capacity Usage CU",
+      "reason": "Catalog requestBody uses sku.name F2 (2 Capacity Units). Azure Retail Prices API, westeurope, serviceName='Microsoft Fabric': every workload-category meter (Power BI, Data Warehouse, Eventhouse, etc.) shares an identical $0.22/CU-hour Consumption rate — 2 CU x $0.22 = $0.44/hour. Multiple meters match 'Capacity Usage CU' but all carry the same price, so picking any one of them is not a real ambiguity (the fetch script should treat same-price matches as non-ambiguous, not warn on them). Note: eastus pricing is lower ($0.18/CU) — westeurope-specific figure, don't reuse the commonly-cited '$0.36/hr for F2' number which is eastus-based."
+    },
+    {
+      "armType": "Microsoft.ContainerService/managedClusters/agentPools",
+      "serviceName": "Virtual Machines",
+      "meterNameContains": "D2s v5",
+      "productNameContains": "Virtual Machines Dsv5 Series",
+      "productNameExcludes": "Windows",
+      "quantityJsonPath": "properties.count",
+      "reason": "Catalog requestBody uses vmSize Standard_D2s_v5, osType Linux, count 1. Same meter as Microsoft.Compute/virtualMachines: $0.115/hour per node in westeurope. AKS does not add a separate charge on top of the underlying VM for a User-mode node pool. productNameExcludes 'Windows' avoids the Windows-priced row, whose productName otherwise contains the Linux productName as a substring."
+    },
+    {
+      "armType": "Microsoft.Cache/redis",
+      "serviceName": "Redis Cache",
+      "meterNameContains": "C0 Cache",
+      "productNameContains": "Azure Redis Cache Basic",
+      "reason": "Catalog requestBody uses sku.name Basic, family C, capacity 0 (Basic C0). Azure Retail Prices API, westeurope: meterName='C0 Cache', productName='Azure Redis Cache Basic', retailPrice=$0.02/hour. This is the anchor for this catalog's 'Low' cost tier threshold."
+    },
+    {
+      "armType": "Microsoft.Cache/redisEnterprise",
+      "serviceName": "Redis Cache",
+      "meterNameContains": "B0 Cache Instance",
+      "productNameContains": "Azure Managed Redis - Balanced",
+      "reason": "Catalog requestBody uses sku.name Balanced_B0. Azure Retail Prices API, westeurope: meterName='B0 Cache Instance', productName='Azure Managed Redis - Balanced', armSkuName='Azure_Managed_Redis_Balanced_B0', retailPrice=$0.02/hour (~$14.6/month at 730 hours — matches this catalog's prior existing note of ~$12-15/mo). Confirmed distinct from the legacy, much pricier 'Azure Redis Cache Enterprise' product line (Enterprise_E10+ SKUs)."
+    },
+    {
+      "armType": "Microsoft.Compute/disks",
+      "serviceName": "Storage",
+      "meterNameEquals": "S4 LRS Disk",
+      "skuNameEquals": "S4 LRS",
+      "productNameContains": "Standard HDD Managed Disks",
+      "minimumUnits": 1,
+      "reason": "Catalog requestBody uses Standard_LRS, diskSizeGB 4 - Azure rounds this up to the S4 tier (32 GiB, the smallest Standard HDD paid tier). Azure Retail Prices API, westeurope: meterName='S4 LRS Disk', skuName='S4 LRS', productName='Standard HDD Managed Disks', retailPrice=$1.536, unitOfMeasure '1/Month' (fetch-resource-pricing.ps1 auto-converts month-billed meters to an hourly-equivalent). Azure's own pricing page (azure.microsoft.com/en-us/pricing/details/managed-disks/) confirms disks are billed per-tier regardless of size/attachment/power state - a real ongoing cost even for an empty, unattached, powered-off 4 GB disk, contrary to the common assumption that disks are free until attached. TRAP: meterName 'S4' is a substring of 'S40' (400 GiB tier) - must match meterNameEquals exactly."
+    },
+    {
+      "armType": "Microsoft.Network/publicIPAddresses",
+      "serviceName": "Virtual Network",
+      "meterNameEquals": "Standard IPv4 Static Public IP",
+      "productNameContains": "IP Addresses",
+      "skuNameEquals": "Standard",
+      "reason": "Catalog requestBody uses sku.name Standard, publicIPAllocationMethod Static. Azure Retail Prices API, westeurope: meterName='Standard IPv4 Static Public IP', skuName='Standard', productName='IP Addresses', retailPrice=$0.005/hour. SURPRISING: this charge applies purely for reserving the IP, whether or not it's attached to a running VM/load balancer - contrary to the common assumption that Public IPs are free. Distinct from the cheaper Basic-tier rows ('Basic IPv4 Static Public IP' $0.0036/hr, 'Basic IPv4 Dynamic Public IP' $0.004/hr) which don't match this catalog's Standard SKU."
+    },
+    {
+      "armType": "Microsoft.Network/privateDnsZones",
+      "minimumUnits": 1,
+      "manualPerHour": 0.000685,
+      "manualBillingUnit": "1 Hour",
+      "reason": "$0.50/zone/month = $0.000685/hour equivalent (0.50 / 730). SURPRISING: this catalog previously assumed DNS zones are free metadata - they are not. Confirmed via Azure Retail Prices API: serviceName='Azure DNS', meterName='Private Zone', skuName='Private', retailPrice=$0.50 for the first 25 zones/subscription (tierMinimumUnits 0), dropping to $0.10/zone from the 26th on. Manual rate used because this meter's armRegionName is blank/non-standard (uniform worldwide pricing, not tied to 'westeurope'), so the fetch script's region-scoped query would find zero rows for it - same blind spot as NAT Gateway/Front Door's Global-tagged meters, but without a clean single alternate region string to substitute. Sibling finding: Microsoft.Network/dnsZones (public) carries an identical $0.50/zone/month structure via a separate 'Public Zone' meter (see that hint below)."
+    },
+    {
+      "armType": "Microsoft.Network/dnsZones",
+      "minimumUnits": 1,
+      "manualPerHour": 0.000685,
+      "manualBillingUnit": "1 Hour",
+      "reason": "$0.50/zone/month = $0.000685/hour equivalent (0.50 / 730). SURPRISING: this catalog previously tagged this Free - it is not. Confirmed via Azure Retail Prices API: serviceName='Azure DNS', meterName='Public Zone', skuName='Public', retailPrice=$0.50 for the first 25 zones/subscription, dropping to $0.10/zone from the 26th on. Manual rate used because this meter is not region-priced (armRegionName is blank, uniform worldwide), so the fetch script's region-scoped query would find zero rows for it. Billed per zone per month (not per hour); azure.microsoft.com/pricing/details/dns/ repeatedly failed to load during research so a verbatim partial-month-proration statement wasn't captured - treat $0.50/zone-month as a ceiling."
+    },
+    {
+      "armType": "Microsoft.Sql/servers/databases",
+      "serviceName": "SQL Database",
+      "meterNameEquals": "B DTU",
+      "skuNameEquals": "B",
+      "productNameContains": "SQL Database Single Basic",
+      "minimumUnits": 1,
+      "reason": "Catalog requestBody uses sku.name 'Basic'. Azure Retail Prices API, westeurope: meterName='B DTU', skuName='B', productName='SQL Database Single Basic', retailPrice=$0.161, unitOfMeasure '1/Day' (fetch-resource-pricing.ps1 auto-converts day-billed meters to an hourly-equivalent: 0.161/24 = $0.006708/hour, ~$4.90/month) - a flat rate for the entire 5-DTU Basic tier, not linear per-DTU. TRAP: the API's own skuName is the abbreviation 'B', not 'Basic' - don't confuse with the ARM property sku.name='Basic', same tier, different string. A second, irrelevant 'B Secondary Active DTU' meter (same price, for geo-replication secondaries) is excluded by the exact meterNameEquals match."
+    },
+    {
+      "armType": "Microsoft.ContainerRegistry/registries",
+      "serviceName": "Container Registry",
+      "meterNameEquals": "Basic Registry Unit",
+      "skuNameEquals": "Basic",
+      "minimumUnits": 1,
+      "reason": "Catalog requestBody uses sku.name 'Basic'. Azure Retail Prices API, westeurope: meterName='Basic Registry Unit', skuName='Basic', productName='Container Registry', retailPrice=$0.1666, unitOfMeasure '1/Day' (fetch-resource-pricing.ps1 auto-converts: 0.1666/24 = $0.006942/hour, ~$5.00/month, includes 10 GB storage). SURPRISING: this is a real, unavoidable flat fee starting the moment the registry is created, even with zero images ever pushed or pulled - contrary to the common assumption that registries are free until used. Separate 'Data Stored'/'Task vCPU Duration' meters are additional consumption on top, not included here."
+    },
+    {
+      "armType": "Microsoft.ContainerInstance/containerGroups",
+      "minimumUnits": 1,
+      "manualPerHour": 0.05171,
+      "manualBillingUnit": "1 Hour",
+      "reason": "Catalog requestBody uses osType Linux, 1 vCPU, 1 GiB memory. Sum of two separate, genuinely hourly Retail Prices API meters (westeurope, serviceName='Container Instances'): 'Standard vCPU Duration' $0.0466/vCPU-hour + 'Standard Memory Duration' $0.00511/GB-hour = $0.05171/hour at this catalog's 1 vCPU + 1 GiB request. Manual rate used because this cost is a SUM of two independent meters, which the current hint schema (one meter per hint) can't express as a single API-driven lookup. Billing is genuinely per-second; this is the hourly-equivalent rate while the container group is running. TRAPS avoided: 'Standard Spot ...' rows are the cheaper Spot-priced variant (not used here); 'Standard Windows Software Duration' is an irrelevant Windows-OS add-on. Cost is $0 only while the container group is fully stopped/deleted."
+    },
+    {
+      "armType": "Microsoft.Web/serverfarms",
+      "serviceName": "Azure App Service",
+      "meterNameEquals": "B1",
+      "productNameContains": "Basic Plan - Linux",
+      "skuNameEquals": "B1",
+      "reason": "Catalog requestBody uses sku.name B1, tier Basic, reserved:true (Linux). Azure Retail Prices API, westeurope: meterName='B1', productName='Azure App Service Basic Plan - Linux', skuName='B1', retailPrice=$0.018/hour. TRAP (same skuName reused across meters): a second row shares the identical skuName 'B1' but is the Windows plan - meterName='B1 App', productName='Azure App Service Basic Plan' (no '- Linux' suffix), retailPrice=$0.075/hour, over 4x more expensive. meterNameEquals 'B1' (exact, excludes 'B1 App') plus productNameContains '- Linux' together guarantee the Linux rate is picked."
+    },
+    {
+      "armType": "Microsoft.Network/privateEndpoints",
+      "minimumUnits": 1,
+      "manualPerHour": 0.01,
+      "manualBillingUnit": "1 Hour",
+      "reason": "$0.01/hour per private endpoint (source: https://azure.microsoft.com/en-us/pricing/details/private-link/, 'Private Endpoint' row, europe-west price, verified this session), plus separate Inbound/Outbound Data Processed charges (also $0.01/GB, usage-based, not included here). Manual rate used because this meter is NOT exposed anywhere in the Azure Retail Prices API under any discoverable name - exhaustively searched contains(meterName,'Private'/'Endpoint'), contains(productName,'Private'/'Private Link') in westeurope and globally; zero relevant hits. SURPRISING: a resource many assume is a free networking construct (like a NIC) actually bills continuously from creation."
+    },
+    {
+      "armType": "Microsoft.EventHub/namespaces",
+      "serviceName": "Event Hubs",
+      "meterNameEquals": "Basic Throughput Unit",
+      "skuNameEquals": "Basic",
+      "quantityJsonPath": "sku.capacity",
+      "minimumUnits": 1,
+      "reason": "Azure Retail Prices API, westeurope: meterName='Basic Throughput Unit', productName='Event Hubs', skuName='Basic', retailPrice=$0.015/hour. Confirmed genuinely hourly via https://azure.microsoft.com/en-us/pricing/details/event-hubs/: 'Throughput units are billed hourly, based on the maximum number of units selected during this hour.' SURPRISING: EventHub Basic namespaces are NOT free/consumption-only the way Service Bus Basic namespaces are (Service Bus Basic only has a per-operation meter, no base unit charge) - contrary to what a reasonable person might assume by analogy between the two messaging services. This catalog's requestBody omits sku.capacity; Basic/Standard namespaces provision at a minimum of 1 throughput unit in practice, though this specific default-provisioning behavior wasn't independently API-verified."
+    },
+    {
+      "armType": "Microsoft.Network/natGateways",
+      "serviceName": "NAT Gateway",
+      "meterNameEquals": "Standard Gateway",
+      "skuNameEquals": "Standard",
+      "armRegionNameOverride": "Global",
+      "reason": "$0.045/hour for the Standard SKU (source: Azure Retail Prices API - serviceName='NAT Gateway', meterName='Standard Gateway', skuName='Standard', retailPrice=0.045, matches this catalog's requestBody sku.name Standard). This meter's armRegionName is literally 'Global' (uniform worldwide pricing), not 'westeurope' - armRegionNameOverride lets the fetch script query against 'Global' specifically for this hint instead of failing to find it under the default region. Distinct from 'Standard Data Processed' ($0.045/GB, separate usage-based egress meter, not included here)."
+    },
+    {
+      "armType": "Microsoft.Network/firewallPolicies",
+      "serviceName": "Azure Firewall Manager",
+      "meterNameEquals": "Standard Policy per Region",
+      "minimumUnits": 1,
+      "reason": "$100.00/month per policy per region (source: Azure Retail Prices API, westeurope: serviceName='Azure Firewall Manager', meterName='Standard Policy per Region', skuName='Standard', retailPrice=100.0, unitOfMeasure='1/Month' - exact armRegionName match, no override needed; fetch-resource-pricing.ps1 auto-converts to $0.136986/hour). Confirmed via Microsoft's own FAQ (https://azure.microsoft.com/en-us/pricing/details/firewall-manager/): 'customers are charged a minimum of one base policy... each region is charged $100... per policy per region. If a child policy is in a single hub, there is no charge, but a base policy will still be charged.' MAJOR SURPRISING finding: this catalog's own notes call it a 'Standalone Firewall Policy - no Azure Firewall needed to create this,' which reads as implying no cost - it does not. The base-policy fee applies purely to the policy container's existence, independent of any Firewall or hub attachment. Distinct from Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies (App Gateway's WAF policy type, separately confirmed genuinely free - no per-policy meter exists for that resource)."
+    },
+    {
+      "armType": "Microsoft.Cdn/profiles",
+      "minimumUnits": 1,
+      "manualPerHour": 0.047945,
+      "manualBillingUnit": "1 Hour",
+      "reason": "$35.00/month base fee = $0.047945/hour (35/730), confirmed via Azure Retail Prices API (serviceName='Azure Front Door Service', meterName='Standard Base Fees', skuName='Standard', retailPrice=35.0, unitOfMeasure='1/Month') and https://azure.microsoft.com/en-us/pricing/details/frontdoor/: 'Base fees (Billed hourly and only for number of hours used)' - Standard: $35/month. MAJOR SURPRISING finding: this catalog's requestBody (Standard_AzureFrontDoor SKU, empty properties) is NOT free even with zero traffic/custom domains/routes configured. Manual rate used because Front Door's pricing meters are tagged by 'Zone' (Zone 1..Zone 8), not by a real armRegionName - the exact Zone corresponding to westeurope wasn't determined this session, so a live armRegionNameOverride hint isn't safe to construct yet; revisit if that mapping is confirmed later. All other AFD meters (Requests, Data Transfer, Custom Domain, Routing Rules, WAF) are usage-based and correctly excluded from this baseline figure."
+    },
+    {
+      "armType": "Microsoft.Sql/servers/elasticPools",
+      "serviceName": "SQL Database",
+      "productNameContains": "SQL Database Elastic Pool - Basic",
+      "meterNameEquals": "eDTUs",
+      "skuNameEquals": "50 DTU Pack",
+      "minimumUnits": 1,
+      "reason": "Catalog uses BasicPool/Basic/capacity 50. Azure Retail Prices API, westeurope: productName='SQL Database Elastic Pool - Basic', meterName='eDTUs', skuName='50 DTU Pack', retailPrice=$2.42, unitOfMeasure '1/Day' (fetch-resource-pricing.ps1 auto-converts: 2.42/24 = $0.100833/hour). Verified linear scaling across every Basic DTU Pack size this session (50->$2.42, 100->$4.84, 200->$9.68 ... all exactly proportional), but deliberately used skuNameEquals '50 DTU Pack' (a flat named SKU row, matching this catalog's Synapse DW100c/PowerBI A1 pattern) rather than a linear quantityJsonPath. Confirmed genuine hourly billing granularity via Microsoft Learn (learn.microsoft.com/.../elastic-pool-overview), quoted verbatim: 'You're billed for each hour a pool exists at the highest eDTU or vCores, regardless of usage.' SURPRISING: a 'Basic'-named tier is not free - it's a real, always-on compute charge from creation. 50 DTU Pack is the smallest Basic-tier row found, but no explicit documented hard-floor policy statement was found, so treat minimumUnits as 'smallest available SKU' rather than a confirmed policy minimum."
+    },
+    {
+      "armType": "Microsoft.Dashboard/grafana",
+      "serviceName": "Azure Grafana Service",
+      "meterNameEquals": "Standard Node",
+      "productNameContains": "Azure Managed Grafana",
+      "skuNameEquals": "Standard",
+      "minimumUnits": 1,
+      "reason": "Catalog uses sku Standard (no free tier exists for Azure Managed Grafana). Azure Retail Prices API, westeurope: productName='Azure Managed Grafana', serviceName='Azure Grafana Service' (not 'Azure Managed Grafana' - that's the productName). meterName='Standard Node', skuName='Standard', retailPrice=$0.0445/hour - the base workspace instance charge. INCOMPLETE: there is also a separate 'Standard User' meter at $6.00/month per Editor/Admin seat, and an optional Zone Redundancy add-on, neither captured by this hourly-only hint - real total cost is $0.0445/hr plus $6/month per non-viewer user. Catalog's own note confirms 'Azure Managed Grafana has no free tier; Standard is the minimum.'"
+    },
+    {
+      "armType": "Microsoft.Insights/metricAlerts",
+      "serviceName": "Azure Monitor",
+      "meterNameEquals": "Alerts Resource Monitored at 5 Minute Frequency",
+      "skuNameEquals": "Alerts",
+      "minimumUnits": 1,
+      "reason": "SURPRISING - metric alert rules are NOT free metadata, contrary to what most engineers assume. Azure Retail Prices API, westeurope, productName='Azure Monitor', skuName='Alerts': meterName='Alerts Resource Monitored at 5 Minute Frequency', retailPrice=$0.15, unitOfMeasure='1/Month' (fetch-resource-pricing.ps1 auto-converts to an hourly-equivalent). The rate is tied directly to this catalog's requestBody evaluationFrequency (PT5M): sibling meters exist for 1/10/15-minute frequencies at $0.30/$0.10/$0.05 respectively - if evaluationFrequency ever changes, the matched meterName must change too. Corroborated by Microsoft Learn (learn.microsoft.com/.../alerts-types), quoted verbatim: 'Each metric alert rule is charged based on the number of time series that are monitored.' A separate 'Alerts Metric Monitored' meter governs a different thing (custom-metric time-series count) and does not apply to this catalog's single static-threshold platform-metric rule."
+    },
+    {
+      "armType": "Microsoft.Insights/scheduledQueryRules",
+      "serviceName": "Azure Monitor",
+      "meterNameEquals": "Alerts System Log Monitored at 15 Minute Frequency",
+      "skuNameEquals": "Alerts",
+      "minimumUnits": 1,
+      "reason": "SURPRISING - same class of finding as Microsoft.Insights/metricAlerts: log-search (scheduled query) alert rules are billed, not free. Azure Retail Prices API, westeurope, productName='Azure Monitor', skuName='Alerts': meterName='Alerts System Log Monitored at 15 Minute Frequency', retailPrice=$0.50, unitOfMeasure='1/Month' (fetch-resource-pricing.ps1 auto-converts), matches this catalog's requestBody evaluationFrequency PT15M exactly. Sibling meters at 1/5/10-minute frequencies price at $3.00/$1.50/$1.00 respectively - re-verify the meter choice if evaluationFrequency ever changes. Corroborated by Microsoft Learn (learn.microsoft.com/.../alerts-types), quoted verbatim: 'Each log search alert rule is billed based on the interval at which the log query is evaluated.'"
+    },
+    {
+      "armType": "Microsoft.Sql/servers/jobAgents",
+      "serviceName": "SQL Database",
+      "meterNameContains": "JA100 Job Agent",
+      "productNameContains": "SQL Database - Elastic Jobs Agent",
+      "reason": "SURPRISING, catalog previously tagged Free - incorrect. Elastic Job Agents were free only during preview; since General Availability (April 2024) they bill a flat per-tier hourly rate. Microsoft Learn, verbatim: 'The cost of the elastic job agent is based on fixed pricing of the service tier you select for the job agent' and 'Most environments require less than 100 concurrent jobs at any time, so JA100 is the default' (learn.microsoft.com/en-us/azure/azure-sql/database/elastic-jobs-overview). This catalog's requestBody (properties.databaseId only, no sku/tier) never sets a tier, so it lands on the JA100 default. Azure Retail Prices API, westeurope, serviceName='SQL Database', productName='SQL Database - Elastic Jobs Agent': JA100=$0.038/hr (also JA200=$0.075/hr, JA400=$0.149/hr, JA800=$0.299/hr, not used here), unitOfMeasure '1 Hour'. The jobAgentDb prerequisite (SQL Database S0) has its own separate, already-covered DTU cost."
+    },
+    {
+      "armType": "Microsoft.EventGrid/namespaces",
+      "serviceName": "Event Grid",
+      "meterNameContains": "Standard Throughput Unit",
+      "skuNameEquals": "Standard",
+      "quantityJsonPath": "sku.capacity",
+      "minimumUnits": 1,
+      "reason": "SURPRISING, catalog previously tagged Free - incorrect, and the most important finding of this research pass. Every namespace provisions at least 1 Throughput Unit (TU) by default, billed hourly regardless of whether any topics/MQTT clients are ever used - this is not opt-in capacity. ARM schema reference, verbatim: 'capacity | Specifies the number of Throughput Units... The property default value is 1... Min capacity is 1 and max allowed capacity is 20.' (learn.microsoft.com/en-us/azure/templates/microsoft.eventgrid/namespaces). This catalog's requestBody omits sku entirely (bare properties:{}), so ARM applies that default capacity of 1. Azure Retail Prices API, westeurope, serviceName='Event Grid': meterName='Standard Throughput Unit', productName='Event Grid', skuName='Standard', retailPrice=$0.04/hour. At the default/minimum capacity of 1, that's $0.04/hour just for the namespace to exist - distinct from classic Basic Event Grid topics/domains, which remain genuinely free/consumption with no TU concept."
+    },
+    {
+      "armType": "Microsoft.Network/publicIPPrefixes",
+      "minimumUnits": 16,
+      "manualPerHour": 0.096,
+      "manualBillingUnit": "1 Hour",
+      "reason": "NOT free, contrary to this catalog's previous 'Free' cost tier assumption. Azure Retail Prices API, westeurope: meterName='Standard Static IP Addresses', productName='Public IP Prefix', skuName='Standard' (matches this catalog's requestBody sku.name), retailPrice=$0.006/IP-hour. Confirmed verbatim on https://azure.microsoft.com/en-us/pricing/details/ip-addresses/: 'Public IPv4 prefixes are charged per IPv4 per hour. As soon as a prefix is created, you are charged.' This catalog's requestBody uses prefixLength 28 (a /28 = 16 addresses), so 16 x $0.006 = $0.096/hour. manualPerHour used instead of an API-driven quantityJsonPath lookup because the address count (2^(32-prefixLength)) isn't a literal requestBody field the fetch script can read directly - recompute this number if prefixLength ever changes. Distinct from 'Global Static Public IP' (skuName 'Global', $0.012/hr), a different SKU this catalog doesn't use."
+    },
+    {
+      "armType": "Microsoft.Network/dnsForwardingRulesets",
+      "manualPerHour": 0.003425,
+      "manualBillingUnit": "1 Hour",
+      "reason": "$2.50/month = $0.003425/hour equivalent (2.50/730). Azure Retail Prices API returns this meter with unitOfMeasure='1' (not a recognizable hour/day/month pattern) - azure.microsoft.com/en-us/pricing/details/dns/ clarifies verbatim: '1 ruleset - $2.50/month prorated to hours if discontinued earlier.' Manual rate used since the raw API unit isn't safely auto-convertible. Uniform across all pricing zones - region choice doesn't affect this rate. This meter belongs to the ruleset itself, separate from the inbound/outbound endpoints it references (see those hints)."
+    },
+    {
+      "armType": "Microsoft.Network/dnsResolvers/inboundEndpoints",
+      "manualPerHour": 0.246575,
+      "manualBillingUnit": "1 Hour",
+      "reason": "SURPRISING - the priciest item in this research pass. $180/month = $0.246575/hour equivalent (180/730). Confirmed verbatim on azure.microsoft.com/en-us/pricing/details/dns/: 'Azure DNS Private Resolver inbound endpoint - 1 endpoint - $180.00/month prorated to hours if discontinued earlier.' Azure Retail Prices API confirms retailPrice=180 but unitOfMeasure='1' (not auto-convertible), hence manualPerHour. Uniform across zones. Note: this re-derives and roughly corroborates an earlier README estimate of '~$0.245/resolver' from a short live test - treat this $180/month official-page figure as the authoritative source going forward."
+    },
+    {
+      "armType": "Microsoft.Network/dnsResolvers/outboundEndpoints",
+      "manualPerHour": 0.246575,
+      "manualBillingUnit": "1 Hour",
+      "reason": "Identical rate and structure to Microsoft.Network/dnsResolvers/inboundEndpoints above. azure.microsoft.com/en-us/pricing/details/dns/: 'Azure DNS Private Resolver outbound endpoint - 1 endpoint - $180.00/month prorated to hours if discontinued earlier' = $0.246575/hour equivalent (180/730). Confirmed via Azure Retail Prices API (retailPrice=180, meterName='Private Resolver Outbound Endpoint', skuName='Private Resolver'), unitOfMeasure='1' hence manualPerHour."
+    }
+  ]
+}
