@@ -18,8 +18,8 @@ public class ResourceTypeCatalogLoaderTests
             {
               "$schemaVersion": 1,
               "resourceTypes": [
-                { "armType": "Microsoft.Storage/storageAccounts", "apiVersion": "2023-05-01", "costTier": "Free", "nameTemplate": "st{rand8}", "requestBody": {} },
-                { "armType": "Microsoft.Storage/storageAccounts", "apiVersion": "2023-05-01", "costTier": "Free", "nameTemplate": "st{rand8}", "requestBody": {} }
+                { "armType": "Microsoft.Storage/storageAccounts", "apiVersion": "2023-05-01", "cost": { "tier": "Free" }, "nameTemplate": "st{rand8}", "requestBody": {} },
+                { "armType": "Microsoft.Storage/storageAccounts", "apiVersion": "2023-05-01", "cost": { "tier": "Free" }, "nameTemplate": "st{rand8}", "requestBody": {} }
               ]
             }
             """);
@@ -38,7 +38,7 @@ public class ResourceTypeCatalogLoaderTests
                 {
                   "armType": "Microsoft.Sql/servers/databases",
                   "apiVersion": "2023-08-01",
-                  "costTier": "Low",
+                  "cost": { "tier": "Low" },
                   "nameTemplate": "{prereq.sqlServer.name}/db{rand6}",
                   "requestBody": {},
                   "prerequisites": []
@@ -61,7 +61,7 @@ public class ResourceTypeCatalogLoaderTests
                 {
                   "armType": "Microsoft.Sql/servers/databases",
                   "apiVersion": "2023-08-01",
-                  "costTier": "Low",
+                  "cost": { "tier": "Low" },
                   "nameTemplate": "{prereq.sqlServer.name}/db{rand6}",
                   "requestBody": {},
                   "prerequisites": [
@@ -82,7 +82,7 @@ public class ResourceTypeCatalogLoaderTests
 
         Assert.Equal(1, catalog.SchemaVersion);
         var def = Assert.Single(catalog.ResourceTypes);
-        Assert.Equal(CostTier.Low, def.CostTier);
+        Assert.Equal(CostTier.Low, def.Cost.Tier);
         var prereq = Assert.Single(def.Prerequisites);
         Assert.Equal("sqlServer", prereq.Alias);
     }

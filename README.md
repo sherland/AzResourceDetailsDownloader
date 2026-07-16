@@ -73,7 +73,7 @@ Two concurrency-induced failure modes are handled automatically, both found live
 
 ## Config: `config/resource-types.json`
 
-**159 entries, spanning storage, compute, networking, databases, security/identity, monitoring, web/app hosting, containers, messaging, AI/cognitive services, analytics/IoT, and desktop virtualization.** 67 entries were added across two passes to reach full coverage of `config/resource-abbreviations.json` (every armType Microsoft's own abbreviations table lists, minus the entries deliberately excluded below): 57 at Free/Low/Medium/High cost tiers, plus 10 more at a dedicated `VeryHigh` tier for entries too expensive or slow to include otherwise (see "Genuinely expensive" below).
+**159 entries, spanning storage, compute, networking, databases, security/identity, monitoring, web/app hosting, containers, messaging, AI/cognitive services, analytics/IoT, and desktop virtualization** — covering every armType `config/resource-abbreviations.json` lists (Microsoft's own abbreviations table), minus the entries deliberately excluded below. Cost tier (`Free`/`Low`/`Medium`/`High`/`VeryHigh`) is derived purely from each entry's real, sourced Azure cost — see "Genuinely expensive" below for the `VeryHigh` entries specifically.
 
 **A full single-run verification across all 149 non-`VeryHigh` entries** (`dotnet run -- --run --max-cost-tier High`, one invocation, no `--only` filtering) put **141 of 149 genuinely working** (140 succeeded outright; a 141st, `Microsoft.Databricks/workspaces`, failed only because of a stale artifact from earlier same-day testing — see below — and is confirmed fixed). The remaining 8 all have a specific, understood reason, not a mystery:
 - `Microsoft.Insights/autoscalesettings` — tenant-policy block (App Service Plan SKU restriction), pre-existing and documented, not new.
@@ -87,13 +87,13 @@ Two concurrency-induced failure modes are handled automatically, both found live
 2. **`Microsoft.Cache/redisEnterprise`** (+ `.../databases`) had no `locationFallbacks` configured, so a genuine transient regional-capacity error (`AllocationFailed`, confirmed via Activity Log) had nowhere to retry to — added the same fallback-region mechanism `Microsoft.App/managedEnvironments` already uses. A subsequent re-test hit a *different*, expected issue: after four same-day attempts at the same deterministic hostname, Azure's global name-uniqueness check treated it as still reserved (the same quirk already documented for `Microsoft.Kusto/clusters`) — not a config bug, should clear with time.
 3. An `highAvailability`/`redundancyMode: ZR` default was initially suspected as the redisEnterprise cause and explicitly disabled — turned out not to be the actual cause, but kept as a harmless simplification.
 
-Live-testing was staged by cost tier before this full run confirmed the picture above: all 35 Free-tier and 13 of 14 Low-tier entries, Medium tier's one new entry (`Microsoft.Compute/restorePointCollections`), and (as of this run) all 7 High-tier entries have each been individually exercised at least once. The 10 `VeryHigh` entries are deliberately never live-tested given their cost/time (see "Genuinely expensive" below). `Microsoft.BotService/botServices` turned out to be architecturally infeasible during Free-tier testing and was removed from the catalog — see exclusions below.
+Live-testing was staged by cost tier before this full run confirmed the picture above: all 35 Free-tier and 13 of 14 Low-tier entries, Medium tier's one new entry (`Microsoft.Compute/restorePointCollections`), and (as of this run) all 7 High-tier entries have each been individually exercised at least once. The `VeryHigh`-tier entries (see "Genuinely expensive" below) are deliberately never live-tested given their cost/time. `Microsoft.BotService/botServices` turned out to be architecturally infeasible during Free-tier testing and was removed from the catalog — see exclusions below.
 
 The AKS agent pool fix uncovered a second real bug in this tool: `ArmResourceProvisioner` unconditionally injected a top-level `location` property into every request body, which almost all ARM types accept — except `Microsoft.ContainerService/managedClusters/agentPools`, which rejects it (`UnmarshalError`, "unknown field \"location\"", since agent pools inherit location from their parent cluster). Fixed with a small known-exceptions list, the same pattern `DeterministicNaming` already uses for its own type-specific quirk.
 
 Includes `Microsoft.Cache/redisEnterprise` + `Microsoft.Cache/redisEnterprise/databases` ("Azure Managed Redis") alongside the classic `Microsoft.Cache/redis` — the portal itself now shows a retirement notice on the classic type (new creation blocked from 2026-10-01, retirement 2028-09-30) recommending the newer offering, so both are captured while the classic type still works.
 
-Each entry describes one ARM resource type: `armType`, a pinned `apiVersion`, `costTier`, `location` (`null` = default region; some types, like Action Groups or Private DNS Zones, legitimately require `"global"`), `nameTemplate` (+ `nameRules` for the random-name charset/length: `lowerAlnum`, `lowerAlnumDash`, or `hex` for GUID-shaped names), `requestBody` (the minimal valid ARM properties for that type), and an optional `prerequisites` list for resources that need other resources created first (e.g. a SQL Database needs a SQL Server; a Subnet needs a Virtual Network). Prerequisites are provisioned in the order listed, each with its own independent `location` (a prerequisite doesn't inherit the target's location — a "global" target must not force "global" onto a prerequisite that needs a real region, and vice versa), and a prerequisite may only reference prerequisites declared earlier in the same list.
+Each entry describes one ARM resource type: `armType`, a pinned `apiVersion`, a `cost` object (`tier` — `Free|Low|Medium|High|VeryHigh`, auto-derived purely from real Azure pricing by `fetch-resource-pricing.ps1`, plus `perHour`/`perHourAccumulated`/`billingUnit`/`perUnitRate`/`minimumUnits`/traceability fields when the entry has a genuine hourly cost — see "Real pricing" below), `location` (`null` = default region; some types, like Action Groups or Private DNS Zones, legitimately require `"global"`), `nameTemplate` (+ `nameRules` for the random-name charset/length: `lowerAlnum`, `lowerAlnumDash`, or `hex` for GUID-shaped names), `requestBody` (the minimal valid ARM properties for that type), and an optional `prerequisites` list for resources that need other resources created first (e.g. a SQL Database needs a SQL Server; a Subnet needs a Virtual Network). Prerequisites are provisioned in the order listed, each with its own independent `location` (a prerequisite doesn't inherit the target's location — a "global" target must not force "global" onto a prerequisite that needs a real region, and vice versa), and a prerequisite may only reference prerequisites declared earlier in the same list.
 
 Placeholders resolved inside `nameTemplate`/`requestBody`/`location` (including inside tag *keys*, not just values — resolution happens on the raw JSON text before parsing):
 - `{rand8}` (or any digit) — a random string of that length, using the charset from `nameRules`.
@@ -138,26 +138,9 @@ A cross-reference against a real-world Azure Resource Graph inventory (133 disti
 
 **Deliberately skipped** — prohibitively expensive/slow infra, or low-value niche types (≤7 instances in the real-usage sample) with uncertain/unusually complex schemas: `microsoft.web/hostingenvironments` (App Service Environment — hours to provision, high fixed cost), `microsoft.aad/domainservices` (hours to provision, dedicated subnet + ongoing cost), `microsoft.powerbidedicated/capacities` (meaningful minimum hourly cost), `microsoft.web/sites/slots` (needs a Standard+ tier plan, cost-tier conflict with the Basic-tier plan reused elsewhere), `microsoft.containerregistry/registries/tasks` (needs a real build context) and `.../replications` (needs Premium-tier ACR), `microsoft.web/connections` (Logic Apps connector schemas vary wildly), plus a long tail of ≤5-instance niche types (Service Fabric, Defender for Cloud automations/connectors, Prometheus rule groups, alert processing rules, AI Studio projects, gallery image *versions*, etc.).
 
-**Genuinely expensive — cataloged at `CostTier.VeryHigh`, not omitted**: a dedicated tier above `High`, added when it became clear `High` alone was being used for two different things (moderate-cost-but-includable vs. genuinely-expensive). Nothing at this tier runs under any `--max-cost-tier` below `VeryHigh` — it must be requested explicitly.
+**Genuinely expensive — cataloged at `cost.tier: "VeryHigh"`, not omitted**: a dedicated tier above `High`, added when it became clear `High` alone was being used for two different things (moderate-cost-but-includable vs. genuinely-expensive). Nothing at this tier runs under any `--max-cost-tier` below `VeryHigh` — it must be requested explicitly.
 
-**Prices below are sourced, not estimated** — pulled from the official Azure Retail Prices API (`prices.azure.com`, the same data backing the public pricing pages) and Microsoft's own pricing/Learn pages, verified via a dedicated research pass rather than guessed from training-data memory (an earlier guess for `Microsoft.Sql/managedInstances`, for example, was 2–4x too high). Each catalog entry's own `notes` field carries the same figures plus the exact verbatim billing-granularity quote. Rates are East US, Pay-As-You-Go, at the time of research — actual cost depends on region/agreement, and none of these have been live-tested (see below), so provisioning *time* is still an estimate even where the *rate* is confirmed:
-
-| armType | confirmed rate | billing granularity |
-|---|---|---|
-| `Microsoft.KeyVault/managedHSMs` | $3.20/hour (Standard_B1) | Hourly meter; no sub-hour proration stated. Billing stops at deletion — the ~90-day purge-protection retention blocks name/data reuse only, not ongoing charges. |
-| `Microsoft.Sql/managedInstances` | $0.61/hour (General Purpose, Gen5, 4 vCore — the minimum) | Confirmed hourly-minimum: *"billed for each hour that a managed instance exists ... regardless of whether the server was active for less than an hour."* Combined with real multi-hour provisioning time, a brief test still costs $0.61 × actual hours alive. |
-| `Microsoft.HDInsight/clusters` | ~$0.29/hour per Standard_D3_v2 node (6 nodes needed) | Confirmed genuine per-minute proration: *"charge for the number of minutes your cluster is running, rounded to the nearest minute, not hour."* |
-| `Microsoft.ServiceFabric/clusters` (classic) | **$0.00 — Service Fabric itself has no charge at all** | Confirmed: *"There is no charge for the service offered by Service Fabric itself"* — cost is purely whatever VMSS/VMs back it, and this entry's minimal body likely never gets that far (see its `notes`). |
-| `Microsoft.ServiceFabric/managedClusters` | **$0.00 control-plane charge** | Confirmed (Microsoft Learn): *"no extra cost for Service Fabric managed clusters beyond the cost of underlying resources"* — same reasoning as above; this entry captures the cluster shell only, with no nodetype VMs created. |
-| `Microsoft.PowerBIDedicated/capacities` | $1.0081/hour (A1) | Confirmed genuine per-second proration despite the hourly framing: *"if your instance is only active for 6 minutes, your bill will show usage of 0.1 hour."* |
-| `Microsoft.Synapse/workspaces/sqlPools` | $1.51/hour (DW100c) | Confirmed hourly-minimum: *"If your data warehouse exists for only 30 minutes in a month, you will be billed for 1 hour."* The parent `Microsoft.Synapse/workspaces` itself is cataloged at `High` since the workspace alone has no idle cost. |
-| `Microsoft.DataMigration/services` | $0.31/hour (Premium, 4 vCore) | Not explicitly confirmed as prorated vs. hourly-minimum — treat as a ceiling. Notably, Microsoft's own pricing page states the first 6 months of 4-vCore Premium usage is free per subscription. |
-| `Microsoft.DBforPostgreSQL/serverGroupsv2` | $0.110232/vCore-hour (~$0.44/hour at the 4-vCore minimum, coordinator-only) | Billed per vCore-hour; proration not explicitly confirmed. Also flagged by Microsoft Learn as "on a retirement path," worth reconsidering next time this catalog is revisited. |
-| `Microsoft.Purview/accounts` | $0.411/hour minimum | Confirmed to apply from account creation with zero usage: *"The Data Map is billed hourly ... with a minimum of one capacity unit."* Also creates a second, untracked resource group — same orphaned-resource-group risk as `Microsoft.Databricks/workspaces`, see Known limitations. |
-
-None of these are live-tested — deliberately, given the cost and/or hours-long provisioning time of even a brief attempt; several are also this catalog's lowest-confidence entries on the *request-body* side (schema reconstructed from general ARM knowledge rather than confirmed against a live example) — most notably `Microsoft.HDInsight/clusters`, `Microsoft.Sql/managedInstances`, and `Microsoft.ServiceFabric/clusters`. `Microsoft.HDInsight/clusters` also has a real, not just untested, gap: its storage account access key can't be resolved through this tool's `{prereq.*.id/name/location}` tokens and needs a manually-supplied `{secret.hdiStorageKeyPlaceholder}`.
-
-**A single `VeryHigh` run, using the confirmed rates above with each entry's configured/assumed alive-time, comes to roughly $10 total** — not the "hundreds of dollars" the monthly figures might suggest, because these are brief create-capture-delete cycles, not sustained usage: `Microsoft.Sql/managedInstances` ($0.61/hr × ~4 hrs configured provisioning ≈ $2.44) and `Microsoft.KeyVault/managedHSMs` ($3.20 × ~1 hr ≈ $3.20) are the two largest single contributors, `Microsoft.HDInsight/clusters` (~6 nodes × ~1 hr ≈ $1–1.50) and `Microsoft.Synapse/workspaces/sqlPools` ($1.51 × 1 hr, hourly-minimum ≈ $1.51) next, everything else contributing well under $0.50 each, and both `Microsoft.ServiceFabric/*` entries contributing ~$0. This is still an estimate (actual alive-time is unconfirmed for most of these since none have been live-tested), but it's now grounded in real rates and real billing-granularity facts rather than guessed multipliers.
+Two entries are `VeryHigh`: `Microsoft.KeyVault/managedHSMs` ($3.20/hour — a single fixed SKU, no smaller option exists) and `Microsoft.Sql/managedInstances` ($0.67/vCore-hour at its 4-vCore minimum — a moderate hourly rate, but a real ~4-hour provisioning time makes a single run's total cost land here). Neither is live-tested, deliberately, given the cost and/or hours-long provisioning time of even a brief attempt; both are also among this catalog's lowest-confidence entries on the *request-body* side (schema reconstructed from general ARM knowledge rather than confirmed against a live example), alongside `Microsoft.HDInsight/clusters` (`High` tier — see "Real Azure pricing" below) and `Microsoft.ServiceFabric/clusters`. Every entry's exact sourced rate — plus the meter it was resolved from and any billing-granularity quote — lives in its own `cost` object in `config/resource-types.json` and its `notes` field, kept current by re-running `fetch-resource-pricing.ps1` rather than duplicated in prose here where it would drift out of sync.
 
 **`Microsoft.StreamAnalytics/cluster` remains fully omitted, not just VeryHigh**: at ~$946–2,900/month minimum for a dedicated cluster with no useful "smallest possible" configuration below that, cataloging it added no value over the other VeryHigh entries — add it if there's ever a concrete need.
 
@@ -168,29 +151,50 @@ None of these are live-tested — deliberately, given the cost and/or hours-long
 
 None of this is permanent — the catalog is just JSON, so any of these can be added later if there's a concrete need.
 
+## Real Azure pricing (`config/pricing-hints.json` + `fetch-resource-pricing.ps1`)
+
+Each catalog entry's `cost` object (see above) is populated by running:
+
+```
+pwsh ./fetch-resource-pricing.ps1
+```
+
+This queries the live [Azure Retail Prices API](https://prices.azure.com/api/retail/prices) (public, unauthenticated) for every entry that has a hint in `config/pricing-hints.json`, reads that entry's real quantity (vCores, capacity units, node count, ...) out of its own `requestBody`, and writes back `perHour`, `perHourAccumulated` (rolling in prerequisite costs), `billingUnit`, `perUnitRate`, `meterId`/`meterName`/`productName` for traceability, and a `tier` re-derived **purely from the resulting cost** — never carried over from a prior run. Entries with no hint get `cost.tier: "Free"` and nothing else, which is the honest answer for a genuinely idle/consumption-billed resource, not a placeholder.
+
+`config/pricing-hints.json` is hand-curated and never auto-overwritten (same pattern as `config/category-overrides.json`) — it's the one piece the live API can't supply on its own: which exact meter among many belongs to this catalog's chosen SKU, and whether a service has a genuine mandatory minimum purchase quantity (a documentation-prose fact, not a queryable API field). Use the `research-pricing-hint` Claude Code skill (`.claude/skills/research-pricing-hint/`) to research and draft a new hint for an armType that doesn't have one yet.
+
+**Coverage**: all 159 entries have sourced pricing data — 44 have a genuine per-hour cost hint in `config/pricing-hints.json` (a real, sourced idle/baseline charge); the other 115 are confirmed free/consumption-only (no meaningful cost until you actually use them). Tier distribution: `Free` 101, `Low` 31, `Medium` 18, `High` 7, `VeryHigh` 2. Once a prerequisite chain is included, 58 entries show some accumulated cost (`cost.perHourAccumulated`) even where the top-level entry itself has none.
+
+A few of the sourced findings are genuinely easy to get wrong by assumption, so worth calling out directly: **Public IP addresses, Managed Disks, Container Registries, and DNS zones (public and private) all bill from creation regardless of attachment or usage** — none of them are the "free until you actually use it" resources they're often assumed to be. Conversely, **a Standard Load Balancer with no rules configured, and a Private Link Service (the provider side of Private Link), are both genuinely $0** — the commonly-assumed-expensive side turns out free, and the commonly-assumed-free side (its counterpart, a Private *Endpoint*) turns out billed. Azure Monitor alert rules (`metricAlerts`/`scheduledQueryRules`) are also real, billed resources, priced by evaluation frequency, not free configuration.
+
 ## Estimated cost per full run
 
-A full `--run` at the default `Medium` tier (or `--max-cost-tier High`, i.e. everything except `VeryHigh`) is **well under $1 in actual Azure charges** — most of the 149 entries are control-plane/metadata resources (Storage, networking objects, Key Vault, monitoring, Free-tier SKUs) with no meaningful per-minute cost, and everything is torn down within minutes of creation. Cost is prorated to how long each resource actually existed (from the real per-entry timings in `output/summary.json`), not its full monthly rate. The entries below are the only ones with a non-negligible rate; the other 130+ entries contribute a fraction of a cent each, a few more cents in aggregate:
+Every entry's real, sourced hourly rate lives in its `cost.perHour` / `cost.perHourAccumulated` fields — the authoritative source, kept current by re-running `fetch-resource-pricing.ps1`, rather than a hand-maintained table here that would drift out of sync with it. To see current cost live for any subset of the catalog:
 
-| armType | ~existed for | ~hourly rate (USD) | ~cost this run |
-|---|---|---|---|
-| `Microsoft.Network/virtualNetworkGateways` | 39 min | $0.19 (VpnGw1AZ) | $0.125 |
-| `Microsoft.Network/azureFirewalls` | 10.4 min | $0.19 (Basic) | $0.033 |
-| `Microsoft.Network/bastionHosts` | 9.8 min | $0.19 (Basic) | $0.031 |
-| `Microsoft.Network/dnsForwardingRulesets` chain (4 entries: the ruleset plus 3 independent resolver/endpoint entries) | ~12.5 min combined | $0.245/resolver | $0.051 |
-| `Microsoft.DocumentDB/mongoClusters` | 8 min | $0.157 (M10) | $0.021 |
-| `Microsoft.ContainerService/managedClusters` + `.../agentPools` | 5–6 min each (2 nodes) | $0.10/node (D2s_v5) | $0.018 |
-| `Microsoft.Compute/virtualMachines`, `.../virtualMachineScaleSets`, `.../restorePointCollections` (own VM) | 2–3 min each | $0.10 (D2s_v5) | $0.011 |
-| `Microsoft.Cache/redis` | 23.5 min | $0.022 (Basic C0) | $0.009 |
-| `Microsoft.Dashboard/grafana` | 3.4 min | $0.048 (Standard) | $0.003 |
-| `Microsoft.DBforPostgreSQL/flexibleServers` | 1.6 min | $0.018 (Burstable B1ms) | <$0.001 |
-| **Total, notable drivers** | | | **~$0.30** |
+```
+dotnet run -- --dry-run --max-cost-tier <tier>     # prints "cost: ~$X.XX/hour accumulated" per entry
+```
 
-Everything else — `Microsoft.Synapse/workspaces`, `Microsoft.Databricks/workspaces`, API Management (Consumption), Cognitive Services (S0, pay-per-call), Container Registry (Basic), Search/SignalR/Web PubSub/App Configuration (free tiers), and the ~110 remaining Free/Low-tier metadata resources — have no idle cost or bill in fractions of a cent for a few minutes' existence.
+For orientation, the current highest-cost entries at or below the default `Medium` tier (i.e. everything a `--run` with no `--max-cost-tier` override actually touches):
 
-Rates are approximate Pay-As-You-Go US/West Europe list prices at the time of writing, not pulled from a live pricing API — actual cost depends on region, currency, and any negotiated agreement. Treat "~$0.30–0.50 per full run" as a reasonable order-of-magnitude estimate, not an invoice.
+| armType | $/hour |
+|---|---|
+| `Microsoft.Network/dnsForwardingRulesets` | 0.250 |
+| `Microsoft.Network/dnsResolvers/inboundEndpoints` / `.../outboundEndpoints` | 0.247 each |
+| `Microsoft.Fabric/capacities` | 0.220 |
+| `Microsoft.Network/virtualNetworkGateways` | 0.215 |
+| `Microsoft.Network/bastionHosts` | 0.195 |
+| `Microsoft.Kusto/clusters` / `.../clusters/databases` | 0.152 |
+| `Microsoft.Network/firewallPolicies` / `.../ruleCollectionGroups` | 0.137 |
+| `Microsoft.AnalysisServices/servers` | 0.132 |
+| `Microsoft.Compute/virtualMachines`, `.../virtualMachineScaleSets`, `.../restorePointCollections`, `Microsoft.ContainerService/managedClusters/agentPools` | 0.115 each |
+| `Microsoft.Sql/servers/elasticPools` | 0.101 |
+| `Microsoft.Network/publicIPPrefixes` | 0.096 |
+| `Microsoft.ContainerInstance/containerGroups` | 0.052 |
 
-The `VeryHigh` tier (10 entries, never run by default) is a completely different cost class — several of those (`Microsoft.KeyVault/managedHSMs`, `Microsoft.Sql/managedInstances`) cost hundreds to thousands of dollars *per month* if actually run and left standing; see "Genuinely expensive" above.
+Every other entry at or below `Medium` is under $0.05/hour, and 101 of the 159 total entries are genuinely $0 idle cost. Since units are torn down within minutes of creation, real per-run cost is a small fraction of these hourly rates — actual observed cost for a specific run is in that run's own `output/summary.json` (real elapsed time per entry), not a number worth freezing into this file.
+
+The `VeryHigh` tier (never run by default) is a different cost class — see "Genuinely expensive" above.
 
 ## Known limitations
 

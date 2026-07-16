@@ -73,7 +73,7 @@ var categoryResolver = new CategoryResolver(abbreviationsCatalog, categoryOverri
 var maxCostTier = Enum.Parse<CostTier>(parsedArgs.MaxCostTierOverride ?? options.MaxCostTier, ignoreCase: true);
 
 var filtered = catalog.ResourceTypes
-    .Where(def => def.CostTier <= maxCostTier)
+    .Where(def => def.Cost.Tier <= maxCostTier)
     .Where(def => parsedArgs.OnlyArmTypes is null || parsedArgs.OnlyArmTypes.Contains(def.ArmType))
     .ToList();
 
@@ -177,7 +177,12 @@ static void PrintPlannedUnit(ResourceTypeDefinition def, string defaultLocation,
     var random = new Random();
     var resolvedPrereqs = new Dictionary<string, ProvisionedResourceRef>(StringComparer.OrdinalIgnoreCase);
 
-    Console.WriteLine($"[{def.CostTier}] {def.ArmType} (api {def.ApiVersion})");
+    Console.WriteLine($"[{def.Cost.Tier}] {def.ArmType} (api {def.ApiVersion})");
+    if (def.Cost.PerHourAccumulated is { } perHourAccumulated)
+    {
+        Console.WriteLine($"  cost: ~${perHourAccumulated.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)}/hour accumulated" +
+            (def.Cost.PerHour == perHourAccumulated ? "" : $" (${def.Cost.PerHour?.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)}/hour own)"));
+    }
     if (def.SlowProvisioning || def.EstimatedProvisionMinutes is not null)
     {
         Console.WriteLine($"  slow-provisioning: ~{def.EstimatedProvisionMinutes?.ToString() ?? "?"} min");

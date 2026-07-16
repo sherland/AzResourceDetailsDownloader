@@ -6,7 +6,7 @@ public sealed class ResourceTypeDefinition
 {
     public required string ArmType { get; init; }
     public required string ApiVersion { get; init; }
-    public required CostTier CostTier { get; init; }
+    public required CostInfo Cost { get; init; }
     public string? Location { get; init; }
     // Tried in order, only after `Location` (or the default location) fails with a known Azure capacity/
     // availability error — not retried for any other failure, since a real validation or policy error would
