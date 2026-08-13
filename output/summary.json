@@ -1,14 +1,20 @@
 {
-  "generatedUtc": "2026-08-13T16:10:26.9153977Z",
-  "total": 1,
-  "succeeded": 0,
-  "failed": 1,
+  "generatedUtc": "2026-08-14T07:41:37.1134837Z",
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
   "results": [
     {
-      "armType": "Microsoft.Network/publicIPPrefixes",
-      "success": false,
-      "elapsedSeconds": 6.5,
-      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-a4a4928a67ea4e09/providers/Microsoft.Network/publicIPPrefixes/pippfxwtr6ge\u0027 (api 2023-09-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022IPv4StandardSkuPublicIpCountLimitReached\u0022,\u0022message\u0022:\u0022Cannot create more than 3 IPv4 Standard SKU public IP addresses for this subscription in this region.\u0022,\u0022details\u0022:[]}}"
+      "armType": "Microsoft.ContainerRegistry/registries",
+      "success": true,
+      "elapsedSeconds": 97.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.KeyVault/vaults",
+      "success": true,
+      "elapsedSeconds": 156.1,
+      "error": null
     }
   ]
 }

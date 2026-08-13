@@ -8,7 +8,7 @@ resource publicIPAddresses_pip208b_5n5_name_resource 'Microsoft.Network/publicIP
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '20.251.10.81'
+    ipAddress: '20.100.178.251'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

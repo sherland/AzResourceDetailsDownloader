@@ -12,8 +12,8 @@
     "zoneRedundant": true,
     "provisioningState": "Succeeded",
     "status": "Active",
-    "createdAt": "2026-08-13T12:46:06.5557747Z",
-    "updatedAt": "2026-08-13T12:46:06.5557747Z",
+    "createdAt": "2026-08-14T06:58:46.0566236Z",
+    "updatedAt": "2026-08-14T06:58:46.0566236Z",
     "metricId": "00000000-0000-0000-0000-000000000000:sb4hb2w-dr",
     "serviceBusEndpoint": "https://sb4hb2w-dr.servicebus.windows.net:443/"
   },

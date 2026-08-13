@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-dbfce973e1674818"
   tags = {
     armType    = "Microsoft.ManagedIdentity/userAssignedIdentities"
-    createdUtc = "2026-08-13T12:41:16.1444933Z"
+    createdUtc = "2026-08-14T07:37:22.1532577Z"
     purpose    = "az-resource-details-downloader"
   }
 }

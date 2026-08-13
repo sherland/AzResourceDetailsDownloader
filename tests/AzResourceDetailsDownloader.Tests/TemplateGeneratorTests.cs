@@ -153,8 +153,13 @@ public class TemplateGeneratorTests
             Assert.Contains(value, rendered);
         }
 
-        // "Creation date" = "8/13/2026, 2:43 PM GMT+2" is 12:43:56 UTC — same instant, reformatted.
-        Assert.Contains("12:43:56", rendered);
+        // "Creation date" is reformatted (see portal_timestamp), not reproduced verbatim — assert
+        // the same UTC instant appears, derived from the raw capture rather than hardcoded, so this
+        // doesn't need hand-updating every time the corpus is re-captured.
+        var rawCreationDate = System.Text.Json.JsonDocument.Parse(File.ReadAllText(Path.Combine(dir, "data.json")))
+            .RootElement.GetProperty("properties").GetProperty("creationDate").GetString()!;
+        var expectedUtc = DateTimeOffset.Parse(rawCreationDate, null, System.Globalization.DateTimeStyles.AssumeUniversal);
+        Assert.Contains(expectedUtc.ToString("HH:mm:ss"), rendered);
     }
 
     private static List<(string Label, string Value)> LoadPortalFields(string dir)

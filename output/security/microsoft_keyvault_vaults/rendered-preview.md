@@ -1,4 +1,4 @@
-# kvrq6-2c9f
+# kv68u-db-c
 
 | Property | Value |
 |---|---|
@@ -6,7 +6,7 @@
 | **Location** | Norway East |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Vault URI** | https://kvrq6-2c9f.vault.azure.net/ |
+| **Vault URI** | https://kv68u-db-c.vault.azure.net/ |
 | **Sku (Pricing tier)** | Standard |
 <!-- "Directory ID" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Directory Name" omitted: tenant/subscription identity, already in frontmatter -->

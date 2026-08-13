@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-657bd609e27aba5f"
   tags = {
     armType    = "Microsoft.DocumentDB/databaseAccounts"
-    createdUtc = "2026-08-13T14:46:48.7284197Z"
+    createdUtc = "2026-08-14T06:55:51.2012913Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -35,7 +35,7 @@ resource "azurerm_cosmosdb_account" "res-1" {
   location                              = "swedencentral"
   minimal_tls_version                   = "Tls12"
   multiple_write_locations_enabled      = false
-  name                                  = "cosmosjbq-pv4b"
+  name                                  = "cosmoscibdp-jn"
   network_acl_bypass_for_azure_services = false
   network_acl_bypass_ids                = []
   offer_type                            = "Standard"
@@ -68,7 +68,7 @@ resource "azurerm_cosmosdb_account" "res-1" {
   }
 }
 resource "azurerm_cosmosdb_sql_role_definition" "res-8" {
-  account_name        = "cosmosjbq-pv4b"
+  account_name        = "cosmoscibdp-jn"
   assignable_scopes   = [azurerm_cosmosdb_account.res-1.id]
   name                = "Cosmos DB Built-in Data Reader"
   resource_group_name = azurerm_resource_group.res-0.name
@@ -79,7 +79,7 @@ resource "azurerm_cosmosdb_sql_role_definition" "res-8" {
   }
 }
 resource "azurerm_cosmosdb_sql_role_definition" "res-9" {
-  account_name        = "cosmosjbq-pv4b"
+  account_name        = "cosmoscibdp-jn"
   assignable_scopes   = [azurerm_cosmosdb_account.res-1.id]
   name                = "Cosmos DB Built-in Data Contributor"
   resource_group_name = azurerm_resource_group.res-0.name
@@ -96,14 +96,14 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmosjbq-pv4b"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmoscibdp-jn"
   to = azurerm_cosmosdb_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmosjbq-pv4b/sqlRoleDefinitions/00000000-0000-0000-0000-000000000001"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmoscibdp-jn/sqlRoleDefinitions/00000000-0000-0000-0000-000000000001"
   to = azurerm_cosmosdb_sql_role_definition.res-8
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmosjbq-pv4b/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmoscibdp-jn/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002"
   to = azurerm_cosmosdb_sql_role_definition.res-9
 }

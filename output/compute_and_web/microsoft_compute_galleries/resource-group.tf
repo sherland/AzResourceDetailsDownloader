@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-17ad0172a1b3435d"
   tags = {
     armType    = "Microsoft.Compute/galleries"
-    createdUtc = "2026-08-13T12:52:54.9821450Z"
+    createdUtc = "2026-08-14T07:00:34.9854465Z"
     purpose    = "az-resource-details-downloader"
   }
 }
