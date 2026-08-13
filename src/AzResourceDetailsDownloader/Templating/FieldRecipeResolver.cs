@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -43,6 +44,22 @@ public static class FieldRecipeResolver
     // via NonTraceableLabels/UnresolvedLabelHints instead of being short-circuited here.
     private static readonly string[] SkuLikeTokens = ["sku", "pricing"];
 
+    // NonTraceableLabels blanket-skips these for the consistency test's purposes (a label genuinely
+    // can't be verified for every type it appears on), but that doesn't mean NO type resolves it —
+    // "Status" turned out to be three different problems wearing one label: Container Registry's
+    // "Status" is a plain passthrough of provisioningState, Redis's is a composite (provisioningState
+    // translated PLUS a SKU-size lookup appended), and the VM's isn't captured at all (power state
+    // lives behind a separate API call). Rather than accept the label-level generalization, let these
+    // fall through to the generic resolver per (ArmType, label) and see what's actually there —
+    // ResolveGeneric harmlessly returns Unresolved (with the fallback hint reattached, see Resolve)
+    // when nothing's found, so trying costs nothing.
+    private static readonly HashSet<string> AttemptDespiteNonTraceableHint = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "Status", "Managed", "Forward messages to", "Dead lettering", "Automatic failover enabled",
+        "Non-TLS access", "Autoscale", "Availability zones", "Availability zone",
+        "Public network access", "Managed virtual network", "Auto-inflate throughput units",
+    };
+
     public static FieldRecipe Resolve(string label, string value, JsonElement root)
     {
         if (ShortcutLabels.TryGetValue(label, out var shortcut))
@@ -79,7 +96,7 @@ public static class FieldRecipeResolver
             return ResolveKnownBoolean(label, value, root);
         }
 
-        if (PortalFieldKnowledge.NonTraceableLabels.Contains(label))
+        if (PortalFieldKnowledge.NonTraceableLabels.Contains(label) && !AttemptDespiteNonTraceableHint.Contains(label))
         {
             var hint = PortalFieldKnowledge.UnresolvedLabelHints.TryGetValue(label, out var h)
                 ? h
@@ -87,7 +104,19 @@ public static class FieldRecipeResolver
             return new FieldRecipe(FieldRecipeKind.Unresolved, 0.0, null, hint);
         }
 
-        return ResolveGeneric(baseLabel, value, root);
+        var generic = ResolveGeneric(baseLabel, value, root);
+
+        // The generic resolver found nothing for THIS specific (armType, label) — fall back to the
+        // richer, previously-known reason (e.g. "vocabulary" / "composite of X + Y") instead of its
+        // generic "no value match found" message, so a type where this genuinely doesn't resolve
+        // still reads as informative as it did before AttemptDespiteNonTraceableHint existed.
+        if (generic.Kind == FieldRecipeKind.Unresolved
+            && PortalFieldKnowledge.UnresolvedLabelHints.TryGetValue(label, out var fallbackHint))
+        {
+            return generic with { Notes = fallbackHint };
+        }
+
+        return generic;
     }
 
     private static FieldRecipe ResolveSkuShortcut(string value, JsonElement root)
@@ -210,13 +239,21 @@ public static class FieldRecipeResolver
         var best = addressable[0];
         var runnerUp = addressable.Count > 1 ? addressable[1] : default;
 
-        if (best.Similarity == 0)
+        // A single weak token match (e.g. "messages" fuzzy-stemming against "message", or a
+        // generic word like "managed" appearing in an otherwise unrelated property path) is not
+        // enough to trust blindly — that's exactly how "Forward messages to" matched
+        // deadLetteringOnMessageExpiration and "Managed virtual network" matched
+        // defaultDataLakeStorage.createManagedPrivateEndpoint, both wrong, both live-caught here.
+        // Require at least half the label's words to be reflected in the property name before
+        // calling it Direct.
+        if (best.Similarity < 0.5)
         {
             var alt = addressable.Count > 1
-                ? $" ({addressable.Count} addressable value-matching leaves, none name-related to the label)"
+                ? $" ({addressable.Count} addressable value-matching leaves, none strongly name-related to the label)"
                 : "";
             return new FieldRecipe(FieldRecipeKind.NeedsReview, 0.2, best.Target,
-                $"Value matches ({best.Reason}) but the property name is unrelated to the label — " +
+                $"Value matches ({best.Reason}) but the property name is only weakly related to the label " +
+                $"(similarity {best.Similarity.ToString("0.00", CultureInfo.InvariantCulture)}) — " +
                 $"verify by hand before trusting{alt}.");
         }
 
@@ -225,7 +262,8 @@ public static class FieldRecipeResolver
             && runnerUp.Target != best.Target)
         {
             return new FieldRecipe(FieldRecipeKind.Ambiguous, best.Similarity, best.Target,
-                $"Tied with {runnerUp.Target} (similarity {runnerUp.Similarity:0.00}) — pick manually.");
+                $"Tied with {runnerUp.Target} " +
+                $"(similarity {runnerUp.Similarity.ToString("0.00", CultureInfo.InvariantCulture)}) — pick manually.");
         }
 
         return new FieldRecipe(FieldRecipeKind.Direct, best.Similarity, best.Target, best.Reason);
