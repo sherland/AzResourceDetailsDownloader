@@ -4,7 +4,8 @@ public enum RunMode
 {
     DryRun,
     Login,
-    Run
+    Run,
+    GenerateFieldRecipes
 }
 
 public sealed record ParsedArgs(
@@ -31,6 +32,9 @@ public sealed record ParsedArgs(
                     break;
                 case "--dry-run":
                     mode = RunMode.DryRun;
+                    break;
+                case "--generate-field-recipes":
+                    mode = RunMode.GenerateFieldRecipes;
                     break;
                 case "--only":
                     only = RequireValue(args, ref i, "--only")
