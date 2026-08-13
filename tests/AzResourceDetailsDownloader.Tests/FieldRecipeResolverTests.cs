@@ -84,7 +84,7 @@ public class FieldRecipeResolverTests
     {
         var root = LoadCapturedResource("security", "microsoft_keyvault_vaults");
 
-        var recipe = FieldRecipeResolver.Resolve("Provisioning state", "Succeeded", root);
+        var recipe = FieldRecipeResolver.Resolve("Operating system", "Linux", root);
 
         Assert.Equal(FieldRecipeKind.Unresolved, recipe.Kind);
         Assert.False(string.IsNullOrWhiteSpace(recipe.Notes));
@@ -250,6 +250,13 @@ public class FieldRecipeResolverTests
         var recipe = FieldRecipeResolver.Resolve("Provisioning state", "Succeeded", root);
 
         Assert.True(recipe.IsLiveState);
+        // Live-run regression: this used to be forced to Unresolved regardless of any real match —
+        // "Provisioning state" was never added to AttemptDespiteNonTraceableHint the way "Status"
+        // was, even though Container Registry's is a plain passthrough of provisioningState. Caught
+        // by generating a real template and finding an unnecessary TODO row, not by re-auditing the
+        // label tables.
+        Assert.Equal(FieldRecipeKind.Direct, recipe.Kind);
+        Assert.Equal("model.props.provisioningstate", recipe.Target);
     }
 
     // The VM's power state isn't in the capture body at all — Unresolved — but it's still live
@@ -276,6 +283,21 @@ public class FieldRecipeResolverTests
         var recipe = FieldRecipeResolver.Resolve("Vault URI", "https://kvrq6-2c9f.vault.azure.net/", root);
 
         Assert.False(recipe.IsLiveState);
+    }
+
+    // "Different API surface" was too broad a generalization — Application Insights genuinely
+    // stores these as plain resource properties, unlike (say) Storage Account keys, which really do
+    // need a separate listKeys call. Same shape of gap as Status/Provisioning state: found by
+    // actually generating a template and seeing an unnecessary TODO row, not by re-auditing labels.
+    [Fact]
+    public void Resolve_InstrumentationKey_ResolvesDirectly_ForApplicationInsights()
+    {
+        var root = LoadCapturedResource("management_and_governance", "microsoft_insights_components");
+
+        var recipe = FieldRecipeResolver.Resolve("Instrumentation key", "db2e6507-5e0d-41c2-a540-660d418669a6", root);
+
+        Assert.Equal(FieldRecipeKind.Direct, recipe.Kind);
+        Assert.Equal("model.props.instrumentationkey", recipe.Target);
     }
 
     private static JsonElement LoadCapturedResource(string category, string armTypeFolder)

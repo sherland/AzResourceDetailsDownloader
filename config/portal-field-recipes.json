@@ -30,7 +30,7 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Maps/accounts"
@@ -402,17 +402,32 @@
   },
   {
     "Label": "Connection string",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.connectionstring",
+    "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "microsoft.insights/components",
       "microsoft.insights/webtests"
     ],
     "SampleValue": "InstrumentationKey=db2e6507-5e0d-41c2-a540-660d418669a6;IngestionEndpoint=https://norwayeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://norwayeast.livediagnostics.monitor.azure.com/;ApplicationId=60b03760-f374-44af-b64c-2e046b896757",
-    "Conflicts": null
+    "Conflicts": {
+      "microsoft.insights/components": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.connectionstring",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "microsoft.insights/webtests": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Container count",
@@ -766,10 +781,10 @@
   },
   {
     "Label": "Endpoint",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Kind": "Ambiguous",
+    "Confidence": 1,
+    "Target": "model.props.endpoint",
+    "Notes": "Tied with model.props.endpoints.face (similarity 1.00) \u2014 pick manually.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.CognitiveServices/accounts",
@@ -777,7 +792,29 @@
       "Microsoft.SignalRService/SignalR"
     ],
     "SampleValue": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
-    "Conflicts": null
+    "Conflicts": {
+      "Microsoft.CognitiveServices/accounts": {
+        "Kind": "Ambiguous",
+        "Confidence": 1,
+        "Target": "model.props.endpoint",
+        "Notes": "Tied with model.props.endpoints.face (similarity 1.00) \u2014 pick manually.",
+        "IsLiveState": false
+      },
+      "Microsoft.DBforPostgreSQL/flexibleServers": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.fullyqualifieddomainname",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": false
+      },
+      "Microsoft.SignalRService/SignalR": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Fault domains",
@@ -1063,17 +1100,32 @@
   },
   {
     "Label": "Instrumentation key",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.instrumentationkey",
+    "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "microsoft.insights/components",
       "microsoft.insights/webtests"
     ],
     "SampleValue": "db2e6507-5e0d-41c2-a540-660d418669a6",
-    "Conflicts": null
+    "Conflicts": {
+      "microsoft.insights/components": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.instrumentationkey",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "microsoft.insights/webtests": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Intent",
@@ -1843,7 +1895,7 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "microsoft.insights/components",
@@ -1974,7 +2026,7 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Monitor/accounts"
@@ -2217,7 +2269,7 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Cdn/profiles"
@@ -2401,7 +2453,7 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Cache/Redis"
@@ -2632,7 +2684,7 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": true,
     "ObservedArmTypes": [
       "Microsoft.ContainerRegistry/registries",
@@ -2643,7 +2695,50 @@
       "Microsoft.Network/FirewallPolicies"
     ],
     "SampleValue": "Active",
-    "Conflicts": null
+    "Conflicts": {
+      "Microsoft.DigitalTwins/digitalTwinsInstances": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": true
+      },
+      "Microsoft.ContainerRegistry/registries": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
+      "Microsoft.ContainerRegistry/registries/webhooks": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
+      "Microsoft.Network/azureFirewalls": {
+        "Kind": "Ambiguous",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "Tied with model.props.managementipconfiguration.properties.provisioningstate (similarity 1.00) \u2014 pick manually.",
+        "IsLiveState": true
+      },
+      "Microsoft.Network/FirewallPolicies": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
+      "Microsoft.Network/bastionHosts": {
+        "Kind": "Ambiguous",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "Tied with model.props.ipconfigurations[0].properties.provisioningstate (similarity 1.00) \u2014 pick manually.",
+        "IsLiveState": true
+      }
+    }
   },
   {
     "Label": "Provisioning Status",
@@ -2738,10 +2833,10 @@
   },
   {
     "Label": "Public key",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.publickey",
+    "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "unknown"
@@ -2793,7 +2888,7 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ServiceBus/namespaces/queues"
@@ -4011,7 +4106,7 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ServiceBus/namespaces/topics"
@@ -4098,7 +4193,7 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Databricks/workspaces"

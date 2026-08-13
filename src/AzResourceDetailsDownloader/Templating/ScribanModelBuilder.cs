@@ -1,0 +1,70 @@
+using System.Text.Json;
+using Scriban.Runtime;
+
+namespace AzResourceDetailsDownloader.Templating;
+
+// Builds the Scriban `model` object a generated template renders against — reusing JsonTree's
+// navigation and SkuAndVersion's sku_label/version derivation (both dependency-free), adding only
+// the ScriptObject/ScriptArray tree conversion that requires the Scriban package itself. Kept
+// separate from those two so the recipe resolver (which never needs to render anything, only to
+// decide where a value comes from) stays free of a templating-engine dependency.
+public static class ScribanModelBuilder
+{
+    public static object? JsonToScriban(JsonElement elem) => elem.ValueKind switch
+    {
+        JsonValueKind.Object => JsonObjectToScriptObject(elem),
+        JsonValueKind.Array => JsonArrayToScriptArray(elem),
+        JsonValueKind.String => elem.GetString(),
+        JsonValueKind.Number => elem.TryGetInt64(out var l) ? (object)l : elem.GetDouble(),
+        JsonValueKind.True => true,
+        JsonValueKind.False => false,
+        _ => null,
+    };
+
+    private static ScriptObject JsonObjectToScriptObject(JsonElement obj)
+    {
+        var so = new ScriptObject();
+        foreach (var prop in obj.EnumerateObject())
+        {
+            so[prop.Name.ToLowerInvariant()] = JsonToScriban(prop.Value);
+        }
+        return so;
+    }
+
+    private static ScriptArray JsonArrayToScriptArray(JsonElement arr)
+    {
+        var sa = new ScriptArray();
+        foreach (var item in arr.EnumerateArray())
+        {
+            sa.Add(JsonToScriban(item));
+        }
+        return sa;
+    }
+
+    private static readonly System.Text.RegularExpressions.Regex ResourceGroupFromId =
+        new(@"/resourceGroups/([^/]+)/", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+    // Mirrors FieldRecipeResolver's ShortcutLabels handling — same fields, same derivation, so a
+    // rendered preview and the recipe catalog's verification can never quietly disagree about what
+    // model.location/model.resource_group actually contain.
+    public static ScriptObject BuildModel(JsonElement root, string armType)
+    {
+        var propsElement = JsonTree.Navigate(root, "properties");
+        var id = JsonTree.GetString(root, "id");
+        var rgMatch = id is null ? null : ResourceGroupFromId.Match(id);
+
+        var m = new ScriptObject
+        {
+            ["id"] = id,
+            ["name"] = JsonTree.GetString(root, "name"),
+            ["type"] = armType,
+            ["location"] = JsonTree.GetString(root, "location"),
+            ["resource_group"] = rgMatch is { Success: true } ? rgMatch.Groups[1].Value : null,
+            ["tags"] = JsonTree.Navigate(root, "tags") is { } t ? JsonToScriban(t) : new ScriptObject(),
+            ["props"] = propsElement is { } p ? JsonToScriban(p) : new ScriptObject(),
+            ["sku_label"] = SkuAndVersion.SkuLabel(root),
+            ["version"] = propsElement is { } p2 ? SkuAndVersion.ExtractVersion(armType, p2) : null,
+        };
+        return m;
+    }
+}

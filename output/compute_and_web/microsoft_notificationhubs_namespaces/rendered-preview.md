@@ -1,0 +1,13 @@
+# nhnsfb-y-5-5
+
+| Property | Value |
+|---|---|
+| **Resource group** | rg-ardl-523affa83da0c585 |
+| **Status** | *See the Azure Portal for current status.* |
+| **Location** | Norway East |
+<!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
+<!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
+| **Name** | <!-- TODO (Ambiguous): Tied with model.name (similarity 1.00) — pick manually. --> nhnsfb-y-5-5 |
+| **Pricing Tier** | Free |
+| **Service Endpoint** | https://nhnsfb-y-5-5.servicebus.windows.net:443/ |
+| **Last Updated Date** | August 13, 2026 at 13:00:43 UTC <sub>(as of last sync)</sub> |
