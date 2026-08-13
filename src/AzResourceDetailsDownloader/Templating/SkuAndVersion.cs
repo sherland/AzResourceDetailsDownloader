@@ -1,0 +1,72 @@
+using System.Text.Json;
+
+namespace AzResourceDetailsDownloader.Templating;
+
+// Independent reimplementation of the two composite-field conventions ("SKU label" and "version")
+// that a downstream Obsidian/Scriban-style renderer would compute once and expose as a first-class
+// shortcut rather than a raw property path — written fresh from ARM's own documented shapes, not
+// copied from or dependent on any other tool's source. Only covers the resource types ARDL's own
+// corpus currently needs; extend ExtractVersion's switch as more types are added.
+public static class SkuAndVersion
+{
+    // "Tier (Name)" or just "Name" — prefers a root-level "sku" (the shape a raw ARM GET response
+    // exposes at the root, sibling to "properties"), falls back to a properties-nested sku (Key
+    // Vault, App Gateway, and others nest it instead).
+    //
+    // Known limitation, not yet corrected here: this reproduces the raw ARM casing verbatim (e.g.
+    // Key Vault's sku.name is literally "standard", lowercase) — the portal title-cases it
+    // ("Standard"). A caller that wants exact portal-text fidelity needs to title-case the result
+    // itself; this function intentionally doesn't guess at a general-purpose title-casing rule.
+    public static string? SkuLabel(JsonElement root)
+    {
+        var sku = JsonTree.Navigate(root, "sku") ?? JsonTree.Navigate(root, "properties", "sku");
+        if (sku is not { ValueKind: JsonValueKind.Object } skuObj)
+        {
+            return null;
+        }
+
+        var name = JsonTree.GetString(skuObj, "name");
+        var tier = JsonTree.GetString(skuObj, "tier");
+        if (name is null && tier is null)
+        {
+            return null;
+        }
+        if (name == tier || tier is null)
+        {
+            return name;
+        }
+        return $"{tier} ({name})";
+    }
+
+    public static string? ExtractVersion(string armType, JsonElement properties)
+    {
+        string? Prop(params string[] path) => JsonTree.GetString(properties, path);
+        string? First(params string?[] vals) => vals.FirstOrDefault(v => v is { Length: > 0 });
+
+        return armType.ToLowerInvariant() switch
+        {
+            "microsoft.containerservice/managedclusters" => Prop("kubernetesVersion"),
+            "microsoft.compute/virtualmachines/extensions" or "microsoft.hybridcompute/machines/extensions"
+                => Prop("typeHandlerVersion"),
+            "microsoft.web/sites" or "microsoft.web/sites/slots" => First(
+                Prop("siteConfig", "linuxFxVersion"),
+                Prop("siteConfig", "windowsFxVersion"),
+                Prop("siteConfig", "netFrameworkVersion"),
+                Prop("siteConfig", "javaVersion"),
+                Prop("siteConfig", "phpVersion"),
+                Prop("siteConfig", "nodeVersion"),
+                Prop("siteConfig", "pythonVersion"),
+                Prop("siteConfig", "currentStack")),
+            "microsoft.sql/servers/databases" => First(
+                Prop("requestedServiceObjectiveName"), Prop("currentServiceObjectiveName")),
+            "microsoft.dbforpostgresql/flexibleservers" or "microsoft.dbforpostgresql/servers"
+            or "microsoft.dbformysql/flexibleservers" or "microsoft.dbformysql/servers"
+            or "microsoft.dbformariadb/servers" => Prop("version"),
+            "microsoft.servicefabric/clusters" => Prop("clusterCodeVersion"),
+            "microsoft.automation/automationaccounts/runbooks" => Prop("runbookType"),
+            "microsoft.devtestlab/labs/virtualmachines" => First(
+                Prop("galleryImageReference", "sku"), Prop("galleryImageReference", "offer")),
+            _ => Prop("version"),
+        };
+    }
+}

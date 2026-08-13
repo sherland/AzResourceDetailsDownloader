@@ -6,6 +6,7 @@ using AzResourceDetailsDownloader.Orchestration;
 using AzResourceDetailsDownloader.Output;
 using AzResourceDetailsDownloader.Provisioning;
 using AzResourceDetailsDownloader.Reporting;
+using AzResourceDetailsDownloader.Templating;
 using Azure.Identity;
 using Azure.ResourceManager;
 using Microsoft.Extensions.Configuration;
@@ -20,11 +21,22 @@ catch (ArgumentException ex)
 {
     Console.Error.WriteLine(ex.Message);
     Console.Error.WriteLine(
-        "Usage: [--dry-run | --login | --run] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High|VeryHigh] [--max-concurrency <n>]");
+        "Usage: [--dry-run | --login | --run | --generate-field-recipes] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High|VeryHigh] [--max-concurrency <n>]");
     return 1;
 }
 
 var repoRoot = RepoPaths.ResolveRepoRoot();
+
+if (parsedArgs.Mode == RunMode.GenerateFieldRecipes)
+{
+    var recipeSourceRoot = Path.Combine(repoRoot, "output");
+    var entries = PortalFieldRecipeCatalogGenerator.Generate(recipeSourceRoot);
+    var catalogOutputPath = Path.Combine(repoRoot, "config", "portal-field-recipes.json");
+    PortalFieldRecipeCatalogGenerator.WriteCatalog(entries, catalogOutputPath);
+    Console.WriteLine($"Wrote {catalogOutputPath}");
+    Console.WriteLine(PortalFieldRecipeCatalogGenerator.Summarize(entries));
+    return 0;
+}
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
