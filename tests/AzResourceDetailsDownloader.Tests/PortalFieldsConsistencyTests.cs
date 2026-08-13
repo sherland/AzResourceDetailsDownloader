@@ -1,8 +1,6 @@
-using System.Globalization;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using AzResourceDetailsDownloader.Options;
-using AzResourceDetailsDownloader.Output;
+using AzResourceDetailsDownloader.Templating;
 
 namespace AzResourceDetailsDownloader.Tests;
 
@@ -11,144 +9,18 @@ namespace AzResourceDetailsDownloader.Tests;
 // JSON captured for the same resource. Catches a transcription mistake or a future
 // EssentialsExtractor regression that starts inventing/misreading values.
 //
+// The label classification knowledge this test relies on (which labels are timestamps, which are
+// a direct boolean rendering, which are tenant identity, which are genuinely composite/unresolved)
+// lives in AzResourceDetailsDownloader.Templating.PortalFieldKnowledge — shared with
+// FieldRecipeResolver (see FieldRecipeResolverTests) so the two never drift into disagreeing about
+// the same label.
+//
 // Deliberately does NOT check portal-fields.inferred.json — by design (see AGENT.md) those are
 // hand-transcribed from a third-party source for a resource type that was never actually
 // captured on this subscription, so there is no matching data.json to check them against; the
 // file's existence (and its sibling .sources.md) is what makes them honest, not this test.
 public class PortalFieldsConsistencyTests
 {
-    // Live-run against all 88 real portal-fields.json files committed at the time this test was
-    // written (2026-08-13) surfaced ~85 distinct labels whose displayed value is never going to be
-    // a literal substring of the raw ARM JSON, for reasons that are structural, not bugs. Grouped
-    // by why, not alphabetically — if a *new* label shows up here later, investigate which bucket
-    // it actually belongs to (or whether it's a real EssentialsExtractor/redaction bug) rather than
-    // reflexively appending it.
-    private static readonly HashSet<string> NonTraceableLabels = new(StringComparer.OrdinalIgnoreCase)
-    {
-        // "Maintenance schedule" looks like a timestamp label but isn't one — its value ("lør. 14:00
-        // UTC (8h) / tir. 16:00 UTC (8h)") is a recurring weekly window description, not a single
-        // instant, so it can't be date-parsed the way TimestampLabels below are. The other, genuine
-        // timestamp labels that used to live in this bucket are now actively checked instead — see
-        // TimestampLabels and TimestampIsTraceable.
-        "Maintenance schedule",
-
-        // Boolean/enum ARM values the portal renders as a friendlier English phrase instead of the
-        // raw "true"/"false"/enum token (e.g. Redis's real provisioningState "Succeeded" displays
-        // as "Running" once the cache is actually serving traffic). "Status" and most of its
-        // neighbors below stay here rather than in BooleanBackedLabels because each resource type
-        // has its own status vocabulary (Active/Succeeded/Online/Running/Ready/...) assembled by a
-        // portal-side lookup, not a single boolean — genuinely not mechanically checkable. The
-        // handful that *are* a direct single-property rendering moved to BooleanBackedLabels
-        // instead of living here.
-        "Status", "Managed", "Forward messages to", "Dead lettering", "Automatic failover enabled",
-        "Non-TLS access", "Autoscale", "Availability zones", "Availability zone",
-        "Public network access", "Managed virtual network", "Auto-inflate throughput units",
-
-        // Composite/derived display strings the portal assembles from several raw properties (or a
-        // portal-side lookup table, e.g. a SKU-to-quota mapping) into one human sentence — no single
-        // data.json field contains the same combined text.
-        "Operating system", "Size", "Configuration", "Workspace type", "Pricing Tier",
-        "Pricing tier", "Pricing Tier (SKU)", "SKU", "Public IP address", "Virtual network/subnet",
-        "NAT subnet", "NAT IPs", "Virtual network & IP Address", "Maintenance scope",
-        "Server name", "Elastic databases", "Elastic database settings", "Custom security rules",
-        "Associated with", "Associations", "Communities filtered", "Circuits associated",
-        "Throughput Units", "Daily message limit", "VUH usage (current month)", "Platform size",
-        "Deployment Scope", "Colocation status", "Maintenance events", "Reboot setting",
-        "Operational issues", "Private IP Ranges", "TLS inspection (Premium)",
-        "IDPS mode (Premium)", "Paired recovery region", "Domain name label scope",
-        "Service/UI Version", "Type", "Provisioning state",
-
-        // Portal-only chrome (navigation links, action prompts, "click to configure" placeholders)
-        // used to live here too, but EssentialsExtractor.ChromeLabels now filters those out at
-        // capture time instead — a label that was never resource data shouldn't need a test-side
-        // exemption at all. If a *new* chrome label shows up in a future capture, add it there, not
-        // here.
-
-        // Values sourced from a different API surface than the main resource GET this tool captures
-        // (a separate keys/connection-string endpoint, or a portal-computed URL/endpoint not stored
-        // verbatim on the resource) — genuinely real data, just not present in data.json by design.
-        "Endpoint", "URL", "Account URI", "Queue URL", "Topic URL", "Instrumentation key",
-        "Connection string", "Logs workspace", "Metrics ingestion endpoint", "Origin response timeout",
-        "Public key", "Ports", "Location",
-    };
-
-    // Tenant/subscription display identity — never part of a resource's own ARM body; instead
-    // OutputNormalizer redacts it to a fixed placeholder (see OutputNormalizer.Normalize and
-    // .NormalizePortalFields). Rather than exempt these labels outright, assert the redaction
-    // actually happened — a label that's supposed to be scrubbed but isn't is exactly the kind of
-    // regression this test exists to catch. "Not configured" is a legitimate, non-identifying
-    // portal state (no Entra admin assigned) distinct from a redacted real one, so it's allowed
-    // alongside the placeholder rather than treated as a miss.
-    private static readonly Dictionary<string, string[]> TenantIdentityAllowedValues =
-        new(StringComparer.OrdinalIgnoreCase)
-        {
-            ["Subscription"] = [OutputNormalizer.PlaceholderSubscriptionName],
-            ["Directory Name"] = [OutputNormalizer.PlaceholderDirectoryName],
-            ["Directory ID"] = [OutputNormalizer.PlaceholderTenantId],
-            ["Microsoft Entra admin"] = [OutputNormalizer.PlaceholderEntraAdmin, "Not configured"],
-            ["SQL Microsoft Entra admin"] = [OutputNormalizer.PlaceholderEntraAdmin, "Not configured"],
-        };
-
-    // Human-formatted timestamps — the portal renders a locale/timezone-formatted string
-    // ("Thursday, August 13, 2026 at 14:50:31 GMT+2", "8/13/2026, 12:46 PM UTC",
-    // "2026-08-13 13:14:05 (UTC)", or occasionally the browser's local time with no offset marker
-    // at all); data.json has the same instant as a plain ISO-8601 string. Same underlying value,
-    // unrecognizably different text — so parse both as instants and compare those instead of text.
-    private static readonly HashSet<string> TimestampLabels = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "Created", "Updated", "Created on", "Creation date", "Creation Time", "Modified Time",
-        "Time created", "Last modified", "Last Updated Date",
-    };
-
-    private static readonly Regex WeekdayPrefix = new(@"^\p{L}+,\s*", RegexOptions.Compiled);
-    private static readonly Regex TrailingParenUtc = new(@"\s*\(UTC\)\s*$", RegexOptions.Compiled);
-    private static readonly Regex TrailingBareUtc = new(@"\s*\bUTC\b\s*$", RegexOptions.Compiled);
-    private static readonly Regex TrailingGmtOffset = new(@"\s*GMT([+-])(\d{1,2})\s*$", RegexOptions.Compiled);
-    private static readonly Regex AlreadyHasNumericOffset = new(@"(Z|[+-]\d{2}:\d{2})$", RegexOptions.Compiled);
-    private static readonly Regex CollapseWhitespace = new(@"\s+", RegexOptions.Compiled);
-    // Offset is optional — some child-resource ARM properties (e.g. Event Hubs' own createdAt, as
-    // opposed to their parent namespace's) omit the trailing Z/offset entirely; DateTimeStyles.
-    // AssumeUniversal below treats those as UTC, matching ARM's own convention.
-    private static readonly Regex IsoInstant = new(
-        @"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})?", RegexOptions.Compiled);
-    // data.json is written by System.Text.Json, which by default escapes '+' (and a few other
-    // characters) as \uXXXX — so a raw offset like "+00:00" is literally the six characters
-    // +0:00 on disk. Undo that before hunting for ISO instants, or every offset-bearing
-    // timestamp silently fails to match.
-    private static readonly Regex JsonUnicodeEscape = new("\\\\u([0-9A-Fa-f]{4})", RegexOptions.Compiled);
-
-    // Boolean/enum ARM values the portal renders as a friendlier English phrase instead of the raw
-    // "true"/"false" token — but only for labels individually confirmed (2026-08-13, against the
-    // committed corpus) to be a direct rendering of one named property with no further composition.
-    // Everything else that fits the general shape (e.g. "Status") stays in NonTraceableLabels
-    // instead of being force-fit into this, since it's actually a per-resource-type vocabulary or
-    // multi-property composite, not a single boolean.
-    private static readonly Dictionary<string, string> BooleanBackedLabels =
-        new(StringComparer.OrdinalIgnoreCase)
-        {
-            ["Zone redundant"] = "zoneRedundant",
-            ["Partitioning"] = "enablePartitioning",
-            ["Duplicate detection"] = "requiresDuplicateDetection",
-            ["Sessions"] = "requiresSession",
-            ["Support ordering"] = "supportOrdering",
-            ["Branch-to-branch"] = "allowBranchToBranchTraffic",
-            ["Enable No Public IP"] = "enableNoPublicIp",
-            ["High availability"] = "highAvailability",
-            ["Virtual endpoint"] = "highAvailability",
-        };
-
-    private static readonly Dictionary<string, bool> FriendlyBoolWords =
-        new(StringComparer.OrdinalIgnoreCase)
-        {
-            ["Yes"] = true,
-            ["No"] = false,
-            ["Enabled"] = true,
-            ["Disabled"] = false,
-            ["Not enabled"] = false,
-        };
-
-    private static readonly Regex RawBoolToken = new(@"true|false|""Enabled""|""Disabled""", RegexOptions.Compiled);
-
     public static IEnumerable<object[]> PortalFieldsFiles()
     {
         var repoRoot = RepoPaths.ResolveRepoRoot();
@@ -177,13 +49,14 @@ public class PortalFieldsConsistencyTests
         var fields = JsonSerializer.Deserialize<List<PortalFieldRecord>>(File.ReadAllText(portalFieldsPath))
             ?? throw new InvalidOperationException($"{portalFieldsPath} did not deserialize to a field list.");
         var rawDataJson = File.ReadAllText(dataJsonPath);
-        var normalizedDataJson = Normalize(rawDataJson);
+        using var dataDoc = JsonDocument.Parse(rawDataJson);
+        var normalizedDataJson = PortalFieldKnowledge.Normalize(rawDataJson);
 
         var problems = new List<string>();
 
         foreach (var f in fields)
         {
-            if (TenantIdentityAllowedValues.TryGetValue(f.Label, out var allowedValues))
+            if (PortalFieldKnowledge.TenantIdentityAllowedValues.TryGetValue(f.Label, out var allowedValues))
             {
                 if (!allowedValues.Contains(f.Value, StringComparer.Ordinal))
                 {
@@ -192,22 +65,24 @@ public class PortalFieldsConsistencyTests
                 continue;
             }
 
-            if (NonTraceableLabels.Contains(f.Label))
+            if (PortalFieldKnowledge.NonTraceableLabels.Contains(f.Label))
             {
                 continue;
             }
 
-            if (TimestampLabels.Contains(f.Label) && TimestampIsTraceable(f.Value, rawDataJson))
+            if (PortalFieldKnowledge.TimestampLabels.Contains(f.Label)
+                && PortalFieldKnowledge.TimestampIsTraceable(f.Value, dataDoc.RootElement))
             {
                 continue;
             }
 
-            if (BooleanBackedLabels.ContainsKey(f.Label) && BooleanBackedFieldMatches(f.Label, f.Value, rawDataJson))
+            if (PortalFieldKnowledge.BooleanBackedLabels.ContainsKey(f.Label)
+                && PortalFieldKnowledge.BooleanBackedFieldMatches(f.Label, f.Value, dataDoc.RootElement))
             {
                 continue;
             }
 
-            var normalizedValue = Normalize(f.Value);
+            var normalizedValue = PortalFieldKnowledge.Normalize(f.Value);
             if (normalizedValue.Length > 0 && !normalizedDataJson.Contains(normalizedValue))
             {
                 problems.Add($"{f.Label} = \"{f.Value}\"");
@@ -218,129 +93,6 @@ public class PortalFieldsConsistencyTests
             $"{portalFieldsPath}: field(s) not found anywhere in the sibling data.json " +
             $"(compared case/punctuation-insensitively): {string.Join("; ", problems)}");
     }
-
-    // Normalizes the portal's handful of known timestamp shapes down to something DateTimeOffset can
-    // parse, then compares the resulting instant against every ISO-8601 timestamp found anywhere in
-    // the sibling data.json (rather than one specific property — different resource types stamp the
-    // creation instant under different property names). A 60-second tolerance absorbs the portal
-    // sometimes truncating to whole seconds or even whole minutes (e.g. VMs' "Time created" drops
-    // seconds entirely).
-    private static bool TimestampIsTraceable(string portalValue, string rawDataJson)
-    {
-        var unescapedDataJson = JsonUnicodeEscape.Replace(
-            rawDataJson, m => ((char)Convert.ToInt32(m.Groups[1].Value, 16)).ToString());
-        var candidates = IsoInstant.Matches(unescapedDataJson)
-            .Select(m => DateTimeOffset.TryParse(
-                m.Value, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var dto)
-                ? dto
-                : (DateTimeOffset?)null)
-            .Where(dto => dto is not null)
-            .Select(dto => dto!.Value)
-            .ToList();
-        if (candidates.Count == 0)
-        {
-            return false;
-        }
-
-        var cleaned = WeekdayPrefix.Replace(portalValue, "").Replace(" at ", " ");
-        var hasExplicitOffset = true;
-
-        if (TrailingParenUtc.IsMatch(cleaned))
-        {
-            cleaned = TrailingParenUtc.Replace(cleaned, " +00:00");
-        }
-        else if (TrailingGmtOffset.IsMatch(cleaned))
-        {
-            cleaned = TrailingGmtOffset.Replace(cleaned,
-                m => $" {m.Groups[1].Value}{int.Parse(m.Groups[2].Value, CultureInfo.InvariantCulture):00}:00");
-        }
-        else if (TrailingBareUtc.IsMatch(cleaned))
-        {
-            cleaned = TrailingBareUtc.Replace(cleaned, " +00:00");
-        }
-        else if (!AlreadyHasNumericOffset.IsMatch(cleaned))
-        {
-            hasExplicitOffset = false;
-        }
-
-        cleaned = CollapseWhitespace.Replace(cleaned, " ").Trim();
-
-        if (!cleaned.Contains(':'))
-        {
-            // Date-only rendering (e.g. Service Bus subscriptions' "Created": "Thursday, August 13,
-            // 2026", no time-of-day at all) — compare calendar dates instead of instants. The ±1 day
-            // allowance absorbs the portal showing the date in local time while data.json's instant
-            // is UTC, which can roll over across a day boundary near midnight.
-            return DateTime.TryParse(cleaned, CultureInfo.InvariantCulture, DateTimeStyles.None, out var naiveDate)
-                && candidates.Any(c => Math.Abs((c.UtcDateTime.Date - naiveDate.Date).TotalDays) <= 1);
-        }
-
-        if (hasExplicitOffset)
-        {
-            return DateTimeOffset.TryParse(cleaned, CultureInfo.InvariantCulture, DateTimeStyles.None, out var portalInstant)
-                && candidates.Any(c => Math.Abs((c - portalInstant).TotalSeconds) < 60);
-        }
-
-        // No offset marker at all (e.g. "Modified Time": "8/13/2026, 2:57 PM") — the portal is
-        // showing the browser's local wall-clock time without saying which zone. Rather than
-        // hardcode the capture machine's timezone, brute-force every plausible UTC offset (half-hour
-        // steps, -12..+14) and accept a match against any candidate instant.
-        if (!DateTime.TryParse(cleaned, CultureInfo.InvariantCulture, DateTimeStyles.None, out var naive))
-        {
-            return false;
-        }
-
-        for (var offsetMinutes = -12 * 60; offsetMinutes <= 14 * 60; offsetMinutes += 30)
-        {
-            var offset = TimeSpan.FromMinutes(offsetMinutes);
-            if (candidates.Any(c => Math.Abs((c.ToOffset(offset).DateTime - naive).TotalSeconds) < 60))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    // Looks up BooleanBackedLabels[label]'s raw property name in data.json and checks the nearest
-    // true/false (or "Enabled"/"Disabled") token after it against the friendly word's expected
-    // value. A 150-character window tolerates the property being nested (e.g. Databricks' template
-    // parameters shape: "enableNoPublicIp": { "type": "Bool", "value": true }) without requiring an
-    // exact structural match.
-    private static bool BooleanBackedFieldMatches(string label, string friendlyValue, string rawDataJson)
-    {
-        if (!BooleanBackedLabels.TryGetValue(label, out var propertyName)
-            || !FriendlyBoolWords.TryGetValue(friendlyValue, out var expectedBool))
-        {
-            return false;
-        }
-
-        foreach (Match occurrence in Regex.Matches(rawDataJson, $@"""{Regex.Escape(propertyName)}""\s*:"))
-        {
-            var windowStart = occurrence.Index + occurrence.Length;
-            var windowLength = Math.Min(150, rawDataJson.Length - windowStart);
-            var window = rawDataJson.Substring(windowStart, windowLength);
-
-            var tokenMatch = RawBoolToken.Match(window);
-            if (!tokenMatch.Success)
-            {
-                continue;
-            }
-
-            var actualBool = tokenMatch.Value is "true" or "\"Enabled\"";
-            if (actualBool == expectedBool)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    // Lowercase + keep only letters/digits, so display formatting differences between the portal
-    // (e.g. "West Europe") and the raw ARM JSON (e.g. "westeurope") don't cause false failures.
-    private static string Normalize(string s) =>
-        new string(s.Where(char.IsLetterOrDigit).ToArray()).ToLowerInvariant();
 
     private sealed record PortalFieldRecord(string Label, string Value);
 }
