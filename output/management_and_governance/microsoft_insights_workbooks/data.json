@@ -1,8 +1,8 @@
 {
   "kind": "shared",
-  "etag": "\u00229102870a-0000-0c00-0000-6a7dc1600000\u0022",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-64cf3419204392ef/providers/microsoft.insights/workbooks/9e0b6142-f857-813e-2eeb-f20bf1b515ee",
-  "name": "9e0b6142-f857-813e-2eeb-f20bf1b515ee",
+  "etag": "\u00224303e590-0000-0c00-0000-6a7ef0510000\u0022",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-64cf3419204392ef/providers/microsoft.insights/workbooks/0995ffdb-e0d3-2abe-5df1-66746ece5389",
+  "name": "0995ffdb-e0d3-2abe-5df1-66746ece5389",
   "type": null,
   "location": "norwayeast",
   "tags": {
@@ -14,10 +14,10 @@
     "version": null,
     "category": "workbook",
     "userId": "e580c62a-96a8-430f-96a9-33d936178197",
-    "sourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-64cf3419204392ef/providers/microsoft.operationalinsights/workspaces/lawprs-6ffd",
-    "timeModified": "2026-08-13T13:06:39.9574694Z",
+    "sourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-64cf3419204392ef/providers/microsoft.operationalinsights/workspaces/law1-dh82vr",
+    "timeModified": "2026-08-14T10:39:13.2379321Z",
     "tags": null,
     "storageUri": null,
-    "revision": "d0b2fdc17a5a4cd0a21f0b33f43c94ff"
+    "revision": "a95ab54553c6456db75eafefa0cbf1eb"
   }
 }

@@ -1,8 +1,8 @@
-param disks_diskgxpe04sm_name string
-param snapshots_snapw3td1qq0_name string
+param disks_diskflr4a67c_name string
+param snapshots_snapshnmog8v_name string
 
-resource disks_diskgxpe04sm_name_resource 'Microsoft.Compute/disks@2025-01-02' = {
-  name: disks_diskgxpe04sm_name
+resource disks_diskflr4a67c_name_resource 'Microsoft.Compute/disks@2025-01-02' = {
+  name: disks_diskflr4a67c_name
   location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
@@ -23,8 +23,8 @@ resource disks_diskgxpe04sm_name_resource 'Microsoft.Compute/disks@2025-01-02' =
   }
 }
 
-resource snapshots_snapw3td1qq0_name_resource 'Microsoft.Compute/snapshots@2025-01-02' = {
-  name: snapshots_snapw3td1qq0_name
+resource snapshots_snapshnmog8v_name_resource 'Microsoft.Compute/snapshots@2025-01-02' = {
+  name: snapshots_snapshnmog8v_name
   location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
@@ -33,7 +33,7 @@ resource snapshots_snapw3td1qq0_name_resource 'Microsoft.Compute/snapshots@2025-
   properties: {
     creationData: {
       createOption: 'Copy'
-      sourceResourceId: disks_diskgxpe04sm_name_resource.id
+      sourceResourceId: disks_diskflr4a67c_name_resource.id
     }
     diskSizeGB: 4
     encryption: {

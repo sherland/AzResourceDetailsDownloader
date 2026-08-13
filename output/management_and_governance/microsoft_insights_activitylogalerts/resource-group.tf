@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-0b366a4f497d75e9"
   tags = {
     armType    = "Microsoft.Insights/activityLogAlerts"
-    createdUtc = "2026-08-13T13:05:31.6441314Z"
+    createdUtc = "2026-08-14T10:38:40.0945221Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,7 +23,7 @@ resource "azurerm_monitor_activity_log_alert" "res-1" {
   description         = ""
   enabled             = true
   location            = "global"
-  name                = "ala5t-j-5-o"
+  name                = "alaxw-t7-6c"
   resource_group_name = azurerm_resource_group.res-0.name
   scopes              = ["/subscriptions/00000000-0000-0000-0000-000000000000"]
   tags                = {}
@@ -59,6 +59,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0b366a4f497d75e9/providers/Microsoft.Insights/activityLogAlerts/ala5t-j-5-o"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0b366a4f497d75e9/providers/Microsoft.Insights/activityLogAlerts/alaxw-t7-6c"
   to = azurerm_monitor_activity_log_alert.res-1
 }

@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-dce9c274708612f0"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Status",
+    "Value": "Not connected to storage account"
+  },
+  {
+    "Label": "Storage account",
+    "Value": "stuop4pbp3"
+  },
+  {
+    "Label": "Managed identity",
+    "Value": "System-assigned"
+  },
+  {
+    "Label": "Azure OpenAI",
+    "Value": "---"
+  },
+  {
+    "Label": "Account ID",
+    "Value": "19bb8ba2-9efd-44fb-abee-c7960652eb61"
+  },
+  {
+    "Label": "Total minutes uploaded",
+    "Value": "0"
+  }
+]

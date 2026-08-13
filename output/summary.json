@@ -1,19 +1,367 @@
 {
-  "generatedUtc": "2026-08-14T07:41:37.1134837Z",
-  "total": 2,
-  "succeeded": 2,
-  "failed": 0,
+  "generatedUtc": "2026-08-14T10:56:40.6617937Z",
+  "total": 60,
+  "succeeded": 54,
+  "failed": 6,
   "results": [
     {
-      "armType": "Microsoft.ContainerRegistry/registries",
+      "armType": "Microsoft.Compute/disks",
       "success": true,
-      "elapsedSeconds": 97.9,
+      "elapsedSeconds": 39.1,
       "error": null
     },
     {
-      "armType": "Microsoft.KeyVault/vaults",
+      "armType": "Microsoft.Network/publicIPAddresses",
       "success": true,
-      "elapsedSeconds": 156.1,
+      "elapsedSeconds": 84.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Storage/storageAccounts",
+      "success": true,
+      "elapsedSeconds": 99.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/virtualNetworks",
+      "success": true,
+      "elapsedSeconds": 100.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/loadBalancers",
+      "success": true,
+      "elapsedSeconds": 95.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/privateDnsZones",
+      "success": true,
+      "elapsedSeconds": 66.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "success": true,
+      "elapsedSeconds": 32.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DocumentDB/databaseAccounts",
+      "success": true,
+      "elapsedSeconds": 100.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Automation/automationAccounts",
+      "success": false,
+      "elapsedSeconds": 2.8,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-d612a8a09a8f4e65/providers/Microsoft.Automation/automationAccounts/aat-w4-qky\u0027 (api 2023-11-01) failed with 400: {\u0022code\u0022:\u0022BadRequest\u0022,\u0022message\u0022:\u0022Only one account is allowed for your subscription per Region. If Deleted recently, please restore the same account\u0022}"
+    },
+    {
+      "armType": "Microsoft.Web/sites",
+      "success": false,
+      "elapsedSeconds": 29.8,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-f4047ba091454d62/providers/Microsoft.Web/serverfarms/plank-fs7-hf\u0027 (api 2023-12-01) failed with 429: {\u0022Code\u0022:\u0022429\u0022,\u0022Message\u0022:\u0022App Service Plan Create operation is throttled for subscription deafd2fb-c3d6-47f5-9645-cc34d54d4317. Please contact support if issue persists.\u0022,\u0022Target\u0022:null,\u0022Details\u0022:[{\u0022Message\u0022:\u0022App Service Plan Create operation is throttled for subscription deafd2fb-c3d6-47f5-9645-cc34d54d4317. Please contact support if issue persists.\u0022},{\u0022Code\u0022:\u0022429\u0022},{\u0022ErrorEntity\u0022:{\u0022ExtendedCode\u0022:\u002251025\u0022,\u0022MessageTemplate\u0022:\u0022App Service Plan {0} operation is throttled for subscription {1}. Please contact support if issue persists.\u0022,\u0022Parameters\u0022:[\u0022Create\u0022,\u0022deafd2fb-c3d6-47f5-9645-cc34d54d4317\u0022],\u0022Code\u0022:\u0022429\u0022,\u0022Message\u0022:\u0022App Service Plan Create operation is throttled for subscription deafd2fb-c3d6-47f5-9645-cc34d54d4317. Please contact support if issue persists.\u0022}}],\u0022Innererror\u0022:null}"
+    },
+    {
+      "armType": "Microsoft.Insights/actionGroups",
+      "success": true,
+      "elapsedSeconds": 51.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Sql/servers/databases",
+      "success": true,
+      "elapsedSeconds": 174,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ServiceBus/namespaces",
+      "success": true,
+      "elapsedSeconds": 51.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Web/staticSites",
+      "success": true,
+      "elapsedSeconds": 55.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/snapshots",
+      "success": true,
+      "elapsedSeconds": 43.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/networkInterfaces",
+      "success": true,
+      "elapsedSeconds": 60.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.OperationalInsights/querypacks",
+      "success": true,
+      "elapsedSeconds": 52.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.AppConfiguration/configurationStores",
+      "success": true,
+      "elapsedSeconds": 69.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/galleries",
+      "success": true,
+      "elapsedSeconds": 51.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/privateEndpoints",
+      "success": true,
+      "elapsedSeconds": 147.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/galleries/images",
+      "success": true,
+      "elapsedSeconds": 51.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.App/containerApps",
+      "success": false,
+      "elapsedSeconds": 42.1,
+      "error": "Resource \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-f711821970d0417f/providers/Microsoft.App/managedEnvironments/caey320q0-7\u0027 provisioning ended in state \u0027Failed\u0027. Properties: {\u0022provisioningState\u0022:\u0022Failed\u0022,\u0022daprAIInstrumentationKey\u0022:null,\u0022daprAIConnectionString\u0022:null,\u0022vnetConfiguration\u0022:null,\u0022deploymentErrors\u0022:\u0022MaxNumberOfRegionalEnvironmentsInSubExceeded\u0022,\u0022defaultDomain\u0022:\u0022redsky-06c7067b.norwayeast.azurecontainerapps.io\u0022,\u0022staticIp\u0022:\u002220.100.134.231\u0022,\u0022appLogsConfiguration\u0022:{\u0022destination\u0022:null,\u0022logAnalyticsConfiguration\u0022:null},\u0022zoneRedundant\u0022:false,\u0022kedaConfiguration\u0022:{\u0022version\u0022:\u00222.18.1\u0022},\u0022daprConfiguration\u0022:{\u0022version\u0022:\u00221.16.4-msft.11\u0022},\u0022eventStreamEndpoint\u0022:\u0022https://norwayeast.azurecontainerapps.dev/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-f711821970d0417f/managedEnvironments/caey320q0-7/eventstream\u0022,\u0022customDomainConfiguration\u0022:{\u0022customDomainVerificationId\u0022:\u0022F86E743D00C996EF23A530212FF3DE4B44E86492BF4592EF5D23D9DC35983B91\u0022,\u0022dnsSuffix\u0022:null,\u0022certificateValue\u0022:null,\u0022certificatePassword\u0022:null,\u0022thumbprint\u0022:null,\u0022subjectName\u0022:null,\u0022expirationDate\u0022:null},\u0022workloadProfiles\u0022:null,\u0022infrastructureResourceGroup\u0022:null,\u0022peerAuthentication\u0022:{\u0022mtls\u0022:{\u0022enabled\u0022:false}},\u0022peerTrafficConfiguration\u0022:{\u0022encryption\u0022:{\u0022enabled\u0022:false}}}"
+    },
+    {
+      "armType": "Microsoft.App/managedEnvironments",
+      "success": false,
+      "elapsedSeconds": 45.4,
+      "error": "Resource \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-e44f5e9fc0754d24/providers/Microsoft.App/managedEnvironments/caeu5b6rr8z\u0027 provisioning ended in state \u0027Failed\u0027. Properties: {\u0022provisioningState\u0022:\u0022Failed\u0022,\u0022daprAIInstrumentationKey\u0022:null,\u0022daprAIConnectionString\u0022:null,\u0022vnetConfiguration\u0022:null,\u0022deploymentErrors\u0022:\u0022MaxNumberOfRegionalEnvironmentsInSubExceeded\u0022,\u0022defaultDomain\u0022:\u0022bluewave-5beadf0e.norwayeast.azurecontainerapps.io\u0022,\u0022staticIp\u0022:\u002220.251.142.133\u0022,\u0022appLogsConfiguration\u0022:{\u0022destination\u0022:null,\u0022logAnalyticsConfiguration\u0022:null},\u0022zoneRedundant\u0022:false,\u0022kedaConfiguration\u0022:{\u0022version\u0022:\u00222.18.1\u0022},\u0022daprConfiguration\u0022:{\u0022version\u0022:\u00221.16.4-msft.11\u0022},\u0022eventStreamEndpoint\u0022:\u0022https://norwayeast.azurecontainerapps.dev/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-e44f5e9fc0754d24/managedEnvironments/caeu5b6rr8z/eventstream\u0022,\u0022customDomainConfiguration\u0022:{\u0022customDomainVerificationId\u0022:\u0022F86E743D00C996EF23A530212FF3DE4B44E86492BF4592EF5D23D9DC35983B91\u0022,\u0022dnsSuffix\u0022:null,\u0022certificateValue\u0022:null,\u0022certificatePassword\u0022:null,\u0022thumbprint\u0022:null,\u0022subjectName\u0022:null,\u0022expirationDate\u0022:null},\u0022workloadProfiles\u0022:null,\u0022infrastructureResourceGroup\u0022:null,\u0022peerAuthentication\u0022:{\u0022mtls\u0022:{\u0022enabled\u0022:false}},\u0022peerTrafficConfiguration\u0022:{\u0022encryption\u0022:{\u0022enabled\u0022:false}}}"
+    },
+    {
+      "armType": "Microsoft.ResourceGraph/queries",
+      "success": true,
+      "elapsedSeconds": 30.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Search/searchServices",
+      "success": true,
+      "elapsedSeconds": 44.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Communication/communicationServices",
+      "success": true,
+      "elapsedSeconds": 47.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Communication/emailServices",
+      "success": true,
+      "elapsedSeconds": 48.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Cache/redisEnterprise",
+      "success": true,
+      "elapsedSeconds": 459.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/metricAlerts",
+      "success": true,
+      "elapsedSeconds": 79.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Dashboard/grafana",
+      "success": true,
+      "elapsedSeconds": 199.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/activityLogAlerts",
+      "success": true,
+      "elapsedSeconds": 61.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/scheduledQueryRules",
+      "success": true,
+      "elapsedSeconds": 145.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/dataCollectionRules",
+      "success": true,
+      "elapsedSeconds": 149.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Portal/dashboards",
+      "success": true,
+      "elapsedSeconds": 102.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/workbooks",
+      "success": true,
+      "elapsedSeconds": 169.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/dnsZones",
+      "success": true,
+      "elapsedSeconds": 87.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Logic/workflows",
+      "success": true,
+      "elapsedSeconds": 41,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "success": true,
+      "elapsedSeconds": 145.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/virtualMachineScaleSets",
+      "success": true,
+      "elapsedSeconds": 91.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.EventGrid/domains/topics",
+      "success": false,
+      "elapsedSeconds": 102.8,
+      "error": "Portal capture for \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-16e9fe5d7bb44018/providers/Microsoft.EventGrid/domains/egd22pyb4qz/topics/topickxa-ai\u0027 (\u0027egd22pyb4qz/topickxa-ai\u0027) did not complete within 90s."
+    },
+    {
+      "armType": "Microsoft.Sql/servers/jobAgents",
+      "success": true,
+      "elapsedSeconds": 237.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ContainerService/managedClusters",
+      "success": true,
+      "elapsedSeconds": 307.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.SignalRService/webPubSub",
+      "success": true,
+      "elapsedSeconds": 137.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.VideoIndexer/accounts",
+      "success": true,
+      "elapsedSeconds": 105.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DocumentDB/mongoClusters",
+      "success": true,
+      "elapsedSeconds": 422.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.EventGrid/namespaces",
+      "success": true,
+      "elapsedSeconds": 46.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.MachineLearningServices/workspaces",
+      "success": true,
+      "elapsedSeconds": 182.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DataProtection/backupVaults",
+      "success": true,
+      "elapsedSeconds": 79.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/restorePointCollections",
+      "success": true,
+      "elapsedSeconds": 148.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.AlertsManagement/actionRules",
+      "success": true,
+      "elapsedSeconds": 48.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.App/jobs",
+      "success": true,
+      "elapsedSeconds": 150.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/publicIPPrefixes",
+      "success": false,
+      "elapsedSeconds": 3.3,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-5843e56ee24942a3/providers/Microsoft.Network/publicIPPrefixes/pippfxr67ysc\u0027 (api 2023-09-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022IPv4StandardSkuPublicIpCountLimitReached\u0022,\u0022message\u0022:\u0022Cannot create more than 3 IPv4 Standard SKU public IP addresses for this subscription in this region.\u0022,\u0022details\u0022:[]}}"
+    },
+    {
+      "armType": "Microsoft.StorageSync/storageSyncServices",
+      "success": true,
+      "elapsedSeconds": 65.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/applicationSecurityGroups",
+      "success": true,
+      "elapsedSeconds": 64.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/ipGroups",
+      "success": true,
+      "elapsedSeconds": 70.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/trafficManagerProfiles",
+      "success": true,
+      "elapsedSeconds": 84.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/networkSecurityPerimeters",
+      "success": true,
+      "elapsedSeconds": 86.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/networkManagers",
+      "success": true,
+      "elapsedSeconds": 69.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/frontdoorWebApplicationFirewallPolicies",
+      "success": true,
+      "elapsedSeconds": 66.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ServiceFabric/managedClusters",
+      "success": true,
+      "elapsedSeconds": 254.4,
       "error": null
     }
   ]

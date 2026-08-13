@@ -1,10 +1,10 @@
 {
-  "name": "vnmpd-y3wzq",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e7c715ef90888af7/providers/Microsoft.Network/networkManagers/vnmpd-y3wzq",
+  "name": "vnme71-anf7",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e7c715ef90888af7/providers/Microsoft.Network/networkManagers/vnme71-anf7",
   "location": "norwayeast",
   "type": "Microsoft.Network/networkManagers",
   "tags": {},
-  "etag": "\u002206003b3d-0000-3c00-0000-6a7dc7380000\u0022",
+  "etag": "\u00220a004325-0000-3c00-0000-6a7ef3480000\u0022",
   "properties": {
     "description": "",
     "networkManagerScopes": {
@@ -19,14 +19,14 @@
       "Connectivity",
       "SecurityAdmin"
     ],
-    "resourceGuid": "040b820e-f615-4728-aa52-8acb5aa02b13"
+    "resourceGuid": "fba21d29-4dae-4a41-ae6e-801a6c0913cf"
   },
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-13T13:31:30.9501789Z",
+    "createdAt": "2026-08-14T10:51:50.0101212Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T13:31:30.9501789Z"
+    "lastModifiedAt": "2026-08-14T10:51:50.0101212Z"
   }
 }

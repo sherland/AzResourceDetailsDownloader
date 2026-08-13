@@ -1,0 +1,46 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-4360456b29424ef8"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Environment type",
+    "Value": "Consumption only"
+  },
+  {
+    "Label": "Static IP",
+    "Value": "20.100.251.10"
+  },
+  {
+    "Label": "Applications",
+    "Value": "0"
+  },
+  {
+    "Label": "KEDA version",
+    "Value": "2.18.1"
+  },
+  {
+    "Label": "Dapr version",
+    "Value": "1.16.4-msft.11"
+  },
+  {
+    "Label": "Aspire Dashboard",
+    "Value": "Not yet active (set up)"
+  }
+]

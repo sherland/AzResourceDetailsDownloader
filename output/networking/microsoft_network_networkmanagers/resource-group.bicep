@@ -1,7 +1,7 @@
-param networkManagers_vnmpd_y3wzq_name string
+param networkManagers_vnme71_anf7_name string
 
-resource networkManagers_vnmpd_y3wzq_name_resource 'Microsoft.Network/networkManagers@2025-07-01' = {
-  name: networkManagers_vnmpd_y3wzq_name
+resource networkManagers_vnme71_anf7_name_resource 'Microsoft.Network/networkManagers@2025-07-01' = {
+  name: networkManagers_vnme71_anf7_name
   location: 'norwayeast'
   properties: {
     networkManagerScopes: {

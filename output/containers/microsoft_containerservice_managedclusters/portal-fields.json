@@ -1,0 +1,54 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-7c2bfad159d510c2"
+  },
+  {
+    "Label": "Power state",
+    "Value": "Running"
+  },
+  {
+    "Label": "Cluster operation status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Kubernetes version",
+    "Value": "1.35.6"
+  },
+  {
+    "Label": "API server address",
+    "Value": "ardlaksdr835j-ipc8p00k.hcp.swedencentral.azmk8s.io"
+  },
+  {
+    "Label": "SKU",
+    "Value": "Base"
+  },
+  {
+    "Label": "Pricing tier",
+    "Value": "Free"
+  },
+  {
+    "Label": "Network configuration",
+    "Value": "Azure CNI Overlay"
+  },
+  {
+    "Label": "Node pools",
+    "Value": "1 node pool"
+  },
+  {
+    "Label": "Created time",
+    "Value": "14. august 2026 kl. 12:41"
+  }
+]

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-1c6da0a56560fd63"
   tags = {
     armType    = "Microsoft.Insights/dataCollectionRules"
-    createdUtc = "2026-08-13T13:04:55.9571571Z"
+    createdUtc = "2026-08-14T10:37:56.3060187Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -24,7 +24,7 @@ resource "azurerm_monitor_data_collection_rule" "res-1" {
   description                 = ""
   kind                        = ""
   location                    = "norwayeast"
-  name                        = "dcrgitooyah"
+  name                        = "dcrnabr7xkd"
   resource_group_name         = azurerm_resource_group.res-0.name
   tags                        = {}
   data_flow {
@@ -45,7 +45,7 @@ resource "azurerm_monitor_data_collection_rule" "res-1" {
   destinations {
     log_analytics {
       name                  = "destination-log"
-      workspace_resource_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p"
+      workspace_resource_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et"
     }
   }
 }
@@ -58,7 +58,7 @@ resource "azurerm_log_analytics_workspace" "res-2" {
   internet_ingestion_enabled              = true
   internet_query_enabled                  = true
   location                                = "norwayeast"
-  name                                    = "law3v6oa-0p"
+  name                                    = "laws1-sf5et"
   resource_group_name                     = azurerm_resource_group.res-0.name
   retention_in_days                       = 30
   sku                                     = "PerGB2018"
@@ -70,7 +70,7 @@ resource "azurerm_log_analytics_saved_search" "res-3" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_General|AlphabeticallySortedComputers"
+  name                       = "LogManagement(laws1-sf5et)_General|AlphabeticallySortedComputers"
   query                      = "search not(ObjectName == \"Advisor Metrics\" or ObjectName == \"ManagedSpace\") | summarize AggregatedValue = max(TimeGenerated) by Computer | limit 500000 | sort by Computer asc\r\n// Oql: NOT(ObjectName=\"Advisor Metrics\" OR ObjectName=ManagedSpace) | measure max(TimeGenerated) by Computer | top 500000 | Sort Computer // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -80,7 +80,7 @@ resource "azurerm_log_analytics_saved_search" "res-4" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_General|StaleComputers"
+  name                       = "LogManagement(laws1-sf5et)_General|StaleComputers"
   query                      = "search not(ObjectName == \"Advisor Metrics\" or ObjectName == \"ManagedSpace\") | summarize lastdata = max(TimeGenerated) by Computer | limit 500000 | where lastdata < ago(24h)\r\n// Oql: NOT(ObjectName=\"Advisor Metrics\" OR ObjectName=ManagedSpace) | measure max(TimeGenerated) as lastdata by Computer | top 500000 | where lastdata < NOW-24HOURS // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -90,7 +90,7 @@ resource "azurerm_log_analytics_saved_search" "res-5" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_General|dataPointsPerManagementGroup"
+  name                       = "LogManagement(laws1-sf5et)_General|dataPointsPerManagementGroup"
   query                      = "search * | summarize AggregatedValue = count() by ManagementGroupName\r\n// Oql: * | Measure count() by ManagementGroupName // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -100,7 +100,7 @@ resource "azurerm_log_analytics_saved_search" "res-6" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_General|dataTypeDistribution"
+  name                       = "LogManagement(laws1-sf5et)_General|dataTypeDistribution"
   query                      = "search * | extend Type = $table | summarize AggregatedValue = count() by Type\r\n// Oql: * | Measure count() by Type // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -110,7 +110,7 @@ resource "azurerm_log_analytics_saved_search" "res-7" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|AllEvents"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|AllEvents"
   query                      = "Event | sort by TimeGenerated desc\r\n// Oql: Type=Event // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -120,7 +120,7 @@ resource "azurerm_log_analytics_saved_search" "res-8" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|AllSyslog"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|AllSyslog"
   query                      = "Syslog | sort by TimeGenerated desc\r\n// Oql: Type=Syslog // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -130,7 +130,7 @@ resource "azurerm_log_analytics_saved_search" "res-9" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|AllSyslogByFacility"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|AllSyslogByFacility"
   query                      = "Syslog | summarize AggregatedValue = count() by Facility\r\n// Oql: Type=Syslog | Measure count() by Facility // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -140,7 +140,7 @@ resource "azurerm_log_analytics_saved_search" "res-10" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|AllSyslogByProcessName"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|AllSyslogByProcessName"
   query                      = "Syslog | summarize AggregatedValue = count() by ProcessName\r\n// Oql: Type=Syslog | Measure count() by ProcessName // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -150,7 +150,7 @@ resource "azurerm_log_analytics_saved_search" "res-11" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|AllSyslogsWithErrors"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|AllSyslogsWithErrors"
   query                      = "Syslog | where SeverityLevel == \"error\" | sort by TimeGenerated desc\r\n// Oql: Type=Syslog SeverityLevel=error // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -160,7 +160,7 @@ resource "azurerm_log_analytics_saved_search" "res-12" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|AverageHTTPRequestTimeByClientIPAddress"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|AverageHTTPRequestTimeByClientIPAddress"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = avg(TimeTaken) by cIP\r\n// Oql: Type=W3CIISLog | Measure Avg(TimeTaken) by cIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -170,7 +170,7 @@ resource "azurerm_log_analytics_saved_search" "res-13" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|AverageHTTPRequestTimeHTTPMethod"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|AverageHTTPRequestTimeHTTPMethod"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = avg(TimeTaken) by csMethod\r\n// Oql: Type=W3CIISLog | Measure Avg(TimeTaken) by csMethod // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -180,7 +180,7 @@ resource "azurerm_log_analytics_saved_search" "res-14" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|CountIISLogEntriesClientIPAddress"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|CountIISLogEntriesClientIPAddress"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by cIP\r\n// Oql: Type=W3CIISLog | Measure count() by cIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -190,7 +190,7 @@ resource "azurerm_log_analytics_saved_search" "res-15" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|CountIISLogEntriesHTTPRequestMethod"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|CountIISLogEntriesHTTPRequestMethod"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csMethod\r\n// Oql: Type=W3CIISLog | Measure count() by csMethod // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -200,7 +200,7 @@ resource "azurerm_log_analytics_saved_search" "res-16" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|CountIISLogEntriesHTTPUserAgent"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|CountIISLogEntriesHTTPUserAgent"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csUserAgent\r\n// Oql: Type=W3CIISLog | Measure count() by csUserAgent // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -210,7 +210,7 @@ resource "azurerm_log_analytics_saved_search" "res-17" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|CountOfIISLogEntriesByHostRequestedByClient"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|CountOfIISLogEntriesByHostRequestedByClient"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csHost\r\n// Oql: Type=W3CIISLog | Measure count() by csHost // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -220,7 +220,7 @@ resource "azurerm_log_analytics_saved_search" "res-18" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|CountOfIISLogEntriesByURLForHost"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|CountOfIISLogEntriesByURLForHost"
   query                      = "search csHost == \"www.contoso.com\" | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csUriStem\r\n// Oql: Type=W3CIISLog csHost=\"www.contoso.com\" | Measure count() by csUriStem // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -230,7 +230,7 @@ resource "azurerm_log_analytics_saved_search" "res-19" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|CountOfIISLogEntriesByURLRequestedByClient"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|CountOfIISLogEntriesByURLRequestedByClient"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csUriStem\r\n// Oql: Type=W3CIISLog | Measure count() by csUriStem // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -240,7 +240,7 @@ resource "azurerm_log_analytics_saved_search" "res-20" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|CountOfWarningEvents"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|CountOfWarningEvents"
   query                      = "Event | where EventLevelName == \"warning\" | summarize AggregatedValue = count() by EventID\r\n// Oql: Type=Event EventLevelName=warning | Measure count() by EventID // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -250,7 +250,7 @@ resource "azurerm_log_analytics_saved_search" "res-21" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|DisplayBreakdownRespondCodes"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|DisplayBreakdownRespondCodes"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by scStatus\r\n// Oql: Type=W3CIISLog | Measure count() by scStatus // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -260,7 +260,7 @@ resource "azurerm_log_analytics_saved_search" "res-22" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|EventsByEventLog"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|EventsByEventLog"
   query                      = "Event | summarize AggregatedValue = count() by EventLog\r\n// Oql: Type=Event | Measure count() by EventLog // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -270,7 +270,7 @@ resource "azurerm_log_analytics_saved_search" "res-23" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|EventsByEventSource"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|EventsByEventSource"
   query                      = "Event | summarize AggregatedValue = count() by Source\r\n// Oql: Type=Event | Measure count() by Source // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -280,7 +280,7 @@ resource "azurerm_log_analytics_saved_search" "res-24" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|EventsByEventsID"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|EventsByEventsID"
   query                      = "Event | summarize AggregatedValue = count() by EventID\r\n// Oql: Type=Event | Measure count() by EventID // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -290,7 +290,7 @@ resource "azurerm_log_analytics_saved_search" "res-25" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|EventsInOMBetween2000to3000"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|EventsInOMBetween2000to3000"
   query                      = "Event | where EventLog == \"Operations Manager\" and EventID >= 2000 and EventID <= 3000 | sort by TimeGenerated desc\r\n// Oql: Type=Event EventLog=\"Operations Manager\" EventID:[2000..3000] // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -300,7 +300,7 @@ resource "azurerm_log_analytics_saved_search" "res-26" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|EventsWithStartedinEventID"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|EventsWithStartedinEventID"
   query                      = "search in (Event) \"started\" | summarize AggregatedValue = count() by EventID\r\n// Oql: Type=Event \"started\" | Measure count() by EventID // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -310,7 +310,7 @@ resource "azurerm_log_analytics_saved_search" "res-27" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|FindMaximumTimeTakenForEachPage"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|FindMaximumTimeTakenForEachPage"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = max(TimeTaken) by csUriStem\r\n// Oql: Type=W3CIISLog | Measure Max(TimeTaken) by csUriStem // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -320,7 +320,7 @@ resource "azurerm_log_analytics_saved_search" "res-28" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|IISLogEntriesForClientIP"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|IISLogEntriesForClientIP"
   query                      = "search cIP == \"192.168.0.1\" | extend Type = $table | where Type == W3CIISLog | sort by TimeGenerated desc | project csUriStem, scBytes, csBytes, TimeTaken, scStatus\r\n// Oql: Type=W3CIISLog cIP=\"192.168.0.1\" | Select csUriStem,scBytes,csBytes,TimeTaken,scStatus // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -330,7 +330,7 @@ resource "azurerm_log_analytics_saved_search" "res-29" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|ListAllIISLogEntries"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|ListAllIISLogEntries"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | sort by TimeGenerated desc\r\n// Oql: Type=W3CIISLog // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -340,7 +340,7 @@ resource "azurerm_log_analytics_saved_search" "res-30" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|NoOfConnectionsToOMSDKService"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|NoOfConnectionsToOMSDKService"
   query                      = "Event | where EventID == 26328 and EventLog == \"Operations Manager\" | summarize AggregatedValue = count() by bin(TimeGenerated, 1d) | sort by TimeGenerated desc\r\n// Oql: Type=Event EventID=26328 EventLog=\"Operations Manager\" | Measure count() interval 1DAY // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -350,7 +350,7 @@ resource "azurerm_log_analytics_saved_search" "res-31" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|ServerRestartTime"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|ServerRestartTime"
   query                      = "search in (Event) \"shutdown\" and EventLog == \"System\" and Source == \"User32\" and EventID == 1074 | sort by TimeGenerated desc | project TimeGenerated, Computer\r\n// Oql: shutdown Type=Event EventLog=System Source=User32 EventID=1074 | Select TimeGenerated,Computer // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -360,7 +360,7 @@ resource "azurerm_log_analytics_saved_search" "res-32" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|Show404PagesList"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|Show404PagesList"
   query                      = "search scStatus == 404 | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by csUriStem\r\n// Oql: Type=W3CIISLog scStatus=404 | Measure count() by csUriStem // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -370,7 +370,7 @@ resource "azurerm_log_analytics_saved_search" "res-33" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|ShowServersThrowingInternalServerError"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|ShowServersThrowingInternalServerError"
   query                      = "search scStatus == 500 | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = count() by sComputerName\r\n// Oql: Type=W3CIISLog scStatus=500 | Measure count() by sComputerName // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -380,7 +380,7 @@ resource "azurerm_log_analytics_saved_search" "res-34" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|TotalBytesReceivedByEachAzureRoleInstance"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|TotalBytesReceivedByEachAzureRoleInstance"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(csBytes) by RoleInstance\r\n// Oql: Type=W3CIISLog | Measure Sum(csBytes) by RoleInstance // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -390,7 +390,7 @@ resource "azurerm_log_analytics_saved_search" "res-35" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|TotalBytesReceivedByEachIISComputer"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|TotalBytesReceivedByEachIISComputer"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(csBytes) by Computer | limit 500000\r\n// Oql: Type=W3CIISLog | Measure Sum(csBytes) by Computer | top 500000 // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -400,7 +400,7 @@ resource "azurerm_log_analytics_saved_search" "res-36" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|TotalBytesRespondedToClientsByClientIPAddress"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|TotalBytesRespondedToClientsByClientIPAddress"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(scBytes) by cIP\r\n// Oql: Type=W3CIISLog | Measure Sum(scBytes) by cIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -410,7 +410,7 @@ resource "azurerm_log_analytics_saved_search" "res-37" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(scBytes) by sIP\r\n// Oql: Type=W3CIISLog | Measure Sum(scBytes) by sIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -420,7 +420,7 @@ resource "azurerm_log_analytics_saved_search" "res-38" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|TotalBytesSentByClientIPAddress"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|TotalBytesSentByClientIPAddress"
   query                      = "search * | extend Type = $table | where Type == W3CIISLog | summarize AggregatedValue = sum(csBytes) by cIP\r\n// Oql: Type=W3CIISLog | Measure Sum(csBytes) by cIP // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PEF: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -430,7 +430,7 @@ resource "azurerm_log_analytics_saved_search" "res-39" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|WarningEvents"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|WarningEvents"
   query                      = "Event | where EventLevelName == \"warning\" | sort by TimeGenerated desc\r\n// Oql: Type=Event EventLevelName=warning // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -440,7 +440,7 @@ resource "azurerm_log_analytics_saved_search" "res-40" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|WindowsFireawallPolicySettingsChanged"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|WindowsFireawallPolicySettingsChanged"
   query                      = "Event | where EventLog == \"Microsoft-Windows-Windows Firewall With Advanced Security/Firewall\" and EventID == 2008 | sort by TimeGenerated desc\r\n// Oql: Type=Event EventLog=\"Microsoft-Windows-Windows Firewall With Advanced Security/Firewall\" EventID=2008 // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -450,7 +450,7 @@ resource "azurerm_log_analytics_saved_search" "res-41" {
   function_alias             = ""
   function_parameters        = []
   log_analytics_workspace_id = azurerm_log_analytics_workspace.res-2.id
-  name                       = "LogManagement(law3v6oa-0p)_LogManagement|WindowsFireawallPolicySettingsChangedByMachines"
+  name                       = "LogManagement(laws1-sf5et)_LogManagement|WindowsFireawallPolicySettingsChangedByMachines"
   query                      = "Event | where EventLog == \"Microsoft-Windows-Windows Firewall With Advanced Security/Firewall\" and EventID == 2008 | summarize AggregatedValue = count() by Computer | limit 500000\r\n// Oql: Type=Event EventLog=\"Microsoft-Windows-Windows Firewall With Advanced Security/Firewall\" EventID=2008 | measure count() by Computer | top 500000 // Args: {OQ: True; WorkspaceId: 00000000-0000-0000-0000-000000000000} // Settings: {PTT: True; SortI: True; SortF: True} // Version: 0.1.122"
   tags                       = {}
 }
@@ -6608,2898 +6608,2898 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.Insights/dataCollectionRules/dcrgitooyah"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.Insights/dataCollectionRules/dcrnabr7xkd"
   to = azurerm_monitor_data_collection_rule.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et"
   to = azurerm_log_analytics_workspace.res-2
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_General|AlphabeticallySortedComputers"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_General|AlphabeticallySortedComputers"
   to = azurerm_log_analytics_saved_search.res-3
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_General|StaleComputers"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_General|StaleComputers"
   to = azurerm_log_analytics_saved_search.res-4
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_General|dataPointsPerManagementGroup"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_General|dataPointsPerManagementGroup"
   to = azurerm_log_analytics_saved_search.res-5
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_General|dataTypeDistribution"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_General|dataTypeDistribution"
   to = azurerm_log_analytics_saved_search.res-6
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|AllEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|AllEvents"
   to = azurerm_log_analytics_saved_search.res-7
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|AllSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|AllSyslog"
   to = azurerm_log_analytics_saved_search.res-8
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|AllSyslogByFacility"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|AllSyslogByFacility"
   to = azurerm_log_analytics_saved_search.res-9
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|AllSyslogByProcessName"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|AllSyslogByProcessName"
   to = azurerm_log_analytics_saved_search.res-10
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|AllSyslogsWithErrors"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|AllSyslogsWithErrors"
   to = azurerm_log_analytics_saved_search.res-11
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|AverageHTTPRequestTimeByClientIPAddress"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|AverageHTTPRequestTimeByClientIPAddress"
   to = azurerm_log_analytics_saved_search.res-12
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|AverageHTTPRequestTimeHTTPMethod"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|AverageHTTPRequestTimeHTTPMethod"
   to = azurerm_log_analytics_saved_search.res-13
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|CountIISLogEntriesClientIPAddress"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|CountIISLogEntriesClientIPAddress"
   to = azurerm_log_analytics_saved_search.res-14
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|CountIISLogEntriesHTTPRequestMethod"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|CountIISLogEntriesHTTPRequestMethod"
   to = azurerm_log_analytics_saved_search.res-15
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|CountIISLogEntriesHTTPUserAgent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|CountIISLogEntriesHTTPUserAgent"
   to = azurerm_log_analytics_saved_search.res-16
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|CountOfIISLogEntriesByHostRequestedByClient"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|CountOfIISLogEntriesByHostRequestedByClient"
   to = azurerm_log_analytics_saved_search.res-17
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|CountOfIISLogEntriesByURLForHost"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|CountOfIISLogEntriesByURLForHost"
   to = azurerm_log_analytics_saved_search.res-18
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|CountOfIISLogEntriesByURLRequestedByClient"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|CountOfIISLogEntriesByURLRequestedByClient"
   to = azurerm_log_analytics_saved_search.res-19
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|CountOfWarningEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|CountOfWarningEvents"
   to = azurerm_log_analytics_saved_search.res-20
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|DisplayBreakdownRespondCodes"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|DisplayBreakdownRespondCodes"
   to = azurerm_log_analytics_saved_search.res-21
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|EventsByEventLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|EventsByEventLog"
   to = azurerm_log_analytics_saved_search.res-22
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|EventsByEventSource"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|EventsByEventSource"
   to = azurerm_log_analytics_saved_search.res-23
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|EventsByEventsID"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|EventsByEventsID"
   to = azurerm_log_analytics_saved_search.res-24
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|EventsInOMBetween2000to3000"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|EventsInOMBetween2000to3000"
   to = azurerm_log_analytics_saved_search.res-25
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|EventsWithStartedinEventID"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|EventsWithStartedinEventID"
   to = azurerm_log_analytics_saved_search.res-26
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|FindMaximumTimeTakenForEachPage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|FindMaximumTimeTakenForEachPage"
   to = azurerm_log_analytics_saved_search.res-27
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|IISLogEntriesForClientIP"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|IISLogEntriesForClientIP"
   to = azurerm_log_analytics_saved_search.res-28
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|ListAllIISLogEntries"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|ListAllIISLogEntries"
   to = azurerm_log_analytics_saved_search.res-29
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|NoOfConnectionsToOMSDKService"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|NoOfConnectionsToOMSDKService"
   to = azurerm_log_analytics_saved_search.res-30
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|ServerRestartTime"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|ServerRestartTime"
   to = azurerm_log_analytics_saved_search.res-31
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|Show404PagesList"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|Show404PagesList"
   to = azurerm_log_analytics_saved_search.res-32
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|ShowServersThrowingInternalServerError"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|ShowServersThrowingInternalServerError"
   to = azurerm_log_analytics_saved_search.res-33
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|TotalBytesReceivedByEachAzureRoleInstance"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|TotalBytesReceivedByEachAzureRoleInstance"
   to = azurerm_log_analytics_saved_search.res-34
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|TotalBytesReceivedByEachIISComputer"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|TotalBytesReceivedByEachIISComputer"
   to = azurerm_log_analytics_saved_search.res-35
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|TotalBytesRespondedToClientsByClientIPAddress"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|TotalBytesRespondedToClientsByClientIPAddress"
   to = azurerm_log_analytics_saved_search.res-36
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress"
   to = azurerm_log_analytics_saved_search.res-37
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|TotalBytesSentByClientIPAddress"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|TotalBytesSentByClientIPAddress"
   to = azurerm_log_analytics_saved_search.res-38
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|WarningEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|WarningEvents"
   to = azurerm_log_analytics_saved_search.res-39
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|WindowsFireawallPolicySettingsChanged"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|WindowsFireawallPolicySettingsChanged"
   to = azurerm_log_analytics_saved_search.res-40
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/savedSearches/LogManagement(law3v6oa-0p)_LogManagement|WindowsFireawallPolicySettingsChangedByMachines"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/savedSearches/LogManagement(laws1-sf5et)_LogManagement|WindowsFireawallPolicySettingsChangedByMachines"
   to = azurerm_log_analytics_saved_search.res-41
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AACAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AACAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-42
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AACHttpRequest"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AACHttpRequest"
   to = azurerm_log_analytics_workspace_table_custom_log.res-43
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADAgentRiskEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADAgentRiskEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-44
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADB2CRequestLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADB2CRequestLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-45
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADCustomSecurityAttributeAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADCustomSecurityAttributeAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-46
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADDomainServicesAccountLogon"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADDomainServicesAccountLogon"
   to = azurerm_log_analytics_workspace_table_custom_log.res-47
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADDomainServicesAccountManagement"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADDomainServicesAccountManagement"
   to = azurerm_log_analytics_workspace_table_custom_log.res-48
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADDomainServicesDNSAuditsDynamicUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADDomainServicesDNSAuditsDynamicUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-49
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADDomainServicesDNSAuditsGeneral"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADDomainServicesDNSAuditsGeneral"
   to = azurerm_log_analytics_workspace_table_custom_log.res-50
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADDomainServicesDirectoryServiceAccess"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADDomainServicesDirectoryServiceAccess"
   to = azurerm_log_analytics_workspace_table_custom_log.res-51
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADDomainServicesLogonLogoff"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADDomainServicesLogonLogoff"
   to = azurerm_log_analytics_workspace_table_custom_log.res-52
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADDomainServicesPolicyChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADDomainServicesPolicyChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-53
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADDomainServicesPrivilegeUse"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADDomainServicesPrivilegeUse"
   to = azurerm_log_analytics_workspace_table_custom_log.res-54
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADDomainServicesSystemSecurity"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADDomainServicesSystemSecurity"
   to = azurerm_log_analytics_workspace_table_custom_log.res-55
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADFirstPartyToFirstPartySignInLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADFirstPartyToFirstPartySignInLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-56
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADGraphActivityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADGraphActivityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-57
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADManagedIdentitySignInLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADManagedIdentitySignInLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-58
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADNonInteractiveUserSignInLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADNonInteractiveUserSignInLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-59
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADProvisioningLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADProvisioningLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-60
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADRiskyAgents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADRiskyAgents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-61
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADRiskyServicePrincipals"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADRiskyServicePrincipals"
   to = azurerm_log_analytics_workspace_table_custom_log.res-62
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADRiskyUsers"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADRiskyUsers"
   to = azurerm_log_analytics_workspace_table_custom_log.res-63
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADServicePrincipalRiskEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADServicePrincipalRiskEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-64
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADServicePrincipalSignInLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADServicePrincipalSignInLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-65
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AADUserRiskEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AADUserRiskEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-66
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ABSBotRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ABSBotRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-67
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACICollaborationAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACICollaborationAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-68
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACLTransactionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACLTransactionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-69
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACLUserDefinedLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACLUserDefinedLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-70
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACRConnectedClientList"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACRConnectedClientList"
   to = azurerm_log_analytics_workspace_table_custom_log.res-71
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACREntraAuthenticationAuditLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACREntraAuthenticationAuditLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-72
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSAdvancedMessagingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSAdvancedMessagingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-73
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSAuthIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSAuthIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-74
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSBillingUsage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSBillingUsage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-75
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallAutomationIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallAutomationIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-76
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallAutomationMediaSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallAutomationMediaSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-77
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallAutomationStreamingUsage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallAutomationStreamingUsage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-78
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallClientMediaStatsTimeSeries"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallClientMediaStatsTimeSeries"
   to = azurerm_log_analytics_workspace_table_custom_log.res-79
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallClientOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallClientOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-80
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallClientServiceRequestAndOutcome"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallClientServiceRequestAndOutcome"
   to = azurerm_log_analytics_workspace_table_custom_log.res-81
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallClosedCaptionsSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallClosedCaptionsSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-82
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallDiagnostics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallDiagnostics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-83
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallDiagnosticsUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallDiagnosticsUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-84
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallRecordingIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallRecordingIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-85
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallRecordingSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallRecordingSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-86
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-87
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallSummaryUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallSummaryUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-88
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallSurvey"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallSurvey"
   to = azurerm_log_analytics_workspace_table_custom_log.res-89
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSCallingMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSCallingMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-90
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSChatIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSChatIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-91
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSEmailSendMailOperational"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSEmailSendMailOperational"
   to = azurerm_log_analytics_workspace_table_custom_log.res-92
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSEmailStatusUpdateOperational"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSEmailStatusUpdateOperational"
   to = azurerm_log_analytics_workspace_table_custom_log.res-93
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSEmailUserEngagementOperational"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSEmailUserEngagementOperational"
   to = azurerm_log_analytics_workspace_table_custom_log.res-94
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSJobRouterIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSJobRouterIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-95
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSOptOutManagementOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSOptOutManagementOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-96
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSRoomsIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSRoomsIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-97
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ACSSMSIncomingOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ACSSMSIncomingOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-98
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-99
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFActivityRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFActivityRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-100
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFAirflowSchedulerLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFAirflowSchedulerLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-101
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFAirflowTaskLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFAirflowTaskLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-102
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFAirflowWebLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFAirflowWebLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-103
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFAirflowWorkerLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFAirflowWorkerLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-104
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFPipelineRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFPipelineRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-105
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFSSISIntegrationRuntimeLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFSSISIntegrationRuntimeLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-106
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFSSISPackageEventMessageContext"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFSSISPackageEventMessageContext"
   to = azurerm_log_analytics_workspace_table_custom_log.res-107
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFSSISPackageEventMessages"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFSSISPackageEventMessages"
   to = azurerm_log_analytics_workspace_table_custom_log.res-108
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFSSISPackageExecutableStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFSSISPackageExecutableStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-109
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFSSISPackageExecutionComponentPhases"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFSSISPackageExecutionComponentPhases"
   to = azurerm_log_analytics_workspace_table_custom_log.res-110
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFSSISPackageExecutionDataStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFSSISPackageExecutionDataStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-111
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFSSignInLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFSSignInLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-112
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFSandboxActivityRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFSandboxActivityRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-113
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFSandboxPipelineRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFSandboxPipelineRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-114
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADFTriggerRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADFTriggerRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-115
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADGSyslogEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADGSyslogEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-116
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADReplicationResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADReplicationResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-117
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADSecurityAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADSecurityAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-118
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADTDataHistoryOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADTDataHistoryOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-119
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADTDigitalTwinsOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADTDigitalTwinsOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-120
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADTEventRoutesOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADTEventRoutesOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-121
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADTModelsOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADTModelsOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-122
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADTQueryOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADTQueryOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-123
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADXCommand"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADXCommand"
   to = azurerm_log_analytics_workspace_table_custom_log.res-124
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADXDataOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADXDataOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-125
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADXIngestionBatching"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADXIngestionBatching"
   to = azurerm_log_analytics_workspace_table_custom_log.res-126
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADXJournal"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADXJournal"
   to = azurerm_log_analytics_workspace_table_custom_log.res-127
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADXQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADXQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-128
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADXTableDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADXTableDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-129
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ADXTableUsageStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ADXTableUsageStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-130
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AEWAssignmentBlobLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AEWAssignmentBlobLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-131
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AEWAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AEWAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-132
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AEWComputePipelinesLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AEWComputePipelinesLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-133
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AEWExperimentAssignmentSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AEWExperimentAssignmentSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-134
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AEWExperimentScorecardMetricPairs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AEWExperimentScorecardMetricPairs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-135
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AEWExperimentScorecards"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AEWExperimentScorecards"
   to = azurerm_log_analytics_workspace_table_custom_log.res-136
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AFSAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AFSAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-137
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGCAccessLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AGCAccessLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-138
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGCFirewallLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AGCFirewallLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-139
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSGrafanaAlertAuthFailure"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AGSGrafanaAlertAuthFailure"
   to = azurerm_log_analytics_workspace_table_custom_log.res-140
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSGrafanaLoginEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AGSGrafanaLoginEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-141
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSGrafanaUsageInsightsEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AGSGrafanaUsageInsightsEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-142
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSUpdateEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AGSUpdateEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-143
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGWAccessLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AGWAccessLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-144
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGWFirewallLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AGWFirewallLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-145
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGWPerformanceLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AGWPerformanceLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-146
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHCIDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AHCIDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-147
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSDeidAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AHDSDeidAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-148
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSDicomAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AHDSDicomAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-149
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSDicomDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AHDSDicomDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-150
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSMedTechDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AHDSMedTechDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-151
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AKSAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AKSAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-152
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AKSAuditAdmin"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AKSAuditAdmin"
   to = azurerm_log_analytics_workspace_table_custom_log.res-153
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AKSControlPlane"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AKSControlPlane"
   to = azurerm_log_analytics_workspace_table_custom_log.res-154
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ALBHealthEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ALBHealthEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-155
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMAHealth"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AMAHealth"
   to = azurerm_log_analytics_workspace_table_custom_log.res-156
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSKeyDeliveryRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AMSKeyDeliveryRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-157
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSLiveEventOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AMSLiveEventOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-158
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSMediaAccountHealth"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AMSMediaAccountHealth"
   to = azurerm_log_analytics_workspace_table_custom_log.res-159
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSStreamingEndpointRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AMSStreamingEndpointRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-160
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMWMetricsUsageDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AMWMetricsUsageDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-161
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFFileAccess"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ANFFileAccess"
   to = azurerm_log_analytics_workspace_table_custom_log.res-162
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopClientReadIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ANFTopClientReadIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-163
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopClientWriteIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ANFTopClientWriteIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-164
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopFileReadIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ANFTopFileReadIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-165
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopFileWriteIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ANFTopFileWriteIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-166
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AOIDatabaseQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AOIDatabaseQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-167
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AOIDigestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AOIDigestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-168
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AOIStorage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AOIStorage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-169
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/APIMDevPortalAuditDiagnosticLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/APIMDevPortalAuditDiagnosticLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-170
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASCAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASCAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-171
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASCDeviceEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASCDeviceEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-172
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRJobs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASRJobs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-173
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRReplicatedItems"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASRReplicatedItems"
   to = azurerm_log_analytics_workspace_table_custom_log.res-174
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2HealthEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASRv2HealthEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-175
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2JobEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASRv2JobEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-176
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ProtectedItems"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASRv2ProtectedItems"
   to = azurerm_log_analytics_workspace_table_custom_log.res-177
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ReplicationExtensions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASRv2ReplicationExtensions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-178
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ReplicationPolicies"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASRv2ReplicationPolicies"
   to = azurerm_log_analytics_workspace_table_custom_log.res-179
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ReplicationVaults"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ASRv2ReplicationVaults"
   to = azurerm_log_analytics_workspace_table_custom_log.res-180
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ATCExpressRouteCircuitIpfix"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ATCExpressRouteCircuitIpfix"
   to = azurerm_log_analytics_workspace_table_custom_log.res-181
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ATCMicrosoftPeeringMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ATCMicrosoftPeeringMetadata"
   to = azurerm_log_analytics_workspace_table_custom_log.res-182
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ATCPrivatePeeringMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ATCPrivatePeeringMetadata"
   to = azurerm_log_analytics_workspace_table_custom_log.res-183
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMConnectivityConfigurationChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVNMConnectivityConfigurationChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-184
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMIPAMPoolAllocationChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVNMIPAMPoolAllocationChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-185
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMNetworkGroupMembershipChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVNMNetworkGroupMembershipChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-186
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMRuleCollectionChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVNMRuleCollectionChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-187
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSEsxiFirewallSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVSEsxiFirewallSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-188
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSEsxiSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVSEsxiSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-189
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSNsxEdgeSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVSNsxEdgeSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-190
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSNsxManagerSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVSNsxManagerSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-191
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVSSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-192
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSVcSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AVSVcSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-193
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWApplicationRule"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWApplicationRule"
   to = azurerm_log_analytics_workspace_table_custom_log.res-194
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWApplicationRuleAggregation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWApplicationRuleAggregation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-195
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWDnsFlowTrace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWDnsFlowTrace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-196
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWDnsQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWDnsQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-197
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWFatFlow"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWFatFlow"
   to = azurerm_log_analytics_workspace_table_custom_log.res-198
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWFlowTrace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWFlowTrace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-199
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWIdpsSignature"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWIdpsSignature"
   to = azurerm_log_analytics_workspace_table_custom_log.res-200
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWInternalFqdnResolutionFailure"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWInternalFqdnResolutionFailure"
   to = azurerm_log_analytics_workspace_table_custom_log.res-201
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNatRule"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWNatRule"
   to = azurerm_log_analytics_workspace_table_custom_log.res-202
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNatRuleAggregation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWNatRuleAggregation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-203
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNetworkRule"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWNetworkRule"
   to = azurerm_log_analytics_workspace_table_custom_log.res-204
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNetworkRuleAggregation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWNetworkRuleAggregation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-205
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWThreatIntel"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZFWThreatIntel"
   to = azurerm_log_analytics_workspace_table_custom_log.res-206
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZKVAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZKVAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-207
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZKVPolicyEvaluationDetailsLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZKVPolicyEvaluationDetailsLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-208
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSApplicationMetricLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSApplicationMetricLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-209
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSArchiveLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSArchiveLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-210
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSAutoscaleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSAutoscaleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-211
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSCustomerManagedKeyUserLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSCustomerManagedKeyUserLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-212
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSDiagnosticErrorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSDiagnosticErrorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-213
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSHybridConnectionsEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSHybridConnectionsEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-214
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSKafkaCoordinatorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSKafkaCoordinatorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-215
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSKafkaUserErrorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSKafkaUserErrorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-216
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSOperationalLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSOperationalLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-217
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSRunTimeAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSRunTimeAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-218
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSVnetConnectionEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AZMSVnetConnectionEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-219
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupAlerts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AddonAzureBackupAlerts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-220
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupJobs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AddonAzureBackupJobs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-221
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupPolicy"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AddonAzureBackupPolicy"
   to = azurerm_log_analytics_workspace_table_custom_log.res-222
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupProtectedInstance"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AddonAzureBackupProtectedInstance"
   to = azurerm_log_analytics_workspace_table_custom_log.res-223
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupStorage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AddonAzureBackupStorage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-224
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AegDataPlaneRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AegDataPlaneRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-225
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AegDeliveryFailureLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AegDeliveryFailureLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-226
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AegPublishFailureLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AegPublishFailureLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-227
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodApplicationAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodApplicationAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-228
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodFarmManagementLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodFarmManagementLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-229
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodFarmOperationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodFarmOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-230
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodInsightLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodInsightLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-231
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodJobProcessedLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodJobProcessedLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-232
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodModelInferenceLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodModelInferenceLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-233
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodProviderAuthLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodProviderAuthLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-234
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodSatelliteLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodSatelliteLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-235
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodSensorManagementLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodSensorManagementLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-236
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodWeatherLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AgriFoodWeatherLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-237
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AirflowDagProcessingLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AirflowDagProcessingLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-238
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Alert"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Alert"
   to = azurerm_log_analytics_workspace_table_custom_log.res-239
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeClusterEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlComputeClusterEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-240
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeClusterNodeEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlComputeClusterNodeEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-241
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeCpuGpuUtilization"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlComputeCpuGpuUtilization"
   to = azurerm_log_analytics_workspace_table_custom_log.res-242
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeInstanceEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlComputeInstanceEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-243
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeJobEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlComputeJobEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-244
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDataLabelEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlDataLabelEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-245
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDataSetEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlDataSetEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-246
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDataStoreEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlDataStoreEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-247
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDeploymentEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlDeploymentEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-248
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlEnvironmentEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlEnvironmentEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-249
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlInferencingEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlInferencingEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-250
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlModelsEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlModelsEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-251
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlOnlineEndpointConsoleLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlOnlineEndpointConsoleLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-252
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlOnlineEndpointEventLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlOnlineEndpointEventLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-253
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlOnlineEndpointTrafficLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlOnlineEndpointTrafficLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-254
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlPipelineEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlPipelineEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-255
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRegistryReadEventsLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlRegistryReadEventsLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-256
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRegistryWriteEventsLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlRegistryWriteEventsLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-257
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRunEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlRunEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-258
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRunStatusChangedEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AmlRunStatusChangedEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-259
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementGatewayLlmLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ApiManagementGatewayLlmLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-260
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementGatewayLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ApiManagementGatewayLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-261
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementGatewayMCPLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ApiManagementGatewayMCPLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-262
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementWebSocketConnectionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ApiManagementWebSocketConnectionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-263
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppAvailabilityResults"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppAvailabilityResults"
   to = azurerm_log_analytics_workspace_table_custom_log.res-264
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppBrowserTimings"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppBrowserTimings"
   to = azurerm_log_analytics_workspace_table_custom_log.res-265
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppCenterError"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppCenterError"
   to = azurerm_log_analytics_workspace_table_custom_log.res-266
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppDependencies"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppDependencies"
   to = azurerm_log_analytics_workspace_table_custom_log.res-267
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSessionConsoleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppEnvSessionConsoleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-268
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSessionLifecycleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppEnvSessionLifecycleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-269
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSessionPoolEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppEnvSessionPoolEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-270
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSpringAppConsoleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppEnvSpringAppConsoleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-271
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-272
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppExceptions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppExceptions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-273
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppGenAIContent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppGenAIContent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-274
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-275
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPageViews"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppPageViews"
   to = azurerm_log_analytics_workspace_table_custom_log.res-276
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPerformanceCounters"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppPerformanceCounters"
   to = azurerm_log_analytics_workspace_table_custom_log.res-277
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformBuildLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppPlatformBuildLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-278
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformContainerEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppPlatformContainerEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-279
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformIngressLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppPlatformIngressLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-280
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformLogsforSpring"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppPlatformLogsforSpring"
   to = azurerm_log_analytics_workspace_table_custom_log.res-281
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformSystemLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppPlatformSystemLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-282
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-283
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAntivirusScanAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceAntivirusScanAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-284
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAppLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceAppLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-285
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-286
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAuthenticationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceAuthenticationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-287
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceConsoleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceConsoleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-288
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceEnvironmentPlatformLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceEnvironmentPlatformLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-289
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceFileAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceFileAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-290
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceHTTPLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceHTTPLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-291
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceIPSecAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceIPSecAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-292
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServicePlatformLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServicePlatformLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-293
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceServerlessSecurityPluginData"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppServiceServerlessSecurityPluginData"
   to = azurerm_log_analytics_workspace_table_custom_log.res-294
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppSystemEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppSystemEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-295
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppTraces"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AppTraces"
   to = azurerm_log_analytics_workspace_table_custom_log.res-296
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ArcK8sAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ArcK8sAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-297
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ArcK8sAuditAdmin"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ArcK8sAuditAdmin"
   to = azurerm_log_analytics_workspace_table_custom_log.res-298
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ArcK8sControlPlane"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ArcK8sControlPlane"
   to = azurerm_log_analytics_workspace_table_custom_log.res-299
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-300
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AutoscaleEvaluationsLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AutoscaleEvaluationsLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-301
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AutoscaleScaleActionsLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AutoscaleScaleActionsLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-302
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureActivity"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureActivity"
   to = azurerm_log_analytics_workspace_table_custom_log.res-303
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureActivityV2"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureActivityV2"
   to = azurerm_log_analytics_workspace_table_custom_log.res-304
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-305
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureAttestationDiagnostics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureAttestationDiagnostics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-306
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureBackupOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureBackupOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-307
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureDevOpsAuditing"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureDevOpsAuditing"
   to = azurerm_log_analytics_workspace_table_custom_log.res-308
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureLoadTestingOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureLoadTestingOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-309
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-310
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureMetricsV2"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureMetricsV2"
   to = azurerm_log_analytics_workspace_table_custom_log.res-311
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureMonitorPipelineLogErrors"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureMonitorPipelineLogErrors"
   to = azurerm_log_analytics_workspace_table_custom_log.res-312
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLAutomaticTuning"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureSQLAutomaticTuning"
   to = azurerm_log_analytics_workspace_table_custom_log.res-313
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLBlocks"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureSQLBlocks"
   to = azurerm_log_analytics_workspace_table_custom_log.res-314
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLDatabaseWaitStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureSQLDatabaseWaitStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-315
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLDeadlocks"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureSQLDeadlocks"
   to = azurerm_log_analytics_workspace_table_custom_log.res-316
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLErrors"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureSQLErrors"
   to = azurerm_log_analytics_workspace_table_custom_log.res-317
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLQueryStoreRuntimeStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureSQLQueryStoreRuntimeStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-318
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLQueryStoreWaitStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureSQLQueryStoreWaitStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-319
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLResourceUsageStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureSQLResourceUsageStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-320
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLTimeouts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/AzureSQLTimeouts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-321
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BehaviorEntities"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/BehaviorEntities"
   to = azurerm_log_analytics_workspace_table_custom_log.res-322
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BehaviorInfo"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/BehaviorInfo"
   to = azurerm_log_analytics_workspace_table_custom_log.res-323
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BlockchainApplicationLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/BlockchainApplicationLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-324
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BlockchainProxyLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/BlockchainProxyLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-325
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CCFApplicationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CCFApplicationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-326
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBCassandraRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBCassandraRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-327
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBControlPlaneRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBControlPlaneRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-328
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBDataPlaneRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBDataPlaneRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-329
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBDataPlaneRequests15M"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBDataPlaneRequests15M"
   to = azurerm_log_analytics_workspace_table_custom_log.res-330
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBDataPlaneRequests5M"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBDataPlaneRequests5M"
   to = azurerm_log_analytics_workspace_table_custom_log.res-331
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBGremlinRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBGremlinRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-332
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBMongoRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBMongoRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-333
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBPartitionKeyRUConsumption"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBPartitionKeyRUConsumption"
   to = azurerm_log_analytics_workspace_table_custom_log.res-334
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBPartitionKeyStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBPartitionKeyStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-335
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBQueryRuntimeStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBQueryRuntimeStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-336
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBTableApiRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CDBTableApiRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-337
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CHSMServiceOperationAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CHSMServiceOperationAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-338
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CIEventsAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CIEventsAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-339
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CIEventsOperational"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CIEventsOperational"
   to = azurerm_log_analytics_workspace_table_custom_log.res-340
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CassandraAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CassandraAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-341
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CassandraLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CassandraLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-342
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ChaosStudioExperimentEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ChaosStudioExperimentEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-343
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CloudHsmHardwareOperationAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CloudHsmHardwareOperationAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-344
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CloudHsmServiceOperationAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CloudHsmServiceOperationAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-345
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ComputerGroup"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ComputerGroup"
   to = azurerm_log_analytics_workspace_table_custom_log.res-346
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerAppConsoleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerAppConsoleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-347
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerAppHTTPLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerAppHTTPLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-348
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerAppSystemLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerAppSystemLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-349
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-350
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerImageInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerImageInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-351
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerInstanceLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerInstanceLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-352
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-353
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-354
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerLogV2"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerLogV2"
   to = azurerm_log_analytics_workspace_table_custom_log.res-355
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerNetworkLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerNetworkLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-356
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerNodeInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerNodeInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-357
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerRegistryLoginEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerRegistryLoginEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-358
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerRegistryRepositoryEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerRegistryRepositoryEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-359
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerServiceLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ContainerServiceLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-360
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CoreAzureBackup"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/CoreAzureBackup"
   to = azurerm_log_analytics_workspace_table_custom_log.res-361
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DCRLogErrors"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DCRLogErrors"
   to = azurerm_log_analytics_workspace_table_custom_log.res-362
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DCRLogTroubleshooting"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DCRLogTroubleshooting"
   to = azurerm_log_analytics_workspace_table_custom_log.res-363
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DNSQueryLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DNSQueryLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-364
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DSMAzureBlobStorageLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DSMAzureBlobStorageLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-365
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DSMDataClassificationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DSMDataClassificationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-366
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DSMDataLabelingLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DSMDataLabelingLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-367
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DataSetOutput"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DataSetOutput"
   to = azurerm_log_analytics_workspace_table_custom_log.res-368
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DataSetRuns"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DataSetRuns"
   to = azurerm_log_analytics_workspace_table_custom_log.res-369
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DataTransferOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DataTransferOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-370
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksAccounts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksAccounts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-371
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksApps"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksApps"
   to = azurerm_log_analytics_workspace_table_custom_log.res-372
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksBrickStoreHttpGateway"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksBrickStoreHttpGateway"
   to = azurerm_log_analytics_workspace_table_custom_log.res-373
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksBudgetPolicyCentral"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksBudgetPolicyCentral"
   to = azurerm_log_analytics_workspace_table_custom_log.res-374
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksCapsule8Dataplane"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksCapsule8Dataplane"
   to = azurerm_log_analytics_workspace_table_custom_log.res-375
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClamAVScan"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksClamAVScan"
   to = azurerm_log_analytics_workspace_table_custom_log.res-376
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksCloudStorageMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksCloudStorageMetadata"
   to = azurerm_log_analytics_workspace_table_custom_log.res-377
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClusterLibraries"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksClusterLibraries"
   to = azurerm_log_analytics_workspace_table_custom_log.res-378
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClusterPolicies"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksClusterPolicies"
   to = azurerm_log_analytics_workspace_table_custom_log.res-379
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClusters"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksClusters"
   to = azurerm_log_analytics_workspace_table_custom_log.res-380
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDBFS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksDBFS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-381
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDashboards"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksDashboards"
   to = azurerm_log_analytics_workspace_table_custom_log.res-382
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDataMonitoring"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksDataMonitoring"
   to = azurerm_log_analytics_workspace_table_custom_log.res-383
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDataRooms"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksDataRooms"
   to = azurerm_log_analytics_workspace_table_custom_log.res-384
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDatabricksSQL"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksDatabricksSQL"
   to = azurerm_log_analytics_workspace_table_custom_log.res-385
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDeltaPipelines"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksDeltaPipelines"
   to = azurerm_log_analytics_workspace_table_custom_log.res-386
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksFeatureStore"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksFeatureStore"
   to = azurerm_log_analytics_workspace_table_custom_log.res-387
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksFiles"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksFiles"
   to = azurerm_log_analytics_workspace_table_custom_log.res-388
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksFilesystem"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksFilesystem"
   to = azurerm_log_analytics_workspace_table_custom_log.res-389
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGenie"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksGenie"
   to = azurerm_log_analytics_workspace_table_custom_log.res-390
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGitCredentials"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksGitCredentials"
   to = azurerm_log_analytics_workspace_table_custom_log.res-391
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGlobalInitScripts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksGlobalInitScripts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-392
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGroups"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksGroups"
   to = azurerm_log_analytics_workspace_table_custom_log.res-393
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksIAMRole"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksIAMRole"
   to = azurerm_log_analytics_workspace_table_custom_log.res-394
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-395
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksInstancePools"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksInstancePools"
   to = azurerm_log_analytics_workspace_table_custom_log.res-396
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksJobs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksJobs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-397
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksLakeviewConfig"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksLakeviewConfig"
   to = azurerm_log_analytics_workspace_table_custom_log.res-398
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksLineageTracking"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksLineageTracking"
   to = azurerm_log_analytics_workspace_table_custom_log.res-399
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMLflowAcledArtifact"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksMLflowAcledArtifact"
   to = azurerm_log_analytics_workspace_table_custom_log.res-400
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMLflowExperiment"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksMLflowExperiment"
   to = azurerm_log_analytics_workspace_table_custom_log.res-401
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMarketplaceConsumer"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksMarketplaceConsumer"
   to = azurerm_log_analytics_workspace_table_custom_log.res-402
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMarketplaceProvider"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksMarketplaceProvider"
   to = azurerm_log_analytics_workspace_table_custom_log.res-403
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksModelRegistry"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksModelRegistry"
   to = azurerm_log_analytics_workspace_table_custom_log.res-404
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksNotebook"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksNotebook"
   to = azurerm_log_analytics_workspace_table_custom_log.res-405
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksOnlineTables"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksOnlineTables"
   to = azurerm_log_analytics_workspace_table_custom_log.res-406
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksPartnerHub"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksPartnerHub"
   to = azurerm_log_analytics_workspace_table_custom_log.res-407
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksPredictiveOptimization"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksPredictiveOptimization"
   to = azurerm_log_analytics_workspace_table_custom_log.res-408
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRBAC"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksRBAC"
   to = azurerm_log_analytics_workspace_table_custom_log.res-409
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRFA"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksRFA"
   to = azurerm_log_analytics_workspace_table_custom_log.res-410
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRemoteHistoryService"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksRemoteHistoryService"
   to = azurerm_log_analytics_workspace_table_custom_log.res-411
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRepos"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksRepos"
   to = azurerm_log_analytics_workspace_table_custom_log.res-412
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSQL"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksSQL"
   to = azurerm_log_analytics_workspace_table_custom_log.res-413
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSQLPermissions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksSQLPermissions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-414
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSSH"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksSSH"
   to = azurerm_log_analytics_workspace_table_custom_log.res-415
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSecrets"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksSecrets"
   to = azurerm_log_analytics_workspace_table_custom_log.res-416
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksServerlessRealTimeInference"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksServerlessRealTimeInference"
   to = azurerm_log_analytics_workspace_table_custom_log.res-417
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksTables"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksTables"
   to = azurerm_log_analytics_workspace_table_custom_log.res-418
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksUnityCatalog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksUnityCatalog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-419
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksVectorSearch"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksVectorSearch"
   to = azurerm_log_analytics_workspace_table_custom_log.res-420
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWebTerminal"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksWebTerminal"
   to = azurerm_log_analytics_workspace_table_custom_log.res-421
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWebhookNotifications"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksWebhookNotifications"
   to = azurerm_log_analytics_workspace_table_custom_log.res-422
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWorkspace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksWorkspace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-423
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWorkspaceFiles"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DatabricksWorkspaceFiles"
   to = azurerm_log_analytics_workspace_table_custom_log.res-424
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterAgentHealthLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DevCenterAgentHealthLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-425
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterBillingEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DevCenterBillingEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-426
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterConnectionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DevCenterConnectionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-427
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DevCenterDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-428
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterResourceOperationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DevCenterResourceOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-429
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevOpsOperationsAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DevOpsOperationsAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-430
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceBehaviorEntities"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DeviceBehaviorEntities"
   to = azurerm_log_analytics_workspace_table_custom_log.res-431
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceBehaviorInfo"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DeviceBehaviorInfo"
   to = azurerm_log_analytics_workspace_table_custom_log.res-432
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomFileEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DeviceCustomFileEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-433
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomImageLoadEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DeviceCustomImageLoadEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-434
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomNetworkEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DeviceCustomNetworkEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-435
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomProcessEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DeviceCustomProcessEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-436
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomRegistryEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DeviceCustomRegistryEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-437
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomScriptEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DeviceCustomScriptEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-438
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DiscoveryBookshelfAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DiscoveryBookshelfAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-439
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DiscoverySupercomputerAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DiscoverySupercomputerAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-440
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DiscoveryWorkspaceAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DiscoveryWorkspaceAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-441
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DragonCopilot"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DragonCopilot"
   to = azurerm_log_analytics_workspace_table_custom_log.res-442
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DurableTaskSchedulerLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/DurableTaskSchedulerLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-443
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedHttpDataPlaneOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EGNFailedHttpDataPlaneOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-444
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedMqttConnections"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EGNFailedMqttConnections"
   to = azurerm_log_analytics_workspace_table_custom_log.res-445
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedMqttPublishedMessages"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EGNFailedMqttPublishedMessages"
   to = azurerm_log_analytics_workspace_table_custom_log.res-446
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedMqttSubscriptions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EGNFailedMqttSubscriptions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-447
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNMqttDisconnections"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EGNMqttDisconnections"
   to = azurerm_log_analytics_workspace_table_custom_log.res-448
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNSuccessfulHttpDataPlaneOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EGNSuccessfulHttpDataPlaneOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-449
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNSuccessfulMqttConnections"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EGNSuccessfulMqttConnections"
   to = azurerm_log_analytics_workspace_table_custom_log.res-450
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ETWEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ETWEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-451
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EdgeActionConsoleLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EdgeActionConsoleLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-452
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EdgeActionServiceLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EdgeActionServiceLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-453
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EnrichedMicrosoft365AuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/EnrichedMicrosoft365AuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-454
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Event"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Event"
   to = azurerm_log_analytics_workspace_table_custom_log.res-455
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ExchangeAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ExchangeAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-456
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ExchangeOnlineAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ExchangeOnlineAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-457
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/FailedIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/FailedIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-458
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/FunctionAppLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/FunctionAppLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-459
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/GraphNotificationsActivityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/GraphNotificationsActivityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-460
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightAmbariClusterAlerts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightAmbariClusterAlerts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-461
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightAmbariSystemMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightAmbariSystemMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-462
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightGatewayAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightGatewayAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-463
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHBaseLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightHBaseLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-464
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHBaseMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightHBaseMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-465
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHadoopAndYarnLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightHadoopAndYarnLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-466
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHadoopAndYarnMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightHadoopAndYarnMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-467
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveAndLLAPLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightHiveAndLLAPLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-468
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveAndLLAPMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightHiveAndLLAPMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-469
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveQueryAppStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightHiveQueryAppStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-470
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveTezAppStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightHiveTezAppStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-471
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightJupyterNotebookEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightJupyterNotebookEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-472
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightKafkaLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightKafkaLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-473
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightKafkaMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightKafkaMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-474
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightKafkaServerLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightKafkaServerLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-475
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightOozieLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightOozieLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-476
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightRangerAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightRangerAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-477
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSecurityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSecurityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-478
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkApplicationEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkApplicationEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-479
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkBlockManagerEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkBlockManagerEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-480
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkEnvironmentEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkEnvironmentEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-481
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkExecutorEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkExecutorEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-482
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkExtraEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkExtraEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-483
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkJobEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkJobEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-484
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-485
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkSQLExecutionEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkSQLExecutionEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-486
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkStageEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkStageEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-487
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkStageTaskAccumulables"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkStageTaskAccumulables"
   to = azurerm_log_analytics_workspace_table_custom_log.res-488
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkTaskEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightSparkTaskEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-489
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightStormLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightStormLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-490
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightStormMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightStormMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-491
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightStormTopologyMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HDInsightStormTopologyMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-492
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HealthStateChangeEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/HealthStateChangeEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-493
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Heartbeat"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Heartbeat"
   to = azurerm_log_analytics_workspace_table_custom_log.res-494
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/InsightsMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/InsightsMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-495
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/IntuneAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-496
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneDeviceComplianceOrg"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/IntuneDeviceComplianceOrg"
   to = azurerm_log_analytics_workspace_table_custom_log.res-497
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneDevices"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/IntuneDevices"
   to = azurerm_log_analytics_workspace_table_custom_log.res-498
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneOperationalLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/IntuneOperationalLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-499
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/KubeEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-500
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeHealth"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/KubeHealth"
   to = azurerm_log_analytics_workspace_table_custom_log.res-501
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeMonAgentEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/KubeMonAgentEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-502
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeNodeInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/KubeNodeInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-503
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubePVInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/KubePVInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-504
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubePodInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/KubePodInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-505
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeServices"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/KubeServices"
   to = azurerm_log_analytics_workspace_table_custom_log.res-506
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LAJobLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/LAJobLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-507
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LAQueryLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/LAQueryLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-508
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LASummaryLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/LASummaryLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-509
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LIATrackingEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/LIATrackingEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-510
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LedgerTransactionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/LedgerTransactionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-511
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LedgerUserDefinedLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/LedgerUserDefinedLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-512
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LogicAppWorkflowRuntime"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/LogicAppWorkflowRuntime"
   to = azurerm_log_analytics_workspace_table_custom_log.res-513
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MCCEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MCCEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-514
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MCVPAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MCVPAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-515
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MCVPOperationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MCVPOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-516
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionDNSEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MDCDetectionDNSEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-517
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionFimEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MDCDetectionFimEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-518
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionGatingValidationEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MDCDetectionGatingValidationEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-519
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionK8SApiEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MDCDetectionK8SApiEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-520
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionProcessV2Events"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MDCDetectionProcessV2Events"
   to = azurerm_log_analytics_workspace_table_custom_log.res-521
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCFileIntegrityMonitoringEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MDCFileIntegrityMonitoringEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-522
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDECustomCollectionDeviceFileEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MDECustomCollectionDeviceFileEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-523
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDPResourceLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MDPResourceLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-524
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MNFDeviceUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MNFDeviceUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-525
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MNFSystemSessionHistoryUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MNFSystemSessionHistoryUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-526
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MNFSystemStateMessageUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MNFSystemStateMessageUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-527
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MPCAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MPCAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-528
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MPCIngestionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MPCIngestionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-529
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MeshControlPlane"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MeshControlPlane"
   to = azurerm_log_analytics_workspace_table_custom_log.res-530
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftAzureBastionAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MicrosoftAzureBastionAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-531
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftDataShareReceivedSnapshotLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MicrosoftDataShareReceivedSnapshotLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-532
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftDataShareSentSnapshotLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MicrosoftDataShareSentSnapshotLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-533
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftDataShareShareLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MicrosoftDataShareShareLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-534
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftGraphActivityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MicrosoftGraphActivityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-535
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftGraphPolicyLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MicrosoftGraphPolicyLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-536
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftHealthcareApisAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MicrosoftHealthcareApisAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-537
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftServicePrincipalSignInLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MicrosoftServicePrincipalSignInLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-538
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MySqlAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MySqlAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-539
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MySqlSlowLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/MySqlSlowLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-540
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMBreakGlassAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCBMBreakGlassAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-541
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMSecurityDefenderLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCBMSecurityDefenderLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-542
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMSecurityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCBMSecurityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-543
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMSystemLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCBMSystemLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-544
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCIDRACLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCCIDRACLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-545
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCKubernetesAPIAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCCKubernetesAPIAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-546
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCKubernetesLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCCKubernetesLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-547
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCPlatformOperationsLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCCPlatformOperationsLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-548
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCVMOrchestrationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCCVMOrchestrationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-549
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCMClusterOperationsLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCMClusterOperationsLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-550
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCSStorageAlerts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCSStorageAlerts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-551
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCSStorageAudits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCSStorageAudits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-552
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCSStorageLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NCSStorageLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-553
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NGXOperationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NGXOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-554
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NGXSecurityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NGXSecurityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-555
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NSPAccessLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NSPAccessLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-556
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTAInsights"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NTAInsights"
   to = azurerm_log_analytics_workspace_table_custom_log.res-557
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTAIpDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NTAIpDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-558
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTANetAnalytics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NTANetAnalytics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-559
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTANspRuleRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NTANspRuleRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-560
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTARuleRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NTARuleRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-561
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTATopologyDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NTATopologyDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-562
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorDNSResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NWConnectionMonitorDNSResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-563
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorDestinationListenerResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NWConnectionMonitorDestinationListenerResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-564
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorPathResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NWConnectionMonitorPathResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-565
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorTestResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NWConnectionMonitorTestResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-566
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NatGatewayFlowlogsV1"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NatGatewayFlowlogsV1"
   to = azurerm_log_analytics_workspace_table_custom_log.res-567
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessAlerts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NetworkAccessAlerts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-568
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessConnectionEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NetworkAccessConnectionEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-569
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessGenerativeAIInsights"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NetworkAccessGenerativeAIInsights"
   to = azurerm_log_analytics_workspace_table_custom_log.res-570
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessTraffic"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NetworkAccessTraffic"
   to = azurerm_log_analytics_workspace_table_custom_log.res-571
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NginxUpstreamUpdateLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/NginxUpstreamUpdateLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-572
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPAirFlowTask"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OEPAirFlowTask"
   to = azurerm_log_analytics_workspace_table_custom_log.res-573
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OEPAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-574
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPDataplaneLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OEPDataplaneLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-575
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPElasticOperator"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OEPElasticOperator"
   to = azurerm_log_analytics_workspace_table_custom_log.res-576
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPElasticsearch"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OEPElasticsearch"
   to = azurerm_log_analytics_workspace_table_custom_log.res-577
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OEWAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-578
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWExperimentAssignmentSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OEWExperimentAssignmentSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-579
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWExperimentScorecardMetricPairs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OEWExperimentScorecardMetricPairs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-580
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWExperimentScorecards"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OEWExperimentScorecards"
   to = azurerm_log_analytics_workspace_table_custom_log.res-581
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OGOAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OGOAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-582
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OLPSupplyChainEntityOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OLPSupplyChainEntityOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-583
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OLPSupplyChainEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OLPSupplyChainEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-584
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OTelEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-585
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OTelLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-586
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelResources"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OTelResources"
   to = azurerm_log_analytics_workspace_table_custom_log.res-587
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelSpans"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OTelSpans"
   to = azurerm_log_analytics_workspace_table_custom_log.res-588
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelTraces"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OTelTraces"
   to = azurerm_log_analytics_workspace_table_custom_log.res-589
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelTracesAgent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OTelTracesAgent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-590
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Operation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Operation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-591
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OracleCloudDatabase"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/OracleCloudDatabase"
   to = azurerm_log_analytics_workspace_table_custom_log.res-592
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PFTitleAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PFTitleAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-593
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLAutovacuumStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PGSQLAutovacuumStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-594
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLDbTransactionsStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PGSQLDbTransactionsStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-595
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLPgBouncer"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PGSQLPgBouncer"
   to = azurerm_log_analytics_workspace_table_custom_log.res-596
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLPgStatActivitySessions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PGSQLPgStatActivitySessions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-597
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLQueryStoreQueryText"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PGSQLQueryStoreQueryText"
   to = azurerm_log_analytics_workspace_table_custom_log.res-598
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLQueryStoreRuntime"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PGSQLQueryStoreRuntime"
   to = azurerm_log_analytics_workspace_table_custom_log.res-599
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLQueryStoreWaits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PGSQLQueryStoreWaits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-600
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLServerLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PGSQLServerLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-601
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Perf"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Perf"
   to = azurerm_log_analytics_workspace_table_custom_log.res-602
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PerfInsightsFindings"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PerfInsightsFindings"
   to = azurerm_log_analytics_workspace_table_custom_log.res-603
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PerfInsightsImpactedResources"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PerfInsightsImpactedResources"
   to = azurerm_log_analytics_workspace_table_custom_log.res-604
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PerfInsightsRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PerfInsightsRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-605
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PowerBIDatasetsTenant"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PowerBIDatasetsTenant"
   to = azurerm_log_analytics_workspace_table_custom_log.res-606
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PowerBIDatasetsWorkspace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PowerBIDatasetsWorkspace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-607
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PreAuthenticationDiscoveryLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PreAuthenticationDiscoveryLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-608
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PurviewDataSensitivityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PurviewDataSensitivityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-609
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PurviewScanStatusLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PurviewScanStatusLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-610
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PurviewSecurityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/PurviewSecurityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-611
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountDeviceOperationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/QuantumProviderAccountDeviceOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-612
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountJobAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/QuantumProviderAccountJobAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-613
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountQueueAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/QuantumProviderAccountQueueAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-614
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountTargetAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/QuantumProviderAccountTargetAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-615
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumWorkspaceJobAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/QuantumWorkspaceJobAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-616
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/REDConnectionEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/REDConnectionEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-617
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/RemoteNetworkHealthLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/RemoteNetworkHealthLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-618
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ResourceManagementPublicAccessLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ResourceManagementPublicAccessLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-619
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/RetinaNetworkFlowLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/RetinaNetworkFlowLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-620
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCCMAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SCCMAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-621
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCGPoolExecutionLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SCGPoolExecutionLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-622
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCGPoolRequestLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SCGPoolRequestLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-623
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCOMAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SCOMAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-624
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SPAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SPAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-625
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SQLAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SQLAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-626
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SQLSecurityAuditEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SQLSecurityAuditEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-627
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SVMPoolExecutionLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SVMPoolExecutionLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-628
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SVMPoolRequestLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SVMPoolRequestLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-629
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SecurityCaseEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SecurityCaseEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-630
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ServiceFabricOperationalEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ServiceFabricOperationalEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-631
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ServiceFabricReliableActorEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ServiceFabricReliableActorEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-632
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ServiceFabricReliableServiceEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ServiceFabricReliableServiceEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-633
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SfBAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SfBAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-634
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SfBOnlineAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SfBOnlineAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-635
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SharePointOnlineAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SharePointOnlineAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-636
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SignalRServiceDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SignalRServiceDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-637
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SigninLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SigninLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-638
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageAntimalwareScanResults"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageAntimalwareScanResults"
   to = azurerm_log_analytics_workspace_table_custom_log.res-639
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageBlobLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageBlobLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-640
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageCacheOperationEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageCacheOperationEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-641
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageCacheUpgradeEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageCacheUpgradeEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-642
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageCacheWarningEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageCacheWarningEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-643
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageFileLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageFileLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-644
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMalwareScanningResults"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageMalwareScanningResults"
   to = azurerm_log_analytics_workspace_table_custom_log.res-645
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageMoverAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-646
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverCopyLogsFailed"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageMoverCopyLogsFailed"
   to = azurerm_log_analytics_workspace_table_custom_log.res-647
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverCopyLogsTransferred"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageMoverCopyLogsTransferred"
   to = azurerm_log_analytics_workspace_table_custom_log.res-648
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverJobRunLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageMoverJobRunLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-649
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageQueueLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageQueueLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-650
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageTableLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/StorageTableLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-651
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SucceededIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SucceededIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-652
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseBigDataPoolApplicationsEnded"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseBigDataPoolApplicationsEnded"
   to = azurerm_log_analytics_workspace_table_custom_log.res-653
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseBuiltinSqlPoolRequestsEnded"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseBuiltinSqlPoolRequestsEnded"
   to = azurerm_log_analytics_workspace_table_custom_log.res-654
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXCommand"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseDXCommand"
   to = azurerm_log_analytics_workspace_table_custom_log.res-655
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXFailedIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseDXFailedIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-656
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXIngestionBatching"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseDXIngestionBatching"
   to = azurerm_log_analytics_workspace_table_custom_log.res-657
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseDXQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-658
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXSucceededIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseDXSucceededIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-659
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXTableDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseDXTableDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-660
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXTableUsageStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseDXTableUsageStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-661
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseGatewayApiRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseGatewayApiRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-662
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseIntegrationActivityRuns"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseIntegrationActivityRuns"
   to = azurerm_log_analytics_workspace_table_custom_log.res-663
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseIntegrationPipelineRuns"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseIntegrationPipelineRuns"
   to = azurerm_log_analytics_workspace_table_custom_log.res-664
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseIntegrationTriggerRuns"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseIntegrationTriggerRuns"
   to = azurerm_log_analytics_workspace_table_custom_log.res-665
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseLinkEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseLinkEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-666
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseRbacOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseRbacOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-667
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseScopePoolScopeJobsEnded"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseScopePoolScopeJobsEnded"
   to = azurerm_log_analytics_workspace_table_custom_log.res-668
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseScopePoolScopeJobsStateChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseScopePoolScopeJobsStateChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-669
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolDmsWorkers"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseSqlPoolDmsWorkers"
   to = azurerm_log_analytics_workspace_table_custom_log.res-670
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolExecRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseSqlPoolExecRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-671
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolRequestSteps"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseSqlPoolRequestSteps"
   to = azurerm_log_analytics_workspace_table_custom_log.res-672
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolSqlRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseSqlPoolSqlRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-673
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolWaits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/SynapseSqlPoolWaits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-674
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Syslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Syslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-675
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/TOUserAudits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/TOUserAudits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-676
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/TOUserDiagnostics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/TOUserDiagnostics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-677
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/TSIIngress"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/TSIIngress"
   to = azurerm_log_analytics_workspace_table_custom_log.res-678
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCClient"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/UCClient"
   to = azurerm_log_analytics_workspace_table_custom_log.res-679
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCClientReadinessStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/UCClientReadinessStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-680
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCClientUpdateStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/UCClientUpdateStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-681
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCDOAggregatedStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/UCDOAggregatedStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-682
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCDOStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/UCDOStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-683
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCDeviceAlert"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/UCDeviceAlert"
   to = azurerm_log_analytics_workspace_table_custom_log.res-684
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCServiceUpdateStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/UCServiceUpdateStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-685
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCUpdateAlert"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/UCUpdateAlert"
   to = azurerm_log_analytics_workspace_table_custom_log.res-686
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Usage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Usage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-687
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VCoreMongoRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/VCoreMongoRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-688
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VIAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/VIAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-689
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VIIndexing"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/VIIndexing"
   to = azurerm_log_analytics_workspace_table_custom_log.res-690
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMBoundPort"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/VMBoundPort"
   to = azurerm_log_analytics_workspace_table_custom_log.res-691
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMComputer"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/VMComputer"
   to = azurerm_log_analytics_workspace_table_custom_log.res-692
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMConnection"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/VMConnection"
   to = azurerm_log_analytics_workspace_table_custom_log.res-693
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMProcess"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/VMProcess"
   to = azurerm_log_analytics_workspace_table_custom_log.res-694
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/W3CIISLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/W3CIISLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-695
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WOUserAudits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WOUserAudits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-696
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WOUserDiagnostics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WOUserDiagnostics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-697
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDAgentHealthStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDAgentHealthStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-698
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDAutoscaleEvaluationPooled"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDAutoscaleEvaluationPooled"
   to = azurerm_log_analytics_workspace_table_custom_log.res-699
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDCheckpoints"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDCheckpoints"
   to = azurerm_log_analytics_workspace_table_custom_log.res-700
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDConnectionGraphicsDataPreview"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDConnectionGraphicsDataPreview"
   to = azurerm_log_analytics_workspace_table_custom_log.res-701
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDConnectionNetworkData"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDConnectionNetworkData"
   to = azurerm_log_analytics_workspace_table_custom_log.res-702
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDConnections"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDConnections"
   to = azurerm_log_analytics_workspace_table_custom_log.res-703
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDErrors"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDErrors"
   to = azurerm_log_analytics_workspace_table_custom_log.res-704
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDFeeds"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDFeeds"
   to = azurerm_log_analytics_workspace_table_custom_log.res-705
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDHostRegistrations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDHostRegistrations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-706
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDManagement"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDManagement"
   to = azurerm_log_analytics_workspace_table_custom_log.res-707
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDMultiLinkAdd"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDMultiLinkAdd"
   to = azurerm_log_analytics_workspace_table_custom_log.res-708
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDSessionHostManagement"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WVDSessionHostManagement"
   to = azurerm_log_analytics_workspace_table_custom_log.res-709
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WebPubSubConnectivity"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WebPubSubConnectivity"
   to = azurerm_log_analytics_workspace_table_custom_log.res-710
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WebPubSubHttpRequest"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WebPubSubHttpRequest"
   to = azurerm_log_analytics_workspace_table_custom_log.res-711
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WebPubSubMessaging"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WebPubSubMessaging"
   to = azurerm_log_analytics_workspace_table_custom_log.res-712
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365AuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Windows365AuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-713
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365CheckpointLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Windows365CheckpointLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-714
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365ConnectionErrorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Windows365ConnectionErrorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-715
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365ConnectionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Windows365ConnectionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-716
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365NetworkLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/Windows365NetworkLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-717
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WindowsClientAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WindowsClientAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-718
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WindowsServerAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WindowsServerAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-719
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WorkloadDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/WorkloadDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-720
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSGraph"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ZTSGraph"
   to = azurerm_log_analytics_workspace_table_custom_log.res-721
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSJobStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ZTSJobStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-722
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ZTSMetadata"
   to = azurerm_log_analytics_workspace_table_custom_log.res-723
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSRequest"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et/tables/ZTSRequest"
   to = azurerm_log_analytics_workspace_table_custom_log.res-724
 }

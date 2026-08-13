@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-d9119f4e0aa21cf8"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Address space",
+    "Value": "10.10.0.0/16"
+  },
+  {
+    "Label": "Advertised gateway prefixes",
+    "Value": "-"
+  },
+  {
+    "Label": "Subnets",
+    "Value": "0 subnets"
+  },
+  {
+    "Label": "DNS servers",
+    "Value": "Azure provided DNS service"
+  },
+  {
+    "Label": "Virtual network ID",
+    "Value": "a588faeb-cac5-4125-9d54-ef4d24c4102d"
+  }
+]

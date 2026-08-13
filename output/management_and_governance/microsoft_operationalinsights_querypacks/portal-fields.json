@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Name",
+    "Value": "qppn7a8q-h"
+  },
+  {
+    "Label": "Resource type",
+    "Value": "Microsoft.OperationalInsights/querypacks"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Location ID",
+    "Value": "norwayeast"
+  },
+  {
+    "Label": "Resource ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1fe5141e0d0dffeb/providers/Microsoft.OperationalInsights/querypacks/qppn7a8q-h"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-1fe5141e0d0dffeb"
+  },
+  {
+    "Label": "Resource group ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1fe5141e0d0dffeb"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000"
+  }
+]

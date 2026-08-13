@@ -1,9 +1,9 @@
-param virtualNetworks_vnetd7_ts_wt_name string
-param virtualMachineScaleSets_vmsswdgknl_name string
-param disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_c816b2a4661146de87ad5e3834ab182a_externalid string
+param virtualNetworks_vnet2zxyhq7j_name string
+param virtualMachineScaleSets_vmssqv06dj_name string
+param disks_vmssqv06dj_vmssqv06dj_1_OsDisk_1_878e3697563d4b1a917f175cc89c6ecc_externalid string
 
-resource virtualNetworks_vnetd7_ts_wt_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
-  name: virtualNetworks_vnetd7_ts_wt_name
+resource virtualNetworks_vnet2zxyhq7j_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
+  name: virtualNetworks_vnet2zxyhq7j_name
   location: 'swedencentral'
   properties: {
     addressSpace: {
@@ -15,7 +15,7 @@ resource virtualNetworks_vnetd7_ts_wt_name_resource 'Microsoft.Network/virtualNe
     subnets: [
       {
         name: 'default'
-        id: virtualNetworks_vnetd7_ts_wt_name_default.id
+        id: virtualNetworks_vnet2zxyhq7j_name_default.id
         properties: {
           addressPrefix: '10.46.0.0/24'
           delegations: []
@@ -29,8 +29,8 @@ resource virtualNetworks_vnetd7_ts_wt_name_resource 'Microsoft.Network/virtualNe
   }
 }
 
-resource virtualMachineScaleSets_vmsswdgknl_name_resource 'Microsoft.Compute/virtualMachineScaleSets@2025-11-01' = {
-  name: virtualMachineScaleSets_vmsswdgknl_name
+resource virtualMachineScaleSets_vmssqv06dj_name_resource 'Microsoft.Compute/virtualMachineScaleSets@2025-11-01' = {
+  name: virtualMachineScaleSets_vmssqv06dj_name
   location: 'swedencentral'
   sku: {
     name: 'Standard_D2s_v5'
@@ -89,7 +89,7 @@ resource virtualMachineScaleSets_vmsswdgknl_name_resource 'Microsoft.Compute/vir
                   name: 'ipconfig1'
                   properties: {
                     subnet: {
-                      id: virtualNetworks_vnetd7_ts_wt_name_default.id
+                      id: virtualNetworks_vnet2zxyhq7j_name_default.id
                     }
                     privateIPAddressVersion: 'IPv4'
                   }
@@ -109,8 +109,8 @@ resource virtualMachineScaleSets_vmsswdgknl_name_resource 'Microsoft.Compute/vir
   }
 }
 
-resource virtualNetworks_vnetd7_ts_wt_name_default 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
-  name: '${virtualNetworks_vnetd7_ts_wt_name}/default'
+resource virtualNetworks_vnet2zxyhq7j_name_default 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
+  name: '${virtualNetworks_vnet2zxyhq7j_name}/default'
   properties: {
     addressPrefix: '10.46.0.0/24'
     delegations: []
@@ -118,13 +118,13 @@ resource virtualNetworks_vnetd7_ts_wt_name_default 'Microsoft.Network/virtualNet
     privateLinkServiceNetworkPolicies: 'Enabled'
   }
   dependsOn: [
-    virtualNetworks_vnetd7_ts_wt_name_resource
+    virtualNetworks_vnet2zxyhq7j_name_resource
   ]
 }
 
-resource virtualMachineScaleSets_vmsswdgknl_name_0 'Microsoft.Compute/virtualMachineScaleSets/virtualMachines@2025-11-01' = {
-  parent: virtualMachineScaleSets_vmsswdgknl_name_resource
-  name: '0'
+resource virtualMachineScaleSets_vmssqv06dj_name_1 'Microsoft.Compute/virtualMachineScaleSets/virtualMachines@2025-11-01' = {
+  parent: virtualMachineScaleSets_vmssqv06dj_name_resource
+  name: '1'
   location: 'swedencentral'
   sku: {
     name: 'Standard_D2s_v5'
@@ -147,7 +147,7 @@ resource virtualMachineScaleSets_vmsswdgknl_name_0 'Microsoft.Compute/virtualMac
                 name: 'ipconfig1'
                 properties: {
                   subnet: {
-                    id: virtualNetworks_vnetd7_ts_wt_name_default.id
+                    id: virtualNetworks_vnet2zxyhq7j_name_default.id
                   }
                   privateIPAddressVersion: 'IPv4'
                 }
@@ -170,19 +170,19 @@ resource virtualMachineScaleSets_vmsswdgknl_name_0 'Microsoft.Compute/virtualMac
       }
       osDisk: {
         osType: 'Linux'
-        name: 'vmsswdgknl_vmsswdgknl_0_OsDisk_1_c816b2a4661146de87ad5e3834ab182a'
+        name: 'vmssqv06dj_vmssqv06dj_1_OsDisk_1_878e3697563d4b1a917f175cc89c6ecc'
         createOption: 'FromImage'
         caching: 'None'
         managedDisk: {
           storageAccountType: 'Premium_LRS'
-          id: disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_c816b2a4661146de87ad5e3834ab182a_externalid
+          id: disks_vmssqv06dj_vmssqv06dj_1_OsDisk_1_878e3697563d4b1a917f175cc89c6ecc_externalid
         }
         diskSizeGB: 30
       }
       dataDisks: []
     }
     osProfile: {
-      computerName: 'ardlvmss000000'
+      computerName: 'ardlvmss000001'
       linuxConfiguration: {
         disablePasswordAuthentication: false
         provisionVMAgent: true
@@ -199,7 +199,7 @@ resource virtualMachineScaleSets_vmsswdgknl_name_0 'Microsoft.Compute/virtualMac
     networkProfile: {
       networkInterfaces: [
         {
-          id: '${virtualMachineScaleSets_vmsswdgknl_name_0.id}/networkInterfaces/nicconfig1'
+          id: '${virtualMachineScaleSets_vmssqv06dj_name_1.id}/networkInterfaces/nicconfig1'
         }
       ]
     }

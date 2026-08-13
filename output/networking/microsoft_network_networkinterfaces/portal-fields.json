@@ -1,0 +1,50 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-360f36f10d21782f"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Accelerated networking",
+    "Value": "Disabled"
+  },
+  {
+    "Label": "Virtual network/subnet",
+    "Value": "vnet6w9u-4z7/default"
+  },
+  {
+    "Label": "Private IPv4 address",
+    "Value": "10.41.0.4"
+  },
+  {
+    "Label": "Public IPv4 address",
+    "Value": "-"
+  },
+  {
+    "Label": "Private IPv6 address",
+    "Value": "-"
+  },
+  {
+    "Label": "Public IPv6 address",
+    "Value": "-"
+  },
+  {
+    "Label": "Attached to",
+    "Value": "-"
+  },
+  {
+    "Label": "Type",
+    "Value": "Regular"
+  }
+]

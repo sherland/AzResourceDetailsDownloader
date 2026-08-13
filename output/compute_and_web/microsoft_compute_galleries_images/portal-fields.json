@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-eecb9a7ad07dc5a9"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Azure compute gallery",
+    "Value": "gals0yvwobz"
+  },
+  {
+    "Label": "OS type",
+    "Value": "Linux"
+  },
+  {
+    "Label": "OS state",
+    "Value": "Generalized"
+  },
+  {
+    "Label": "Publisher :: Offer :: SKU",
+    "Value": "ardl :: ardl-offer :: ardl-sku"
+  }
+]

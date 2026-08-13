@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-6a40d03fb53e43c5"
   tags = {
     armType    = "Microsoft.Portal/dashboards"
-    createdUtc = "2026-08-13T13:06:58.5682047Z"
+    createdUtc = "2026-08-14T10:39:42.0093047Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -24,7 +24,7 @@ resource "azurerm_portal_dashboard" "res-1" {
     lenses = {}
   })
   location            = "norwayeast"
-  name                = "dashm4vvt9ry"
+  name                = "dashhb-yt3kg"
   resource_group_name = azurerm_resource_group.res-0.name
   tags = {
     hidden-title = "ARDL Dashboard"
@@ -37,6 +37,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6a40d03fb53e43c5/providers/Microsoft.Portal/dashboards/dashm4vvt9ry"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6a40d03fb53e43c5/providers/Microsoft.Portal/dashboards/dashhb-yt3kg"
   to = azurerm_portal_dashboard.res-1
 }

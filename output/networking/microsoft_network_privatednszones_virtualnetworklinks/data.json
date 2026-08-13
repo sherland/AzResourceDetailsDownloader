@@ -1,14 +1,14 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75df539555d183d9/providers/Microsoft.Network/privateDnsZones/ardltawm47lo.private.contoso.com/virtualNetworkLinks/linkjqxt8p",
-  "name": "linkjqxt8p",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75df539555d183d9/providers/Microsoft.Network/privateDnsZones/ardlaksrdys9.private.contoso.com/virtualNetworkLinks/linkwq5sky",
+  "name": "linkwq5sky",
   "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
-  "etag": "\u0022e70001ec-0000-0100-0000-6a7dc1c80000\u0022",
+  "etag": "\u0022c100a7bb-0000-0100-0000-6a7ef0b40000\u0022",
   "location": "global",
   "properties": {
     "provisioningState": "Succeeded",
     "registrationEnabled": false,
     "virtualNetwork": {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75df539555d183d9/providers/Microsoft.Network/virtualNetworks/vnetqj-7mjap"
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75df539555d183d9/providers/Microsoft.Network/virtualNetworks/vnet0643rlhc"
     },
     "virtualNetworkLinkState": "Completed"
   }

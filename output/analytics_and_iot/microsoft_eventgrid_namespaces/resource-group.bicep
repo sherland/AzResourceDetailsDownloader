@@ -1,7 +1,7 @@
-param namespaces_egns153_8_ez_name string
+param namespaces_egns9co_cfa8_name string
 
-resource namespaces_egns153_8_ez_name_resource 'Microsoft.EventGrid/namespaces@2025-07-15-preview' = {
-  name: namespaces_egns153_8_ez_name
+resource namespaces_egns9co_cfa8_name_resource 'Microsoft.EventGrid/namespaces@2025-07-15-preview' = {
+  name: namespaces_egns9co_cfa8_name
   location: 'norwayeast'
   sku: {
     name: 'Standard'

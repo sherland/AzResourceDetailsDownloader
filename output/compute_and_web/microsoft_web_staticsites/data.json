@@ -1,10 +1,10 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-50afc5ec1d1fef44/providers/Microsoft.Web/staticSites/stapp9n53-4-v",
-  "name": "stapp9n53-4-v",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-50afc5ec1d1fef44/providers/Microsoft.Web/staticSites/stappalhj-kmz",
+  "name": "stappalhj-kmz",
   "type": "Microsoft.Web/staticSites",
   "location": "East US 2",
   "properties": {
-    "defaultHostname": "brave-smoke-06058d40f.7.azurestaticapps.net",
+    "defaultHostname": "witty-smoke-0db93b00f.7.azurestaticapps.net",
     "repositoryUrl": null,
     "branch": null,
     "customDomains": [],

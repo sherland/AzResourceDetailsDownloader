@@ -1,7 +1,7 @@
-param namespaces_sb4hb2w_dr_name string
+param namespaces_sb9r_ffj1z_name string
 
-resource namespaces_sb4hb2w_dr_name_resource 'Microsoft.ServiceBus/namespaces@2026-01-01' = {
-  name: namespaces_sb4hb2w_dr_name
+resource namespaces_sb9r_ffj1z_name_resource 'Microsoft.ServiceBus/namespaces@2026-01-01' = {
+  name: namespaces_sb9r_ffj1z_name
   location: 'norwayeast'
   sku: {
     name: 'Basic'
@@ -30,8 +30,8 @@ resource namespaces_sb4hb2w_dr_name_resource 'Microsoft.ServiceBus/namespaces@20
   }
 }
 
-resource namespaces_sb4hb2w_dr_name_RootManageSharedAccessKey 'Microsoft.ServiceBus/namespaces/authorizationrules@2026-01-01' = {
-  parent: namespaces_sb4hb2w_dr_name_resource
+resource namespaces_sb9r_ffj1z_name_RootManageSharedAccessKey 'Microsoft.ServiceBus/namespaces/authorizationrules@2026-01-01' = {
+  parent: namespaces_sb9r_ffj1z_name_resource
   name: 'RootManageSharedAccessKey'
   location: 'norwayeast'
   properties: {
@@ -43,8 +43,8 @@ resource namespaces_sb4hb2w_dr_name_RootManageSharedAccessKey 'Microsoft.Service
   }
 }
 
-resource namespaces_sb4hb2w_dr_name_default 'Microsoft.ServiceBus/namespaces/networkrulesets@2026-01-01' = {
-  parent: namespaces_sb4hb2w_dr_name_resource
+resource namespaces_sb9r_ffj1z_name_default 'Microsoft.ServiceBus/namespaces/networkrulesets@2026-01-01' = {
+  parent: namespaces_sb9r_ffj1z_name_resource
   name: 'default'
   location: 'norwayeast'
   properties: {

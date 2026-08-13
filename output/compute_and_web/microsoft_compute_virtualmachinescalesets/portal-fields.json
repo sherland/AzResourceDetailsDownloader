@@ -1,0 +1,50 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-a482ee03d0d47514"
+  },
+  {
+    "Label": "Status",
+    "Value": "1 out of 1 succeeded"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Operating system",
+    "Value": "Linux"
+  },
+  {
+    "Label": "Size",
+    "Value": "Standard_D2s_v5 (1 instance)"
+  },
+  {
+    "Label": "Public IP address",
+    "Value": "-"
+  },
+  {
+    "Label": "Public IP address (IPv6)",
+    "Value": "-"
+  },
+  {
+    "Label": "Virtual network/subnet",
+    "Value": "vnet2zxyhq7j/default"
+  },
+  {
+    "Label": "Orchestration mode",
+    "Value": "Uniform"
+  },
+  {
+    "Label": "Time created",
+    "Value": "14.8.2026, 10:42:37 UTC"
+  }
+]

@@ -1,6 +1,6 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0b366a4f497d75e9/providers/Microsoft.Insights/activityLogAlerts/ala5t-j-5-o",
-  "name": "ala5t-j-5-o",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0b366a4f497d75e9/providers/Microsoft.Insights/activityLogAlerts/alaxw-t7-6c",
+  "name": "alaxw-t7-6c",
   "type": "Microsoft.Insights/ActivityLogAlerts",
   "location": "global",
   "properties": {

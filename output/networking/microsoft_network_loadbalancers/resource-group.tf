@@ -15,14 +15,14 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-a9a38ecf30bcae8b"
   tags = {
     armType    = "Microsoft.Network/loadBalancers"
-    createdUtc = "2026-08-14T06:53:52.6794254Z"
+    createdUtc = "2026-08-14T10:28:40.2056013Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_lb" "res-1" {
   edge_zone           = ""
   location            = "norwayeast"
-  name                = "lbi1py-djf"
+  name                = "lbg0-euchu"
   resource_group_name = azurerm_resource_group.res-0.name
   sku                 = "Standard"
   sku_tier            = "Regional"
@@ -49,7 +49,7 @@ resource "azurerm_public_ip" "res-2" {
   ip_tags                 = {}
   ip_version              = "IPv4"
   location                = "norwayeast"
-  name                    = "pip4esx-wt9"
+  name                    = "pip48sal3-5"
   resource_group_name     = azurerm_resource_group.res-0.name
   reverse_fqdn            = ""
   sku                     = "Standard"
@@ -64,10 +64,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lbi1py-djf"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lbg0-euchu"
   to = azurerm_lb.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/publicIPAddresses/pip4esx-wt9"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/publicIPAddresses/pip48sal3-5"
   to = azurerm_public_ip.res-2
 }

@@ -1,7 +1,7 @@
-param searchServices_srchtfk_y8_j_name string
+param searchServices_srch0v_3un_z_name string
 
-resource searchServices_srchtfk_y8_j_name_resource 'Microsoft.Search/searchServices@2026-03-01-preview' = {
-  name: searchServices_srchtfk_y8_j_name
+resource searchServices_srch0v_3un_z_name_resource 'Microsoft.Search/searchServices@2026-03-01-preview' = {
+  name: searchServices_srch0v_3un_z_name
   location: 'Norway East'
   sku: {
     name: 'free'
@@ -9,7 +9,7 @@ resource searchServices_srchtfk_y8_j_name_resource 'Microsoft.Search/searchServi
   properties: {
     replicaCount: 1
     partitionCount: 1
-    endpoint: 'https://${searchServices_srchtfk_y8_j_name}.search.windows.net'
+    endpoint: 'https://${searchServices_srch0v_3un_z_name}.search.windows.net'
     hostingMode: 'Default'
     computeType: 'Default'
     publicNetworkAccess: 'Enabled'

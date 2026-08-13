@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-e325f80fb473f771"
   tags = {
     armType    = "Microsoft.ServiceBus/namespaces"
-    createdUtc = "2026-08-14T06:58:40.9639473Z"
+    createdUtc = "2026-08-14T10:31:57.1734021Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -24,7 +24,7 @@ resource "azurerm_servicebus_namespace" "res-1" {
   local_auth_enabled            = true
   location                      = "norwayeast"
   minimum_tls_version           = "1.2"
-  name                          = "sb4hb2w-dr"
+  name                          = "sb9r-ffj1z"
   premium_messaging_partitions  = 0
   public_network_access_enabled = true
   resource_group_name           = azurerm_resource_group.res-0.name
@@ -51,10 +51,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e325f80fb473f771/providers/Microsoft.ServiceBus/namespaces/sb4hb2w-dr"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e325f80fb473f771/providers/Microsoft.ServiceBus/namespaces/sb9r-ffj1z"
   to = azurerm_servicebus_namespace.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e325f80fb473f771/providers/Microsoft.ServiceBus/namespaces/sb4hb2w-dr/authorizationRules/RootManageSharedAccessKey"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e325f80fb473f771/providers/Microsoft.ServiceBus/namespaces/sb9r-ffj1z/authorizationRules/RootManageSharedAccessKey"
   to = azurerm_servicebus_namespace_authorization_rule.res-2
 }

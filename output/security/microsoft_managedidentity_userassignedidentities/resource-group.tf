@@ -15,14 +15,14 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-dbfce973e1674818"
   tags = {
     armType    = "Microsoft.ManagedIdentity/userAssignedIdentities"
-    createdUtc = "2026-08-14T07:37:22.1532577Z"
+    createdUtc = "2026-08-14T10:30:32.3134010Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_user_assigned_identity" "res-1" {
   isolation_scope     = ""
   location            = "norwayeast"
-  name                = "id9smfdnx8"
+  name                = "idntomdsx0"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}
 }
@@ -33,6 +33,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dbfce973e1674818/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id9smfdnx8"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dbfce973e1674818/providers/Microsoft.ManagedIdentity/userAssignedIdentities/idntomdsx0"
   to = azurerm_user_assigned_identity.res-1
 }

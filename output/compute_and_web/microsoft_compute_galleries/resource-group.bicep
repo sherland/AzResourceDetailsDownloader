@@ -1,7 +1,7 @@
-param galleries_galm6i0e2dh_name string
+param galleries_gald6qdfcq7_name string
 
-resource galleries_galm6i0e2dh_name_resource 'Microsoft.Compute/galleries@2025-03-03' = {
-  name: galleries_galm6i0e2dh_name
+resource galleries_gald6qdfcq7_name_resource 'Microsoft.Compute/galleries@2025-03-03' = {
+  name: galleries_gald6qdfcq7_name
   location: 'norwayeast'
   properties: {
     identifier: {}

@@ -1,7 +1,7 @@
-param backupVaults_bvaulths4wux85_name string
+param backupVaults_bvault6hxu_8r7_name string
 
-resource backupVaults_bvaulths4wux85_name_resource 'Microsoft.DataProtection/backupVaults@2026-04-01-preview' = {
-  name: backupVaults_bvaulths4wux85_name
+resource backupVaults_bvault6hxu_8r7_name_resource 'Microsoft.DataProtection/backupVaults@2026-04-01-preview' = {
+  name: backupVaults_bvault6hxu_8r7_name
   location: 'norwayeast'
   identity: {
     type: 'SystemAssigned'

@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-fc5ae4a395470e0a"
+  },
+  {
+    "Label": "Location",
+    "Value": "Global"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Recordsets",
+    "Value": "2"
+  },
+  {
+    "Label": "Max number of record sets",
+    "Value": "10000"
+  },
+  {
+    "Label": "Name server 1",
+    "Value": "ns1-05.azure-dns.com."
+  },
+  {
+    "Label": "Name server 2",
+    "Value": "ns2-05.azure-dns.net."
+  },
+  {
+    "Label": "Name server 3",
+    "Value": "ns3-05.azure-dns.org."
+  },
+  {
+    "Label": "Name server 4",
+    "Value": "ns4-05.azure-dns.info."
+  }
+]

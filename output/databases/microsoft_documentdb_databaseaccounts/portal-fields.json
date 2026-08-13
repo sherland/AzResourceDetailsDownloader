@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Status",
+    "Value": "Online"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-657bd609e27aba5f"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Total throughput limit",
+    "Value": "No total throughput limit"
+  },
+  {
+    "Label": "Read Locations",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Write Locations",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "URI",
+    "Value": "https://cosmosd5q1iefd.documents.azure.com:443/"
+  },
+  {
+    "Label": "Free Tier Discount",
+    "Value": "Opted Out"
+  },
+  {
+    "Label": "Capacity mode",
+    "Value": "Serverless"
+  }
+]
