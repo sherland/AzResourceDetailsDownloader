@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace AzResourceDetailsDownloader.Provisioning;
 
-public sealed record AzCliAccount(string TenantId, string SubscriptionId);
+public sealed record AzCliAccount(string TenantId, string SubscriptionId, string? UserPrincipalName);
 
 public static class AzCliContext
 {
@@ -41,7 +41,14 @@ public static class AzCliContext
             ?? throw new InvalidOperationException("'az account show' output had no tenantId.");
         var subscriptionId = doc.RootElement.GetProperty("id").GetString()
             ?? throw new InvalidOperationException("'az account show' output had no subscription id.");
+        // The signed-in user's UPN — Azure auto-stamps this into every resource's systemData
+        // (createdBy/lastModifiedBy), so it needs the same redaction treatment as subscription/
+        // tenant ID. Best-effort: absent for non-user principals (service principals, managed
+        // identity), where systemData won't contain a personal identity to redact anyway.
+        var userPrincipalName = doc.RootElement.TryGetProperty("user", out var user) && user.TryGetProperty("name", out var name)
+            ? name.GetString()
+            : null;
 
-        return new AzCliAccount(tenantId, subscriptionId);
+        return new AzCliAccount(tenantId, subscriptionId, userPrincipalName);
     }
 }

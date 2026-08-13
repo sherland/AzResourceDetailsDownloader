@@ -49,7 +49,7 @@
   },
   {
     "Label": "SQL Microsoft Entra admin",
-    "Value": "live.com#admin@example.com"
+    "Value": "admin@example.com"
   },
   {
     "Label": "Dedicated SQL endpoint",

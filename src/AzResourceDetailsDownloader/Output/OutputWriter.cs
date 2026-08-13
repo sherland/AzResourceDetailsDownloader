@@ -11,17 +11,19 @@ public static class OutputWriter
         string outputRoot, string armType, string category, JsonDocument rawJson, byte[]? screenshot,
         string subscriptionId, string tenantId, string actualRgName,
         string? bicep = null, string? terraform = null, IReadOnlyList<string>? bannerNotices = null,
-        IReadOnlyList<PortalField>? portalFields = null,
+        IReadOnlyList<PortalField>? portalFields = null, string? userPrincipalName = null,
         CancellationToken ct = default)
     {
         var dir = Path.Combine(outputRoot, CategoryKey.From(category), ArmTypeKey.From(armType));
         Directory.CreateDirectory(dir);
 
-        // Subscription ID, tenant ID, and the (randomly-generated, real) resource group name all vary per
-        // run and per whoever runs the tool — normalized to fixed placeholders here so the committed text
-        // files diff-stably regardless. The screenshot can't be normalized this way (it's a rendered image).
+        // Subscription ID, tenant ID, the (randomly-generated, real) resource group name, and the
+        // signed-in user's UPN (ARM auto-stamps this into every resource's systemData.createdBy/
+        // lastModifiedBy) all vary per run and per whoever runs the tool — normalized to fixed
+        // placeholders here so the committed text files diff-stably regardless and don't leak the
+        // operator's identity. The screenshot can't be normalized this way (it's a rendered image).
         var prettyJson = JsonSerializer.Serialize(rawJson.RootElement, PrettyPrint);
-        prettyJson = OutputNormalizer.Normalize(prettyJson, subscriptionId, tenantId, actualRgName, armType);
+        prettyJson = OutputNormalizer.Normalize(prettyJson, subscriptionId, tenantId, actualRgName, armType, userPrincipalName);
         await File.WriteAllTextAsync(Path.Combine(dir, "data.json"), prettyJson, ct);
 
         if (screenshot is not null)
@@ -31,13 +33,13 @@ public static class OutputWriter
 
         if (bicep is not null)
         {
-            bicep = OutputNormalizer.Normalize(bicep, subscriptionId, tenantId, actualRgName, armType);
+            bicep = OutputNormalizer.Normalize(bicep, subscriptionId, tenantId, actualRgName, armType, userPrincipalName);
             await File.WriteAllTextAsync(Path.Combine(dir, "resource-group.bicep"), bicep, ct);
         }
 
         if (terraform is not null)
         {
-            terraform = OutputNormalizer.Normalize(terraform, subscriptionId, tenantId, actualRgName, armType);
+            terraform = OutputNormalizer.Normalize(terraform, subscriptionId, tenantId, actualRgName, armType, userPrincipalName);
             await File.WriteAllTextAsync(Path.Combine(dir, "resource-group.tf"), terraform, ct);
         }
 
@@ -69,7 +71,7 @@ public static class OutputWriter
             // separate label-targeted redaction since they're not the ID string being replaced.
             var redactedFields = OutputNormalizer.NormalizePortalFields(portalFields);
             var fieldsJson = JsonSerializer.Serialize(redactedFields, PrettyPrint);
-            fieldsJson = OutputNormalizer.Normalize(fieldsJson, subscriptionId, tenantId, actualRgName, armType);
+            fieldsJson = OutputNormalizer.Normalize(fieldsJson, subscriptionId, tenantId, actualRgName, armType, userPrincipalName);
             await File.WriteAllTextAsync(fieldsPath, fieldsJson, ct);
         }
         else if (File.Exists(fieldsPath))

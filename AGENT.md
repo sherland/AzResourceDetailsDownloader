@@ -81,6 +81,32 @@ tenant name into a file destined for commit) — if the extractor is extended to
 fields for other resource types, check for the same class of leak (any field that's a human-readable name
 rather than a GUID/resource-name already covered by `Normalize`).
 
+## The operator's real identity can leak into output/ — two distinct paths, both now fixed
+
+Live-found (2026-08-13) across 34+ already-committed `data.json` files: ARM auto-stamps the
+signed-in user's real UPN into every resource's `systemData.createdBy`/`lastModifiedBy` — this
+went uncaught for the project's entire history because `OutputNormalizer.Normalize` only ever
+knew about subscription ID, tenant ID, and RG name, never the operator's own identity. A second,
+narrower leak hit `portal-fields.json` specifically: `Microsoft.Synapse/workspaces`'s "SQL
+Microsoft Entra admin" field defaults to whichever AAD identity created the workspace, surfacing
+a real personal email address in a field `NormalizePortalFields`'s label-based redaction didn't
+cover.
+
+Both are fixed the same way subscription/tenant already were: `AzCliContext.ResolveAsync` now also
+resolves `user.name` from `az account show`, threaded through `secrets["userPrincipalName"]` into
+`OutputWriter.WriteAsync` → `OutputNormalizer.Normalize`/`NormalizePortalFields` (the latter via a
+substring match on any label containing "Entra admin", not just the one exact label that happened
+to leak — better to over-redact a same-shaped field under a different label than repeat this).
+`PortalFieldsConsistencyTests.cs` cross-checks every `portal-fields.json` against its sibling
+`data.json`, which is *not* what would have caught this specific leak (a redacted placeholder value
+failing to trace is expected, not suspicious) — it exists for a different purpose (catching
+transcription/extraction mistakes), documented in its own file header.
+
+If you're auditing a checkout of this repo for the same class of leak, `git log -p` /
+`git grep -c` for the operator's own email/UPN across all history, not just the working tree —
+fixing `OutputNormalizer` only prevents *future* captures from leaking, it does nothing for
+already-committed files or already-existing commits.
+
 ## `portal-fields.inferred.json` — the one deliberate exception to "never guessed, always live-verified"
 
 For a handful of entries this tool could never live-capture on this subscription (retired
