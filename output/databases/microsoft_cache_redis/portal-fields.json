@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-e7dcd4c69ba978b0"
+  },
+  {
+    "Label": "Status",
+    "Value": "Running - Basic 250 MB"
+  },
+  {
+    "Label": "Location",
+    "Value": "West Europe"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Host name",
+    "Value": "redisziu0dj94.redis.cache.windows.net"
+  },
+  {
+    "Label": "Ports",
+    "Value": "Non-SSL port (6379) disabled"
+  },
+  {
+    "Label": "Keys",
+    "Value": "Show access keys..."
+  },
+  {
+    "Label": "Best practices",
+    "Value": "https://aka.ms/redis/p/bestpractices"
+  },
+  {
+    "Label": "New features",
+    "Value": "https://aka.ms/newfeatures"
+  }
+]

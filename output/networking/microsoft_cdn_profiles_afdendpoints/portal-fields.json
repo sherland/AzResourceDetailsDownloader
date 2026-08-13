@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Name",
+    "Value": "afdepl-85k0"
+  },
+  {
+    "Label": "Resource type",
+    "Value": "Microsoft.Cdn/profiles/afdEndpoints"
+  },
+  {
+    "Label": "Location",
+    "Value": "Global"
+  },
+  {
+    "Label": "Location ID",
+    "Value": "Global"
+  },
+  {
+    "Label": "Resource ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d4acf6ea90680855/providers/Microsoft.Cdn/profiles/cdnm8-y-pfd/afdEndpoints/afdepl-85k0"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-d4acf6ea90680855"
+  },
+  {
+    "Label": "Resource group ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d4acf6ea90680855"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  }
+]

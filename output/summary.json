@@ -1,32 +1,14 @@
 {
-  "generatedUtc": "2026-08-13T14:56:08.0201797Z",
-  "total": 4,
-  "succeeded": 3,
+  "generatedUtc": "2026-08-13T16:10:26.9153977Z",
+  "total": 1,
+  "succeeded": 0,
   "failed": 1,
   "results": [
     {
       "armType": "Microsoft.Network/publicIPPrefixes",
       "success": false,
-      "elapsedSeconds": 5,
-      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-39e8f892ddc045cb/providers/Microsoft.Network/publicIPPrefixes/pippfxk8-q-u\u0027 (api 2023-09-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022IPv4StandardSkuPublicIpCountLimitReached\u0022,\u0022message\u0022:\u0022Cannot create more than 3 IPv4 Standard SKU public IP addresses for this subscription in this region.\u0022,\u0022details\u0022:[]}}"
-    },
-    {
-      "armType": "Microsoft.Web/serverfarms",
-      "success": true,
-      "elapsedSeconds": 43.2,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Insights/autoscalesettings",
-      "success": true,
-      "elapsedSeconds": 58.7,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Web/sites",
-      "success": true,
-      "elapsedSeconds": 166.3,
-      "error": null
+      "elapsedSeconds": 6.5,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-a4a4928a67ea4e09/providers/Microsoft.Network/publicIPPrefixes/pippfxwtr6ge\u0027 (api 2023-09-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022IPv4StandardSkuPublicIpCountLimitReached\u0022,\u0022message\u0022:\u0022Cannot create more than 3 IPv4 Standard SKU public IP addresses for this subscription in this region.\u0022,\u0022details\u0022:[]}}"
     }
   ]
 }

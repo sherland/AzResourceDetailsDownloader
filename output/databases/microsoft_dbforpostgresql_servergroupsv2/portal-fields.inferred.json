@@ -1,0 +1,10 @@
+[
+  { "Label": "Resource group", "Value": "example-resource-group" },
+  { "Label": "Status", "Value": "Ready" },
+  { "Label": "Location", "Value": "East US" },
+  { "Label": "Subscription", "Value": "Example Subscription" },
+  { "Label": "Subscription ID", "Value": "00000000-0000-0000-0000-000000000000" },
+  { "Label": "PostgreSQL version", "Value": "15" },
+  { "Label": "Database name", "Value": "citus" },
+  { "Label": "Backup", "Value": "Locally redundant" }
+]
