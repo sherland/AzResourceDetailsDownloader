@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-a9a38ecf30bcae8b"
   tags = {
     armType    = "Microsoft.Network/loadBalancers"
-    createdUtc = "2026-08-13T12:31:28.8695408Z"
+    createdUtc = "2026-08-14T06:53:52.6794254Z"
     purpose    = "az-resource-details-downloader"
   }
 }

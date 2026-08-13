@@ -6,7 +6,7 @@
   "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
   "properties": {
     "tenantId": "11111111-1111-1111-1111-111111111111",
-    "principalId": "b3f0f511-d415-4653-9c02-baf306a909b4",
-    "clientId": "bef94b22-e98e-42ee-8db0-6a8969f236d9"
+    "principalId": "e5cf2f15-fc0d-40b9-a418-e705fa47b2f1",
+    "clientId": "c2c81db5-9f8e-4044-ad69-68fb0a893d28"
   }
 }

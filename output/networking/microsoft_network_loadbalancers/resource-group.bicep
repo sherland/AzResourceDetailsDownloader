@@ -9,7 +9,7 @@ resource publicIPAddresses_pip4esx_wt9_name_resource 'Microsoft.Network/publicIP
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '20.100.191.175'
+    ipAddress: '4.235.96.21'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

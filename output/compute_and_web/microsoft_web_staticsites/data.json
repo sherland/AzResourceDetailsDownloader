@@ -4,7 +4,7 @@
   "type": "Microsoft.Web/staticSites",
   "location": "East US 2",
   "properties": {
-    "defaultHostname": "ashy-plant-0962fa20f.7.azurestaticapps.net",
+    "defaultHostname": "brave-smoke-06058d40f.7.azurestaticapps.net",
     "repositoryUrl": null,
     "branch": null,
     "customDomains": [],

@@ -1,15 +1,15 @@
 {
   "name": "nicoq4tq3cl",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nicoq4tq3cl",
-  "etag": "W/\u00229c9a2db8-5dcb-4afb-98c2-d4b11a215814\u0022",
+  "etag": "W/\u002280a6beae-a82c-418c-9daa-bcfdaead5b1e\u0022",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "1f1ea70d-81ed-4d54-a456-229411866110",
+    "resourceGuid": "8f89d290-c7ab-4e0a-82fc-b87878af47b7",
     "ipConfigurations": [
       {
         "name": "ipconfig1",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nicoq4tq3cl/ipConfigurations/ipconfig1",
-        "etag": "W/\u00229c9a2db8-5dcb-4afb-98c2-d4b11a215814\u0022",
+        "etag": "W/\u002280a6beae-a82c-418c-9daa-bcfdaead5b1e\u0022",
         "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
         "properties": {
           "provisioningState": "Succeeded",
@@ -26,7 +26,7 @@
     "dnsSettings": {
       "dnsServers": [],
       "appliedDnsServers": [],
-      "internalDomainNameSuffix": "dbixzrp3nhhuxgut5q1cuocvyc.oslx.internal.cloudapp.net"
+      "internalDomainNameSuffix": "2eiyajqxi4sebpxexagu1nw32c.oslx.internal.cloudapp.net"
     },
     "enableAcceleratedNetworking": false,
     "vnetEncryptionSupported": false,

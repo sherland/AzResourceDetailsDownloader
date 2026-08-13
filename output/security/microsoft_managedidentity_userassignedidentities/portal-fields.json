@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-dbfce973e1674818"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.ManagedIdentity/userAssignedIdentities"
+  },
+  {
+    "Label": "Client ID",
+    "Value": "c2c81db5-9f8e-4044-ad69-68fb0a893d28"
+  },
+  {
+    "Label": "Object (principal) ID",
+    "Value": "e5cf2f15-fc0d-40b9-a418-e705fa47b2f1"
+  },
+  {
+    "Label": "Isolation Scope",
+    "Value": "None"
+  },
+  {
+    "Label": "Resource (Preview)",
+    "Value": "None"
+  }
+]

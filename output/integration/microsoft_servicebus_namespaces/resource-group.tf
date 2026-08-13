@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-e325f80fb473f771"
   tags = {
     armType    = "Microsoft.ServiceBus/namespaces"
-    createdUtc = "2026-08-13T12:44:48.8456508Z"
+    createdUtc = "2026-08-14T06:58:40.9639473Z"
     purpose    = "az-resource-details-downloader"
   }
 }

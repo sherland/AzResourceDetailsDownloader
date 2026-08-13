@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-4360456b29424ef8"
   tags = {
     armType    = "Microsoft.App/managedEnvironments"
-    createdUtc = "2026-08-13T14:35:11.0429965Z"
+    createdUtc = "2026-08-14T07:01:26.1140227Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -28,7 +28,7 @@ resource "azurerm_container_app_environment" "res-1" {
   log_analytics_workspace_id                  = ""
   logs_destination                            = ""
   mutual_tls_enabled                          = false
-  name                                        = "caeznfvtm-z"
+  name                                        = "caef-y-ve5h"
   public_network_access                       = "Enabled"
   resource_group_name                         = azurerm_resource_group.res-0.name
   tags                                        = {}
@@ -41,6 +41,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/providers/Microsoft.App/managedEnvironments/caeznfvtm-z"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/providers/Microsoft.App/managedEnvironments/caef-y-ve5h"
   to = azurerm_container_app_environment.res-1
 }
