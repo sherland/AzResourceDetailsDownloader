@@ -48,9 +48,51 @@ every time that script runs, never hand-edit it. The script uses `az rest` again
 `az` CLI session (same convention as `authenticate.ps1`/`AzCliContext.cs`), and is a registry of named
 data-set fetchers (`$DataSetDefinitions`) rather than a single fixed script — adding another Azure
 reference catalog later (SKU metadata, resource-provider display names, ...) means adding one registry
-entry, not restructuring the file. Not yet consumed by `AzResourceDetailsDownloader.Templating` — see
-`FieldRecipeResolver`'s `Location`/`Resource group` shortcut, whose notes already flag that the raw ARM
-value ("norwayeast") doesn't match the portal's display text and would need exactly this lookup.
+entry, not restructuring the file. Consumed by `RegionDisplayNames`/`TemplateFunctions.region_display_name`
+— see the next section.
+
+## Generating Scriban templates from the recipe catalog (`--generate-field-recipes`, `--generate-templates`)
+
+`AzResourceDetailsDownloader.Templating` turns captured `portal-fields.json`/`data.json` pairs into
+reusable Obsidian/Scriban templates — a from-scratch reimplementation of the JSON→template-model
+conventions AzToMd uses (`model.props`, `model.location`, `model.sku_label`, ...), not a reference to or
+dependency on that repo's code.
+
+- `FieldRecipeResolver.Resolve(label, value, root)` — per (label, value) pair, decides how a template
+  should reproduce it: a direct `model.props.*` path, a known transform (timestamp/boolean/region/SKU),
+  a first-class shortcut, or an honest "can't be done mechanically" verdict with a reason. Combines value
+  matching with label/property-name similarity — value-only matching has repeatedly produced real false
+  positives in this corpus (Key Vault's "Soft-delete" coincidentally matching an unrelated
+  `publicNetworkAccess` value; "Forward messages to" matching `deadLetteringOnMessageExpiration` off a
+  single fuzzy-stemmed token) — see the git history around `FieldRecipeResolverTests.cs` for the specific
+  live-caught cases each guard exists for.
+- `--generate-field-recipes` runs the resolver across every real capture in `output/`, aggregates by
+  label (most labels mean the same thing on every armType that shows them — see `NameSimilarity`), and
+  writes `config/portal-field-recipes.json`. A label that resolves *differently* across types is recorded
+  as an explicit per-armType `Conflicts` entry, never silently picked.
+- `--generate-templates` runs `TemplateGenerator` + `TemplateRenderer` (a real `Scriban` dependency —
+  plain public library, unrelated to the "no AzToMd reference" boundary above) across every real capture,
+  writing `templates/{armType_key}.sbn` (AzToMd's exact `TypeToKey` naming convention, so a generated file
+  is drop-in-named if it's ever handed to a renderer using that convention) and, colocated with each
+  capture, `output/{category}/{armType}/rendered-preview.md` — the template rendered against the very
+  resource it was generated from, as a self-check.
+- A field the resolver can't resolve still gets a table row (dropping it would silently break the
+  portal's layout) — filled with an HTML-comment `TODO` plus the captured example value as a hint, never
+  hardcoded as if it were universally true for the type.
+- `FieldRecipe.IsLiveState` is orthogonal to whether a field resolved: it marks a label as a currently-
+  observed condition (`Status`, resource counts, "Last modified") rather than a durable setting. A
+  *resolved* live-state field renders with a `(as of last sync)` caveat; an *unresolved* one (e.g. a VM's
+  power state, which isn't even in the capture body) renders `*See the Azure Portal for current status.*`
+  instead of a stale example dressed up as a TODO.
+- Both flags are HashSets/Dictionaries in `PortalFieldKnowledge`, grown the same organic, corpus-verified
+  way `BooleanBackedLabels` was — `AttemptDespiteNonTraceableHint` in `FieldRecipeResolver` is the list of
+  labels that used to be blanket-excluded by category but turned out to resolve for at least one real
+  type when actually tried (`Status`, `Provisioning state`, and the "different API surface" bucket all
+  had this problem — Application Insights' "Instrumentation key"/"Connection string" are plain resource
+  properties, unlike Storage Account keys, which really do need a separate `listKeys` call). If a new
+  label shows up fully `Unresolved` and you suspect it might resolve for *some* type, add it here and
+  regenerate rather than assuming the original bucket was exhaustive — trying costs nothing when it
+  genuinely doesn't resolve.
 
 ## Debugging `EssentialsExtractor` (portal-fields.json) against a real page
 
