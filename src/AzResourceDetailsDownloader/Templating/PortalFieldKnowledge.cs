@@ -71,6 +71,32 @@ public static class PortalFieldKnowledge
         // EssentialsExtractor's class comment) — neither has any backing property anywhere in a
         // Managed Identity's raw ARM body; portal-computed/feature-flagged, not resource data.
         "Isolation Scope", "Resource (Preview)",
+
+        // Same "composite/derived display string" bucket as above, surfaced by the 2026-08-14
+        // 60-type backfill batch once the sandbox-iframe and multi-layout EssentialsExtractor fixes
+        // let these types' real Essentials fields through for the first time — not extractor bugs,
+        // just fields no earlier capture had ever actually reached.
+        "Storage type", "Encryption", "Snapshot access state", "Disk size", "Cluster tier",
+        "Connectivity method", "Authentication", "Storage encryption", "Read region",
+        "Total throughput limit", "Free Tier Discount", "Studio web URL", "Replicas",
+        "Elastic pool", "Earliest restore point", "Platform Type", "Frontend IP address", "Scope",
+        "Severity", "Soft delete", "Tier", "Server status", "Database status",
+        "Accelerated networking", "Environment type", "Aspire Dashboard", "Network configuration",
+        "Node pools", "DNS servers", "Subnets", "MQTT broker", "DNS Name", "MCP Endpoint",
+        "SF Explorer", "Publisher :: Offer :: SKU", "Scope (In-tenant)", "Scope (Cross-tenant)",
+        "Replication", "Account kind", "Definition", "Runs last 24 hours", "Workflow Type",
+
+        // Look timestamp-shaped but aren't traceable — confirmed by grepping the sibling data.json
+        // for any creation-adjacent field on each resource type and finding none; a portal-computed
+        // or separate-API-surface value (same bucket as "Endpoint"/"URL" above), not a parsing gap.
+        "Date created", "Created time",
+
+        // "Name" is deliberately generic — accepted here because Portal/dashboards renders it as
+        // "{resourceName} ({friendly title})", a composite no data.json field contains verbatim. A
+        // resource type that ever needs "Name" to be a directly-traceable single value would
+        // silently stop being checked too; worth revisiting if that turns out to matter more than
+        // this one composite case.
+        "Name",
     };
 
     // A short, human reason per NonTraceableLabels entry — not needed by the consistency test
@@ -109,7 +135,12 @@ public static class PortalFieldKnowledge
             // Same blind spot as the Soft-delete/publicNetworkAccess false-positive that motivated
             // the dual-signal resolver in the first place — caught here by actually running the
             // resolver against the full corpus rather than assuming the old table was complete.
-            ["Subscription ID"] = [OutputNormalizer.PlaceholderSubscriptionId],
+            // Azure's generic fallback "Properties" form (see EssentialsExtractor's
+            // PropertiesFormExtractItemsJs — used by types with no custom Overview blade extension,
+            // e.g. Portal/dashboards, OperationalInsights/querypacks) renders this field as the full
+            // "/subscriptions/{guid}" resource-path prefix rather than the bare GUID every other
+            // layout uses — both forms are the same redacted identity, just a different rendering.
+            ["Subscription ID"] = [OutputNormalizer.PlaceholderSubscriptionId, $"/subscriptions/{OutputNormalizer.PlaceholderSubscriptionId}"],
             ["Directory Name"] = [OutputNormalizer.PlaceholderDirectoryName],
             ["Directory ID"] = [OutputNormalizer.PlaceholderTenantId],
             ["Microsoft Entra admin"] = [OutputNormalizer.PlaceholderEntraAdmin, "Not configured"],
@@ -124,7 +155,7 @@ public static class PortalFieldKnowledge
     public static readonly HashSet<string> TimestampLabels = new(StringComparer.OrdinalIgnoreCase)
     {
         "Created", "Updated", "Created on", "Creation date", "Creation Time", "Modified Time",
-        "Time created", "Last modified", "Last Updated Date",
+        "Time created", "Last modified", "Last Updated Date", "Time modified",
     };
 
     // Orthogonal to every other table here — resolvability (Kind) says whether we can find a
@@ -185,11 +216,23 @@ public static class PortalFieldKnowledge
     // ─────────────────────────────────────────────────────────────────────────
 
     private static readonly Regex WeekdayPrefix = new(@"^\p{L}+,\s*", RegexOptions.Compiled);
+    // Norwegian portal language abbreviates the weekday with a trailing period instead of a comma
+    // ("fre. 14. aug. 2026, ..." — "fre." = Friday) — a distinct shape from WeekdayPrefix above,
+    // not just a different separator, since the day-of-month that follows also ends in a period.
+    private static readonly Regex NorwegianWeekdayPrefix = new(@"^\p{L}{2,4}\.\s*", RegexOptions.Compiled);
     private static readonly Regex TrailingParenUtc = new(@"\s*\(UTC\)\s*$", RegexOptions.Compiled);
     private static readonly Regex TrailingBareUtc = new(@"\s*\bUTC\b\s*$", RegexOptions.Compiled);
     private static readonly Regex TrailingGmtOffset = new(@"\s*GMT([+-])(\d{1,2})\s*$", RegexOptions.Compiled);
+    // Central European (Summer) Time abbreviations — this account's portal language renders in
+    // Norwegian, whose timezone is CET (+01:00) / CEST (+02:00) during DST. .NET's date parser has
+    // no built-in knowledge of timezone abbreviations (unlike numeric/GMT offsets above), so they're
+    // translated to a numeric offset the same way TrailingGmtOffset is.
+    private static readonly Regex TrailingCentralEuropeanTime = new(@"\s*\bCEST\b\s*$|\s*\bCET\b\s*$", RegexOptions.Compiled);
     private static readonly Regex AlreadyHasNumericOffset = new(@"(Z|[+-]\d{2}:\d{2})$", RegexOptions.Compiled);
     private static readonly Regex CollapseWhitespace = new(@"\s+", RegexOptions.Compiled);
+    // "fre. 14. aug. 2026, 12:32:02 p.m. CEST" — Norwegian rendering also periods the AM/PM
+    // designator, which .NET's nb-NO parser doesn't recognize as equivalent to its own "a"/"p".
+    private static readonly Regex PeriodedMeridiem = new(@"\bp\.m\.|\ba\.m\.", RegexOptions.IgnoreCase | RegexOptions.Compiled);
     // Anchored to the whole leaf value (not a substring search over raw text) — each candidate here
     // is one JSON string leaf's entire value, so a full-string match is both simpler and more
     // precise than scanning a giant text blob for date-shaped substrings.
@@ -224,6 +267,8 @@ public static class PortalFieldKnowledge
         }
 
         var cleaned = WeekdayPrefix.Replace(portalValue, "").Replace(" at ", " ");
+        cleaned = NorwegianWeekdayPrefix.Replace(cleaned, "");
+        cleaned = PeriodedMeridiem.Replace(cleaned, m => m.Value[0] is 'p' or 'P' ? "PM" : "AM");
         var hasExplicitOffset = true;
 
         if (TrailingParenUtc.IsMatch(cleaned))
@@ -239,6 +284,13 @@ public static class PortalFieldKnowledge
         {
             cleaned = TrailingBareUtc.Replace(cleaned, " +00:00");
         }
+        else if (TrailingCentralEuropeanTime.IsMatch(cleaned))
+        {
+            // CEST (summer/DST) is +02:00, plain CET (winter) is +01:00 — distinguish by which
+            // literal matched rather than the date (no dependency on a timezone database).
+            var isSummer = cleaned.TrimEnd().EndsWith("CEST", StringComparison.Ordinal);
+            cleaned = TrailingCentralEuropeanTime.Replace(cleaned, isSummer ? " +02:00" : " +01:00");
+        }
         else if (!AlreadyHasNumericOffset.IsMatch(cleaned))
         {
             hasExplicitOffset = false;
@@ -252,7 +304,7 @@ public static class PortalFieldKnowledge
             // 2026", no time-of-day at all) — compare calendar dates instead of instants. The ±1 day
             // allowance absorbs the portal showing the date in local time while data.json's instant
             // is UTC, which can roll over across a day boundary near midnight.
-            if (!DateTime.TryParse(cleaned, CultureInfo.InvariantCulture, DateTimeStyles.None, out var naiveDate))
+            if (!TryParseDateAnyCulture(cleaned, out var naiveDate))
             {
                 return [];
             }
@@ -264,7 +316,7 @@ public static class PortalFieldKnowledge
 
         if (hasExplicitOffset)
         {
-            if (!DateTimeOffset.TryParse(cleaned, CultureInfo.InvariantCulture, DateTimeStyles.None, out var portalInstant))
+            if (!TryParseDateTimeOffsetAnyCulture(cleaned, out var portalInstant))
             {
                 return [];
             }
@@ -278,7 +330,7 @@ public static class PortalFieldKnowledge
         // showing the browser's local wall-clock time without saying which zone. Rather than
         // hardcode the capture machine's timezone, brute-force every plausible UTC offset (half-hour
         // steps, -12..+14) and accept a match against any candidate instant.
-        if (!DateTime.TryParse(cleaned, CultureInfo.InvariantCulture, DateTimeStyles.None, out var naive))
+        if (!TryParseDateAnyCulture(cleaned, out var naive))
         {
             return [];
         }
@@ -298,6 +350,38 @@ public static class PortalFieldKnowledge
         DateTimeOffset.TryParse(s, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var dto)
             ? dto
             : null;
+
+    // Live-observed (2026-08-14): this Azure account's portal language renders some timestamps in
+    // Norwegian ("14. august 2026 kl. 12:41", "fre. 14. aug. 2026, 12:32:02 p.m. CEST") rather than
+    // English — InvariantCulture can't parse a month/weekday name it's never seen. Tries nb-NO after
+    // InvariantCulture fails, rather than assuming every capture renders in English.
+    private static readonly CultureInfo[] FallbackCultures = [CultureInfo.InvariantCulture, new CultureInfo("nb-NO")];
+
+    private static bool TryParseDateAnyCulture(string s, out DateTime result)
+    {
+        foreach (var culture in FallbackCultures)
+        {
+            if (DateTime.TryParse(s, culture, DateTimeStyles.None, out result))
+            {
+                return true;
+            }
+        }
+        result = default;
+        return false;
+    }
+
+    private static bool TryParseDateTimeOffsetAnyCulture(string s, out DateTimeOffset result)
+    {
+        foreach (var culture in FallbackCultures)
+        {
+            if (DateTimeOffset.TryParse(s, culture, DateTimeStyles.None, out result))
+            {
+                return true;
+            }
+        }
+        result = default;
+        return false;
+    }
 
     // ─────────────────────────────────────────────────────────────────────────
     // Boolean-backed matching

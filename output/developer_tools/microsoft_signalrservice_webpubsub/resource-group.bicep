@@ -1,7 +1,7 @@
-param WebPubSub_wpseg8_bp2f_name string
+param WebPubSub_wpsjg_1_pq7_name string
 
-resource WebPubSub_wpseg8_bp2f_name_resource 'Microsoft.SignalRService/WebPubSub@2025-08-01-preview' = {
-  name: WebPubSub_wpseg8_bp2f_name
+resource WebPubSub_wpsjg_1_pq7_name_resource 'Microsoft.SignalRService/WebPubSub@2025-08-01-preview' = {
+  name: WebPubSub_wpsjg_1_pq7_name
   location: 'norwayeast'
   sku: {
     name: 'Free_F1'

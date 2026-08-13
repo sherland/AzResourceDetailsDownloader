@@ -1,7 +1,7 @@
-param configurationStores_appcs1y_1kv59_name string
+param configurationStores_appcslcx_jhpz_name string
 
-resource configurationStores_appcs1y_1kv59_name_resource 'Microsoft.AppConfiguration/configurationStores@2025-06-01-preview' = {
-  name: configurationStores_appcs1y_1kv59_name
+resource configurationStores_appcslcx_jhpz_name_resource 'Microsoft.AppConfiguration/configurationStores@2025-06-01-preview' = {
+  name: configurationStores_appcslcx_jhpz_name
   location: 'norwayeast'
   sku: {
     name: 'free'

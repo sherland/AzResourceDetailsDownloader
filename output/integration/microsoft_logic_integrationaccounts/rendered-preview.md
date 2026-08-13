@@ -6,5 +6,5 @@
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Location** | Norway East |
-| **Name** | iani6kgc-1 |
+| **Name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> iani6kgc-1 |
 | **SKU name** | Free |

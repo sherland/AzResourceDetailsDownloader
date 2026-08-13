@@ -9,8 +9,8 @@
     "collation": "SQL_Latin1_General_CP1_CI_AS",
     "maxSizeBytes": 2147483648,
     "status": "Online",
-    "databaseId": "38626663-d564-428f-baea-3bafbe654bd6",
-    "creationDate": "2026-08-14T06:57:08.897Z",
+    "databaseId": "b569df02-3548-4989-9ab6-6249512db0e1",
+    "creationDate": "2026-08-14T10:31:35.083Z",
     "currentServiceObjectiveName": "Basic",
     "requestedServiceObjectiveName": "Basic",
     "defaultSecondaryLocation": "swedensouth",
@@ -30,7 +30,7 @@
     "availabilityZone": "NoPreference"
   },
   "location": "swedencentral",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b7061c5cd70d41ff/providers/Microsoft.Sql/servers/sqly-x0m6x3/databases/dbz6i9eq",
-  "name": "dbz6i9eq",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b7061c5cd70d41ff/providers/Microsoft.Sql/servers/sql1ifqz7nd/databases/dbikse00",
+  "name": "dbikse00",
   "type": "Microsoft.Sql/servers/databases"
 }

@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Workbook Name",
+    "Value": "ARDL sample workbook"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-64cf3419204392ef"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Linked Resource",
+    "Value": "law1-dh82vr"
+  },
+  {
+    "Label": "Kind",
+    "Value": "shared"
+  },
+  {
+    "Label": "Workbook Type",
+    "Value": "workbook"
+  },
+  {
+    "Label": "Resource ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-64cf3419204392ef/providers/Microsoft.Insights/workbooks/0995ffdb-e0d3-2abe-5df1-66746ece5389"
+  }
+]

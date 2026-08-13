@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-8ea2c4413f84d4d7"
   tags = {
     armType    = "Microsoft.Search/searchServices"
-    createdUtc = "2026-08-13T14:35:48.3407453Z"
+    createdUtc = "2026-08-14T10:36:04.7598297Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -26,7 +26,7 @@ resource "azurerm_search_service" "res-1" {
   hosting_mode                             = "Default"
   local_authentication_enabled             = true
   location                                 = "norwayeast"
-  name                                     = "srchtfk-y8-j"
+  name                                     = "srch0v-3un-z"
   network_rule_bypass_option               = "None"
   partition_count                          = 1
   public_network_access_enabled            = true
@@ -43,6 +43,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ea2c4413f84d4d7/providers/Microsoft.Search/searchServices/srchtfk-y8-j"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ea2c4413f84d4d7/providers/Microsoft.Search/searchServices/srch0v-3un-z"
   to = azurerm_search_service.res-1
 }

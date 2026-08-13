@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-91e7d15b849117c3"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Data Plane Stopped",
+    "Value": "false"
+  },
+  {
+    "Label": "Host name",
+    "Value": "wpsjg-1-pq7.webpubsub.azure.com"
+  },
+  {
+    "Label": "Endpoint",
+    "Value": "https://wpsjg-1-pq7.webpubsub.azure.com"
+  },
+  {
+    "Label": "SKU",
+    "Value": "Free_F1"
+  },
+  {
+    "Label": "Unit",
+    "Value": "1"
+  }
+]

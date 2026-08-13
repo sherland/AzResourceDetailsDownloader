@@ -1,6 +1,6 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-95916d9ffe1c6d7d/providers/Microsoft.Network/trafficManagerProfiles/tmtb-tu10b",
-  "name": "tmtb-tu10b",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-95916d9ffe1c6d7d/providers/Microsoft.Network/trafficManagerProfiles/tmp6fvnh90",
+  "name": "tmp6fvnh90",
   "type": "Microsoft.Network/trafficManagerProfiles",
   "location": "global",
   "tags": {},
@@ -8,8 +8,8 @@
     "profileStatus": "Enabled",
     "trafficRoutingMethod": "Performance",
     "dnsConfig": {
-      "relativeName": "ardltmt9deegag",
-      "fqdn": "ardltmt9deegag.trafficmanager.net",
+      "relativeName": "ardltm9t-7pclq",
+      "fqdn": "ardltm9t-7pclq.trafficmanager.net",
       "ttl": 30
     },
     "monitorConfig": {

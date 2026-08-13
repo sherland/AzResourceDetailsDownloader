@@ -1,16 +1,16 @@
-param galleries_galor6b8wuj_name string
+param galleries_gals0yvwobz_name string
 
-resource galleries_galor6b8wuj_name_resource 'Microsoft.Compute/galleries@2025-03-03' = {
-  name: galleries_galor6b8wuj_name
+resource galleries_gals0yvwobz_name_resource 'Microsoft.Compute/galleries@2025-03-03' = {
+  name: galleries_gals0yvwobz_name
   location: 'norwayeast'
   properties: {
     identifier: {}
   }
 }
 
-resource galleries_galor6b8wuj_name_imgjq43aq 'Microsoft.Compute/galleries/images@2025-03-03' = {
-  parent: galleries_galor6b8wuj_name_resource
-  name: 'imgjq43aq'
+resource galleries_gals0yvwobz_name_imgyoclcp 'Microsoft.Compute/galleries/images@2025-03-03' = {
+  parent: galleries_gals0yvwobz_name_resource
+  name: 'imgyoclcp'
   location: 'norwayeast'
   properties: {
     hyperVGeneration: 'V1'

@@ -1,13 +1,13 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Insights/metricAlerts/maze-sgdsc",
-  "name": "maze-sgdsc",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Insights/metricAlerts/ma1gb7eym1",
+  "name": "ma1gb7eym1",
   "type": "Microsoft.Insights/metricAlerts",
   "location": "global",
   "properties": {
     "severity": 3,
     "enabled": true,
     "scopes": [
-      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/stc1k2bcxi"
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/st5rlbh116"
     ],
     "evaluationFrequency": "PT5M",
     "windowSize": "PT15M",

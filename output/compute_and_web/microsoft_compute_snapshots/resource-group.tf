@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-e1235e71e818a48b"
   tags = {
     armType    = "Microsoft.Compute/snapshots"
-    createdUtc = "2026-08-14T06:59:17.7133878Z"
+    createdUtc = "2026-08-14T10:32:48.5646698Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -34,7 +34,7 @@ resource "azurerm_managed_disk" "res-1" {
   image_reference_id                = ""
   location                          = "norwayeast"
   max_shares                        = 0
-  name                              = "diskgxpe04sm"
+  name                              = "diskflr4a67c"
   network_access_policy             = "AllowAll"
   on_demand_bursting_enabled        = false
   optimized_frequent_attach_enabled = false
@@ -60,7 +60,7 @@ resource "azurerm_snapshot" "res-2" {
   disk_size_gb                  = 4
   incremental_enabled           = false
   location                      = "norwayeast"
-  name                          = "snapw3td1qq0"
+  name                          = "snapshnmog8v"
   network_access_policy         = "AllowAll"
   public_network_access_enabled = true
   resource_group_name           = azurerm_resource_group.res-0.name
@@ -74,10 +74,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/disks/diskgxpe04sm"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/disks/diskflr4a67c"
   to = azurerm_managed_disk.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/snapshots/snapw3td1qq0"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/snapshots/snapshnmog8v"
   to = azurerm_snapshot.res-2
 }

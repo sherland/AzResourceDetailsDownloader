@@ -1,15 +1,15 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74933ead8c5e44f6/providers/Microsoft.Communication/emailServices/acsemailgkz-9e-3",
-  "name": "acsemailgkz-9e-3",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74933ead8c5e44f6/providers/Microsoft.Communication/emailServices/acsemailo-zy-g-n",
+  "name": "acsemailo-zy-g-n",
   "type": "microsoft.communication/emailservices",
   "location": "global",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-13T13:01:26.3763013Z",
+    "createdAt": "2026-08-14T10:36:52.4262442Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T13:01:26.3763013Z"
+    "lastModifiedAt": "2026-08-14T10:36:52.4262442Z"
   },
   "properties": {
     "provisioningState": "Succeeded",

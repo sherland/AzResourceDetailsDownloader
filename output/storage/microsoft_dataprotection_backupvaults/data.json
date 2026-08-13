@@ -2,7 +2,7 @@
   "location": "norwayeast",
   "identity": {
     "type": "SystemAssigned",
-    "principalId": "6207ca97-4ac5-491f-b3ac-659c7438fe60",
+    "principalId": "e2221d60-9416-45de-b56f-c8b8c516938c",
     "tenantId": "11111111-1111-1111-1111-111111111111"
   },
   "properties": {
@@ -24,7 +24,7 @@
     "bcdrSecurityLevel": "Poor",
     "replicatedRegions": []
   },
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2b3276b507429af5/providers/Microsoft.DataProtection/backupVaults/bvaulths4wux85",
-  "name": "bvaulths4wux85",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2b3276b507429af5/providers/Microsoft.DataProtection/backupVaults/bvault6hxu-8r7",
+  "name": "bvault6hxu-8r7",
   "type": "Microsoft.DataProtection/backupVaults"
 }

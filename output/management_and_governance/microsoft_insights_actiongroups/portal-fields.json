@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-a5c3f65f8513ba7b"
+  },
+  {
+    "Label": "Location",
+    "Value": "Global"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Display name",
+    "Value": "ardlag"
+  }
+]

@@ -1,7 +1,7 @@
-param networkSecurityPerimeters_nspoe_0_nxe_name string
+param networkSecurityPerimeters_nspz4yz_ypr_name string
 
-resource networkSecurityPerimeters_nspoe_0_nxe_name_resource 'Microsoft.Network/networkSecurityPerimeters@2025-07-01' = {
-  name: networkSecurityPerimeters_nspoe_0_nxe_name
+resource networkSecurityPerimeters_nspz4yz_ypr_name_resource 'Microsoft.Network/networkSecurityPerimeters@2025-07-01' = {
+  name: networkSecurityPerimeters_nspz4yz_ypr_name
   location: 'norwayeast'
   properties: {}
 }

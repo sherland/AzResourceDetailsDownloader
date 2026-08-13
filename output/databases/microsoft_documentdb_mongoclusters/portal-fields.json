@@ -1,0 +1,62 @@
+[
+  {
+    "Label": "Status",
+    "Value": "Ready"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-74a9554cec74d742"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "MongoDB version",
+    "Value": "7.0"
+  },
+  {
+    "Label": "Admin username",
+    "Value": "azrddadmin"
+  },
+  {
+    "Label": "Cluster tier",
+    "Value": "M10 tier, 1 vCores, 2 GiB RAM"
+  },
+  {
+    "Label": "Disk size",
+    "Value": "32 GiB"
+  },
+  {
+    "Label": "Shard count",
+    "Value": "1"
+  },
+  {
+    "Label": "High availability",
+    "Value": "No"
+  },
+  {
+    "Label": "Connectivity method",
+    "Value": "Public access"
+  },
+  {
+    "Label": "Authentication",
+    "Value": "Native DocumentDB only"
+  },
+  {
+    "Label": "Storage encryption",
+    "Value": "Service-managed key"
+  },
+  {
+    "Label": "Read region",
+    "Value": "Not enabled"
+  }
+]

@@ -15,14 +15,14 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-a24d83ecaa8ef94f"
   tags = {
     armType    = "Microsoft.AlertsManagement/actionRules"
-    createdUtc = "2026-08-13T13:28:03.1733865Z"
+    createdUtc = "2026-08-14T10:50:05.4887255Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_monitor_alert_processing_rule_suppression" "res-1" {
   description         = ""
   enabled             = true
-  name                = "apryflw03-r"
+  name                = "apr9zvqwc2v"
   resource_group_name = azurerm_resource_group.res-0.name
   scopes              = ["/subscriptions/00000000-0000-0000-0000-000000000000"]
   tags                = {}
@@ -34,6 +34,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a24d83ecaa8ef94f/providers/Microsoft.AlertsManagement/actionRules/apryflw03-r"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a24d83ecaa8ef94f/providers/Microsoft.AlertsManagement/actionRules/apr9zvqwc2v"
   to = azurerm_monitor_alert_processing_rule_suppression.res-1
 }

@@ -164,6 +164,90 @@ tenant name into a file destined for commit) — if the extractor is extended to
 fields for other resource types, check for the same class of leak (any field that's a human-readable name
 rather than a GUID/resource-name already covered by `Normalize`).
 
+**Sandbox iframe `name` is per-blade-type, not a stable constant** (2026-08-14, found the day after the
+sandbox-iframe gotcha above): fixing the iframe *selector* (`iframe[name^='ResourceOverview']`) looked
+complete after 3/3 isolated verification (Managed Identity, Key Vault, Container Registry all happened to
+use that literal name) — but a 60-type batch relaunch still came back with 0 fields for 44/48 successful
+captures. The frame's `name` attribute turns out to be per-resource-type (`PublicIpAddress.ReactView`,
+`ResourceProperties.ReactView`, ...), not a shared constant — confirmed by dumping the live iframe list
+(`document.querySelectorAll('iframe')`, id/name/class/src) for a failing capture. Fixed by matching the
+frame's `class` instead: every active blade content frame carries `fxs-reactview-frame-active` regardless
+of resource type, while the sibling extension/side-panel frame (`fxs-extension-frame`) never does.
+**Lesson**: isolated single-type verification catching 3/3 does not prove a selector generalizes — a
+narrow selector can pass every test you happen to run and still be wrong for the other 95% of types; the
+only real confirmation is a full-catalog batch run.
+
+**There are (at least) four distinct Essentials-panel DOM layouts live in the portal right now**, not one
+— re-fixing the iframe selector above still left ~4/60 types at 0 fields, and the ones that *did* extract
+had visible label contamination (`"Resource group (move)"` instead of `"Resource group"`). Investigating
+both surfaced that different blade types render Essentials via genuinely different component trees:
+1. **Grid** (`essentialsItem-NNN` / `essentialsLabel-NNN` / `essentialsValue-NNN`) — the "new" layout from
+   the 2026-08-14 redesign above (Managed Identity, Communication Services, ...).
+2. **PropertyField/Accordion** (Fluent UI `AccordionPanel`, each field a `[id^="PropertyField"][id$="-label"]`
+   div paired to its value via `aria-labelledby`, not a shared item container) — Public IP and most
+   `Microsoft.Network/*` types.
+3. **Generic "Properties" form** (`label.ms-Label[aria-label]` paired to a readonly `<input>` via
+   `aria-labelledby`, value read from `.value` not text) — used by types with **no custom Overview blade
+   extension at all** (the sandbox iframe is literally named `ResourceProperties.ReactView` instead of
+   anything Overview-specific): `Portal/dashboards`, `OperationalInsights/querypacks`,
+   `Network/privateDnsZones/virtualNetworkLinks`, `DataProtection/backupVaults`.
+4. **Legacy top-level** `fxc-essentials-*` — the pre-2026-08-14 path, kept as a last-resort fallback.
+
+`EssentialsExtractor.ExtractAsync` tries grid → PropertyField → Properties-form (all inside the sandbox
+frame, ~10s each) before falling back to the two legacy top-level combos (~5s each) — total budget stays
+well under `PortalCaptureService`'s 90s `HardCaptureTimeout`, which also covers screenshot + banner
+capture that already ran before extraction starts. **An earlier theory that layout 2's failures were a
+render-timing issue (like the 2026-08-13 gotcha) was disproven by evidence**: a DOM dump taken well after
+a 40-second dedicated wait still showed 0 matches for the grid selector, but the *same* dump's raw HTML
+already contained the real PropertyField-layout content, present from the very first snapshot — the
+content was never late, the selector just didn't know about that layout yet. Don't assume every "0 fields"
+regression is the known timing gotcha; dump and read the actual markup before picking a fix.
+
+**Label text can straddle a nested action link in two different DOM shapes** — "Resource group" carries a
+"(move)" link and "Tags" carries a "(edit)" link right after the label text, but *where* the parens sit
+relative to the link differs by field: sometimes the label div's own direct text nodes are
+`"Resource group ("` + `")"` around the nested `<a>`, sometimes the whole `"Tags (edit)"` chunk is wrapped
+in a nested div with no direct text of its own at the label's outer level. A naive "direct children text
+nodes only" filter fixes one shape and leaves a dangling `"Resource group ()"` or the untouched
+`"Tags (edit)"` on the other. Fixed by walking the label's subtree in document order, collecting text until
+the first `<a>`/`<button>`, then stripping a trailing dangling `"("` left over from the excluded link's own
+wrapper punctuation — handles both shapes uniformly. Applied to both the grid and PropertyField label
+extractors (`EssentialsExtractor.cs`).
+
+**Some field *values*, not labels, are pure empty-state chrome** — "Tags" = "Add tags", "Container
+registries" = "Attach a registry", "Fleet Manager" = "Click here to assign", etc. are Azure's own
+placeholder prompts shown when a freshly-provisioned resource has no real data yet for that field. Every
+capture in this tool's corpus is exactly that (fresh/default-state), so these show up constantly and are
+actively misleading if baked into a reusable template as if they were representative data. Unlike
+`ChromeLabels` (labels that are *never* real data), these are legitimate fields on a populated resource —
+only the *value* is chrome in this particular capture. Filtered via a separate `ChromeValues` set
+(exact-matched against the field's value, not its label) in `EssentialsExtractor.Finalize`.
+
+**Playwright's `playwright-cli` (`C:\nvm4w\nodejs\playwright-cli.cmd`, MCP-backed) is available for
+interactive live-page debugging** — `open`, `state-load .auth/storage_state.json`, `goto <url>`, `find
+<text>` (search the accessibility snapshot for a ref), `eval <func> <ref>` (run JS scoped to that
+element/frame, cross-origin-safe like the C# `ILocator.EvaluateAllAsync` pattern above). Much faster than
+rebuild-and-rerun-the-whole-pipeline for DOM/React-internals exploration. **Windows quoting gotcha**: `^`
+in a CSS attribute selector (`[id^="..."]`) gets mangled by cmd.exe's own escape-character handling even
+inside quotes — use `[id*="..."]` (contains) instead of `^=` (starts-with) when passing selectors through
+this CLI from a bash/PowerShell wrapper.
+
+**React fiber internals are inspectable and can reveal a field's real component identity** (per-request
+investigation, not wired into the pipeline) — every DOM node React manages carries a non-enumerable
+`__reactFiber$<key>` property; walking `fiber.return` and reading `fiber.memoizedProps` shows the props
+that actually rendered it. Live-tested against Public IP's PropertyField layout: labels/values for
+composite fields (Resource group, Location, Subscription, Tags) are rendered by components with **stable,
+semantic display names** baked into the still-partially-readable production bundle —
+`EssentialsResourceGroupFieldLabel`/`Value`, `EssentialsLocationFieldLabel`/`Value`, etc. — while plain
+fields (SKU, IP address, DNS name, ...) are just plain string props, same as what the DOM scrape already
+sees. This is a genuinely promising angle for identifying composite/derived fields by *component identity*
+instead of fuzzy value-matching, but wasn't pursued further this session — the props inspected were
+already-resolved display strings, not raw ARM binding paths, so realizing the full value would mean
+walking further up/across the fiber tree to find where each field's data-fetching actually happens, which
+is a real investigation, not a quick add-on. Caveat: this only works against a *live* portal page (needs a
+provisioned resource open in a browser), so it can't run during an automated `--run` batch capture as-is —
+useful for one-off recipe investigation, not (yet) for the extraction pipeline itself.
+
 ## The operator's real identity can leak into output/ — two distinct paths, both now fixed
 
 Live-found (2026-08-13) across 34+ already-committed `data.json` files: ARM auto-stamps the
@@ -264,6 +348,31 @@ against a name that didn't exist anywhere in the current subscription. `--name-p
 changing any `nameTemplate`'s structure — safe for entries with tenant-mandated naming conventions (e.g.
 `Microsoft.Compute/virtualMachines`' `swaz{rand9}01`) or strict length limits (Storage's 24 chars), since the
 prefix never gets literally prepended into the name text itself.
+
+**Not every provisioning failure is a naming collision, and re-running the same batch is not diagnosis** —
+live-caught (2026-08-14): after fixing an unrelated bug, a batch got relaunched with the *exact same*
+`--only` command from before, without `--name-prefix`, out of habit rather than re-checking each failure's
+actual error. It hit the identical 12 failures again. Reading them individually split cleanly into two
+groups: ~8 were genuine `AlreadyTaken`/`already exists`/`is reserved` naming collisions (fixed entirely by
+adding `--name-prefix`), the other ~4 were per-subscription/per-region *quota* limits ("only one account
+allowed per region", "cannot have more than 1 Container App Environment in Norway East", a 3-IP cap) that
+`--name-prefix` does nothing for — a fresh name still collides with the same quota ceiling. Skim each
+failure's actual error text before reaching for `--name-prefix`, rather than assuming every red line in a
+batch summary is the same class of problem.
+
+## Portal timestamps can render in the account's UI language, not English
+
+Live-caught (2026-08-14, this account's portal language is Norwegian): `PortalFieldKnowledge`'s timestamp
+matcher (`FindTimestampMatchingPaths`) originally only handled English month/weekday names and English
+AM/PM markers. Real captures came back with `"14. august 2026 kl. 12:41"` and
+`"fre. 14. aug. 2026, 12:32:02 p.m. CEST"` — a different weekday-prefix shape (period, not comma:
+`"fre."` not `"Friday,"`), a periods-in-AM/PM style (`"p.m."` not `"PM"`), and a timezone *abbreviation*
+(`CEST`/`CET`) .NET's parser has no built-in knowledge of (unlike a numeric offset or literal `GMT+2`).
+Fixed by trying `nb-NO` as a fallback `CultureInfo` after `InvariantCulture` fails, normalizing the
+Norwegian weekday-prefix and periods-in-meridiem shapes before parsing, and translating `CEST`/`CET` to a
+numeric offset the same way the existing `GMT+X` handling does. If this tool is ever run from an account
+whose portal language isn't English *or* Norwegian, expect the same class of gap for that language's
+month/weekday names — extend `FallbackCultures` rather than assuming the two already there are enough.
 
 ## Long-running `--run` batches can show no console output for a while — that's normal
 

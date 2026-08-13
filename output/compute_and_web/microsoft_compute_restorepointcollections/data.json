@@ -1,14 +1,14 @@
 {
-  "name": "rpc0q-1q-i1",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/restorePointCollections/rpc0q-1q-i1",
+  "name": "rpcfzx-zcdq",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/restorePointCollections/rpcfzx-zcdq",
   "type": "Microsoft.Compute/restorePointCollections",
   "location": "swedencentral",
   "properties": {
     "source": {
       "location": "SwedenCentral",
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/virtualMachines/swaz1fxf9i19802"
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/virtualMachines/swazx8jrlti5t02"
     },
-    "restorePointCollectionId": "59bcb11e-5cbd-42dd-96fc-f1e4ba291b47",
+    "restorePointCollectionId": "0bc5c825-2fd7-49c2-bb79-f97863542b6b",
     "provisioningState": "Succeeded"
   }
 }

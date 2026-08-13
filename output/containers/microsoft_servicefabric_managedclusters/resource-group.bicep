@@ -1,7 +1,7 @@
-param managedClusters_sfmc9_v2v_ub_name string
+param managedClusters_sfmcdzd_ox_0_name string
 
-resource managedClusters_sfmc9_v2v_ub_name_resource 'Microsoft.ServiceFabric/managedClusters@2020-01-01-preview' = {
-  name: managedClusters_sfmc9_v2v_ub_name
+resource managedClusters_sfmcdzd_ox_0_name_resource 'Microsoft.ServiceFabric/managedClusters@2020-01-01-preview' = {
+  name: managedClusters_sfmcdzd_ox_0_name
   location: 'norwayeast'
   tags: {
     'SFRP.DisableDefaultOutboundAccess': 'true'
@@ -11,7 +11,7 @@ resource managedClusters_sfmc9_v2v_ub_name_resource 'Microsoft.ServiceFabric/man
   }
   properties: {
     adminUserName: 'azrddadmin'
-    dnsName: 'ardlsfmc0c-f-h'
+    dnsName: 'ardlsfmcjj9reg'
     clientConnectionPort: 19000
     httpGatewayConnectionPort: 19080
   }

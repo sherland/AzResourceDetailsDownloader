@@ -1,9 +1,9 @@
 @secure()
 param vulnerabilityAssessments_Default_storageContainerPath string
-param servers_sqly_x0m6x3_name string
+param servers_sql1ifqz7nd_name string
 
-resource servers_sqly_x0m6x3_name_resource 'Microsoft.Sql/servers@2025-02-01-preview' = {
-  name: servers_sqly_x0m6x3_name
+resource servers_sql1ifqz7nd_name_resource 'Microsoft.Sql/servers@2025-02-01-preview' = {
+  name: servers_sql1ifqz7nd_name
   location: 'swedencentral'
   kind: 'v12.0'
   properties: {
@@ -16,56 +16,56 @@ resource servers_sqly_x0m6x3_name_resource 'Microsoft.Sql/servers@2025-02-01-pre
   }
 }
 
-resource servers_sqly_x0m6x3_name_Default 'Microsoft.Sql/servers/advancedThreatProtectionSettings@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource servers_sql1ifqz7nd_name_Default 'Microsoft.Sql/servers/advancedThreatProtectionSettings@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'Default'
   properties: {
     state: 'Disabled'
   }
 }
 
-resource servers_sqly_x0m6x3_name_CreateIndex 'Microsoft.Sql/servers/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource servers_sql1ifqz7nd_name_CreateIndex 'Microsoft.Sql/servers/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'CreateIndex'
   properties: {
     autoExecuteValue: 'Disabled'
   }
 }
 
-resource servers_sqly_x0m6x3_name_DbParameterization 'Microsoft.Sql/servers/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource servers_sql1ifqz7nd_name_DbParameterization 'Microsoft.Sql/servers/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'DbParameterization'
   properties: {
     autoExecuteValue: 'Disabled'
   }
 }
 
-resource servers_sqly_x0m6x3_name_DefragmentIndex 'Microsoft.Sql/servers/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource servers_sql1ifqz7nd_name_DefragmentIndex 'Microsoft.Sql/servers/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'DefragmentIndex'
   properties: {
     autoExecuteValue: 'Disabled'
   }
 }
 
-resource servers_sqly_x0m6x3_name_DropIndex 'Microsoft.Sql/servers/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource servers_sql1ifqz7nd_name_DropIndex 'Microsoft.Sql/servers/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'DropIndex'
   properties: {
     autoExecuteValue: 'Disabled'
   }
 }
 
-resource servers_sqly_x0m6x3_name_ForceLastGoodPlan 'Microsoft.Sql/servers/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource servers_sql1ifqz7nd_name_ForceLastGoodPlan 'Microsoft.Sql/servers/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'ForceLastGoodPlan'
   properties: {
     autoExecuteValue: 'Enabled'
   }
 }
 
-resource Microsoft_Sql_servers_auditingPolicies_servers_sqly_x0m6x3_name_Default 'Microsoft.Sql/servers/auditingPolicies@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource Microsoft_Sql_servers_auditingPolicies_servers_sql1ifqz7nd_name_Default 'Microsoft.Sql/servers/auditingPolicies@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'Default'
   location: 'Sweden Central'
   properties: {
@@ -73,8 +73,8 @@ resource Microsoft_Sql_servers_auditingPolicies_servers_sqly_x0m6x3_name_Default
   }
 }
 
-resource Microsoft_Sql_servers_auditingSettings_servers_sqly_x0m6x3_name_Default 'Microsoft.Sql/servers/auditingSettings@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource Microsoft_Sql_servers_auditingSettings_servers_sql1ifqz7nd_name_Default 'Microsoft.Sql/servers/auditingSettings@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'Default'
   properties: {
     retentionDays: 0
@@ -87,8 +87,8 @@ resource Microsoft_Sql_servers_auditingSettings_servers_sqly_x0m6x3_name_Default
   }
 }
 
-resource Microsoft_Sql_servers_connectionPolicies_servers_sqly_x0m6x3_name_default 'Microsoft.Sql/servers/connectionPolicies@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource Microsoft_Sql_servers_connectionPolicies_servers_sql1ifqz7nd_name_default 'Microsoft.Sql/servers/connectionPolicies@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'default'
   location: 'swedencentral'
   properties: {
@@ -96,9 +96,9 @@ resource Microsoft_Sql_servers_connectionPolicies_servers_sqly_x0m6x3_name_defau
   }
 }
 
-resource servers_sqly_x0m6x3_name_dbz6i9eq 'Microsoft.Sql/servers/databases@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
-  name: 'dbz6i9eq'
+resource servers_sql1ifqz7nd_name_dbikse00 'Microsoft.Sql/servers/databases@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
+  name: 'dbikse00'
   location: 'swedencentral'
   sku: {
     name: 'Basic'
@@ -119,29 +119,29 @@ resource servers_sqly_x0m6x3_name_dbz6i9eq 'Microsoft.Sql/servers/databases@2025
   }
 }
 
-resource servers_sqly_x0m6x3_name_master_Default 'Microsoft.Sql/servers/databases/advancedThreatProtectionSettings@2025-02-01-preview' = {
-  name: '${servers_sqly_x0m6x3_name}/master/Default'
+resource servers_sql1ifqz7nd_name_master_Default 'Microsoft.Sql/servers/databases/advancedThreatProtectionSettings@2025-02-01-preview' = {
+  name: '${servers_sql1ifqz7nd_name}/master/Default'
   properties: {
     state: 'Disabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_auditingPolicies_servers_sqly_x0m6x3_name_master_Default 'Microsoft.Sql/servers/databases/auditingPolicies@2014-04-01' = {
-  name: '${servers_sqly_x0m6x3_name}/master/Default'
+resource Microsoft_Sql_servers_databases_auditingPolicies_servers_sql1ifqz7nd_name_master_Default 'Microsoft.Sql/servers/databases/auditingPolicies@2014-04-01' = {
+  name: '${servers_sql1ifqz7nd_name}/master/Default'
   location: 'Sweden Central'
   properties: {
     auditingState: 'Disabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_auditingSettings_servers_sqly_x0m6x3_name_master_Default 'Microsoft.Sql/servers/databases/auditingSettings@2025-02-01-preview' = {
-  name: '${servers_sqly_x0m6x3_name}/master/Default'
+resource Microsoft_Sql_servers_databases_auditingSettings_servers_sql1ifqz7nd_name_master_Default 'Microsoft.Sql/servers/databases/auditingSettings@2025-02-01-preview' = {
+  name: '${servers_sql1ifqz7nd_name}/master/Default'
   properties: {
     retentionDays: 0
     isAzureMonitorTargetEnabled: false
@@ -149,12 +149,12 @@ resource Microsoft_Sql_servers_databases_auditingSettings_servers_sqly_x0m6x3_na
     storageAccountSubscriptionId: '00000000-0000-0000-0000-000000000000'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_extendedAuditingSettings_servers_sqly_x0m6x3_name_master_Default 'Microsoft.Sql/servers/databases/extendedAuditingSettings@2025-02-01-preview' = {
-  name: '${servers_sqly_x0m6x3_name}/master/Default'
+resource Microsoft_Sql_servers_databases_extendedAuditingSettings_servers_sql1ifqz7nd_name_master_Default 'Microsoft.Sql/servers/databases/extendedAuditingSettings@2025-02-01-preview' = {
+  name: '${servers_sql1ifqz7nd_name}/master/Default'
   properties: {
     retentionDays: 0
     isAzureMonitorTargetEnabled: false
@@ -162,30 +162,30 @@ resource Microsoft_Sql_servers_databases_extendedAuditingSettings_servers_sqly_x
     storageAccountSubscriptionId: '00000000-0000-0000-0000-000000000000'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_geoBackupPolicies_servers_sqly_x0m6x3_name_master_Default 'Microsoft.Sql/servers/databases/geoBackupPolicies@2025-02-01-preview' = {
-  name: '${servers_sqly_x0m6x3_name}/master/Default'
+resource Microsoft_Sql_servers_databases_geoBackupPolicies_servers_sql1ifqz7nd_name_master_Default 'Microsoft.Sql/servers/databases/geoBackupPolicies@2025-02-01-preview' = {
+  name: '${servers_sql1ifqz7nd_name}/master/Default'
   properties: {
     state: 'Enabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource servers_sqly_x0m6x3_name_master_Current 'Microsoft.Sql/servers/databases/ledgerDigestUploads@2025-02-01-preview' = {
-  name: '${servers_sqly_x0m6x3_name}/master/Current'
+resource servers_sql1ifqz7nd_name_master_Current 'Microsoft.Sql/servers/databases/ledgerDigestUploads@2025-02-01-preview' = {
+  name: '${servers_sql1ifqz7nd_name}/master/Current'
   properties: {}
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_securityAlertPolicies_servers_sqly_x0m6x3_name_master_Default 'Microsoft.Sql/servers/databases/securityAlertPolicies@2025-02-01-preview' = {
-  name: '${servers_sqly_x0m6x3_name}/master/Default'
+resource Microsoft_Sql_servers_databases_securityAlertPolicies_servers_sql1ifqz7nd_name_master_Default 'Microsoft.Sql/servers/databases/securityAlertPolicies@2025-02-01-preview' = {
+  name: '${servers_sql1ifqz7nd_name}/master/Default'
   properties: {
     state: 'Disabled'
     disabledAlerts: [
@@ -198,22 +198,22 @@ resource Microsoft_Sql_servers_databases_securityAlertPolicies_servers_sqly_x0m6
     retentionDays: 0
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_transparentDataEncryption_servers_sqly_x0m6x3_name_master_Current 'Microsoft.Sql/servers/databases/transparentDataEncryption@2025-02-01-preview' = {
-  name: '${servers_sqly_x0m6x3_name}/master/Current'
+resource Microsoft_Sql_servers_databases_transparentDataEncryption_servers_sql1ifqz7nd_name_master_Current 'Microsoft.Sql/servers/databases/transparentDataEncryption@2025-02-01-preview' = {
+  name: '${servers_sql1ifqz7nd_name}/master/Current'
   properties: {
     state: 'Disabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_vulnerabilityAssessments_servers_sqly_x0m6x3_name_master_Default 'Microsoft.Sql/servers/databases/vulnerabilityAssessments@2025-02-01-preview' = {
-  name: '${servers_sqly_x0m6x3_name}/master/Default'
+resource Microsoft_Sql_servers_databases_vulnerabilityAssessments_servers_sql1ifqz7nd_name_master_Default 'Microsoft.Sql/servers/databases/vulnerabilityAssessments@2025-02-01-preview' = {
+  name: '${servers_sql1ifqz7nd_name}/master/Default'
   properties: {
     recurringScans: {
       isEnabled: false
@@ -221,12 +221,12 @@ resource Microsoft_Sql_servers_databases_vulnerabilityAssessments_servers_sqly_x
     }
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_devOpsAuditingSettings_servers_sqly_x0m6x3_name_Default 'Microsoft.Sql/servers/devOpsAuditingSettings@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource Microsoft_Sql_servers_devOpsAuditingSettings_servers_sql1ifqz7nd_name_Default 'Microsoft.Sql/servers/devOpsAuditingSettings@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'Default'
   properties: {
     isAzureMonitorTargetEnabled: false
@@ -236,8 +236,8 @@ resource Microsoft_Sql_servers_devOpsAuditingSettings_servers_sqly_x0m6x3_name_D
   }
 }
 
-resource servers_sqly_x0m6x3_name_current 'Microsoft.Sql/servers/encryptionProtector@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource servers_sql1ifqz7nd_name_current 'Microsoft.Sql/servers/encryptionProtector@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'current'
   kind: 'servicemanaged'
   properties: {
@@ -247,8 +247,8 @@ resource servers_sqly_x0m6x3_name_current 'Microsoft.Sql/servers/encryptionProte
   }
 }
 
-resource Microsoft_Sql_servers_extendedAuditingSettings_servers_sqly_x0m6x3_name_Default 'Microsoft.Sql/servers/extendedAuditingSettings@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource Microsoft_Sql_servers_extendedAuditingSettings_servers_sql1ifqz7nd_name_Default 'Microsoft.Sql/servers/extendedAuditingSettings@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'Default'
   properties: {
     retentionDays: 0
@@ -261,8 +261,8 @@ resource Microsoft_Sql_servers_extendedAuditingSettings_servers_sqly_x0m6x3_name
   }
 }
 
-resource servers_sqly_x0m6x3_name_ServiceManaged 'Microsoft.Sql/servers/keys@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource servers_sql1ifqz7nd_name_ServiceManaged 'Microsoft.Sql/servers/keys@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'ServiceManaged'
   kind: 'servicemanaged'
   properties: {
@@ -270,8 +270,8 @@ resource servers_sqly_x0m6x3_name_ServiceManaged 'Microsoft.Sql/servers/keys@202
   }
 }
 
-resource Microsoft_Sql_servers_securityAlertPolicies_servers_sqly_x0m6x3_name_Default 'Microsoft.Sql/servers/securityAlertPolicies@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource Microsoft_Sql_servers_securityAlertPolicies_servers_sql1ifqz7nd_name_Default 'Microsoft.Sql/servers/securityAlertPolicies@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'Default'
   properties: {
     state: 'Disabled'
@@ -286,16 +286,16 @@ resource Microsoft_Sql_servers_securityAlertPolicies_servers_sqly_x0m6x3_name_De
   }
 }
 
-resource Microsoft_Sql_servers_sqlVulnerabilityAssessments_servers_sqly_x0m6x3_name_Default 'Microsoft.Sql/servers/sqlVulnerabilityAssessments@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource Microsoft_Sql_servers_sqlVulnerabilityAssessments_servers_sql1ifqz7nd_name_Default 'Microsoft.Sql/servers/sqlVulnerabilityAssessments@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'Default'
   properties: {
     state: 'Disabled'
   }
 }
 
-resource Microsoft_Sql_servers_vulnerabilityAssessments_servers_sqly_x0m6x3_name_Default 'Microsoft.Sql/servers/vulnerabilityAssessments@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_resource
+resource Microsoft_Sql_servers_vulnerabilityAssessments_servers_sql1ifqz7nd_name_Default 'Microsoft.Sql/servers/vulnerabilityAssessments@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_resource
   name: 'Default'
   properties: {
     recurringScans: {
@@ -306,86 +306,86 @@ resource Microsoft_Sql_servers_vulnerabilityAssessments_servers_sqly_x0m6x3_name
   }
 }
 
-resource servers_sqly_x0m6x3_name_dbz6i9eq_Default 'Microsoft.Sql/servers/databases/advancedThreatProtectionSettings@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource servers_sql1ifqz7nd_name_dbikse00_Default 'Microsoft.Sql/servers/databases/advancedThreatProtectionSettings@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'Default'
   properties: {
     state: 'Disabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource servers_sqly_x0m6x3_name_dbz6i9eq_CreateIndex 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource servers_sql1ifqz7nd_name_dbikse00_CreateIndex 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'CreateIndex'
   properties: {
     autoExecuteValue: 'Disabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource servers_sqly_x0m6x3_name_dbz6i9eq_DbParameterization 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource servers_sql1ifqz7nd_name_dbikse00_DbParameterization 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'DbParameterization'
   properties: {
     autoExecuteValue: 'Disabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource servers_sqly_x0m6x3_name_dbz6i9eq_DefragmentIndex 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource servers_sql1ifqz7nd_name_dbikse00_DefragmentIndex 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'DefragmentIndex'
   properties: {
     autoExecuteValue: 'Disabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource servers_sqly_x0m6x3_name_dbz6i9eq_DropIndex 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource servers_sql1ifqz7nd_name_dbikse00_DropIndex 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'DropIndex'
   properties: {
     autoExecuteValue: 'Disabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource servers_sqly_x0m6x3_name_dbz6i9eq_ForceLastGoodPlan 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource servers_sql1ifqz7nd_name_dbikse00_ForceLastGoodPlan 'Microsoft.Sql/servers/databases/advisors@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'ForceLastGoodPlan'
   properties: {
     autoExecuteValue: 'Enabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_auditingPolicies_servers_sqly_x0m6x3_name_dbz6i9eq_Default 'Microsoft.Sql/servers/databases/auditingPolicies@2014-04-01' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource Microsoft_Sql_servers_databases_auditingPolicies_servers_sql1ifqz7nd_name_dbikse00_Default 'Microsoft.Sql/servers/databases/auditingPolicies@2014-04-01' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'Default'
   location: 'Sweden Central'
   properties: {
     auditingState: 'Disabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_auditingSettings_servers_sqly_x0m6x3_name_dbz6i9eq_Default 'Microsoft.Sql/servers/databases/auditingSettings@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource Microsoft_Sql_servers_databases_auditingSettings_servers_sql1ifqz7nd_name_dbikse00_Default 'Microsoft.Sql/servers/databases/auditingSettings@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'Default'
   properties: {
     retentionDays: 0
@@ -394,12 +394,12 @@ resource Microsoft_Sql_servers_databases_auditingSettings_servers_sqly_x0m6x3_na
     storageAccountSubscriptionId: '00000000-0000-0000-0000-000000000000'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_backupLongTermRetentionPolicies_servers_sqly_x0m6x3_name_dbz6i9eq_default 'Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource Microsoft_Sql_servers_databases_backupLongTermRetentionPolicies_servers_sql1ifqz7nd_name_dbikse00_default 'Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'default'
   properties: {
     timeBasedImmutability: 'Disabled'
@@ -409,24 +409,24 @@ resource Microsoft_Sql_servers_databases_backupLongTermRetentionPolicies_servers
     weekOfYear: 0
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_backupShortTermRetentionPolicies_servers_sqly_x0m6x3_name_dbz6i9eq_default 'Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource Microsoft_Sql_servers_databases_backupShortTermRetentionPolicies_servers_sql1ifqz7nd_name_dbikse00_default 'Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'default'
   properties: {
     retentionDays: 7
     diffBackupIntervalInHours: 24
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_extendedAuditingSettings_servers_sqly_x0m6x3_name_dbz6i9eq_Default 'Microsoft.Sql/servers/databases/extendedAuditingSettings@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource Microsoft_Sql_servers_databases_extendedAuditingSettings_servers_sql1ifqz7nd_name_dbikse00_Default 'Microsoft.Sql/servers/databases/extendedAuditingSettings@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'Default'
   properties: {
     retentionDays: 0
@@ -435,32 +435,32 @@ resource Microsoft_Sql_servers_databases_extendedAuditingSettings_servers_sqly_x
     storageAccountSubscriptionId: '00000000-0000-0000-0000-000000000000'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_geoBackupPolicies_servers_sqly_x0m6x3_name_dbz6i9eq_Default 'Microsoft.Sql/servers/databases/geoBackupPolicies@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource Microsoft_Sql_servers_databases_geoBackupPolicies_servers_sql1ifqz7nd_name_dbikse00_Default 'Microsoft.Sql/servers/databases/geoBackupPolicies@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'Default'
   properties: {
     state: 'Enabled'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource servers_sqly_x0m6x3_name_dbz6i9eq_Current 'Microsoft.Sql/servers/databases/ledgerDigestUploads@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource servers_sql1ifqz7nd_name_dbikse00_Current 'Microsoft.Sql/servers/databases/ledgerDigestUploads@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'Current'
   properties: {}
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_securityAlertPolicies_servers_sqly_x0m6x3_name_dbz6i9eq_Default 'Microsoft.Sql/servers/databases/securityAlertPolicies@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource Microsoft_Sql_servers_databases_securityAlertPolicies_servers_sql1ifqz7nd_name_dbikse00_Default 'Microsoft.Sql/servers/databases/securityAlertPolicies@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'Default'
   properties: {
     state: 'Disabled'
@@ -474,24 +474,24 @@ resource Microsoft_Sql_servers_databases_securityAlertPolicies_servers_sqly_x0m6
     retentionDays: 0
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_transparentDataEncryption_servers_sqly_x0m6x3_name_dbz6i9eq_Current 'Microsoft.Sql/servers/databases/transparentDataEncryption@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource Microsoft_Sql_servers_databases_transparentDataEncryption_servers_sql1ifqz7nd_name_dbikse00_Current 'Microsoft.Sql/servers/databases/transparentDataEncryption@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'Current'
   properties: {
     state: 'Enabled'
     scanState: 'Complete'
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 
-resource Microsoft_Sql_servers_databases_vulnerabilityAssessments_servers_sqly_x0m6x3_name_dbz6i9eq_Default 'Microsoft.Sql/servers/databases/vulnerabilityAssessments@2025-02-01-preview' = {
-  parent: servers_sqly_x0m6x3_name_dbz6i9eq
+resource Microsoft_Sql_servers_databases_vulnerabilityAssessments_servers_sql1ifqz7nd_name_dbikse00_Default 'Microsoft.Sql/servers/databases/vulnerabilityAssessments@2025-02-01-preview' = {
+  parent: servers_sql1ifqz7nd_name_dbikse00
   name: 'Default'
   properties: {
     recurringScans: {
@@ -500,7 +500,7 @@ resource Microsoft_Sql_servers_databases_vulnerabilityAssessments_servers_sqly_x
     }
   }
   dependsOn: [
-    servers_sqly_x0m6x3_name_resource
+    servers_sql1ifqz7nd_name_resource
   ]
 }
 

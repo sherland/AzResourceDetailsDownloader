@@ -1,0 +1,26 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-0b366a4f497d75e9"
+  },
+  {
+    "Label": "Location",
+    "Value": "Global"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Severity",
+    "Value": "4 - Verbose"
+  },
+  {
+    "Label": "Description",
+    "Value": "-"
+  }
+]

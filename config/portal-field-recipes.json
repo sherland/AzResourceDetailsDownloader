@@ -1,5 +1,18 @@
 [
   {
+    "Label": "Accelerated networking",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkInterfaces"
+    ],
+    "SampleValue": "Disabled",
+    "Conflicts": null
+  },
+  {
     "Label": "Account",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -23,6 +36,32 @@
       "Microsoft.Batch/batchAccounts"
     ],
     "SampleValue": "batchp09vx5pt.norwayeast.batch.azure.com",
+    "Conflicts": null
+  },
+  {
+    "Label": "Account ID",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.accountid",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "microsoft.videoindexer/accounts"
+    ],
+    "SampleValue": "19bb8ba2-9efd-44fb-abee-c7960652eb61",
+    "Conflicts": null
+  },
+  {
+    "Label": "Account kind",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Storage/storageAccounts"
+    ],
+    "SampleValue": "StorageV2 (general purpose v2)",
     "Conflicts": null
   },
   {
@@ -52,6 +91,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Active geo-replication",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Cache/redisEnterprise"
+    ],
+    "SampleValue": "--",
+    "Conflicts": null
+  },
+  {
+    "Label": "Address space",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.addressspace.addressprefixes[0]",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/virtualNetworks"
+    ],
+    "SampleValue": "10.10.0.0/16",
+    "Conflicts": null
+  },
+  {
     "Label": "Address Space(s)",
     "Kind": "Direct",
     "Confidence": 1,
@@ -65,6 +130,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Admin username",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.administrator.username",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/mongoClusters"
+    ],
+    "SampleValue": "azrddadmin",
+    "Conflicts": null
+  },
+  {
     "Label": "Administrator login",
     "Kind": "Direct",
     "Confidence": 1,
@@ -75,6 +153,19 @@
       "Microsoft.DBforPostgreSQL/flexibleServers"
     ],
     "SampleValue": "azrddadmin",
+    "Conflicts": null
+  },
+  {
+    "Label": "Advertised gateway prefixes",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/virtualNetworks"
+    ],
+    "SampleValue": "-",
     "Conflicts": null
   },
   {
@@ -104,6 +195,19 @@
     "Conflicts": null
   },
   {
+    "Label": "API server address",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.fqdn",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ContainerService/ManagedClusters"
+    ],
+    "SampleValue": "ardlaksdr835j-ipc8p00k.hcp.swedencentral.azmk8s.io",
+    "Conflicts": null
+  },
+  {
     "Label": "App(s) / Slots",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -127,6 +231,45 @@
       "Microsoft.DesktopVirtualization/applicationgroups"
     ],
     "SampleValue": "Desktop",
+    "Conflicts": null
+  },
+  {
+    "Label": "Application Insights",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.MachineLearningServices/workspaces"
+    ],
+    "SampleValue": "ai2rhbhwk1",
+    "Conflicts": null
+  },
+  {
+    "Label": "Applications",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.App/managedEnvironments"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Aspire Dashboard",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.App/managedEnvironments"
+    ],
+    "SampleValue": "Not yet active (set up)",
     "Conflicts": null
   },
   {
@@ -156,6 +299,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Associated resources",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkSecurityPerimeters"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Associated to",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/publicIPAddresses"
+    ],
+    "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
     "Label": "Associated with",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -177,9 +346,36 @@
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies",
+      "Microsoft.Network/frontdoorwebapplicationfirewallpolicies",
       "Microsoft.Network/routeTables"
     ],
     "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Attached to",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkInterfaces"
+    ],
+    "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
+    "Label": "Authentication",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/mongoClusters"
+    ],
+    "SampleValue": "Native DocumentDB only",
     "Conflicts": null
   },
   {
@@ -229,12 +425,20 @@
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Compute/disks",
       "Microsoft.Compute/proximityPlacementGroups",
       "Microsoft.DBforPostgreSQL/flexibleServers",
       "Microsoft.Network/bastionHosts"
     ],
-    "SampleValue": "-",
+    "SampleValue": "No infrastructure redundancy required",
     "Conflicts": {
+      "Microsoft.Compute/disks": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      },
       "Microsoft.Compute/proximityPlacementGroups": {
         "Kind": "Unresolved",
         "Confidence": 0,
@@ -267,6 +471,7 @@
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.EventGrid/domains",
+      "Microsoft.EventGrid/namespaces",
       "Microsoft.EventGrid/topics",
       "Microsoft.NotificationHubs/namespaces/notificationHubs"
     ],
@@ -277,6 +482,13 @@
         "Confidence": 0.2,
         "Target": "model.props.publicnetworkaccess",
         "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": false
+      },
+      "Microsoft.EventGrid/namespaces": {
+        "Kind": "Direct",
+        "Confidence": 0.5,
+        "Target": "model.props.iszoneredundant",
+        "Notes": "boolean\u2192friendly-word",
         "IsLiveState": false
       },
       "Microsoft.EventGrid/topics": {
@@ -296,6 +508,45 @@
     }
   },
   {
+    "Label": "Azure compute gallery",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/galleries/images"
+    ],
+    "SampleValue": "gals0yvwobz",
+    "Conflicts": null
+  },
+  {
+    "Label": "Azure OpenAI",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "microsoft.videoindexer/accounts"
+    ],
+    "SampleValue": "---",
+    "Conflicts": null
+  },
+  {
+    "Label": "Backend pool",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/loadBalancers"
+    ],
+    "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
     "Label": "Branch-to-branch",
     "Kind": "Boolean",
     "Confidence": 0.95,
@@ -306,6 +557,19 @@
       "Microsoft.Network/virtualWans"
     ],
     "SampleValue": "Enabled",
+    "Conflicts": null
+  },
+  {
+    "Label": "Capacity mode",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/databaseAccounts"
+    ],
+    "SampleValue": "Serverless",
     "Conflicts": null
   },
   {
@@ -364,6 +628,45 @@
     }
   },
   {
+    "Label": "Cluster operation status",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.provisioningstate",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting (2 addressable value-matching leaves, none strongly name-related to the label).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ContainerService/ManagedClusters"
+    ],
+    "SampleValue": "Succeeded",
+    "Conflicts": null
+  },
+  {
+    "Label": "Cluster State",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.clusterstate",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ServiceFabric/managedclusters"
+    ],
+    "SampleValue": "WaitingForNodes",
+    "Conflicts": null
+  },
+  {
+    "Label": "Cluster tier",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/mongoClusters"
+    ],
+    "SampleValue": "M10 tier, 1 vCores, 2 GiB RAM",
+    "Conflicts": null
+  },
+  {
     "Label": "Colocation status",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -391,6 +694,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Compute type",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.hostingmode",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Search/searchServices"
+    ],
+    "SampleValue": "Default",
+    "Conflicts": null
+  },
+  {
     "Label": "Configuration",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -414,6 +730,32 @@
       "Microsoft.Insights/dataCollectionEndpoints"
     ],
     "SampleValue": "https://dcemegmb-xy-hzyo.norwayeast-1.handler.control.monitor.azure.com",
+    "Conflicts": null
+  },
+  {
+    "Label": "Connected resources",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Insights/dataCollectionRules"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Connection status",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.privatelinkserviceconnections[0].properties.privatelinkserviceconnectionstate.status",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/privateEndpoints"
+    ],
+    "SampleValue": "Approved",
     "Conflicts": null
   },
   {
@@ -446,6 +788,32 @@
     }
   },
   {
+    "Label": "Connectivity method",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/mongoClusters"
+    ],
+    "SampleValue": "Public access",
+    "Conflicts": null
+  },
+  {
+    "Label": "Container Apps Environment",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.App/jobs"
+    ],
+    "SampleValue": "caek-fw2h3i",
+    "Conflicts": null
+  },
+  {
     "Label": "Container count",
     "Kind": "Ambiguous",
     "Confidence": 1,
@@ -459,6 +827,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Container Registry",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.MachineLearningServices/workspaces"
+    ],
+    "SampleValue": "...",
+    "Conflicts": null
+  },
+  {
     "Label": "Created",
     "Kind": "Timestamp",
     "Confidence": 0.9,
@@ -466,14 +847,74 @@
     "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Compute/snapshots",
       "Microsoft.EventHub/Namespaces",
       "Microsoft.EventHub/namespaces/eventhubs",
+      "Microsoft.ServiceBus/Namespaces",
       "Microsoft.ServiceBus/namespaces/queues",
       "Microsoft.ServiceBus/namespaces/topics",
-      "Microsoft.ServiceBus/namespaces/topics/subscriptions"
+      "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+      "Microsoft.Storage/storageAccounts"
     ],
     "SampleValue": "Thursday, August 13, 2026 at 14:50:31 GMT\u002B2",
-    "Conflicts": null
+    "Conflicts": {
+      "Microsoft.EventHub/Namespaces": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.createdat",
+        "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
+        "IsLiveState": false
+      },
+      "Microsoft.EventHub/namespaces/eventhubs": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.createdat",
+        "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
+        "IsLiveState": false
+      },
+      "Microsoft.Compute/snapshots": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.timecreated",
+        "Notes": "transform: portal_timestamp",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceBus/Namespaces": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.createdat",
+        "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceBus/namespaces/queues": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.createdat",
+        "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceBus/namespaces/topics": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.createdat",
+        "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceBus/namespaces/topics/subscriptions": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.createdat",
+        "Notes": "transform: portal_timestamp \u2014 3 candidate instants matched, picked by label/property-name similarity",
+        "IsLiveState": false
+      },
+      "Microsoft.Storage/storageAccounts": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.keycreationtime.key1",
+        "Notes": "transform: portal_timestamp \u2014 5 candidate instants matched, picked by label/property-name similarity",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Created on",
@@ -486,6 +927,19 @@
       "Microsoft.DBforPostgreSQL/flexibleServers"
     ],
     "SampleValue": "2026-08-13 13:14:05 (UTC)",
+    "Conflicts": null
+  },
+  {
+    "Label": "Created time",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ContainerService/ManagedClusters"
+    ],
+    "SampleValue": "14. august 2026 kl. 12:41",
     "Conflicts": null
   },
   {
@@ -515,6 +969,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Custom rules",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/frontdoorwebapplicationfirewallpolicies"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
     "Label": "Custom security rules",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -541,17 +1008,46 @@
     "Conflicts": null
   },
   {
-    "Label": "Data collection endpoint",
-    "Kind": "NeedsReview",
-    "Confidence": 0.2,
-    "Target": "model.name",
-    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+    "Label": "Dapr version",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.daprconfiguration.version",
+    "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.App/managedEnvironments"
+    ],
+    "SampleValue": "1.16.4-msft.11",
+    "Conflicts": null
+  },
+  {
+    "Label": "Data Collection Endpoint",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Insights/dataCollectionRules",
       "Microsoft.Monitor/accounts"
     ],
-    "SampleValue": "amona-g-1-e5",
-    "Conflicts": null
+    "SampleValue": "-",
+    "Conflicts": {
+      "Microsoft.Insights/dataCollectionRules": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      },
+      "Microsoft.Monitor/accounts": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.name",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Data collection rule",
@@ -567,6 +1063,20 @@
     "Conflicts": null
   },
   {
+    "Label": "Data location",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.datalocation",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "microsoft.communication/communicationservices",
+      "microsoft.communication/emailservices"
+    ],
+    "SampleValue": "Europe",
+    "Conflicts": null
+  },
+  {
     "Label": "Data Plane Stopped",
     "Kind": "NeedsReview",
     "Confidence": 0.2,
@@ -574,9 +1084,62 @@
     "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.33) \u2014 verify by hand before trusting (4 addressable value-matching leaves, none strongly name-related to the label).",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.SignalRService/SignalR"
+      "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub"
     ],
     "SampleValue": "false",
+    "Conflicts": null
+  },
+  {
+    "Label": "Data Sources",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Insights/dataCollectionRules"
+    ],
+    "SampleValue": "1",
+    "Conflicts": null
+  },
+  {
+    "Label": "Database name",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Sql/servers/jobAgents"
+    ],
+    "SampleValue": "jobagentdb",
+    "Conflicts": null
+  },
+  {
+    "Label": "Database status",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Cache/redisEnterprise"
+    ],
+    "SampleValue": "Failed",
+    "Conflicts": null
+  },
+  {
+    "Label": "Date created",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Search/searchServices"
+    ],
+    "SampleValue": "Aug 14, 2026, 12:36:11 PM",
     "Conflicts": null
   },
   {
@@ -620,6 +1183,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Definition",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Logic/workflows"
+    ],
+    "SampleValue": "0 triggers, 0 actions",
+    "Conflicts": null
+  },
+  {
     "Label": "Deployment Scope",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -641,12 +1217,17 @@
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.AlertsManagement/actionRules",
       "Microsoft.DataProtection/resourceGuards",
       "Microsoft.DesktopVirtualization/applicationgroups",
       "Microsoft.DesktopVirtualization/workspaces",
+      "Microsoft.Insights/ActivityLogAlerts",
+      "Microsoft.Insights/metricAlerts",
+      "Microsoft.Insights/scheduledQueryRules",
+      "Microsoft.Network/networkManagers",
       "Microsoft.Resources/templateSpecs"
     ],
-    "SampleValue": "---",
+    "SampleValue": "-",
     "Conflicts": null
   },
   {
@@ -691,29 +1272,111 @@
     "Conflicts": null
   },
   {
-    "Label": "Display Name",
+    "Label": "Disk size",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/disks",
+      "Microsoft.DocumentDB/mongoClusters"
+    ],
+    "SampleValue": "4 GiB",
+    "Conflicts": null
+  },
+  {
+    "Label": "Disk state",
     "Kind": "Direct",
     "Confidence": 1,
-    "Target": "model.props.displayname",
+    "Target": "model.props.diskstate",
     "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Compute/disks",
+      "Microsoft.Storage/storageAccounts"
+    ],
+    "SampleValue": "Unattached",
+    "Conflicts": {
+      "Microsoft.Compute/disks": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.diskstate",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "Microsoft.Storage/storageAccounts": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.statusofprimary",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": false
+      }
+    }
+  },
+  {
+    "Label": "Display name",
+    "Kind": "Direct",
+    "Confidence": 0.5,
+    "Target": "model.props.groupshortname",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Insights/ActionGroups",
+      "Microsoft.Insights/scheduledQueryRules",
       "Microsoft.Resources/templateSpecs"
     ],
-    "SampleValue": "ARDL Template Spec",
-    "Conflicts": null
+    "SampleValue": "ardlag",
+    "Conflicts": {
+      "Microsoft.Insights/ActionGroups": {
+        "Kind": "Direct",
+        "Confidence": 0.5,
+        "Target": "model.props.groupshortname",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "Microsoft.Insights/scheduledQueryRules": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.displayname",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "Microsoft.Resources/templateSpecs": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.displayname",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "DNS name",
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Compute/virtualMachines"
+      "Microsoft.Compute/virtualMachines",
+      "Microsoft.Network/publicIPAddresses",
+      "Microsoft.Network/trafficManagerProfiles"
     ],
     "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
+    "Label": "DNS servers",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/virtualNetworks"
+    ],
+    "SampleValue": "Azure provided DNS service",
     "Conflicts": null
   },
   {
@@ -757,6 +1420,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Earliest restore point",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Sql/servers/databases"
+    ],
+    "SampleValue": "No restore point available",
+    "Conflicts": null
+  },
+  {
     "Label": "Elastic database settings",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -783,6 +1459,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Elastic pool",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Sql/servers/databases"
+    ],
+    "SampleValue": "No elastic pool",
+    "Conflicts": null
+  },
+  {
     "Label": "Enable No Public IP",
     "Kind": "Boolean",
     "Confidence": 0.95,
@@ -796,6 +1485,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Enabled features",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkManagers"
+    ],
+    "SampleValue": "Connectivity, SecurityAdmin",
+    "Conflicts": null
+  },
+  {
+    "Label": "Encryption",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/snapshots"
+    ],
+    "SampleValue": "Platform-managed key",
+    "Conflicts": null
+  },
+  {
     "Label": "Endpoint",
     "Kind": "Ambiguous",
     "Confidence": 1,
@@ -803,9 +1518,14 @@
     "Notes": "Tied with model.props.endpoints.face (similarity 1.00) \u2014 pick manually.",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.AppConfiguration/configurationStores",
+      "Microsoft.Cache/redisEnterprise",
       "Microsoft.CognitiveServices/accounts",
+      "microsoft.communication/communicationservices",
+      "microsoft.dashboard/grafana",
       "Microsoft.DBforPostgreSQL/flexibleServers",
-      "Microsoft.SignalRService/SignalR"
+      "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub"
     ],
     "SampleValue": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
     "Conflicts": {
@@ -816,11 +1536,32 @@
         "Notes": "Tied with model.props.endpoints.face (similarity 1.00) \u2014 pick manually.",
         "IsLiveState": false
       },
+      "microsoft.communication/communicationservices": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      },
+      "Microsoft.Cache/redisEnterprise": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.hostname",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": false
+      },
       "Microsoft.DBforPostgreSQL/flexibleServers": {
         "Kind": "NeedsReview",
         "Confidence": 0.2,
         "Target": "model.props.fullyqualifieddomainname",
         "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": false
+      },
+      "Microsoft.AppConfiguration/configurationStores": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.endpoint",
+        "Notes": "exact value match",
         "IsLiveState": false
       },
       "Microsoft.SignalRService/SignalR": {
@@ -829,8 +1570,48 @@
         "Target": null,
         "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
         "IsLiveState": false
+      },
+      "Microsoft.SignalRService/WebPubSub": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      },
+      "microsoft.dashboard/grafana": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.endpoint",
+        "Notes": "exact value match",
+        "IsLiveState": false
       }
     }
+  },
+  {
+    "Label": "Endpoints",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/trafficManagerProfiles"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Environment type",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.App/managedEnvironments"
+    ],
+    "SampleValue": "Consumption only",
+    "Conflicts": null
   },
   {
     "Label": "Fault domains",
@@ -867,9 +1648,38 @@
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.ContainerInstance/containerGroups"
+      "Microsoft.ContainerInstance/containerGroups",
+      "Microsoft.ServiceFabric/managedclusters"
     ],
     "SampleValue": "---",
+    "Conflicts": {
+      "Microsoft.ContainerInstance/containerGroups": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceFabric/managedclusters": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.fqdn",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      }
+    }
+  },
+  {
+    "Label": "Free Tier Discount",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/databaseAccounts"
+    ],
+    "SampleValue": "Opted Out",
     "Conflicts": null
   },
   {
@@ -900,6 +1710,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Frontend IP address",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/loadBalancers"
+    ],
+    "SampleValue": "20.251.57.52 (pip48sal3-5)",
+    "Conflicts": null
+  },
+  {
     "Label": "Gateway type",
     "Kind": "Direct",
     "Confidence": 1,
@@ -926,6 +1749,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Geo-replication",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.AppConfiguration/configurationStores"
+    ],
+    "SampleValue": "N/A",
+    "Conflicts": null
+  },
+  {
     "Label": "Global device endpoint",
     "Kind": "NeedsReview",
     "Confidence": 0.2,
@@ -936,6 +1772,32 @@
       "Microsoft.Devices/provisioningServices"
     ],
     "SampleValue": "global.azure-devices-provisioning.net",
+    "Conflicts": null
+  },
+  {
+    "Label": "Grafana Version",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.grafanaversion",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "microsoft.dashboard/grafana"
+    ],
+    "SampleValue": "12.4.6",
+    "Conflicts": null
+  },
+  {
+    "Label": "Health probe",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/loadBalancers"
+    ],
+    "SampleValue": "-",
     "Conflicts": null
   },
   {
@@ -959,10 +1821,26 @@
     "Notes": "transform: portal_bool (known-verified label\u2192property mapping)",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.DBforPostgreSQL/flexibleServers"
+      "Microsoft.DBforPostgreSQL/flexibleServers",
+      "Microsoft.DocumentDB/mongoClusters"
     ],
     "SampleValue": "Not enabled",
-    "Conflicts": null
+    "Conflicts": {
+      "Microsoft.DBforPostgreSQL/flexibleServers": {
+        "Kind": "Boolean",
+        "Confidence": 0.95,
+        "Target": "model.props.highavailability.mode",
+        "Notes": "transform: portal_bool (known-verified label\u2192property mapping)",
+        "IsLiveState": false
+      },
+      "Microsoft.DocumentDB/mongoClusters": {
+        "Kind": "Boolean",
+        "Confidence": 0.95,
+        "Target": "model.props.highavailability.targetmode",
+        "Notes": "transform: portal_bool (known-verified label\u2192property mapping)",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Host name",
@@ -975,7 +1853,9 @@
       "Microsoft.Cache/Redis",
       "Microsoft.DigitalTwins/digitalTwinsInstances",
       "Microsoft.EventHub/Namespaces",
-      "Microsoft.SignalRService/SignalR"
+      "Microsoft.ServiceBus/Namespaces",
+      "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub"
     ],
     "SampleValue": "dt4wdx8el0.api.neu.digitaltwins.azure.net",
     "Conflicts": {
@@ -1005,6 +1885,20 @@
         "Confidence": 1,
         "Target": "model.props.hostname",
         "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "Microsoft.SignalRService/WebPubSub": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.hostname",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceBus/Namespaces": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
         "IsLiveState": false
       }
     }
@@ -1050,6 +1944,19 @@
     "Conflicts": null
   },
   {
+    "Label": "HTTP hostname",
+    "Kind": "Direct",
+    "Confidence": 0.5,
+    "Target": "model.props.topicsconfiguration.hostname",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.EventGrid/namespaces"
+    ],
+    "SampleValue": "egns9co-cfa8.norwayeast-1.eventgrid.azure.net",
+    "Conflicts": null
+  },
+  {
     "Label": "ID Scope",
     "Kind": "Direct",
     "Confidence": 1,
@@ -1089,6 +1996,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Immutable ID",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.immutableid",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Insights/dataCollectionRules"
+    ],
+    "SampleValue": "dcr-9db38fb6d20c4fc3ba908e792a6c3fa7",
+    "Conflicts": null
+  },
+  {
     "Label": "Inbound endpoints",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -1099,6 +2019,19 @@
       "Microsoft.Network/dnsResolvers"
     ],
     "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Inbound NAT rules",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/loadBalancers"
+    ],
+    "SampleValue": "-",
     "Conflicts": null
   },
   {
@@ -1144,6 +2077,19 @@
     }
   },
   {
+    "Label": "Integration Account",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Logic/workflows"
+    ],
+    "SampleValue": "--",
+    "Conflicts": null
+  },
+  {
     "Label": "Intent",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -1165,7 +2111,8 @@
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerInstance/containerGroups",
-      "Microsoft.Network/localNetworkGateways"
+      "Microsoft.Network/localNetworkGateways",
+      "Microsoft.Network/publicIPAddresses"
     ],
     "SampleValue": "---",
     "Conflicts": {
@@ -1180,6 +2127,13 @@
         "Kind": "Direct",
         "Confidence": 1,
         "Target": "model.props.gatewayipaddress",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/publicIPAddresses": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.ipaddress",
         "Notes": "exact value match",
         "IsLiveState": false
       }
@@ -1199,6 +2153,32 @@
     "Conflicts": null
   },
   {
+    "Label": "KEDA version",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.kedaconfiguration.version",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.App/managedEnvironments"
+    ],
+    "SampleValue": "2.18.1",
+    "Conflicts": null
+  },
+  {
+    "Label": "Key Vault",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.MachineLearningServices/workspaces"
+    ],
+    "SampleValue": "kv7s29-71a",
+    "Conflicts": null
+  },
+  {
     "Label": "Kind",
     "Kind": "Direct",
     "Confidence": 1,
@@ -1206,9 +2186,23 @@
     "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.EventGrid/topics"
+      "Microsoft.EventGrid/topics",
+      "unknown"
     ],
     "SampleValue": "Azure",
+    "Conflicts": null
+  },
+  {
+    "Label": "Kubernetes version",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.currentkubernetesversion",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ContainerService/ManagedClusters"
+    ],
+    "SampleValue": "1.35.6",
     "Conflicts": null
   },
   {
@@ -1219,9 +2213,38 @@
     "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
     "IsLiveState": true,
     "ObservedArmTypes": [
-      "Microsoft.Automation/AutomationAccounts/Runbooks"
+      "Microsoft.Automation/AutomationAccounts/Runbooks",
+      "microsoft.resourcegraph/queries"
     ],
     "SampleValue": "8/13/2026, 4:50 PM",
+    "Conflicts": {
+      "Microsoft.Automation/AutomationAccounts/Runbooks": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.lastmodifiedtime",
+        "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
+        "IsLiveState": true
+      },
+      "microsoft.resourcegraph/queries": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.timemodified",
+        "Notes": "transform: portal_timestamp",
+        "IsLiveState": true
+      }
+    }
+  },
+  {
+    "Label": "Last ownership update time",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/disks"
+    ],
+    "SampleValue": "-",
     "Conflicts": null
   },
   {
@@ -1251,6 +2274,45 @@
     "Conflicts": null
   },
   {
+    "Label": "Link References",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkSecurityPerimeters"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Linked Resource",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "unknown"
+    ],
+    "SampleValue": "law1-dh82vr",
+    "Conflicts": null
+  },
+  {
+    "Label": "Links",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkSecurityPerimeters"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
     "Label": "Load balancer",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -1277,6 +2339,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Load balancing rule",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/loadBalancers"
+    ],
+    "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
     "Label": "Local Authentication",
     "Kind": "NeedsReview",
     "Confidence": 0.2,
@@ -1286,7 +2361,8 @@
     "ObservedArmTypes": [
       "Microsoft.EventGrid/domains",
       "Microsoft.EventGrid/topics",
-      "Microsoft.EventHub/Namespaces"
+      "Microsoft.EventHub/Namespaces",
+      "Microsoft.ServiceBus/Namespaces"
     ],
     "SampleValue": "Enabled",
     "Conflicts": null
@@ -1299,20 +2375,35 @@
     "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.AlertsManagement/actionRules",
       "Microsoft.ApiManagement/service",
+      "Microsoft.App/jobs",
+      "Microsoft.App/managedEnvironments",
+      "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.Automation/AutomationAccounts/Runbooks",
       "Microsoft.Batch/batchAccounts",
       "Microsoft.Cache/Redis",
+      "Microsoft.Cache/redisEnterprise",
       "Microsoft.Cache/redisEnterprise/databases",
       "Microsoft.Cdn/profiles",
       "Microsoft.Cdn/profiles/afdendpoints",
       "Microsoft.CognitiveServices/accounts",
+      "microsoft.communication/communicationservices",
+      "microsoft.communication/emailservices",
       "Microsoft.Compute/availabilitySets",
+      "Microsoft.Compute/disks",
+      "Microsoft.Compute/galleries",
+      "Microsoft.Compute/galleries/images",
       "Microsoft.Compute/proximityPlacementGroups",
+      "Microsoft.Compute/restorePointCollections",
+      "Microsoft.Compute/snapshots",
       "Microsoft.Compute/virtualMachines",
+      "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.ContainerInstance/containerGroups",
       "Microsoft.ContainerRegistry/registries",
       "Microsoft.ContainerRegistry/registries/webhooks",
+      "Microsoft.ContainerService/ManagedClusters",
+      "microsoft.dashboard/grafana",
       "Microsoft.Databricks/accessConnectors",
       "Microsoft.Databricks/workspaces",
       "Microsoft.DataFactory/factories",
@@ -1326,56 +2417,111 @@
       "Microsoft.Devices/IotHubs",
       "Microsoft.Devices/provisioningServices",
       "Microsoft.DigitalTwins/digitalTwinsInstances",
+      "Microsoft.DocumentDB/mongoClusters",
       "Microsoft.EventGrid/domains",
+      "Microsoft.EventGrid/namespaces",
       "Microsoft.EventGrid/systemTopics",
       "Microsoft.EventGrid/topics",
       "Microsoft.EventHub/Namespaces",
       "Microsoft.EventHub/namespaces/eventhubs",
+      "Microsoft.Insights/ActionGroups",
+      "Microsoft.Insights/ActivityLogAlerts",
       "Microsoft.Insights/autoscaleSettings",
       "microsoft.insights/components",
       "Microsoft.Insights/dataCollectionEndpoints",
+      "Microsoft.Insights/dataCollectionRules",
+      "Microsoft.Insights/metricAlerts",
+      "Microsoft.Insights/scheduledQueryRules",
       "microsoft.insights/webtests",
       "Microsoft.KeyVault/vaults",
       "microsoft.loadtestservice/loadtests",
       "Microsoft.Logic/integrationAccounts",
+      "Microsoft.Logic/workflows",
+      "Microsoft.MachineLearningServices/workspaces",
       "Microsoft.Maintenance/maintenanceConfigurations",
       "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts",
       "Microsoft.Migrate/assessmentProjects",
       "Microsoft.Monitor/accounts",
       "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies",
+      "Microsoft.Network/applicationSecurityGroups",
       "Microsoft.Network/azureFirewalls",
       "Microsoft.Network/bastionHosts",
       "Microsoft.Network/dnsForwardingRulesets",
       "Microsoft.Network/dnsResolvers",
+      "Microsoft.Network/dnszones",
       "Microsoft.Network/FirewallPolicies",
+      "Microsoft.Network/IpGroups",
+      "Microsoft.Network/loadBalancers",
       "Microsoft.Network/localNetworkGateways",
       "Microsoft.Network/natGateways",
+      "Microsoft.Network/networkInterfaces",
+      "Microsoft.Network/networkManagers",
       "Microsoft.Network/networkSecurityGroups",
+      "Microsoft.Network/networkSecurityPerimeters",
+      "Microsoft.Network/privateDnsZones",
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "Microsoft.Network/privateEndpoints",
       "Microsoft.Network/privateLinkServices",
+      "Microsoft.Network/publicIPAddresses",
       "Microsoft.Network/routeFilters",
       "Microsoft.Network/routeTables",
       "Microsoft.Network/serviceEndpointPolicies",
+      "Microsoft.Network/trafficManagerProfiles",
       "Microsoft.Network/virtualNetworkGateways",
+      "Microsoft.Network/virtualNetworks",
       "Microsoft.Network/virtualWans",
       "Microsoft.NotificationHubs/namespaces",
       "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "microsoft.operationalinsights/querypacks",
       "Microsoft.OperationalInsights/workspaces",
       "Microsoft.OperationsManagement/solutions",
+      "Microsoft.Portal/dashboards",
       "Microsoft.Purview/accounts",
       "Microsoft.RecoveryServices/vaults",
       "Microsoft.Resources/templateSpecs",
+      "Microsoft.Search/searchServices",
+      "Microsoft.ServiceBus/Namespaces",
+      "Microsoft.ServiceFabric/managedclusters",
       "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub",
       "Microsoft.Sql/servers",
+      "Microsoft.Sql/servers/databases",
       "Microsoft.Sql/servers/elasticPools",
+      "Microsoft.Sql/servers/jobAgents",
+      "Microsoft.Storage/storageAccounts",
+      "Microsoft.StorageSync/storageSyncServices",
       "Microsoft.Synapse/workspaces",
       "Microsoft.Synapse/workspaces/sqlPools",
+      "microsoft.videoindexer/accounts",
       "Microsoft.Web/serverfarms",
+      "Microsoft.Web/staticSites",
       "unknown"
     ],
     "SampleValue": "Norway East",
     "Conflicts": {
       "Microsoft.CognitiveServices/accounts": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.MachineLearningServices/workspaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Search/searchServices": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly.",
+        "IsLiveState": false
+      },
+      "microsoft.videoindexer/accounts": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1431,6 +2577,13 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.EventGrid/namespaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.EventGrid/systemTopics": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
@@ -1480,7 +2633,42 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "microsoft.communication/communicationservices": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.location",
+        "Notes": "Raw \u0022global\u0022 vs portal \u0022Global\u0022 \u2014 same value, different casing.",
+        "IsLiveState": false
+      },
+      "microsoft.communication/emailservices": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.location",
+        "Notes": "Raw \u0022global\u0022 vs portal \u0022Global\u0022 \u2014 same value, different casing.",
+        "IsLiveState": false
+      },
       "Microsoft.Compute/availabilitySets": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Compute/disks": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Compute/galleries": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Compute/galleries/images": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1494,7 +2682,28 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.Compute/restorePointCollections": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Compute/snapshots": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.Compute/virtualMachines": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Compute/virtualMachineScaleSets": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1536,6 +2745,27 @@
         "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly.",
         "IsLiveState": false
       },
+      "Microsoft.Web/staticSites": {
+        "Kind": "Shortcut",
+        "Confidence": 0.3,
+        "Target": "model.location",
+        "Notes": "Region \u0027East US 2\u0027 isn\u0027t in config/azure-locations.json (stale fetch, or a new/preview region) \u2014 falling back to the raw ARM value, unverified. Re-run fetch-azure-reference-data.ps1.",
+        "IsLiveState": false
+      },
+      "Microsoft.App/jobs": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly.",
+        "IsLiveState": false
+      },
+      "Microsoft.App/managedEnvironments": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly.",
+        "IsLiveState": false
+      },
       "Microsoft.ContainerInstance/containerGroups": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
@@ -1557,7 +2787,28 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.ContainerService/ManagedClusters": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceFabric/managedclusters": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.Cache/Redis": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly.",
+        "IsLiveState": false
+      },
+      "Microsoft.Cache/redisEnterprise": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1578,6 +2829,13 @@
         "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly.",
         "IsLiveState": false
       },
+      "Microsoft.DocumentDB/mongoClusters": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.Sql/servers": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
@@ -1585,7 +2843,28 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.Sql/servers/databases": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.Sql/servers/elasticPools": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Sql/servers/jobAgents": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.AppConfiguration/configurationStores": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1606,6 +2885,20 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.SignalRService/WebPubSub": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "microsoft.dashboard/grafana": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.ApiManagement/service": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
@@ -1620,11 +2913,46 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.Logic/workflows": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceBus/Namespaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.AlertsManagement/actionRules": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.location",
+        "Notes": "Raw \u0022global\u0022 vs portal \u0022Global\u0022 \u2014 same value, different casing.",
+        "IsLiveState": false
+      },
       "Microsoft.Automation/AutomationAccounts/Runbooks": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Insights/ActionGroups": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly.",
+        "IsLiveState": false
+      },
+      "Microsoft.Insights/ActivityLogAlerts": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.location",
+        "Notes": "Raw \u0022global\u0022 vs portal \u0022Global\u0022 \u2014 same value, different casing.",
         "IsLiveState": false
       },
       "Microsoft.Insights/autoscaleSettings": {
@@ -1648,6 +2976,27 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.Insights/dataCollectionRules": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Insights/metricAlerts": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.location",
+        "Notes": "Raw \u0022global\u0022 vs portal \u0022Global\u0022 \u2014 same value, different casing.",
+        "IsLiveState": false
+      },
+      "Microsoft.Insights/scheduledQueryRules": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "microsoft.insights/webtests": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
@@ -1655,7 +3004,21 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "unknown": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.Monitor/accounts": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "microsoft.operationalinsights/querypacks": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1670,6 +3033,13 @@
         "IsLiveState": false
       },
       "Microsoft.OperationsManagement/solutions": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Portal/dashboards": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1732,6 +3102,13 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.Network/applicationSecurityGroups": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.Network/azureFirewalls": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
@@ -1753,7 +3130,28 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.Network/dnszones": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.location",
+        "Notes": "Raw \u0022global\u0022 vs portal \u0022Global\u0022 \u2014 same value, different casing.",
+        "IsLiveState": false
+      },
       "Microsoft.Network/FirewallPolicies": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/IpGroups": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/loadBalancers": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1774,6 +3172,20 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.Network/networkInterfaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/networkManagers": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.Network/networkSecurityGroups": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
@@ -1781,7 +3193,42 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.Network/networkSecurityPerimeters": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/privateDnsZones": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.location",
+        "Notes": "Raw \u0022global\u0022 vs portal \u0022Global\u0022 \u2014 same value, different casing.",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.location",
+        "Notes": "Raw \u0022global\u0022 vs portal \u0022Global\u0022 \u2014 same value, different casing.",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/privateEndpoints": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.Network/privateLinkServices": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/publicIPAddresses": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1809,6 +3256,13 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.Network/trafficManagerProfiles": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly.",
+        "IsLiveState": false
+      },
       "Microsoft.Network/virtualNetworkGateways": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
@@ -1816,14 +3270,14 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
-      "Microsoft.Network/virtualWans": {
+      "Microsoft.Network/virtualNetworks": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
-      "unknown": {
+      "Microsoft.Network/virtualWans": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
         "Target": "model.location",
@@ -1856,6 +3310,20 @@
         "Confidence": 1,
         "Target": "model.location",
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.StorageSync/storageSyncServices": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
+      "Microsoft.Storage/storageAccounts": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly.",
         "IsLiveState": false
       },
       "Microsoft.DesktopVirtualization/applicationgroups": {
@@ -1896,9 +3364,12 @@
     "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Cdn/profiles/afdendpoints"
+      "Microsoft.Cdn/profiles/afdendpoints",
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "microsoft.operationalinsights/querypacks",
+      "Microsoft.Portal/dashboards"
     ],
-    "SampleValue": "Global",
+    "SampleValue": "norwayeast",
     "Conflicts": null
   },
   {
@@ -1994,6 +3465,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Managed by",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/disks"
+    ],
+    "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
+    "Label": "Managed identity",
+    "Kind": "NotAddressable",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "Traceable via \u0027identity.type\u0027 (exact value match), but that\u0027s outside properties.*/kind/name/id/location \u2014 not reachable from a template.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "microsoft.videoindexer/accounts"
+    ],
+    "SampleValue": "System-assigned",
+    "Conflicts": null
+  },
+  {
     "Label": "Managed Identity object ID",
     "Kind": "NotAddressable",
     "Confidence": 0,
@@ -2059,6 +3556,45 @@
     "Conflicts": null
   },
   {
+    "Label": "Max number of record sets",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.maxnumberofrecordsets",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/dnszones"
+    ],
+    "SampleValue": "10000",
+    "Conflicts": null
+  },
+  {
+    "Label": "Max shares",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/disks"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "MCP Endpoint",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "microsoft.dashboard/grafana"
+    ],
+    "SampleValue": "https://grfobls6-wo-byceegbubtaybvc2.eno.grafana.azure.com/api/azure-mcp",
+    "Conflicts": null
+  },
+  {
     "Label": "Metrics ingestion endpoint",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -2098,6 +3634,19 @@
     "Conflicts": null
   },
   {
+    "Label": "MLflow tracking URI",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.mlflowtrackinguri",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.MachineLearningServices/workspaces"
+    ],
+    "SampleValue": "azureml://norwayeast.api.azureml.ms/mlflow/v1.0/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f7e533e01923b0a9/providers/Microsoft.MachineLearningServices/workspaces/mlwrc-5ff4m",
+    "Conflicts": null
+  },
+  {
     "Label": "Modified Time",
     "Kind": "NotAddressable",
     "Confidence": 0,
@@ -2111,73 +3660,130 @@
     "Conflicts": null
   },
   {
-    "Label": "Name",
+    "Label": "Modules",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Cache/redisEnterprise"
+    ],
+    "SampleValue": "--",
+    "Conflicts": null
+  },
+  {
+    "Label": "MongoDB version",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.serverversion",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.33) \u2014 verify by hand before trusting.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/mongoClusters"
+    ],
+    "SampleValue": "7.0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Monitor Status",
     "Kind": "Direct",
     "Confidence": 1,
-    "Target": "model.name",
+    "Target": "model.props.monitorconfig.profilemonitorstatus",
     "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/trafficManagerProfiles"
+    ],
+    "SampleValue": "Inactive",
+    "Conflicts": null
+  },
+  {
+    "Label": "MQTT broker",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.EventGrid/namespaces"
+    ],
+    "SampleValue": "Disabled",
+    "Conflicts": null
+  },
+  {
+    "Label": "Name",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Cdn/profiles",
       "Microsoft.Cdn/profiles/afdendpoints",
       "Microsoft.Compute/proximityPlacementGroups",
       "Microsoft.Logic/integrationAccounts",
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
       "Microsoft.NotificationHubs/namespaces",
       "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "microsoft.operationalinsights/querypacks",
+      "Microsoft.Portal/dashboards",
       "unknown"
     ],
     "SampleValue": "ppga5vrkskv",
-    "Conflicts": {
-      "Microsoft.Compute/proximityPlacementGroups": {
-        "Kind": "Direct",
-        "Confidence": 1,
-        "Target": "model.name",
-        "Notes": "exact value match",
-        "IsLiveState": false
-      },
-      "Microsoft.NotificationHubs/namespaces": {
-        "Kind": "Ambiguous",
-        "Confidence": 1,
-        "Target": "model.props.name",
-        "Notes": "Tied with model.name (similarity 1.00) \u2014 pick manually.",
-        "IsLiveState": false
-      },
-      "Microsoft.NotificationHubs/namespaces/notificationHubs": {
-        "Kind": "Ambiguous",
-        "Confidence": 1,
-        "Target": "model.props.name",
-        "Notes": "Tied with model.name (similarity 1.00) \u2014 pick manually.",
-        "IsLiveState": false
-      },
-      "Microsoft.Logic/integrationAccounts": {
-        "Kind": "Direct",
-        "Confidence": 1,
-        "Target": "model.name",
-        "Notes": "exact value match",
-        "IsLiveState": false
-      },
-      "Microsoft.Cdn/profiles": {
-        "Kind": "Direct",
-        "Confidence": 1,
-        "Target": "model.name",
-        "Notes": "exact value match",
-        "IsLiveState": false
-      },
-      "Microsoft.Cdn/profiles/afdendpoints": {
-        "Kind": "Direct",
-        "Confidence": 1,
-        "Target": "model.name",
-        "Notes": "exact value match",
-        "IsLiveState": false
-      },
-      "unknown": {
-        "Kind": "Direct",
-        "Confidence": 1,
-        "Target": "model.name",
-        "Notes": "exact value match",
-        "IsLiveState": false
-      }
-    }
+    "Conflicts": null
+  },
+  {
+    "Label": "Name server 1",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.nameservers[0]",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/dnszones"
+    ],
+    "SampleValue": "ns1-05.azure-dns.com.",
+    "Conflicts": null
+  },
+  {
+    "Label": "Name server 2",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.nameservers[1]",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/dnszones"
+    ],
+    "SampleValue": "ns2-05.azure-dns.net.",
+    "Conflicts": null
+  },
+  {
+    "Label": "Name server 3",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.nameservers[2]",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/dnszones"
+    ],
+    "SampleValue": "ns3-05.azure-dns.org.",
+    "Conflicts": null
+  },
+  {
+    "Label": "Name server 4",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.nameservers[3]",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/dnszones"
+    ],
+    "SampleValue": "ns4-05.azure-dns.info.",
+    "Conflicts": null
   },
   {
     "Label": "Namespace",
@@ -2236,6 +3842,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Network configuration",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ContainerService/ManagedClusters"
+    ],
+    "SampleValue": "Azure CNI Overlay",
+    "Conflicts": null
+  },
+  {
+    "Label": "Network interface",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/privateEndpoints"
+    ],
+    "SampleValue": "pe04-kvqau.nic.2f77ee8f-b614-46e9-a637-42ce696fe616",
+    "Conflicts": null
+  },
+  {
     "Label": "Next maintenance",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -2262,6 +3894,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Node pools",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ContainerService/ManagedClusters"
+    ],
+    "SampleValue": "1 node pool",
+    "Conflicts": null
+  },
+  {
+    "Label": "Node type count",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ServiceFabric/managedclusters"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
     "Label": "Non-TLS access",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -2269,9 +3927,10 @@
     "Notes": "single enum (clientProtocol), not a plain bool",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Cache/redisEnterprise",
       "Microsoft.Cache/redisEnterprise/databases"
     ],
-    "SampleValue": "Disabled",
+    "SampleValue": "--",
     "Conflicts": null
   },
   {
@@ -2284,7 +3943,7 @@
     "ObservedArmTypes": [
       "Microsoft.ManagedIdentity/userAssignedIdentities"
     ],
-    "SampleValue": "e5cf2f15-fc0d-40b9-a418-e705fa47b2f1",
+    "SampleValue": "27e89a65-5fd6-4263-8029-74a51a7e7ea7",
     "Conflicts": null
   },
   {
@@ -2295,10 +3954,12 @@
     "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Compute/disks",
       "Microsoft.Compute/virtualMachines",
+      "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.Web/serverfarms"
     ],
-    "SampleValue": "Linux (ubuntu 22.04)",
+    "SampleValue": "-",
     "Conflicts": null
   },
   {
@@ -2312,6 +3973,19 @@
       "Microsoft.OperationalInsights/workspaces"
     ],
     "SampleValue": "OK",
+    "Conflicts": null
+  },
+  {
+    "Label": "Orchestration mode",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.orchestrationmode",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/virtualMachineScaleSets"
+    ],
+    "SampleValue": "Uniform",
     "Conflicts": null
   },
   {
@@ -2341,6 +4015,19 @@
     "Conflicts": null
   },
   {
+    "Label": "OS state",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.osstate",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/galleries/images"
+    ],
+    "SampleValue": "Generalized",
+    "Conflicts": null
+  },
+  {
     "Label": "OS type",
     "Kind": "Direct",
     "Confidence": 1,
@@ -2348,6 +4035,7 @@
     "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Compute/galleries/images",
       "Microsoft.ContainerInstance/containerGroups"
     ],
     "SampleValue": "Linux",
@@ -2365,6 +4053,19 @@
       "Microsoft.Network/dnsResolvers"
     ],
     "SampleValue": "1",
+    "Conflicts": null
+  },
+  {
+    "Label": "Outbound rules",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/loadBalancers"
+    ],
+    "SampleValue": "-",
     "Conflicts": null
   },
   {
@@ -2408,6 +4109,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Partitions",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.partitioncount",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Search/searchServices"
+    ],
+    "SampleValue": "1",
+    "Conflicts": null
+  },
+  {
+    "Label": "Performance",
+    "Kind": "NotAddressable",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "Traceable via \u0027sku.tier\u0027 (exact value match), but that\u0027s outside properties.*/kind/name/id/location \u2014 not reachable from a template.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Storage/storageAccounts"
+    ],
+    "SampleValue": "Standard",
+    "Conflicts": null
+  },
+  {
     "Label": "Performance level",
     "Kind": "NotAddressable",
     "Confidence": 0,
@@ -2434,6 +4161,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Platform Type",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Insights/dataCollectionRules"
+    ],
+    "SampleValue": "All",
+    "Conflicts": null
+  },
+  {
     "Label": "Policy mode",
     "Kind": "Direct",
     "Confidence": 1,
@@ -2441,7 +4181,8 @@
     "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies"
+      "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies",
+      "Microsoft.Network/frontdoorwebapplicationfirewallpolicies"
     ],
     "SampleValue": "Prevention",
     "Conflicts": null
@@ -2525,6 +4266,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Power state",
+    "Kind": "Ambiguous",
+    "Confidence": 1,
+    "Target": "model.props.powerstate.code",
+    "Notes": "Tied with model.props.agentpoolprofiles[0].powerstate.code (similarity 1.00) \u2014 pick manually.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ContainerService/ManagedClusters"
+    ],
+    "SampleValue": "Running",
+    "Conflicts": null
+  },
+  {
     "Label": "Pricing and scale tier",
     "Kind": "ShortcutMismatch",
     "Confidence": 0,
@@ -2546,6 +4300,7 @@
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerRegistry/registries",
+      "microsoft.dashboard/grafana",
       "Microsoft.Web/serverfarms"
     ],
     "SampleValue": "B1",
@@ -2563,6 +4318,13 @@
         "Target": "model.sku_label",
         "Notes": "Verified: computed sku_label matches the captured portal value exactly.",
         "IsLiveState": false
+      },
+      "microsoft.dashboard/grafana": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_label",
+        "Notes": "Verified: computed sku_label matches the captured portal value exactly.",
+        "IsLiveState": false
       }
     }
   },
@@ -2574,15 +4336,21 @@
     "Notes": "Computed \u0022S0\u0022 does NOT match portal \u0022Standard\u0022 for this type \u2014 do not trust this shortcut here.",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.Cdn/profiles",
       "Microsoft.CognitiveServices/accounts",
+      "Microsoft.ContainerService/ManagedClusters",
       "Microsoft.Databricks/workspaces",
       "Microsoft.EventGrid/domains",
       "Microsoft.EventGrid/topics",
       "Microsoft.EventHub/Namespaces",
       "Microsoft.NotificationHubs/namespaces",
       "Microsoft.NotificationHubs/namespaces/notificationHubs",
-      "Microsoft.Sql/servers/elasticPools"
+      "Microsoft.Search/searchServices",
+      "Microsoft.ServiceBus/Namespaces",
+      "Microsoft.Sql/servers/databases",
+      "Microsoft.Sql/servers/elasticPools",
+      "Microsoft.Sql/servers/jobAgents"
     ],
     "SampleValue": "Standard",
     "Conflicts": {
@@ -2591,6 +4359,13 @@
         "Confidence": 0,
         "Target": "model.sku_label",
         "Notes": "Computed \u0022S0\u0022 does NOT match portal \u0022Standard\u0022 for this type \u2014 do not trust this shortcut here.",
+        "IsLiveState": false
+      },
+      "Microsoft.Search/searchServices": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.sku_label",
+        "Notes": "Computed \u0022free\u0022 vs portal \u0022Free\u0022 \u2014 same value, different casing/formatting. Usable, but the renderer needs its own text fixup to match the portal exactly.",
         "IsLiveState": false
       },
       "Microsoft.Databricks/workspaces": {
@@ -2635,11 +4410,46 @@
         "Notes": "portal shows \u0022Free\u0022 but no sku object found at root or properties.sku",
         "IsLiveState": false
       },
+      "Microsoft.ContainerService/ManagedClusters": {
+        "Kind": "ShortcutMismatch",
+        "Confidence": 0,
+        "Target": "model.sku_label",
+        "Notes": "Computed \u0022Free (Base)\u0022 does NOT match portal \u0022Free\u0022 for this type \u2014 do not trust this shortcut here.",
+        "IsLiveState": false
+      },
+      "Microsoft.Sql/servers/databases": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_label",
+        "Notes": "Verified: computed sku_label matches the captured portal value exactly.",
+        "IsLiveState": false
+      },
       "Microsoft.Sql/servers/elasticPools": {
         "Kind": "ShortcutMismatch",
         "Confidence": 0,
         "Target": "model.sku_label",
         "Notes": "Computed \u0022Basic (BasicPool)\u0022 does NOT match portal \u0022Basic: 50 eDTUs\u0022 for this type \u2014 do not trust this shortcut here.",
+        "IsLiveState": false
+      },
+      "Microsoft.Sql/servers/jobAgents": {
+        "Kind": "ShortcutMismatch",
+        "Confidence": 0,
+        "Target": "model.sku_label",
+        "Notes": "portal shows \u0022JA100\u0022 but no sku object found at root or properties.sku",
+        "IsLiveState": false
+      },
+      "Microsoft.AppConfiguration/configurationStores": {
+        "Kind": "ShortcutMismatch",
+        "Confidence": 0,
+        "Target": "model.sku_label",
+        "Notes": "Computed \u0022free\u0022 does NOT match portal \u0022Free (Click to upgrade)\u0022 for this type \u2014 do not trust this shortcut here.",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceBus/Namespaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_label",
+        "Notes": "Verified: computed sku_label matches the captured portal value exactly.",
         "IsLiveState": false
       },
       "Microsoft.Cdn/profiles": {
@@ -2730,27 +4540,102 @@
     "Conflicts": null
   },
   {
-    "Label": "Provisioning state",
+    "Label": "Private IPv4 address",
+    "Kind": "Direct",
+    "Confidence": 0.6666666666666666,
+    "Target": "model.props.ipconfigurations[0].properties.privateipaddress",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkInterfaces"
+    ],
+    "SampleValue": "10.41.0.4",
+    "Conflicts": null
+  },
+  {
+    "Label": "Private IPv6 address",
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkInterfaces"
+    ],
+    "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
+    "Label": "Private link resource",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/privateEndpoints"
+    ],
+    "SampleValue": "stgrpess3j",
+    "Conflicts": null
+  },
+  {
+    "Label": "Profiles",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkSecurityPerimeters"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Provisioning State",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.provisioningstate",
+    "Notes": "exact value match",
     "IsLiveState": true,
     "ObservedArmTypes": [
       "Microsoft.ContainerRegistry/registries",
       "Microsoft.ContainerRegistry/registries/webhooks",
+      "microsoft.dashboard/grafana",
       "Microsoft.DigitalTwins/digitalTwinsInstances",
+      "Microsoft.EventGrid/namespaces",
+      "Microsoft.MachineLearningServices/workspaces",
+      "Microsoft.Network/applicationSecurityGroups",
       "Microsoft.Network/azureFirewalls",
       "Microsoft.Network/bastionHosts",
-      "Microsoft.Network/FirewallPolicies"
+      "Microsoft.Network/FirewallPolicies",
+      "Microsoft.Network/IpGroups",
+      "Microsoft.Network/networkManagers",
+      "Microsoft.Network/privateEndpoints",
+      "Microsoft.ServiceBus/Namespaces",
+      "Microsoft.Storage/storageAccounts"
     ],
-    "SampleValue": "Active",
+    "SampleValue": "Succeeded",
     "Conflicts": {
+      "Microsoft.MachineLearningServices/workspaces": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
       "Microsoft.DigitalTwins/digitalTwinsInstances": {
         "Kind": "Unresolved",
         "Confidence": 0,
         "Target": null,
         "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": true
+      },
+      "Microsoft.EventGrid/namespaces": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
         "IsLiveState": true
       },
       "Microsoft.ContainerRegistry/registries": {
@@ -2761,6 +4646,27 @@
         "IsLiveState": true
       },
       "Microsoft.ContainerRegistry/registries/webhooks": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
+      "microsoft.dashboard/grafana": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
+      "Microsoft.ServiceBus/Namespaces": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
+      "Microsoft.Network/applicationSecurityGroups": {
         "Kind": "Direct",
         "Confidence": 1,
         "Target": "model.props.provisioningstate",
@@ -2781,11 +4687,39 @@
         "Notes": "exact value match",
         "IsLiveState": true
       },
+      "Microsoft.Network/IpGroups": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
+      "Microsoft.Network/networkManagers": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
+      "Microsoft.Network/privateEndpoints": {
+        "Kind": "Ambiguous",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "Tied with model.props.privatelinkserviceconnections[0].properties.provisioningstate (similarity 1.00) \u2014 pick manually.",
+        "IsLiveState": true
+      },
       "Microsoft.Network/bastionHosts": {
         "Kind": "Ambiguous",
         "Confidence": 1,
         "Target": "model.props.provisioningstate",
         "Notes": "Tied with model.props.ipconfigurations[0].properties.provisioningstate (similarity 1.00) \u2014 pick manually.",
+        "IsLiveState": true
+      },
+      "Microsoft.Storage/storageAccounts": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.provisioningstate",
+        "Notes": "exact value match",
         "IsLiveState": true
       }
     }
@@ -2837,9 +4771,23 @@
     "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.Network/virtualNetworkGateways"
     ],
-    "SampleValue": "20.100.45.73 (pipn1pda-f4)",
+    "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
+    "Label": "Public IP address (IPv6)",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/virtualMachineScaleSets"
+    ],
+    "SampleValue": "-",
     "Conflicts": null
   },
   {
@@ -2876,7 +4824,21 @@
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Network/bastionHosts"
+      "Microsoft.Network/bastionHosts",
+      "Microsoft.Network/networkInterfaces"
+    ],
+    "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
+    "Label": "Public IPv6 address",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkInterfaces"
     ],
     "SampleValue": "-",
     "Conflicts": null
@@ -2908,17 +4870,46 @@
     "Conflicts": null
   },
   {
-    "Label": "Purge protection",
-    "Kind": "Direct",
-    "Confidence": 1,
-    "Target": "model.props.enablepurgeprotection",
-    "Notes": "boolean\u2192friendly-word",
+    "Label": "Publisher :: Offer :: SKU",
+    "Kind": "ShortcutMismatch",
+    "Confidence": 0,
+    "Target": "model.sku_label",
+    "Notes": "portal shows \u0022ardl :: ardl-offer :: ardl-sku\u0022 but no sku object found at root or properties.sku",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Compute/galleries/images"
+    ],
+    "SampleValue": "ardl :: ardl-offer :: ardl-sku",
+    "Conflicts": null
+  },
+  {
+    "Label": "Purge protection",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.KeyVault/vaults"
     ],
-    "SampleValue": "Enabled",
-    "Conflicts": null
+    "SampleValue": "N/A",
+    "Conflicts": {
+      "Microsoft.AppConfiguration/configurationStores": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      },
+      "Microsoft.KeyVault/vaults": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.enablepurgeprotection",
+        "Notes": "boolean\u2192friendly-word",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Query endpoint",
@@ -2931,6 +4922,19 @@
       "Microsoft.Monitor/accounts"
     ],
     "SampleValue": "https://amona-g-1-e5-dmegf7e4bre8c4f3.norwayeast.prometheus.monitor.azure.com",
+    "Conflicts": null
+  },
+  {
+    "Label": "Query Name",
+    "Kind": "Direct",
+    "Confidence": 0.5,
+    "Target": "model.name",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "microsoft.resourcegraph/queries"
+    ],
+    "SampleValue": "rgq0ww670ks",
     "Conflicts": null
   },
   {
@@ -2947,6 +4951,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Read Locations",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.readlocations[0].locationname",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/databaseAccounts"
+    ],
+    "SampleValue": "Sweden Central",
+    "Conflicts": null
+  },
+  {
+    "Label": "Read region",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/mongoClusters"
+    ],
+    "SampleValue": "Not enabled",
+    "Conflicts": null
+  },
+  {
     "Label": "Reboot setting",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -2957,6 +4987,59 @@
       "Microsoft.Maintenance/maintenanceConfigurations"
     ],
     "SampleValue": "Reboot if required",
+    "Conflicts": null
+  },
+  {
+    "Label": "Recordsets",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.numberofrecordsets",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/dnszones",
+      "Microsoft.Network/privateDnsZones"
+    ],
+    "SampleValue": "2",
+    "Conflicts": null
+  },
+  {
+    "Label": "Replicas",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Search/searchServices"
+    ],
+    "SampleValue": "1 (No SLA)",
+    "Conflicts": null
+  },
+  {
+    "Label": "Replication",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Storage/storageAccounts"
+    ],
+    "SampleValue": "Locally redundant storage (LRS)",
+    "Conflicts": null
+  },
+  {
+    "Label": "Request/Response",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.privatelinkserviceconnections[0].properties.privatelinkserviceconnectionstate.description",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/privateEndpoints"
+    ],
+    "SampleValue": "Auto-Approved",
     "Conflicts": null
   },
   {
@@ -2980,21 +5063,36 @@
     "Notes": "Verified: resource group name extracted from \u0027id\u0027 matches the portal value exactly.",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.AlertsManagement/actionRules",
       "Microsoft.ApiManagement/service",
+      "Microsoft.App/jobs",
+      "Microsoft.App/managedEnvironments",
+      "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.Automation/AutomationAccounts/Runbooks",
       "Microsoft.Batch/batchAccounts",
       "Microsoft.Cache/Redis",
+      "Microsoft.Cache/redisEnterprise",
       "Microsoft.Cache/redisEnterprise/databases",
       "Microsoft.Cdn/profiles",
       "Microsoft.Cdn/profiles/afdendpoints",
       "Microsoft.CognitiveServices/accounts",
+      "microsoft.communication/communicationservices",
+      "microsoft.communication/emailservices",
       "Microsoft.Compute/availabilitySets",
+      "Microsoft.Compute/disks",
+      "Microsoft.Compute/galleries",
+      "Microsoft.Compute/galleries/images",
       "Microsoft.Compute/proximityPlacementGroups",
+      "Microsoft.Compute/restorePointCollections",
+      "Microsoft.Compute/snapshots",
       "Microsoft.Compute/virtualMachines",
+      "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.ContainerInstance/containerGroups",
       "Microsoft.ContainerRegistry/registries",
       "Microsoft.ContainerRegistry/registries/webhooks",
+      "Microsoft.ContainerService/ManagedClusters",
       "Microsoft.ContainerService/managedClusters/agentPools",
+      "microsoft.dashboard/grafana",
       "Microsoft.Databricks/accessConnectors",
       "Microsoft.Databricks/workspaces",
       "Microsoft.DataFactory/factories",
@@ -3009,62 +5107,99 @@
       "Microsoft.Devices/IotHubs",
       "Microsoft.Devices/provisioningServices",
       "Microsoft.DigitalTwins/digitalTwinsInstances",
+      "Microsoft.DocumentDB/databaseAccounts",
       "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "Microsoft.DocumentDB/mongoClusters",
       "Microsoft.EventGrid/domains",
+      "Microsoft.EventGrid/namespaces",
       "Microsoft.EventGrid/systemTopics",
       "Microsoft.EventGrid/topics",
       "Microsoft.EventHub/Namespaces",
       "Microsoft.EventHub/namespaces/eventhubs",
+      "Microsoft.Insights/ActionGroups",
+      "Microsoft.Insights/ActivityLogAlerts",
       "Microsoft.Insights/autoscaleSettings",
       "microsoft.insights/components",
       "Microsoft.Insights/dataCollectionEndpoints",
+      "Microsoft.Insights/dataCollectionRules",
+      "Microsoft.Insights/metricAlerts",
+      "Microsoft.Insights/scheduledQueryRules",
       "microsoft.insights/webtests",
       "Microsoft.KeyVault/vaults",
       "microsoft.loadtestservice/loadtests",
       "Microsoft.Logic/integrationAccounts",
+      "Microsoft.Logic/workflows",
+      "Microsoft.MachineLearningServices/workspaces",
       "Microsoft.Maintenance/maintenanceConfigurations",
       "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts",
       "Microsoft.Migrate/assessmentProjects",
       "Microsoft.Monitor/accounts",
       "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies",
+      "Microsoft.Network/applicationSecurityGroups",
       "Microsoft.Network/azureFirewalls",
       "Microsoft.Network/bastionHosts",
       "Microsoft.Network/dnsForwardingRulesets",
       "Microsoft.Network/dnsResolvers",
       "Microsoft.Network/dnsResolvers/inboundEndpoints",
       "Microsoft.Network/dnsResolvers/outboundEndpoints",
+      "Microsoft.Network/dnszones",
       "Microsoft.Network/FirewallPolicies",
       "Microsoft.Network/FirewallPolicies/RuleCollectionGroups",
+      "Microsoft.Network/frontdoorwebapplicationfirewallpolicies",
+      "Microsoft.Network/IpGroups",
+      "Microsoft.Network/loadBalancers",
       "Microsoft.Network/loadBalancers/inboundNatRules",
       "Microsoft.Network/localNetworkGateways",
       "Microsoft.Network/natGateways",
+      "Microsoft.Network/networkInterfaces",
+      "Microsoft.Network/networkManagers",
       "Microsoft.Network/networkSecurityGroups",
       "Microsoft.Network/networkSecurityGroups/securityRules",
+      "Microsoft.Network/networkSecurityPerimeters",
+      "Microsoft.Network/privateDnsZones",
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "Microsoft.Network/privateEndpoints",
       "Microsoft.Network/privateLinkServices",
+      "Microsoft.Network/publicIPAddresses",
       "Microsoft.Network/routeFilters",
       "Microsoft.Network/routeTables",
       "Microsoft.Network/routeTables/routes",
       "Microsoft.Network/serviceEndpointPolicies",
+      "Microsoft.Network/trafficManagerProfiles",
       "Microsoft.Network/virtualNetworkGateways",
+      "Microsoft.Network/virtualNetworks",
       "Microsoft.Network/virtualNetworks/subnets",
       "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
       "Microsoft.Network/virtualWans",
       "Microsoft.NotificationHubs/namespaces",
       "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "microsoft.operationalinsights/querypacks",
       "Microsoft.OperationalInsights/workspaces",
       "Microsoft.OperationsManagement/solutions",
+      "Microsoft.Portal/dashboards",
       "Microsoft.Purview/accounts",
       "Microsoft.RecoveryServices/vaults",
+      "microsoft.resourcegraph/queries",
       "Microsoft.Resources/templateSpecs",
       "Microsoft.Resources/templateSpecs/versions",
+      "Microsoft.Search/searchServices",
+      "Microsoft.ServiceBus/Namespaces",
+      "Microsoft.ServiceFabric/managedclusters",
       "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub",
       "Microsoft.Sql/servers",
+      "Microsoft.Sql/servers/databases",
       "Microsoft.Sql/servers/elasticPools",
+      "Microsoft.Sql/servers/jobAgents",
+      "Microsoft.Storage/storageAccounts",
       "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "Microsoft.StorageSync/storageSyncServices",
       "Microsoft.Synapse/workspaces",
       "Microsoft.Synapse/workspaces/sqlPools",
+      "microsoft.videoindexer/accounts",
       "Microsoft.Web/serverfarms",
+      "Microsoft.Web/staticSites",
       "unknown"
     ],
     "SampleValue": "rg-ardl-b1d8ed6affe79ba7",
@@ -3078,9 +5213,12 @@
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Cdn/profiles/afdendpoints"
+      "Microsoft.Cdn/profiles/afdendpoints",
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "microsoft.operationalinsights/querypacks",
+      "Microsoft.Portal/dashboards"
     ],
-    "SampleValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d4acf6ea90680855",
+    "SampleValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1fe5141e0d0dffeb",
     "Conflicts": null
   },
   {
@@ -3116,11 +5254,15 @@
       "Microsoft.Network/FirewallPolicies/RuleCollectionGroups",
       "Microsoft.Network/loadBalancers/inboundNatRules",
       "Microsoft.Network/networkSecurityGroups/securityRules",
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
       "Microsoft.Network/routeTables/routes",
       "Microsoft.Network/virtualNetworks/subnets",
       "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+      "microsoft.operationalinsights/querypacks",
+      "Microsoft.Portal/dashboards",
       "Microsoft.Resources/templateSpecs/versions",
-      "Microsoft.Storage/storageAccounts/fileServices/shares"
+      "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "unknown"
     ],
     "SampleValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8cbf4e82338a582d/providers/Microsoft.Databricks/accessConnectors/dbacarwx6-ka",
     "Conflicts": null
@@ -3133,9 +5275,25 @@
     "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Cdn/profiles/afdendpoints"
+      "Microsoft.Cdn/profiles/afdendpoints",
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "microsoft.operationalinsights/querypacks",
+      "Microsoft.Portal/dashboards"
     ],
-    "SampleValue": "Microsoft.Cdn/profiles/afdEndpoints",
+    "SampleValue": "Microsoft.OperationalInsights/querypacks",
+    "Conflicts": null
+  },
+  {
+    "Label": "Restore points",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/restorePointCollections"
+    ],
+    "SampleValue": "0",
     "Conflicts": null
   },
   {
@@ -3152,6 +5310,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Routing Method",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.trafficroutingmethod",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/trafficManagerProfiles"
+    ],
+    "SampleValue": "Performance",
+    "Conflicts": null
+  },
+  {
     "Label": "Runbook type",
     "Kind": "Direct",
     "Confidence": 1,
@@ -3162,6 +5333,19 @@
       "Microsoft.Automation/AutomationAccounts/Runbooks"
     ],
     "SampleValue": "PowerShell",
+    "Conflicts": null
+  },
+  {
+    "Label": "Runs last 24 hours",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Logic/workflows"
+    ],
+    "SampleValue": "0 successful, 0 failed",
     "Conflicts": null
   },
   {
@@ -3208,12 +5392,65 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.ContainerRegistry/registries/webhooks"
+      "Microsoft.ContainerRegistry/registries/webhooks",
+      "microsoft.resourcegraph/queries"
     ],
     "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
+    "Label": "Scope (Cross-tenant)",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkManagers"
+    ],
+    "SampleValue": "Management groups (0); Subscriptions (0)",
+    "Conflicts": null
+  },
+  {
+    "Label": "Scope (In-tenant)",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkManagers"
+    ],
+    "SampleValue": "Management groups (0); Subscriptions (1)",
+    "Conflicts": null
+  },
+  {
+    "Label": "Search units",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.replicacount",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting (2 addressable value-matching leaves, none strongly name-related to the label).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Search/searchServices"
+    ],
+    "SampleValue": "1",
+    "Conflicts": null
+  },
+  {
+    "Label": "Security type",
+    "Kind": "NotAddressable",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "Traceable via \u0027sku.tier\u0027 (exact value match), but that\u0027s outside properties.*/kind/name/id/location \u2014 not reachable from a template.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/disks"
+    ],
+    "SampleValue": "Standard",
     "Conflicts": null
   },
   {
@@ -3240,9 +5477,24 @@
       "Microsoft.Cache/redisEnterprise/databases",
       "Microsoft.DBforPostgreSQL/flexibleServers",
       "Microsoft.Sql/servers",
-      "Microsoft.Sql/servers/elasticPools"
+      "Microsoft.Sql/servers/databases",
+      "Microsoft.Sql/servers/elasticPools",
+      "Microsoft.Sql/servers/jobAgents"
     ],
     "SampleValue": "redisent61yjsz2q",
+    "Conflicts": null
+  },
+  {
+    "Label": "Server status",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Cache/redisEnterprise"
+    ],
+    "SampleValue": "Running - Balanced B0",
     "Conflicts": null
   },
   {
@@ -3328,6 +5580,47 @@
     "Conflicts": null
   },
   {
+    "Label": "Severity",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Insights/ActivityLogAlerts",
+      "Microsoft.Insights/metricAlerts",
+      "Microsoft.Insights/scheduledQueryRules"
+    ],
+    "SampleValue": "4 - Verbose",
+    "Conflicts": null
+  },
+  {
+    "Label": "SF Explorer",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ServiceFabric/managedclusters"
+    ],
+    "SampleValue": "https://ardlsfmcjj9reg.norwayeast.cloudapp.azure.com:19080/Explorer",
+    "Conflicts": null
+  },
+  {
+    "Label": "Shard count",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.sharding.shardcount",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/mongoClusters"
+    ],
+    "SampleValue": "1",
+    "Conflicts": null
+  },
+  {
     "Label": "Size",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -3335,28 +5628,44 @@
     "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Compute/virtualMachines"
+      "Microsoft.Compute/snapshots",
+      "Microsoft.Compute/virtualMachines",
+      "Microsoft.Compute/virtualMachineScaleSets",
+      "microsoft.dashboard/grafana"
     ],
-    "SampleValue": "Standard D2s v5 (2 vcpus, 8 GiB memory)",
+    "SampleValue": "4 GiB",
     "Conflicts": null
   },
   {
-    "Label": "SKU",
-    "Kind": "ShortcutMismatch",
-    "Confidence": 0,
+    "Label": "Sku",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
     "Target": "model.sku_label",
-    "Notes": "portal shows \u0022Standard\u0022 but no sku object found at root or properties.sku",
+    "Notes": "Verified: computed sku_label matches the captured portal value exactly.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerInstance/containerGroups",
+      "Microsoft.ContainerService/ManagedClusters",
       "Microsoft.DataMigration/services",
       "Microsoft.Network/azureFirewalls",
+      "Microsoft.Network/loadBalancers",
       "Microsoft.Network/natGateways",
+      "Microsoft.Network/publicIPAddresses",
       "Microsoft.Network/virtualNetworkGateways",
-      "Microsoft.SignalRService/SignalR"
+      "Microsoft.ServiceFabric/managedclusters",
+      "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub",
+      "Microsoft.Web/staticSites"
     ],
-    "SampleValue": "Standard",
+    "SampleValue": "Free",
     "Conflicts": {
+      "Microsoft.Web/staticSites": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_label",
+        "Notes": "Verified: computed sku_label matches the captured portal value exactly.",
+        "IsLiveState": false
+      },
       "Microsoft.ContainerInstance/containerGroups": {
         "Kind": "ShortcutMismatch",
         "Confidence": 0,
@@ -3364,7 +5673,28 @@
         "Notes": "portal shows \u0022Standard\u0022 but no sku object found at root or properties.sku",
         "IsLiveState": false
       },
+      "Microsoft.ContainerService/ManagedClusters": {
+        "Kind": "ShortcutMismatch",
+        "Confidence": 0,
+        "Target": "model.sku_label",
+        "Notes": "Computed \u0022Free (Base)\u0022 does NOT match portal \u0022Base\u0022 for this type \u2014 do not trust this shortcut here.",
+        "IsLiveState": false
+      },
+      "Microsoft.ServiceFabric/managedclusters": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_label",
+        "Notes": "Verified: computed sku_label matches the captured portal value exactly.",
+        "IsLiveState": false
+      },
       "Microsoft.SignalRService/SignalR": {
+        "Kind": "ShortcutMismatch",
+        "Confidence": 0,
+        "Target": "model.sku_label",
+        "Notes": "Computed \u0022Free (Free_F1)\u0022 does NOT match portal \u0022Free_F1\u0022 for this type \u2014 do not trust this shortcut here.",
+        "IsLiveState": false
+      },
+      "Microsoft.SignalRService/WebPubSub": {
         "Kind": "ShortcutMismatch",
         "Confidence": 0,
         "Target": "model.sku_label",
@@ -3385,7 +5715,21 @@
         "Notes": "Computed \u0022Basic (AZFW_VNet)\u0022 does NOT match portal \u0022Basic(change)\u0022 for this type \u2014 do not trust this shortcut here.",
         "IsLiveState": false
       },
+      "Microsoft.Network/loadBalancers": {
+        "Kind": "ShortcutMismatch",
+        "Confidence": 0,
+        "Target": "model.sku_label",
+        "Notes": "Computed \u0022Regional (Standard)\u0022 does NOT match portal \u0022Standard\u0022 for this type \u2014 do not trust this shortcut here.",
+        "IsLiveState": false
+      },
       "Microsoft.Network/natGateways": {
+        "Kind": "ShortcutMismatch",
+        "Confidence": 0,
+        "Target": "model.sku_label",
+        "Notes": "Computed \u0022Regional (Standard)\u0022 does NOT match portal \u0022Standard\u0022 for this type \u2014 do not trust this shortcut here.",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/publicIPAddresses": {
         "Kind": "ShortcutMismatch",
         "Confidence": 0,
         "Target": "model.sku_label",
@@ -3428,6 +5772,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Snapshot access state",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/snapshots"
+    ],
+    "SampleValue": "Available",
+    "Conflicts": null
+  },
+  {
+    "Label": "Soft delete",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/galleries"
+    ],
+    "SampleValue": "Disabled",
+    "Conflicts": null
+  },
+  {
     "Label": "Soft delete (Preview)",
     "Kind": "Direct",
     "Confidence": 1,
@@ -3442,16 +5812,32 @@
   },
   {
     "Label": "Soft-delete",
-    "Kind": "Direct",
-    "Confidence": 1,
-    "Target": "model.props.enablesoftdelete",
-    "Notes": "boolean\u2192friendly-word",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.KeyVault/vaults"
     ],
-    "SampleValue": "Enabled",
-    "Conflicts": null
+    "SampleValue": "N/A",
+    "Conflicts": {
+      "Microsoft.AppConfiguration/configurationStores": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      },
+      "Microsoft.KeyVault/vaults": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.enablesoftdelete",
+        "Notes": "boolean\u2192friendly-word",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Solution",
@@ -3474,6 +5860,7 @@
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Compute/snapshots",
       "Microsoft.EventGrid/systemTopics"
     ],
     "SampleValue": "stz1i5gup3",
@@ -3545,6 +5932,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Static IP",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.staticip",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.App/managedEnvironments"
+    ],
+    "SampleValue": "20.100.251.10",
+    "Conflicts": null
+  },
+  {
     "Label": "Status",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -3553,12 +5953,20 @@
     "IsLiveState": true,
     "ObservedArmTypes": [
       "Microsoft.ApiManagement/service",
+      "Microsoft.App/managedEnvironments",
+      "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.Automation/AutomationAccounts/Runbooks",
       "Microsoft.Batch/batchAccounts",
       "Microsoft.Cache/Redis",
       "Microsoft.Cdn/profiles",
       "Microsoft.CognitiveServices/accounts",
+      "microsoft.communication/communicationservices",
+      "microsoft.communication/emailservices",
+      "Microsoft.Compute/galleries",
+      "Microsoft.Compute/galleries/images",
+      "Microsoft.Compute/restorePointCollections",
       "Microsoft.Compute/virtualMachines",
+      "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.ContainerInstance/containerGroups",
       "Microsoft.ContainerRegistry/registries/webhooks",
       "Microsoft.Databricks/workspaces",
@@ -3567,32 +5975,56 @@
       "Microsoft.DBforPostgreSQL/flexibleServers",
       "Microsoft.Devices/IotHubs",
       "Microsoft.Devices/provisioningServices",
+      "Microsoft.DocumentDB/databaseAccounts",
+      "Microsoft.DocumentDB/mongoClusters",
       "Microsoft.EventGrid/domains",
       "Microsoft.EventGrid/systemTopics",
       "Microsoft.EventGrid/topics",
       "Microsoft.EventHub/Namespaces",
       "Microsoft.EventHub/namespaces/eventhubs",
       "microsoft.loadtestservice/loadtests",
+      "Microsoft.Logic/workflows",
+      "Microsoft.Network/frontdoorwebapplicationfirewallpolicies",
       "Microsoft.Network/privateLinkServices",
       "Microsoft.Network/routeFilters",
+      "Microsoft.Network/trafficManagerProfiles",
       "Microsoft.Network/virtualWans",
       "Microsoft.NotificationHubs/namespaces",
       "Microsoft.NotificationHubs/namespaces/notificationHubs",
       "Microsoft.OperationalInsights/workspaces",
       "Microsoft.Purview/accounts",
+      "Microsoft.Search/searchServices",
       "Microsoft.ServiceBus/namespaces/queues",
       "Microsoft.ServiceBus/namespaces/topics",
       "Microsoft.ServiceBus/namespaces/topics/subscriptions",
       "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub",
       "Microsoft.Sql/servers",
+      "Microsoft.Sql/servers/databases",
       "Microsoft.Sql/servers/elasticPools",
+      "Microsoft.Sql/servers/jobAgents",
       "Microsoft.Synapse/workspaces",
       "Microsoft.Synapse/workspaces/sqlPools",
+      "microsoft.videoindexer/accounts",
       "Microsoft.Web/serverfarms"
     ],
     "SampleValue": "Active",
     "Conflicts": {
       "Microsoft.CognitiveServices/accounts": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
+        "IsLiveState": true
+      },
+      "Microsoft.Search/searchServices": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.status",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
+      "microsoft.videoindexer/accounts": {
         "Kind": "Unresolved",
         "Confidence": 0,
         "Target": null,
@@ -3683,7 +6115,49 @@
         "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
         "IsLiveState": true
       },
+      "microsoft.communication/communicationservices": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
+        "IsLiveState": true
+      },
+      "microsoft.communication/emailservices": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
+        "IsLiveState": true
+      },
+      "Microsoft.Compute/galleries": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.provisioningstate",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": true
+      },
+      "Microsoft.Compute/galleries/images": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.provisioningstate",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": true
+      },
+      "Microsoft.Compute/restorePointCollections": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.provisioningstate",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": true
+      },
       "Microsoft.Compute/virtualMachines": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
+        "IsLiveState": true
+      },
+      "Microsoft.Compute/virtualMachineScaleSets": {
         "Kind": "Unresolved",
         "Confidence": 0,
         "Target": null,
@@ -3718,6 +6192,13 @@
         "Notes": "exact value match",
         "IsLiveState": true
       },
+      "Microsoft.App/managedEnvironments": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.provisioningstate",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": true
+      },
       "Microsoft.ContainerInstance/containerGroups": {
         "Kind": "NeedsReview",
         "Confidence": 0.2,
@@ -3746,11 +6227,32 @@
         "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
         "IsLiveState": true
       },
+      "Microsoft.DocumentDB/databaseAccounts": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
+        "IsLiveState": true
+      },
+      "Microsoft.DocumentDB/mongoClusters": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.clusterstatus",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
       "Microsoft.Sql/servers": {
         "Kind": "Unresolved",
         "Confidence": 0,
         "Target": null,
         "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
+        "IsLiveState": true
+      },
+      "Microsoft.Sql/servers/databases": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.status",
+        "Notes": "exact value match",
         "IsLiveState": true
       },
       "Microsoft.Sql/servers/elasticPools": {
@@ -3760,7 +6262,28 @@
         "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
         "IsLiveState": true
       },
+      "Microsoft.Sql/servers/jobAgents": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
+        "IsLiveState": true
+      },
+      "Microsoft.AppConfiguration/configurationStores": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.provisioningstate",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": true
+      },
       "Microsoft.SignalRService/SignalR": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.provisioningstate",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "IsLiveState": true
+      },
+      "Microsoft.SignalRService/WebPubSub": {
         "Kind": "NeedsReview",
         "Confidence": 0.2,
         "Target": "model.props.provisioningstate",
@@ -3772,6 +6295,13 @@
         "Confidence": 0,
         "Target": null,
         "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
+        "IsLiveState": true
+      },
+      "Microsoft.Logic/workflows": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.state",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
         "IsLiveState": true
       },
       "Microsoft.ServiceBus/namespaces/queues": {
@@ -3830,6 +6360,13 @@
         "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
         "IsLiveState": true
       },
+      "Microsoft.Network/frontdoorwebapplicationfirewallpolicies": {
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.policysettings.enabledstate",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting (3 addressable value-matching leaves, none strongly name-related to the label).",
+        "IsLiveState": true
+      },
       "Microsoft.Network/privateLinkServices": {
         "Kind": "NeedsReview",
         "Confidence": 0.2,
@@ -3844,6 +6381,13 @@
         "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
         "IsLiveState": true
       },
+      "Microsoft.Network/trafficManagerProfiles": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.profilestatus",
+        "Notes": "exact value match",
+        "IsLiveState": true
+      },
       "Microsoft.Network/virtualWans": {
         "Kind": "NeedsReview",
         "Confidence": 0.2,
@@ -3852,6 +6396,72 @@
         "IsLiveState": true
       }
     }
+  },
+  {
+    "Label": "Storage",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.MachineLearningServices/workspaces"
+    ],
+    "SampleValue": "sth6t6yrwo",
+    "Conflicts": null
+  },
+  {
+    "Label": "Storage account",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "microsoft.videoindexer/accounts"
+    ],
+    "SampleValue": "stuop4pbp3",
+    "Conflicts": null
+  },
+  {
+    "Label": "Storage encryption",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/mongoClusters"
+    ],
+    "SampleValue": "Service-managed key",
+    "Conflicts": null
+  },
+  {
+    "Label": "Storage type",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/disks",
+      "Microsoft.Compute/snapshots"
+    ],
+    "SampleValue": "Standard HDD LRS",
+    "Conflicts": null
+  },
+  {
+    "Label": "Studio web URL",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.MachineLearningServices/workspaces"
+    ],
+    "SampleValue": "https://ml.azure.com?tid=11111111-1111-1111-1111-111111111111\u0026wsid=/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-f7e533e01923b0a9/providers/Microsoft.MachineLearningServices/workspaces/mlwrc-5ff4m",
+    "Conflicts": null
   },
   {
     "Label": "Subnet",
@@ -3871,10 +6481,11 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Network/natGateways"
+      "Microsoft.Network/natGateways",
+      "Microsoft.Network/virtualNetworks"
     ],
     "SampleValue": "0",
     "Conflicts": null
@@ -3887,21 +6498,36 @@
     "Notes": "Tenant/subscription identity \u2014 already covered by frontmatter, omit from body",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.AlertsManagement/actionRules",
       "Microsoft.ApiManagement/service",
+      "Microsoft.App/jobs",
+      "Microsoft.App/managedEnvironments",
+      "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.Automation/AutomationAccounts/Runbooks",
       "Microsoft.Batch/batchAccounts",
       "Microsoft.Cache/Redis",
+      "Microsoft.Cache/redisEnterprise",
       "Microsoft.Cache/redisEnterprise/databases",
       "Microsoft.Cdn/profiles",
       "Microsoft.Cdn/profiles/afdendpoints",
       "Microsoft.CognitiveServices/accounts",
+      "microsoft.communication/communicationservices",
+      "microsoft.communication/emailservices",
       "Microsoft.Compute/availabilitySets",
+      "Microsoft.Compute/disks",
+      "Microsoft.Compute/galleries",
+      "Microsoft.Compute/galleries/images",
       "Microsoft.Compute/proximityPlacementGroups",
+      "Microsoft.Compute/restorePointCollections",
+      "Microsoft.Compute/snapshots",
       "Microsoft.Compute/virtualMachines",
+      "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.ContainerInstance/containerGroups",
       "Microsoft.ContainerRegistry/registries",
       "Microsoft.ContainerRegistry/registries/webhooks",
+      "Microsoft.ContainerService/ManagedClusters",
       "Microsoft.ContainerService/managedClusters/agentPools",
+      "microsoft.dashboard/grafana",
       "Microsoft.Databricks/accessConnectors",
       "Microsoft.Databricks/workspaces",
       "Microsoft.DataFactory/factories",
@@ -3916,62 +6542,99 @@
       "Microsoft.Devices/IotHubs",
       "Microsoft.Devices/provisioningServices",
       "Microsoft.DigitalTwins/digitalTwinsInstances",
+      "Microsoft.DocumentDB/databaseAccounts",
       "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "Microsoft.DocumentDB/mongoClusters",
       "Microsoft.EventGrid/domains",
+      "Microsoft.EventGrid/namespaces",
       "Microsoft.EventGrid/systemTopics",
       "Microsoft.EventGrid/topics",
       "Microsoft.EventHub/Namespaces",
       "Microsoft.EventHub/namespaces/eventhubs",
+      "Microsoft.Insights/ActionGroups",
+      "Microsoft.Insights/ActivityLogAlerts",
       "Microsoft.Insights/autoscaleSettings",
       "microsoft.insights/components",
       "Microsoft.Insights/dataCollectionEndpoints",
+      "Microsoft.Insights/dataCollectionRules",
+      "Microsoft.Insights/metricAlerts",
+      "Microsoft.Insights/scheduledQueryRules",
       "microsoft.insights/webtests",
       "Microsoft.KeyVault/vaults",
       "microsoft.loadtestservice/loadtests",
       "Microsoft.Logic/integrationAccounts",
+      "Microsoft.Logic/workflows",
+      "Microsoft.MachineLearningServices/workspaces",
       "Microsoft.Maintenance/maintenanceConfigurations",
       "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts",
       "Microsoft.Migrate/assessmentProjects",
       "Microsoft.Monitor/accounts",
       "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies",
+      "Microsoft.Network/applicationSecurityGroups",
       "Microsoft.Network/azureFirewalls",
       "Microsoft.Network/bastionHosts",
       "Microsoft.Network/dnsForwardingRulesets",
       "Microsoft.Network/dnsResolvers",
       "Microsoft.Network/dnsResolvers/inboundEndpoints",
       "Microsoft.Network/dnsResolvers/outboundEndpoints",
+      "Microsoft.Network/dnszones",
       "Microsoft.Network/FirewallPolicies",
       "Microsoft.Network/FirewallPolicies/RuleCollectionGroups",
+      "Microsoft.Network/frontdoorwebapplicationfirewallpolicies",
+      "Microsoft.Network/IpGroups",
+      "Microsoft.Network/loadBalancers",
       "Microsoft.Network/loadBalancers/inboundNatRules",
       "Microsoft.Network/localNetworkGateways",
       "Microsoft.Network/natGateways",
+      "Microsoft.Network/networkInterfaces",
+      "Microsoft.Network/networkManagers",
       "Microsoft.Network/networkSecurityGroups",
       "Microsoft.Network/networkSecurityGroups/securityRules",
+      "Microsoft.Network/networkSecurityPerimeters",
+      "Microsoft.Network/privateDnsZones",
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "Microsoft.Network/privateEndpoints",
       "Microsoft.Network/privateLinkServices",
+      "Microsoft.Network/publicIPAddresses",
       "Microsoft.Network/routeFilters",
       "Microsoft.Network/routeTables",
       "Microsoft.Network/routeTables/routes",
       "Microsoft.Network/serviceEndpointPolicies",
+      "Microsoft.Network/trafficManagerProfiles",
       "Microsoft.Network/virtualNetworkGateways",
+      "Microsoft.Network/virtualNetworks",
       "Microsoft.Network/virtualNetworks/subnets",
       "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
       "Microsoft.Network/virtualWans",
       "Microsoft.NotificationHubs/namespaces",
       "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "microsoft.operationalinsights/querypacks",
       "Microsoft.OperationalInsights/workspaces",
       "Microsoft.OperationsManagement/solutions",
+      "Microsoft.Portal/dashboards",
       "Microsoft.Purview/accounts",
       "Microsoft.RecoveryServices/vaults",
+      "microsoft.resourcegraph/queries",
       "Microsoft.Resources/templateSpecs",
       "Microsoft.Resources/templateSpecs/versions",
+      "Microsoft.Search/searchServices",
+      "Microsoft.ServiceBus/Namespaces",
+      "Microsoft.ServiceFabric/managedclusters",
       "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub",
       "Microsoft.Sql/servers",
+      "Microsoft.Sql/servers/databases",
       "Microsoft.Sql/servers/elasticPools",
+      "Microsoft.Sql/servers/jobAgents",
+      "Microsoft.Storage/storageAccounts",
       "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "Microsoft.StorageSync/storageSyncServices",
       "Microsoft.Synapse/workspaces",
       "Microsoft.Synapse/workspaces/sqlPools",
+      "microsoft.videoindexer/accounts",
       "Microsoft.Web/serverfarms",
+      "Microsoft.Web/staticSites",
       "unknown"
     ],
     "SampleValue": "Example Subscription",
@@ -3985,21 +6648,36 @@
     "Notes": "Tenant/subscription identity \u2014 already covered by frontmatter, omit from body",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.AlertsManagement/actionRules",
       "Microsoft.ApiManagement/service",
+      "Microsoft.App/jobs",
+      "Microsoft.App/managedEnvironments",
+      "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.Automation/AutomationAccounts/Runbooks",
       "Microsoft.Batch/batchAccounts",
       "Microsoft.Cache/Redis",
+      "Microsoft.Cache/redisEnterprise",
       "Microsoft.Cache/redisEnterprise/databases",
       "Microsoft.Cdn/profiles",
       "Microsoft.Cdn/profiles/afdendpoints",
       "Microsoft.CognitiveServices/accounts",
+      "microsoft.communication/communicationservices",
+      "microsoft.communication/emailservices",
       "Microsoft.Compute/availabilitySets",
+      "Microsoft.Compute/disks",
+      "Microsoft.Compute/galleries",
+      "Microsoft.Compute/galleries/images",
       "Microsoft.Compute/proximityPlacementGroups",
+      "Microsoft.Compute/restorePointCollections",
+      "Microsoft.Compute/snapshots",
       "Microsoft.Compute/virtualMachines",
+      "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.ContainerInstance/containerGroups",
       "Microsoft.ContainerRegistry/registries",
       "Microsoft.ContainerRegistry/registries/webhooks",
+      "Microsoft.ContainerService/ManagedClusters",
       "Microsoft.ContainerService/managedClusters/agentPools",
+      "microsoft.dashboard/grafana",
       "Microsoft.Databricks/accessConnectors",
       "Microsoft.Databricks/workspaces",
       "Microsoft.DataFactory/factories",
@@ -4013,62 +6691,98 @@
       "Microsoft.DesktopVirtualization/workspaces",
       "Microsoft.Devices/provisioningServices",
       "Microsoft.DigitalTwins/digitalTwinsInstances",
+      "Microsoft.DocumentDB/databaseAccounts",
       "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "Microsoft.DocumentDB/mongoClusters",
       "Microsoft.EventGrid/domains",
+      "Microsoft.EventGrid/namespaces",
       "Microsoft.EventGrid/systemTopics",
       "Microsoft.EventGrid/topics",
       "Microsoft.EventHub/Namespaces",
       "Microsoft.EventHub/namespaces/eventhubs",
+      "Microsoft.Insights/ActionGroups",
+      "Microsoft.Insights/ActivityLogAlerts",
       "Microsoft.Insights/autoscaleSettings",
       "microsoft.insights/components",
       "Microsoft.Insights/dataCollectionEndpoints",
+      "Microsoft.Insights/dataCollectionRules",
+      "Microsoft.Insights/metricAlerts",
+      "Microsoft.Insights/scheduledQueryRules",
       "microsoft.insights/webtests",
       "Microsoft.KeyVault/vaults",
       "microsoft.loadtestservice/loadtests",
       "Microsoft.Logic/integrationAccounts",
+      "Microsoft.Logic/workflows",
       "Microsoft.Maintenance/maintenanceConfigurations",
       "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts",
       "Microsoft.Migrate/assessmentProjects",
       "Microsoft.Monitor/accounts",
       "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies",
+      "Microsoft.Network/applicationSecurityGroups",
       "Microsoft.Network/azureFirewalls",
       "Microsoft.Network/bastionHosts",
       "Microsoft.Network/dnsForwardingRulesets",
       "Microsoft.Network/dnsResolvers",
       "Microsoft.Network/dnsResolvers/inboundEndpoints",
       "Microsoft.Network/dnsResolvers/outboundEndpoints",
+      "Microsoft.Network/dnszones",
       "Microsoft.Network/FirewallPolicies",
       "Microsoft.Network/FirewallPolicies/RuleCollectionGroups",
+      "Microsoft.Network/frontdoorwebapplicationfirewallpolicies",
+      "Microsoft.Network/IpGroups",
+      "Microsoft.Network/loadBalancers",
       "Microsoft.Network/loadBalancers/inboundNatRules",
       "Microsoft.Network/localNetworkGateways",
       "Microsoft.Network/natGateways",
+      "Microsoft.Network/networkInterfaces",
+      "Microsoft.Network/networkManagers",
       "Microsoft.Network/networkSecurityGroups",
       "Microsoft.Network/networkSecurityGroups/securityRules",
+      "Microsoft.Network/networkSecurityPerimeters",
+      "Microsoft.Network/privateDnsZones",
+      "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "Microsoft.Network/privateEndpoints",
       "Microsoft.Network/privateLinkServices",
+      "Microsoft.Network/publicIPAddresses",
       "Microsoft.Network/routeFilters",
       "Microsoft.Network/routeTables",
       "Microsoft.Network/routeTables/routes",
       "Microsoft.Network/serviceEndpointPolicies",
+      "Microsoft.Network/trafficManagerProfiles",
       "Microsoft.Network/virtualNetworkGateways",
+      "Microsoft.Network/virtualNetworks",
       "Microsoft.Network/virtualNetworks/subnets",
       "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
       "Microsoft.Network/virtualWans",
       "Microsoft.NotificationHubs/namespaces",
       "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "microsoft.operationalinsights/querypacks",
       "Microsoft.OperationalInsights/workspaces",
       "Microsoft.OperationsManagement/solutions",
+      "Microsoft.Portal/dashboards",
       "Microsoft.Purview/accounts",
       "Microsoft.RecoveryServices/vaults",
+      "microsoft.resourcegraph/queries",
       "Microsoft.Resources/templateSpecs",
       "Microsoft.Resources/templateSpecs/versions",
+      "Microsoft.Search/searchServices",
+      "Microsoft.ServiceBus/Namespaces",
+      "Microsoft.ServiceFabric/managedclusters",
       "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub",
       "Microsoft.Sql/servers",
+      "Microsoft.Sql/servers/databases",
       "Microsoft.Sql/servers/elasticPools",
+      "Microsoft.Sql/servers/jobAgents",
+      "Microsoft.Storage/storageAccounts",
       "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "Microsoft.StorageSync/storageSyncServices",
       "Microsoft.Synapse/workspaces",
       "Microsoft.Synapse/workspaces/sqlPools",
+      "microsoft.videoindexer/accounts",
       "Microsoft.Web/serverfarms",
+      "Microsoft.Web/staticSites",
       "unknown"
     ],
     "SampleValue": "00000000-0000-0000-0000-000000000000",
@@ -4088,6 +6802,45 @@
     "Conflicts": null
   },
   {
+    "Label": "Tags",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ServiceFabric/managedclusters"
+    ],
+    "SampleValue": "SFRP.DisableDefaultOutboundAccess : true",
+    "Conflicts": null
+  },
+  {
+    "Label": "Target sub-resource",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.privatelinkserviceconnections[0].properties.groupids[0]",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/privateEndpoints"
+    ],
+    "SampleValue": "blob",
+    "Conflicts": null
+  },
+  {
+    "Label": "Telemetry",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.disablelocalauth",
+    "Notes": "Value matches (boolean\u2192friendly-word) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting (3 addressable value-matching leaves, none strongly name-related to the label).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.AppConfiguration/configurationStores"
+    ],
+    "SampleValue": "Disabled",
+    "Conflicts": null
+  },
+  {
     "Label": "Throughput Units",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -4102,15 +6855,18 @@
   },
   {
     "Label": "Tier",
-    "Kind": "NotAddressable",
+    "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "Traceable via \u0027sku.tier\u0027 (exact value match), but that\u0027s outside properties.*/kind/name/id/location \u2014 not reachable from a template.",
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ApiManagement/service",
       "Microsoft.Devices/IotHubs",
-      "Microsoft.Network/bastionHosts"
+      "Microsoft.Network/bastionHosts",
+      "Microsoft.Network/frontdoorwebapplicationfirewallpolicies",
+      "Microsoft.Network/loadBalancers",
+      "Microsoft.Network/publicIPAddresses"
     ],
     "SampleValue": "Free",
     "Conflicts": null
@@ -4123,9 +6879,54 @@
     "Notes": "transform: portal_timestamp",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Compute/virtualMachines"
+      "Microsoft.Compute/disks",
+      "Microsoft.Compute/virtualMachines",
+      "Microsoft.Compute/virtualMachineScaleSets",
+      "Microsoft.Network/networkManagers"
     ],
-    "SampleValue": "8/13/2026, 12:46 PM UTC",
+    "SampleValue": "8/14/2026, 12:28:04 PM",
+    "Conflicts": {
+      "Microsoft.Compute/disks": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.timecreated",
+        "Notes": "transform: portal_timestamp",
+        "IsLiveState": false
+      },
+      "Microsoft.Compute/virtualMachines": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.timecreated",
+        "Notes": "transform: portal_timestamp",
+        "IsLiveState": false
+      },
+      "Microsoft.Compute/virtualMachineScaleSets": {
+        "Kind": "Timestamp",
+        "Confidence": 0.9,
+        "Target": "model.props.virtualmachineprofile.timecreated",
+        "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
+        "IsLiveState": false
+      },
+      "Microsoft.Network/networkManagers": {
+        "Kind": "NotAddressable",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "Traceable via \u0027systemdata.createdat\u0027, but that\u0027s outside properties.* \u2014 not reachable as model.props.*. Would need the renderer to expose that section, or the label stays manual.",
+        "IsLiveState": false
+      }
+    }
+  },
+  {
+    "Label": "Time modified",
+    "Kind": "NotAddressable",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "Traceable via \u0027systemdata.createdat\u0027, but that\u0027s outside properties.* \u2014 not reachable as model.props.*. Would need the renderer to expose that section, or the label stays manual.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/networkManagers"
+    ],
+    "SampleValue": "2026-08-14 10:51:50",
     "Conflicts": null
   },
   {
@@ -4181,6 +6982,32 @@
     "Conflicts": null
   },
   {
+    "Label": "Total minutes uploaded",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "microsoft.videoindexer/accounts"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Total throughput limit",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/databaseAccounts"
+    ],
+    "SampleValue": "No total throughput limit",
+    "Conflicts": null
+  },
+  {
     "Label": "Type",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -4200,6 +7027,7 @@
       "Microsoft.Network/dnsResolvers/outboundEndpoints",
       "Microsoft.Network/FirewallPolicies/RuleCollectionGroups",
       "Microsoft.Network/loadBalancers/inboundNatRules",
+      "Microsoft.Network/networkInterfaces",
       "Microsoft.Network/networkSecurityGroups/securityRules",
       "Microsoft.Network/routeTables/routes",
       "Microsoft.Network/virtualNetworks/subnets",
@@ -4220,7 +7048,8 @@
     "Notes": "Traceable via \u0027sku.capacity\u0027 (exact value match), but that\u0027s outside properties.*/kind/name/id/location \u2014 not reachable from a template.",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.SignalRService/SignalR"
+      "Microsoft.SignalRService/SignalR",
+      "Microsoft.SignalRService/WebPubSub"
     ],
     "SampleValue": "1",
     "Conflicts": null
@@ -4248,6 +7077,7 @@
     "ObservedArmTypes": [
       "Microsoft.EventHub/Namespaces",
       "Microsoft.EventHub/namespaces/eventhubs",
+      "Microsoft.ServiceBus/Namespaces",
       "Microsoft.ServiceBus/namespaces/queues",
       "Microsoft.ServiceBus/namespaces/topics",
       "Microsoft.ServiceBus/namespaces/topics/subscriptions"
@@ -4256,16 +7086,31 @@
     "Conflicts": null
   },
   {
-    "Label": "URL",
+    "Label": "URI",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.documentendpoint",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting (2 addressable value-matching leaves, none strongly name-related to the label).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/databaseAccounts"
+    ],
+    "SampleValue": "https://cosmosd5q1iefd.documents.azure.com:443/",
+    "Conflicts": null
+  },
+  {
+    "Label": "Url",
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
-      "Microsoft.Databricks/workspaces"
+      "Microsoft.Databricks/workspaces",
+      "Microsoft.Search/searchServices",
+      "Microsoft.Web/staticSites"
     ],
-    "SampleValue": "https://adb-7405608718544820.0.azuredatabricks.net",
+    "SampleValue": "https://srch0v-3un-z.search.windows.net",
     "Conflicts": null
   },
   {
@@ -4321,6 +7166,20 @@
     "Conflicts": null
   },
   {
+    "Label": "Virtual machine",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Compute/restorePointCollections",
+      "Microsoft.Network/publicIPAddresses"
+    ],
+    "SampleValue": "swazx8jrlti5t02",
+    "Conflicts": null
+  },
+  {
     "Label": "Virtual machines",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -4334,19 +7193,20 @@
     "Conflicts": null
   },
   {
-    "Label": "Virtual network",
+    "Label": "Virtual Network",
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Network/applicationSecurityGroups",
       "Microsoft.Network/azureFirewalls",
       "Microsoft.Network/dnsResolvers",
       "Microsoft.Network/natGateways",
       "Microsoft.Network/virtualNetworkGateways"
     ],
-    "SampleValue": "vnetfdgcru-j",
+    "SampleValue": "-",
     "Conflicts": null
   },
   {
@@ -4363,6 +7223,45 @@
     "Conflicts": null
   },
   {
+    "Label": "Virtual network ID",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.resourceguid",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/virtualNetworks"
+    ],
+    "SampleValue": "a588faeb-cac5-4125-9d54-ef4d24c4102d",
+    "Conflicts": null
+  },
+  {
+    "Label": "Virtual Network Links",
+    "Kind": "Ambiguous",
+    "Confidence": 1,
+    "Target": "model.props.numberofvirtualnetworklinks",
+    "Notes": "Tied with model.props.numberofvirtualnetworklinkswithregistration (similarity 1.00) \u2014 pick manually.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/privateDnsZones"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
+    "Label": "Virtual Network Links With Registration",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.numberofvirtualnetworklinkswithregistration",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Network/privateDnsZones"
+    ],
+    "SampleValue": "0",
+    "Conflicts": null
+  },
+  {
     "Label": "Virtual network/subnet",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -4371,7 +7270,10 @@
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Compute/virtualMachines",
-      "Microsoft.Network/bastionHosts"
+      "Microsoft.Compute/virtualMachineScaleSets",
+      "Microsoft.Network/bastionHosts",
+      "Microsoft.Network/networkInterfaces",
+      "Microsoft.Network/privateEndpoints"
     ],
     "SampleValue": "vnetb5ylw2-a/default",
     "Conflicts": null
@@ -4400,6 +7302,58 @@
       "microsoft.loadtestservice/loadtests"
     ],
     "SampleValue": "0 / No limit",
+    "Conflicts": null
+  },
+  {
+    "Label": "Workbook Name",
+    "Kind": "Direct",
+    "Confidence": 0.5,
+    "Target": "model.props.displayname",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "unknown"
+    ],
+    "SampleValue": "ARDL sample workbook",
+    "Conflicts": null
+  },
+  {
+    "Label": "Workbook Type",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.category",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "unknown"
+    ],
+    "SampleValue": "workbook",
+    "Conflicts": null
+  },
+  {
+    "Label": "Workflow Type",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Logic/workflows"
+    ],
+    "SampleValue": "Stateful",
+    "Conflicts": null
+  },
+  {
+    "Label": "Workflow URL",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.Logic/workflows"
+    ],
+    "SampleValue": "--",
     "Conflicts": null
   },
   {
@@ -4453,6 +7407,19 @@
       "Microsoft.Synapse/workspaces"
     ],
     "SampleValue": "https://web.azuresynapse.net?workspace=%2fsubscriptions%2f00000000-0000-0000-0000-000000000000%2fresourceGroups%2frg-ardl-bb17cace9b9db143%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsynjhp9-iao",
+    "Conflicts": null
+  },
+  {
+    "Label": "Write Locations",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.writelocations[0].locationname",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/databaseAccounts"
+    ],
+    "SampleValue": "Sweden Central",
     "Conflicts": null
   },
   {

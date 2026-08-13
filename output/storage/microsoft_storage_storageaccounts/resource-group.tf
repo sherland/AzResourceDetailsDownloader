@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-652dbcc623f75a16"
   tags = {
     armType    = "Microsoft.Storage/storageAccounts"
-    createdUtc = "2026-08-13T14:02:24.1949238Z"
+    createdUtc = "2026-08-14T10:28:00.7544352Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -37,7 +37,7 @@ resource "azurerm_storage_account" "res-1" {
   local_user_enabled                = true
   location                          = "norwayeast"
   min_tls_version                   = "TLS1_2"
-  name                              = "stedrfc3h1"
+  name                              = "st79pr3my4"
   nfsv3_enabled                     = false
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
@@ -73,10 +73,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/stedrfc3h1"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/st79pr3my4"
   to = azurerm_storage_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/stedrfc3h1"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/st79pr3my4"
   to = azurerm_storage_account_queue_properties.res-4
 }

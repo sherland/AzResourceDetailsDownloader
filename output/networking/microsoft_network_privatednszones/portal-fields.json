@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-2686e82d1da8f0fc"
+  },
+  {
+    "Label": "Location",
+    "Value": "Global"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Recordsets",
+    "Value": "1"
+  },
+  {
+    "Label": "Virtual Network Links",
+    "Value": "0"
+  },
+  {
+    "Label": "Virtual Network Links With Registration",
+    "Value": "0"
+  }
+]

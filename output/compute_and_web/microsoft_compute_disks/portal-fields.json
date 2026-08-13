@@ -1,0 +1,58 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-ab7325b8645ba734"
+  },
+  {
+    "Label": "Disk state",
+    "Value": "Unattached"
+  },
+  {
+    "Label": "Last ownership update time",
+    "Value": "-"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Time created",
+    "Value": "8/14/2026, 12:28:04 PM"
+  },
+  {
+    "Label": "Disk size",
+    "Value": "4 GiB"
+  },
+  {
+    "Label": "Storage type",
+    "Value": "Standard HDD LRS"
+  },
+  {
+    "Label": "Managed by",
+    "Value": "-"
+  },
+  {
+    "Label": "Operating system",
+    "Value": "-"
+  },
+  {
+    "Label": "Max shares",
+    "Value": "0"
+  },
+  {
+    "Label": "Availability zone",
+    "Value": "No infrastructure redundancy required"
+  },
+  {
+    "Label": "Security type",
+    "Value": "Standard"
+  }
+]

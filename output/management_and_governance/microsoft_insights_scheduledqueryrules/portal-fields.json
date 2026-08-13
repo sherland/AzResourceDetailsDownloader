@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-a4f15f69c700674b"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Severity",
+    "Value": "3 - Informational"
+  },
+  {
+    "Label": "Display name",
+    "Value": "ARDL sample alert"
+  },
+  {
+    "Label": "Description",
+    "Value": "-"
+  }
+]

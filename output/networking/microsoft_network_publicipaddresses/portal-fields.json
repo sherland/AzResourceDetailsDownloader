@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-81fcf0828790336e"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "SKU",
+    "Value": "Standard"
+  },
+  {
+    "Label": "Tier",
+    "Value": "Regional"
+  },
+  {
+    "Label": "IP address",
+    "Value": "20.251.117.123"
+  },
+  {
+    "Label": "DNS name",
+    "Value": "-"
+  },
+  {
+    "Label": "Associated to",
+    "Value": "-"
+  },
+  {
+    "Label": "Virtual machine",
+    "Value": "-"
+  }
+]

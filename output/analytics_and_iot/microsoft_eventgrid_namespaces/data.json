@@ -2,7 +2,7 @@
   "properties": {
     "provisioningState": "Succeeded",
     "topicsConfiguration": {
-      "hostname": "egns153-8-ez.norwayeast-1.eventgrid.azure.net"
+      "hostname": "egns9co-cfa8.norwayeast-1.eventgrid.azure.net"
     },
     "isZoneRedundant": true,
     "publicNetworkAccess": "Enabled",
@@ -16,14 +16,14 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-13T13:23:49.4773131Z",
+    "createdAt": "2026-08-14T10:48:00.7743934Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T13:23:49.4773131Z"
+    "lastModifiedAt": "2026-08-14T10:48:00.7743934Z"
   },
   "location": "norwayeast",
   "tags": null,
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-13ff285457fead7a/providers/Microsoft.EventGrid/namespaces/egns153-8-ez",
-  "name": "egns153-8-ez",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-13ff285457fead7a/providers/Microsoft.EventGrid/namespaces/egns9co-cfa8",
+  "name": "egns9co-cfa8",
   "type": "Microsoft.EventGrid/namespaces"
 }

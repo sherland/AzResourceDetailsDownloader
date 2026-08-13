@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-a157244b5485ef94"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Cluster State",
+    "Value": "WaitingForNodes"
+  },
+  {
+    "Label": "SKU",
+    "Value": "Basic"
+  },
+  {
+    "Label": "FQDN",
+    "Value": "ardlsfmcjj9reg.norwayeast.cloudapp.azure.com"
+  },
+  {
+    "Label": "SF Explorer",
+    "Value": "https://ardlsfmcjj9reg.norwayeast.cloudapp.azure.com:19080/Explorer"
+  },
+  {
+    "Label": "Node type count",
+    "Value": "0"
+  },
+  {
+    "Label": "Tags",
+    "Value": "SFRP.DisableDefaultOutboundAccess : true"
+  }
+]

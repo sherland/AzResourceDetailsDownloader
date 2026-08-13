@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-833890ef5c1b6d5f"
   tags = {
     armType    = "Microsoft.AppConfiguration/configurationStores"
-    createdUtc = "2026-08-14T06:59:57.2930652Z"
+    createdUtc = "2026-08-14T10:33:32.9752059Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -24,7 +24,7 @@ resource "azurerm_app_configuration" "res-1" {
   data_plane_proxy_private_link_delegation_enabled = false
   local_auth_enabled                               = true
   location                                         = "norwayeast"
-  name                                             = "appcs1y-1kv59"
+  name                                             = "appcslcx-jhpz"
   public_network_access                            = ""
   purge_protection_enabled                         = false
   resource_group_name                              = azurerm_resource_group.res-0.name
@@ -39,6 +39,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-833890ef5c1b6d5f/providers/Microsoft.AppConfiguration/configurationStores/appcs1y-1kv59"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-833890ef5c1b6d5f/providers/Microsoft.AppConfiguration/configurationStores/appcslcx-jhpz"
   to = azurerm_app_configuration.res-1
 }

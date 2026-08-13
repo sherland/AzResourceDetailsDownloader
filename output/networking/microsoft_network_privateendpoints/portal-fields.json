@@ -1,0 +1,46 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-3556a0936d77e0d2"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Provisioning state",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Virtual network/subnet",
+    "Value": "vnet0h2lk99r/default"
+  },
+  {
+    "Label": "Network interface",
+    "Value": "pe04-kvqau.nic.2f77ee8f-b614-46e9-a637-42ce696fe616"
+  },
+  {
+    "Label": "Private link resource",
+    "Value": "stgrpess3j"
+  },
+  {
+    "Label": "Target sub-resource",
+    "Value": "blob"
+  },
+  {
+    "Label": "Connection status",
+    "Value": "Approved"
+  },
+  {
+    "Label": "Request/Response",
+    "Value": "Auto-Approved"
+  }
+]
