@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-833890ef5c1b6d5f"
   tags = {
     armType    = "Microsoft.AppConfiguration/configurationStores"
-    createdUtc = "2026-08-13T12:49:14.3349693Z"
+    createdUtc = "2026-08-14T06:59:57.2930652Z"
     purpose    = "az-resource-details-downloader"
   }
 }

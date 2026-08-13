@@ -1,23 +1,23 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/providers/Microsoft.App/managedEnvironments/caeznfvtm-z",
-  "name": "caeznfvtm-z",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/providers/Microsoft.App/managedEnvironments/caef-y-ve5h",
+  "name": "caef-y-ve5h",
   "type": "Microsoft.App/managedEnvironments",
   "location": "Norway East",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-13T14:35:15.402241",
+    "createdAt": "2026-08-14T07:01:28.9861865",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T14:35:15.402241"
+    "lastModifiedAt": "2026-08-14T07:01:28.9861865"
   },
   "properties": {
     "provisioningState": "Succeeded",
     "daprAIInstrumentationKey": null,
     "daprAIConnectionString": null,
     "vnetConfiguration": null,
-    "defaultDomain": "livelystone-487e31a6.norwayeast.azurecontainerapps.io",
-    "staticIp": "131.163.39.71",
+    "defaultDomain": "salmonisland-381a8f8b.norwayeast.azurecontainerapps.io",
+    "staticIp": "20.100.55.166",
     "appLogsConfiguration": {
       "destination": null,
       "logAnalyticsConfiguration": null
@@ -29,7 +29,7 @@
     "daprConfiguration": {
       "version": "1.16.4-msft.11"
     },
-    "eventStreamEndpoint": "https://norwayeast.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/managedEnvironments/caeznfvtm-z/eventstream",
+    "eventStreamEndpoint": "https://norwayeast.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/managedEnvironments/caef-y-ve5h/eventstream",
     "customDomainConfiguration": {
       "customDomainVerificationId": "F86E743D00C996EF23A530212FF3DE4B44E86492BF4592EF5D23D9DC35983B91",
       "dnsSuffix": null,

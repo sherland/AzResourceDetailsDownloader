@@ -342,10 +342,26 @@
     "Notes": "exact value match",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts"
     ],
     "SampleValue": "6b19f5c1-b79e-4341-9327-cfd4703273db",
-    "Conflicts": null
+    "Conflicts": {
+      "Microsoft.Maps/accounts": {
+        "Kind": "Direct",
+        "Confidence": 0.5,
+        "Target": "model.props.uniqueid",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "Microsoft.ManagedIdentity/userAssignedIdentities": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.clientid",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Colocation status",
@@ -477,12 +493,12 @@
     "Kind": "Timestamp",
     "Confidence": 0.9,
     "Target": "model.props.creationdate",
-    "Notes": "transform: portal_timestamp",
+    "Notes": "transform: portal_timestamp \u2014 3 candidate instants matched, picked by label/property-name similarity",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerRegistry/registries"
     ],
-    "SampleValue": "8/13/2026, 2:43 PM GMT\u002B2",
+    "SampleValue": "8/14/2026, 9:39 AM GMT\u002B2",
     "Conflicts": null
   },
   {
@@ -1170,6 +1186,19 @@
     }
   },
   {
+    "Label": "Isolation Scope",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ManagedIdentity/userAssignedIdentities"
+    ],
+    "SampleValue": "None",
+    "Conflicts": null
+  },
+  {
     "Label": "Kind",
     "Kind": "Direct",
     "Confidence": 1,
@@ -1310,6 +1339,7 @@
       "microsoft.loadtestservice/loadtests",
       "Microsoft.Logic/integrationAccounts",
       "Microsoft.Maintenance/maintenanceConfigurations",
+      "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts",
       "Microsoft.Migrate/assessmentProjects",
       "Microsoft.Monitor/accounts",
@@ -1807,6 +1837,13 @@
         "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
         "IsLiveState": false
       },
+      "Microsoft.ManagedIdentity/userAssignedIdentities": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
+        "IsLiveState": false
+      },
       "Microsoft.Network/bastionHosts": {
         "Kind": "ShortcutVerified",
         "Confidence": 1,
@@ -2235,6 +2272,19 @@
       "Microsoft.Cache/redisEnterprise/databases"
     ],
     "SampleValue": "Disabled",
+    "Conflicts": null
+  },
+  {
+    "Label": "Object (principal) ID",
+    "Kind": "Direct",
+    "Confidence": 0.6666666666666666,
+    "Target": "model.props.principalid",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ManagedIdentity/userAssignedIdentities"
+    ],
+    "SampleValue": "e5cf2f15-fc0d-40b9-a418-e705fa47b2f1",
     "Conflicts": null
   },
   {
@@ -2910,6 +2960,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Resource (Preview)",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.ManagedIdentity/userAssignedIdentities"
+    ],
+    "SampleValue": "None",
+    "Conflicts": null
+  },
+  {
     "Label": "Resource group",
     "Kind": "ShortcutVerified",
     "Confidence": 1,
@@ -2960,6 +3023,7 @@
       "microsoft.loadtestservice/loadtests",
       "Microsoft.Logic/integrationAccounts",
       "Microsoft.Maintenance/maintenanceConfigurations",
+      "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts",
       "Microsoft.Migrate/assessmentProjects",
       "Microsoft.Monitor/accounts",
@@ -3866,6 +3930,7 @@
       "microsoft.loadtestservice/loadtests",
       "Microsoft.Logic/integrationAccounts",
       "Microsoft.Maintenance/maintenanceConfigurations",
+      "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts",
       "Microsoft.Migrate/assessmentProjects",
       "Microsoft.Monitor/accounts",
@@ -3962,6 +4027,7 @@
       "microsoft.loadtestservice/loadtests",
       "Microsoft.Logic/integrationAccounts",
       "Microsoft.Maintenance/maintenanceConfigurations",
+      "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts",
       "Microsoft.Migrate/assessmentProjects",
       "Microsoft.Monitor/accounts",
@@ -4128,6 +4194,7 @@
       "Microsoft.DataProtection/backupVaults/backupPolicies",
       "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
       "Microsoft.Insights/autoscaleSettings",
+      "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Migrate/assessmentProjects",
       "Microsoft.Network/dnsResolvers/inboundEndpoints",
       "Microsoft.Network/dnsResolvers/outboundEndpoints",
@@ -4224,7 +4291,7 @@
     "ObservedArmTypes": [
       "Microsoft.KeyVault/vaults"
     ],
-    "SampleValue": "https://kvrq6-2c9f.vault.azure.net/",
+    "SampleValue": "https://kv68u-db-c.vault.azure.net/",
     "Conflicts": null
   },
   {

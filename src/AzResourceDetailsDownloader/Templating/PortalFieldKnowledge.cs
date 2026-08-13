@@ -66,6 +66,11 @@ public static class PortalFieldKnowledge
         "Endpoint", "URL", "Account URI", "Queue URL", "Topic URL", "Instrumentation key",
         "Connection string", "Logs workspace", "Metrics ingestion endpoint", "Origin response timeout",
         "Public key", "Ports", "Location",
+
+        // New portal-only UI surfaced by the 2026-08-14 Essentials-panel redesign (see
+        // EssentialsExtractor's class comment) — neither has any backing property anywhere in a
+        // Managed Identity's raw ARM body; portal-computed/feature-flagged, not resource data.
+        "Isolation Scope", "Resource (Preview)",
     };
 
     // A short, human reason per NonTraceableLabels entry — not needed by the consistency test

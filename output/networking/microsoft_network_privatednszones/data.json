@@ -2,10 +2,10 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2686e82d1da8f0fc/providers/Microsoft.Network/privateDnsZones/ardltaj3h0wd.private.contoso.com",
   "name": "ardltaj3h0wd.private.contoso.com",
   "type": "Microsoft.Network/privateDnsZones",
-  "etag": "76f28bce-cbbf-4bf5-a559-a865438c09ce",
+  "etag": "5a946113-7f21-4c65-9863-a90686ed61a4",
   "location": "global",
   "properties": {
-    "internalId": "SW1tdXRhYmxlWm9uZUlkZW50aXR5OzQ1NDVmNzM3LThmMWUtNGM4Yi1hMWY0LWZjMjBhOTNjY2JkYzsw",
+    "internalId": "SW1tdXRhYmxlWm9uZUlkZW50aXR5OzE1ZTYwZTFlLTQ2ZGUtNDAzYy05ODEwLTVlY2Y0MDgyOGNjMTsw",
     "maxNumberOfRecordSets": 25000,
     "maxNumberOfVirtualNetworkLinks": 1000,
     "maxNumberOfVirtualNetworkLinksWithRegistration": 100,

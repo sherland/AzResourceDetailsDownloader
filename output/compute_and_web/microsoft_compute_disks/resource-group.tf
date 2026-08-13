@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-ab7325b8645ba734"
   tags = {
     armType    = "Microsoft.Compute/disks"
-    createdUtc = "2026-08-13T12:29:53.0999238Z"
+    createdUtc = "2026-08-14T06:53:42.2897372Z"
     purpose    = "az-resource-details-downloader"
   }
 }
