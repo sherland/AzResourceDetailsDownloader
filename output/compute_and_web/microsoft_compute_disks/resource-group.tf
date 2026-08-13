@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-ab7325b8645ba734"
   tags = {
     armType    = "Microsoft.Compute/disks"
-    createdUtc = "2026-07-15T18:20:02.1979833Z"
+    createdUtc = "2026-08-13T12:29:53.0999238Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -32,7 +32,7 @@ resource "azurerm_managed_disk" "res-1" {
   gallery_image_reference_id        = ""
   hyper_v_generation                = ""
   image_reference_id                = ""
-  location                          = "westeurope"
+  location                          = "norwayeast"
   max_shares                        = 0
   name                              = "diskbpe8-oy2"
   network_access_policy             = "AllowAll"

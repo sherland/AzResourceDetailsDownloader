@@ -1,8 +1,8 @@
-param storageAccounts_sttp0smln8_name string
+param storageAccounts_stpl8vn5g1_name string
 
-resource storageAccounts_sttp0smln8_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
-  name: storageAccounts_sttp0smln8_name
-  location: 'westeurope'
+resource storageAccounts_stpl8vn5g1_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
+  name: storageAccounts_stpl8vn5g1_name
+  location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'
@@ -37,8 +37,8 @@ resource storageAccounts_sttp0smln8_name_resource 'Microsoft.Storage/storageAcco
   }
 }
 
-resource storageAccounts_sttp0smln8_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
-  parent: storageAccounts_sttp0smln8_name_resource
+resource storageAccounts_stpl8vn5g1_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
+  parent: storageAccounts_stpl8vn5g1_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -58,8 +58,8 @@ resource storageAccounts_sttp0smln8_name_default 'Microsoft.Storage/storageAccou
   }
 }
 
-resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_sttp0smln8_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
-  parent: storageAccounts_sttp0smln8_name_resource
+resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stpl8vn5g1_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
+  parent: storageAccounts_stpl8vn5g1_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -79,8 +79,8 @@ resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_sttp0sml
   }
 }
 
-resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_sttp0smln8_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
-  parent: storageAccounts_sttp0smln8_name_resource
+resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stpl8vn5g1_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
+  parent: storageAccounts_stpl8vn5g1_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -89,8 +89,8 @@ resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_sttp0sm
   }
 }
 
-resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_sttp0smln8_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
-  parent: storageAccounts_sttp0smln8_name_resource
+resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stpl8vn5g1_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
+  parent: storageAccounts_stpl8vn5g1_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -99,16 +99,16 @@ resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_sttp0sm
   }
 }
 
-resource storageAccounts_sttp0smln8_name_default_share95jazv 'Microsoft.Storage/storageAccounts/fileServices/shares@2026-04-01' = {
-  parent: Microsoft_Storage_storageAccounts_fileServices_storageAccounts_sttp0smln8_name_default
-  name: 'share95jazv'
+resource storageAccounts_stpl8vn5g1_name_default_sharep39ot7 'Microsoft.Storage/storageAccounts/fileServices/shares@2026-04-01' = {
+  parent: Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stpl8vn5g1_name_default
+  name: 'sharep39ot7'
   properties: {
     accessTier: 'TransactionOptimized'
     shareQuota: 5
     enabledProtocols: 'SMB'
   }
   dependsOn: [
-    storageAccounts_sttp0smln8_name_resource
+    storageAccounts_stpl8vn5g1_name_resource
   ]
 }
 

@@ -1,15 +1,15 @@
 {
   "name": "nicoq4tq3cl",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nicoq4tq3cl",
-  "etag": "W/\u00222751fde8-b500-4418-abda-63ab0833661d\u0022",
+  "etag": "W/\u00229c9a2db8-5dcb-4afb-98c2-d4b11a215814\u0022",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "10969d82-05ac-433f-ad0d-79735139fcb6",
+    "resourceGuid": "1f1ea70d-81ed-4d54-a456-229411866110",
     "ipConfigurations": [
       {
         "name": "ipconfig1",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nicoq4tq3cl/ipConfigurations/ipconfig1",
-        "etag": "W/\u00222751fde8-b500-4418-abda-63ab0833661d\u0022",
+        "etag": "W/\u00229c9a2db8-5dcb-4afb-98c2-d4b11a215814\u0022",
         "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
         "properties": {
           "provisioningState": "Succeeded",
@@ -26,7 +26,7 @@
     "dnsSettings": {
       "dnsServers": [],
       "appliedDnsServers": [],
-      "internalDomainNameSuffix": "wcj5dwu3jv1ezclfykdvmlluhg.ax.internal.cloudapp.net"
+      "internalDomainNameSuffix": "dbixzrp3nhhuxgut5q1cuocvyc.oslx.internal.cloudapp.net"
     },
     "enableAcceleratedNetworking": false,
     "vnetEncryptionSupported": false,
@@ -35,11 +35,11 @@
     "hostedWorkloads": [],
     "tapConfigurations": [],
     "nicType": "Standard",
-    "allowPort25Out": true,
+    "allowPort25Out": false,
     "auxiliaryMode": "None",
     "auxiliarySku": "None"
   },
   "type": "Microsoft.Network/networkInterfaces",
-  "location": "westeurope",
+  "location": "norwayeast",
   "kind": "Regular"
 }

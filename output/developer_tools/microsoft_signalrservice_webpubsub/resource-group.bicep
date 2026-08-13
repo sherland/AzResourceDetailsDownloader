@@ -1,8 +1,8 @@
-param WebPubSub_wpswbqd8_py_name string
+param WebPubSub_wpseg8_bp2f_name string
 
-resource WebPubSub_wpswbqd8_py_name_resource 'Microsoft.SignalRService/WebPubSub@2025-08-01-preview' = {
-  name: WebPubSub_wpswbqd8_py_name
-  location: 'westeurope'
+resource WebPubSub_wpseg8_bp2f_name_resource 'Microsoft.SignalRService/WebPubSub@2025-08-01-preview' = {
+  name: WebPubSub_wpseg8_bp2f_name
+  location: 'norwayeast'
   sku: {
     name: 'Free_F1'
     tier: 'Free'

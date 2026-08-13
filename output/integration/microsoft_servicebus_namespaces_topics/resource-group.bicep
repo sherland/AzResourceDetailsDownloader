@@ -2,7 +2,7 @@ param namespaces_sbalnbuxtr_name string
 
 resource namespaces_sbalnbuxtr_name_resource 'Microsoft.ServiceBus/namespaces@2026-01-01' = {
   name: namespaces_sbalnbuxtr_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Standard'
@@ -17,7 +17,7 @@ resource namespaces_sbalnbuxtr_name_resource 'Microsoft.ServiceBus/namespaces@20
       maxReplicationLagDurationInSeconds: 0
       locations: [
         {
-          locationName: 'westeurope'
+          locationName: 'norwayeast'
           roleType: 'Primary'
         }
       ]
@@ -33,7 +33,7 @@ resource namespaces_sbalnbuxtr_name_resource 'Microsoft.ServiceBus/namespaces@20
 resource namespaces_sbalnbuxtr_name_RootManageSharedAccessKey 'Microsoft.ServiceBus/namespaces/authorizationrules@2026-01-01' = {
   parent: namespaces_sbalnbuxtr_name_resource
   name: 'RootManageSharedAccessKey'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     rights: [
       'Listen'
@@ -46,7 +46,7 @@ resource namespaces_sbalnbuxtr_name_RootManageSharedAccessKey 'Microsoft.Service
 resource namespaces_sbalnbuxtr_name_default 'Microsoft.ServiceBus/namespaces/networkrulesets@2026-01-01' = {
   parent: namespaces_sbalnbuxtr_name_resource
   name: 'default'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     publicNetworkAccess: 'Enabled'
     defaultAction: 'Allow'
@@ -59,7 +59,7 @@ resource namespaces_sbalnbuxtr_name_default 'Microsoft.ServiceBus/namespaces/net
 resource namespaces_sbalnbuxtr_name_topicv0fcfy 'Microsoft.ServiceBus/namespaces/topics@2026-01-01' = {
   parent: namespaces_sbalnbuxtr_name_resource
   name: 'topicv0fcfy'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     maxMessageSizeInKilobytes: 256
     defaultMessageTimeToLive: 'P10675199DT2H48M5.4775807S'

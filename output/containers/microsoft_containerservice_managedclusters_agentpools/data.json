@@ -17,12 +17,12 @@
       "code": "Running"
     },
     "orchestratorVersion": "1.35",
-    "currentOrchestratorVersion": "1.35.5",
+    "currentOrchestratorVersion": "1.35.6",
     "enableNodePublicIP": false,
     "mode": "User",
     "osType": "Linux",
     "osSKU": "Ubuntu",
-    "nodeImageVersion": "AKSUbuntu-2404gen2containerd-202606.19.0",
+    "nodeImageVersion": "AKSUbuntu-2404gen2containerd-202607.29.0",
     "upgradeSettings": {
       "maxSurge": "10%"
     },

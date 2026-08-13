@@ -1,0 +1,34 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-dc7f048c78a5aec9"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft Purview account"
+  },
+  {
+    "Label": "Default account",
+    "Value": "No"
+  },
+  {
+    "Label": "Platform size",
+    "Value": "1 capacity units"
+  }
+]

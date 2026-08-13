@@ -1,0 +1,26 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-e58bdfd29b0c6f5a"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Name",
+    "Value": "iani6kgc-1"
+  },
+  {
+    "Label": "SKU name",
+    "Value": "Free"
+  }
+]

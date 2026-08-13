@@ -1,12 +1,12 @@
 {
   "name": "pip208b-5n5",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-81fcf0828790336e/providers/Microsoft.Network/publicIPAddresses/pip208b-5n5",
-  "etag": "W/\u002259c6030f-0ac4-4fbc-b51a-5ff46190ff39\u0022",
-  "location": "westeurope",
+  "etag": "W/\u0022ddeb6ab0-5bc9-4be5-9696-e855463f16d9\u0022",
+  "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "02c0cf0a-1d19-4a78-88d3-75976febc44e",
-    "ipAddress": "20.123.176.48",
+    "resourceGuid": "98d7f59f-a22a-447b-9dcd-064e997bde93",
+    "ipAddress": "20.251.10.81",
     "publicIPAddressVersion": "IPv4",
     "publicIPAllocationMethod": "Static",
     "idleTimeoutInMinutes": 4,

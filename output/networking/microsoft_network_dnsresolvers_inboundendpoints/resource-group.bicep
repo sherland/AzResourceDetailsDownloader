@@ -3,7 +3,7 @@ param virtualNetworks_vnet3f_jfiwn_name string
 
 resource virtualNetworks_vnet3f_jfiwn_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnet3f_jfiwn_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -39,7 +39,7 @@ resource virtualNetworks_vnet3f_jfiwn_name_resource 'Microsoft.Network/virtualNe
 
 resource dnsResolvers_dnsrb_031p_1_name_resource 'Microsoft.Network/dnsResolvers@2025-10-01-preview' = {
   name: dnsResolvers_dnsrb_031p_1_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     virtualNetwork: {
       id: virtualNetworks_vnet3f_jfiwn_name_resource.id
@@ -72,7 +72,7 @@ resource virtualNetworks_vnet3f_jfiwn_name_inbound 'Microsoft.Network/virtualNet
 resource dnsResolvers_dnsrb_031p_1_name_inbound61hwdf 'Microsoft.Network/dnsResolvers/inboundEndpoints@2025-10-01-preview' = {
   parent: dnsResolvers_dnsrb_031p_1_name_resource
   name: 'inbound61hwdf'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ipConfigurations: [
       {

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,24 +10,24 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-9ba774595fc4a14a"
   tags = {
     armType    = "Microsoft.Network/dnsResolvers/outboundEndpoints"
-    createdUtc = "2026-07-15T19:27:46.6993920Z"
+    createdUtc = "2026-08-13T13:33:04.9706970Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_private_dns_resolver" "res-1" {
-  location            = "westeurope"
+  location            = "norwayeast"
   name                = "dnsrqragsytf"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}
   virtual_network_id  = azurerm_virtual_network.res-3.id
 }
 resource "azurerm_private_dns_resolver_outbound_endpoint" "res-2" {
-  location                = "westeurope"
+  location                = "norwayeast"
   name                    = "outboundngye8c"
   private_dns_resolver_id = azurerm_private_dns_resolver.res-1.id
   subnet_id               = azurerm_subnet.res-4.id
@@ -39,7 +39,7 @@ resource "azurerm_virtual_network" "res-3" {
   dns_servers                    = []
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
-  location                       = "westeurope"
+  location                       = "norwayeast"
   name                           = "vnet5jlfehrw"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name

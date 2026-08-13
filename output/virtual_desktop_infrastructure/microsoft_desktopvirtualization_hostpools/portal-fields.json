@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-c6c6c5710a932f1f"
+  },
+  {
+    "Label": "Location",
+    "Value": "North Europe"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Host pool type",
+    "Value": "Pooled"
+  },
+  {
+    "Label": "Assignment type",
+    "Value": "---"
+  },
+  {
+    "Label": "Uses Session Host Configuration",
+    "Value": "No"
+  },
+  {
+    "Label": "OS disk type",
+    "Value": "---"
+  },
+  {
+    "Label": "Deployment Scope",
+    "Value": "Geographical"
+  }
+]

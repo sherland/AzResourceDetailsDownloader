@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-9ba774595fc4a14a"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9ba774595fc4a14a/providers/Microsoft.Network/dnsResolvers/dnsrqragsytf/outboundEndpoints/outboundngye8c"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.Network/dnsResolvers/outboundEndpoints"
+  }
+]

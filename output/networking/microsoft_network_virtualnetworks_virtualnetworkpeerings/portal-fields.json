@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-958b9ff2a7840139"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-958b9ff2a7840139/providers/Microsoft.Network/virtualNetworks/vnet5nvk-1-n/virtualNetworkPeerings/peer-to-b"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+  }
+]

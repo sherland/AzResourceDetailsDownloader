@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-0b1b89abf1e402c6"
+  },
+  {
+    "Label": "Location",
+    "Value": "North Europe"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Application group type",
+    "Value": "Desktop"
+  },
+  {
+    "Label": "Friendly name",
+    "Value": "---"
+  },
+  {
+    "Label": "Description",
+    "Value": "---"
+  },
+  {
+    "Label": "Host pool",
+    "Value": "avdhpz-3v-b-9"
+  },
+  {
+    "Label": "Workspace",
+    "Value": "-"
+  }
+]

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-6ac66ccaa8351863"
   tags = {
     armType    = "Microsoft.LoadTestService/loadTests"
-    createdUtc = "2026-07-15T19:20:55.6654353Z"
+    createdUtc = "2026-08-13T14:16:20.4532579Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_load_test" "res-1" {
   description         = "ARDL load test resource"
-  location            = "westeurope"
+  location            = "swedencentral"
   name                = "ltft68qr-q"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}

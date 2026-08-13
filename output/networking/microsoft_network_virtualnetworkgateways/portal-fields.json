@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-d410a1d9804bdd65"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "SKU",
+    "Value": "VpnGw1AZ"
+  },
+  {
+    "Label": "Gateway type",
+    "Value": "VPN"
+  },
+  {
+    "Label": "VPN type",
+    "Value": "Route-based"
+  },
+  {
+    "Label": "Virtual network",
+    "Value": "vnetj03y6p07"
+  },
+  {
+    "Label": "Public IP address",
+    "Value": "20.100.45.73 (pipn1pda-f4)"
+  }
+]

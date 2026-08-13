@@ -3,7 +3,7 @@ param solutions_AzureActivity_lawnh_iule2_name string
 
 resource workspaces_lawnh_iule2_name_resource 'Microsoft.OperationalInsights/workspaces@2025-07-01' = {
   name: workspaces_lawnh_iule2_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     sku: {
       name: 'PerGB2018'
@@ -2075,6 +2075,20 @@ resource workspaces_lawnh_iule2_name_AgriFoodWeatherLogs 'Microsoft.OperationalI
   }
 }
 
+resource workspaces_lawnh_iule2_name_AGSGrafanaAlertAuthFailure 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawnh_iule2_name_resource
+  name: 'AGSGrafanaAlertAuthFailure'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'AGSGrafanaAlertAuthFailure'
+      displayName: 'AGSGrafanaAlertAuthFailure'
+    }
+    retentionInDays: 30
+  }
+}
+
 resource workspaces_lawnh_iule2_name_AGSGrafanaLoginEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   parent: workspaces_lawnh_iule2_name_resource
   name: 'AGSGrafanaLoginEvents'
@@ -3003,13 +3017,13 @@ resource workspaces_lawnh_iule2_name_AppGenAIContent 'Microsoft.OperationalInsig
   parent: workspaces_lawnh_iule2_name_resource
   name: 'AppGenAIContent'
   properties: {
-    totalRetentionInDays: 30
+    totalRetentionInDays: 90
     plan: 'Analytics'
     schema: {
       name: 'AppGenAIContent'
       displayName: 'AppGenAIContent'
     }
-    retentionInDays: 30
+    retentionInDays: 90
   }
 }
 
@@ -5925,6 +5939,20 @@ resource workspaces_lawnh_iule2_name_DeviceCustomScriptEvents 'Microsoft.Operati
   }
 }
 
+resource workspaces_lawnh_iule2_name_DevOpsOperationsAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawnh_iule2_name_resource
+  name: 'DevOpsOperationsAudit'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'DevOpsOperationsAudit'
+      displayName: 'DevOpsOperationsAudit'
+    }
+    retentionInDays: 30
+  }
+}
+
 resource workspaces_lawnh_iule2_name_DiscoveryBookshelfAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   parent: workspaces_lawnh_iule2_name_resource
   name: 'DiscoveryBookshelfAuditLogs'
@@ -5976,6 +6004,20 @@ resource workspaces_lawnh_iule2_name_DNSQueryLogs 'Microsoft.OperationalInsights
     schema: {
       name: 'DNSQueryLogs'
       displayName: 'DNSQueryLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawnh_iule2_name_DragonCopilot 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawnh_iule2_name_resource
+  name: 'DragonCopilot'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'DragonCopilot'
+      displayName: 'DragonCopilot'
     }
     retentionInDays: 30
   }
@@ -8389,6 +8431,20 @@ resource workspaces_lawnh_iule2_name_PurviewSecurityLogs 'Microsoft.OperationalI
   }
 }
 
+resource workspaces_lawnh_iule2_name_QuantumProviderAccountDeviceOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawnh_iule2_name_resource
+  name: 'QuantumProviderAccountDeviceOperationLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'QuantumProviderAccountDeviceOperationLogs'
+      displayName: 'QuantumProviderAccountDeviceOperationLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
 resource workspaces_lawnh_iule2_name_QuantumProviderAccountJobAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   parent: workspaces_lawnh_iule2_name_resource
   name: 'QuantumProviderAccountJobAuditLogs'
@@ -9607,6 +9663,62 @@ resource workspaces_lawnh_iule2_name_Windows365AuditLogs 'Microsoft.OperationalI
   }
 }
 
+resource workspaces_lawnh_iule2_name_Windows365CheckpointLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawnh_iule2_name_resource
+  name: 'Windows365CheckpointLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365CheckpointLogs'
+      displayName: 'Windows365CheckpointLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawnh_iule2_name_Windows365ConnectionErrorLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawnh_iule2_name_resource
+  name: 'Windows365ConnectionErrorLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365ConnectionErrorLogs'
+      displayName: 'Windows365ConnectionErrorLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawnh_iule2_name_Windows365ConnectionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawnh_iule2_name_resource
+  name: 'Windows365ConnectionLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365ConnectionLogs'
+      displayName: 'Windows365ConnectionLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawnh_iule2_name_Windows365NetworkLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawnh_iule2_name_resource
+  name: 'Windows365NetworkLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365NetworkLogs'
+      displayName: 'Windows365NetworkLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
 resource workspaces_lawnh_iule2_name_WindowsClientAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   parent: workspaces_lawnh_iule2_name_resource
   name: 'WindowsClientAssessmentRecommendation'
@@ -9903,7 +10015,7 @@ resource workspaces_lawnh_iule2_name_ZTSRequest 'Microsoft.OperationalInsights/w
 
 resource solutions_AzureActivity_lawnh_iule2_name_resource 'Microsoft.OperationsManagement/solutions@2015-11-01-preview' = {
   name: solutions_AzureActivity_lawnh_iule2_name
-  location: 'westeurope'
+  location: 'norwayeast'
   plan: {
     name: 'AzureActivity(lawnh-iule2)'
     promotionCode: ''

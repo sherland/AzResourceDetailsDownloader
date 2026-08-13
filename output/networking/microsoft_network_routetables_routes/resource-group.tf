@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-b3b443cef46c2376"
   tags = {
     armType    = "Microsoft.Network/routeTables/routes"
-    createdUtc = "2026-07-15T19:12:28.6131291Z"
+    createdUtc = "2026-08-13T13:19:17.6322822Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_route_table" "res-1" {
   bgp_route_propagation_enabled = true
-  location                      = "westeurope"
+  location                      = "norwayeast"
   name                          = "rtjowsda-7"
   resource_group_name           = azurerm_resource_group.res-0.name
   route = [{

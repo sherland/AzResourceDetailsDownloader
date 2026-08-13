@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-74a9554cec74d742"
   tags = {
     armType    = "Microsoft.DocumentDB/mongoClusters"
-    createdUtc = "2026-07-15T18:56:36.9508228Z"
+    createdUtc = "2026-08-13T13:09:08.4735230Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -24,11 +24,10 @@ resource "azurerm_mongo_cluster" "res-1" {
   administrator_username = "azrddadmin"
   authentication_methods = ["NativeAuth"]
   compute_tier           = "M10"
-  connection_strings     = [] # Masked sensitive attribute
   create_mode            = ""
   data_api_mode_enabled  = false
   high_availability_mode = "Disabled"
-  location               = "westeurope"
+  location               = "norwayeast"
   name                   = "mc7id9mtlp"
   preview_features       = []
   public_network_access  = "Enabled"

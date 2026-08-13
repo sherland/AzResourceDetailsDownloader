@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-fba1943833ef0847"
   tags = {
     armType    = "Microsoft.Databricks/workspaces"
-    createdUtc = "2026-07-15T20:05:10.8949992Z"
+    createdUtc = "2026-08-13T13:35:56.6684556Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,7 +23,7 @@ resource "azurerm_databricks_workspace" "res-1" {
   customer_managed_key_enabled                        = false
   infrastructure_encryption_enabled                   = false
   load_balancer_backend_address_pool_id               = ""
-  location                                            = "westeurope"
+  location                                            = "norwayeast"
   managed_disk_cmk_key_vault_id                       = ""
   managed_disk_cmk_key_vault_key_id                   = ""
   managed_disk_cmk_rotation_to_latest_version_enabled = false
@@ -43,7 +43,7 @@ resource "azurerm_databricks_workspace" "res-1" {
     public_ip_name                                       = ""
     public_subnet_name                                   = ""
     public_subnet_network_security_group_association_id  = ""
-    storage_account_name                                 = "dbstoragedguzdlfcbcmes"
+    storage_account_name                                 = "dbstoragevpqsauyrlthy4"
     storage_account_sku_name                             = "Standard_ZRS"
     virtual_network_id                                   = ""
     vnet_address_prefix                                  = ""

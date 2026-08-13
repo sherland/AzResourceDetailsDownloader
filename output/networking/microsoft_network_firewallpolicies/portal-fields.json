@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-b6cb64ed3b9bae27"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Provisioning state",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Policy name",
+    "Value": "afwpgkb-kyp1"
+  },
+  {
+    "Label": "Policy tier",
+    "Value": "Standard"
+  },
+  {
+    "Label": "TLS inspection (Premium)",
+    "Value": "Not supported with standard policy"
+  },
+  {
+    "Label": "IDPS mode (Premium)",
+    "Value": "Not supported with standard policy"
+  }
+]

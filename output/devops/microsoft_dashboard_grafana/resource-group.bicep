@@ -2,7 +2,7 @@ param grafana_grfvkgyyrfx_name string
 
 resource grafana_grfvkgyyrfx_name_resource 'Microsoft.Dashboard/grafana@2025-09-01-preview' = {
   name: grafana_grfvkgyyrfx_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     size: 'X1'

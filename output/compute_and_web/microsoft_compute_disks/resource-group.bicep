@@ -2,7 +2,7 @@ param disks_diskbpe8_oy2_name string
 
 resource disks_diskbpe8_oy2_name_resource 'Microsoft.Compute/disks@2025-01-02' = {
   name: disks_diskbpe8_oy2_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'

@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-dd78496389a3f338"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Maintenance scope",
+    "Value": "Guest (Azure VM, Arc-enabled VMs/servers)"
+  },
+  {
+    "Label": "Maintenance events",
+    "Value": "- (Configure)"
+  },
+  {
+    "Label": "Reboot setting",
+    "Value": "Reboot if required"
+  }
+]

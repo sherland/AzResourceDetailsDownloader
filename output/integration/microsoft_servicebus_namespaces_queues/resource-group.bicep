@@ -2,7 +2,7 @@ param namespaces_sbookpd3_f_name string
 
 resource namespaces_sbookpd3_f_name_resource 'Microsoft.ServiceBus/namespaces@2026-01-01' = {
   name: namespaces_sbookpd3_f_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Basic'
     tier: 'Basic'
@@ -17,7 +17,7 @@ resource namespaces_sbookpd3_f_name_resource 'Microsoft.ServiceBus/namespaces@20
       maxReplicationLagDurationInSeconds: 0
       locations: [
         {
-          locationName: 'westeurope'
+          locationName: 'norwayeast'
           roleType: 'Primary'
         }
       ]
@@ -33,7 +33,7 @@ resource namespaces_sbookpd3_f_name_resource 'Microsoft.ServiceBus/namespaces@20
 resource namespaces_sbookpd3_f_name_RootManageSharedAccessKey 'Microsoft.ServiceBus/namespaces/authorizationrules@2026-01-01' = {
   parent: namespaces_sbookpd3_f_name_resource
   name: 'RootManageSharedAccessKey'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     rights: [
       'Listen'
@@ -46,7 +46,7 @@ resource namespaces_sbookpd3_f_name_RootManageSharedAccessKey 'Microsoft.Service
 resource namespaces_sbookpd3_f_name_default 'Microsoft.ServiceBus/namespaces/networkrulesets@2026-01-01' = {
   parent: namespaces_sbookpd3_f_name_resource
   name: 'default'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     publicNetworkAccess: 'Enabled'
     defaultAction: 'Allow'
@@ -59,7 +59,7 @@ resource namespaces_sbookpd3_f_name_default 'Microsoft.ServiceBus/namespaces/net
 resource namespaces_sbookpd3_f_name_queuee2e7_c 'Microsoft.ServiceBus/namespaces/queues@2026-01-01' = {
   parent: namespaces_sbookpd3_f_name_resource
   name: 'queuee2e7-c'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     maxMessageSizeInKilobytes: 256
     lockDuration: 'PT1M'

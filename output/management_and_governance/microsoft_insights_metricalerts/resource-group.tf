@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,38 +10,16 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-04193cb7b9ed5985"
   tags = {
     armType    = "Microsoft.Insights/metricAlerts"
-    createdUtc = "2026-07-15T18:51:40.5685583Z"
+    createdUtc = "2026-08-13T14:02:24.1949158Z"
     purpose    = "az-resource-details-downloader"
   }
 }
-resource "azurerm_monitor_metric_alert" "res-1" {
-  auto_mitigate            = false
-  description              = ""
-  enabled                  = true
-  frequency                = "PT5M"
-  name                     = "maxwws0ziv"
-  resource_group_name      = azurerm_resource_group.res-0.name
-  scopes                   = [azurerm_storage_account.res-2.id]
-  severity                 = 3
-  tags                     = {}
-  target_resource_location = ""
-  target_resource_type     = ""
-  window_size              = "PT15M"
-  criteria {
-    aggregation            = "Total"
-    metric_name            = "Transactions"
-    metric_namespace       = ""
-    operator               = "GreaterThan"
-    skip_metric_validation = false
-    threshold              = 1000000
-  }
-}
-resource "azurerm_storage_account" "res-2" {
+resource "azurerm_storage_account" "res-1" {
   access_tier                       = "Hot"
   account_kind                      = "StorageV2"
   account_replication_type          = "LRS"
@@ -57,20 +35,14 @@ resource "azurerm_storage_account" "res-2" {
   is_hns_enabled                    = false
   large_file_share_enabled          = false
   local_user_enabled                = true
-  location                          = "westeurope"
+  location                          = "norwayeast"
   min_tls_version                   = "TLS1_2"
-  name                              = "stagf5ppwn"
+  name                              = "stc1k2bcxi"
   nfsv3_enabled                     = false
-  primary_access_key                = "" # Masked sensitive attribute
-  primary_blob_connection_string    = "" # Masked sensitive attribute
-  primary_connection_string         = "" # Masked sensitive attribute
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
   queue_encryption_key_type         = "Service"
   resource_group_name               = azurerm_resource_group.res-0.name
-  secondary_access_key              = "" # Masked sensitive attribute
-  secondary_blob_connection_string  = "" # Masked sensitive attribute
-  secondary_connection_string       = "" # Masked sensitive attribute
   sftp_enabled                      = false
   shared_access_key_enabled         = true
   table_encryption_key_type         = "Service"
@@ -101,14 +73,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Insights/metricAlerts/maxwws0ziv"
-  to = azurerm_monitor_metric_alert.res-1
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/stc1k2bcxi"
+  to = azurerm_storage_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/stagf5ppwn"
-  to = azurerm_storage_account.res-2
-}
-import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/stagf5ppwn"
-  to = azurerm_storage_account_queue_properties.res-5
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-04193cb7b9ed5985/providers/Microsoft.Storage/storageAccounts/stc1k2bcxi"
+  to = azurerm_storage_account_queue_properties.res-4
 }

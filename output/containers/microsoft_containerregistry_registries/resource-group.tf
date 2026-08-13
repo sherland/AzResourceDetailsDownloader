@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,23 +10,22 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-1bbbd6c0728e9e29"
   tags = {
     armType    = "Microsoft.ContainerRegistry/registries"
-    createdUtc = "2026-07-15T18:29:09.0923506Z"
+    createdUtc = "2026-08-13T12:43:54.0616920Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_container_registry" "res-1" {
   admin_enabled                 = false
-  admin_password                = "" # Masked sensitive attribute
   anonymous_pull_enabled        = false
   data_endpoint_enabled         = false
   encryption                    = []
   export_policy_enabled         = true
-  location                      = "westeurope"
+  location                      = "norwayeast"
   name                          = "acrp0etmvv1"
   network_rule_bypass_option    = "AzureServices"
   network_rule_set              = []

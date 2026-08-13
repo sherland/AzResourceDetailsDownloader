@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-2b3276b507429af5"
   tags = {
     armType    = "Microsoft.DataProtection/backupVaults"
-    createdUtc = "2026-07-15T19:22:16.1963236Z"
+    createdUtc = "2026-08-13T13:26:42.0337730Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,7 +23,7 @@ resource "azurerm_data_protection_backup_vault" "res-1" {
   cross_region_restore_enabled = false
   datastore_type               = "VaultStore"
   immutability                 = "Disabled"
-  location                     = "westeurope"
+  location                     = "norwayeast"
   name                         = "bvaulths4wux85"
   redundancy                   = "LocallyRedundant"
   resource_group_name          = azurerm_resource_group.res-0.name

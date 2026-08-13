@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-b0d3d468c211b31a"
+  },
+  {
+    "Label": "Status",
+    "Value": "Online"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Account endpoint",
+    "Value": "batchp09vx5pt.norwayeast.batch.azure.com"
+  },
+  {
+    "Label": "Node management endpoint",
+    "Value": "af84ea63-9cde-497d-b88d-3d341c9ac9cf.norwayeast.service.batch.azure.com"
+  },
+  {
+    "Label": "Identity type",
+    "Value": "None"
+  },
+  {
+    "Label": "Public network access",
+    "Value": "All networks"
+  },
+  {
+    "Label": "Pool allocation mode",
+    "Value": "Batch service"
+  }
+]

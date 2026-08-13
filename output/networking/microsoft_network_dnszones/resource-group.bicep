@@ -15,16 +15,16 @@ resource Microsoft_Network_dnszones_NS_dnszones_ardllnkmwt9n_contoso_com_name 'M
     TTL: 172800
     NSRecords: [
       {
-        nsdname: 'ns1-08.azure-dns.com.'
+        nsdname: 'ns1-06.azure-dns.com.'
       }
       {
-        nsdname: 'ns2-08.azure-dns.net.'
+        nsdname: 'ns2-06.azure-dns.net.'
       }
       {
-        nsdname: 'ns3-08.azure-dns.org.'
+        nsdname: 'ns3-06.azure-dns.org.'
       }
       {
-        nsdname: 'ns4-08.azure-dns.info.'
+        nsdname: 'ns4-06.azure-dns.info.'
       }
     ]
     targetResource: {}
@@ -40,7 +40,7 @@ resource Microsoft_Network_dnszones_SOA_dnszones_ardllnkmwt9n_contoso_com_name '
     SOARecord: {
       email: 'azuredns-hostmaster.microsoft.com'
       expireTime: 2419200
-      host: 'ns1-08.azure-dns.com.'
+      host: 'ns1-06.azure-dns.com.'
       minimumTTL: 300
       refreshTime: 3600
       retryTime: 300

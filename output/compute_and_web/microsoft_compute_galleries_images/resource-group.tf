@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-eecb9a7ad07dc5a9"
   tags = {
     armType    = "Microsoft.Compute/galleries/images"
-    createdUtc = "2026-07-15T18:40:49.6713560Z"
+    createdUtc = "2026-08-13T12:52:58.4012169Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_shared_image_gallery" "res-1" {
   description         = ""
-  location            = "westeurope"
+  location            = "norwayeast"
   name                = "galor6b8wuj"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}
@@ -38,7 +38,7 @@ resource "azurerm_shared_image" "res-2" {
   gallery_name                        = "galor6b8wuj"
   hibernation_enabled                 = false
   hyper_v_generation                  = "V1"
-  location                            = "westeurope"
+  location                            = "norwayeast"
   max_recommended_memory_in_gb        = 0
   max_recommended_vcpu_count          = 0
   min_recommended_memory_in_gb        = 0

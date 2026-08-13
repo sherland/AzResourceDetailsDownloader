@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-19d479b8c5681686"
+  },
+  {
+    "Label": "Location",
+    "Value": "North Europe"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Friendly name",
+    "Value": "---"
+  },
+  {
+    "Label": "Description",
+    "Value": "---"
+  },
+  {
+    "Label": "Deployment Scope",
+    "Value": "Geographical"
+  }
+]

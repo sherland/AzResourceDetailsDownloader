@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,17 +10,17 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-0657a2f739507890"
   tags = {
     armType    = "Microsoft.Network/networkSecurityPerimeters"
-    createdUtc = "2026-07-15T19:25:43.0961040Z"
+    createdUtc = "2026-08-13T13:31:26.7474438Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_network_security_perimeter" "res-1" {
-  location            = "westeurope"
+  location            = "norwayeast"
   name                = "nspoe-0-nxe"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}

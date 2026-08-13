@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-9453358d1e4e04fe"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Service region",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Hostname",
+    "Value": "iot19ncaw4p.azure-devices.net"
+  },
+  {
+    "Label": "Tier",
+    "Value": "Free"
+  },
+  {
+    "Label": "Daily message limit",
+    "Value": "8 000"
+  },
+  {
+    "Label": "Minimum TLS Version",
+    "Value": "1.2"
+  }
+]

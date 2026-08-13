@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-1bbbd6c0728e9e29"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Soft delete (Preview)",
+    "Value": "Disabled"
+  },
+  {
+    "Label": "Login server",
+    "Value": "acrp0etmvv1.azurecr.io"
+  },
+  {
+    "Label": "Creation date",
+    "Value": "8/13/2026, 2:43 PM GMT\u002B2"
+  },
+  {
+    "Label": "Provisioning state",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Pricing plan",
+    "Value": "Basic"
+  },
+  {
+    "Label": "Domain name label scope",
+    "Value": "Unsecure"
+  }
+]

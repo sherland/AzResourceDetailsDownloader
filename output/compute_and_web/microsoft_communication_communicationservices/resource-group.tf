@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,24 +10,20 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-03b31e1fc10f5155"
   tags = {
     armType    = "Microsoft.Communication/communicationServices"
-    createdUtc = "2026-07-15T18:49:57.0025240Z"
+    createdUtc = "2026-08-13T13:00:51.2443834Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_communication_service" "res-1" {
-  data_location               = "Europe"
-  name                        = "acso-awg-qq"
-  primary_connection_string   = "" # Masked sensitive attribute
-  primary_key                 = "" # Masked sensitive attribute
-  resource_group_name         = azurerm_resource_group.res-0.name
-  secondary_connection_string = "" # Masked sensitive attribute
-  secondary_key               = "" # Masked sensitive attribute
-  tags                        = {}
+  data_location       = "Europe"
+  name                = "acso-awg-qq"
+  resource_group_name = azurerm_resource_group.res-0.name
+  tags                = {}
 }
 
 

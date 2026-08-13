@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-dce9c274708612f0"
   tags = {
     armType    = "Microsoft.VideoIndexer/accounts"
-    createdUtc = "2026-07-15T19:18:29.8537092Z"
+    createdUtc = "2026-08-13T14:24:43.7817311Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -35,20 +35,14 @@ resource "azurerm_storage_account" "res-1" {
   is_hns_enabled                    = false
   large_file_share_enabled          = false
   local_user_enabled                = true
-  location                          = "westeurope"
+  location                          = "norwayeast"
   min_tls_version                   = "TLS1_2"
-  name                              = "st32wnmsmg"
+  name                              = "stsxpptwtg"
   nfsv3_enabled                     = false
-  primary_access_key                = "" # Masked sensitive attribute
-  primary_blob_connection_string    = "" # Masked sensitive attribute
-  primary_connection_string         = "" # Masked sensitive attribute
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
   queue_encryption_key_type         = "Service"
   resource_group_name               = azurerm_resource_group.res-0.name
-  secondary_access_key              = "" # Masked sensitive attribute
-  secondary_blob_connection_string  = "" # Masked sensitive attribute
-  secondary_connection_string       = "" # Masked sensitive attribute
   sftp_enabled                      = false
   shared_access_key_enabled         = true
   table_encryption_key_type         = "Service"
@@ -73,8 +67,8 @@ resource "azurerm_storage_account" "res-1" {
   }
 }
 resource "azurerm_video_indexer_account" "res-6" {
-  location              = "westeurope"
-  name                  = "avijmur3g6t"
+  location              = "swedencentral"
+  name                  = "aviz5-9-ivt"
   public_network_access = ""
   resource_group_name   = azurerm_resource_group.res-0.name
   tags                  = {}
@@ -94,14 +88,14 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/st32wnmsmg"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/stsxpptwtg"
   to = azurerm_storage_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/st32wnmsmg"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/stsxpptwtg"
   to = azurerm_storage_account_queue_properties.res-4
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.VideoIndexer/accounts/avijmur3g6t"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.VideoIndexer/accounts/aviz5-9-ivt"
   to = azurerm_video_indexer_account.res-6
 }

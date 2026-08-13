@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-4965fec5d0d82612"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4965fec5d0d82612/providers/Microsoft.Resources/templateSpecs/ts3l4-yx-a/versions/v1"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.Resources/templateSpecs/versions"
+  }
+]

@@ -2,7 +2,7 @@ param namespaces_nhnsfb_y_5_5_name string
 
 resource namespaces_nhnsfb_y_5_5_name_resource 'Microsoft.NotificationHubs/namespaces@2023-10-01-preview' = {
   name: namespaces_nhnsfb_y_5_5_name
-  location: 'West Europe'
+  location: 'Norway East'
   sku: {
     name: 'Free'
   }
@@ -10,7 +10,7 @@ resource namespaces_nhnsfb_y_5_5_name_resource 'Microsoft.NotificationHubs/names
     provisioningState: 'Succeeded'
     status: 'Created'
     namespaceType: 'NotificationHub'
-    zoneRedundancy: 'Disabled'
+    zoneRedundancy: 'Enabled'
     networkAcls: {}
     publicNetworkAccess: 'Enabled'
   }

@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-247f5bd34103ba1e"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Domain Endpoint",
+    "Value": "https://egduzo-u3om.norwayeast-1.eventgrid.azure.net/api/events"
+  },
+  {
+    "Label": "Local Authentication",
+    "Value": "Enabled"
+  },
+  {
+    "Label": "Pricing tier",
+    "Value": "Basic"
+  },
+  {
+    "Label": "Availability zones",
+    "Value": "Enabled"
+  }
+]

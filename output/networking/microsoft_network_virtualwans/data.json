@@ -1,9 +1,9 @@
 {
   "name": "vwanln-0o-eh",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7a9beee1f910a260/providers/Microsoft.Network/virtualWans/vwanln-0o-eh",
-  "etag": "W/\u0022b0915f9b-a264-418d-b813-e3d1af4f9b29\u0022",
+  "etag": "W/\u0022566e83bc-2571-439a-9ebc-e814c7cef393\u0022",
   "type": "Microsoft.Network/virtualWans",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
     "disableVpnEncryption": false,

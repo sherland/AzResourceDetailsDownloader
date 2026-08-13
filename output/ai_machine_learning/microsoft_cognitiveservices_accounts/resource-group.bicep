@@ -2,7 +2,7 @@ param accounts_cogojuhykh8_name string
 
 resource accounts_cogojuhykh8_name_resource 'Microsoft.CognitiveServices/accounts@2026-05-01' = {
   name: accounts_cogojuhykh8_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'S0'
   }

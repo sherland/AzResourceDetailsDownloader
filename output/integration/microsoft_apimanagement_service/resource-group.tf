@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,21 +10,21 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-4f4d76db12ba6ca3"
   tags = {
     armType    = "Microsoft.ApiManagement/service"
-    createdUtc = "2026-07-15T18:57:50.7515464Z"
+    createdUtc = "2026-08-13T14:36:15.7041744Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_api_management" "res-1" {
   client_certificate_enabled    = false
   gateway_disabled              = false
-  location                      = "westeurope"
+  location                      = "norwayeast"
   min_api_version               = ""
-  name                          = "apimqboznhhd"
+  name                          = "apimaib-5hed"
   notification_sender_email     = "apimgmt-noreply@mail.windowsazure.com"
   public_ip_address_id          = ""
   public_network_access_enabled = true
@@ -40,7 +40,7 @@ resource "azurerm_api_management" "res-1" {
       certificate                     = "" # Masked sensitive attribute
       certificate_password            = "" # Masked sensitive attribute
       default_ssl_binding             = true
-      host_name                       = "apimqboznhhd.azure-api.net"
+      host_name                       = "apimaib-5hed.azure-api.net"
       key_vault_certificate_id        = ""
       key_vault_id                    = ""
       negotiate_client_certificate    = false
@@ -88,14 +88,14 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f4d76db12ba6ca3/providers/Microsoft.ApiManagement/service/apimqboznhhd"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f4d76db12ba6ca3/providers/Microsoft.ApiManagement/service/apimaib-5hed"
   to = azurerm_api_management.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f4d76db12ba6ca3/providers/Microsoft.ApiManagement/service/apimqboznhhd"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f4d76db12ba6ca3/providers/Microsoft.ApiManagement/service/apimaib-5hed"
   to = azurerm_api_management_policy.res-2
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f4d76db12ba6ca3/providers/Microsoft.ApiManagement/service/apimqboznhhd/subscriptions/master"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f4d76db12ba6ca3/providers/Microsoft.ApiManagement/service/apimaib-5hed/subscriptions/master"
   to = azurerm_api_management_subscription.res-3
 }

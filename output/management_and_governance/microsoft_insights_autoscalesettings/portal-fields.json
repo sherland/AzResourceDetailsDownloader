@@ -1,0 +1,26 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-cc2b66fdbbabfb9f"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-cc2b66fdbbabfb9f/providers/microsoft.insights/autoscalesettings/asp-mww-u3"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.Insights/autoscaleSettings"
+  }
+]

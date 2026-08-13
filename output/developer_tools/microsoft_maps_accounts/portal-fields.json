@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-8d621c7a6b0df561"
+  },
+  {
+    "Label": "Location",
+    "Value": "Global"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Pricing Tier (SKU)",
+    "Value": "Gen2 (Maps \u0026 Location Insights)"
+  },
+  {
+    "Label": "Client ID",
+    "Value": "6b19f5c1-b79e-4341-9327-cfd4703273db"
+  },
+  {
+    "Label": "Account URI",
+    "Value": "https://account.maps.azure.com"
+  }
+]

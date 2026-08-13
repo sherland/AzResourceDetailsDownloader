@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,19 +10,19 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-7a9beee1f910a260"
   tags = {
     armType    = "Microsoft.Network/virtualWans"
-    createdUtc = "2026-07-15T18:48:23.1816838Z"
+    createdUtc = "2026-08-13T12:58:32.8315712Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_virtual_wan" "res-1" {
   allow_branch_to_branch_traffic    = true
   disable_vpn_encryption            = false
-  location                          = "westeurope"
+  location                          = "norwayeast"
   name                              = "vwanln-0o-eh"
   office365_local_breakout_category = "None"
   resource_group_name               = azurerm_resource_group.res-0.name

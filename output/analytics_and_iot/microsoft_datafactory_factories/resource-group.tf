@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,19 +10,19 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-9f7012d5f41c8fa4"
   tags = {
     armType    = "Microsoft.DataFactory/factories"
-    createdUtc = "2026-07-15T19:17:32.6480478Z"
+    createdUtc = "2026-08-13T13:23:12.9684314Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_data_factory" "res-1" {
   customer_managed_key_id          = ""
   customer_managed_key_identity_id = ""
-  location                         = "westeurope"
+  location                         = "norwayeast"
   managed_virtual_network_enabled  = false
   name                             = "adfl4uvvuld"
   public_network_enabled           = true

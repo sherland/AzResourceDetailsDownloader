@@ -4,7 +4,7 @@ param virtualMachines_swazfidx9hmdq01_name string
 
 resource virtualNetworks_vnetb5ylw2_a_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnetb5ylw2_a_name
-  location: 'westeurope'
+  location: 'swedencentral'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -31,13 +31,7 @@ resource virtualNetworks_vnetb5ylw2_a_name_resource 'Microsoft.Network/virtualNe
 
 resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtualMachines@2025-11-01' = {
   name: virtualMachines_swazfidx9hmdq01_name
-  location: 'westeurope'
-  tags: {
-    DISIT_OS_PATCHING: 'automatic'
-  }
-  identity: {
-    type: 'SystemAssigned'
-  }
+  location: 'swedencentral'
   properties: {
     hardwareProfile: {
       vmSize: 'Standard_D2s_v5'
@@ -51,14 +45,14 @@ resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtua
       }
       osDisk: {
         osType: 'Linux'
-        name: '${virtualMachines_swazfidx9hmdq01_name}_OsDisk_1_5f07031c175e4af88811964818ec7a29'
+        name: '${virtualMachines_swazfidx9hmdq01_name}_OsDisk_1_d886fec04d724d309b627e1599e71143'
         createOption: 'FromImage'
         caching: 'ReadWrite'
         managedDisk: {
           storageAccountType: 'StandardSSD_LRS'
           id: resourceId(
             'Microsoft.Compute/disks',
-            '${virtualMachines_swazfidx9hmdq01_name}_OsDisk_1_5f07031c175e4af88811964818ec7a29'
+            '${virtualMachines_swazfidx9hmdq01_name}_OsDisk_1_d886fec04d724d309b627e1599e71143'
           )
         }
         deleteOption: 'Detach'
@@ -72,12 +66,10 @@ resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtua
         disablePasswordAuthentication: false
         provisionVMAgent: true
         patchSettings: {
-          patchMode: 'AutomaticByPlatform'
-          automaticByPlatformSettings: {
-            bypassPlatformSafetyChecksOnUserSchedule: true
-          }
-          assessmentMode: 'AutomaticByPlatform'
+          patchMode: 'ImageDefault'
+          assessmentMode: 'ImageDefault'
         }
+        enableVMAgentPlatformUpdates: true
       }
       secrets: []
       allowExtensionOperations: true
@@ -99,7 +91,7 @@ resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtua
 
 resource networkInterfaces_nicdr_jirpw_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
   name: networkInterfaces_nicdr_jirpw_name
-  location: 'westeurope'
+  location: 'swedencentral'
   kind: 'Regular'
   properties: {
     ipConfigurations: [

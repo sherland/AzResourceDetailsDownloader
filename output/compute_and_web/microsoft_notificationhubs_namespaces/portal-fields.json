@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-523affa83da0c585"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Name",
+    "Value": "nhnsfb-y-5-5"
+  },
+  {
+    "Label": "Pricing Tier",
+    "Value": "Free"
+  },
+  {
+    "Label": "Service Endpoint",
+    "Value": "https://nhnsfb-y-5-5.servicebus.windows.net:443/"
+  },
+  {
+    "Label": "Last Updated Date",
+    "Value": "2026-08-13T13:00:43.233\u002B00:00"
+  }
+]

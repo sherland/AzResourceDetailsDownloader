@@ -1,8 +1,8 @@
-param vaults_kvr0fb_t_v_name string
+param vaults_kvrq6_2c9f_name string
 
-resource vaults_kvr0fb_t_v_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-preview' = {
-  name: vaults_kvr0fb_t_v_name
-  location: 'westeurope'
+resource vaults_kvrq6_2c9f_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-preview' = {
+  name: vaults_kvrq6_2c9f_name
+  location: 'norwayeast'
   properties: {
     sku: {
       family: 'A'
@@ -15,7 +15,7 @@ resource vaults_kvr0fb_t_v_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-p
     softDeleteRetentionInDays: 90
     enableRbacAuthorization: true
     enablePurgeProtection: true
-    vaultUri: 'https://${vaults_kvr0fb_t_v_name}.vault.azure.net/'
+    vaultUri: 'https://${vaults_kvrq6_2c9f_name}.vault.azure.net/'
     provisioningState: 'Succeeded'
     publicNetworkAccess: 'Enabled'
   }

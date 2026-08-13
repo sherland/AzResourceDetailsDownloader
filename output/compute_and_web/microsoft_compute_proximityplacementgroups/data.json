@@ -2,7 +2,7 @@
   "name": "ppga5vrkskv",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-faf37f47d84dab3a/providers/Microsoft.Compute/proximityPlacementGroups/ppga5vrkskv",
   "type": "Microsoft.Compute/proximityPlacementGroups",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "proximityPlacementGroupType": "Standard",
     "virtualMachines": [],

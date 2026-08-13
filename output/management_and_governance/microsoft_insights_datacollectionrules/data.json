@@ -1,6 +1,6 @@
 {
   "properties": {
-    "immutableId": "dcr-cd4d22e99a1348c09e6b4510e7110192",
+    "immutableId": "dcr-ea56bcb270c24390ba08d6c09514e42d",
     "dataSources": {
       "performanceCounters": [
         {
@@ -19,7 +19,7 @@
       "logAnalytics": [
         {
           "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p",
-          "workspaceId": "d13e7a40-6e64-4e50-a5d5-1008d3c3cca1",
+          "workspaceId": "7093cf92-ab6a-4ea4-82ba-eb8579b1f0c9",
           "name": "destination-log"
         }
       ]
@@ -36,17 +36,17 @@
     ],
     "provisioningState": "Succeeded"
   },
-  "location": "westeurope",
+  "location": "norwayeast",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.Insights/dataCollectionRules/dcrgitooyah",
   "name": "dcrgitooyah",
   "type": "Microsoft.Insights/dataCollectionRules",
-  "etag": "\u00223001c789-0000-0d00-0000-6a57d6e90000\u0022",
+  "etag": "\u00220900f7e6-0000-3c00-0000-6a7dc10f0000\u0022",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:52:22.2911097Z",
+    "createdAt": "2026-08-13T13:05:16.6968428Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:52:22.2911097Z"
+    "lastModifiedAt": "2026-08-13T13:05:16.6968428Z"
   }
 }

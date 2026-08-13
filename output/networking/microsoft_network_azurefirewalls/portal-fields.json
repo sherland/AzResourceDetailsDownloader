@@ -1,0 +1,62 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-286cff30700da727"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Virtual network",
+    "Value": "vnetfdgcru-j"
+  },
+  {
+    "Label": "Provisioning state",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "SKU",
+    "Value": "Basic(change)"
+  },
+  {
+    "Label": "Subnet",
+    "Value": "AzureFirewallSubnet"
+  },
+  {
+    "Label": "Public IP",
+    "Value": "pip7ia9-tq4"
+  },
+  {
+    "Label": "Private IP",
+    "Value": "10.45.255.4"
+  },
+  {
+    "Label": "NAT gateway",
+    "Value": "-"
+  },
+  {
+    "Label": "Management subnet",
+    "Value": "AzureFirewallManagementSubnet"
+  },
+  {
+    "Label": "Management public IP",
+    "Value": "piptlxkj0-6"
+  },
+  {
+    "Label": "Private IP Ranges",
+    "Value": "IANA RFC 1918"
+  },
+  {
+    "Label": "Route Server",
+    "Value": "Add"
+  }
+]

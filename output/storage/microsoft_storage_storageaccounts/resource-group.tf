@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-652dbcc623f75a16"
   tags = {
     armType    = "Microsoft.Storage/storageAccounts"
-    createdUtc = "2026-07-15T18:20:02.1979801Z"
+    createdUtc = "2026-08-13T14:02:24.1949238Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -35,20 +35,14 @@ resource "azurerm_storage_account" "res-1" {
   is_hns_enabled                    = false
   large_file_share_enabled          = false
   local_user_enabled                = true
-  location                          = "westeurope"
+  location                          = "norwayeast"
   min_tls_version                   = "TLS1_2"
-  name                              = "sti13arhgp"
+  name                              = "stedrfc3h1"
   nfsv3_enabled                     = false
-  primary_access_key                = "" # Masked sensitive attribute
-  primary_blob_connection_string    = "" # Masked sensitive attribute
-  primary_connection_string         = "" # Masked sensitive attribute
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
   queue_encryption_key_type         = "Service"
   resource_group_name               = azurerm_resource_group.res-0.name
-  secondary_access_key              = "" # Masked sensitive attribute
-  secondary_blob_connection_string  = "" # Masked sensitive attribute
-  secondary_connection_string       = "" # Masked sensitive attribute
   sftp_enabled                      = false
   shared_access_key_enabled         = true
   table_encryption_key_type         = "Service"
@@ -79,10 +73,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/sti13arhgp"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/stedrfc3h1"
   to = azurerm_storage_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/sti13arhgp"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/stedrfc3h1"
   to = azurerm_storage_account_queue_properties.res-4
 }

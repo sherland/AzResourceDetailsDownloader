@@ -19,3 +19,5 @@ Text automatically extracted from info/warning boxes on the Overview blade at ca
 - This new Azure Database for PostgreSQL flexible server has been created as part of successful automatic migration of Azure Database for PostgreSQL Single Server pgfd6vwwi6
 
 - Burstable compute tier is optimized for dev/test workloads. For production use, we recommend General Purpose or Memory Optimized tiers.
+
+- Want to try out a new fleet management maintenance experience? Click here

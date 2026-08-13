@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-d2d1e6175e7bd2ef"
   tags = {
     armType    = "Microsoft.Sql/servers"
-    createdUtc = "2026-07-15T18:22:13.6558559Z"
+    createdUtc = "2026-08-13T14:12:39.7050681Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -26,7 +26,7 @@ resource "azurerm_mssql_server" "res-1" {
   administrator_login_password_wo_version      = 0
   connection_policy                            = "Default"
   express_vulnerability_assessment_enabled     = false
-  location                                     = "westeurope"
+  location                                     = "swedencentral"
   minimum_tls_version                          = "1.2"
   name                                         = "sqlfmf2kgqp"
   outbound_network_restriction_enabled         = false

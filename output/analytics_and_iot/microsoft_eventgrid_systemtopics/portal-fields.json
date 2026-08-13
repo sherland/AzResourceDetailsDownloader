@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-45b6f9f7d6eb1a2f"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Source",
+    "Value": "stz1i5gup3"
+  },
+  {
+    "Label": "Source Type",
+    "Value": "Microsoft.Storage.StorageAccounts"
+  }
+]

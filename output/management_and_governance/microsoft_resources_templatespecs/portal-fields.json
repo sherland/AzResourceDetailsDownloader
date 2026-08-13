@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-fdb1d833d4fb0cbd"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Latest Version",
+    "Value": "---"
+  },
+  {
+    "Label": "Display Name",
+    "Value": "ARDL Template Spec"
+  },
+  {
+    "Label": "Description",
+    "Value": "---"
+  },
+  {
+    "Label": "Creation Time",
+    "Value": "8/13/2026, 2:57 PM"
+  },
+  {
+    "Label": "Modified Time",
+    "Value": "8/13/2026, 2:57 PM"
+  }
+]

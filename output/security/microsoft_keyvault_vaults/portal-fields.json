@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-08aa11195db40102"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Vault URI",
+    "Value": "https://kvrq6-2c9f.vault.azure.net/"
+  },
+  {
+    "Label": "Sku (Pricing tier)",
+    "Value": "Standard"
+  },
+  {
+    "Label": "Directory ID",
+    "Value": "11111111-1111-1111-1111-111111111111"
+  },
+  {
+    "Label": "Directory Name",
+    "Value": "example-tenant"
+  },
+  {
+    "Label": "Soft-delete",
+    "Value": "Enabled"
+  },
+  {
+    "Label": "Purge protection",
+    "Value": "Enabled"
+  }
+]

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-ff83ff04b97211cf"
   tags = {
     armType    = "Microsoft.Compute/virtualMachines"
-    createdUtc = "2026-07-15T18:31:28.7860288Z"
+    createdUtc = "2026-08-13T12:46:28.5680764Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -24,7 +24,7 @@ resource "azurerm_linux_virtual_machine" "res-1" {
   admin_username                                         = "azrddadmin"
   allow_extension_operations                             = true
   availability_set_id                                    = ""
-  bypass_platform_safety_checks_on_user_schedule_enabled = true
+  bypass_platform_safety_checks_on_user_schedule_enabled = false
   capacity_reservation_group_id                          = ""
   computer_name                                          = "ardlvm"
   custom_data                                            = "" # Masked sensitive attribute
@@ -37,13 +37,13 @@ resource "azurerm_linux_virtual_machine" "res-1" {
   eviction_policy                                        = ""
   extensions_time_budget                                 = "PT1H30M"
   license_type                                           = ""
-  location                                               = "westeurope"
+  location                                               = "swedencentral"
   max_bid_price                                          = -1
   name                                                   = "swazfidx9hmdq01"
-  network_interface_ids                                  = [azurerm_network_interface.res-3.id]
-  os_managed_disk_id                                     = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Compute/disks/swazfidx9hmdq01_OsDisk_1_5f07031c175e4af88811964818ec7a29"
-  patch_assessment_mode                                  = "AutomaticByPlatform"
-  patch_mode                                             = "AutomaticByPlatform"
+  network_interface_ids                                  = [azurerm_network_interface.res-2.id]
+  os_managed_disk_id                                     = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Compute/disks/swazfidx9hmdq01_OsDisk_1_d886fec04d724d309b627e1599e71143"
+  patch_assessment_mode                                  = "ImageDefault"
+  patch_mode                                             = "ImageDefault"
   platform_fault_domain                                  = -1
   priority                                               = "Regular"
   provision_vm_agent                                     = true
@@ -53,23 +53,17 @@ resource "azurerm_linux_virtual_machine" "res-1" {
   secure_boot_enabled                                    = false
   size                                                   = "Standard_D2s_v5"
   source_image_id                                        = ""
-  tags = {
-    DISIT_OS_PATCHING = "automatic"
-  }
-  user_data                         = ""
-  virtual_machine_scale_set_id      = ""
-  vm_agent_platform_updates_enabled = false
-  vtpm_enabled                      = false
-  zone                              = ""
-  identity {
-    identity_ids = []
-    type         = "SystemAssigned"
-  }
+  tags                                                   = {}
+  user_data                                              = ""
+  virtual_machine_scale_set_id                           = ""
+  vm_agent_platform_updates_enabled                      = true
+  vtpm_enabled                                           = false
+  zone                                                   = ""
   os_disk {
     caching                          = "ReadWrite"
     disk_encryption_set_id           = ""
     disk_size_gb                     = 30
-    name                             = "swazfidx9hmdq01_OsDisk_1_5f07031c175e4af88811964818ec7a29"
+    name                             = "swazfidx9hmdq01_OsDisk_1_d886fec04d724d309b627e1599e71143"
     secure_vm_disk_encryption_set_id = ""
     security_encryption_type         = ""
     storage_account_type             = "StandardSSD_LRS"
@@ -82,21 +76,7 @@ resource "azurerm_linux_virtual_machine" "res-1" {
     version   = "latest"
   }
 }
-resource "azurerm_virtual_machine_extension" "res-2" {
-  auto_upgrade_minor_version  = true
-  automatic_upgrade_enabled   = true
-  failure_suppression_enabled = false
-  name                        = "AzurePolicyforLinux"
-  protected_settings          = "" # Masked sensitive attribute
-  provision_after_extensions  = []
-  publisher                   = "Microsoft.GuestConfiguration"
-  settings                    = jsonencode({})
-  tags                        = {}
-  type                        = "ConfigurationforLinux"
-  type_handler_version        = "1.0"
-  virtual_machine_id          = azurerm_linux_virtual_machine.res-1.id
-}
-resource "azurerm_network_interface" "res-3" {
+resource "azurerm_network_interface" "res-2" {
   accelerated_networking_enabled = false
   auxiliary_mode                 = ""
   auxiliary_sku                  = ""
@@ -104,7 +84,7 @@ resource "azurerm_network_interface" "res-3" {
   edge_zone                      = ""
   internal_dns_name_label        = ""
   ip_forwarding_enabled          = false
-  location                       = "westeurope"
+  location                       = "swedencentral"
   name                           = "nicdr-jirpw"
   resource_group_name            = azurerm_resource_group.res-0.name
   tags                           = {}
@@ -116,16 +96,16 @@ resource "azurerm_network_interface" "res-3" {
     private_ip_address_allocation                      = "Dynamic"
     private_ip_address_version                         = "IPv4"
     public_ip_address_id                               = ""
-    subnet_id                                          = azurerm_subnet.res-5.id
+    subnet_id                                          = azurerm_subnet.res-4.id
   }
 }
-resource "azurerm_virtual_network" "res-4" {
+resource "azurerm_virtual_network" "res-3" {
   address_space                  = ["10.30.0.0/16"]
   bgp_community                  = ""
   dns_servers                    = []
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
-  location                       = "westeurope"
+  location                       = "swedencentral"
   name                           = "vnetb5ylw2-a"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name
@@ -144,7 +124,7 @@ resource "azurerm_virtual_network" "res-4" {
   }]
   tags = {}
 }
-resource "azurerm_subnet" "res-5" {
+resource "azurerm_subnet" "res-4" {
   address_prefixes                              = ["10.30.0.0/24"]
   default_outbound_access_enabled               = true
   name                                          = "default"
@@ -156,7 +136,7 @@ resource "azurerm_subnet" "res-5" {
   sharing_scope                                 = ""
   virtual_network_name                          = "vnetb5ylw2-a"
   depends_on = [
-    azurerm_virtual_network.res-4,
+    azurerm_virtual_network.res-3,
   ]
 }
 
@@ -170,18 +150,14 @@ import {
   to = azurerm_linux_virtual_machine.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Compute/virtualMachines/swazfidx9hmdq01/extensions/AzurePolicyforLinux"
-  to = azurerm_virtual_machine_extension.res-2
-}
-import {
   id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Network/networkInterfaces/nicdr-jirpw"
-  to = azurerm_network_interface.res-3
+  to = azurerm_network_interface.res-2
 }
 import {
   id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Network/virtualNetworks/vnetb5ylw2-a"
-  to = azurerm_virtual_network.res-4
+  to = azurerm_virtual_network.res-3
 }
 import {
   id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Network/virtualNetworks/vnetb5ylw2-a/subnets/default"
-  to = azurerm_subnet.res-5
+  to = azurerm_subnet.res-4
 }

@@ -1,7 +1,7 @@
 {
-  "etag": "AAAAAC4S2Bk=",
+  "etag": "AAAAAC6pLsQ=",
   "name": "dpsu79-smow",
-  "location": "westeurope",
+  "location": "northeurope",
   "properties": {
     "state": "Active",
     "provisioningState": "Succeeded",
@@ -9,7 +9,7 @@
     "allocationPolicy": "Hashed",
     "serviceOperationsHostName": "dpsu79-smow.azure-devices-provisioning.net",
     "deviceProvisioningHostName": "global.azure-devices-provisioning.net",
-    "idScope": "0ne0124C369"
+    "idScope": "0ne012830F8"
   },
   "resourcegroup": "rg-ardl-ea290fed5655d3db",
   "type": "Microsoft.Devices/provisioningServices",

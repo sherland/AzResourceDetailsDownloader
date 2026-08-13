@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-7f83b649b73888fd"
   tags = {
     armType    = "Microsoft.RecoveryServices/vaults"
-    createdUtc = "2026-07-15T18:55:58.7152936Z"
+    createdUtc = "2026-08-13T13:08:21.7253751Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,7 +23,7 @@ resource "azurerm_recovery_services_vault" "res-1" {
   classic_vmware_replication_enabled = false
   cross_region_restore_enabled       = false
   immutability                       = "Disabled"
-  location                           = "westeurope"
+  location                           = "norwayeast"
   name                               = "rsvb07c4h-s"
   public_network_access_enabled      = true
   resource_group_name                = azurerm_resource_group.res-0.name
@@ -33,6 +33,7 @@ resource "azurerm_recovery_services_vault" "res-1" {
   tags                               = {}
 }
 resource "azurerm_backup_policy_vm" "res-2" {
+  consistency_type               = ""
   instant_restore_retention_days = 2
   name                           = "DefaultPolicy"
   policy_type                    = "V1"
@@ -43,7 +44,7 @@ resource "azurerm_backup_policy_vm" "res-2" {
     frequency     = "Daily"
     hour_duration = 0
     hour_interval = 0
-    time          = "04:30"
+    time          = "23:00"
     weekdays      = []
   }
   retention_daily {
@@ -54,6 +55,7 @@ resource "azurerm_backup_policy_vm" "res-2" {
   ]
 }
 resource "azurerm_backup_policy_vm" "res-3" {
+  consistency_type               = ""
   instant_restore_retention_days = 2
   name                           = "EnhancedPolicy"
   policy_type                    = "V2"
@@ -96,7 +98,7 @@ resource "azurerm_backup_policy_vm_workload" "res-4" {
     backup {
       frequency            = "Daily"
       frequency_in_minutes = 0
-      time                 = "04:30"
+      time                 = "23:00"
       weekdays             = []
     }
     retention_daily {

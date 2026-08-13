@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,30 +10,24 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-dced82a8791f5059"
   tags = {
     armType    = "Microsoft.EventHub/namespaces"
-    createdUtc = "2026-07-15T18:35:26.2774384Z"
+    createdUtc = "2026-08-13T12:49:12.4501570Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_eventhub_namespace" "res-1" {
-  auto_inflate_enabled                      = false
-  capacity                                  = 1
-  dedicated_cluster_id                      = ""
-  default_primary_connection_string         = "" # Masked sensitive attribute
-  default_primary_connection_string_alias   = "" # Masked sensitive attribute
-  default_primary_key                       = "" # Masked sensitive attribute
-  default_secondary_connection_string       = "" # Masked sensitive attribute
-  default_secondary_connection_string_alias = "" # Masked sensitive attribute
-  default_secondary_key                     = "" # Masked sensitive attribute
-  local_authentication_enabled              = true
-  location                                  = "westeurope"
-  maximum_throughput_units                  = 0
-  minimum_tls_version                       = "1.2"
-  name                                      = "ehnsw2y13x4d"
+  auto_inflate_enabled         = false
+  capacity                     = 1
+  dedicated_cluster_id         = ""
+  local_authentication_enabled = true
+  location                     = "norwayeast"
+  maximum_throughput_units     = 0
+  minimum_tls_version          = "1.2"
+  name                         = "ehnsw2y13x4d"
   network_rulesets = [{
     default_action                 = "Allow"
     ip_rule                        = []
@@ -47,18 +41,12 @@ resource "azurerm_eventhub_namespace" "res-1" {
   tags                          = {}
 }
 resource "azurerm_eventhub_namespace_authorization_rule" "res-2" {
-  listen                            = true
-  manage                            = true
-  name                              = "RootManageSharedAccessKey"
-  namespace_name                    = "ehnsw2y13x4d"
-  primary_connection_string         = "" # Masked sensitive attribute
-  primary_connection_string_alias   = "" # Masked sensitive attribute
-  primary_key                       = "" # Masked sensitive attribute
-  resource_group_name               = azurerm_resource_group.res-0.name
-  secondary_connection_string       = "" # Masked sensitive attribute
-  secondary_connection_string_alias = "" # Masked sensitive attribute
-  secondary_key                     = "" # Masked sensitive attribute
-  send                              = true
+  listen              = true
+  manage              = true
+  name                = "RootManageSharedAccessKey"
+  namespace_name      = "ehnsw2y13x4d"
+  resource_group_name = azurerm_resource_group.res-0.name
+  send                = true
   depends_on = [
     azurerm_eventhub_namespace.res-1,
   ]

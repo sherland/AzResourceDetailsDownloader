@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-c264a49334b4408f"
   tags = {
     armType    = "Microsoft.StorageSync/storageSyncServices"
-    createdUtc = "2026-07-15T19:22:26.2361572Z"
+    createdUtc = "2026-08-13T13:27:30.7401436Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_storage_sync" "res-1" {
   incoming_traffic_policy = "AllowAllTraffic"
-  location                = "westeurope"
+  location                = "norwayeast"
   name                    = "sssir56p9bl"
   resource_group_name     = azurerm_resource_group.res-0.name
   tags                    = {}

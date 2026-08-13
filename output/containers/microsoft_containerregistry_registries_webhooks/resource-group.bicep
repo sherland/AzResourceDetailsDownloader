@@ -4,7 +4,7 @@ param registries_acrhuv0ipc0_name string
 
 resource registries_acrhuv0ipc0_name_resource 'Microsoft.ContainerRegistry/registries@2026-01-01-preview' = {
   name: registries_acrhuv0ipc0_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Standard'
@@ -118,7 +118,7 @@ resource registries_acrhuv0ipc0_name_repositories_push_metadata_write 'Microsoft
 resource registries_acrhuv0ipc0_name_wh8jol6k 'Microsoft.ContainerRegistry/registries/webhooks@2026-01-01-preview' = {
   parent: registries_acrhuv0ipc0_name_resource
   name: 'wh8jol6k'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     status: 'disabled'
     actions: [

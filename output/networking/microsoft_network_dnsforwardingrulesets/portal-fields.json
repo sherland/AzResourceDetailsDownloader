@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-77c0bcdddf92bb37"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Outbound Endpoints",
+    "Value": "1"
+  }
+]

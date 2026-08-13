@@ -1,0 +1,26 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-2b885a3134f70ff5"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "IP address",
+    "Value": "203.0.113.1"
+  },
+  {
+    "Label": "Address Space(s)",
+    "Value": "192.168.100.0/24"
+  }
+]

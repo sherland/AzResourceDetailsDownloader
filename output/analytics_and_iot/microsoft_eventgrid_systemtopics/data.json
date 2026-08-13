@@ -1,14 +1,14 @@
 {
   "properties": {
     "provisioningState": "Succeeded",
-    "source": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.Storage/storageAccounts/sthhoywda2",
+    "source": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.Storage/storageAccounts/stz1i5gup3",
     "topicType": "Microsoft.Storage.StorageAccounts",
-    "metricResourceId": "b24d4716-ab2b-4ab3-a343-0392a5dd4c3a"
+    "metricResourceId": "dd3e4d3f-e652-46dc-8f24-a9a61c1bee35"
   },
   "systemData": null,
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": null,
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.EventGrid/systemTopics/egst87juo6lb",
-  "name": "egst87juo6lb",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.EventGrid/systemTopics/egstrdmllbjc",
+  "name": "egstrdmllbjc",
   "type": "Microsoft.EventGrid/systemTopics"
 }

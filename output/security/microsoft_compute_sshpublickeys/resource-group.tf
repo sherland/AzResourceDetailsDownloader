@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,17 +10,17 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-c966974de34ce9d7"
   tags = {
     armType    = "Microsoft.Compute/sshPublicKeys"
-    createdUtc = "2026-07-15T18:34:49.0798720Z"
+    createdUtc = "2026-08-13T12:48:21.8524761Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_ssh_public_key" "res-1" {
-  location            = "westeurope"
+  location            = "norwayeast"
   name                = "sshkey89-8y7sp"
   public_key          = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMf4Pa+FlecNaDqyuITzNaZErfcsxCCRt5SGvBMi7+xZc6A87B+uo4bdYyrKVS+pfdHXUtOkGn7IYj/UMqx8V2QVni32cUQa08zxj1d9Hv9yT2P+2apXNbEAfZ2gKtcFj4HgtXMR+gtCG5IOu16c8MsPytK52qgfYcw6L2AwhYCV3bNuEBW/cLEA8Kh9FmdCEkp0QWOXlwVq6XO7w01ORLtpZMx9+urnzq8s0uUcgSolVynmMTWeNMhJbQPu1iKygYU4dl+YSE+dKXqm863CQBvnpcmeRcIVHsCVBqV82mpF1mMGa0xqUA45Hu4FLuNVHJWYuJN5IuFwFBpjQDuRqH ardl@example.com"
   resource_group_name = azurerm_resource_group.res-0.name

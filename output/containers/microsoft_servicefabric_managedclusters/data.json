@@ -1,0 +1,42 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-a157244b5485ef94/providers/Microsoft.ServiceFabric/managedClusters/sfmc9-v2v-ub",
+  "type": "Microsoft.ServiceFabric/managedclusters",
+  "location": "norwayeast",
+  "name": "sfmc9-v2v-ub",
+  "tags": {
+    "SFRP.DisableDefaultOutboundAccess": "true"
+  },
+  "systemData": {
+    "createdBy": "*** REDACTED ***",
+    "createdByType": "User",
+    "createdAt": "2026-08-13T13:36:54.7124393\u002B00:00",
+    "lastModifiedBy": "*** REDACTED ***",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-08-13T13:36:54.7124393\u002B00:00"
+  },
+  "sku": {
+    "name": "Basic"
+  },
+  "properties": {
+    "provisioningState": "Succeeded",
+    "clusterId": "d76f4630-bf26-4d4f-8183-55b08f00be84",
+    "clusterState": "WaitingForNodes",
+    "clusterUpgradeMode": "Automatic",
+    "isPrivateClusterCodeVersion": false,
+    "clusterUpgradeCadence": "Wave0",
+    "adminUserName": "azrddadmin",
+    "dnsName": "ardlsfmc0c-f-h",
+    "fqdn": "ardlsfmc0c-f-h.norwayeast.cloudapp.azure.com",
+    "ipv4Address": "20.251.113.80",
+    "clusterCertificateThumbprints": [
+      "52CCD21A179139526672C0DAAC102D73409E2F40"
+    ],
+    "clientConnectionPort": 19000,
+    "httpGatewayConnectionPort": 19080,
+    "allowRdpAccess": false,
+    "enableAutoOSUpgrade": false,
+    "zonalResiliency": false,
+    "useCustomVnet": false,
+    "zonalUpdateMode": "Standard"
+  }
+}

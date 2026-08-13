@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-b3b443cef46c2376"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b3b443cef46c2376/providers/Microsoft.Network/routeTables/rtjowsda-7/routes/routejzqqmb"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.Network/routeTables/routes"
+  }
+]

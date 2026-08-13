@@ -1,28 +1,28 @@
 {
   "properties": {
-    "accountId": "2b2fc9a1-4e43-467e-aa2f-d1f478d14d6d",
+    "accountId": "b5fd7a49-a60e-4536-8aa6-f4062aa88dfc",
     "metrics": {
-      "prometheusQueryEndpoint": "https://amona-g-1-e5-fdg9bybzdpa5a7es.westeurope.prometheus.monitor.azure.com",
-      "internalId": "mac_2b2fc9a1-4e43-467e-aa2f-d1f478d14d6d"
+      "prometheusQueryEndpoint": "https://amona-g-1-e5-dmegf7e4bre8c4f3.norwayeast.prometheus.monitor.azure.com",
+      "internalId": "mac_b5fd7a49-a60e-4536-8aa6-f4062aa88dfc"
     },
     "provisioningState": "Succeeded",
     "defaultIngestionSettings": {
-      "dataCollectionRuleResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MA_amona-g-1-e5_westeurope_managed/providers/Microsoft.Insights/dataCollectionRules/amona-g-1-e5",
-      "dataCollectionEndpointResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MA_amona-g-1-e5_westeurope_managed/providers/Microsoft.Insights/dataCollectionEndpoints/amona-g-1-e5"
+      "dataCollectionRuleResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MA_amona-g-1-e5_norwayeast_managed/providers/Microsoft.Insights/dataCollectionRules/amona-g-1-e5",
+      "dataCollectionEndpointResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MA_amona-g-1-e5_norwayeast_managed/providers/Microsoft.Insights/dataCollectionEndpoints/amona-g-1-e5"
     },
     "publicNetworkAccess": "Enabled"
   },
-  "location": "westeurope",
+  "location": "norwayeast",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-3255b6ea5eb259ce/providers/microsoft.monitor/accounts/amona-g-1-e5",
   "name": "amona-g-1-e5",
   "type": "Microsoft.Monitor/accounts",
-  "etag": "\u00222801c3ba-0000-0c00-0000-6a57d5180000\u0022",
+  "etag": "\u0022280017ec-0000-3c00-0000-6a7dbf140000\u0022",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:44:29.4697575Z",
+    "createdAt": "2026-08-13T12:56:40.1986479Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:44:29.4697575Z"
+    "lastModifiedAt": "2026-08-13T12:56:40.1986479Z"
   }
 }

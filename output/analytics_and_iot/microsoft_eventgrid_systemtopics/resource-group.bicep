@@ -1,9 +1,9 @@
-param storageAccounts_sthhoywda2_name string
-param systemTopics_egst87juo6lb_name string
+param storageAccounts_stz1i5gup3_name string
+param systemTopics_egstrdmllbjc_name string
 
-resource storageAccounts_sthhoywda2_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
-  name: storageAccounts_sthhoywda2_name
-  location: 'westeurope'
+resource storageAccounts_stz1i5gup3_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
+  name: storageAccounts_stz1i5gup3_name
+  location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'
@@ -38,17 +38,17 @@ resource storageAccounts_sthhoywda2_name_resource 'Microsoft.Storage/storageAcco
   }
 }
 
-resource systemTopics_egst87juo6lb_name_resource 'Microsoft.EventGrid/systemTopics@2025-07-15-preview' = {
-  name: systemTopics_egst87juo6lb_name
-  location: 'westeurope'
+resource systemTopics_egstrdmllbjc_name_resource 'Microsoft.EventGrid/systemTopics@2025-07-15-preview' = {
+  name: systemTopics_egstrdmllbjc_name
+  location: 'norwayeast'
   properties: {
-    source: storageAccounts_sthhoywda2_name_resource.id
+    source: storageAccounts_stz1i5gup3_name_resource.id
     topicType: 'Microsoft.Storage.StorageAccounts'
   }
 }
 
-resource storageAccounts_sthhoywda2_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
-  parent: storageAccounts_sthhoywda2_name_resource
+resource storageAccounts_stz1i5gup3_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
+  parent: storageAccounts_stz1i5gup3_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -68,8 +68,8 @@ resource storageAccounts_sthhoywda2_name_default 'Microsoft.Storage/storageAccou
   }
 }
 
-resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_sthhoywda2_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
-  parent: storageAccounts_sthhoywda2_name_resource
+resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stz1i5gup3_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
+  parent: storageAccounts_stz1i5gup3_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -89,8 +89,8 @@ resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_sthhoywd
   }
 }
 
-resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_sthhoywda2_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
-  parent: storageAccounts_sthhoywda2_name_resource
+resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stz1i5gup3_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
+  parent: storageAccounts_stz1i5gup3_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -99,8 +99,8 @@ resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_sthhoyw
   }
 }
 
-resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_sthhoywda2_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
-  parent: storageAccounts_sthhoywda2_name_resource
+resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stz1i5gup3_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
+  parent: storageAccounts_stz1i5gup3_name_resource
   name: 'default'
   properties: {
     cors: {

@@ -19,22 +19,22 @@
             "restartCount": 0,
             "currentState": {
               "state": "Running",
-              "startTime": "2026-07-15T18:30:01.938Z",
+              "startTime": "2026-08-13T12:45:54.91Z",
               "detailStatus": ""
             },
             "events": [
               {
                 "count": 1,
-                "firstTimestamp": "2026-07-15T18:29:52Z",
-                "lastTimestamp": "2026-07-15T18:29:52Z",
+                "firstTimestamp": "2026-08-13T12:45:41Z",
+                "lastTimestamp": "2026-08-13T12:45:41Z",
                 "name": "Pulled",
                 "message": "Successfully pulled image \u0022mcr.microsoft.com/azuredocs/aci-helloworld@sha256:b9cec4d6b50c6bf25e3f7f93bdc1628e5dca972cf132d38ed8f5bc955bb179c3\u0022",
                 "type": "Normal"
               },
               {
                 "count": 1,
-                "firstTimestamp": "2026-07-15T18:29:52Z",
-                "lastTimestamp": "2026-07-15T18:29:52Z",
+                "firstTimestamp": "2026-08-13T12:45:41Z",
+                "lastTimestamp": "2026-08-13T12:45:41Z",
                 "name": "Pulling",
                 "message": "pulling image \u0022mcr.microsoft.com/azuredocs/aci-helloworld@sha256:b9cec4d6b50c6bf25e3f7f93bdc1628e5dca972cf132d38ed8f5bc955bb179c3\u0022",
                 "type": "Normal"
@@ -61,5 +61,5 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bdf6a4dadf2c40ee/providers/Microsoft.ContainerInstance/containerGroups/acitk-i-5-3",
   "name": "acitk-i-5-3",
   "type": "Microsoft.ContainerInstance/containerGroups",
-  "location": "westeurope"
+  "location": "norwayeast"
 }

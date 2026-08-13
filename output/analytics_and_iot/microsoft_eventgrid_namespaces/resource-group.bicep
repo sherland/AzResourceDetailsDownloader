@@ -2,7 +2,7 @@ param namespaces_egns153_8_ez_name string
 
 resource namespaces_egns153_8_ez_name_resource 'Microsoft.EventGrid/namespaces@2025-07-15-preview' = {
   name: namespaces_egns153_8_ez_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     capacity: 1

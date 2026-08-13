@@ -1,5 +1,5 @@
 {
-  "location": "West Europe",
+  "location": "Norway East",
   "tags": {},
   "properties": {
     "replicaCount": 1,
@@ -24,10 +24,10 @@
       "apiKeyOnly": {}
     },
     "disabledDataExfiltrationOptions": [],
-    "semanticSearch": "free"
+    "semanticSearch": "disabled"
   },
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ea2c4413f84d4d7/providers/Microsoft.Search/searchServices/srchqyqp-wtf",
-  "name": "srchqyqp-wtf",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ea2c4413f84d4d7/providers/Microsoft.Search/searchServices/srchtfk-y8-j",
+  "name": "srchtfk-y8-j",
   "type": "Microsoft.Search/searchServices",
   "sku": {
     "name": "free"

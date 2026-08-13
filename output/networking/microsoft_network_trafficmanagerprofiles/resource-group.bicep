@@ -1,13 +1,13 @@
-param trafficManagerProfiles_tm5okdvd37_name string
+param trafficManagerProfiles_tmtb_tu10b_name string
 
-resource trafficManagerProfiles_tm5okdvd37_name_resource 'Microsoft.Network/trafficManagerProfiles@2024-04-01-preview' = {
-  name: trafficManagerProfiles_tm5okdvd37_name
+resource trafficManagerProfiles_tmtb_tu10b_name_resource 'Microsoft.Network/trafficManagerProfiles@2024-04-01-preview' = {
+  name: trafficManagerProfiles_tmtb_tu10b_name
   location: 'global'
   properties: {
     profileStatus: 'Enabled'
     trafficRoutingMethod: 'Performance'
     dnsConfig: {
-      relativeName: 'ardltm65c6rbk1'
+      relativeName: 'ardltmt9deegag'
       ttl: 30
     }
     monitorConfig: {

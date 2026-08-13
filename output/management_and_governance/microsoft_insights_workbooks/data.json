@@ -1,10 +1,10 @@
 {
   "kind": "shared",
-  "etag": "\u002287020009-0000-0200-0000-6a57d7600000\u0022",
+  "etag": "\u00229102870a-0000-0c00-0000-6a7dc1600000\u0022",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-64cf3419204392ef/providers/microsoft.insights/workbooks/9e0b6142-f857-813e-2eeb-f20bf1b515ee",
   "name": "9e0b6142-f857-813e-2eeb-f20bf1b515ee",
   "type": null,
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": {
     "hidden-title": "ARDL sample workbook"
   },
@@ -13,11 +13,11 @@
     "serializedData": null,
     "version": null,
     "category": "workbook",
-    "userId": "f79b144e-8ba2-493b-ad36-11208b55ca03",
+    "userId": "e580c62a-96a8-430f-96a9-33d936178197",
     "sourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-64cf3419204392ef/providers/microsoft.operationalinsights/workspaces/lawprs-6ffd",
-    "timeModified": "2026-07-15T18:54:24.1615711Z",
+    "timeModified": "2026-08-13T13:06:39.9574694Z",
     "tags": null,
     "storageUri": null,
-    "revision": "baa80acfcee940258f310d5e6d7f1caf"
+    "revision": "d0b2fdc17a5a4cd0a21f0b33f43c94ff"
   }
 }

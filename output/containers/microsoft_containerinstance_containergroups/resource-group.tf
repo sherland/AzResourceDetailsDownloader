@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-bdf6a4dadf2c40ee"
   tags = {
     armType    = "Microsoft.ContainerInstance/containerGroups"
-    createdUtc = "2026-07-15T18:29:43.8168778Z"
+    createdUtc = "2026-08-13T12:43:54.2395041Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_container_group" "res-1" {
   dns_name_label_reuse_policy = "Unsecure"
-  location                    = "westeurope"
+  location                    = "norwayeast"
   name                        = "acitk-i-5-3"
   os_type                     = "Linux"
   priority                    = ""

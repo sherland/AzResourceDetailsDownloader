@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-6c73a914c7d661b1"
+  },
+  {
+    "Label": "Status",
+    "Value": "Ready"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Pricing plan",
+    "Value": "B1"
+  },
+  {
+    "Label": "Instance count",
+    "Value": "1"
+  },
+  {
+    "Label": "App(s) / Slots",
+    "Value": "0 / 0"
+  },
+  {
+    "Label": "Operating System",
+    "Value": "Linux"
+  },
+  {
+    "Label": "Zone redundant",
+    "Value": "Disabled"
+  }
+]

@@ -1,34 +1,34 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83e0b3aed1165e3b/providers/Microsoft.App/containerapps/ca453klp91",
-  "name": "ca453klp91",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83e0b3aed1165e3b/providers/Microsoft.App/containerapps/casiujm-j3",
+  "name": "casiujm-j3",
   "type": "Microsoft.App/containerApps",
-  "location": "France Central",
+  "location": "Norway East",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:44:16.9141041",
+    "createdAt": "2026-08-13T12:54:54.6764304",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:44:16.9141041"
+    "lastModifiedAt": "2026-08-13T12:54:54.6764304"
   },
   "properties": {
     "provisioningState": "Succeeded",
     "runningStatus": "Running",
-    "managedEnvironmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83e0b3aed1165e3b/providers/Microsoft.App/managedEnvironments/caesiujm-j3",
-    "environmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83e0b3aed1165e3b/providers/Microsoft.App/managedEnvironments/caesiujm-j3",
+    "managedEnvironmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83e0b3aed1165e3b/providers/Microsoft.App/managedEnvironments/caedj4q0www",
+    "environmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83e0b3aed1165e3b/providers/Microsoft.App/managedEnvironments/caedj4q0www",
     "workloadProfileName": null,
     "outboundIpAddresses": [
-      "20.19.234.238"
+      "20.251.142.215"
     ],
-    "latestRevisionName": "ca453klp91--8izy30q",
-    "latestReadyRevisionName": "ca453klp91--8izy30q",
-    "latestRevisionFqdn": "ca453klp91--8izy30q.thankfulisland-9896a8f5.francecentral.azurecontainerapps.io",
-    "customDomainVerificationId": "E31949349EB9F5625B0C70237EDF2918CFBB1F4C2A4A12251A94BA4296BB01D4",
+    "latestRevisionName": "casiujm-j3--65hbm25",
+    "latestReadyRevisionName": "casiujm-j3--65hbm25",
+    "latestRevisionFqdn": "casiujm-j3--65hbm25.ashypebble-89b24bd7.norwayeast.azurecontainerapps.io",
+    "customDomainVerificationId": "F86E743D00C996EF23A530212FF3DE4B44E86492BF4592EF5D23D9DC35983B91",
     "configuration": {
       "secrets": null,
       "activeRevisionsMode": "Single",
       "ingress": {
-        "fqdn": "ca453klp91.thankfulisland-9896a8f5.francecentral.azurecontainerapps.io",
+        "fqdn": "casiujm-j3.ashypebble-89b24bd7.norwayeast.azurecontainerapps.io",
         "external": true,
         "targetPort": 80,
         "exposedPort": 0,
@@ -75,7 +75,7 @@
       "volumes": null,
       "serviceBinds": null
     },
-    "eventStreamEndpoint": "https://francecentral.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83e0b3aed1165e3b/containerApps/ca453klp91/eventstream",
+    "eventStreamEndpoint": "https://norwayeast.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83e0b3aed1165e3b/containerApps/casiujm-j3/eventstream",
     "delegatedIdentities": []
   },
   "identity": {

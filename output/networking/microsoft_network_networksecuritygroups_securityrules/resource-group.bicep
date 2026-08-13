@@ -2,7 +2,7 @@ param networkSecurityGroups_nsgzd_p_0so_name string
 
 resource networkSecurityGroups_nsgzd_p_0so_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
   name: networkSecurityGroups_nsgzd_p_0so_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     securityRules: [
       {

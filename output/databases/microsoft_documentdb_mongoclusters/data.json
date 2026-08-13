@@ -3,12 +3,12 @@
   "name": "mc7id9mtlp",
   "type": "Microsoft.DocumentDB/mongoClusters",
   "tags": {},
-  "location": "westeurope",
+  "location": "norwayeast",
   "systemData": {
-    "createdAt": "2026-07-15T18:56:41.9764256Z",
+    "createdAt": "2026-08-13T13:09:12.0583434Z",
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "lastModifiedAt": "2026-07-15T18:56:41.9764256Z",
+    "lastModifiedAt": "2026-08-13T13:09:12.0583434Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User"
   },
@@ -36,8 +36,7 @@
     "privateEndpointConnections": [],
     "publicNetworkAccess": "Enabled",
     "replica": {
-      "role": "Primary",
-      "replicationState": "Active"
+      "role": "Primary"
     },
     "infrastructureVersion": "2.0"
   }

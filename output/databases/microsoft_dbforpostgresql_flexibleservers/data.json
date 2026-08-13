@@ -4,7 +4,7 @@
     "tier": "Burstable"
   },
   "systemData": {
-    "createdAt": "2026-07-15T19:04:13.6068117Z"
+    "createdAt": "2026-08-13T13:14:05.1190858Z"
   },
   "properties": {
     "replica": {
@@ -51,7 +51,7 @@
     "replicationRole": "Primary",
     "replicaCapacity": 5
   },
-  "location": "West Europe",
+  "location": "Norway East",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8dd0677652d313d5/providers/Microsoft.DBforPostgreSQL/flexibleServers/pgfd6vwwi6",
   "name": "pgfd6vwwi6",
   "type": "Microsoft.DBforPostgreSQL/flexibleServers"

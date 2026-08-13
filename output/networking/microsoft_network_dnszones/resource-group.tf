@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-fc5ae4a395470e0a"
   tags = {
     armType    = "Microsoft.Network/dnsZones"
-    createdUtc = "2026-07-15T18:55:39.0401734Z"
+    createdUtc = "2026-08-13T13:08:03.4354450Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -36,7 +36,7 @@ resource "azurerm_dns_zone" "res-1" {
 }
 resource "azurerm_dns_ns_record" "res-2" {
   name                = "@"
-  records             = ["ns1-08.azure-dns.com.", "ns2-08.azure-dns.net.", "ns3-08.azure-dns.org.", "ns4-08.azure-dns.info."]
+  records             = ["ns1-06.azure-dns.com.", "ns2-06.azure-dns.net.", "ns3-06.azure-dns.org.", "ns4-06.azure-dns.info."]
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}
   ttl                 = 172800

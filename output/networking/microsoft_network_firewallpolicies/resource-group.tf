@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,19 +10,19 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-b6cb64ed3b9bae27"
   tags = {
     armType    = "Microsoft.Network/firewallPolicies"
-    createdUtc = "2026-07-15T18:37:50.1631429Z"
+    createdUtc = "2026-08-13T12:51:38.7851047Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_firewall_policy" "res-1" {
   auto_learn_private_ranges_enabled = false
   base_policy_id                    = ""
-  location                          = "westeurope"
+  location                          = "norwayeast"
   name                              = "afwpgkb-kyp1"
   private_ip_ranges                 = []
   resource_group_name               = azurerm_resource_group.res-0.name

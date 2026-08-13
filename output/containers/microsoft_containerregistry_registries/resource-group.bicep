@@ -2,7 +2,7 @@ param registries_acrp0etmvv1_name string
 
 resource registries_acrp0etmvv1_name_resource 'Microsoft.ContainerRegistry/registries@2026-01-01-preview' = {
   name: registries_acrp0etmvv1_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Basic'
     tier: 'Basic'

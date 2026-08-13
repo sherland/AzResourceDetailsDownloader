@@ -1,26 +1,26 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.VideoIndexer/accounts/avijmur3g6t",
-  "name": "avijmur3g6t",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.VideoIndexer/accounts/aviz5-9-ivt",
+  "name": "aviz5-9-ivt",
   "type": "microsoft.videoindexer/accounts",
-  "location": "westeurope",
+  "location": "swedencentral",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T19:19:10.3583976Z",
+    "createdAt": "2026-08-13T14:26:24.9057978Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T19:19:10.3583976Z"
+    "lastModifiedAt": "2026-08-13T14:26:24.9057978Z"
   },
   "identity": {
-    "principalId": "8f060d08-da39-4646-93d4-4e14148a3cbe",
+    "principalId": "1fa001ef-4cc6-4162-bf87-5f8de00f3f22",
     "tenantId": "11111111-1111-1111-1111-111111111111",
     "type": "SystemAssigned"
   },
   "properties": {
-    "accountId": "a4009794-5e2c-4ee2-b74d-87e296d62e8d",
+    "accountId": "b6bab979-54b8-492b-a973-fc07eb1b0dbc",
     "totalSecondsIndexed": null,
     "storageServices": {
-      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/st32wnmsmg",
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/stsxpptwtg",
       "userAssignedIdentity": ""
     },
     "provisioningState": "Succeeded",

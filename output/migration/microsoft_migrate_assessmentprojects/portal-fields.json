@@ -1,0 +1,26 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-76e93665472ab9d8"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-76e93665472ab9d8/providers/Microsoft.Migrate/assessmentProjects/migprojjd7-v5em"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.Migrate/assessmentProjects"
+  }
+]

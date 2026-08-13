@@ -1,10 +1,10 @@
 param virtualNetworks_vnetd7_ts_wt_name string
 param virtualMachineScaleSets_vmsswdgknl_name string
-param disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_798a6bf0bd504e57956c2c868dc809fc_externalid string
+param disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_c816b2a4661146de87ad5e3834ab182a_externalid string
 
 resource virtualNetworks_vnetd7_ts_wt_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnetd7_ts_wt_name
-  location: 'westeurope'
+  location: 'swedencentral'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -31,7 +31,7 @@ resource virtualNetworks_vnetd7_ts_wt_name_resource 'Microsoft.Network/virtualNe
 
 resource virtualMachineScaleSets_vmsswdgknl_name_resource 'Microsoft.Compute/virtualMachineScaleSets@2025-11-01' = {
   name: virtualMachineScaleSets_vmsswdgknl_name
-  location: 'westeurope'
+  location: 'swedencentral'
   sku: {
     name: 'Standard_D2s_v5'
     tier: 'Standard'
@@ -49,6 +49,7 @@ resource virtualMachineScaleSets_vmsswdgknl_name_resource 'Microsoft.Compute/vir
         linuxConfiguration: {
           disablePasswordAuthentication: false
           provisionVMAgent: true
+          enableVMAgentPlatformUpdates: true
         }
         secrets: []
         allowExtensionOperations: true
@@ -124,7 +125,7 @@ resource virtualNetworks_vnetd7_ts_wt_name_default 'Microsoft.Network/virtualNet
 resource virtualMachineScaleSets_vmsswdgknl_name_0 'Microsoft.Compute/virtualMachineScaleSets/virtualMachines@2025-11-01' = {
   parent: virtualMachineScaleSets_vmsswdgknl_name_resource
   name: '0'
-  location: 'westeurope'
+  location: 'swedencentral'
   sku: {
     name: 'Standard_D2s_v5'
     tier: 'Standard'
@@ -169,12 +170,12 @@ resource virtualMachineScaleSets_vmsswdgknl_name_0 'Microsoft.Compute/virtualMac
       }
       osDisk: {
         osType: 'Linux'
-        name: 'vmsswdgknl_vmsswdgknl_0_OsDisk_1_798a6bf0bd504e57956c2c868dc809fc'
+        name: 'vmsswdgknl_vmsswdgknl_0_OsDisk_1_c816b2a4661146de87ad5e3834ab182a'
         createOption: 'FromImage'
         caching: 'None'
         managedDisk: {
           storageAccountType: 'Premium_LRS'
-          id: disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_798a6bf0bd504e57956c2c868dc809fc_externalid
+          id: disks_vmsswdgknl_vmsswdgknl_0_OsDisk_1_c816b2a4661146de87ad5e3834ab182a_externalid
         }
         diskSizeGB: 30
       }
@@ -185,6 +186,7 @@ resource virtualMachineScaleSets_vmsswdgknl_name_0 'Microsoft.Compute/virtualMac
       linuxConfiguration: {
         disablePasswordAuthentication: false
         provisionVMAgent: true
+        enableVMAgentPlatformUpdates: true
       }
       secrets: []
       allowExtensionOperations: true

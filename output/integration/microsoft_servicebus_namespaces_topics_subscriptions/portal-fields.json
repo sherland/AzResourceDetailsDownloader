@@ -1,0 +1,34 @@
+[
+  {
+    "Label": "Namespace",
+    "Value": "sbg0yna0pz"
+  },
+  {
+    "Label": "Topic",
+    "Value": "topicvj-o3e"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Forward messages to",
+    "Value": "Disabled"
+  },
+  {
+    "Label": "Created",
+    "Value": "Thursday, August 13, 2026"
+  },
+  {
+    "Label": "Updated",
+    "Value": "Thursday, August 13, 2026"
+  },
+  {
+    "Label": "Sessions",
+    "Value": "Disabled"
+  },
+  {
+    "Label": "Dead lettering",
+    "Value": "Disabled on message expiration, enabled on filter exception"
+  }
+]

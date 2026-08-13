@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,19 +10,19 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-872102314c593a7d"
   tags = {
     armType    = "Microsoft.Logic/workflows"
-    createdUtc = "2026-07-15T18:57:15.6949137Z"
+    createdUtc = "2026-08-13T13:10:33.6699266Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_logic_app_workflow" "res-1" {
   enabled                            = true
   integration_service_environment_id = ""
-  location                           = "westeurope"
+  location                           = "norwayeast"
   logic_app_integration_account_id   = ""
   name                               = "logicylsb-d-i"
   resource_group_name                = azurerm_resource_group.res-0.name

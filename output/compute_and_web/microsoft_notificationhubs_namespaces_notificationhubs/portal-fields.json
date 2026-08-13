@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-b8c084b4de7ff61e"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Name",
+    "Value": "hub7jf4-l"
+  },
+  {
+    "Label": "Namespace",
+    "Value": "nhnsmuv5af-w"
+  },
+  {
+    "Label": "Pricing Tier",
+    "Value": "Free"
+  },
+  {
+    "Label": "Paired recovery region",
+    "Value": "Norway West"
+  },
+  {
+    "Label": "Availability zones",
+    "Value": "Enabled"
+  }
+]

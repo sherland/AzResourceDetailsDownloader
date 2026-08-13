@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-4bfc2889e6ff55e5"
   tags = {
     armType    = "Microsoft.EventGrid/domains/topics"
-    createdUtc = "2026-07-15T19:15:33.7317111Z"
+    createdUtc = "2026-08-13T13:21:23.2896237Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -25,12 +25,10 @@ resource "azurerm_eventgrid_domain" "res-1" {
   inbound_ip_rule                           = []
   input_schema                              = "EventGridSchema"
   local_auth_enabled                        = true
-  location                                  = "westeurope"
+  location                                  = "norwayeast"
   name                                      = "egdy-n1aqei"
-  primary_access_key                        = "" # Masked sensitive attribute
   public_network_access_enabled             = true
   resource_group_name                       = azurerm_resource_group.res-0.name
-  secondary_access_key                      = "" # Masked sensitive attribute
   tags                                      = {}
 }
 resource "azurerm_eventgrid_domain_topic" "res-2" {

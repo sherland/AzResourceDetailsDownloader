@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-f39f3facaeacfc79"
   tags = {
     armType    = "Microsoft.Network/loadBalancers/inboundNatRules"
-    createdUtc = "2026-07-15T19:13:28.4782469Z"
+    createdUtc = "2026-08-13T13:20:27.3003856Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_lb" "res-1" {
   edge_zone           = ""
-  location            = "westeurope"
+  location            = "norwayeast"
   name                = "lbumojaw4n"
   resource_group_name = azurerm_resource_group.res-0.name
   sku                 = "Standard"
@@ -58,13 +58,16 @@ resource "azurerm_lb_nat_rule" "res-2" {
 resource "azurerm_public_ip" "res-3" {
   allocation_method       = "Static"
   ddos_protection_mode    = "VirtualNetworkInherited"
+  domain_name_label       = ""
+  domain_name_label_scope = ""
   edge_zone               = ""
   idle_timeout_in_minutes = 4
   ip_tags                 = {}
   ip_version              = "IPv4"
-  location                = "westeurope"
+  location                = "norwayeast"
   name                    = "pipw5v3-j40"
   resource_group_name     = azurerm_resource_group.res-0.name
+  reverse_fqdn            = ""
   sku                     = "Standard"
   sku_tier                = "Regional"
   tags                    = {}

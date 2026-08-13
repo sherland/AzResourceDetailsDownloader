@@ -1,0 +1,34 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-7a9beee1f910a260"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Branch-to-branch",
+    "Value": "Enabled"
+  },
+  {
+    "Label": "Virtual hubs",
+    "Value": "0"
+  },
+  {
+    "Label": "Topology",
+    "Value": "View Topology"
+  }
+]

@@ -2,7 +2,7 @@ param mongoClusters_mc7id9mtlp_name string
 
 resource mongoClusters_mc7id9mtlp_name_resource 'Microsoft.DocumentDB/mongoClusters@2026-02-01-preview' = {
   name: mongoClusters_mc7id9mtlp_name
-  location: 'westeurope'
+  location: 'norwayeast'
   identity: {
     type: 'None'
   }

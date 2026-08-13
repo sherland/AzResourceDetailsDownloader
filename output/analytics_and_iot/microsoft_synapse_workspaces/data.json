@@ -2,7 +2,7 @@
   "properties": {
     "defaultDataLakeStorage": {
       "createManagedPrivateEndpoint": false,
-      "accountUrl": "https://stvef3j9lw.dfs.core.windows.net",
+      "accountUrl": "https://stuyb3hfcc.dfs.core.windows.net",
       "filesystem": "synapsefs"
     },
     "encryption": {
@@ -10,32 +10,32 @@
     },
     "provisioningState": "Succeeded",
     "connectivityEndpoints": {
-      "web": "https://web.azuresynapse.net?workspace=%2fsubscriptions%2f00000000-0000-0000-0000-000000000000%2fresourceGroups%2frg-ardl-bb17cace9b9db143%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsynmvq8mbk5",
-      "dev": "https://synmvq8mbk5.dev.azuresynapse.net",
-      "sqlOnDemand": "synmvq8mbk5-ondemand.sql.azuresynapse.net",
-      "sql": "synmvq8mbk5.sql.azuresynapse.net"
+      "web": "https://web.azuresynapse.net?workspace=%2fsubscriptions%2f00000000-0000-0000-0000-000000000000%2fresourceGroups%2frg-ardl-bb17cace9b9db143%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsynjhp9-iao",
+      "dev": "https://synjhp9-iao.dev.azuresynapse.net",
+      "sqlOnDemand": "synjhp9-iao-ondemand.sql.azuresynapse.net",
+      "sql": "synjhp9-iao.sql.azuresynapse.net"
     },
-    "managedResourceGroupName": "synapseworkspace-managedrg-c9b8967b-9a53-40ad-a8a6-a56b0be76b94",
+    "managedResourceGroupName": "synapseworkspace-managedrg-945c621f-d7b5-4575-8e8f-fbb85f62b017",
     "sqlAdministratorLogin": "azrddadmin",
     "privateEndpointConnections": [],
-    "workspaceUID": "d02a720c-e242-4529-be8c-60d06e8df20a",
+    "workspaceUID": "e135c9a1-467c-4d50-a732-df9a910e758c",
     "extraProperties": {
       "WorkspaceType": "Normal",
       "IsScopeEnabled": false
     },
     "publicNetworkAccess": "Enabled",
     "cspWorkspaceAdminProperties": {
-      "initialWorkspaceAdminObjectId": "f79b144e-8ba2-493b-ad36-11208b55ca03"
+      "initialWorkspaceAdminObjectId": "e580c62a-96a8-430f-96a9-33d936178197"
     },
     "trustedServiceBypassEnabled": false
   },
   "type": "Microsoft.Synapse/workspaces",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synmvq8mbk5",
-  "location": "westeurope",
-  "name": "synmvq8mbk5",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synjhp9-iao",
+  "location": "swedencentral",
+  "name": "synjhp9-iao",
   "identity": {
     "type": "SystemAssigned",
     "tenantId": "11111111-1111-1111-1111-111111111111",
-    "principalId": "6c266669-96b7-4e1c-ac8c-bac287ed9930"
+    "principalId": "237f098c-ec4f-4cd2-9d0b-2877ad36449f"
   }
 }

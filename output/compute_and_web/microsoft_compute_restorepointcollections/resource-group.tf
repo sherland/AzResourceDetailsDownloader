@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,17 +10,17 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-2356f0b7928705d0"
   tags = {
     armType    = "Microsoft.Compute/restorePointCollections"
-    createdUtc = "2026-07-15T19:20:22.8184265Z"
+    createdUtc = "2026-08-13T13:25:10.8121245Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_virtual_machine_restore_point_collection" "res-1" {
-  location                  = "westeurope"
+  location                  = "swedencentral"
   name                      = "rpc0q-1q-i1"
   resource_group_name       = azurerm_resource_group.res-0.name
   source_virtual_machine_id = azurerm_linux_virtual_machine.res-2.id
@@ -31,7 +31,7 @@ resource "azurerm_linux_virtual_machine" "res-2" {
   admin_username                                         = "azrddadmin"
   allow_extension_operations                             = true
   availability_set_id                                    = ""
-  bypass_platform_safety_checks_on_user_schedule_enabled = true
+  bypass_platform_safety_checks_on_user_schedule_enabled = false
   capacity_reservation_group_id                          = ""
   computer_name                                          = "ardlvm2"
   custom_data                                            = "" # Masked sensitive attribute
@@ -44,13 +44,13 @@ resource "azurerm_linux_virtual_machine" "res-2" {
   eviction_policy                                        = ""
   extensions_time_budget                                 = "PT1H30M"
   license_type                                           = ""
-  location                                               = "westeurope"
+  location                                               = "swedencentral"
   max_bid_price                                          = -1
   name                                                   = "swaz1fxf9i19802"
   network_interface_ids                                  = [azurerm_network_interface.res-3.id]
-  os_managed_disk_id                                     = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/disks/swaz1fxf9i19802_OsDisk_1_3305cef7d5ee4ebaab162d0880edeee8"
-  patch_assessment_mode                                  = "AutomaticByPlatform"
-  patch_mode                                             = "AutomaticByPlatform"
+  os_managed_disk_id                                     = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/disks/swaz1fxf9i19802_disk1_cc74c8da583c45b89535339c47fab5be"
+  patch_assessment_mode                                  = "ImageDefault"
+  patch_mode                                             = "ImageDefault"
   platform_fault_domain                                  = -1
   priority                                               = "Regular"
   provision_vm_agent                                     = true
@@ -60,23 +60,17 @@ resource "azurerm_linux_virtual_machine" "res-2" {
   secure_boot_enabled                                    = false
   size                                                   = "Standard_D2s_v5"
   source_image_id                                        = ""
-  tags = {
-    DISIT_OS_PATCHING = "automatic"
-  }
-  user_data                         = ""
-  virtual_machine_scale_set_id      = ""
-  vm_agent_platform_updates_enabled = false
-  vtpm_enabled                      = false
-  zone                              = ""
-  identity {
-    identity_ids = ["/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/Built-In-Identity-RG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/Built-In-Identity-westeurope"]
-    type         = "SystemAssigned, UserAssigned"
-  }
+  tags                                                   = {}
+  user_data                                              = ""
+  virtual_machine_scale_set_id                           = ""
+  vm_agent_platform_updates_enabled                      = true
+  vtpm_enabled                                           = false
+  zone                                                   = ""
   os_disk {
     caching                          = "ReadWrite"
     disk_encryption_set_id           = ""
     disk_size_gb                     = 30
-    name                             = "swaz1fxf9i19802_OsDisk_1_3305cef7d5ee4ebaab162d0880edeee8"
+    name                             = "swaz1fxf9i19802_disk1_cc74c8da583c45b89535339c47fab5be"
     secure_vm_disk_encryption_set_id = ""
     security_encryption_type         = ""
     storage_account_type             = "StandardSSD_LRS"
@@ -97,7 +91,7 @@ resource "azurerm_network_interface" "res-3" {
   edge_zone                      = ""
   internal_dns_name_label        = ""
   ip_forwarding_enabled          = false
-  location                       = "westeurope"
+  location                       = "swedencentral"
   name                           = "nic7a-5-uqh"
   resource_group_name            = azurerm_resource_group.res-0.name
   tags                           = {}
@@ -118,7 +112,7 @@ resource "azurerm_virtual_network" "res-4" {
   dns_servers                    = []
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
-  location                       = "westeurope"
+  location                       = "swedencentral"
   name                           = "vnet4it9jcor"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name

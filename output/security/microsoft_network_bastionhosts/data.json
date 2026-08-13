@@ -1,19 +1,19 @@
 {
   "name": "bastiont9y5-i",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7babd697af7caa22/providers/Microsoft.Network/bastionHosts/bastiont9y5-i",
-  "etag": "W/\u002203a3ad91-d967-4e57-b3d2-e03f26f798f8\u0022",
+  "etag": "W/\u00221aa9bb54-6e3f-4d6c-a4ec-5928da5786d8\u0022",
   "type": "Microsoft.Network/bastionHosts",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "dnsName": "bst-8b1ffbd0-c388-44b2-9ae8-4e9b7cc09a91.bastion.azure.com",
+    "dnsName": "bst-b5214c8f-f95e-40b0-b7cf-78658ba194d9.bastion.azure.com",
     "scaleUnits": 2,
     "publicUri": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7babd697af7caa22/providers/Microsoft.Network/publicIPAddresses/pipos-z0e42",
     "ipConfigurations": [
       {
         "name": "bastionIpConfig",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7babd697af7caa22/providers/Microsoft.Network/bastionHosts/bastiont9y5-i/bastionHostIpConfigurations/bastionIpConfig",
-        "etag": "W/\u002203a3ad91-d967-4e57-b3d2-e03f26f798f8\u0022",
+        "etag": "W/\u00221aa9bb54-6e3f-4d6c-a4ec-5928da5786d8\u0022",
         "type": "Microsoft.Network/bastionHosts/bastionHostIpConfigurations",
         "properties": {
           "provisioningState": "Succeeded",

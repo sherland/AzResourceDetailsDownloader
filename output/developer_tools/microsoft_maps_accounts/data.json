@@ -6,17 +6,17 @@
     "tier": "Standard"
   },
   "properties": {
-    "uniqueId": "1701ef5b-9268-4241-bc2d-6e560a69e60e",
+    "uniqueId": "6b19f5c1-b79e-4341-9327-cfd4703273db",
     "provisioningState": "Succeeded",
     "disableLocalAuth": false
   },
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T19:15:40.4182357Z",
+    "createdAt": "2026-08-13T13:22:40.1503121Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T19:15:40.4182357Z"
+    "lastModifiedAt": "2026-08-13T13:22:40.1503121Z"
   },
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8d621c7a6b0df561/providers/Microsoft.Maps/accounts/mapsd-2raxh4",
   "name": "mapsd-2raxh4",

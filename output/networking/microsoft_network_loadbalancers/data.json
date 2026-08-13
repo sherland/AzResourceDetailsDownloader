@@ -1,17 +1,17 @@
 {
   "name": "lbi1py-djf",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lbi1py-djf",
-  "etag": "W/\u002216240e1c-8d6d-442c-bbf8-2bf389993f46\u0022",
+  "etag": "W/\u002268849d95-ab03-4bcb-8221-d660ed618f37\u0022",
   "type": "Microsoft.Network/loadBalancers",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "51d20345-8281-4101-96cc-6270d8c9655d",
+    "resourceGuid": "e9a24efb-4d2c-49cd-ba9f-0a8f91986321",
     "frontendIPConfigurations": [
       {
         "name": "feConfig",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lbi1py-djf/frontendIPConfigurations/feConfig",
-        "etag": "W/\u002216240e1c-8d6d-442c-bbf8-2bf389993f46\u0022",
+        "etag": "W/\u002268849d95-ab03-4bcb-8221-d660ed618f37\u0022",
         "type": "Microsoft.Network/loadBalancers/frontendIPConfigurations",
         "properties": {
           "provisioningState": "Succeeded",

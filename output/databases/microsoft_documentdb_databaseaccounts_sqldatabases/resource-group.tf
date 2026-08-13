@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,50 +10,39 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-5579991495fbf667"
   tags = {
     armType    = "Microsoft.DocumentDB/databaseAccounts/sqlDatabases"
-    createdUtc = "2026-07-15T19:12:09.8962332Z"
+    createdUtc = "2026-08-13T14:46:48.7284063Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_cosmosdb_account" "res-1" {
-  access_key_metadata_writes_enabled           = true
-  analytical_storage_enabled                   = false
-  automatic_failover_enabled                   = true
-  burst_capacity_enabled                       = false
-  create_mode                                  = ""
-  default_identity_type                        = "FirstPartyIdentity"
-  free_tier_enabled                            = false
-  ip_range_filter                              = []
-  is_virtual_network_filter_enabled            = false
-  kind                                         = "GlobalDocumentDB"
-  local_authentication_disabled                = false
-  location                                     = "westeurope"
-  minimal_tls_version                          = "Tls12"
-  multiple_write_locations_enabled             = false
-  name                                         = "cosmosn-fqah24"
-  network_acl_bypass_for_azure_services        = false
-  network_acl_bypass_ids                       = []
-  offer_type                                   = "Standard"
-  partition_merge_enabled                      = false
-  primary_key                                  = "" # Masked sensitive attribute
-  primary_mongodb_connection_string            = "" # Masked sensitive attribute
-  primary_readonly_key                         = "" # Masked sensitive attribute
-  primary_readonly_mongodb_connection_string   = "" # Masked sensitive attribute
-  primary_readonly_sql_connection_string       = "" # Masked sensitive attribute
-  primary_sql_connection_string                = "" # Masked sensitive attribute
-  public_network_access_enabled                = true
-  resource_group_name                          = azurerm_resource_group.res-0.name
-  secondary_key                                = "" # Masked sensitive attribute
-  secondary_mongodb_connection_string          = "" # Masked sensitive attribute
-  secondary_readonly_key                       = "" # Masked sensitive attribute
-  secondary_readonly_mongodb_connection_string = "" # Masked sensitive attribute
-  secondary_readonly_sql_connection_string     = "" # Masked sensitive attribute
-  secondary_sql_connection_string              = "" # Masked sensitive attribute
-  tags                                         = {}
+  access_key_metadata_writes_enabled    = true
+  analytical_storage_enabled            = false
+  automatic_failover_enabled            = true
+  burst_capacity_enabled                = false
+  create_mode                           = ""
+  default_identity_type                 = "FirstPartyIdentity"
+  free_tier_enabled                     = false
+  ip_range_filter                       = []
+  is_virtual_network_filter_enabled     = false
+  kind                                  = "GlobalDocumentDB"
+  local_authentication_disabled         = false
+  local_authentication_enabled          = true
+  location                              = "swedencentral"
+  minimal_tls_version                   = "Tls12"
+  multiple_write_locations_enabled      = false
+  name                                  = "cosmoskhz1chh1"
+  network_acl_bypass_for_azure_services = false
+  network_acl_bypass_ids                = []
+  offer_type                            = "Standard"
+  partition_merge_enabled               = false
+  public_network_access_enabled         = true
+  resource_group_name                   = azurerm_resource_group.res-0.name
+  tags                                  = {}
   analytical_storage {
     schema_type = "WellDefined"
   }
@@ -74,12 +63,12 @@ resource "azurerm_cosmosdb_account" "res-1" {
   }
   geo_location {
     failover_priority = 0
-    location          = "westeurope"
+    location          = "swedencentral"
     zone_redundant    = false
   }
 }
 resource "azurerm_cosmosdb_sql_database" "res-2" {
-  account_name        = "cosmosn-fqah24"
+  account_name        = "cosmoskhz1chh1"
   name                = "sqldb"
   resource_group_name = azurerm_resource_group.res-0.name
   depends_on = [
@@ -87,7 +76,7 @@ resource "azurerm_cosmosdb_sql_database" "res-2" {
   ]
 }
 resource "azurerm_cosmosdb_sql_role_definition" "res-9" {
-  account_name        = "cosmosn-fqah24"
+  account_name        = "cosmoskhz1chh1"
   assignable_scopes   = [azurerm_cosmosdb_account.res-1.id]
   name                = "Cosmos DB Built-in Data Reader"
   resource_group_name = azurerm_resource_group.res-0.name
@@ -98,7 +87,7 @@ resource "azurerm_cosmosdb_sql_role_definition" "res-9" {
   }
 }
 resource "azurerm_cosmosdb_sql_role_definition" "res-10" {
-  account_name        = "cosmosn-fqah24"
+  account_name        = "cosmoskhz1chh1"
   assignable_scopes   = [azurerm_cosmosdb_account.res-1.id]
   name                = "Cosmos DB Built-in Data Contributor"
   resource_group_name = azurerm_resource_group.res-0.name
@@ -115,18 +104,18 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmosn-fqah24"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmoskhz1chh1"
   to = azurerm_cosmosdb_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmosn-fqah24/sqlDatabases/sqldb"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmoskhz1chh1/sqlDatabases/sqldb"
   to = azurerm_cosmosdb_sql_database.res-2
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmosn-fqah24/sqlRoleDefinitions/00000000-0000-0000-0000-000000000001"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmoskhz1chh1/sqlRoleDefinitions/00000000-0000-0000-0000-000000000001"
   to = azurerm_cosmosdb_sql_role_definition.res-9
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmosn-fqah24/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmoskhz1chh1/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002"
   to = azurerm_cosmosdb_sql_role_definition.res-10
 }

@@ -1,8 +1,8 @@
 {
-  "location": "westeurope",
+  "location": "norwayeast",
   "identity": {
     "type": "SystemAssigned",
-    "principalId": "aba4e702-67f5-40bd-bdf3-e110cdfae829",
+    "principalId": "6207ca97-4ac5-491f-b3ac-659c7438fe60",
     "tenantId": "11111111-1111-1111-1111-111111111111"
   },
   "properties": {

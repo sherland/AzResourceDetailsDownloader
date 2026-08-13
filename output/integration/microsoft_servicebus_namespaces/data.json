@@ -2,7 +2,7 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e325f80fb473f771/providers/Microsoft.ServiceBus/namespaces/sb4hb2w-dr",
   "name": "sb4hb2w-dr",
   "type": "Microsoft.ServiceBus/Namespaces",
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": {},
   "properties": {
     "premiumMessagingPartitions": 0,
@@ -12,8 +12,8 @@
     "zoneRedundant": true,
     "provisioningState": "Succeeded",
     "status": "Active",
-    "createdAt": "2026-07-15T06:37:14.1024595Z",
-    "updatedAt": "2026-07-15T18:30:22Z",
+    "createdAt": "2026-08-13T12:46:06.5557747Z",
+    "updatedAt": "2026-08-13T12:46:06.5557747Z",
     "metricId": "00000000-0000-0000-0000-000000000000:sb4hb2w-dr",
     "serviceBusEndpoint": "https://sb4hb2w-dr.servicebus.windows.net:443/"
   },

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-7c2bfad159d510c2"
   tags = {
     armType    = "Microsoft.ContainerService/managedClusters"
-    createdUtc = "2026-07-15T18:58:13.8530229Z"
+    createdUtc = "2026-08-13T13:12:20.9721030Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -28,16 +28,12 @@ resource "azurerm_kubernetes_cluster" "res-1" {
   dns_prefix                          = "ardlaksz2p-af"
   dns_prefix_private_cluster          = ""
   edge_zone                           = ""
-  kube_admin_config                   = [] # Masked sensitive attribute
-  kube_admin_config_raw               = "" # Masked sensitive attribute
-  kube_config                         = [] # Masked sensitive attribute
-  kube_config_raw                     = "" # Masked sensitive attribute
   kubernetes_version                  = "1.35"
   local_account_disabled              = false
-  location                            = "westeurope"
+  location                            = "swedencentral"
   name                                = "akshrjtt6wn"
   node_os_upgrade_channel             = "NodeImage"
-  node_resource_group                 = "MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope"
+  node_resource_group                 = "MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_swedencentral"
   oidc_issuer_enabled                 = true
   private_cluster_enabled             = false
   private_cluster_public_fqdn_enabled = false
@@ -99,9 +95,9 @@ resource "azurerm_kubernetes_cluster" "res-1" {
     type         = "SystemAssigned"
   }
   kubelet_identity {
-    client_id                 = "2268de74-cc0f-44b7-a44b-65633282a318"
-    object_id                 = "2505dd1a-06b9-4059-8560-e83102fc6442"
-    user_assigned_identity_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/akshrjtt6wn-agentpool"
+    client_id                 = "a391e35d-21b4-4e22-843c-af78c9ca27f7"
+    object_id                 = "4ce948ba-404a-4515-a81e-b6e7aba4b433"
+    user_assigned_identity_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_swedencentral/providers/Microsoft.ManagedIdentity/userAssignedIdentities/akshrjtt6wn-agentpool"
   }
   network_profile {
     dns_service_ip      = "10.0.0.10"
@@ -128,7 +124,7 @@ resource "azurerm_kubernetes_cluster" "res-1" {
     }
   }
   node_provisioning_profile {
-    default_node_pools = "Auto"
+    default_node_pools = ""
     mode               = "Manual"
   }
 }

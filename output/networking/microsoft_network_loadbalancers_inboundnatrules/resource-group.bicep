@@ -3,13 +3,13 @@ param publicIPAddresses_pipw5v3_j40_name string
 
 resource publicIPAddresses_pipw5v3_j40_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
   name: publicIPAddresses_pipw5v3_j40_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '104.214.220.100'
+    ipAddress: '51.120.80.174'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -22,7 +22,7 @@ resource publicIPAddresses_pipw5v3_j40_name_resource 'Microsoft.Network/publicIP
 
 resource loadBalancers_lbumojaw4n_name_resource 'Microsoft.Network/loadBalancers@2025-07-01' = {
   name: loadBalancers_lbumojaw4n_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'

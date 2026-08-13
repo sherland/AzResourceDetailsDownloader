@@ -1,9 +1,9 @@
-param accounts_avijmur3g6t_name string
-param storageAccounts_st32wnmsmg_name string
+param accounts_aviz5_9_ivt_name string
+param storageAccounts_stsxpptwtg_name string
 
-resource storageAccounts_st32wnmsmg_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
-  name: storageAccounts_st32wnmsmg_name
-  location: 'westeurope'
+resource storageAccounts_stsxpptwtg_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
+  name: storageAccounts_stsxpptwtg_name
+  location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'
@@ -38,8 +38,8 @@ resource storageAccounts_st32wnmsmg_name_resource 'Microsoft.Storage/storageAcco
   }
 }
 
-resource storageAccounts_st32wnmsmg_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
-  parent: storageAccounts_st32wnmsmg_name_resource
+resource storageAccounts_stsxpptwtg_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
+  parent: storageAccounts_stsxpptwtg_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -59,8 +59,8 @@ resource storageAccounts_st32wnmsmg_name_default 'Microsoft.Storage/storageAccou
   }
 }
 
-resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st32wnmsmg_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
-  parent: storageAccounts_st32wnmsmg_name_resource
+resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stsxpptwtg_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
+  parent: storageAccounts_stsxpptwtg_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -80,8 +80,8 @@ resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st32wnms
   }
 }
 
-resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_st32wnmsmg_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
-  parent: storageAccounts_st32wnmsmg_name_resource
+resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stsxpptwtg_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
+  parent: storageAccounts_stsxpptwtg_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -90,8 +90,8 @@ resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_st32wnm
   }
 }
 
-resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_st32wnmsmg_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
-  parent: storageAccounts_st32wnmsmg_name_resource
+resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stsxpptwtg_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
+  parent: storageAccounts_stsxpptwtg_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -100,16 +100,16 @@ resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_st32wnm
   }
 }
 
-resource accounts_avijmur3g6t_name_resource 'Microsoft.VideoIndexer/accounts@2025-04-01' = {
-  name: accounts_avijmur3g6t_name
-  location: 'westeurope'
+resource accounts_aviz5_9_ivt_name_resource 'Microsoft.VideoIndexer/accounts@2025-04-01' = {
+  name: accounts_aviz5_9_ivt_name
+  location: 'swedencentral'
   identity: {
     type: 'SystemAssigned'
   }
   properties: {
-    accountId: 'a4009794-5e2c-4ee2-b74d-87e296d62e8d'
+    accountId: 'b6bab979-54b8-492b-a973-fc07eb1b0dbc'
     storageServices: {
-      resourceId: storageAccounts_st32wnmsmg_name_resource.id
+      resourceId: storageAccounts_stsxpptwtg_name_resource.id
     }
   }
 }

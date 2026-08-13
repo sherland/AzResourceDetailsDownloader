@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-84606906df9032ba"
+  },
+  {
+    "Label": "Account",
+    "Value": "aaciik4uod"
+  },
+  {
+    "Label": "Location",
+    "Value": "East US 2"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Status",
+    "Value": "New"
+  },
+  {
+    "Label": "Runbook type",
+    "Value": "PowerShell"
+  },
+  {
+    "Label": "Runtime version",
+    "Value": "5.1"
+  },
+  {
+    "Label": "Last modified",
+    "Value": "8/13/2026, 4:50 PM"
+  }
+]

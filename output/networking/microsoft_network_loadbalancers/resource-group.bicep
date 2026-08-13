@@ -3,13 +3,13 @@ param publicIPAddresses_pip4esx_wt9_name string
 
 resource publicIPAddresses_pip4esx_wt9_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
   name: publicIPAddresses_pip4esx_wt9_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '51.124.30.185'
+    ipAddress: '20.100.191.175'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -22,7 +22,7 @@ resource publicIPAddresses_pip4esx_wt9_name_resource 'Microsoft.Network/publicIP
 
 resource loadBalancers_lbi1py_djf_name_resource 'Microsoft.Network/loadBalancers@2025-07-01' = {
   name: loadBalancers_lbi1py_djf_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'

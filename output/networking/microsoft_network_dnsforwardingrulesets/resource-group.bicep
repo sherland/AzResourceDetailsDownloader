@@ -4,7 +4,7 @@ param dnsForwardingRulesets_dfrsd_86_jjd_name string
 
 resource virtualNetworks_vneterg7184q_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vneterg7184q_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -40,7 +40,7 @@ resource virtualNetworks_vneterg7184q_name_resource 'Microsoft.Network/virtualNe
 
 resource dnsForwardingRulesets_dfrsd_86_jjd_name_resource 'Microsoft.Network/dnsForwardingRulesets@2025-10-01-preview' = {
   name: dnsForwardingRulesets_dfrsd_86_jjd_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     dnsResolverOutboundEndpoints: [
       {
@@ -52,7 +52,7 @@ resource dnsForwardingRulesets_dfrsd_86_jjd_name_resource 'Microsoft.Network/dns
 
 resource dnsResolvers_dnsrg5d_jfb6_name_resource 'Microsoft.Network/dnsResolvers@2025-10-01-preview' = {
   name: dnsResolvers_dnsrg5d_jfb6_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     virtualNetwork: {
       id: virtualNetworks_vneterg7184q_name_resource.id
@@ -85,7 +85,7 @@ resource virtualNetworks_vneterg7184q_name_outbound 'Microsoft.Network/virtualNe
 resource dnsResolvers_dnsrg5d_jfb6_name_outboundtnd_yz 'Microsoft.Network/dnsResolvers/outboundEndpoints@2025-10-01-preview' = {
   parent: dnsResolvers_dnsrg5d_jfb6_name_resource
   name: 'outboundtnd-yz'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     subnet: {
       id: virtualNetworks_vneterg7184q_name_outbound.id

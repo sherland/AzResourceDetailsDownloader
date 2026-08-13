@@ -2,7 +2,7 @@ param namespaces_sbg0yna0pz_name string
 
 resource namespaces_sbg0yna0pz_name_resource 'Microsoft.ServiceBus/namespaces@2026-01-01' = {
   name: namespaces_sbg0yna0pz_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Standard'
@@ -17,7 +17,7 @@ resource namespaces_sbg0yna0pz_name_resource 'Microsoft.ServiceBus/namespaces@20
       maxReplicationLagDurationInSeconds: 0
       locations: [
         {
-          locationName: 'westeurope'
+          locationName: 'norwayeast'
           roleType: 'Primary'
         }
       ]
@@ -33,7 +33,7 @@ resource namespaces_sbg0yna0pz_name_resource 'Microsoft.ServiceBus/namespaces@20
 resource namespaces_sbg0yna0pz_name_RootManageSharedAccessKey 'Microsoft.ServiceBus/namespaces/authorizationrules@2026-01-01' = {
   parent: namespaces_sbg0yna0pz_name_resource
   name: 'RootManageSharedAccessKey'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     rights: [
       'Listen'
@@ -46,7 +46,7 @@ resource namespaces_sbg0yna0pz_name_RootManageSharedAccessKey 'Microsoft.Service
 resource namespaces_sbg0yna0pz_name_default 'Microsoft.ServiceBus/namespaces/networkrulesets@2026-01-01' = {
   parent: namespaces_sbg0yna0pz_name_resource
   name: 'default'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     publicNetworkAccess: 'Enabled'
     defaultAction: 'Allow'
@@ -59,7 +59,7 @@ resource namespaces_sbg0yna0pz_name_default 'Microsoft.ServiceBus/namespaces/net
 resource namespaces_sbg0yna0pz_name_topicvj_o3e 'Microsoft.ServiceBus/namespaces/topics@2026-01-01' = {
   parent: namespaces_sbg0yna0pz_name_resource
   name: 'topicvj-o3e'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     maxMessageSizeInKilobytes: 256
     defaultMessageTimeToLive: 'P10675199DT2H48M5.4775807S'
@@ -78,7 +78,7 @@ resource namespaces_sbg0yna0pz_name_topicvj_o3e 'Microsoft.ServiceBus/namespaces
 resource namespaces_sbg0yna0pz_name_topicvj_o3e_subuea0ba 'Microsoft.ServiceBus/namespaces/topics/subscriptions@2026-01-01' = {
   parent: namespaces_sbg0yna0pz_name_topicvj_o3e
   name: 'subuea0ba'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     isClientAffine: false
     lockDuration: 'PT1M'
@@ -99,7 +99,7 @@ resource namespaces_sbg0yna0pz_name_topicvj_o3e_subuea0ba 'Microsoft.ServiceBus/
 resource namespaces_sbg0yna0pz_name_topicvj_o3e_subuea0ba_Default 'Microsoft.ServiceBus/namespaces/topics/subscriptions/rules@2026-01-01' = {
   parent: namespaces_sbg0yna0pz_name_topicvj_o3e_subuea0ba
   name: '$Default'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     action: {}
     filterType: 'SqlFilter'

@@ -1,0 +1,34 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-862cc1ebaeeac2bb"
+  },
+  {
+    "Label": "Virtual network \u0026 IP Address",
+    "Value": "vnet46-vasrl/subnets/default 10.81.0.4"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "SKU",
+    "Value": "Premium: 4 vCores"
+  },
+  {
+    "Label": "Status",
+    "Value": "Online"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Service/UI Version",
+    "Value": "5.1.6992.1/5.1.7033.1"
+  }
+]

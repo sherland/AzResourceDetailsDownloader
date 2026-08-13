@@ -2,7 +2,7 @@ param namespaces_nhnsmuv5af_w_name string
 
 resource namespaces_nhnsmuv5af_w_name_resource 'Microsoft.NotificationHubs/namespaces@2023-10-01-preview' = {
   name: namespaces_nhnsmuv5af_w_name
-  location: 'West Europe'
+  location: 'Norway East'
   sku: {
     name: 'Free'
   }
@@ -10,7 +10,7 @@ resource namespaces_nhnsmuv5af_w_name_resource 'Microsoft.NotificationHubs/names
     provisioningState: 'Succeeded'
     status: 'Created'
     namespaceType: 'NotificationHub'
-    zoneRedundancy: 'Disabled'
+    zoneRedundancy: 'Enabled'
     networkAcls: {}
     publicNetworkAccess: 'Enabled'
   }
@@ -31,7 +31,7 @@ resource namespaces_nhnsmuv5af_w_name_RootManageSharedAccessKey 'Microsoft.Notif
 resource namespaces_nhnsmuv5af_w_name_hub7jf4_l 'Microsoft.NotificationHubs/namespaces/notificationHubs@2023-10-01-preview' = {
   parent: namespaces_nhnsmuv5af_w_name_resource
   name: 'hub7jf4-l'
-  location: 'West Europe'
+  location: 'Norway East'
   properties: {
     name: 'hub7jf4-l'
     registrationTtl: '10675199.02:48:05.4775807'

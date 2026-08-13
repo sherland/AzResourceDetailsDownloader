@@ -2,7 +2,7 @@ param routeTables_rtjowsda_7_name string
 
 resource routeTables_rtjowsda_7_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
   name: routeTables_rtjowsda_7_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     disableBgpRoutePropagation: false
     routes: [

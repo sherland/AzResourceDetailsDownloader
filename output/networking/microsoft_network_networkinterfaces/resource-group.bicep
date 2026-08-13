@@ -3,7 +3,7 @@ param networkInterfaces_nicoq4tq3cl_name string
 
 resource virtualNetworks_vnetu_a_at4d_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnetu_a_at4d_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -30,7 +30,7 @@ resource virtualNetworks_vnetu_a_at4d_name_resource 'Microsoft.Network/virtualNe
 
 resource networkInterfaces_nicoq4tq3cl_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
   name: networkInterfaces_nicoq4tq3cl_name
-  location: 'westeurope'
+  location: 'norwayeast'
   kind: 'Regular'
   properties: {
     ipConfigurations: [

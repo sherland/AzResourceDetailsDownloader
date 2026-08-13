@@ -1,9 +1,9 @@
-param sites_appr4jqbf1k_name string
-param serverfarms_planssdqc_0o_name string
+param sites_appr2opwtix_name string
+param serverfarms_planstn43n7m_name string
 
-resource serverfarms_planssdqc_0o_name_resource 'Microsoft.Web/serverfarms@2024-11-01' = {
-  name: serverfarms_planssdqc_0o_name
-  location: 'West Europe'
+resource serverfarms_planstn43n7m_name_resource 'Microsoft.Web/serverfarms@2024-11-01' = {
+  name: serverfarms_planstn43n7m_name
+  location: 'Sweden Central'
   sku: {
     name: 'B1'
     tier: 'Basic'
@@ -17,6 +17,7 @@ resource serverfarms_planssdqc_0o_name_resource 'Microsoft.Web/serverfarms@2024-
     elasticScaleEnabled: false
     maximumElasticWorkerCount: 1
     isSpot: false
+    freeOfferExpirationTime: '2026-09-12T14:53:24.9733333'
     reserved: true
     isXenon: false
     hyperV: false
@@ -27,25 +28,25 @@ resource serverfarms_planssdqc_0o_name_resource 'Microsoft.Web/serverfarms@2024-
   }
 }
 
-resource sites_appr4jqbf1k_name_resource 'Microsoft.Web/sites@2024-11-01' = {
-  name: sites_appr4jqbf1k_name
-  location: 'West Europe'
+resource sites_appr2opwtix_name_resource 'Microsoft.Web/sites@2024-11-01' = {
+  name: sites_appr2opwtix_name
+  location: 'Sweden Central'
   kind: 'app,linux'
   properties: {
     enabled: true
     hostNameSslStates: [
       {
-        name: '${sites_appr4jqbf1k_name}.azurewebsites.net'
+        name: '${sites_appr2opwtix_name}.azurewebsites.net'
         sslState: 'Disabled'
         hostType: 'Standard'
       }
       {
-        name: '${sites_appr4jqbf1k_name}.scm.azurewebsites.net'
+        name: '${sites_appr2opwtix_name}.scm.azurewebsites.net'
         sslState: 'Disabled'
         hostType: 'Repository'
       }
     ]
-    serverFarmId: serverfarms_planssdqc_0o_name_resource.id
+    serverFarmId: serverfarms_planstn43n7m_name_resource.id
     reserved: true
     isXenon: false
     hyperV: false
@@ -73,7 +74,7 @@ resource sites_appr4jqbf1k_name_resource 'Microsoft.Web/sites@2024-11-01' = {
     clientCertMode: 'Required'
     hostNamesDisabled: false
     ipMode: 'IPv4'
-    customDomainVerificationId: 'E31949349EB9F5625B0C70237EDF2918CFBB1F4C2A4A12251A94BA4296BB01D4'
+    customDomainVerificationId: 'F86E743D00C996EF23A530212FF3DE4B44E86492BF4592EF5D23D9DC35983B91'
     containerSize: 0
     dailyMemoryTimeQuota: 0
     httpsOnly: true
@@ -85,28 +86,28 @@ resource sites_appr4jqbf1k_name_resource 'Microsoft.Web/sites@2024-11-01' = {
   }
 }
 
-resource sites_appr4jqbf1k_name_ftp 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2024-11-01' = {
-  parent: sites_appr4jqbf1k_name_resource
+resource sites_appr2opwtix_name_ftp 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2024-11-01' = {
+  parent: sites_appr2opwtix_name_resource
   name: 'ftp'
-  location: 'West Europe'
+  location: 'Sweden Central'
   properties: {
     allow: true
   }
 }
 
-resource sites_appr4jqbf1k_name_scm 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2024-11-01' = {
-  parent: sites_appr4jqbf1k_name_resource
+resource sites_appr2opwtix_name_scm 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2024-11-01' = {
+  parent: sites_appr2opwtix_name_resource
   name: 'scm'
-  location: 'West Europe'
+  location: 'Sweden Central'
   properties: {
     allow: true
   }
 }
 
-resource sites_appr4jqbf1k_name_web 'Microsoft.Web/sites/config@2024-11-01' = {
-  parent: sites_appr4jqbf1k_name_resource
+resource sites_appr2opwtix_name_web 'Microsoft.Web/sites/config@2024-11-01' = {
+  parent: sites_appr2opwtix_name_resource
   name: 'web'
-  location: 'West Europe'
+  location: 'Sweden Central'
   properties: {
     numberOfWorkers: 1
     defaultDocuments: [
@@ -128,7 +129,7 @@ resource sites_appr4jqbf1k_name_web 'Microsoft.Web/sites/config@2024-11-01' = {
     acrUseManagedIdentityCreds: false
     logsDirectorySizeLimit: 35
     detailedErrorLoggingEnabled: false
-    publishingUsername: '$appr4jqbf1k'
+    publishingUsername: '$appr2opwtix'
     scmType: 'None'
     use32BitWorkerProcess: true
     webSocketsEnabled: false
@@ -181,12 +182,12 @@ resource sites_appr4jqbf1k_name_web 'Microsoft.Web/sites/config@2024-11-01' = {
   }
 }
 
-resource sites_appr4jqbf1k_name_sites_appr4jqbf1k_name_azurewebsites_net 'Microsoft.Web/sites/hostNameBindings@2024-11-01' = {
-  parent: sites_appr4jqbf1k_name_resource
-  name: '${sites_appr4jqbf1k_name}.azurewebsites.net'
-  location: 'West Europe'
+resource sites_appr2opwtix_name_sites_appr2opwtix_name_azurewebsites_net 'Microsoft.Web/sites/hostNameBindings@2024-11-01' = {
+  parent: sites_appr2opwtix_name_resource
+  name: '${sites_appr2opwtix_name}.azurewebsites.net'
+  location: 'Sweden Central'
   properties: {
-    siteName: 'appr4jqbf1k'
+    siteName: 'appr2opwtix'
     hostNameType: 'Verified'
   }
 }

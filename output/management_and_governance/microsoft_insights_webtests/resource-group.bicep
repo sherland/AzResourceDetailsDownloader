@@ -4,7 +4,7 @@ param workspaces_managed_aic_x782c5_ws_externalid string
 
 resource components_aic_x782c5_name_resource 'microsoft.insights/components@2020-02-02' = {
   name: components_aic_x782c5_name
-  location: 'westeurope'
+  location: 'norwayeast'
   kind: 'web'
   properties: {
     Application_Type: 'web'
@@ -18,7 +18,7 @@ resource components_aic_x782c5_name_resource 'microsoft.insights/components@2020
 
 resource webtests_wt9s8_znrt_name_resource 'microsoft.insights/webtests@2022-06-15' = {
   name: webtests_wt9s8_znrt_name
-  location: 'westeurope'
+  location: 'norwayeast'
   tags: {
     'hidden-link:/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ca095e8942b47ed/providers/Microsoft.Insights/components/aic-x782c5': 'Resource'
   }
@@ -44,7 +44,7 @@ resource webtests_wt9s8_znrt_name_resource 'microsoft.insights/webtests@2022-06-
 resource components_aic_x782c5_name_degradationindependencyduration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'degradationindependencyduration'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'degradationindependencyduration'
@@ -65,7 +65,7 @@ resource components_aic_x782c5_name_degradationindependencyduration 'microsoft.i
 resource components_aic_x782c5_name_degradationinserverresponsetime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'degradationinserverresponsetime'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'degradationinserverresponsetime'
@@ -86,7 +86,7 @@ resource components_aic_x782c5_name_degradationinserverresponsetime 'microsoft.i
 resource components_aic_x782c5_name_digestMailConfiguration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'digestMailConfiguration'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'digestMailConfiguration'
@@ -107,7 +107,7 @@ resource components_aic_x782c5_name_digestMailConfiguration 'microsoft.insights/
 resource components_aic_x782c5_name_extension_billingdatavolumedailyspikeextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'extension_billingdatavolumedailyspikeextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_billingdatavolumedailyspikeextension'
@@ -128,7 +128,7 @@ resource components_aic_x782c5_name_extension_billingdatavolumedailyspikeextensi
 resource components_aic_x782c5_name_extension_canaryextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'extension_canaryextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_canaryextension'
@@ -149,7 +149,7 @@ resource components_aic_x782c5_name_extension_canaryextension 'microsoft.insight
 resource components_aic_x782c5_name_extension_exceptionchangeextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'extension_exceptionchangeextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_exceptionchangeextension'
@@ -170,7 +170,7 @@ resource components_aic_x782c5_name_extension_exceptionchangeextension 'microsof
 resource components_aic_x782c5_name_extension_memoryleakextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'extension_memoryleakextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_memoryleakextension'
@@ -191,7 +191,7 @@ resource components_aic_x782c5_name_extension_memoryleakextension 'microsoft.ins
 resource components_aic_x782c5_name_extension_securityextensionspackage 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'extension_securityextensionspackage'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_securityextensionspackage'
@@ -212,7 +212,7 @@ resource components_aic_x782c5_name_extension_securityextensionspackage 'microso
 resource components_aic_x782c5_name_extension_traceseveritydetector 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'extension_traceseveritydetector'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_traceseveritydetector'
@@ -233,7 +233,7 @@ resource components_aic_x782c5_name_extension_traceseveritydetector 'microsoft.i
 resource components_aic_x782c5_name_longdependencyduration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'longdependencyduration'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'longdependencyduration'
@@ -254,7 +254,7 @@ resource components_aic_x782c5_name_longdependencyduration 'microsoft.insights/c
 resource components_aic_x782c5_name_migrationToAlertRulesCompleted 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'migrationToAlertRulesCompleted'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'migrationToAlertRulesCompleted'
@@ -275,7 +275,7 @@ resource components_aic_x782c5_name_migrationToAlertRulesCompleted 'microsoft.in
 resource components_aic_x782c5_name_slowpageloadtime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'slowpageloadtime'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'slowpageloadtime'
@@ -296,7 +296,7 @@ resource components_aic_x782c5_name_slowpageloadtime 'microsoft.insights/compone
 resource components_aic_x782c5_name_slowserverresponsetime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_aic_x782c5_name_resource
   name: 'slowserverresponsetime'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'slowserverresponsetime'

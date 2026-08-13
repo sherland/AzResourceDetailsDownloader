@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-c2f89a44d5a009de"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c2f89a44d5a009de/providers/Microsoft.DataProtection/backupVaults/bvaultoviytzop/backupPolicies/policyb8-t-9"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.DataProtection/backupVaults/backupPolicies"
+  }
+]

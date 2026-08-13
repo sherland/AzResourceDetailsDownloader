@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-a482ee03d0d47514"
   tags = {
     armType    = "Microsoft.Compute/virtualMachineScaleSets"
-    createdUtc = "2026-07-15T19:04:56.2458069Z"
+    createdUtc = "2026-08-13T13:14:49.3040508Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -34,7 +34,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "res-1" {
   extensions_time_budget                            = "PT1H30M"
   health_probe_id                                   = ""
   instances                                         = 1
-  location                                          = "westeurope"
+  location                                          = "swedencentral"
   max_bid_price                                     = -1
   name                                              = "vmsswdgknl"
   overprovision                                     = true
@@ -97,7 +97,7 @@ resource "azurerm_virtual_network" "res-3" {
   dns_servers                    = []
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
-  location                       = "westeurope"
+  location                       = "swedencentral"
   name                           = "vnetd7-ts-wt"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name

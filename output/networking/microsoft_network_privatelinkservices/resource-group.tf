@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-a3262f4eeb66a89e"
   tags = {
     armType    = "Microsoft.Network/privateLinkServices"
-    createdUtc = "2026-07-15T19:30:22.0270914Z"
+    createdUtc = "2026-08-13T13:33:16.4652928Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_lb" "res-1" {
   edge_zone           = ""
-  location            = "westeurope"
+  location            = "norwayeast"
   name                = "lbv3r8rnuu"
   resource_group_name = azurerm_resource_group.res-0.name
   sku                 = "Standard"
@@ -47,8 +47,8 @@ resource "azurerm_network_interface" "res-2" {
   edge_zone                      = ""
   internal_dns_name_label        = ""
   ip_forwarding_enabled          = false
-  location                       = "westeurope"
-  name                           = "plsd0-7-olm.nic.08112ca0-c3cf-40d2-b6d6-fb46ed77f9e5"
+  location                       = "norwayeast"
+  name                           = "plsd0-7-olm.nic.0205b279-489a-4890-a5fb-20d791c10428"
   resource_group_name            = azurerm_resource_group.res-0.name
   tags                           = {}
   ip_configuration {
@@ -68,7 +68,7 @@ resource "azurerm_private_link_service" "res-3" {
   enable_proxy_protocol                       = false
   fqdns                                       = []
   load_balancer_frontend_ip_configuration_ids = ["/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a3262f4eeb66a89e/providers/Microsoft.Network/loadBalancers/lbv3r8rnuu/frontendIPConfigurations/feConfig"]
-  location                                    = "westeurope"
+  location                                    = "norwayeast"
   name                                        = "plsd0-7-olm"
   proxy_protocol_enabled                      = false
   resource_group_name                         = azurerm_resource_group.res-0.name
@@ -88,7 +88,7 @@ resource "azurerm_virtual_network" "res-4" {
   dns_servers                    = []
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
-  location                       = "westeurope"
+  location                       = "norwayeast"
   name                           = "vnet3rh8yq8u"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name
@@ -133,7 +133,7 @@ import {
   to = azurerm_lb.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a3262f4eeb66a89e/providers/Microsoft.Network/networkInterfaces/plsd0-7-olm.nic.08112ca0-c3cf-40d2-b6d6-fb46ed77f9e5"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a3262f4eeb66a89e/providers/Microsoft.Network/networkInterfaces/plsd0-7-olm.nic.0205b279-489a-4890-a5fb-20d791c10428"
   to = azurerm_network_interface.res-2
 }
 import {

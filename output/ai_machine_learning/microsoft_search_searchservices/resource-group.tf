@@ -10,18 +10,39 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-8ea2c4413f84d4d7"
   tags = {
     armType    = "Microsoft.Search/searchServices"
-    createdUtc = "2026-07-15T18:48:08.1000925Z"
+    createdUtc = "2026-08-13T14:35:48.3407453Z"
     purpose    = "az-resource-details-downloader"
   }
+}
+resource "azurerm_search_service" "res-1" {
+  allowed_ips                              = []
+  authentication_failure_mode              = ""
+  customer_managed_key_enforcement_enabled = false
+  hosting_mode                             = "Default"
+  local_authentication_enabled             = true
+  location                                 = "norwayeast"
+  name                                     = "srchtfk-y8-j"
+  network_rule_bypass_option               = "None"
+  partition_count                          = 1
+  public_network_access_enabled            = true
+  replica_count                            = 1
+  resource_group_name                      = azurerm_resource_group.res-0.name
+  semantic_search_sku                      = ""
+  sku                                      = "free"
+  tags                                     = {}
 }
 
 
 import {
   id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ea2c4413f84d4d7"
   to = azurerm_resource_group.res-0
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ea2c4413f84d4d7/providers/Microsoft.Search/searchServices/srchtfk-y8-j"
+  to = azurerm_search_service.res-1
 }

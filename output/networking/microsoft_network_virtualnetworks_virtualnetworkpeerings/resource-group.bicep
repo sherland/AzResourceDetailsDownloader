@@ -3,7 +3,7 @@ param virtualNetworks_vneteeas9wos_name string
 
 resource virtualNetworks_vneteeas9wos_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vneteeas9wos_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -19,7 +19,7 @@ resource virtualNetworks_vneteeas9wos_name_resource 'Microsoft.Network/virtualNe
 
 resource virtualNetworks_vnet5nvk_1_n_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnet5nvk_1_n_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [

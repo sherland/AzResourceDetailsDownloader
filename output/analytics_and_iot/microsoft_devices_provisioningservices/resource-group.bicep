@@ -2,7 +2,7 @@ param provisioningServices_dpsu79_smow_name string
 
 resource provisioningServices_dpsu79_smow_name_resource 'Microsoft.Devices/provisioningServices@2025-02-01-preview' = {
   name: provisioningServices_dpsu79_smow_name
-  location: 'westeurope'
+  location: 'northeurope'
   sku: {
     name: 'S1'
     tier: 'Standard'

@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-f7a06090e7544e58"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Provisioning Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Configuration Access",
+    "Value": "https://dcemegmb-xy-hzyo.norwayeast-1.handler.control.monitor.azure.com"
+  },
+  {
+    "Label": "Logs Ingestion",
+    "Value": "https://dcemegmb-xy-hzyo.norwayeast-1.ingest.monitor.azure.com"
+  }
+]

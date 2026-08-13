@@ -1,10 +1,10 @@
-param storageAccounts_st9crnw0b9_name string
-param privateEndpoints_penzc8co_v_name string
-param virtualNetworks_vnet70_8j52w_name string
+param storageAccounts_stzbwkrmnn_name string
+param privateEndpoints_peavc8p_9p_name string
+param virtualNetworks_vnetari4_k_l_name string
 
-resource virtualNetworks_vnet70_8j52w_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
-  name: virtualNetworks_vnet70_8j52w_name
-  location: 'westeurope'
+resource virtualNetworks_vnetari4_k_l_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
+  name: virtualNetworks_vnetari4_k_l_name
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -15,7 +15,7 @@ resource virtualNetworks_vnet70_8j52w_name_resource 'Microsoft.Network/virtualNe
     subnets: [
       {
         name: 'default'
-        id: virtualNetworks_vnet70_8j52w_name_default.id
+        id: virtualNetworks_vnetari4_k_l_name_default.id
         properties: {
           addressPrefix: '10.42.0.0/24'
           delegations: []
@@ -29,9 +29,9 @@ resource virtualNetworks_vnet70_8j52w_name_resource 'Microsoft.Network/virtualNe
   }
 }
 
-resource storageAccounts_st9crnw0b9_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
-  name: storageAccounts_st9crnw0b9_name
-  location: 'westeurope'
+resource storageAccounts_stzbwkrmnn_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
+  name: storageAccounts_stzbwkrmnn_name
+  location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'
@@ -66,8 +66,8 @@ resource storageAccounts_st9crnw0b9_name_resource 'Microsoft.Storage/storageAcco
   }
 }
 
-resource virtualNetworks_vnet70_8j52w_name_default 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
-  name: '${virtualNetworks_vnet70_8j52w_name}/default'
+resource virtualNetworks_vnetari4_k_l_name_default 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
+  name: '${virtualNetworks_vnetari4_k_l_name}/default'
   properties: {
     addressPrefix: '10.42.0.0/24'
     delegations: []
@@ -75,12 +75,12 @@ resource virtualNetworks_vnet70_8j52w_name_default 'Microsoft.Network/virtualNet
     privateLinkServiceNetworkPolicies: 'Enabled'
   }
   dependsOn: [
-    virtualNetworks_vnet70_8j52w_name_resource
+    virtualNetworks_vnetari4_k_l_name_resource
   ]
 }
 
-resource storageAccounts_st9crnw0b9_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
-  parent: storageAccounts_st9crnw0b9_name_resource
+resource storageAccounts_stzbwkrmnn_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
+  parent: storageAccounts_stzbwkrmnn_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -100,8 +100,8 @@ resource storageAccounts_st9crnw0b9_name_default 'Microsoft.Storage/storageAccou
   }
 }
 
-resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st9crnw0b9_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
-  parent: storageAccounts_st9crnw0b9_name_resource
+resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stzbwkrmnn_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
+  parent: storageAccounts_stzbwkrmnn_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -121,9 +121,9 @@ resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st9crnw0
   }
 }
 
-resource storageAccounts_st9crnw0b9_name_storageAccounts_st9crnw0b9_name_d5fd1759_e3ca_4c6b_9890_18a76a4e423d 'Microsoft.Storage/storageAccounts/privateEndpointConnections@2026-04-01' = {
-  parent: storageAccounts_st9crnw0b9_name_resource
-  name: '${storageAccounts_st9crnw0b9_name}.d5fd1759-e3ca-4c6b-9890-18a76a4e423d'
+resource storageAccounts_stzbwkrmnn_name_storageAccounts_stzbwkrmnn_name_f4504f54_49d3_47c3_95c2_abe1ed8fe779 'Microsoft.Storage/storageAccounts/privateEndpointConnections@2026-04-01' = {
+  parent: storageAccounts_stzbwkrmnn_name_resource
+  name: '${storageAccounts_stzbwkrmnn_name}.f4504f54-49d3-47c3-95c2-abe1ed8fe779'
   properties: {
     privateEndpoint: {}
     privateLinkServiceConnectionState: {
@@ -134,8 +134,8 @@ resource storageAccounts_st9crnw0b9_name_storageAccounts_st9crnw0b9_name_d5fd175
   }
 }
 
-resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_st9crnw0b9_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
-  parent: storageAccounts_st9crnw0b9_name_resource
+resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stzbwkrmnn_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
+  parent: storageAccounts_stzbwkrmnn_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -144,8 +144,8 @@ resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_st9crnw
   }
 }
 
-resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_st9crnw0b9_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
-  parent: storageAccounts_st9crnw0b9_name_resource
+resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stzbwkrmnn_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
+  parent: storageAccounts_stzbwkrmnn_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -154,16 +154,16 @@ resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_st9crnw
   }
 }
 
-resource privateEndpoints_penzc8co_v_name_resource 'Microsoft.Network/privateEndpoints@2025-07-01' = {
-  name: privateEndpoints_penzc8co_v_name
-  location: 'westeurope'
+resource privateEndpoints_peavc8p_9p_name_resource 'Microsoft.Network/privateEndpoints@2025-07-01' = {
+  name: privateEndpoints_peavc8p_9p_name
+  location: 'norwayeast'
   properties: {
     privateLinkServiceConnections: [
       {
         name: 'peconn1'
-        id: '${privateEndpoints_penzc8co_v_name_resource.id}/privateLinkServiceConnections/peconn1'
+        id: '${privateEndpoints_peavc8p_9p_name_resource.id}/privateLinkServiceConnections/peconn1'
         properties: {
-          privateLinkServiceId: storageAccounts_st9crnw0b9_name_resource.id
+          privateLinkServiceId: storageAccounts_stzbwkrmnn_name_resource.id
           groupIds: [
             'blob'
           ]
@@ -177,12 +177,12 @@ resource privateEndpoints_penzc8co_v_name_resource 'Microsoft.Network/privateEnd
     ]
     manualPrivateLinkServiceConnections: []
     subnet: {
-      id: virtualNetworks_vnet70_8j52w_name_default.id
+      id: virtualNetworks_vnetari4_k_l_name_default.id
     }
     ipConfigurations: []
     customDnsConfigs: [
       {
-        fqdn: 'st9crnw0b9.blob.core.windows.net'
+        fqdn: 'stzbwkrmnn.blob.core.windows.net'
         ipAddresses: [
           '10.42.0.4'
         ]

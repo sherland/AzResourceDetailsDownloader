@@ -1,0 +1,34 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-ec59d008cf062ae8"
+  },
+  {
+    "Label": "Location",
+    "Value": "North Europe"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Schedules",
+    "Value": "0"
+  },
+  {
+    "Label": "Assigned host pools",
+    "Value": "0"
+  },
+  {
+    "Label": "Host pool type",
+    "Value": "Pooled"
+  },
+  {
+    "Label": "Scaling method",
+    "Value": "-"
+  }
+]
