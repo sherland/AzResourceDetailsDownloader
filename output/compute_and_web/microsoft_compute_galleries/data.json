@@ -2,7 +2,7 @@
   "name": "galm6i0e2dh",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-17ad0172a1b3435d/providers/Microsoft.Compute/galleries/galm6i0e2dh",
   "type": "Microsoft.Compute/galleries",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "identifier": {
       "uniqueName": "00000000-0000-0000-0000-000000000000-GALM6I0E2DH"

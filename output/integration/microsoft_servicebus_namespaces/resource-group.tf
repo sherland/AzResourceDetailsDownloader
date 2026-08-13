@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,30 +10,26 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-e325f80fb473f771"
   tags = {
     armType    = "Microsoft.ServiceBus/namespaces"
-    createdUtc = "2026-07-15T18:30:12.9616138Z"
+    createdUtc = "2026-08-13T12:44:48.8456508Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_servicebus_namespace" "res-1" {
-  capacity                            = 0
-  default_primary_connection_string   = "" # Masked sensitive attribute
-  default_primary_key                 = "" # Masked sensitive attribute
-  default_secondary_connection_string = "" # Masked sensitive attribute
-  default_secondary_key               = "" # Masked sensitive attribute
-  local_auth_enabled                  = true
-  location                            = "westeurope"
-  minimum_tls_version                 = "1.2"
-  name                                = "sb4hb2w-dr"
-  premium_messaging_partitions        = 0
-  public_network_access_enabled       = true
-  resource_group_name                 = azurerm_resource_group.res-0.name
-  sku                                 = "Basic"
-  tags                                = {}
+  capacity                      = 0
+  local_auth_enabled            = true
+  location                      = "norwayeast"
+  minimum_tls_version           = "1.2"
+  name                          = "sb4hb2w-dr"
+  premium_messaging_partitions  = 0
+  public_network_access_enabled = true
+  resource_group_name           = azurerm_resource_group.res-0.name
+  sku                           = "Basic"
+  tags                          = {}
   network_rule_set {
     default_action                = "Allow"
     ip_rules                      = []
@@ -42,17 +38,11 @@ resource "azurerm_servicebus_namespace" "res-1" {
   }
 }
 resource "azurerm_servicebus_namespace_authorization_rule" "res-2" {
-  listen                            = true
-  manage                            = true
-  name                              = "RootManageSharedAccessKey"
-  namespace_id                      = azurerm_servicebus_namespace.res-1.id
-  primary_connection_string         = "" # Masked sensitive attribute
-  primary_connection_string_alias   = "" # Masked sensitive attribute
-  primary_key                       = "" # Masked sensitive attribute
-  secondary_connection_string       = "" # Masked sensitive attribute
-  secondary_connection_string_alias = "" # Masked sensitive attribute
-  secondary_key                     = "" # Masked sensitive attribute
-  send                              = true
+  listen       = true
+  manage       = true
+  name         = "RootManageSharedAccessKey"
+  namespace_id = azurerm_servicebus_namespace.res-1.id
+  send         = true
 }
 
 

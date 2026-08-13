@@ -3,7 +3,7 @@ param userAssignedIdentities_aks5fhg_mju_agentpool_externalid string
 
 resource managedClusters_aks5fhg_mju_name_resource 'Microsoft.ContainerService/managedClusters@2026-04-02-preview' = {
   name: managedClusters_aks5fhg_mju_name
-  location: 'westeurope'
+  location: 'swedencentral'
   sku: {
     name: 'Base'
     tier: 'Free'
@@ -34,7 +34,7 @@ resource managedClusters_aks5fhg_mju_name_resource 'Microsoft.ContainerService/m
         mode: 'System'
         osType: 'Linux'
         osSKU: 'Ubuntu'
-        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202606.19.0'
+        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
         upgradeSettings: {
           maxSurge: '10%'
           maxUnavailable: '0'
@@ -65,7 +65,7 @@ resource managedClusters_aks5fhg_mju_name_resource 'Microsoft.ContainerService/m
         mode: 'User'
         osType: 'Linux'
         osSKU: 'Ubuntu'
-        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202606.19.0'
+        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
         upgradeSettings: {
           maxSurge: '10%'
           maxUnavailable: '0'
@@ -81,7 +81,7 @@ resource managedClusters_aks5fhg_mju_name_resource 'Microsoft.ContainerService/m
     servicePrincipalProfile: {
       clientId: 'msi'
     }
-    nodeResourceGroup: 'MC_rg-ardl-72e8c58f3ece7542_${managedClusters_aks5fhg_mju_name}_westeurope'
+    nodeResourceGroup: 'MC_rg-ardl-72e8c58f3ece7542_${managedClusters_aks5fhg_mju_name}_swedencentral'
     enableRBAC: true
     supportPlan: 'KubernetesOfficial'
     networkProfile: {
@@ -114,8 +114,8 @@ resource managedClusters_aks5fhg_mju_name_resource 'Microsoft.ContainerService/m
     identityProfile: {
       kubeletidentity: {
         resourceId: userAssignedIdentities_aks5fhg_mju_agentpool_externalid
-        clientId: '7f5c2bc3-b72b-457e-9a03-2c5321b623c7'
-        objectId: '0ee6dd5d-965a-4edc-b518-44839921b74c'
+        clientId: '22d8c048-cb39-49d1-a7c4-bf7dde220a9a'
+        objectId: 'd9df8793-c5c8-4d29-9075-e1b2f95a754a'
       }
     }
     autoUpgradeProfile: {
@@ -147,7 +147,6 @@ resource managedClusters_aks5fhg_mju_name_resource 'Microsoft.ContainerService/m
     }
     nodeProvisioningProfile: {
       mode: 'Manual'
-      defaultNodePools: 'Auto'
     }
     bootstrapProfile: {
       artifactSource: 'Direct'
@@ -183,7 +182,7 @@ resource managedClusters_aks5fhg_mju_name_agentpool 'Microsoft.ContainerService/
     mode: 'System'
     osType: 'Linux'
     osSKU: 'Ubuntu'
-    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202606.19.0'
+    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
     upgradeSettings: {
       maxSurge: '10%'
       maxUnavailable: '0'
@@ -218,7 +217,7 @@ resource managedClusters_aks5fhg_mju_name_pool2 'Microsoft.ContainerService/mana
     mode: 'User'
     osType: 'Linux'
     osSKU: 'Ubuntu'
-    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202606.19.0'
+    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
     upgradeSettings: {
       maxSurge: '10%'
       maxUnavailable: '0'
@@ -232,9 +231,9 @@ resource managedClusters_aks5fhg_mju_name_pool2 'Microsoft.ContainerService/mana
   }
 }
 
-resource managedClusters_aks5fhg_mju_name_agentpool_aks_agentpool_24709087_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
+resource managedClusters_aks5fhg_mju_name_agentpool_aks_agentpool_17141523_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
   parent: managedClusters_aks5fhg_mju_name_agentpool
-  name: 'aks-agentpool-24709087-vmss000000'
+  name: 'aks-agentpool-17141523-vmss000000'
   properties: {
     network: {}
   }
@@ -243,9 +242,9 @@ resource managedClusters_aks5fhg_mju_name_agentpool_aks_agentpool_24709087_vmss0
   ]
 }
 
-resource managedClusters_aks5fhg_mju_name_pool2_aks_pool2_26487404_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
+resource managedClusters_aks5fhg_mju_name_pool2_aks_pool2_37335048_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
   parent: managedClusters_aks5fhg_mju_name_pool2
-  name: 'aks-pool2-26487404-vmss000000'
+  name: 'aks-pool2-37335048-vmss000000'
   properties: {
     network: {}
   }

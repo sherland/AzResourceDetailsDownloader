@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Namespace",
+    "Value": "sbookpd3-f"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Partitioning",
+    "Value": "Disabled"
+  },
+  {
+    "Label": "Duplicate detection",
+    "Value": "Disabled"
+  },
+  {
+    "Label": "Dead lettering",
+    "Value": "Disabled on message expiration"
+  },
+  {
+    "Label": "Queue URL",
+    "Value": "https://sbookpd3-f.servicebus.windows.net/queuee2e7-c"
+  },
+  {
+    "Label": "Created",
+    "Value": "Thursday, August 13, 2026 at 14:45:07 GMT\u002B2"
+  },
+  {
+    "Label": "Updated",
+    "Value": "Thursday, August 13, 2026 at 14:45:07 GMT\u002B2"
+  },
+  {
+    "Label": "Sessions",
+    "Value": "Disabled"
+  },
+  {
+    "Label": "Forward messages to",
+    "Value": "Disabled"
+  }
+]

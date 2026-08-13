@@ -2,7 +2,7 @@
   "name": "avset6-0q-nt0",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-27116b321f34dc32/providers/Microsoft.Compute/availabilitySets/avset6-0q-nt0",
   "type": "Microsoft.Compute/availabilitySets",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "platformUpdateDomainCount": 2,
     "platformFaultDomainCount": 2,

@@ -2,64 +2,24 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b0d3d468c211b31a/providers/Microsoft.Batch/batchAccounts/batchp09vx5pt",
   "name": "batchp09vx5pt",
   "type": "Microsoft.Batch/batchAccounts",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
-    "accountEndpoint": "batchp09vx5pt.westeurope.batch.azure.com",
-    "nodeManagementEndpoint": "3b1d0647-aa1b-4556-a06c-ef35123302a4.westeurope.service.batch.azure.com",
+    "accountEndpoint": "batchp09vx5pt.norwayeast.batch.azure.com",
+    "nodeManagementEndpoint": "af84ea63-9cde-497d-b88d-3d341c9ac9cf.norwayeast.service.batch.azure.com",
     "provisioningState": "Succeeded",
-    "dedicatedCoreQuota": 350,
+    "dedicatedCoreQuota": 4,
     "dedicatedCoreQuotaPerVMFamily": [
       {
         "name": "standardAv2Family",
-        "coreQuota": 350
-      },
-      {
-        "name": "standardDv2Family",
-        "coreQuota": 350
+        "coreQuota": 4
       },
       {
         "name": "standardDv3Family",
-        "coreQuota": 350
-      },
-      {
-        "name": "standardEv3Family",
-        "coreQuota": 350
-      },
-      {
-        "name": "standardDSv2Family",
-        "coreQuota": 350
+        "coreQuota": 4
       },
       {
         "name": "standardDSv3Family",
-        "coreQuota": 350
-      },
-      {
-        "name": "standardESv3Family",
-        "coreQuota": 350
-      },
-      {
-        "name": "standardFSv2Family",
-        "coreQuota": 175
-      },
-      {
-        "name": "standardHCSFamily",
-        "coreQuota": 88
-      },
-      {
-        "name": "standardDDv4Family",
-        "coreQuota": 350
-      },
-      {
-        "name": "standardDDSv4Family",
-        "coreQuota": 350
-      },
-      {
-        "name": "standardEDv4Family",
-        "coreQuota": 350
-      },
-      {
-        "name": "standardEDSv4Family",
-        "coreQuota": 350
+        "coreQuota": 4
       },
       {
         "name": "standardA0_A7Family",
@@ -71,6 +31,10 @@
       },
       {
         "name": "standardDFamily",
+        "coreQuota": 0
+      },
+      {
+        "name": "standardDv2Family",
         "coreQuota": 0
       },
       {
@@ -114,11 +78,23 @@
         "coreQuota": 0
       },
       {
+        "name": "standardEv3Family",
+        "coreQuota": 0
+      },
+      {
         "name": "standardDSFamily",
         "coreQuota": 0
       },
       {
+        "name": "standardDSv2Family",
+        "coreQuota": 0
+      },
+      {
         "name": "standardFSFamily",
+        "coreQuota": 0
+      },
+      {
+        "name": "standardESv3Family",
         "coreQuota": 0
       },
       {
@@ -146,7 +122,15 @@
         "coreQuota": 0
       },
       {
+        "name": "standardFSv2Family",
+        "coreQuota": 0
+      },
+      {
         "name": "standardHBSFamily",
+        "coreQuota": 0
+      },
+      {
+        "name": "standardHCSFamily",
         "coreQuota": 0
       },
       {
@@ -171,6 +155,22 @@
       },
       {
         "name": "standardEASv4Family",
+        "coreQuota": 0
+      },
+      {
+        "name": "standardDDv4Family",
+        "coreQuota": 0
+      },
+      {
+        "name": "standardDDSv4Family",
+        "coreQuota": 0
+      },
+      {
+        "name": "standardEDv4Family",
+        "coreQuota": 0
+      },
+      {
+        "name": "standardEDSv4Family",
         "coreQuota": 0
       },
       {
@@ -491,9 +491,9 @@
       }
     ],
     "dedicatedCoreQuotaPerVMFamilyEnforced": true,
-    "lowPriorityCoreQuota": 350,
-    "poolQuota": 100,
-    "activeJobAndJobScheduleQuota": 300,
+    "lowPriorityCoreQuota": 0,
+    "poolQuota": 20,
+    "activeJobAndJobScheduleQuota": 100,
     "poolAllocationMode": "BatchService",
     "publicNetworkAccess": "Enabled",
     "privateEndpointConnections": [],

@@ -2,13 +2,13 @@ param publicIPAddresses_pip208b_5n5_name string
 
 resource publicIPAddresses_pip208b_5n5_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
   name: publicIPAddresses_pip208b_5n5_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '20.123.176.48'
+    ipAddress: '20.251.10.81'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

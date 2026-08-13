@@ -2,7 +2,7 @@ param hostpools_avdhpnqrqlt_t_name string
 
 resource hostpools_avdhpnqrqlt_t_name_resource 'Microsoft.DesktopVirtualization/hostpools@2026-03-01-preview' = {
   name: hostpools_avdhpnqrqlt_t_name
-  location: 'westeurope'
+  location: 'northeurope'
   identity: {
     type: 'None'
   }

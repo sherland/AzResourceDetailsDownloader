@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-3d02f34382fe8092"
   tags = {
     armType    = "Microsoft.Storage/storageAccounts/fileServices/shares"
-    createdUtc = "2026-07-15T19:14:27.9265748Z"
+    createdUtc = "2026-08-13T14:03:39.1726938Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -35,20 +35,14 @@ resource "azurerm_storage_account" "res-1" {
   is_hns_enabled                    = false
   large_file_share_enabled          = false
   local_user_enabled                = true
-  location                          = "westeurope"
+  location                          = "norwayeast"
   min_tls_version                   = "TLS1_2"
-  name                              = "sttp0smln8"
+  name                              = "stpl8vn5g1"
   nfsv3_enabled                     = false
-  primary_access_key                = "" # Masked sensitive attribute
-  primary_blob_connection_string    = "" # Masked sensitive attribute
-  primary_connection_string         = "" # Masked sensitive attribute
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
   queue_encryption_key_type         = "Service"
   resource_group_name               = azurerm_resource_group.res-0.name
-  secondary_access_key              = "" # Masked sensitive attribute
-  secondary_blob_connection_string  = "" # Masked sensitive attribute
-  secondary_connection_string       = "" # Masked sensitive attribute
   sftp_enabled                      = false
   shared_access_key_enabled         = true
   table_encryption_key_type         = "Service"
@@ -76,7 +70,7 @@ resource "azurerm_storage_share" "res-4" {
   access_tier          = "TransactionOptimized"
   enabled_protocol     = "SMB"
   metadata             = {}
-  name                 = "share95jazv"
+  name                 = "sharep39ot7"
   quota                = 5
   storage_account_id   = azurerm_storage_account.res-1.id
   storage_account_name = ""
@@ -88,14 +82,14 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3d02f34382fe8092/providers/Microsoft.Storage/storageAccounts/sttp0smln8"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3d02f34382fe8092/providers/Microsoft.Storage/storageAccounts/stpl8vn5g1"
   to = azurerm_storage_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3d02f34382fe8092/providers/Microsoft.Storage/storageAccounts/sttp0smln8/fileServices/default/shares/share95jazv"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3d02f34382fe8092/providers/Microsoft.Storage/storageAccounts/stpl8vn5g1/fileServices/default/shares/sharep39ot7"
   to = azurerm_storage_share.res-4
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3d02f34382fe8092/providers/Microsoft.Storage/storageAccounts/sttp0smln8"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3d02f34382fe8092/providers/Microsoft.Storage/storageAccounts/stpl8vn5g1"
   to = azurerm_storage_account_queue_properties.res-5
 }

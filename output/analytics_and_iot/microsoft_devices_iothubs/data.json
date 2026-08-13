@@ -2,7 +2,7 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9453358d1e4e04fe/providers/Microsoft.Devices/IotHubs/iot19ncaw4p",
   "name": "iot19ncaw4p",
   "type": "Microsoft.Devices/IotHubs",
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": {},
   "subscriptionid": "00000000-0000-0000-0000-000000000000",
   "resourcegroup": "rg-ardl-9453358d1e4e04fe",
@@ -10,11 +10,11 @@
   "properties": {
     "locations": [
       {
-        "location": "West Europe",
+        "location": "Norway East",
         "role": "primary"
       },
       {
-        "location": "North Europe",
+        "location": "Norway West",
         "role": "secondary"
       }
     ],
@@ -30,8 +30,8 @@
           "0",
           "1"
         ],
-        "path": "iothub-ehub-iot19ncaw4-68041885-8a53b1fadf",
-        "endpoint": "sb://ihsuprodamres048dednamespace.servicebus.windows.net/"
+        "path": "iothub-ehub-iot19ncaw4-55994178-6eef9b1415",
+        "endpoint": "sb://ihsuprodnorwayeastres003dednamespace.servicebus.windows.net/"
       }
     },
     "routing": {
@@ -90,6 +90,6 @@
     "type": "None"
   },
   "systemData": {
-    "createdAt": "2026-07-15T19:08:18.6433333Z"
+    "createdAt": "2026-08-13T13:18:05.46Z"
   }
 }

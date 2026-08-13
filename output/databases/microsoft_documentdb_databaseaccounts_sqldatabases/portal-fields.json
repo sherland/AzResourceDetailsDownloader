@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-5579991495fbf667"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmoskhz1chh1/sqlDatabases/sqldb"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases"
+  }
+]

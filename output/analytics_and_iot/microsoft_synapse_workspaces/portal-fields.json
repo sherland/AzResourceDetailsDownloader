@@ -1,0 +1,66 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-bb17cace9b9db143"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Managed virtual network",
+    "Value": "No"
+  },
+  {
+    "Label": "Managed Identity object ID",
+    "Value": "237f098c-ec4f-4cd2-9d0b-2877ad36449f"
+  },
+  {
+    "Label": "Workspace web URL",
+    "Value": "https://web.azuresynapse.net?workspace=%2fsubscriptions%2f00000000-0000-0000-0000-000000000000%2fresourceGroups%2frg-ardl-bb17cace9b9db143%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsynjhp9-iao"
+  },
+  {
+    "Label": "Networking",
+    "Value": "Show firewall settings"
+  },
+  {
+    "Label": "Primary ADLS Gen2 account URL",
+    "Value": "https://stuyb3hfcc.dfs.core.windows.net"
+  },
+  {
+    "Label": "Primary ADLS Gen2 file system",
+    "Value": "synapsefs"
+  },
+  {
+    "Label": "SQL admin username",
+    "Value": "azrddadmin"
+  },
+  {
+    "Label": "SQL Microsoft Entra admin",
+    "Value": "live.com#admin@example.com"
+  },
+  {
+    "Label": "Dedicated SQL endpoint",
+    "Value": "synjhp9-iao.sql.azuresynapse.net"
+  },
+  {
+    "Label": "Serverless SQL endpoint",
+    "Value": "synjhp9-iao-ondemand.sql.azuresynapse.net"
+  },
+  {
+    "Label": "Development endpoint",
+    "Value": "https://synjhp9-iao.dev.azuresynapse.net"
+  }
+]

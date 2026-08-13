@@ -1,10 +1,10 @@
 {
   "name": "vnmpd-y3wzq",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e7c715ef90888af7/providers/Microsoft.Network/networkManagers/vnmpd-y3wzq",
-  "location": "westeurope",
+  "location": "norwayeast",
   "type": "Microsoft.Network/networkManagers",
   "tags": {},
-  "etag": "\u0022d800cee4-0000-0d00-0000-6a57ded80000\u0022",
+  "etag": "\u002206003b3d-0000-3c00-0000-6a7dc7380000\u0022",
   "properties": {
     "description": "",
     "networkManagerScopes": {
@@ -19,14 +19,14 @@
       "Connectivity",
       "SecurityAdmin"
     ],
-    "resourceGuid": "bab73be1-dc41-4393-a2fc-97ee72592349"
+    "resourceGuid": "040b820e-f615-4728-aa52-8acb5aa02b13"
   },
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T19:26:13.4050109Z",
+    "createdAt": "2026-08-13T13:31:30.9501789Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T19:26:13.4050109Z"
+    "lastModifiedAt": "2026-08-13T13:31:30.9501789Z"
   }
 }

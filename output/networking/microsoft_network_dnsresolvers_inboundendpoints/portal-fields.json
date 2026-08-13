@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-c4b711f9f1eb7a59"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c4b711f9f1eb7a59/providers/Microsoft.Network/dnsResolvers/dnsrb-031p-1/inboundEndpoints/inbound61hwdf"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.Network/dnsResolvers/inboundEndpoints"
+  }
+]

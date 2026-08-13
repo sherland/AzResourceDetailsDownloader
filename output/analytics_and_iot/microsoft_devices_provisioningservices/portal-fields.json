@@ -1,0 +1,46 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-ea290fed5655d3db"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Location",
+    "Value": "North Europe"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Service endpoint",
+    "Value": "dpsu79-smow.azure-devices-provisioning.net"
+  },
+  {
+    "Label": "Global device endpoint",
+    "Value": "global.azure-devices-provisioning.net"
+  },
+  {
+    "Label": "ID Scope",
+    "Value": "0ne012830F8"
+  },
+  {
+    "Label": "Pricing and scale tier",
+    "Value": "S1"
+  },
+  {
+    "Label": "Automatic failover enabled",
+    "Value": "Yes"
+  },
+  {
+    "Label": "ADR namespace",
+    "Value": "Click here to add a namespace"
+  }
+]

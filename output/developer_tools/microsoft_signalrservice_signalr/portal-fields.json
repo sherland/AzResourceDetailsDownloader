@@ -1,0 +1,50 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-d06e581e9c4c92a1"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Data Plane Stopped",
+    "Value": "false"
+  },
+  {
+    "Label": "Host name",
+    "Value": "sigr3beb-6nx.service.signalr.net"
+  },
+  {
+    "Label": "Endpoint",
+    "Value": "https://sigr3beb-6nx.service.signalr.net"
+  },
+  {
+    "Label": "SKU",
+    "Value": "Free_F1"
+  },
+  {
+    "Label": "Unit",
+    "Value": "1"
+  },
+  {
+    "Label": "Troubleshooting Guide",
+    "Value": "https://aka.ms/asrs/tsg"
+  },
+  {
+    "Label": "FAQs",
+    "Value": "https://aka.ms/asrs/faq"
+  }
+]

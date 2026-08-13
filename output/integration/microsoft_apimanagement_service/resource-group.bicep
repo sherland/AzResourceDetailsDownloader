@@ -1,8 +1,8 @@
-param service_apimqboznhhd_name string
+param service_apimaib_5hed_name string
 
-resource service_apimqboznhhd_name_resource 'Microsoft.ApiManagement/service@2025-09-01-preview' = {
-  name: service_apimqboznhhd_name
-  location: 'West Europe'
+resource service_apimaib_5hed_name_resource 'Microsoft.ApiManagement/service@2025-09-01-preview' = {
+  name: service_apimaib_5hed_name
+  location: 'Norway East'
   sku: {
     name: 'Consumption'
     capacity: 0
@@ -14,7 +14,7 @@ resource service_apimqboznhhd_name_resource 'Microsoft.ApiManagement/service@202
     hostnameConfigurations: [
       {
         type: 'Proxy'
-        hostName: '${service_apimqboznhhd_name}.azure-api.net'
+        hostName: '${service_apimaib_5hed_name}.azure-api.net'
         negotiateClientCertificate: false
         defaultSslBinding: true
         certificateSource: 'BuiltIn'
@@ -39,8 +39,8 @@ resource service_apimqboznhhd_name_resource 'Microsoft.ApiManagement/service@202
   }
 }
 
-resource service_apimqboznhhd_name_policy 'Microsoft.ApiManagement/service/policies@2025-09-01-preview' = {
-  parent: service_apimqboznhhd_name_resource
+resource service_apimaib_5hed_name_policy 'Microsoft.ApiManagement/service/policies@2025-09-01-preview' = {
+  parent: service_apimaib_5hed_name_resource
   name: 'policy'
   properties: {
     value: '<!--\r\n    IMPORTANT:\r\n    - Policy elements can appear only within the <inbound>, <outbound>, <backend> section elements.\r\n    - Only the <forward-request> policy element can appear within the <backend> section element.\r\n    - To apply a policy to the incoming request (before it is forwarded to the backend service), place a corresponding policy element within the <inbound> section element.\r\n    - To apply a policy to the outgoing response (before it is sent back to the caller), place a corresponding policy element within the <outbound> section element.\r\n    - To add a policy position the cursor at the desired insertion point and click on the round button associated with the policy.\r\n    - To remove a policy, delete the corresponding policy statement from the policy document.\r\n    - Policies are applied in the order of their appearance, from the top down.\r\n-->\r\n<policies>\r\n  <inbound></inbound>\r\n  <backend>\r\n    <forward-request />\r\n  </backend>\r\n  <outbound></outbound>\r\n</policies>'
@@ -48,11 +48,11 @@ resource service_apimqboznhhd_name_policy 'Microsoft.ApiManagement/service/polic
   }
 }
 
-resource service_apimqboznhhd_name_master 'Microsoft.ApiManagement/service/subscriptions@2025-09-01-preview' = {
-  parent: service_apimqboznhhd_name_resource
+resource service_apimaib_5hed_name_master 'Microsoft.ApiManagement/service/subscriptions@2025-09-01-preview' = {
+  parent: service_apimaib_5hed_name_resource
   name: 'master'
   properties: {
-    scope: '${service_apimqboznhhd_name_resource.id}/'
+    scope: '${service_apimaib_5hed_name_resource.id}/'
     displayName: 'Built-in all-access subscription'
     state: 'active'
     allowTracing: false

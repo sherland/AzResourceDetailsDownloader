@@ -1,11 +1,11 @@
 @secure()
 param vulnerabilityAssessments_Default_storageContainerPath string
-param workspaces_synmvq8mbk5_name string
-param storageAccounts_stvef3j9lw_name string
+param workspaces_synjhp9_iao_name string
+param storageAccounts_stuyb3hfcc_name string
 
-resource storageAccounts_stvef3j9lw_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
-  name: storageAccounts_stvef3j9lw_name
-  location: 'westeurope'
+resource storageAccounts_stuyb3hfcc_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
+  name: storageAccounts_stuyb3hfcc_name
+  location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'
@@ -41,32 +41,32 @@ resource storageAccounts_stvef3j9lw_name_resource 'Microsoft.Storage/storageAcco
   }
 }
 
-resource workspaces_synmvq8mbk5_name_resource 'Microsoft.Synapse/workspaces@2021-06-01' = {
-  name: workspaces_synmvq8mbk5_name
-  location: 'westeurope'
+resource workspaces_synjhp9_iao_name_resource 'Microsoft.Synapse/workspaces@2021-06-01' = {
+  name: workspaces_synjhp9_iao_name
+  location: 'swedencentral'
   identity: {
     type: 'SystemAssigned'
   }
   properties: {
     defaultDataLakeStorage: {
       createManagedPrivateEndpoint: false
-      accountUrl: 'https://stvef3j9lw.dfs.core.windows.net'
+      accountUrl: 'https://stuyb3hfcc.dfs.core.windows.net'
       filesystem: 'synapsefs'
     }
     encryption: {}
-    managedResourceGroupName: 'synapseworkspace-managedrg-c9b8967b-9a53-40ad-a8a6-a56b0be76b94'
+    managedResourceGroupName: 'synapseworkspace-managedrg-945c621f-d7b5-4575-8e8f-fbb85f62b017'
     sqlAdministratorLogin: 'azrddadmin'
     privateEndpointConnections: []
     publicNetworkAccess: 'Enabled'
     cspWorkspaceAdminProperties: {
-      initialWorkspaceAdminObjectId: 'f79b144e-8ba2-493b-ad36-11208b55ca03'
+      initialWorkspaceAdminObjectId: 'e580c62a-96a8-430f-96a9-33d936178197'
     }
     trustedServiceBypassEnabled: false
   }
 }
 
-resource storageAccounts_stvef3j9lw_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
-  parent: storageAccounts_stvef3j9lw_name_resource
+resource storageAccounts_stuyb3hfcc_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
+  parent: storageAccounts_stuyb3hfcc_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -86,8 +86,8 @@ resource storageAccounts_stvef3j9lw_name_default 'Microsoft.Storage/storageAccou
   }
 }
 
-resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stvef3j9lw_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
-  parent: storageAccounts_stvef3j9lw_name_resource
+resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stuyb3hfcc_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
+  parent: storageAccounts_stuyb3hfcc_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -107,8 +107,8 @@ resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stvef3j9
   }
 }
 
-resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stvef3j9lw_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
-  parent: storageAccounts_stvef3j9lw_name_resource
+resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stuyb3hfcc_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
+  parent: storageAccounts_stuyb3hfcc_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -117,8 +117,8 @@ resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stvef3j
   }
 }
 
-resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stvef3j9lw_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
-  parent: storageAccounts_stvef3j9lw_name_resource
+resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stuyb3hfcc_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
+  parent: storageAccounts_stuyb3hfcc_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -127,8 +127,8 @@ resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stvef3j
   }
 }
 
-resource workspaces_synmvq8mbk5_name_Default 'Microsoft.Synapse/workspaces/auditingSettings@2021-06-01' = {
-  parent: workspaces_synmvq8mbk5_name_resource
+resource workspaces_synjhp9_iao_name_Default 'Microsoft.Synapse/workspaces/auditingSettings@2021-06-01' = {
+  parent: workspaces_synjhp9_iao_name_resource
   name: 'Default'
   properties: {
     retentionDays: 0
@@ -140,25 +140,25 @@ resource workspaces_synmvq8mbk5_name_Default 'Microsoft.Synapse/workspaces/audit
   }
 }
 
-resource Microsoft_Synapse_workspaces_azureADOnlyAuthentications_workspaces_synmvq8mbk5_name_default 'Microsoft.Synapse/workspaces/azureADOnlyAuthentications@2021-06-01' = {
-  parent: workspaces_synmvq8mbk5_name_resource
+resource Microsoft_Synapse_workspaces_azureADOnlyAuthentications_workspaces_synjhp9_iao_name_default 'Microsoft.Synapse/workspaces/azureADOnlyAuthentications@2021-06-01' = {
+  parent: workspaces_synjhp9_iao_name_resource
   name: 'default'
   properties: {
     azureADOnlyAuthentication: false
   }
 }
 
-resource Microsoft_Synapse_workspaces_dedicatedSQLminimalTlsSettings_workspaces_synmvq8mbk5_name_default 'Microsoft.Synapse/workspaces/dedicatedSQLminimalTlsSettings@2021-06-01' = {
-  parent: workspaces_synmvq8mbk5_name_resource
+resource Microsoft_Synapse_workspaces_dedicatedSQLminimalTlsSettings_workspaces_synjhp9_iao_name_default 'Microsoft.Synapse/workspaces/dedicatedSQLminimalTlsSettings@2021-06-01' = {
+  parent: workspaces_synjhp9_iao_name_resource
   name: 'default'
-  location: 'westeurope'
+  location: 'swedencentral'
   properties: {
     minimalTlsVersion: '1.2'
   }
 }
 
-resource Microsoft_Synapse_workspaces_extendedAuditingSettings_workspaces_synmvq8mbk5_name_Default 'Microsoft.Synapse/workspaces/extendedAuditingSettings@2021-06-01' = {
-  parent: workspaces_synmvq8mbk5_name_resource
+resource Microsoft_Synapse_workspaces_extendedAuditingSettings_workspaces_synjhp9_iao_name_Default 'Microsoft.Synapse/workspaces/extendedAuditingSettings@2021-06-01' = {
+  parent: workspaces_synjhp9_iao_name_resource
   name: 'Default'
   properties: {
     retentionDays: 0
@@ -170,8 +170,8 @@ resource Microsoft_Synapse_workspaces_extendedAuditingSettings_workspaces_synmvq
   }
 }
 
-resource workspaces_synmvq8mbk5_name_AutoResolveIntegrationRuntime 'Microsoft.Synapse/workspaces/integrationruntimes@2021-06-01' = {
-  parent: workspaces_synmvq8mbk5_name_resource
+resource workspaces_synjhp9_iao_name_AutoResolveIntegrationRuntime 'Microsoft.Synapse/workspaces/integrationruntimes@2021-06-01' = {
+  parent: workspaces_synjhp9_iao_name_resource
   name: 'AutoResolveIntegrationRuntime'
   properties: {
     type: 'Managed'
@@ -183,8 +183,8 @@ resource workspaces_synmvq8mbk5_name_AutoResolveIntegrationRuntime 'Microsoft.Sy
   }
 }
 
-resource Microsoft_Synapse_workspaces_securityAlertPolicies_workspaces_synmvq8mbk5_name_Default 'Microsoft.Synapse/workspaces/securityAlertPolicies@2021-06-01' = {
-  parent: workspaces_synmvq8mbk5_name_resource
+resource Microsoft_Synapse_workspaces_securityAlertPolicies_workspaces_synjhp9_iao_name_Default 'Microsoft.Synapse/workspaces/securityAlertPolicies@2021-06-01' = {
+  parent: workspaces_synjhp9_iao_name_resource
   name: 'Default'
   properties: {
     state: 'Disabled'
@@ -199,8 +199,8 @@ resource Microsoft_Synapse_workspaces_securityAlertPolicies_workspaces_synmvq8mb
   }
 }
 
-resource Microsoft_Synapse_workspaces_vulnerabilityAssessments_workspaces_synmvq8mbk5_name_Default 'Microsoft.Synapse/workspaces/vulnerabilityAssessments@2021-06-01' = {
-  parent: workspaces_synmvq8mbk5_name_resource
+resource Microsoft_Synapse_workspaces_vulnerabilityAssessments_workspaces_synjhp9_iao_name_Default 'Microsoft.Synapse/workspaces/vulnerabilityAssessments@2021-06-01' = {
+  parent: workspaces_synjhp9_iao_name_resource
   name: 'Default'
   properties: {
     recurringScans: {
@@ -211,8 +211,8 @@ resource Microsoft_Synapse_workspaces_vulnerabilityAssessments_workspaces_synmvq
   }
 }
 
-resource storageAccounts_stvef3j9lw_name_default_synapsefs 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-04-01' = {
-  parent: storageAccounts_stvef3j9lw_name_default
+resource storageAccounts_stuyb3hfcc_name_default_synapsefs 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-04-01' = {
+  parent: storageAccounts_stuyb3hfcc_name_default
   name: 'synapsefs'
   properties: {
     immutableStorageWithVersioning: {
@@ -223,7 +223,7 @@ resource storageAccounts_stvef3j9lw_name_default_synapsefs 'Microsoft.Storage/st
     publicAccess: 'None'
   }
   dependsOn: [
-    storageAccounts_stvef3j9lw_name_resource
+    storageAccounts_stuyb3hfcc_name_resource
   ]
 }
 

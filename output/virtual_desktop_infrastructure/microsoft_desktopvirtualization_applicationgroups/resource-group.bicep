@@ -3,7 +3,7 @@ param applicationgroups_avdagc_7s_3r1_name string
 
 resource hostpools_avdhpz_3v_b_9_name_resource 'Microsoft.DesktopVirtualization/hostpools@2026-03-01-preview' = {
   name: hostpools_avdhpz_3v_b_9_name
-  location: 'westeurope'
+  location: 'northeurope'
   identity: {
     type: 'None'
   }
@@ -29,7 +29,7 @@ resource hostpools_avdhpz_3v_b_9_name_resource 'Microsoft.DesktopVirtualization/
 
 resource applicationgroups_avdagc_7s_3r1_name_resource 'Microsoft.DesktopVirtualization/applicationgroups@2026-03-01-preview' = {
   name: applicationgroups_avdagc_7s_3r1_name
-  location: 'westeurope'
+  location: 'northeurope'
   kind: 'Desktop'
   properties: {
     hostPoolArmPath: hostpools_avdhpz_3v_b_9_name_resource.id

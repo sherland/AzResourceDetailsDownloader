@@ -2,7 +2,7 @@ param workspaces_dbx21a20_w4_name string
 
 resource workspaces_dbx21a20_w4_name_resource 'Microsoft.Databricks/workspaces@2026-01-01' = {
   name: workspaces_dbx21a20_w4_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'premium'
   }
@@ -24,7 +24,7 @@ resource workspaces_dbx21a20_w4_name_resource 'Microsoft.Databricks/workspaces@2
       }
       storageAccountName: {
         type: 'String'
-        value: 'dbstoragedguzdlfcbcmes'
+        value: 'dbstoragevpqsauyrlthy4'
       }
       storageAccountSkuName: {
         type: 'String'

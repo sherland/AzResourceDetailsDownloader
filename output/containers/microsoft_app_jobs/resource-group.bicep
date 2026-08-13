@@ -3,7 +3,7 @@ param managedEnvironments_caepmpb42xg_name string
 
 resource managedEnvironments_caepmpb42xg_name_resource 'Microsoft.App/managedEnvironments@2026-01-01' = {
   name: managedEnvironments_caepmpb42xg_name
-  location: 'West Europe'
+  location: 'Norway East'
   properties: {
     appLogsConfiguration: {}
     zoneRedundant: false
@@ -26,7 +26,7 @@ resource managedEnvironments_caepmpb42xg_name_resource 'Microsoft.App/managedEnv
 
 resource jobs_cajouo_dwv4_name_resource 'Microsoft.App/jobs@2026-01-01' = {
   name: jobs_cajouo_dwv4_name
-  location: 'West Europe'
+  location: 'Norway East'
   identity: {
     type: 'None'
   }

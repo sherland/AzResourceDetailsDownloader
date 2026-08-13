@@ -3,7 +3,7 @@ param publicIPAddresses_pipx9_c_rky_name string
 
 resource natGateways_natatj1p_oe_name_resource 'Microsoft.Network/natGateways@2025-07-01' = {
   name: natGateways_natatj1p_oe_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
@@ -20,7 +20,7 @@ resource natGateways_natatj1p_oe_name_resource 'Microsoft.Network/natGateways@20
 
 resource publicIPAddresses_pipx9_c_rky_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
   name: publicIPAddresses_pipx9_c_rky_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
@@ -29,7 +29,7 @@ resource publicIPAddresses_pipx9_c_rky_name_resource 'Microsoft.Network/publicIP
     natGateway: {
       id: natGateways_natatj1p_oe_name_resource.id
     }
-    ipAddress: '20.101.81.18'
+    ipAddress: '51.120.81.178'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-cfd84dd43feb6f85"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Inbound endpoints",
+    "Value": "0"
+  },
+  {
+    "Label": "Outbound endpoints",
+    "Value": "0"
+  },
+  {
+    "Label": "Virtual network",
+    "Value": "vnetkh0jx-02"
+  }
+]

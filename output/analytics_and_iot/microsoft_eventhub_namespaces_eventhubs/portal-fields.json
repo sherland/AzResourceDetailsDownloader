@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-39c48c262400e678"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Partition count",
+    "Value": "1"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Namespace",
+    "Value": "ehns2z7d7gyo"
+  },
+  {
+    "Label": "Created",
+    "Value": "Thursday, August 13, 2026 at 15:17:03 GMT\u002B2"
+  },
+  {
+    "Label": "Updated",
+    "Value": "Thursday, August 13, 2026 at 15:17:03 GMT\u002B2"
+  },
+  {
+    "Label": "Cleanup policy",
+    "Value": "Delete"
+  }
+]

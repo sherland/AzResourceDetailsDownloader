@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-9453358d1e4e04fe"
   tags = {
     armType    = "Microsoft.Devices/IotHubs"
-    createdUtc = "2026-07-15T19:07:49.9216292Z"
+    createdUtc = "2026-08-13T13:16:23.6399777Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -25,7 +25,7 @@ resource "azurerm_iothub" "res-1" {
   event_hub_partition_count    = 2
   event_hub_retention_in_days  = 1
   local_authentication_enabled = true
-  location                     = "westeurope"
+  location                     = "norwayeast"
   min_tls_version              = "1.2"
   name                         = "iot19ncaw4p"
   resource_group_name          = azurerm_resource_group.res-0.name

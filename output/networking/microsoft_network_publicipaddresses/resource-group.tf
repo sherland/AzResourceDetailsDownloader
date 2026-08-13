@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,25 +10,28 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-81fcf0828790336e"
   tags = {
     armType    = "Microsoft.Network/publicIPAddresses"
-    createdUtc = "2026-07-15T18:21:24.2373109Z"
+    createdUtc = "2026-08-13T12:30:45.1044992Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_public_ip" "res-1" {
   allocation_method       = "Static"
   ddos_protection_mode    = "VirtualNetworkInherited"
+  domain_name_label       = ""
+  domain_name_label_scope = ""
   edge_zone               = ""
   idle_timeout_in_minutes = 4
   ip_tags                 = {}
   ip_version              = "IPv4"
-  location                = "westeurope"
+  location                = "norwayeast"
   name                    = "pip208b-5n5"
   resource_group_name     = azurerm_resource_group.res-0.name
+  reverse_fqdn            = ""
   sku                     = "Standard"
   sku_tier                = "Regional"
   tags                    = {}

@@ -8,8 +8,8 @@
   "properties": {
     "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f7c118d11c094db/providers/Microsoft.OperationalInsights/workspaces/lawnh-iule2",
     "provisioningState": "Succeeded",
-    "creationTime": "Wed, 15 Jul 2026 18:57:00 GMT",
-    "lastModifiedTime": "Wed, 15 Jul 2026 18:57:00 GMT",
+    "creationTime": "Thu, 13 Aug 2026 13:11:11 GMT",
+    "lastModifiedTime": "Thu, 13 Aug 2026 13:11:11 GMT",
     "containedResources": [
       "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f7c118d11c094db/providers/Microsoft.OperationalInsights/workspaces/lawnh-iule2/views/AzureActivity(lawnh-iule2)"
     ],
@@ -22,7 +22,7 @@
       }
     ]
   },
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": {},
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f7c118d11c094db/providers/Microsoft.OperationsManagement/solutions/AzureActivity(lawnh-iule2)",
   "name": "AzureActivity(lawnh-iule2)",

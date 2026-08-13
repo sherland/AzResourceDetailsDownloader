@@ -2,7 +2,7 @@ param configurationStores_appcs1y_1kv59_name string
 
 resource configurationStores_appcs1y_1kv59_name_resource 'Microsoft.AppConfiguration/configurationStores@2025-06-01-preview' = {
   name: configurationStores_appcs1y_1kv59_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'free'
   }

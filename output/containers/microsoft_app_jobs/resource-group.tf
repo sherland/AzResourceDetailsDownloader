@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-4ac8e1aaea384b1b"
   tags = {
     armType    = "Microsoft.App/jobs"
-    createdUtc = "2026-07-15T19:20:38.0031486Z"
+    createdUtc = "2026-08-13T13:25:30.2310231Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_container_app_job" "res-1" {
   container_app_environment_id = azurerm_container_app_environment.res-2.id
-  location                     = "westeurope"
+  location                     = "norwayeast"
   name                         = "cajouo-dwv4"
   replica_retry_limit          = 0
   replica_timeout_in_seconds   = 300
@@ -48,7 +48,7 @@ resource "azurerm_container_app_environment" "res-2" {
   infrastructure_resource_group_name          = ""
   infrastructure_subnet_id                    = ""
   internal_load_balancer_enabled              = false
-  location                                    = "westeurope"
+  location                                    = "norwayeast"
   log_analytics_workspace_id                  = ""
   logs_destination                            = ""
   mutual_tls_enabled                          = false

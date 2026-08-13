@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,17 +10,17 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-8cbf4e82338a582d"
   tags = {
     armType    = "Microsoft.Databricks/accessConnectors"
-    createdUtc = "2026-07-15T19:23:42.7266662Z"
+    createdUtc = "2026-08-13T13:29:36.5953257Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_databricks_access_connector" "res-1" {
-  location            = "westeurope"
+  location            = "norwayeast"
   name                = "dbacarwx6-ka"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}

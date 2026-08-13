@@ -2,7 +2,7 @@ param namespaces_ehns2z7d7gyo_name string
 
 resource namespaces_ehns2z7d7gyo_name_resource 'Microsoft.EventHub/namespaces@2026-01-01' = {
   name: namespaces_ehns2z7d7gyo_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Basic'
     tier: 'Basic'
@@ -18,7 +18,7 @@ resource namespaces_ehns2z7d7gyo_name_resource 'Microsoft.EventHub/namespaces@20
       maxReplicationLagDurationInSeconds: 0
       locations: [
         {
-          locationName: 'westeurope'
+          locationName: 'norwayeast'
           roleType: 'Primary'
         }
       ]
@@ -36,7 +36,7 @@ resource namespaces_ehns2z7d7gyo_name_resource 'Microsoft.EventHub/namespaces@20
 resource namespaces_ehns2z7d7gyo_name_RootManageSharedAccessKey 'Microsoft.EventHub/namespaces/authorizationrules@2026-01-01' = {
   parent: namespaces_ehns2z7d7gyo_name_resource
   name: 'RootManageSharedAccessKey'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     rights: [
       'Listen'
@@ -49,7 +49,7 @@ resource namespaces_ehns2z7d7gyo_name_RootManageSharedAccessKey 'Microsoft.Event
 resource namespaces_ehns2z7d7gyo_name_ehu6z_fa 'Microsoft.EventHub/namespaces/eventhubs@2026-01-01' = {
   parent: namespaces_ehns2z7d7gyo_name_resource
   name: 'ehu6z-fa'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     messageTimestampDescription: {
       timestampType: 'LogAppend'
@@ -67,7 +67,7 @@ resource namespaces_ehns2z7d7gyo_name_ehu6z_fa 'Microsoft.EventHub/namespaces/ev
 resource namespaces_ehns2z7d7gyo_name_default 'Microsoft.EventHub/namespaces/networkrulesets@2026-01-01' = {
   parent: namespaces_ehns2z7d7gyo_name_resource
   name: 'default'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     publicNetworkAccess: 'Enabled'
     defaultAction: 'Allow'
@@ -80,7 +80,7 @@ resource namespaces_ehns2z7d7gyo_name_default 'Microsoft.EventHub/namespaces/net
 resource namespaces_ehns2z7d7gyo_name_ehu6z_fa_Default 'Microsoft.EventHub/namespaces/eventhubs/consumergroups@2026-01-01' = {
   parent: namespaces_ehns2z7d7gyo_name_ehu6z_fa
   name: '$Default'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {}
   dependsOn: [
     namespaces_ehns2z7d7gyo_name_resource

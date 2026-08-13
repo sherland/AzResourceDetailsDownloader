@@ -1,14 +1,14 @@
 {
   "name": "plsd0-7-olm",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a3262f4eeb66a89e/providers/Microsoft.Network/privateLinkServices/plsd0-7-olm",
-  "etag": "W/\u0022de40f2fd-d170-4591-929c-e11411a10a4f\u0022",
+  "etag": "W/\u0022c446a11d-785f-4ce2-aa65-b696656d5216\u0022",
   "type": "Microsoft.Network/privateLinkServices",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "79f81e10-e8ca-4b3d-9e56-e9eb47ccc5bd",
+    "resourceGuid": "3143c9fd-e88f-4636-a155-60c19a029859",
     "fqdns": [],
-    "alias": "plsd0-7-olm.c04b03a5-9729-4913-875d-fdfdb281abf3.westeurope.azure.privatelinkservice",
+    "alias": "plsd0-7-olm.1b2f6781-906d-4f11-b080-000638de69db.norwayeast.azure.privatelinkservice",
     "enableProxyProtocol": false,
     "loadBalancerFrontendIpConfigurations": [
       {
@@ -19,7 +19,7 @@
       {
         "name": "plsipconfig",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a3262f4eeb66a89e/providers/Microsoft.Network/privateLinkServices/plsd0-7-olm/ipConfigurations/plsipconfig",
-        "etag": "W/\u0022de40f2fd-d170-4591-929c-e11411a10a4f\u0022",
+        "etag": "W/\u0022c446a11d-785f-4ce2-aa65-b696656d5216\u0022",
         "type": "Microsoft.Network/privateLinkServices/ipConfigurations",
         "properties": {
           "provisioningState": "Succeeded",
@@ -35,7 +35,7 @@
     "privateEndpointConnections": [],
     "networkInterfaces": [
       {
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a3262f4eeb66a89e/providers/Microsoft.Network/networkInterfaces/plsd0-7-olm.nic.08112ca0-c3cf-40d2-b6d6-fb46ed77f9e5"
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a3262f4eeb66a89e/providers/Microsoft.Network/networkInterfaces/plsd0-7-olm.nic.0205b279-489a-4890-a5fb-20d791c10428"
       }
     ]
   }

@@ -2,7 +2,7 @@ param namespaces_sb4hb2w_dr_name string
 
 resource namespaces_sb4hb2w_dr_name_resource 'Microsoft.ServiceBus/namespaces@2026-01-01' = {
   name: namespaces_sb4hb2w_dr_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Basic'
     tier: 'Basic'
@@ -17,7 +17,7 @@ resource namespaces_sb4hb2w_dr_name_resource 'Microsoft.ServiceBus/namespaces@20
       maxReplicationLagDurationInSeconds: 0
       locations: [
         {
-          locationName: 'westeurope'
+          locationName: 'norwayeast'
           roleType: 'Primary'
         }
       ]
@@ -33,7 +33,7 @@ resource namespaces_sb4hb2w_dr_name_resource 'Microsoft.ServiceBus/namespaces@20
 resource namespaces_sb4hb2w_dr_name_RootManageSharedAccessKey 'Microsoft.ServiceBus/namespaces/authorizationrules@2026-01-01' = {
   parent: namespaces_sb4hb2w_dr_name_resource
   name: 'RootManageSharedAccessKey'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     rights: [
       'Listen'
@@ -46,7 +46,7 @@ resource namespaces_sb4hb2w_dr_name_RootManageSharedAccessKey 'Microsoft.Service
 resource namespaces_sb4hb2w_dr_name_default 'Microsoft.ServiceBus/namespaces/networkrulesets@2026-01-01' = {
   parent: namespaces_sb4hb2w_dr_name_resource
   name: 'default'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     publicNetworkAccess: 'Enabled'
     defaultAction: 'Allow'

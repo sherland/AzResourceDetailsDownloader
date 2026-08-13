@@ -2,7 +2,7 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dced82a8791f5059/providers/Microsoft.EventHub/namespaces/ehnsw2y13x4d",
   "name": "ehnsw2y13x4d",
   "type": "Microsoft.EventHub/Namespaces",
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": {},
   "properties": {
     "errors": [],
@@ -10,7 +10,7 @@
       "maxReplicationLagDurationInSeconds": 0,
       "locations": [
         {
-          "locationName": "westeurope",
+          "locationName": "norwayeast",
           "roleType": "Primary",
           "replicaState": "Ready"
         }
@@ -25,8 +25,8 @@
     "kafkaEnabled": true,
     "provisioningState": "Succeeded",
     "status": "Active",
-    "createdAt": "2026-07-15T06:42:49.813254Z",
-    "updatedAt": "2026-07-15T18:35:48Z",
+    "createdAt": "2026-08-13T12:50:31.9349884Z",
+    "updatedAt": "2026-08-13T12:50:31.9349884Z",
     "metricId": "00000000-0000-0000-0000-000000000000:ehnsw2y13x4d",
     "serviceBusEndpoint": "https://ehnsw2y13x4d.servicebus.windows.net:443/"
   },

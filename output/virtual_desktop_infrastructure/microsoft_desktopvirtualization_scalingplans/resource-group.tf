@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-ec59d008cf062ae8"
   tags = {
     armType    = "Microsoft.DesktopVirtualization/scalingPlans"
-    createdUtc = "2026-07-15T19:22:53.1046964Z"
+    createdUtc = "2026-08-13T14:16:49.1082194Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,7 +23,7 @@ resource "azurerm_virtual_desktop_scaling_plan" "res-1" {
   description         = ""
   exclusion_tag       = ""
   friendly_name       = ""
-  location            = "westeurope"
+  location            = "northeurope"
   name                = "avdspc4cwd2-4"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}

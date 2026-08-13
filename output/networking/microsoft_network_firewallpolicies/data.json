@@ -1,6 +1,6 @@
 {
   "properties": {
-    "size": "0.001173973 MB",
+    "size": "0.001185417 MB",
     "sku": {
       "tier": "Standard"
     },
@@ -13,6 +13,6 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b6cb64ed3b9bae27/providers/Microsoft.Network/firewallPolicies/afwpgkb-kyp1",
   "name": "afwpgkb-kyp1",
   "type": "Microsoft.Network/FirewallPolicies",
-  "etag": "0cf16c8b-7beb-4220-924a-25e1d3c9f82b",
-  "location": "westeurope"
+  "etag": "59be727d-c7c9-48d2-a8d7-4959ac583f33",
+  "location": "norwayeast"
 }

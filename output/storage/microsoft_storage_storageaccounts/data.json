@@ -4,15 +4,15 @@
     "tier": "Standard"
   },
   "kind": "StorageV2",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/sti13arhgp",
-  "name": "sti13arhgp",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/stedrfc3h1",
+  "name": "stedrfc3h1",
   "type": "Microsoft.Storage/storageAccounts",
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": {},
   "properties": {
     "keyCreationTime": {
-      "key1": "2026-07-15T18:20:09.7982902Z",
-      "key2": "2026-07-15T18:20:09.7982902Z"
+      "key1": "2026-08-13T14:02:28.0419088Z",
+      "key2": "2026-08-13T14:02:28.0419088Z"
     },
     "allowCrossTenantReplication": false,
     "privateEndpointConnections": [],
@@ -31,28 +31,28 @@
         "file": {
           "keyType": "Account",
           "enabled": true,
-          "lastEnabledTime": "2026-07-15T18:20:09.8107382Z"
+          "lastEnabledTime": "2026-08-13T14:02:28.0542219Z"
         },
         "blob": {
           "keyType": "Account",
           "enabled": true,
-          "lastEnabledTime": "2026-07-15T18:20:09.8107382Z"
+          "lastEnabledTime": "2026-08-13T14:02:28.0542219Z"
         }
       },
       "keySource": "Microsoft.Storage"
     },
     "accessTier": "Hot",
     "provisioningState": "Succeeded",
-    "creationTime": "2026-07-15T18:20:09.4286924Z",
+    "creationTime": "2026-08-13T14:02:27.9437902Z",
     "primaryEndpoints": {
-      "dfs": "https://sti13arhgp.dfs.core.windows.net/",
-      "web": "https://sti13arhgp.z6.web.core.windows.net/",
-      "blob": "https://sti13arhgp.blob.core.windows.net/",
-      "queue": "https://sti13arhgp.queue.core.windows.net/",
-      "table": "https://sti13arhgp.table.core.windows.net/",
-      "file": "https://sti13arhgp.file.core.windows.net/"
+      "dfs": "https://stedrfc3h1.dfs.core.windows.net/",
+      "web": "https://stedrfc3h1.z1.web.core.windows.net/",
+      "blob": "https://stedrfc3h1.blob.core.windows.net/",
+      "queue": "https://stedrfc3h1.queue.core.windows.net/",
+      "table": "https://stedrfc3h1.table.core.windows.net/",
+      "file": "https://stedrfc3h1.file.core.windows.net/"
     },
-    "primaryLocation": "westeurope",
+    "primaryLocation": "norwayeast",
     "statusOfPrimary": "available"
   }
 }

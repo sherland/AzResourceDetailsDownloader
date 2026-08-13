@@ -1,0 +1,26 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-c8862d85f1cc8103"
+  },
+  {
+    "Label": "Location",
+    "Value": "North Europe"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Provisioning state",
+    "Value": "Active"
+  },
+  {
+    "Label": "Host name",
+    "Value": "dt4wdx8el0.api.neu.digitaltwins.azure.net"
+  }
+]

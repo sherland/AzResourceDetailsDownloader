@@ -3,7 +3,7 @@ param workspaces_lawr_uvykju_name string
 
 resource workspaces_lawr_uvykju_name_resource 'Microsoft.OperationalInsights/workspaces@2025-07-01' = {
   name: workspaces_lawr_uvykju_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     sku: {
       name: 'PerGB2018'
@@ -24,7 +24,7 @@ resource workspaces_lawr_uvykju_name_resource 'Microsoft.OperationalInsights/wor
 
 resource components_ai9eqss_g5_name_resource 'microsoft.insights/components@2020-02-02' = {
   name: components_ai9eqss_g5_name
-  location: 'westeurope'
+  location: 'norwayeast'
   kind: 'web'
   properties: {
     Application_Type: 'web'
@@ -39,7 +39,7 @@ resource components_ai9eqss_g5_name_resource 'microsoft.insights/components@2020
 resource components_ai9eqss_g5_name_degradationindependencyduration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'degradationindependencyduration'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'degradationindependencyduration'
@@ -60,7 +60,7 @@ resource components_ai9eqss_g5_name_degradationindependencyduration 'microsoft.i
 resource components_ai9eqss_g5_name_degradationinserverresponsetime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'degradationinserverresponsetime'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'degradationinserverresponsetime'
@@ -81,7 +81,7 @@ resource components_ai9eqss_g5_name_degradationinserverresponsetime 'microsoft.i
 resource components_ai9eqss_g5_name_digestMailConfiguration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'digestMailConfiguration'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'digestMailConfiguration'
@@ -102,7 +102,7 @@ resource components_ai9eqss_g5_name_digestMailConfiguration 'microsoft.insights/
 resource components_ai9eqss_g5_name_extension_billingdatavolumedailyspikeextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'extension_billingdatavolumedailyspikeextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_billingdatavolumedailyspikeextension'
@@ -123,7 +123,7 @@ resource components_ai9eqss_g5_name_extension_billingdatavolumedailyspikeextensi
 resource components_ai9eqss_g5_name_extension_canaryextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'extension_canaryextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_canaryextension'
@@ -144,7 +144,7 @@ resource components_ai9eqss_g5_name_extension_canaryextension 'microsoft.insight
 resource components_ai9eqss_g5_name_extension_exceptionchangeextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'extension_exceptionchangeextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_exceptionchangeextension'
@@ -165,7 +165,7 @@ resource components_ai9eqss_g5_name_extension_exceptionchangeextension 'microsof
 resource components_ai9eqss_g5_name_extension_memoryleakextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'extension_memoryleakextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_memoryleakextension'
@@ -186,7 +186,7 @@ resource components_ai9eqss_g5_name_extension_memoryleakextension 'microsoft.ins
 resource components_ai9eqss_g5_name_extension_securityextensionspackage 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'extension_securityextensionspackage'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_securityextensionspackage'
@@ -207,7 +207,7 @@ resource components_ai9eqss_g5_name_extension_securityextensionspackage 'microso
 resource components_ai9eqss_g5_name_extension_traceseveritydetector 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'extension_traceseveritydetector'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_traceseveritydetector'
@@ -228,7 +228,7 @@ resource components_ai9eqss_g5_name_extension_traceseveritydetector 'microsoft.i
 resource components_ai9eqss_g5_name_longdependencyduration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'longdependencyduration'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'longdependencyduration'
@@ -249,7 +249,7 @@ resource components_ai9eqss_g5_name_longdependencyduration 'microsoft.insights/c
 resource components_ai9eqss_g5_name_migrationToAlertRulesCompleted 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'migrationToAlertRulesCompleted'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'migrationToAlertRulesCompleted'
@@ -270,7 +270,7 @@ resource components_ai9eqss_g5_name_migrationToAlertRulesCompleted 'microsoft.in
 resource components_ai9eqss_g5_name_slowpageloadtime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'slowpageloadtime'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'slowpageloadtime'
@@ -291,7 +291,7 @@ resource components_ai9eqss_g5_name_slowpageloadtime 'microsoft.insights/compone
 resource components_ai9eqss_g5_name_slowserverresponsetime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
   parent: components_ai9eqss_g5_name_resource
   name: 'slowserverresponsetime'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'slowserverresponsetime'
@@ -2362,6 +2362,20 @@ resource workspaces_lawr_uvykju_name_AgriFoodWeatherLogs 'Microsoft.OperationalI
   }
 }
 
+resource workspaces_lawr_uvykju_name_AGSGrafanaAlertAuthFailure 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawr_uvykju_name_resource
+  name: 'AGSGrafanaAlertAuthFailure'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'AGSGrafanaAlertAuthFailure'
+      displayName: 'AGSGrafanaAlertAuthFailure'
+    }
+    retentionInDays: 30
+  }
+}
+
 resource workspaces_lawr_uvykju_name_AGSGrafanaLoginEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   parent: workspaces_lawr_uvykju_name_resource
   name: 'AGSGrafanaLoginEvents'
@@ -3290,13 +3304,13 @@ resource workspaces_lawr_uvykju_name_AppGenAIContent 'Microsoft.OperationalInsig
   parent: workspaces_lawr_uvykju_name_resource
   name: 'AppGenAIContent'
   properties: {
-    totalRetentionInDays: 30
+    totalRetentionInDays: 90
     plan: 'Analytics'
     schema: {
       name: 'AppGenAIContent'
       displayName: 'AppGenAIContent'
     }
-    retentionInDays: 30
+    retentionInDays: 90
   }
 }
 
@@ -6212,6 +6226,20 @@ resource workspaces_lawr_uvykju_name_DeviceCustomScriptEvents 'Microsoft.Operati
   }
 }
 
+resource workspaces_lawr_uvykju_name_DevOpsOperationsAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawr_uvykju_name_resource
+  name: 'DevOpsOperationsAudit'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'DevOpsOperationsAudit'
+      displayName: 'DevOpsOperationsAudit'
+    }
+    retentionInDays: 30
+  }
+}
+
 resource workspaces_lawr_uvykju_name_DiscoveryBookshelfAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   parent: workspaces_lawr_uvykju_name_resource
   name: 'DiscoveryBookshelfAuditLogs'
@@ -6263,6 +6291,20 @@ resource workspaces_lawr_uvykju_name_DNSQueryLogs 'Microsoft.OperationalInsights
     schema: {
       name: 'DNSQueryLogs'
       displayName: 'DNSQueryLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawr_uvykju_name_DragonCopilot 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawr_uvykju_name_resource
+  name: 'DragonCopilot'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'DragonCopilot'
+      displayName: 'DragonCopilot'
     }
     retentionInDays: 30
   }
@@ -8676,6 +8718,20 @@ resource workspaces_lawr_uvykju_name_PurviewSecurityLogs 'Microsoft.OperationalI
   }
 }
 
+resource workspaces_lawr_uvykju_name_QuantumProviderAccountDeviceOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawr_uvykju_name_resource
+  name: 'QuantumProviderAccountDeviceOperationLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'QuantumProviderAccountDeviceOperationLogs'
+      displayName: 'QuantumProviderAccountDeviceOperationLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
 resource workspaces_lawr_uvykju_name_QuantumProviderAccountJobAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   parent: workspaces_lawr_uvykju_name_resource
   name: 'QuantumProviderAccountJobAuditLogs'
@@ -9889,6 +9945,62 @@ resource workspaces_lawr_uvykju_name_Windows365AuditLogs 'Microsoft.OperationalI
     schema: {
       name: 'Windows365AuditLogs'
       displayName: 'Windows365AuditLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawr_uvykju_name_Windows365CheckpointLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawr_uvykju_name_resource
+  name: 'Windows365CheckpointLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365CheckpointLogs'
+      displayName: 'Windows365CheckpointLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawr_uvykju_name_Windows365ConnectionErrorLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawr_uvykju_name_resource
+  name: 'Windows365ConnectionErrorLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365ConnectionErrorLogs'
+      displayName: 'Windows365ConnectionErrorLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawr_uvykju_name_Windows365ConnectionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawr_uvykju_name_resource
+  name: 'Windows365ConnectionLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365ConnectionLogs'
+      displayName: 'Windows365ConnectionLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawr_uvykju_name_Windows365NetworkLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawr_uvykju_name_resource
+  name: 'Windows365NetworkLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365NetworkLogs'
+      displayName: 'Windows365NetworkLogs'
     }
     retentionInDays: 30
   }

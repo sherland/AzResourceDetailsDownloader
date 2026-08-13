@@ -4,7 +4,7 @@ param redisEnterprise_redisent61yjsz2q_name string
 
 resource redisEnterprise_redisent61yjsz2q_name_resource 'Microsoft.Cache/redisEnterprise@2026-02-01-preview' = {
   name: redisEnterprise_redisent61yjsz2q_name
-  location: 'West Europe'
+  location: 'Norway East'
   sku: {
     name: 'Balanced_B0'
   }
@@ -14,7 +14,7 @@ resource redisEnterprise_redisent61yjsz2q_name_resource 'Microsoft.Cache/redisEn
   }
   properties: {
     minimumTlsVersion: '1.2'
-    highAvailability: 'Enabled'
+    highAvailability: 'Disabled'
     publicNetworkAccess: redisEnterprise_redisent61yjsz2q_publicNetworkAccess
   }
 }

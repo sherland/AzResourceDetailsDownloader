@@ -4,7 +4,7 @@
     "registrationTtl": "10675199.02:48:05.4775807",
     "dailyMaxActiveDevices": 0
   },
-  "location": "West Europe",
+  "location": "Norway East",
   "tags": {},
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b8c084b4de7ff61e/providers/Microsoft.NotificationHubs/namespaces/nhnsmuv5af-w/notificationHubs/hub7jf4-l",
   "name": "hub7jf4-l",

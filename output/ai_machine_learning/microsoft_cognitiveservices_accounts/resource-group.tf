@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-b1d8ed6affe79ba7"
   tags = {
     armType    = "Microsoft.CognitiveServices/accounts"
-    createdUtc = "2026-07-15T18:50:42.7596464Z"
+    createdUtc = "2026-08-13T13:02:21.7842160Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -27,19 +27,17 @@ resource "azurerm_cognitive_account" "res-1" {
   fqdns                                        = []
   kind                                         = "CognitiveServices"
   local_auth_enabled                           = true
-  location                                     = "westeurope"
+  location                                     = "norwayeast"
   metrics_advisor_aad_client_id                = ""
   metrics_advisor_aad_tenant_id                = ""
   metrics_advisor_super_user_name              = ""
   metrics_advisor_website_name                 = ""
   name                                         = "cogojuhykh8"
   outbound_network_access_restricted           = false
-  primary_access_key                           = "" # Masked sensitive attribute
   project_management_enabled                   = false
   public_network_access_enabled                = true
   qna_runtime_endpoint                         = ""
   resource_group_name                          = azurerm_resource_group.res-0.name
-  secondary_access_key                         = "" # Masked sensitive attribute
   sku_name                                     = "S0"
   tags                                         = {}
 }

@@ -2,7 +2,7 @@ param vaults_rsvb07c4h_s_name string
 
 resource vaults_rsvb07c4h_s_name_resource 'Microsoft.RecoveryServices/vaults@2026-02-01' = {
   name: vaults_rsvb07c4h_s_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
   }
@@ -41,7 +41,7 @@ resource vaults_rsvb07c4h_s_name_DefaultPolicy 'Microsoft.RecoveryServices/vault
       schedulePolicyType: 'SimpleSchedulePolicy'
       scheduleRunFrequency: 'Daily'
       scheduleRunTimes: [
-        '2026-07-16T04:30:00Z'
+        '2026-08-13T23:00:00Z'
       ]
       scheduleWeeklyFrequency: 0
     }
@@ -49,7 +49,7 @@ resource vaults_rsvb07c4h_s_name_DefaultPolicy 'Microsoft.RecoveryServices/vault
       retentionPolicyType: 'LongTermRetentionPolicy'
       dailySchedule: {
         retentionTimes: [
-          '2026-07-16T04:30:00Z'
+          '2026-08-13T23:00:00Z'
         ]
         retentionDuration: {
           count: 30
@@ -75,7 +75,7 @@ resource vaults_rsvb07c4h_s_name_EnhancedPolicy 'Microsoft.RecoveryServices/vaul
       scheduleRunFrequency: 'Hourly'
       hourlySchedule: {
         interval: 4
-        scheduleWindowStartTime: '2026-07-16T08:00:00Z'
+        scheduleWindowStartTime: '2026-08-13T08:00:00Z'
         scheduleWindowDuration: 12
       }
     }
@@ -83,7 +83,7 @@ resource vaults_rsvb07c4h_s_name_EnhancedPolicy 'Microsoft.RecoveryServices/vaul
       retentionPolicyType: 'LongTermRetentionPolicy'
       dailySchedule: {
         retentionTimes: [
-          '2026-07-16T08:00:00Z'
+          '2026-08-13T08:00:00Z'
         ]
         retentionDuration: {
           count: 30
@@ -115,7 +115,7 @@ resource vaults_rsvb07c4h_s_name_HourlyLogBackup 'Microsoft.RecoveryServices/vau
           schedulePolicyType: 'SimpleSchedulePolicy'
           scheduleRunFrequency: 'Daily'
           scheduleRunTimes: [
-            '2026-07-16T04:30:00Z'
+            '2026-08-13T23:00:00Z'
           ]
           scheduleWeeklyFrequency: 0
         }
@@ -123,7 +123,7 @@ resource vaults_rsvb07c4h_s_name_HourlyLogBackup 'Microsoft.RecoveryServices/vau
           retentionPolicyType: 'LongTermRetentionPolicy'
           dailySchedule: {
             retentionTimes: [
-              '2026-07-16T04:30:00Z'
+              '2026-08-13T23:00:00Z'
             ]
             retentionDuration: {
               count: 30

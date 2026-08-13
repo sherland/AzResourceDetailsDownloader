@@ -1,0 +1,50 @@
+{
+  "sku": {
+    "name": "Standard",
+    "capacity": 1
+  },
+  "properties": {
+    "cloudConnectors": {
+      "awsExternalId": "474ff11e-d365-4c41-b9ab-605ba85ac92d"
+    },
+    "friendlyName": "pviewxur-y95m",
+    "createdBy": "admin@example.com",
+    "createdByObjectId": "e580c62a-96a8-430f-96a9-33d936178197",
+    "createdAt": "2026-08-13T14:18:54.1101457Z",
+    "endpoints": {
+      "catalog": "https://pviewxur-y95m.purview.azure.com/catalog",
+      "scan": "https://pviewxur-y95m.purview.azure.com/scan",
+      "guardian": "https://pviewxur-y95m.purview.azure.com/guardian"
+    },
+    "provisioningState": "Succeeded",
+    "accountStatus": {
+      "accountProvisioningState": "Succeeded"
+    },
+    "privateEndpointConnections": [],
+    "managedResources": {
+      "resourceGroup": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ardl-purview-managed-rzaim-qz",
+      "storageAccount": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ardl-purview-managed-rzaim-qz/providers/Microsoft.Storage/storageAccounts/scanswedencentralzfefmfb"
+    },
+    "publicNetworkAccess": "Enabled",
+    "managedResourceGroupName": "ardl-purview-managed-rzaim-qz",
+    "managedResourcesPublicNetworkAccess": "NotSpecified",
+    "managedEventHubState": "Disabled"
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dc7f048c78a5aec9/providers/Microsoft.Purview/accounts/pviewxur-y95m",
+  "name": "pviewxur-y95m",
+  "type": "Microsoft.Purview/accounts",
+  "location": "swedencentral",
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": "4dde3284-ac9f-49e0-93cd-a90e8049b8d9",
+    "tenantId": "11111111-1111-1111-1111-111111111111"
+  },
+  "systemData": {
+    "createdBy": "admin@example.com",
+    "createdByType": "User",
+    "createdAt": "2026-08-13T14:18:54.1101457Z",
+    "lastModifiedBy": "admin@example.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2026-08-13T14:18:54.1101457Z"
+  }
+}

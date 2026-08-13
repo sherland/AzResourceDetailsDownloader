@@ -3,7 +3,7 @@ param snapshots_snapw3td1qq0_name string
 
 resource disks_diskgxpe04sm_name_resource 'Microsoft.Compute/disks@2025-01-02' = {
   name: disks_diskgxpe04sm_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'
@@ -25,7 +25,7 @@ resource disks_diskgxpe04sm_name_resource 'Microsoft.Compute/disks@2025-01-02' =
 
 resource snapshots_snapw3td1qq0_name_resource 'Microsoft.Compute/snapshots@2025-01-02' = {
   name: snapshots_snapw3td1qq0_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'

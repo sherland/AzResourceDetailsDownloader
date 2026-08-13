@@ -1,13 +1,13 @@
 {
-  "etag": "AAAAAQjnWQo=",
+  "etag": "AAAAAASAfoI=",
   "properties": {
     "publisherEmail": "ardl@example.com",
     "publisherName": "ARDL",
     "notificationSenderEmail": "apimgmt-noreply@mail.windowsazure.com",
     "provisioningState": "Succeeded",
     "targetProvisioningState": "",
-    "createdAtUtc": "2026-07-15T18:59:20.3804282Z",
-    "gatewayUrl": "https://apimqboznhhd.azure-api.net",
+    "createdAtUtc": "2026-08-13T14:36:20.7316699Z",
+    "gatewayUrl": "https://apimaib-5hed.azure-api.net",
     "gatewayRegionalUrl": null,
     "portalUrl": null,
     "developerPortalUrl": null,
@@ -17,7 +17,7 @@
     "hostnameConfigurations": [
       {
         "type": "Proxy",
-        "hostName": "apimqboznhhd.azure-api.net",
+        "hostName": "apimaib-5hed.azure-api.net",
         "encodedCertificate": null,
         "keyVaultId": null,
         "certificatePassword": null,
@@ -66,14 +66,14 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:59:20.3081603Z",
+    "createdAt": "2026-08-13T14:36:20.6717186Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:59:20.3081603Z"
+    "lastModifiedAt": "2026-08-13T14:36:20.6717186Z"
   },
-  "location": "West Europe",
+  "location": "Norway East",
   "tags": {},
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f4d76db12ba6ca3/providers/Microsoft.ApiManagement/service/apimqboznhhd",
-  "name": "apimqboznhhd",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f4d76db12ba6ca3/providers/Microsoft.ApiManagement/service/apimaib-5hed",
+  "name": "apimaib-5hed",
   "type": "Microsoft.ApiManagement/service"
 }

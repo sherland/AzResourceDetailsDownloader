@@ -10,19 +10,19 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-9e05ace8d6857eb2"
   tags = {
     armType    = "Microsoft.ServiceBus/namespaces/topics/subscriptions"
-    createdUtc = "2026-07-15T19:11:39.5847130Z"
+    createdUtc = "2026-08-13T13:18:27.1068520Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_servicebus_namespace" "res-1" {
   capacity                      = 0
   local_auth_enabled            = true
-  location                      = "westeurope"
+  location                      = "norwayeast"
   minimum_tls_version           = "1.2"
   name                          = "sbg0yna0pz"
   premium_messaging_partitions  = 0

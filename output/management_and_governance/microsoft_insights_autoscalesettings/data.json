@@ -1,0 +1,28 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-cc2b66fdbbabfb9f/providers/microsoft.insights/autoscalesettings/asp-mww-u3",
+  "name": "asp-mww-u3",
+  "type": "Microsoft.Insights/autoscaleSettings",
+  "location": "swedencentral",
+  "tags": {},
+  "properties": {
+    "profiles": [
+      {
+        "name": "default",
+        "capacity": {
+          "minimum": "1",
+          "maximum": "1",
+          "default": "1"
+        },
+        "rules": []
+      }
+    ],
+    "enabled": true,
+    "name": "asp-mww-u3",
+    "targetResourceUri": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-cc2b66fdbbabfb9f/providers/Microsoft.Web/serverfarms/planxsbsuyv2",
+    "notifications": null,
+    "predictiveAutoscalePolicy": {
+      "scaleMode": "Disabled",
+      "scaleLookAheadTime": null
+    }
+  }
+}

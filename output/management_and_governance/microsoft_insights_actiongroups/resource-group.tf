@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-a5c3f65f8513ba7b"
   tags = {
     armType    = "Microsoft.Insights/actionGroups"
-    createdUtc = "2026-07-15T18:27:23.5600355Z"
+    createdUtc = "2026-08-13T12:42:16.1396952Z"
     purpose    = "az-resource-details-downloader"
   }
 }

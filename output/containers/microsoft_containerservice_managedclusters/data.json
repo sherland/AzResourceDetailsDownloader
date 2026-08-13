@@ -1,6 +1,6 @@
 {
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-7c2bfad159d510c2/providers/Microsoft.ContainerService/managedClusters/akshrjtt6wn",
-  "location": "westeurope",
+  "location": "swedencentral",
   "name": "akshrjtt6wn",
   "type": "Microsoft.ContainerService/ManagedClusters",
   "properties": {
@@ -9,10 +9,10 @@
       "code": "Running"
     },
     "kubernetesVersion": "1.35",
-    "currentKubernetesVersion": "1.35.5",
+    "currentKubernetesVersion": "1.35.6",
     "dnsPrefix": "ardlaksz2p-af",
-    "fqdn": "ardlaksz2p-af-zco4avvv.hcp.westeurope.azmk8s.io",
-    "azurePortalFQDN": "ardlaksz2p-af-zco4avvv.portal.hcp.westeurope.azmk8s.io",
+    "fqdn": "ardlaksz2p-af-1cc7rm5q.hcp.swedencentral.azmk8s.io",
+    "azurePortalFQDN": "ardlaksz2p-af-1cc7rm5q.portal.hcp.swedencentral.azmk8s.io",
     "agentPoolProfiles": [
       {
         "name": "agentpool",
@@ -29,12 +29,12 @@
           "code": "Running"
         },
         "orchestratorVersion": "1.35",
-        "currentOrchestratorVersion": "1.35.5",
+        "currentOrchestratorVersion": "1.35.6",
         "enableNodePublicIP": false,
         "mode": "System",
         "osType": "Linux",
         "osSKU": "Ubuntu",
-        "nodeImageVersion": "AKSUbuntu-2404gen2containerd-202606.19.0",
+        "nodeImageVersion": "AKSUbuntu-2404gen2containerd-202607.29.0",
         "upgradeSettings": {
           "maxSurge": "10%"
         },
@@ -44,7 +44,7 @@
     "servicePrincipalProfile": {
       "clientId": "msi"
     },
-    "nodeResourceGroup": "MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope",
+    "nodeResourceGroup": "MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_swedencentral",
     "enableRBAC": true,
     "supportPlan": "KubernetesOfficial",
     "networkProfile": {
@@ -59,7 +59,7 @@
         },
         "effectiveOutboundIPs": [
           {
-            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope/providers/Microsoft.Network/publicIPAddresses/00259adf-ff3c-4c83-90eb-07ae954f83d3"
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_swedencentral/providers/Microsoft.Network/publicIPAddresses/1ae2e784-cc97-4ded-96f6-30e6f05bdb5c"
           }
         ],
         "backendPoolType": "nodeIPConfiguration"
@@ -81,9 +81,9 @@
     "maxAgentPools": 100,
     "identityProfile": {
       "kubeletidentity": {
-        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_westeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/akshrjtt6wn-agentpool",
-        "clientId": "2268de74-cc0f-44b7-a44b-65633282a318",
-        "objectId": "2505dd1a-06b9-4059-8560-e83102fc6442"
+        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/MC_rg-ardl-7c2bfad159d510c2_akshrjtt6wn_swedencentral/providers/Microsoft.ManagedIdentity/userAssignedIdentities/akshrjtt6wn-agentpool",
+        "clientId": "a391e35d-21b4-4e22-843c-af78c9ca27f7",
+        "objectId": "4ce948ba-404a-4515-a81e-b6e7aba4b433"
       }
     },
     "autoUpgradeProfile": {
@@ -103,10 +103,10 @@
     },
     "oidcIssuerProfile": {
       "enabled": true,
-      "issuerURL": "https://westeurope.oic.prod-aks.azure.com/11111111-1111-1111-1111-111111111111/9e6c71d8-f91e-433a-9d72-cb63d95884fd/"
+      "issuerURL": "https://swedencentral.oic.prod-aks.azure.com/11111111-1111-1111-1111-111111111111/0e501491-138c-4088-9d4d-565180888907/"
     },
     "workloadAutoScalerProfile": {},
-    "resourceUID": "6a57d85108ee4700012669de",
+    "resourceUID": "6a7dc30cd0bae200014e3eac",
     "metricsProfile": {
       "costAnalysis": {
         "enabled": false
@@ -115,7 +115,7 @@
   },
   "identity": {
     "type": "SystemAssigned",
-    "principalId": "12224e9d-b0b3-457d-8b8e-4495d35864a0",
+    "principalId": "e91bb81d-f48c-4702-827c-28ae0ced5b4f",
     "tenantId": "11111111-1111-1111-1111-111111111111"
   },
   "sku": {

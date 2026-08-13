@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-75150be80ffb7a66"
   tags = {
     armType    = "Microsoft.Sql/servers/jobAgents"
-    createdUtc = "2026-07-15T19:15:04.7015746Z"
+    createdUtc = "2026-08-13T14:14:40.6158384Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -26,7 +26,7 @@ resource "azurerm_mssql_server" "res-1" {
   administrator_login_password_wo_version      = 0
   connection_policy                            = "Default"
   express_vulnerability_assessment_enabled     = false
-  location                                     = "westeurope"
+  location                                     = "swedencentral"
   minimum_tls_version                          = "1.2"
   name                                         = "sql5su-m5-f"
   outbound_network_restriction_enabled         = false
@@ -128,9 +128,9 @@ resource "azurerm_mssql_server_extended_auditing_policy" "res-39" {
 }
 resource "azurerm_mssql_job_agent" "res-40" {
   database_id = azurerm_mssql_database.res-11.id
-  location    = "westeurope"
+  location    = "swedencentral"
   name        = "jobagentipkpzo"
-  sku         = ""
+  sku         = "JA100"
   tags        = {}
 }
 resource "azurerm_mssql_server_security_alert_policy" "res-42" {

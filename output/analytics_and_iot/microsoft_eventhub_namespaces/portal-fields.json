@@ -1,0 +1,54 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-dced82a8791f5059"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Host name",
+    "Value": "ehnsw2y13x4d.servicebus.windows.net"
+  },
+  {
+    "Label": "Created",
+    "Value": "Thursday, August 13, 2026 at 14:50:31 GMT\u002B2"
+  },
+  {
+    "Label": "Updated",
+    "Value": "Thursday, August 13, 2026 at 14:50:31 GMT\u002B2"
+  },
+  {
+    "Label": "Zone Redundancy",
+    "Value": "Enabled"
+  },
+  {
+    "Label": "Pricing tier",
+    "Value": "Basic"
+  },
+  {
+    "Label": "Throughput Units",
+    "Value": "1 unit"
+  },
+  {
+    "Label": "Auto-inflate throughput units",
+    "Value": "Not Supported"
+  },
+  {
+    "Label": "Local Authentication",
+    "Value": "Enabled"
+  }
+]

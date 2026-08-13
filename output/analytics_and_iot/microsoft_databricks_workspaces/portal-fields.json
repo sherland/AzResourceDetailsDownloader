@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-fba1943833ef0847"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Workspace type",
+    "Value": "Hybrid"
+  },
+  {
+    "Label": "Managed Resource Group",
+    "Value": "ardl-dbx-managed-xm1ddvc7"
+  },
+  {
+    "Label": "URL",
+    "Value": "https://adb-7405608718544820.0.azuredatabricks.net"
+  },
+  {
+    "Label": "Pricing Tier",
+    "Value": "Premium (\u002B Role-based access controls)"
+  },
+  {
+    "Label": "Enable No Public IP",
+    "Value": "Yes"
+  }
+]

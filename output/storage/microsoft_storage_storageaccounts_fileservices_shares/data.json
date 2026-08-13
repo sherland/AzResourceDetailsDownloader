@@ -1,15 +1,15 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3d02f34382fe8092/providers/Microsoft.Storage/storageAccounts/sttp0smln8/fileServices/default/shares/share95jazv",
-  "name": "share95jazv",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3d02f34382fe8092/providers/Microsoft.Storage/storageAccounts/stpl8vn5g1/fileServices/default/shares/sharep39ot7",
+  "name": "sharep39ot7",
   "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
-  "etag": "\u00220x8DEE2A55C3F13B6\u0022",
+  "etag": "\u00220x8DEF943BD5290A2\u0022",
   "properties": {
     "leaseStatus": "unlocked",
     "leaseState": "available",
     "signedIdentifiers": [],
     "accessTier": "TransactionOptimized",
-    "accessTierChangeTime": "2026-07-15T19:14:57.0000000Z",
-    "lastModifiedTime": "2026-07-15T19:14:57.0000000Z",
+    "accessTierChangeTime": "2026-08-13T14:04:06.0000000Z",
+    "lastModifiedTime": "2026-08-13T14:04:06.0000000Z",
     "shareQuota": 5
   }
 }

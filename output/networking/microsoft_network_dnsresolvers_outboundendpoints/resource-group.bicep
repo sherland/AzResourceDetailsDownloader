@@ -3,7 +3,7 @@ param virtualNetworks_vnet5jlfehrw_name string
 
 resource virtualNetworks_vnet5jlfehrw_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnet5jlfehrw_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -39,7 +39,7 @@ resource virtualNetworks_vnet5jlfehrw_name_resource 'Microsoft.Network/virtualNe
 
 resource dnsResolvers_dnsrqragsytf_name_resource 'Microsoft.Network/dnsResolvers@2025-10-01-preview' = {
   name: dnsResolvers_dnsrqragsytf_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     virtualNetwork: {
       id: virtualNetworks_vnet5jlfehrw_name_resource.id
@@ -72,7 +72,7 @@ resource virtualNetworks_vnet5jlfehrw_name_outbound 'Microsoft.Network/virtualNe
 resource dnsResolvers_dnsrqragsytf_name_outboundngye8c 'Microsoft.Network/dnsResolvers/outboundEndpoints@2025-10-01-preview' = {
   parent: dnsResolvers_dnsrqragsytf_name_resource
   name: 'outboundngye8c'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     subnet: {
       id: virtualNetworks_vnet5jlfehrw_name_outbound.id

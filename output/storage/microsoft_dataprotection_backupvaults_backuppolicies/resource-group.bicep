@@ -2,7 +2,7 @@ param backupVaults_bvaultoviytzop_name string
 
 resource backupVaults_bvaultoviytzop_name_resource 'Microsoft.DataProtection/backupVaults@2026-04-01-preview' = {
   name: backupVaults_bvaultoviytzop_name
-  location: 'westeurope'
+  location: 'norwayeast'
   identity: {
     type: 'SystemAssigned'
   }

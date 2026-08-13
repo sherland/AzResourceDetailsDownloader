@@ -4,7 +4,7 @@
   "type": "Microsoft.DataFactory/factories",
   "properties": {
     "provisioningState": "Succeeded",
-    "createTime": "2026-07-15T19:17:39.6088041Z",
+    "createTime": "2026-08-13T13:24:27.8826086Z",
     "version": "2018-06-01",
     "factoryStatistics": {
       "totalResourceCount": 0,
@@ -13,11 +13,11 @@
       "maxAllowedFactorySizeInGbUnits": 0
     },
     "trustModeClaimForMi": {
-      "value": "Enabled",
+      "value": "Disabled",
       "editable": true
     }
   },
-  "eTag": "\u0022120155ef-0000-0d00-0000-6a57dcd30000\u0022",
-  "location": "westeurope",
+  "eTag": "\u002203003847-0000-3c00-0000-6a7dc58c0000\u0022",
+  "location": "norwayeast",
   "tags": {}
 }

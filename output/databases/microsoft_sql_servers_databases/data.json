@@ -9,11 +9,11 @@
     "collation": "SQL_Latin1_General_CP1_CI_AS",
     "maxSizeBytes": 2147483648,
     "status": "Online",
-    "databaseId": "a0a9fb21-eac1-48fb-a9d7-b0271ef62cfe",
-    "creationDate": "2026-07-15T18:24:52.583Z",
+    "databaseId": "95442df4-5eae-46f9-bd30-d8eb4266bf1e",
+    "creationDate": "2026-08-13T14:14:45.96Z",
     "currentServiceObjectiveName": "Basic",
     "requestedServiceObjectiveName": "Basic",
-    "defaultSecondaryLocation": "northeurope",
+    "defaultSecondaryLocation": "swedensouth",
     "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
     "zoneRedundant": false,
     "readScale": "Disabled",
@@ -29,7 +29,7 @@
     "isInfraEncryptionEnabled": false,
     "availabilityZone": "NoPreference"
   },
-  "location": "westeurope",
+  "location": "swedencentral",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b7061c5cd70d41ff/providers/Microsoft.Sql/servers/sqly-x0m6x3/databases/dbz6i9eq",
   "name": "dbz6i9eq",
   "type": "Microsoft.Sql/servers/databases"

@@ -2,7 +2,7 @@
   "name": "diskbpe8-oy2",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ab7325b8645ba734/providers/Microsoft.Compute/disks/diskbpe8-oy2",
   "type": "Microsoft.Compute/disks",
-  "location": "westeurope",
+  "location": "norwayeast",
   "sku": {
     "name": "Standard_LRS",
     "tier": "Standard"
@@ -19,10 +19,10 @@
     },
     "networkAccessPolicy": "AllowAll",
     "publicNetworkAccess": "Enabled",
-    "timeCreated": "2026-07-15T18:20:10.3367783\u002B00:00",
+    "timeCreated": "2026-08-13T12:29:57.0593854\u002B00:00",
     "provisioningState": "Succeeded",
     "diskState": "Unattached",
     "diskSizeBytes": 4294967296,
-    "uniqueId": "1440dbbe-f391-4b0a-8e2d-9c7c29ac90d9"
+    "uniqueId": "03ee507b-6253-46d5-aab3-0eaaa593a78e"
   }
 }

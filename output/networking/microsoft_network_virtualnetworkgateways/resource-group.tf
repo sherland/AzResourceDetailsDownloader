@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,25 +10,28 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-d410a1d9804bdd65"
   tags = {
     armType    = "Microsoft.Network/virtualNetworkGateways"
-    createdUtc = "2026-07-15T18:31:27.4406128Z"
+    createdUtc = "2026-08-13T12:45:37.4141885Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_public_ip" "res-1" {
   allocation_method       = "Static"
   ddos_protection_mode    = "VirtualNetworkInherited"
+  domain_name_label       = ""
+  domain_name_label_scope = ""
   edge_zone               = ""
   idle_timeout_in_minutes = 4
   ip_tags                 = {}
   ip_version              = "IPv4"
-  location                = "westeurope"
+  location                = "norwayeast"
   name                    = "pipn1pda-f4"
   resource_group_name     = azurerm_resource_group.res-0.name
+  reverse_fqdn            = ""
   sku                     = "Standard"
   sku_tier                = "Regional"
   tags                    = {}
@@ -43,7 +46,9 @@ resource "azurerm_virtual_network_gateway" "res-2" {
   enable_bgp                            = false
   generation                            = "Generation1"
   ip_sec_replay_protection_enabled      = true
-  location                              = "westeurope"
+  location                              = "norwayeast"
+  maximum_scale_unit                    = 0
+  minimum_scale_unit                    = 0
   name                                  = "vgwhk9b25pp"
   private_ip_address_enabled            = false
   remote_vnet_traffic_enabled           = false
@@ -74,7 +79,7 @@ resource "azurerm_virtual_network" "res-3" {
   dns_servers                    = []
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
-  location                       = "westeurope"
+  location                       = "norwayeast"
   name                           = "vnetj03y6p07"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name

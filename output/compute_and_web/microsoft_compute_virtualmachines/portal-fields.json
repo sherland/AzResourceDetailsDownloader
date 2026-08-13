@@ -1,0 +1,50 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-ff83ff04b97211cf"
+  },
+  {
+    "Label": "Status",
+    "Value": "Running"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Operating system",
+    "Value": "Linux (ubuntu 22.04)"
+  },
+  {
+    "Label": "Size",
+    "Value": "Standard D2s v5 (2 vcpus, 8 GiB memory)"
+  },
+  {
+    "Label": "Primary NIC public IP",
+    "Value": "-, -"
+  },
+  {
+    "Label": "Virtual network/subnet",
+    "Value": "vnetb5ylw2-a/default"
+  },
+  {
+    "Label": "DNS name",
+    "Value": "-"
+  },
+  {
+    "Label": "Health state",
+    "Value": "-"
+  },
+  {
+    "Label": "Time created",
+    "Value": "8/13/2026, 12:46 PM UTC"
+  }
+]

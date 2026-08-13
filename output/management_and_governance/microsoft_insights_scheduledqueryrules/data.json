@@ -2,15 +2,15 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a4f15f69c700674b/providers/microsoft.insights/scheduledqueryrules/sqrst2-ds-v",
   "name": "sqrst2-ds-v",
   "type": "Microsoft.Insights/scheduledQueryRules",
-  "location": "westeurope",
+  "location": "norwayeast",
   "kind": "LogAlert",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:52:05.6502308Z",
+    "createdAt": "2026-08-13T13:03:37.3741136Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:52:05.6502308Z"
+    "lastModifiedAt": "2026-08-13T13:03:37.3741136Z"
   },
   "properties": {
     "createdWithApiVersion": "2023-03-15-preview",

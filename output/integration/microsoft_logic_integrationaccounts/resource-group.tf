@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-e58bdfd29b0c6f5a"
   tags = {
     armType    = "Microsoft.Logic/integrationAccounts"
-    createdUtc = "2026-07-15T19:17:21.3831658Z"
+    createdUtc = "2026-08-13T13:21:52.5231846Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_logic_app_integration_account" "res-1" {
   integration_service_environment_id = ""
-  location                           = "westeurope"
+  location                           = "norwayeast"
   name                               = "iani6kgc-1"
   resource_group_name                = azurerm_resource_group.res-0.name
   sku_name                           = "Free"

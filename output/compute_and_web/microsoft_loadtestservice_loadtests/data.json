@@ -2,23 +2,23 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6ac66ccaa8351863/providers/Microsoft.LoadTestService/loadTests/ltft68qr-q",
   "name": "ltft68qr-q",
   "type": "microsoft.loadtestservice/loadtests",
-  "location": "westeurope",
+  "location": "swedencentral",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T19:20:59.2646436Z",
+    "createdAt": "2026-08-13T14:17:31.0451673Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T19:20:59.2646436Z"
+    "lastModifiedAt": "2026-08-13T14:17:31.0451673Z"
   },
   "identity": {
-    "principalId": "1e4baa52-59ff-4888-ad3c-72dbf9b1eaa6",
+    "principalId": "3b86e7a3-f10f-4268-abfd-1d8576d99dee",
     "tenantId": "11111111-1111-1111-1111-111111111111",
     "type": "SystemAssigned"
   },
   "properties": {
     "description": "ARDL load test resource",
-    "dataPlaneURI": "7e6976d7-55c5-48f5-b16b-20ddace994b1.westeurope.cnt-prod.loadtesting.azure.com",
+    "dataPlaneURI": "13c7f07b-7604-4de9-9a60-42202ac1d65a.swedencentral.cnt-prod.loadtesting.azure.com",
     "provisioningState": "Succeeded"
   }
 }

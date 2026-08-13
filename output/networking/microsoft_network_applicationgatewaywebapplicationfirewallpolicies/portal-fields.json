@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-582b196a4c103d52"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Policy state",
+    "Value": "Enabled"
+  },
+  {
+    "Label": "Policy mode",
+    "Value": "Prevention"
+  },
+  {
+    "Label": "Associations",
+    "Value": "0"
+  }
+]

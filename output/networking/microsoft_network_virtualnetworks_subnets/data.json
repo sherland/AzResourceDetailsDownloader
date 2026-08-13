@@ -1,7 +1,7 @@
 {
   "name": "subnetcua-vp",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83d5300c87a0f865/providers/Microsoft.Network/virtualNetworks/vnet93wy8s69/subnets/subnetcua-vp",
-  "etag": "W/\u00220be54c7a-be23-49aa-9450-9d18f0cd8771\u0022",
+  "etag": "W/\u00226b35e44c-4660-4d98-91a8-9d4740727735\u0022",
   "properties": {
     "provisioningState": "Succeeded",
     "addressPrefix": "10.10.1.0/24",

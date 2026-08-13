@@ -1,0 +1,30 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-c966974de34ce9d7"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Name",
+    "Value": "sshkey89-8y7sp"
+  },
+  {
+    "Label": "Public key",
+    "Value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMf4Pa\u002BFlecNaDqyuITzNaZErfcsxCCRt5SGvBMi7\u002BxZc6A87B\u002Buo4bdYyrKVS\u002BpfdHXUtOkGn7IYj/UMqx8V2QVni32cUQa08zxj1d9Hv9yT2P\u002B2apXNbEAfZ2gKtcFj4HgtXMR\u002BgtCG5IOu16c8MsPytK52qgfYcw6L2AwhYCV3bNuEBW/cLEA8Kh9FmdCEkp0QWOXlwVq6XO7w01ORLtpZMx9\u002Burnzq8s0uUcgSolVynmMTWeNMhJbQPu1iKygYU4dl\u002BYSE\u002BdKXqm863CQBvnpcmeRcIVHsCVBqV82mpF1mMGa0xqUA45Hu4FLuNVHJWYuJN5IuFwFBpjQDuRqH ardl@example.com"
+  },
+  {
+    "Label": "SSH Key format",
+    "Value": "RSA"
+  }
+]

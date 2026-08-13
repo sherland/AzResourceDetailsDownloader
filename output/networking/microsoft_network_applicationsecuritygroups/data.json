@@ -1,9 +1,9 @@
 {
   "name": "asg02-5ciaw",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ba9eb33111484f38/providers/Microsoft.Network/applicationSecurityGroups/asg02-5ciaw",
-  "etag": "W/\u0022a5b7f0fb-7be5-4c10-9ff6-245064a66497\u0022",
+  "etag": "W/\u0022c4951e46-70ad-4c66-b1a0-d39731a158cc\u0022",
   "type": "Microsoft.Network/applicationSecurityGroups",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded"
   }

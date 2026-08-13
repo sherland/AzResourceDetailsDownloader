@@ -29,7 +29,7 @@
       },
       "storageAccountName": {
         "type": "String",
-        "value": "dbstoragedguzdlfcbcmes"
+        "value": "dbstoragevpqsauyrlthy4"
       },
       "storageAccountSkuName": {
         "type": "String",
@@ -44,18 +44,18 @@
       }
     ],
     "createdBy": {
-      "oid": "f79b144e-8ba2-493b-ad36-11208b55ca03",
-      "puid": "1003200344702947",
+      "oid": "e580c62a-96a8-430f-96a9-33d936178197",
+      "puid": "0003BFFD82F6CC9C",
       "applicationId": "04b07795-8ddb-461a-bbee-02f9e1bf7b46"
     },
     "updatedBy": {
-      "oid": "f79b144e-8ba2-493b-ad36-11208b55ca03",
-      "puid": "1003200344702947",
+      "oid": "e580c62a-96a8-430f-96a9-33d936178197",
+      "puid": "0003BFFD82F6CC9C",
       "applicationId": "04b07795-8ddb-461a-bbee-02f9e1bf7b46"
     },
-    "workspaceId": "7405614149474584",
-    "workspaceUrl": "adb-7405614149474584.4.azuredatabricks.net",
-    "createdDateTime": "2026-07-15T20:05:16.8036114Z"
+    "workspaceId": "7405608718544820",
+    "workspaceUrl": "adb-7405608718544820.0.azuredatabricks.net",
+    "createdDateTime": "2026-08-13T13:35:59.0700678Z"
   },
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fba1943833ef0847/providers/Microsoft.Databricks/workspaces/dbx21a20-w4",
   "name": "dbx21a20-w4",
@@ -63,13 +63,13 @@
   "sku": {
     "name": "premium"
   },
-  "location": "westeurope",
+  "location": "norwayeast",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T20:05:16.6192967\u002B00:00",
+    "createdAt": "2026-08-13T13:35:58.9180517\u002B00:00",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T20:05:16.6192967\u002B00:00"
+    "lastModifiedAt": "2026-08-13T13:35:58.9180517\u002B00:00"
   }
 }

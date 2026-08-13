@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,18 +10,18 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-45b6f9f7d6eb1a2f"
   tags = {
     armType    = "Microsoft.EventGrid/systemTopics"
-    createdUtc = "2026-07-15T18:51:03.3563831Z"
+    createdUtc = "2026-08-13T14:02:24.1949198Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_eventgrid_system_topic" "res-1" {
-  location               = "westeurope"
-  name                   = "egst87juo6lb"
+  location               = "norwayeast"
+  name                   = "egstrdmllbjc"
   resource_group_name    = azurerm_resource_group.res-0.name
   source_arm_resource_id = azurerm_storage_account.res-2.id
   source_resource_id     = azurerm_storage_account.res-2.id
@@ -44,20 +44,14 @@ resource "azurerm_storage_account" "res-2" {
   is_hns_enabled                    = false
   large_file_share_enabled          = false
   local_user_enabled                = true
-  location                          = "westeurope"
+  location                          = "norwayeast"
   min_tls_version                   = "TLS1_2"
-  name                              = "sthhoywda2"
+  name                              = "stz1i5gup3"
   nfsv3_enabled                     = false
-  primary_access_key                = "" # Masked sensitive attribute
-  primary_blob_connection_string    = "" # Masked sensitive attribute
-  primary_connection_string         = "" # Masked sensitive attribute
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
   queue_encryption_key_type         = "Service"
   resource_group_name               = azurerm_resource_group.res-0.name
-  secondary_access_key              = "" # Masked sensitive attribute
-  secondary_blob_connection_string  = "" # Masked sensitive attribute
-  secondary_connection_string       = "" # Masked sensitive attribute
   sftp_enabled                      = false
   shared_access_key_enabled         = true
   table_encryption_key_type         = "Service"
@@ -88,14 +82,14 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.EventGrid/systemTopics/egst87juo6lb"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.EventGrid/systemTopics/egstrdmllbjc"
   to = azurerm_eventgrid_system_topic.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.Storage/storageAccounts/sthhoywda2"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.Storage/storageAccounts/stz1i5gup3"
   to = azurerm_storage_account.res-2
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.Storage/storageAccounts/sthhoywda2"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-45b6f9f7d6eb1a2f/providers/Microsoft.Storage/storageAccounts/stz1i5gup3"
   to = azurerm_storage_account_queue_properties.res-5
 }

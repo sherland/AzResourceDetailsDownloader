@@ -2,7 +2,7 @@ param workflows_logicylsb_d_i_name string
 
 resource workflows_logicylsb_d_i_name_resource 'Microsoft.Logic/workflows@2017-07-01' = {
   name: workflows_logicylsb_d_i_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     state: 'Enabled'
     definition: {

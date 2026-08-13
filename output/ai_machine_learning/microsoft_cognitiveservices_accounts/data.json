@@ -2,16 +2,16 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b1d8ed6affe79ba7/providers/Microsoft.CognitiveServices/accounts/cogojuhykh8",
   "name": "cogojuhykh8",
   "type": "Microsoft.CognitiveServices/accounts",
-  "etag": "\u00221600ed6d-0000-0d00-0000-6a57d6920000\u0022",
-  "location": "westeurope",
+  "etag": "\u002202003c73-0000-3c00-0000-6a7dc0bd0000\u0022",
+  "location": "norwayeast",
   "sku": {
     "name": "S0"
   },
   "kind": "CognitiveServices",
   "properties": {
     "endpoint": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
-    "internalId": "ad56cba0678243278f1f87713b93be72",
-    "dateCreated": "2026-07-15T18:50:57.2062066Z",
+    "internalId": "96143333eeb64798b875dc78a192d83f",
+    "dateCreated": "2026-08-13T13:03:55.3846053Z",
     "apiProperties": {},
     "callRateLimit": {
       "rules": [
@@ -392,49 +392,6 @@
             {
               "path": "documentintelligence/classificationProjects",
               "method": "GET"
-            }
-          ]
-        },
-        {
-          "key": "customvision.training",
-          "renewalPeriod": 1,
-          "count": 10,
-          "matchPatterns": [
-            {
-              "path": "customvision/v3.0/training/*",
-              "method": "*"
-            },
-            {
-              "path": "customvision/v3.1/training/*",
-              "method": "*"
-            },
-            {
-              "path": "customvision/v3.2/training/*",
-              "method": "*"
-            },
-            {
-              "path": "customvision/v3.3/training/*",
-              "method": "*"
-            },
-            {
-              "path": "customvision/v3.4-preview/training/*",
-              "method": "*"
-            }
-          ]
-        },
-        {
-          "key": "customvision.prediction",
-          "renewalPeriod": 1,
-          "count": 10,
-          "dynamicThrottlingEnabled": true,
-          "matchPatterns": [
-            {
-              "path": "customvision/v3.0/prediction/*",
-              "method": "*"
-            },
-            {
-              "path": "customvision/v3.1/prediction/*",
-              "method": "*"
             }
           ]
         },
@@ -1444,16 +1401,14 @@
       "Speech Services Custom Avatar": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
       "Speech Services Batch Avatar": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
       "Speech Services Batch Text to Speech": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
-      "Speech Services Speech to Text (Standard)": "https://westeurope.stt.speech.microsoft.com",
-      "Speech Services Text to Speech (Neural)": "https://westeurope.tts.speech.microsoft.com",
+      "Speech Services Speech to Text (Standard)": "https://norwayeast.stt.speech.microsoft.com",
+      "Speech Services Text to Speech (Neural)": "https://norwayeast.tts.speech.microsoft.com",
       "Speech Services Speaker Verification": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
       "Speech Services Speaker Identification": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
       "Voice Agent Realtime API": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
       "Voice Live Realtime API": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
       "Voice Live Media Gateway Calls API": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
       "Voice Live Capabilities API": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
-      "Custom_Vision_Prediction": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
-      "Custom_Vision_Training": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/",
       "FormRecognizer": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/"
     },
     "provisioningState": "Succeeded"
@@ -1461,9 +1416,9 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:50:56.0944612Z",
+    "createdAt": "2026-08-13T13:03:52.9189503Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:50:56.0944612Z"
+    "lastModifiedAt": "2026-08-13T13:03:52.9189503Z"
   }
 }

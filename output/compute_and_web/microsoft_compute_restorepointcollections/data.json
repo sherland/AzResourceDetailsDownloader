@@ -2,13 +2,13 @@
   "name": "rpc0q-1q-i1",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/restorePointCollections/rpc0q-1q-i1",
   "type": "Microsoft.Compute/restorePointCollections",
-  "location": "westeurope",
+  "location": "swedencentral",
   "properties": {
     "source": {
-      "location": "westeurope",
+      "location": "SwedenCentral",
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/virtualMachines/swaz1fxf9i19802"
     },
-    "restorePointCollectionId": "886c1126-d514-440f-b38e-0be79bb7d0d8",
+    "restorePointCollectionId": "59bcb11e-5cbd-42dd-96fc-f1e4ba291b47",
     "provisioningState": "Succeeded"
   }
 }

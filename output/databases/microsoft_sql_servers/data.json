@@ -12,7 +12,7 @@
     "externalGovernanceStatus": "Disabled",
     "retentionDays": -1
   },
-  "location": "westeurope",
+  "location": "swedencentral",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d2d1e6175e7bd2ef/providers/Microsoft.Sql/servers/sqlfmf2kgqp",
   "name": "sqlfmf2kgqp",
   "type": "Microsoft.Sql/servers"

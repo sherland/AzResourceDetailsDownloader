@@ -7,7 +7,7 @@ param IotHubs_iot19ncaw4p_name string
 
 resource IotHubs_iot19ncaw4p_name_resource 'Microsoft.Devices/IotHubs@2025-08-01-preview' = {
   name: IotHubs_iot19ncaw4p_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'F1'
     tier: 'Free'

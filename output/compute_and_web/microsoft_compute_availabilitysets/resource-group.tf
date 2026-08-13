@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,17 +10,17 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-27116b321f34dc32"
   tags = {
     armType    = "Microsoft.Compute/availabilitySets"
-    createdUtc = "2026-07-15T18:35:22.7364958Z"
+    createdUtc = "2026-08-13T12:48:28.9017673Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_availability_set" "res-1" {
-  location                     = "westeurope"
+  location                     = "norwayeast"
   managed                      = true
   name                         = "avset6-0q-nt0"
   platform_fault_domain_count  = 2

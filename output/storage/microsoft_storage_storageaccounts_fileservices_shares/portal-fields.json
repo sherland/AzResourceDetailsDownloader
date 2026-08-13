@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-3d02f34382fe8092"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3d02f34382fe8092/providers/Microsoft.Storage/storageAccounts/stpl8vn5g1/fileServices/default/shares/sharep39ot7"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.Storage/storageAccounts/fileServices/shares"
+  }
+]

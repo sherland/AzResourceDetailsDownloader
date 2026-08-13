@@ -4,7 +4,7 @@ param servers_sql5su_m5_f_name string
 
 resource servers_sql5su_m5_f_name_resource 'Microsoft.Sql/servers@2025-02-01-preview' = {
   name: servers_sql5su_m5_f_name
-  location: 'westeurope'
+  location: 'swedencentral'
   kind: 'v12.0'
   properties: {
     administratorLogin: 'azrddadmin'
@@ -67,7 +67,7 @@ resource servers_sql5su_m5_f_name_ForceLastGoodPlan 'Microsoft.Sql/servers/advis
 resource Microsoft_Sql_servers_auditingPolicies_servers_sql5su_m5_f_name_Default 'Microsoft.Sql/servers/auditingPolicies@2014-04-01' = {
   parent: servers_sql5su_m5_f_name_resource
   name: 'Default'
-  location: 'West Europe'
+  location: 'Sweden Central'
   properties: {
     auditingState: 'Disabled'
   }
@@ -90,7 +90,7 @@ resource Microsoft_Sql_servers_auditingSettings_servers_sql5su_m5_f_name_Default
 resource Microsoft_Sql_servers_connectionPolicies_servers_sql5su_m5_f_name_default 'Microsoft.Sql/servers/connectionPolicies@2025-02-01-preview' = {
   parent: servers_sql5su_m5_f_name_resource
   name: 'default'
-  location: 'westeurope'
+  location: 'swedencentral'
   properties: {
     connectionType: 'Default'
   }
@@ -99,7 +99,7 @@ resource Microsoft_Sql_servers_connectionPolicies_servers_sql5su_m5_f_name_defau
 resource servers_sql5su_m5_f_name_jobagentdb 'Microsoft.Sql/servers/databases@2025-02-01-preview' = {
   parent: servers_sql5su_m5_f_name_resource
   name: 'jobagentdb'
-  location: 'westeurope'
+  location: 'swedencentral'
   sku: {
     name: 'S0'
     tier: 'Standard'
@@ -131,7 +131,7 @@ resource servers_sql5su_m5_f_name_master_Default 'Microsoft.Sql/servers/database
 
 resource Microsoft_Sql_servers_databases_auditingPolicies_servers_sql5su_m5_f_name_master_Default 'Microsoft.Sql/servers/databases/auditingPolicies@2014-04-01' = {
   name: '${servers_sql5su_m5_f_name}/master/Default'
-  location: 'West Europe'
+  location: 'Sweden Central'
   properties: {
     auditingState: 'Disabled'
   }
@@ -169,7 +169,7 @@ resource Microsoft_Sql_servers_databases_extendedAuditingSettings_servers_sql5su
 resource Microsoft_Sql_servers_databases_geoBackupPolicies_servers_sql5su_m5_f_name_master_Default 'Microsoft.Sql/servers/databases/geoBackupPolicies@2025-02-01-preview' = {
   name: '${servers_sql5su_m5_f_name}/master/Default'
   properties: {
-    state: 'Disabled'
+    state: 'Enabled'
   }
   dependsOn: [
     servers_sql5su_m5_f_name_resource
@@ -375,7 +375,7 @@ resource servers_sql5su_m5_f_name_jobagentdb_ForceLastGoodPlan 'Microsoft.Sql/se
 resource Microsoft_Sql_servers_databases_auditingPolicies_servers_sql5su_m5_f_name_jobagentdb_Default 'Microsoft.Sql/servers/databases/auditingPolicies@2014-04-01' = {
   parent: servers_sql5su_m5_f_name_jobagentdb
   name: 'Default'
-  location: 'West Europe'
+  location: 'Sweden Central'
   properties: {
     auditingState: 'Disabled'
   }
@@ -483,7 +483,7 @@ resource Microsoft_Sql_servers_databases_transparentDataEncryption_servers_sql5s
   name: 'Current'
   properties: {
     state: 'Enabled'
-    scanState: 'Running'
+    scanState: 'Complete'
   }
   dependsOn: [
     servers_sql5su_m5_f_name_resource
@@ -507,7 +507,7 @@ resource Microsoft_Sql_servers_databases_vulnerabilityAssessments_servers_sql5su
 resource servers_sql5su_m5_f_name_jobagentipkpzo 'Microsoft.Sql/servers/jobAgents@2025-02-01-preview' = {
   parent: servers_sql5su_m5_f_name_resource
   name: 'jobagentipkpzo'
-  location: 'westeurope'
+  location: 'swedencentral'
   properties: {
     databaseId: servers_sql5su_m5_f_name_jobagentdb.id
   }

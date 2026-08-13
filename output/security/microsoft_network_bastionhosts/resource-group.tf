@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-7babd697af7caa22"
   tags = {
     armType    = "Microsoft.Network/bastionHosts"
-    createdUtc = "2026-07-15T19:02:20.3290061Z"
+    createdUtc = "2026-08-13T13:12:27.2944349Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -24,7 +24,7 @@ resource "azurerm_bastion_host" "res-1" {
   file_copy_enabled         = false
   ip_connect_enabled        = false
   kerberos_enabled          = false
-  location                  = "westeurope"
+  location                  = "norwayeast"
   name                      = "bastiont9y5-i"
   resource_group_name       = azurerm_resource_group.res-0.name
   scale_units               = 2
@@ -44,13 +44,16 @@ resource "azurerm_bastion_host" "res-1" {
 resource "azurerm_public_ip" "res-2" {
   allocation_method       = "Static"
   ddos_protection_mode    = "VirtualNetworkInherited"
+  domain_name_label       = ""
+  domain_name_label_scope = ""
   edge_zone               = ""
   idle_timeout_in_minutes = 4
   ip_tags                 = {}
   ip_version              = "IPv4"
-  location                = "westeurope"
+  location                = "norwayeast"
   name                    = "pipos-z0e42"
   resource_group_name     = azurerm_resource_group.res-0.name
+  reverse_fqdn            = ""
   sku                     = "Standard"
   sku_tier                = "Regional"
   tags                    = {}
@@ -62,7 +65,7 @@ resource "azurerm_virtual_network" "res-3" {
   dns_servers                    = []
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
-  location                       = "westeurope"
+  location                       = "norwayeast"
   name                           = "vnetdrf-xp-d"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name

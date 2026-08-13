@@ -1,12 +1,12 @@
 {
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": {},
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-dbfce973e1674818/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id9smfdnx8",
   "name": "id9smfdnx8",
   "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
   "properties": {
     "tenantId": "11111111-1111-1111-1111-111111111111",
-    "principalId": "f4a55c71-55d0-47e6-ad05-9c672e567866",
-    "clientId": "11742081-b1dd-4246-880b-8071657ad152"
+    "principalId": "b3f0f511-d415-4653-9c02-baf306a909b4",
+    "clientId": "bef94b22-e98e-42ee-8db0-6a8969f236d9"
   }
 }

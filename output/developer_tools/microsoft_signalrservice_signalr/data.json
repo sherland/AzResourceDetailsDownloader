@@ -7,8 +7,8 @@
   },
   "properties": {
     "provisioningState": "Succeeded",
-    "externalIP": "20.86.94.183",
-    "hostName": "sigrx1nr-0wu.service.signalr.net",
+    "externalIP": "4.235.51.2",
+    "hostName": "sigr3beb-6nx.service.signalr.net",
     "publicPort": 443,
     "serverPort": 443,
     "version": "1.0",
@@ -17,7 +17,7 @@
     "tls": {
       "clientCertEnabled": false
     },
-    "hostNamePrefix": "sigrx1nr-0wu",
+    "hostNamePrefix": "sigr3beb-6nx",
     "features": [
       {
         "flag": "ServiceMode",
@@ -83,17 +83,17 @@
     "resourceStopped": "false"
   },
   "kind": "SignalR",
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": null,
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d06e581e9c4c92a1/providers/Microsoft.SignalRService/SignalR/sigrx1nr-0wu",
-  "name": "sigrx1nr-0wu",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d06e581e9c4c92a1/providers/Microsoft.SignalRService/SignalR/sigr3beb-6nx",
+  "name": "sigr3beb-6nx",
   "type": "Microsoft.SignalRService/SignalR",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:45:06.1858851Z",
+    "createdAt": "2026-08-13T14:35:15.0552773Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:45:06.1858851Z"
+    "lastModifiedAt": "2026-08-13T14:35:15.0552773Z"
   }
 }

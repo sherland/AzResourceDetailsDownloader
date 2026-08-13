@@ -1,10 +1,10 @@
 {
   "properties": {
     "provisioningState": "Succeeded",
-    "endpoint": "https://egt1y0so60i.westeurope-1.eventgrid.azure.net/api/events",
+    "endpoint": "https://egt1y0so60i.norwayeast-1.eventgrid.azure.net/api/events",
     "minimumTlsVersionAllowed": "1.0",
     "inputSchema": "EventGridSchema",
-    "metricResourceId": "75746600-f420-4f69-9a85-4d6d2ad28a7a",
+    "metricResourceId": "c31632d2-e1d8-40f7-8947-68b2d965bd17",
     "publicNetworkAccess": "Enabled",
     "dataResidencyBoundary": "WithinGeopair"
   },
@@ -13,7 +13,7 @@
   },
   "kind": "Azure",
   "systemData": null,
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": null,
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2eaf0495e72b2415/providers/Microsoft.EventGrid/topics/egt1y0so60i",
   "name": "egt1y0so60i",

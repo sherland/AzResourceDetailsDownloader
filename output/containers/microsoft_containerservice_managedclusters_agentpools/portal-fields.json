@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-72e8c58f3ece7542"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-72e8c58f3ece7542/providers/Microsoft.ContainerService/managedClusters/aks5fhg-mju/agentPools/pool2"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.ContainerService/managedClusters/agentPools"
+  }
+]

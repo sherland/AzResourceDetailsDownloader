@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-b5f32dd1b32c637f"
   tags = {
     armType    = "Microsoft.Sql/servers/elasticPools"
-    createdUtc = "2026-07-15T18:49:37.1337715Z"
+    createdUtc = "2026-08-13T14:14:31.3356097Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -26,7 +26,7 @@ resource "azurerm_mssql_server" "res-1" {
   administrator_login_password_wo_version      = 0
   connection_policy                            = "Default"
   express_vulnerability_assessment_enabled     = false
-  location                                     = "westeurope"
+  location                                     = "swedencentral"
   minimum_tls_version                          = "1.2"
   name                                         = "sqlgtm7-5ek"
   outbound_network_restriction_enabled         = false
@@ -55,17 +55,18 @@ resource "azurerm_mssql_server_microsoft_support_auditing_policy" "res-20" {
   storage_account_subscription_id = "" # Masked sensitive attribute
 }
 resource "azurerm_mssql_elasticpool" "res-21" {
-  enclave_type                   = ""
-  license_type                   = "LicenseIncluded"
-  location                       = "westeurope"
-  maintenance_configuration_name = "SQL_Default"
-  max_size_bytes                 = 5242880000
-  max_size_gb                    = 4.8828125
-  name                           = "poolcmer4b"
-  resource_group_name            = azurerm_resource_group.res-0.name
-  server_name                    = "sqlgtm7-5ek"
-  tags                           = {}
-  zone_redundant                 = false
+  enclave_type                    = ""
+  high_availability_replica_count = 0
+  license_type                    = "LicenseIncluded"
+  location                        = "swedencentral"
+  maintenance_configuration_name  = "SQL_Default"
+  max_size_bytes                  = 5242880000
+  max_size_gb                     = 4.8828125
+  name                            = "poolcmer4b"
+  resource_group_name             = azurerm_resource_group.res-0.name
+  server_name                     = "sqlgtm7-5ek"
+  tags                            = {}
+  zone_redundant                  = false
   per_database_settings {
     max_capacity = 5
     min_capacity = 0

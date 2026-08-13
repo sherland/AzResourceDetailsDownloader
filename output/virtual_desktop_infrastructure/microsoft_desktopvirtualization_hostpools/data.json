@@ -3,16 +3,16 @@
   "name": "avdhpnqrqlt-t",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-c6c6c5710a932f1f/providers/Microsoft.DesktopVirtualization/hostpools/avdhpnqrqlt-t",
   "type": "Microsoft.DesktopVirtualization/hostpools",
-  "location": "westeurope",
+  "location": "northeurope",
   "tags": null,
   "kind": null,
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:46:40.60Z",
+    "createdAt": "2026-08-13T14:13:57.99Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:46:40.60Z"
+    "lastModifiedAt": "2026-08-13T14:13:57.99Z"
   },
   "properties": {
     "appAttachPackageReferences": [],
@@ -39,6 +39,6 @@
     "ssoClientId": null,
     "ssoClientSecretKeyVaultPath": null,
     "ssoSecretType": null,
-    "objectId": "2dc20c5f-1653-4d5f-9ec2-2ed03a55768e"
+    "objectId": "2c2a0670-ff51-4c20-8b37-c775020c59e1"
   }
 }

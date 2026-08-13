@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,20 +10,19 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-50afc5ec1d1fef44"
   tags = {
     armType    = "Microsoft.Web/staticSites"
-    createdUtc = "2026-07-15T18:29:01.1602698Z"
+    createdUtc = "2026-08-13T14:12:39.7050789Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_static_web_app" "res-1" {
-  api_key                            = "" # Masked sensitive attribute
   app_settings                       = {}
   configuration_file_changes_enabled = true
-  location                           = "westeurope"
+  location                           = "eastus2"
   name                               = "stapp9n53-4-v"
   preview_environments_enabled       = true
   public_network_access_enabled      = true

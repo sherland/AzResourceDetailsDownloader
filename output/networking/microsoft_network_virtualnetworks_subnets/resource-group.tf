@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-83d5300c87a0f865"
   tags = {
     armType    = "Microsoft.Network/virtualNetworks/subnets"
-    createdUtc = "2026-07-15T18:20:02.1979787Z"
+    createdUtc = "2026-08-13T12:29:53.0999213Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -25,7 +25,7 @@ resource "azurerm_virtual_network" "res-1" {
   dns_servers                    = []
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
-  location                       = "westeurope"
+  location                       = "norwayeast"
   name                           = "vnet93wy8s69"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name

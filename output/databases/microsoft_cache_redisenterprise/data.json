@@ -1,5 +1,5 @@
 {
-  "location": "West Europe",
+  "location": "Norway East",
   "name": "redisentmvtyn0j0",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-17e0c65542ffc7e9/providers/Microsoft.Cache/redisEnterprise/redisentmvtyn0j0",
   "type": "Microsoft.Cache/redisEnterprise",
@@ -10,12 +10,12 @@
   },
   "properties": {
     "minimumTlsVersion": "1.2",
-    "hostName": "redisentmvtyn0j0.westeurope.redis.azure.net",
+    "hostName": "redisentmvtyn0j0.norwayeast.redis.azure.net",
     "provisioningState": "Succeeded",
     "resourceState": "Running",
     "privateEndpointConnections": [],
-    "highAvailability": "Enabled",
-    "redundancyMode": "ZR"
+    "highAvailability": "Disabled",
+    "redundancyMode": "None"
   },
   "identity": {
     "type": "None"

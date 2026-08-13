@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-bdf6a4dadf2c40ee"
+  },
+  {
+    "Label": "Status",
+    "Value": "Running"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "SKU",
+    "Value": "Standard"
+  },
+  {
+    "Label": "OS type",
+    "Value": "Linux"
+  },
+  {
+    "Label": "IP address",
+    "Value": "---"
+  },
+  {
+    "Label": "FQDN",
+    "Value": "---"
+  },
+  {
+    "Label": "Container count",
+    "Value": "1"
+  }
+]

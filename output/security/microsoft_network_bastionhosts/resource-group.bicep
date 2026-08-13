@@ -4,13 +4,13 @@ param publicIPAddresses_pipos_z0e42_name string
 
 resource publicIPAddresses_pipos_z0e42_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
   name: publicIPAddresses_pipos_z0e42_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '20.61.105.1'
+    ipAddress: '20.100.180.56'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -23,7 +23,7 @@ resource publicIPAddresses_pipos_z0e42_name_resource 'Microsoft.Network/publicIP
 
 resource virtualNetworks_vnetdrf_xp_d_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnetdrf_xp_d_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -63,12 +63,12 @@ resource virtualNetworks_vnetdrf_xp_d_name_AzureBastionSubnet 'Microsoft.Network
 
 resource bastionHosts_bastiont9y5_i_name_resource 'Microsoft.Network/bastionHosts@2025-07-01' = {
   name: bastionHosts_bastiont9y5_i_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Basic'
   }
   properties: {
-    dnsName: 'bst-8b1ffbd0-c388-44b2-9ae8-4e9b7cc09a91.bastion.azure.com'
+    dnsName: 'bst-b5214c8f-f95e-40b0-b7cf-78658ba194d9.bastion.azure.com'
     scaleUnits: 2
     ipConfigurations: [
       {

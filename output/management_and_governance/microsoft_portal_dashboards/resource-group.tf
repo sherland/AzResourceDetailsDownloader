@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-6a40d03fb53e43c5"
   tags = {
     armType    = "Microsoft.Portal/dashboards"
-    createdUtc = "2026-07-15T18:55:26.0367249Z"
+    createdUtc = "2026-08-13T13:06:58.5682047Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,7 +23,7 @@ resource "azurerm_portal_dashboard" "res-1" {
   dashboard_properties = jsonencode({
     lenses = {}
   })
-  location            = "westeurope"
+  location            = "norwayeast"
   name                = "dashm4vvt9ry"
   resource_group_name = azurerm_resource_group.res-0.name
   tags = {

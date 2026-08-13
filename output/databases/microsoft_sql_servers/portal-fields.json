@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-d2d1e6175e7bd2ef"
+  },
+  {
+    "Label": "Status",
+    "Value": "Available"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Server admin",
+    "Value": "azrddadmin"
+  },
+  {
+    "Label": "Networking",
+    "Value": "Show networking settings"
+  },
+  {
+    "Label": "Microsoft Entra admin",
+    "Value": "Not configured"
+  },
+  {
+    "Label": "Server name",
+    "Value": "sqlfmf2kgqp.database.windows.net"
+  }
+]

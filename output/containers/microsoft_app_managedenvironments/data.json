@@ -1,23 +1,23 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/providers/Microsoft.App/managedEnvironments/caez-5-26-t",
-  "name": "caez-5-26-t",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/providers/Microsoft.App/managedEnvironments/caeznfvtm-z",
+  "name": "caeznfvtm-z",
   "type": "Microsoft.App/managedEnvironments",
-  "location": "France Central",
+  "location": "Norway East",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:41:59.1730812",
+    "createdAt": "2026-08-13T14:35:15.402241",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:41:59.1730812"
+    "lastModifiedAt": "2026-08-13T14:35:15.402241"
   },
   "properties": {
     "provisioningState": "Succeeded",
     "daprAIInstrumentationKey": null,
     "daprAIConnectionString": null,
     "vnetConfiguration": null,
-    "defaultDomain": "salmonstone-29e18e0c.francecentral.azurecontainerapps.io",
-    "staticIp": "20.19.147.228",
+    "defaultDomain": "livelystone-487e31a6.norwayeast.azurecontainerapps.io",
+    "staticIp": "131.163.39.71",
     "appLogsConfiguration": {
       "destination": null,
       "logAnalyticsConfiguration": null
@@ -27,11 +27,11 @@
       "version": "2.18.1"
     },
     "daprConfiguration": {
-      "version": "1.16.4-msft.9"
+      "version": "1.16.4-msft.11"
     },
-    "eventStreamEndpoint": "https://francecentral.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/managedEnvironments/caez-5-26-t/eventstream",
+    "eventStreamEndpoint": "https://norwayeast.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4360456b29424ef8/managedEnvironments/caeznfvtm-z/eventstream",
     "customDomainConfiguration": {
-      "customDomainVerificationId": "E31949349EB9F5625B0C70237EDF2918CFBB1F4C2A4A12251A94BA4296BB01D4",
+      "customDomainVerificationId": "F86E743D00C996EF23A530212FF3DE4B44E86492BF4592EF5D23D9DC35983B91",
       "dnsSuffix": null,
       "certificateValue": null,
       "certificatePassword": null,

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-1c6da0a56560fd63"
   tags = {
     armType    = "Microsoft.Insights/dataCollectionRules"
-    createdUtc = "2026-07-15T18:52:01.1113166Z"
+    createdUtc = "2026-08-13T13:04:55.9571571Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,7 +23,7 @@ resource "azurerm_monitor_data_collection_rule" "res-1" {
   data_collection_endpoint_id = ""
   description                 = ""
   kind                        = ""
-  location                    = "westeurope"
+  location                    = "norwayeast"
   name                        = "dcrgitooyah"
   resource_group_name         = azurerm_resource_group.res-0.name
   tags                        = {}
@@ -57,12 +57,10 @@ resource "azurerm_log_analytics_workspace" "res-2" {
   immediate_data_purge_on_30_days_enabled = false
   internet_ingestion_enabled              = true
   internet_query_enabled                  = true
-  location                                = "westeurope"
+  location                                = "norwayeast"
   name                                    = "law3v6oa-0p"
-  primary_shared_key                      = "" # Masked sensitive attribute
   resource_group_name                     = azurerm_resource_group.res-0.name
   retention_in_days                       = 30
-  secondary_shared_key                    = "" # Masked sensitive attribute
   sku                                     = "PerGB2018"
   tags                                    = {}
 }
@@ -1340,6 +1338,15 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-139" {
 }
 resource "azurerm_log_analytics_workspace_table_custom_log" "res-140" {
   description             = ""
+  display_name            = "AGSGrafanaAlertAuthFailure"
+  name                    = "AGSGrafanaAlertAuthFailure"
+  plan                    = "Analytics"
+  retention_in_days       = 0
+  total_retention_in_days = 0
+  workspace_id            = azurerm_log_analytics_workspace.res-2.id
+}
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-141" {
+  description             = ""
   display_name            = "AGSGrafanaLoginEvents"
   name                    = "AGSGrafanaLoginEvents"
   plan                    = "Analytics"
@@ -1347,7 +1354,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-140" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-141" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-142" {
   description             = ""
   display_name            = "AGSGrafanaUsageInsightsEvents"
   name                    = "AGSGrafanaUsageInsightsEvents"
@@ -1356,7 +1363,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-141" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-142" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-143" {
   description             = ""
   display_name            = "AGSUpdateEvents"
   name                    = "AGSUpdateEvents"
@@ -1365,7 +1372,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-142" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-143" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-144" {
   description             = ""
   display_name            = "AGWAccessLogs"
   name                    = "AGWAccessLogs"
@@ -1374,7 +1381,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-143" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-144" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-145" {
   description             = ""
   display_name            = "AGWFirewallLogs"
   name                    = "AGWFirewallLogs"
@@ -1383,7 +1390,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-144" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-145" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-146" {
   description             = ""
   display_name            = "AGWPerformanceLogs"
   name                    = "AGWPerformanceLogs"
@@ -1392,7 +1399,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-145" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-146" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-147" {
   description             = ""
   display_name            = "AHCIDiagnosticLogs"
   name                    = "AHCIDiagnosticLogs"
@@ -1401,7 +1408,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-146" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-147" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-148" {
   description             = ""
   display_name            = "AHDSDeidAuditLogs"
   name                    = "AHDSDeidAuditLogs"
@@ -1410,7 +1417,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-147" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-148" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-149" {
   description             = ""
   display_name            = "AHDSDicomAuditLogs"
   name                    = "AHDSDicomAuditLogs"
@@ -1419,7 +1426,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-148" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-149" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-150" {
   description             = ""
   display_name            = "AHDSDicomDiagnosticLogs"
   name                    = "AHDSDicomDiagnosticLogs"
@@ -1428,7 +1435,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-149" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-150" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-151" {
   description             = ""
   display_name            = "AHDSMedTechDiagnosticLogs"
   name                    = "AHDSMedTechDiagnosticLogs"
@@ -1437,7 +1444,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-150" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-151" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-152" {
   description             = ""
   display_name            = "AKSAudit"
   name                    = "AKSAudit"
@@ -1446,7 +1453,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-151" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-152" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-153" {
   description             = ""
   display_name            = "AKSAuditAdmin"
   name                    = "AKSAuditAdmin"
@@ -1455,7 +1462,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-152" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-153" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-154" {
   description             = ""
   display_name            = "AKSControlPlane"
   name                    = "AKSControlPlane"
@@ -1464,7 +1471,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-153" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-154" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-155" {
   description             = ""
   display_name            = "ALBHealthEvent"
   name                    = "ALBHealthEvent"
@@ -1473,7 +1480,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-154" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-155" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-156" {
   description             = ""
   display_name            = "AMAHealth"
   name                    = "AMAHealth"
@@ -1482,7 +1489,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-155" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-156" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-157" {
   description             = ""
   display_name            = "AMSKeyDeliveryRequests"
   name                    = "AMSKeyDeliveryRequests"
@@ -1491,7 +1498,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-156" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-157" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-158" {
   description             = ""
   display_name            = "AMSLiveEventOperations"
   name                    = "AMSLiveEventOperations"
@@ -1500,7 +1507,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-157" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-158" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-159" {
   description             = ""
   display_name            = "AMSMediaAccountHealth"
   name                    = "AMSMediaAccountHealth"
@@ -1509,7 +1516,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-158" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-159" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-160" {
   description             = ""
   display_name            = "AMSStreamingEndpointRequests"
   name                    = "AMSStreamingEndpointRequests"
@@ -1518,7 +1525,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-159" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-160" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-161" {
   description             = ""
   display_name            = "AMWMetricsUsageDetails"
   name                    = "AMWMetricsUsageDetails"
@@ -1527,7 +1534,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-160" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-161" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-162" {
   description             = ""
   display_name            = "ANFFileAccess"
   name                    = "ANFFileAccess"
@@ -1536,7 +1543,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-161" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-162" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-163" {
   description             = ""
   display_name            = "ANFTopClientReadIOPS"
   name                    = "ANFTopClientReadIOPS"
@@ -1545,7 +1552,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-162" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-163" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-164" {
   description             = ""
   display_name            = "ANFTopClientWriteIOPS"
   name                    = "ANFTopClientWriteIOPS"
@@ -1554,7 +1561,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-163" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-164" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-165" {
   description             = ""
   display_name            = "ANFTopFileReadIOPS"
   name                    = "ANFTopFileReadIOPS"
@@ -1563,7 +1570,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-164" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-165" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-166" {
   description             = ""
   display_name            = "ANFTopFileWriteIOPS"
   name                    = "ANFTopFileWriteIOPS"
@@ -1572,7 +1579,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-165" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-166" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-167" {
   description             = ""
   display_name            = "AOIDatabaseQuery"
   name                    = "AOIDatabaseQuery"
@@ -1581,7 +1588,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-166" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-167" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-168" {
   description             = ""
   display_name            = "AOIDigestion"
   name                    = "AOIDigestion"
@@ -1590,7 +1597,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-167" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-168" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-169" {
   description             = ""
   display_name            = "AOIStorage"
   name                    = "AOIStorage"
@@ -1599,7 +1606,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-168" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-169" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-170" {
   description             = ""
   display_name            = "APIMDevPortalAuditDiagnosticLog"
   name                    = "APIMDevPortalAuditDiagnosticLog"
@@ -1608,7 +1615,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-169" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-170" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-171" {
   description             = ""
   display_name            = "ASCAuditLogs"
   name                    = "ASCAuditLogs"
@@ -1617,7 +1624,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-170" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-171" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-172" {
   description             = ""
   display_name            = "ASCDeviceEvents"
   name                    = "ASCDeviceEvents"
@@ -1626,7 +1633,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-171" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-172" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-173" {
   description             = ""
   display_name            = "ASRJobs"
   name                    = "ASRJobs"
@@ -1635,7 +1642,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-172" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-173" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-174" {
   description             = ""
   display_name            = "ASRReplicatedItems"
   name                    = "ASRReplicatedItems"
@@ -1644,7 +1651,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-173" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-174" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-175" {
   description             = ""
   display_name            = "ASRv2HealthEvents"
   name                    = "ASRv2HealthEvents"
@@ -1653,7 +1660,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-174" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-175" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-176" {
   description             = ""
   display_name            = "ASRv2JobEvents"
   name                    = "ASRv2JobEvents"
@@ -1662,7 +1669,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-175" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-176" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-177" {
   description             = ""
   display_name            = "ASRv2ProtectedItems"
   name                    = "ASRv2ProtectedItems"
@@ -1671,7 +1678,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-176" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-177" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-178" {
   description             = ""
   display_name            = "ASRv2ReplicationExtensions"
   name                    = "ASRv2ReplicationExtensions"
@@ -1680,7 +1687,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-177" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-178" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-179" {
   description             = ""
   display_name            = "ASRv2ReplicationPolicies"
   name                    = "ASRv2ReplicationPolicies"
@@ -1689,7 +1696,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-178" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-179" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-180" {
   description             = ""
   display_name            = "ASRv2ReplicationVaults"
   name                    = "ASRv2ReplicationVaults"
@@ -1698,7 +1705,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-179" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-180" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-181" {
   description             = ""
   display_name            = "ATCExpressRouteCircuitIpfix"
   name                    = "ATCExpressRouteCircuitIpfix"
@@ -1707,7 +1714,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-180" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-181" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-182" {
   description             = ""
   display_name            = "ATCMicrosoftPeeringMetadata"
   name                    = "ATCMicrosoftPeeringMetadata"
@@ -1716,7 +1723,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-181" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-182" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-183" {
   description             = ""
   display_name            = "ATCPrivatePeeringMetadata"
   name                    = "ATCPrivatePeeringMetadata"
@@ -1725,7 +1732,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-182" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-183" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-184" {
   description             = ""
   display_name            = "AVNMConnectivityConfigurationChange"
   name                    = "AVNMConnectivityConfigurationChange"
@@ -1734,7 +1741,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-183" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-184" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-185" {
   description             = ""
   display_name            = "AVNMIPAMPoolAllocationChange"
   name                    = "AVNMIPAMPoolAllocationChange"
@@ -1743,7 +1750,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-184" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-185" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-186" {
   description             = ""
   display_name            = "AVNMNetworkGroupMembershipChange"
   name                    = "AVNMNetworkGroupMembershipChange"
@@ -1752,7 +1759,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-185" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-186" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-187" {
   description             = ""
   display_name            = "AVNMRuleCollectionChange"
   name                    = "AVNMRuleCollectionChange"
@@ -1761,7 +1768,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-186" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-187" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-188" {
   description             = ""
   display_name            = "AVSEsxiFirewallSyslog"
   name                    = "AVSEsxiFirewallSyslog"
@@ -1770,7 +1777,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-187" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-188" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-189" {
   description             = ""
   display_name            = "AVSEsxiSyslog"
   name                    = "AVSEsxiSyslog"
@@ -1779,7 +1786,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-188" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-189" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-190" {
   description             = ""
   display_name            = "AVSNsxEdgeSyslog"
   name                    = "AVSNsxEdgeSyslog"
@@ -1788,7 +1795,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-189" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-190" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-191" {
   description             = ""
   display_name            = "AVSNsxManagerSyslog"
   name                    = "AVSNsxManagerSyslog"
@@ -1797,7 +1804,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-190" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-191" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-192" {
   description             = ""
   display_name            = "AVSSyslog"
   name                    = "AVSSyslog"
@@ -1806,7 +1813,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-191" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-192" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-193" {
   description             = ""
   display_name            = "AVSVcSyslog"
   name                    = "AVSVcSyslog"
@@ -1815,7 +1822,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-192" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-193" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-194" {
   description             = ""
   display_name            = "AZFWApplicationRule"
   name                    = "AZFWApplicationRule"
@@ -1824,7 +1831,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-193" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-194" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-195" {
   description             = ""
   display_name            = "AZFWApplicationRuleAggregation"
   name                    = "AZFWApplicationRuleAggregation"
@@ -1833,7 +1840,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-194" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-195" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-196" {
   description             = ""
   display_name            = "AZFWDnsFlowTrace"
   name                    = "AZFWDnsFlowTrace"
@@ -1842,7 +1849,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-195" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-196" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-197" {
   description             = ""
   display_name            = "AZFWDnsQuery"
   name                    = "AZFWDnsQuery"
@@ -1851,7 +1858,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-196" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-197" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-198" {
   description             = ""
   display_name            = "AZFWFatFlow"
   name                    = "AZFWFatFlow"
@@ -1860,7 +1867,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-197" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-198" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-199" {
   description             = ""
   display_name            = "AZFWFlowTrace"
   name                    = "AZFWFlowTrace"
@@ -1869,7 +1876,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-198" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-199" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-200" {
   description             = ""
   display_name            = "AZFWIdpsSignature"
   name                    = "AZFWIdpsSignature"
@@ -1878,7 +1885,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-199" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-200" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-201" {
   description             = ""
   display_name            = "AZFWInternalFqdnResolutionFailure"
   name                    = "AZFWInternalFqdnResolutionFailure"
@@ -1887,7 +1894,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-200" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-201" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-202" {
   description             = ""
   display_name            = "AZFWNatRule"
   name                    = "AZFWNatRule"
@@ -1896,7 +1903,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-201" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-202" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-203" {
   description             = ""
   display_name            = "AZFWNatRuleAggregation"
   name                    = "AZFWNatRuleAggregation"
@@ -1905,7 +1912,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-202" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-203" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-204" {
   description             = ""
   display_name            = "AZFWNetworkRule"
   name                    = "AZFWNetworkRule"
@@ -1914,7 +1921,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-203" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-204" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-205" {
   description             = ""
   display_name            = "AZFWNetworkRuleAggregation"
   name                    = "AZFWNetworkRuleAggregation"
@@ -1923,7 +1930,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-204" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-205" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-206" {
   description             = ""
   display_name            = "AZFWThreatIntel"
   name                    = "AZFWThreatIntel"
@@ -1932,7 +1939,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-205" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-206" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-207" {
   description             = ""
   display_name            = "AZKVAuditLogs"
   name                    = "AZKVAuditLogs"
@@ -1941,7 +1948,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-206" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-207" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-208" {
   description             = ""
   display_name            = "AZKVPolicyEvaluationDetailsLogs"
   name                    = "AZKVPolicyEvaluationDetailsLogs"
@@ -1950,7 +1957,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-207" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-208" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-209" {
   description             = ""
   display_name            = "AZMSApplicationMetricLogs"
   name                    = "AZMSApplicationMetricLogs"
@@ -1959,7 +1966,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-208" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-209" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-210" {
   description             = ""
   display_name            = "AZMSArchiveLogs"
   name                    = "AZMSArchiveLogs"
@@ -1968,7 +1975,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-209" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-210" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-211" {
   description             = ""
   display_name            = "AZMSAutoscaleLogs"
   name                    = "AZMSAutoscaleLogs"
@@ -1977,7 +1984,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-210" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-211" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-212" {
   description             = ""
   display_name            = "AZMSCustomerManagedKeyUserLogs"
   name                    = "AZMSCustomerManagedKeyUserLogs"
@@ -1986,7 +1993,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-211" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-212" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-213" {
   description             = ""
   display_name            = "AZMSDiagnosticErrorLogs"
   name                    = "AZMSDiagnosticErrorLogs"
@@ -1995,7 +2002,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-212" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-213" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-214" {
   description             = ""
   display_name            = "AZMSHybridConnectionsEvents"
   name                    = "AZMSHybridConnectionsEvents"
@@ -2004,7 +2011,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-213" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-214" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-215" {
   description             = ""
   display_name            = "AZMSKafkaCoordinatorLogs"
   name                    = "AZMSKafkaCoordinatorLogs"
@@ -2013,7 +2020,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-214" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-215" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-216" {
   description             = ""
   display_name            = "AZMSKafkaUserErrorLogs"
   name                    = "AZMSKafkaUserErrorLogs"
@@ -2022,7 +2029,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-215" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-216" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-217" {
   description             = ""
   display_name            = "AZMSOperationalLogs"
   name                    = "AZMSOperationalLogs"
@@ -2031,7 +2038,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-216" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-217" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-218" {
   description             = ""
   display_name            = "AZMSRunTimeAuditLogs"
   name                    = "AZMSRunTimeAuditLogs"
@@ -2040,7 +2047,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-217" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-218" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-219" {
   description             = ""
   display_name            = "AZMSVnetConnectionEvents"
   name                    = "AZMSVnetConnectionEvents"
@@ -2049,7 +2056,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-218" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-219" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-220" {
   description             = ""
   display_name            = "AddonAzureBackupAlerts"
   name                    = "AddonAzureBackupAlerts"
@@ -2058,7 +2065,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-219" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-220" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-221" {
   description             = ""
   display_name            = "AddonAzureBackupJobs"
   name                    = "AddonAzureBackupJobs"
@@ -2067,7 +2074,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-220" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-221" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-222" {
   description             = ""
   display_name            = "AddonAzureBackupPolicy"
   name                    = "AddonAzureBackupPolicy"
@@ -2076,7 +2083,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-221" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-222" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-223" {
   description             = ""
   display_name            = "AddonAzureBackupProtectedInstance"
   name                    = "AddonAzureBackupProtectedInstance"
@@ -2085,7 +2092,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-222" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-223" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-224" {
   description             = ""
   display_name            = "AddonAzureBackupStorage"
   name                    = "AddonAzureBackupStorage"
@@ -2094,7 +2101,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-223" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-224" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-225" {
   description             = ""
   display_name            = "AegDataPlaneRequests"
   name                    = "AegDataPlaneRequests"
@@ -2103,7 +2110,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-224" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-225" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-226" {
   description             = ""
   display_name            = "AegDeliveryFailureLogs"
   name                    = "AegDeliveryFailureLogs"
@@ -2112,7 +2119,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-225" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-226" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-227" {
   description             = ""
   display_name            = "AegPublishFailureLogs"
   name                    = "AegPublishFailureLogs"
@@ -2121,7 +2128,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-226" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-227" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-228" {
   description             = ""
   display_name            = "AgriFoodApplicationAuditLogs"
   name                    = "AgriFoodApplicationAuditLogs"
@@ -2130,7 +2137,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-227" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-228" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-229" {
   description             = ""
   display_name            = "AgriFoodFarmManagementLogs"
   name                    = "AgriFoodFarmManagementLogs"
@@ -2139,7 +2146,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-228" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-229" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-230" {
   description             = ""
   display_name            = "AgriFoodFarmOperationLogs"
   name                    = "AgriFoodFarmOperationLogs"
@@ -2148,7 +2155,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-229" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-230" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-231" {
   description             = ""
   display_name            = "AgriFoodInsightLogs"
   name                    = "AgriFoodInsightLogs"
@@ -2157,7 +2164,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-230" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-231" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-232" {
   description             = ""
   display_name            = "AgriFoodJobProcessedLogs"
   name                    = "AgriFoodJobProcessedLogs"
@@ -2166,7 +2173,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-231" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-232" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-233" {
   description             = ""
   display_name            = "AgriFoodModelInferenceLogs"
   name                    = "AgriFoodModelInferenceLogs"
@@ -2175,7 +2182,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-232" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-233" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-234" {
   description             = ""
   display_name            = "AgriFoodProviderAuthLogs"
   name                    = "AgriFoodProviderAuthLogs"
@@ -2184,7 +2191,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-233" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-234" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-235" {
   description             = ""
   display_name            = "AgriFoodSatelliteLogs"
   name                    = "AgriFoodSatelliteLogs"
@@ -2193,7 +2200,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-234" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-235" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-236" {
   description             = ""
   display_name            = "AgriFoodSensorManagementLogs"
   name                    = "AgriFoodSensorManagementLogs"
@@ -2202,7 +2209,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-235" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-236" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-237" {
   description             = ""
   display_name            = "AgriFoodWeatherLogs"
   name                    = "AgriFoodWeatherLogs"
@@ -2211,7 +2218,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-236" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-237" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-238" {
   description             = ""
   display_name            = "AirflowDagProcessingLogs"
   name                    = "AirflowDagProcessingLogs"
@@ -2220,7 +2227,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-237" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-238" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-239" {
   description             = ""
   display_name            = "Alert"
   name                    = "Alert"
@@ -2229,7 +2236,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-238" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-239" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-240" {
   description             = ""
   display_name            = "AmlComputeClusterEvent"
   name                    = "AmlComputeClusterEvent"
@@ -2238,7 +2245,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-239" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-240" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-241" {
   description             = ""
   display_name            = "AmlComputeClusterNodeEvent"
   name                    = "AmlComputeClusterNodeEvent"
@@ -2247,7 +2254,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-240" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-241" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-242" {
   description             = ""
   display_name            = "AmlComputeCpuGpuUtilization"
   name                    = "AmlComputeCpuGpuUtilization"
@@ -2256,7 +2263,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-241" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-242" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-243" {
   description             = ""
   display_name            = "AmlComputeInstanceEvent"
   name                    = "AmlComputeInstanceEvent"
@@ -2265,7 +2272,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-242" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-243" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-244" {
   description             = ""
   display_name            = "AmlComputeJobEvent"
   name                    = "AmlComputeJobEvent"
@@ -2274,7 +2281,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-243" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-244" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-245" {
   description             = ""
   display_name            = "AmlDataLabelEvent"
   name                    = "AmlDataLabelEvent"
@@ -2283,7 +2290,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-244" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-245" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-246" {
   description             = ""
   display_name            = "AmlDataSetEvent"
   name                    = "AmlDataSetEvent"
@@ -2292,7 +2299,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-245" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-246" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-247" {
   description             = ""
   display_name            = "AmlDataStoreEvent"
   name                    = "AmlDataStoreEvent"
@@ -2301,7 +2308,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-246" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-247" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-248" {
   description             = ""
   display_name            = "AmlDeploymentEvent"
   name                    = "AmlDeploymentEvent"
@@ -2310,7 +2317,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-247" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-248" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-249" {
   description             = ""
   display_name            = "AmlEnvironmentEvent"
   name                    = "AmlEnvironmentEvent"
@@ -2319,7 +2326,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-248" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-249" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-250" {
   description             = ""
   display_name            = "AmlInferencingEvent"
   name                    = "AmlInferencingEvent"
@@ -2328,7 +2335,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-249" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-250" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-251" {
   description             = ""
   display_name            = "AmlModelsEvent"
   name                    = "AmlModelsEvent"
@@ -2337,7 +2344,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-250" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-251" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-252" {
   description             = ""
   display_name            = "AmlOnlineEndpointConsoleLog"
   name                    = "AmlOnlineEndpointConsoleLog"
@@ -2346,7 +2353,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-251" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-252" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-253" {
   description             = ""
   display_name            = "AmlOnlineEndpointEventLog"
   name                    = "AmlOnlineEndpointEventLog"
@@ -2355,7 +2362,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-252" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-253" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-254" {
   description             = ""
   display_name            = "AmlOnlineEndpointTrafficLog"
   name                    = "AmlOnlineEndpointTrafficLog"
@@ -2364,7 +2371,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-253" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-254" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-255" {
   description             = ""
   display_name            = "AmlPipelineEvent"
   name                    = "AmlPipelineEvent"
@@ -2373,7 +2380,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-254" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-255" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-256" {
   description             = ""
   display_name            = "AmlRegistryReadEventsLog"
   name                    = "AmlRegistryReadEventsLog"
@@ -2382,7 +2389,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-255" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-256" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-257" {
   description             = ""
   display_name            = "AmlRegistryWriteEventsLog"
   name                    = "AmlRegistryWriteEventsLog"
@@ -2391,7 +2398,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-256" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-257" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-258" {
   description             = ""
   display_name            = "AmlRunEvent"
   name                    = "AmlRunEvent"
@@ -2400,7 +2407,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-257" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-258" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-259" {
   description             = ""
   display_name            = "AmlRunStatusChangedEvent"
   name                    = "AmlRunStatusChangedEvent"
@@ -2409,7 +2416,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-258" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-259" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-260" {
   description             = ""
   display_name            = "ApiManagementGatewayLlmLog"
   name                    = "ApiManagementGatewayLlmLog"
@@ -2418,7 +2425,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-259" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-260" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-261" {
   description             = ""
   display_name            = "ApiManagementGatewayLogs"
   name                    = "ApiManagementGatewayLogs"
@@ -2427,7 +2434,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-260" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-261" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-262" {
   description             = ""
   display_name            = "ApiManagementGatewayMCPLog"
   name                    = "ApiManagementGatewayMCPLog"
@@ -2436,7 +2443,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-261" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-262" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-263" {
   description             = ""
   display_name            = "ApiManagementWebSocketConnectionLogs"
   name                    = "ApiManagementWebSocketConnectionLogs"
@@ -2445,7 +2452,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-262" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-263" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-264" {
   description             = ""
   display_name            = "AppAvailabilityResults"
   name                    = "AppAvailabilityResults"
@@ -2454,7 +2461,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-263" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-264" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-265" {
   description             = ""
   display_name            = "AppBrowserTimings"
   name                    = "AppBrowserTimings"
@@ -2463,7 +2470,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-264" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-265" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-266" {
   description             = ""
   display_name            = "AppCenterError"
   name                    = "AppCenterError"
@@ -2472,7 +2479,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-265" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-266" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-267" {
   description             = ""
   display_name            = "AppDependencies"
   name                    = "AppDependencies"
@@ -2481,7 +2488,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-266" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-267" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-268" {
   description             = ""
   display_name            = "AppEnvSessionConsoleLogs"
   name                    = "AppEnvSessionConsoleLogs"
@@ -2490,7 +2497,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-267" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-268" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-269" {
   description             = ""
   display_name            = "AppEnvSessionLifecycleLogs"
   name                    = "AppEnvSessionLifecycleLogs"
@@ -2499,7 +2506,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-268" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-269" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-270" {
   description             = ""
   display_name            = "AppEnvSessionPoolEventLogs"
   name                    = "AppEnvSessionPoolEventLogs"
@@ -2508,7 +2515,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-269" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-270" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-271" {
   description             = ""
   display_name            = "AppEnvSpringAppConsoleLogs"
   name                    = "AppEnvSpringAppConsoleLogs"
@@ -2517,7 +2524,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-270" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-271" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-272" {
   description             = ""
   display_name            = "AppEvents"
   name                    = "AppEvents"
@@ -2526,7 +2533,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-271" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-272" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-273" {
   description             = ""
   display_name            = "AppExceptions"
   name                    = "AppExceptions"
@@ -2535,7 +2542,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-272" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-273" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-274" {
   description             = ""
   display_name            = "AppGenAIContent"
   name                    = "AppGenAIContent"
@@ -2544,7 +2551,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-273" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-274" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-275" {
   description             = ""
   display_name            = "AppMetrics"
   name                    = "AppMetrics"
@@ -2553,7 +2560,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-274" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-275" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-276" {
   description             = ""
   display_name            = "AppPageViews"
   name                    = "AppPageViews"
@@ -2562,7 +2569,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-275" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-276" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-277" {
   description             = ""
   display_name            = "AppPerformanceCounters"
   name                    = "AppPerformanceCounters"
@@ -2571,7 +2578,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-276" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-277" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-278" {
   description             = ""
   display_name            = "AppPlatformBuildLogs"
   name                    = "AppPlatformBuildLogs"
@@ -2580,7 +2587,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-277" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-278" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-279" {
   description             = ""
   display_name            = "AppPlatformContainerEventLogs"
   name                    = "AppPlatformContainerEventLogs"
@@ -2589,7 +2596,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-278" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-279" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-280" {
   description             = ""
   display_name            = "AppPlatformIngressLogs"
   name                    = "AppPlatformIngressLogs"
@@ -2598,7 +2605,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-279" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-280" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-281" {
   description             = ""
   display_name            = "AppPlatformLogsforSpring"
   name                    = "AppPlatformLogsforSpring"
@@ -2607,7 +2614,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-280" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-281" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-282" {
   description             = ""
   display_name            = "AppPlatformSystemLogs"
   name                    = "AppPlatformSystemLogs"
@@ -2616,7 +2623,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-281" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-282" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-283" {
   description             = ""
   display_name            = "AppRequests"
   name                    = "AppRequests"
@@ -2625,7 +2632,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-282" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-283" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-284" {
   description             = ""
   display_name            = "AppServiceAntivirusScanAuditLogs"
   name                    = "AppServiceAntivirusScanAuditLogs"
@@ -2634,7 +2641,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-283" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-284" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-285" {
   description             = ""
   display_name            = "AppServiceAppLogs"
   name                    = "AppServiceAppLogs"
@@ -2643,7 +2650,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-284" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-285" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-286" {
   description             = ""
   display_name            = "AppServiceAuditLogs"
   name                    = "AppServiceAuditLogs"
@@ -2652,7 +2659,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-285" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-286" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-287" {
   description             = ""
   display_name            = "AppServiceAuthenticationLogs"
   name                    = "AppServiceAuthenticationLogs"
@@ -2661,7 +2668,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-286" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-287" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-288" {
   description             = ""
   display_name            = "AppServiceConsoleLogs"
   name                    = "AppServiceConsoleLogs"
@@ -2670,7 +2677,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-287" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-288" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-289" {
   description             = ""
   display_name            = "AppServiceEnvironmentPlatformLogs"
   name                    = "AppServiceEnvironmentPlatformLogs"
@@ -2679,7 +2686,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-288" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-289" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-290" {
   description             = ""
   display_name            = "AppServiceFileAuditLogs"
   name                    = "AppServiceFileAuditLogs"
@@ -2688,7 +2695,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-289" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-290" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-291" {
   description             = ""
   display_name            = "AppServiceHTTPLogs"
   name                    = "AppServiceHTTPLogs"
@@ -2697,7 +2704,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-290" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-291" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-292" {
   description             = ""
   display_name            = "AppServiceIPSecAuditLogs"
   name                    = "AppServiceIPSecAuditLogs"
@@ -2706,7 +2713,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-291" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-292" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-293" {
   description             = ""
   display_name            = "AppServicePlatformLogs"
   name                    = "AppServicePlatformLogs"
@@ -2715,7 +2722,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-292" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-293" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-294" {
   description             = ""
   display_name            = "AppServiceServerlessSecurityPluginData"
   name                    = "AppServiceServerlessSecurityPluginData"
@@ -2724,7 +2731,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-293" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-294" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-295" {
   description             = ""
   display_name            = "AppSystemEvents"
   name                    = "AppSystemEvents"
@@ -2733,7 +2740,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-294" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-295" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-296" {
   description             = ""
   display_name            = "AppTraces"
   name                    = "AppTraces"
@@ -2742,7 +2749,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-295" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-296" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-297" {
   description             = ""
   display_name            = "ArcK8sAudit"
   name                    = "ArcK8sAudit"
@@ -2751,7 +2758,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-296" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-297" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-298" {
   description             = ""
   display_name            = "ArcK8sAuditAdmin"
   name                    = "ArcK8sAuditAdmin"
@@ -2760,7 +2767,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-297" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-298" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-299" {
   description             = ""
   display_name            = "ArcK8sControlPlane"
   name                    = "ArcK8sControlPlane"
@@ -2769,7 +2776,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-298" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-299" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-300" {
   description             = ""
   display_name            = "AuditLogs"
   name                    = "AuditLogs"
@@ -2778,7 +2785,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-299" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-300" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-301" {
   description             = ""
   display_name            = "AutoscaleEvaluationsLog"
   name                    = "AutoscaleEvaluationsLog"
@@ -2787,7 +2794,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-300" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-301" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-302" {
   description             = ""
   display_name            = "AutoscaleScaleActionsLog"
   name                    = "AutoscaleScaleActionsLog"
@@ -2796,7 +2803,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-301" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-302" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-303" {
   description             = ""
   display_name            = "AzureActivity"
   name                    = "AzureActivity"
@@ -2805,7 +2812,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-302" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-303" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-304" {
   description             = ""
   display_name            = "AzureActivityV2"
   name                    = "AzureActivityV2"
@@ -2814,7 +2821,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-303" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-304" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-305" {
   description             = ""
   display_name            = "AzureAssessmentRecommendation"
   name                    = "AzureAssessmentRecommendation"
@@ -2823,7 +2830,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-304" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-305" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-306" {
   description             = ""
   display_name            = "AzureAttestationDiagnostics"
   name                    = "AzureAttestationDiagnostics"
@@ -2832,7 +2839,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-305" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-306" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-307" {
   description             = ""
   display_name            = "AzureBackupOperations"
   name                    = "AzureBackupOperations"
@@ -2841,7 +2848,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-306" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-307" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-308" {
   description             = ""
   display_name            = "AzureDevOpsAuditing"
   name                    = "AzureDevOpsAuditing"
@@ -2850,7 +2857,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-307" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-308" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-309" {
   description             = ""
   display_name            = "AzureLoadTestingOperation"
   name                    = "AzureLoadTestingOperation"
@@ -2859,7 +2866,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-308" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-309" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-310" {
   description             = ""
   display_name            = "AzureMetrics"
   name                    = "AzureMetrics"
@@ -2868,7 +2875,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-309" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-310" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-311" {
   description             = ""
   display_name            = "AzureMetricsV2"
   name                    = "AzureMetricsV2"
@@ -2877,7 +2884,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-310" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-311" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-312" {
   description             = ""
   display_name            = "AzureMonitorPipelineLogErrors"
   name                    = "AzureMonitorPipelineLogErrors"
@@ -2886,7 +2893,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-311" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-312" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-313" {
   description             = ""
   display_name            = "AzureSQLAutomaticTuning"
   name                    = "AzureSQLAutomaticTuning"
@@ -2895,7 +2902,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-312" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-313" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-314" {
   description             = ""
   display_name            = "AzureSQLBlocks"
   name                    = "AzureSQLBlocks"
@@ -2904,7 +2911,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-313" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-314" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-315" {
   description             = ""
   display_name            = "AzureSQLDatabaseWaitStatistics"
   name                    = "AzureSQLDatabaseWaitStatistics"
@@ -2913,7 +2920,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-314" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-315" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-316" {
   description             = ""
   display_name            = "AzureSQLDeadlocks"
   name                    = "AzureSQLDeadlocks"
@@ -2922,7 +2929,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-315" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-316" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-317" {
   description             = ""
   display_name            = "AzureSQLErrors"
   name                    = "AzureSQLErrors"
@@ -2931,7 +2938,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-316" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-317" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-318" {
   description             = ""
   display_name            = "AzureSQLQueryStoreRuntimeStatistics"
   name                    = "AzureSQLQueryStoreRuntimeStatistics"
@@ -2940,7 +2947,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-317" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-318" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-319" {
   description             = ""
   display_name            = "AzureSQLQueryStoreWaitStatistics"
   name                    = "AzureSQLQueryStoreWaitStatistics"
@@ -2949,7 +2956,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-318" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-319" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-320" {
   description             = ""
   display_name            = "AzureSQLResourceUsageStats"
   name                    = "AzureSQLResourceUsageStats"
@@ -2958,7 +2965,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-319" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-320" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-321" {
   description             = ""
   display_name            = "AzureSQLTimeouts"
   name                    = "AzureSQLTimeouts"
@@ -2967,7 +2974,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-320" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-321" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-322" {
   description             = ""
   display_name            = "BehaviorEntities"
   name                    = "BehaviorEntities"
@@ -2976,7 +2983,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-321" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-322" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-323" {
   description             = ""
   display_name            = "BehaviorInfo"
   name                    = "BehaviorInfo"
@@ -2985,7 +2992,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-322" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-323" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-324" {
   description             = ""
   display_name            = "BlockchainApplicationLog"
   name                    = "BlockchainApplicationLog"
@@ -2994,7 +3001,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-323" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-324" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-325" {
   description             = ""
   display_name            = "BlockchainProxyLog"
   name                    = "BlockchainProxyLog"
@@ -3003,7 +3010,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-324" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-325" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-326" {
   description             = ""
   display_name            = "CCFApplicationLogs"
   name                    = "CCFApplicationLogs"
@@ -3012,7 +3019,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-325" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-326" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-327" {
   description             = ""
   display_name            = "CDBCassandraRequests"
   name                    = "CDBCassandraRequests"
@@ -3021,7 +3028,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-326" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-327" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-328" {
   description             = ""
   display_name            = "CDBControlPlaneRequests"
   name                    = "CDBControlPlaneRequests"
@@ -3030,7 +3037,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-327" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-328" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-329" {
   description             = ""
   display_name            = "CDBDataPlaneRequests"
   name                    = "CDBDataPlaneRequests"
@@ -3039,7 +3046,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-328" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-329" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-330" {
   description             = ""
   display_name            = "CDBDataPlaneRequests15M"
   name                    = "CDBDataPlaneRequests15M"
@@ -3048,7 +3055,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-329" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-330" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-331" {
   description             = ""
   display_name            = "CDBDataPlaneRequests5M"
   name                    = "CDBDataPlaneRequests5M"
@@ -3057,7 +3064,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-330" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-331" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-332" {
   description             = ""
   display_name            = "CDBGremlinRequests"
   name                    = "CDBGremlinRequests"
@@ -3066,7 +3073,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-331" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-332" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-333" {
   description             = ""
   display_name            = "CDBMongoRequests"
   name                    = "CDBMongoRequests"
@@ -3075,7 +3082,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-332" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-333" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-334" {
   description             = ""
   display_name            = "CDBPartitionKeyRUConsumption"
   name                    = "CDBPartitionKeyRUConsumption"
@@ -3084,7 +3091,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-333" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-334" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-335" {
   description             = ""
   display_name            = "CDBPartitionKeyStatistics"
   name                    = "CDBPartitionKeyStatistics"
@@ -3093,7 +3100,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-334" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-335" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-336" {
   description             = ""
   display_name            = "CDBQueryRuntimeStatistics"
   name                    = "CDBQueryRuntimeStatistics"
@@ -3102,7 +3109,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-335" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-336" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-337" {
   description             = ""
   display_name            = "CDBTableApiRequests"
   name                    = "CDBTableApiRequests"
@@ -3111,7 +3118,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-336" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-337" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-338" {
   description             = ""
   display_name            = "CHSMServiceOperationAuditLogs"
   name                    = "CHSMServiceOperationAuditLogs"
@@ -3120,7 +3127,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-337" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-338" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-339" {
   description             = ""
   display_name            = "CIEventsAudit"
   name                    = "CIEventsAudit"
@@ -3129,7 +3136,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-338" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-339" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-340" {
   description             = ""
   display_name            = "CIEventsOperational"
   name                    = "CIEventsOperational"
@@ -3138,7 +3145,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-339" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-340" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-341" {
   description             = ""
   display_name            = "CassandraAudit"
   name                    = "CassandraAudit"
@@ -3147,7 +3154,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-340" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-341" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-342" {
   description             = ""
   display_name            = "CassandraLogs"
   name                    = "CassandraLogs"
@@ -3156,7 +3163,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-341" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-342" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-343" {
   description             = ""
   display_name            = "ChaosStudioExperimentEventLogs"
   name                    = "ChaosStudioExperimentEventLogs"
@@ -3165,7 +3172,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-342" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-343" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-344" {
   description             = ""
   display_name            = "CloudHsmHardwareOperationAuditLogs"
   name                    = "CloudHsmHardwareOperationAuditLogs"
@@ -3174,7 +3181,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-343" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-344" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-345" {
   description             = ""
   display_name            = "CloudHsmServiceOperationAuditLogs"
   name                    = "CloudHsmServiceOperationAuditLogs"
@@ -3183,7 +3190,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-344" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-345" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-346" {
   description             = ""
   display_name            = "ComputerGroup"
   name                    = "ComputerGroup"
@@ -3192,7 +3199,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-345" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-346" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-347" {
   description             = ""
   display_name            = "ContainerAppConsoleLogs"
   name                    = "ContainerAppConsoleLogs"
@@ -3201,7 +3208,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-346" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-347" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-348" {
   description             = ""
   display_name            = "ContainerAppHTTPLogs"
   name                    = "ContainerAppHTTPLogs"
@@ -3210,7 +3217,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-347" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-348" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-349" {
   description             = ""
   display_name            = "ContainerAppSystemLogs"
   name                    = "ContainerAppSystemLogs"
@@ -3219,7 +3226,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-348" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-349" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-350" {
   description             = ""
   display_name            = "ContainerEvent"
   name                    = "ContainerEvent"
@@ -3228,7 +3235,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-349" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-350" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-351" {
   description             = ""
   display_name            = "ContainerImageInventory"
   name                    = "ContainerImageInventory"
@@ -3237,7 +3244,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-350" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-351" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-352" {
   description             = ""
   display_name            = "ContainerInstanceLog"
   name                    = "ContainerInstanceLog"
@@ -3246,7 +3253,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-351" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-352" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-353" {
   description             = ""
   display_name            = "ContainerInventory"
   name                    = "ContainerInventory"
@@ -3255,7 +3262,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-352" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-353" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-354" {
   description             = ""
   display_name            = "ContainerLog"
   name                    = "ContainerLog"
@@ -3264,7 +3271,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-353" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-354" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-355" {
   description             = ""
   display_name            = "ContainerLogV2"
   name                    = "ContainerLogV2"
@@ -3273,7 +3280,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-354" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-355" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-356" {
   description             = ""
   display_name            = "ContainerNetworkLogs"
   name                    = "ContainerNetworkLogs"
@@ -3282,7 +3289,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-355" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-356" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-357" {
   description             = ""
   display_name            = "ContainerNodeInventory"
   name                    = "ContainerNodeInventory"
@@ -3291,7 +3298,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-356" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-357" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-358" {
   description             = ""
   display_name            = "ContainerRegistryLoginEvents"
   name                    = "ContainerRegistryLoginEvents"
@@ -3300,7 +3307,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-357" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-358" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-359" {
   description             = ""
   display_name            = "ContainerRegistryRepositoryEvents"
   name                    = "ContainerRegistryRepositoryEvents"
@@ -3309,7 +3316,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-358" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-359" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-360" {
   description             = ""
   display_name            = "ContainerServiceLog"
   name                    = "ContainerServiceLog"
@@ -3318,7 +3325,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-359" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-360" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-361" {
   description             = ""
   display_name            = "CoreAzureBackup"
   name                    = "CoreAzureBackup"
@@ -3327,7 +3334,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-360" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-361" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-362" {
   description             = ""
   display_name            = "DCRLogErrors"
   name                    = "DCRLogErrors"
@@ -3336,7 +3343,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-361" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-362" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-363" {
   description             = ""
   display_name            = "DCRLogTroubleshooting"
   name                    = "DCRLogTroubleshooting"
@@ -3345,7 +3352,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-362" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-363" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-364" {
   description             = ""
   display_name            = "DNSQueryLogs"
   name                    = "DNSQueryLogs"
@@ -3354,7 +3361,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-363" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-364" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-365" {
   description             = ""
   display_name            = "DSMAzureBlobStorageLogs"
   name                    = "DSMAzureBlobStorageLogs"
@@ -3363,7 +3370,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-364" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-365" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-366" {
   description             = ""
   display_name            = "DSMDataClassificationLogs"
   name                    = "DSMDataClassificationLogs"
@@ -3372,7 +3379,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-365" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-366" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-367" {
   description             = ""
   display_name            = "DSMDataLabelingLogs"
   name                    = "DSMDataLabelingLogs"
@@ -3381,7 +3388,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-366" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-367" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-368" {
   description             = ""
   display_name            = "DataSetOutput"
   name                    = "DataSetOutput"
@@ -3390,7 +3397,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-367" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-368" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-369" {
   description             = ""
   display_name            = "DataSetRuns"
   name                    = "DataSetRuns"
@@ -3399,7 +3406,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-368" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-369" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-370" {
   description             = ""
   display_name            = "DataTransferOperations"
   name                    = "DataTransferOperations"
@@ -3408,7 +3415,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-369" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-370" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-371" {
   description             = ""
   display_name            = "DatabricksAccounts"
   name                    = "DatabricksAccounts"
@@ -3417,7 +3424,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-370" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-371" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-372" {
   description             = ""
   display_name            = "DatabricksApps"
   name                    = "DatabricksApps"
@@ -3426,7 +3433,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-371" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-372" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-373" {
   description             = ""
   display_name            = "DatabricksBrickStoreHttpGateway"
   name                    = "DatabricksBrickStoreHttpGateway"
@@ -3435,7 +3442,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-372" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-373" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-374" {
   description             = ""
   display_name            = "DatabricksBudgetPolicyCentral"
   name                    = "DatabricksBudgetPolicyCentral"
@@ -3444,7 +3451,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-373" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-374" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-375" {
   description             = ""
   display_name            = "DatabricksCapsule8Dataplane"
   name                    = "DatabricksCapsule8Dataplane"
@@ -3453,7 +3460,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-374" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-375" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-376" {
   description             = ""
   display_name            = "DatabricksClamAVScan"
   name                    = "DatabricksClamAVScan"
@@ -3462,7 +3469,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-375" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-376" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-377" {
   description             = ""
   display_name            = "DatabricksCloudStorageMetadata"
   name                    = "DatabricksCloudStorageMetadata"
@@ -3471,7 +3478,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-376" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-377" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-378" {
   description             = ""
   display_name            = "DatabricksClusterLibraries"
   name                    = "DatabricksClusterLibraries"
@@ -3480,7 +3487,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-377" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-378" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-379" {
   description             = ""
   display_name            = "DatabricksClusterPolicies"
   name                    = "DatabricksClusterPolicies"
@@ -3489,7 +3496,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-378" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-379" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-380" {
   description             = ""
   display_name            = "DatabricksClusters"
   name                    = "DatabricksClusters"
@@ -3498,7 +3505,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-379" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-380" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-381" {
   description             = ""
   display_name            = "DatabricksDBFS"
   name                    = "DatabricksDBFS"
@@ -3507,7 +3514,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-380" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-381" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-382" {
   description             = ""
   display_name            = "DatabricksDashboards"
   name                    = "DatabricksDashboards"
@@ -3516,7 +3523,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-381" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-382" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-383" {
   description             = ""
   display_name            = "DatabricksDataMonitoring"
   name                    = "DatabricksDataMonitoring"
@@ -3525,7 +3532,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-382" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-383" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-384" {
   description             = ""
   display_name            = "DatabricksDataRooms"
   name                    = "DatabricksDataRooms"
@@ -3534,7 +3541,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-383" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-384" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-385" {
   description             = ""
   display_name            = "DatabricksDatabricksSQL"
   name                    = "DatabricksDatabricksSQL"
@@ -3543,7 +3550,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-384" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-385" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-386" {
   description             = ""
   display_name            = "DatabricksDeltaPipelines"
   name                    = "DatabricksDeltaPipelines"
@@ -3552,7 +3559,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-385" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-386" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-387" {
   description             = ""
   display_name            = "DatabricksFeatureStore"
   name                    = "DatabricksFeatureStore"
@@ -3561,7 +3568,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-386" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-387" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-388" {
   description             = ""
   display_name            = "DatabricksFiles"
   name                    = "DatabricksFiles"
@@ -3570,7 +3577,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-387" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-388" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-389" {
   description             = ""
   display_name            = "DatabricksFilesystem"
   name                    = "DatabricksFilesystem"
@@ -3579,7 +3586,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-388" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-389" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-390" {
   description             = ""
   display_name            = "DatabricksGenie"
   name                    = "DatabricksGenie"
@@ -3588,7 +3595,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-389" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-390" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-391" {
   description             = ""
   display_name            = "DatabricksGitCredentials"
   name                    = "DatabricksGitCredentials"
@@ -3597,7 +3604,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-390" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-391" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-392" {
   description             = ""
   display_name            = "DatabricksGlobalInitScripts"
   name                    = "DatabricksGlobalInitScripts"
@@ -3606,7 +3613,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-391" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-392" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-393" {
   description             = ""
   display_name            = "DatabricksGroups"
   name                    = "DatabricksGroups"
@@ -3615,7 +3622,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-392" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-393" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-394" {
   description             = ""
   display_name            = "DatabricksIAMRole"
   name                    = "DatabricksIAMRole"
@@ -3624,7 +3631,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-393" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-394" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-395" {
   description             = ""
   display_name            = "DatabricksIngestion"
   name                    = "DatabricksIngestion"
@@ -3633,7 +3640,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-394" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-395" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-396" {
   description             = ""
   display_name            = "DatabricksInstancePools"
   name                    = "DatabricksInstancePools"
@@ -3642,7 +3649,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-395" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-396" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-397" {
   description             = ""
   display_name            = "DatabricksJobs"
   name                    = "DatabricksJobs"
@@ -3651,7 +3658,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-396" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-397" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-398" {
   description             = ""
   display_name            = "DatabricksLakeviewConfig"
   name                    = "DatabricksLakeviewConfig"
@@ -3660,7 +3667,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-397" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-398" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-399" {
   description             = ""
   display_name            = "DatabricksLineageTracking"
   name                    = "DatabricksLineageTracking"
@@ -3669,7 +3676,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-398" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-399" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-400" {
   description             = ""
   display_name            = "DatabricksMLflowAcledArtifact"
   name                    = "DatabricksMLflowAcledArtifact"
@@ -3678,7 +3685,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-399" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-400" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-401" {
   description             = ""
   display_name            = "DatabricksMLflowExperiment"
   name                    = "DatabricksMLflowExperiment"
@@ -3687,7 +3694,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-400" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-401" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-402" {
   description             = ""
   display_name            = "DatabricksMarketplaceConsumer"
   name                    = "DatabricksMarketplaceConsumer"
@@ -3696,7 +3703,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-401" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-402" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-403" {
   description             = ""
   display_name            = "DatabricksMarketplaceProvider"
   name                    = "DatabricksMarketplaceProvider"
@@ -3705,7 +3712,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-402" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-403" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-404" {
   description             = ""
   display_name            = "DatabricksModelRegistry"
   name                    = "DatabricksModelRegistry"
@@ -3714,7 +3721,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-403" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-404" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-405" {
   description             = ""
   display_name            = "DatabricksNotebook"
   name                    = "DatabricksNotebook"
@@ -3723,7 +3730,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-404" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-405" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-406" {
   description             = ""
   display_name            = "DatabricksOnlineTables"
   name                    = "DatabricksOnlineTables"
@@ -3732,7 +3739,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-405" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-406" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-407" {
   description             = ""
   display_name            = "DatabricksPartnerHub"
   name                    = "DatabricksPartnerHub"
@@ -3741,7 +3748,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-406" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-407" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-408" {
   description             = ""
   display_name            = "DatabricksPredictiveOptimization"
   name                    = "DatabricksPredictiveOptimization"
@@ -3750,7 +3757,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-407" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-408" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-409" {
   description             = ""
   display_name            = "DatabricksRBAC"
   name                    = "DatabricksRBAC"
@@ -3759,7 +3766,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-408" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-409" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-410" {
   description             = ""
   display_name            = "DatabricksRFA"
   name                    = "DatabricksRFA"
@@ -3768,7 +3775,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-409" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-410" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-411" {
   description             = ""
   display_name            = "DatabricksRemoteHistoryService"
   name                    = "DatabricksRemoteHistoryService"
@@ -3777,7 +3784,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-410" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-411" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-412" {
   description             = ""
   display_name            = "DatabricksRepos"
   name                    = "DatabricksRepos"
@@ -3786,7 +3793,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-411" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-412" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-413" {
   description             = ""
   display_name            = "DatabricksSQL"
   name                    = "DatabricksSQL"
@@ -3795,7 +3802,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-412" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-413" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-414" {
   description             = ""
   display_name            = "DatabricksSQLPermissions"
   name                    = "DatabricksSQLPermissions"
@@ -3804,7 +3811,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-413" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-414" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-415" {
   description             = ""
   display_name            = "DatabricksSSH"
   name                    = "DatabricksSSH"
@@ -3813,7 +3820,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-414" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-415" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-416" {
   description             = ""
   display_name            = "DatabricksSecrets"
   name                    = "DatabricksSecrets"
@@ -3822,7 +3829,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-415" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-416" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-417" {
   description             = ""
   display_name            = "DatabricksServerlessRealTimeInference"
   name                    = "DatabricksServerlessRealTimeInference"
@@ -3831,7 +3838,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-416" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-417" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-418" {
   description             = ""
   display_name            = "DatabricksTables"
   name                    = "DatabricksTables"
@@ -3840,7 +3847,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-417" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-418" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-419" {
   description             = ""
   display_name            = "DatabricksUnityCatalog"
   name                    = "DatabricksUnityCatalog"
@@ -3849,7 +3856,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-418" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-419" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-420" {
   description             = ""
   display_name            = "DatabricksVectorSearch"
   name                    = "DatabricksVectorSearch"
@@ -3858,7 +3865,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-419" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-420" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-421" {
   description             = ""
   display_name            = "DatabricksWebTerminal"
   name                    = "DatabricksWebTerminal"
@@ -3867,7 +3874,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-420" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-421" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-422" {
   description             = ""
   display_name            = "DatabricksWebhookNotifications"
   name                    = "DatabricksWebhookNotifications"
@@ -3876,7 +3883,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-421" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-422" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-423" {
   description             = ""
   display_name            = "DatabricksWorkspace"
   name                    = "DatabricksWorkspace"
@@ -3885,7 +3892,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-422" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-423" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-424" {
   description             = ""
   display_name            = "DatabricksWorkspaceFiles"
   name                    = "DatabricksWorkspaceFiles"
@@ -3894,7 +3901,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-423" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-424" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-425" {
   description             = ""
   display_name            = "DevCenterAgentHealthLogs"
   name                    = "DevCenterAgentHealthLogs"
@@ -3903,7 +3910,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-424" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-425" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-426" {
   description             = ""
   display_name            = "DevCenterBillingEventLogs"
   name                    = "DevCenterBillingEventLogs"
@@ -3912,7 +3919,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-425" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-426" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-427" {
   description             = ""
   display_name            = "DevCenterConnectionLogs"
   name                    = "DevCenterConnectionLogs"
@@ -3921,7 +3928,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-426" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-427" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-428" {
   description             = ""
   display_name            = "DevCenterDiagnosticLogs"
   name                    = "DevCenterDiagnosticLogs"
@@ -3930,7 +3937,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-427" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-428" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-429" {
   description             = ""
   display_name            = "DevCenterResourceOperationLogs"
   name                    = "DevCenterResourceOperationLogs"
@@ -3939,7 +3946,16 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-428" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-429" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-430" {
+  description             = ""
+  display_name            = "DevOpsOperationsAudit"
+  name                    = "DevOpsOperationsAudit"
+  plan                    = "Analytics"
+  retention_in_days       = 0
+  total_retention_in_days = 0
+  workspace_id            = azurerm_log_analytics_workspace.res-2.id
+}
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-431" {
   description             = ""
   display_name            = "DeviceBehaviorEntities"
   name                    = "DeviceBehaviorEntities"
@@ -3948,7 +3964,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-429" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-430" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-432" {
   description             = ""
   display_name            = "DeviceBehaviorInfo"
   name                    = "DeviceBehaviorInfo"
@@ -3957,7 +3973,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-430" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-431" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-433" {
   description             = ""
   display_name            = "DeviceCustomFileEvents"
   name                    = "DeviceCustomFileEvents"
@@ -3966,7 +3982,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-431" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-432" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-434" {
   description             = ""
   display_name            = "DeviceCustomImageLoadEvents"
   name                    = "DeviceCustomImageLoadEvents"
@@ -3975,7 +3991,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-432" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-433" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-435" {
   description             = ""
   display_name            = "DeviceCustomNetworkEvents"
   name                    = "DeviceCustomNetworkEvents"
@@ -3984,7 +4000,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-433" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-434" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-436" {
   description             = ""
   display_name            = "DeviceCustomProcessEvents"
   name                    = "DeviceCustomProcessEvents"
@@ -3993,7 +4009,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-434" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-435" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-437" {
   description             = ""
   display_name            = "DeviceCustomRegistryEvents"
   name                    = "DeviceCustomRegistryEvents"
@@ -4002,7 +4018,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-435" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-436" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-438" {
   description             = ""
   display_name            = "DeviceCustomScriptEvents"
   name                    = "DeviceCustomScriptEvents"
@@ -4011,7 +4027,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-436" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-437" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-439" {
   description             = ""
   display_name            = "DiscoveryBookshelfAuditLogs"
   name                    = "DiscoveryBookshelfAuditLogs"
@@ -4020,7 +4036,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-437" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-438" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-440" {
   description             = ""
   display_name            = "DiscoverySupercomputerAuditLogs"
   name                    = "DiscoverySupercomputerAuditLogs"
@@ -4029,7 +4045,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-438" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-439" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-441" {
   description             = ""
   display_name            = "DiscoveryWorkspaceAuditLogs"
   name                    = "DiscoveryWorkspaceAuditLogs"
@@ -4038,7 +4054,16 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-439" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-440" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-442" {
+  description             = ""
+  display_name            = "DragonCopilot"
+  name                    = "DragonCopilot"
+  plan                    = "Analytics"
+  retention_in_days       = 0
+  total_retention_in_days = 0
+  workspace_id            = azurerm_log_analytics_workspace.res-2.id
+}
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-443" {
   description             = ""
   display_name            = "DurableTaskSchedulerLogs"
   name                    = "DurableTaskSchedulerLogs"
@@ -4047,7 +4072,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-440" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-441" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-444" {
   description             = ""
   display_name            = "EGNFailedHttpDataPlaneOperations"
   name                    = "EGNFailedHttpDataPlaneOperations"
@@ -4056,7 +4081,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-441" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-442" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-445" {
   description             = ""
   display_name            = "EGNFailedMqttConnections"
   name                    = "EGNFailedMqttConnections"
@@ -4065,7 +4090,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-442" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-443" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-446" {
   description             = ""
   display_name            = "EGNFailedMqttPublishedMessages"
   name                    = "EGNFailedMqttPublishedMessages"
@@ -4074,7 +4099,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-443" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-444" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-447" {
   description             = ""
   display_name            = "EGNFailedMqttSubscriptions"
   name                    = "EGNFailedMqttSubscriptions"
@@ -4083,7 +4108,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-444" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-445" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-448" {
   description             = ""
   display_name            = "EGNMqttDisconnections"
   name                    = "EGNMqttDisconnections"
@@ -4092,7 +4117,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-445" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-446" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-449" {
   description             = ""
   display_name            = "EGNSuccessfulHttpDataPlaneOperations"
   name                    = "EGNSuccessfulHttpDataPlaneOperations"
@@ -4101,7 +4126,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-446" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-447" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-450" {
   description             = ""
   display_name            = "EGNSuccessfulMqttConnections"
   name                    = "EGNSuccessfulMqttConnections"
@@ -4110,7 +4135,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-447" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-448" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-451" {
   description             = ""
   display_name            = "ETWEvent"
   name                    = "ETWEvent"
@@ -4119,7 +4144,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-448" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-449" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-452" {
   description             = ""
   display_name            = "EdgeActionConsoleLog"
   name                    = "EdgeActionConsoleLog"
@@ -4128,7 +4153,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-449" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-450" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-453" {
   description             = ""
   display_name            = "EdgeActionServiceLog"
   name                    = "EdgeActionServiceLog"
@@ -4137,7 +4162,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-450" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-451" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-454" {
   description             = ""
   display_name            = "EnrichedMicrosoft365AuditLogs"
   name                    = "EnrichedMicrosoft365AuditLogs"
@@ -4146,7 +4171,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-451" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-452" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-455" {
   description             = ""
   display_name            = "Event"
   name                    = "Event"
@@ -4155,7 +4180,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-452" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-453" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-456" {
   description             = ""
   display_name            = "ExchangeAssessmentRecommendation"
   name                    = "ExchangeAssessmentRecommendation"
@@ -4164,7 +4189,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-453" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-454" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-457" {
   description             = ""
   display_name            = "ExchangeOnlineAssessmentRecommendation"
   name                    = "ExchangeOnlineAssessmentRecommendation"
@@ -4173,7 +4198,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-454" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-455" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-458" {
   description             = ""
   display_name            = "FailedIngestion"
   name                    = "FailedIngestion"
@@ -4182,7 +4207,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-455" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-456" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-459" {
   description             = ""
   display_name            = "FunctionAppLogs"
   name                    = "FunctionAppLogs"
@@ -4191,7 +4216,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-456" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-457" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-460" {
   description             = ""
   display_name            = "GraphNotificationsActivityLogs"
   name                    = "GraphNotificationsActivityLogs"
@@ -4200,7 +4225,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-457" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-458" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-461" {
   description             = ""
   display_name            = "HDInsightAmbariClusterAlerts"
   name                    = "HDInsightAmbariClusterAlerts"
@@ -4209,7 +4234,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-458" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-459" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-462" {
   description             = ""
   display_name            = "HDInsightAmbariSystemMetrics"
   name                    = "HDInsightAmbariSystemMetrics"
@@ -4218,7 +4243,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-459" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-460" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-463" {
   description             = ""
   display_name            = "HDInsightGatewayAuditLogs"
   name                    = "HDInsightGatewayAuditLogs"
@@ -4227,7 +4252,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-460" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-461" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-464" {
   description             = ""
   display_name            = "HDInsightHBaseLogs"
   name                    = "HDInsightHBaseLogs"
@@ -4236,7 +4261,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-461" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-462" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-465" {
   description             = ""
   display_name            = "HDInsightHBaseMetrics"
   name                    = "HDInsightHBaseMetrics"
@@ -4245,7 +4270,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-462" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-463" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-466" {
   description             = ""
   display_name            = "HDInsightHadoopAndYarnLogs"
   name                    = "HDInsightHadoopAndYarnLogs"
@@ -4254,7 +4279,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-463" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-464" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-467" {
   description             = ""
   display_name            = "HDInsightHadoopAndYarnMetrics"
   name                    = "HDInsightHadoopAndYarnMetrics"
@@ -4263,7 +4288,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-464" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-465" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-468" {
   description             = ""
   display_name            = "HDInsightHiveAndLLAPLogs"
   name                    = "HDInsightHiveAndLLAPLogs"
@@ -4272,7 +4297,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-465" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-466" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-469" {
   description             = ""
   display_name            = "HDInsightHiveAndLLAPMetrics"
   name                    = "HDInsightHiveAndLLAPMetrics"
@@ -4281,7 +4306,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-466" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-467" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-470" {
   description             = ""
   display_name            = "HDInsightHiveQueryAppStats"
   name                    = "HDInsightHiveQueryAppStats"
@@ -4290,7 +4315,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-467" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-468" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-471" {
   description             = ""
   display_name            = "HDInsightHiveTezAppStats"
   name                    = "HDInsightHiveTezAppStats"
@@ -4299,7 +4324,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-468" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-469" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-472" {
   description             = ""
   display_name            = "HDInsightJupyterNotebookEvents"
   name                    = "HDInsightJupyterNotebookEvents"
@@ -4308,7 +4333,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-469" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-470" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-473" {
   description             = ""
   display_name            = "HDInsightKafkaLogs"
   name                    = "HDInsightKafkaLogs"
@@ -4317,7 +4342,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-470" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-471" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-474" {
   description             = ""
   display_name            = "HDInsightKafkaMetrics"
   name                    = "HDInsightKafkaMetrics"
@@ -4326,7 +4351,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-471" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-472" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-475" {
   description             = ""
   display_name            = "HDInsightKafkaServerLog"
   name                    = "HDInsightKafkaServerLog"
@@ -4335,7 +4360,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-472" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-473" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-476" {
   description             = ""
   display_name            = "HDInsightOozieLogs"
   name                    = "HDInsightOozieLogs"
@@ -4344,7 +4369,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-473" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-474" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-477" {
   description             = ""
   display_name            = "HDInsightRangerAuditLogs"
   name                    = "HDInsightRangerAuditLogs"
@@ -4353,7 +4378,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-474" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-475" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-478" {
   description             = ""
   display_name            = "HDInsightSecurityLogs"
   name                    = "HDInsightSecurityLogs"
@@ -4362,7 +4387,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-475" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-476" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-479" {
   description             = ""
   display_name            = "HDInsightSparkApplicationEvents"
   name                    = "HDInsightSparkApplicationEvents"
@@ -4371,7 +4396,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-476" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-477" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-480" {
   description             = ""
   display_name            = "HDInsightSparkBlockManagerEvents"
   name                    = "HDInsightSparkBlockManagerEvents"
@@ -4380,7 +4405,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-477" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-478" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-481" {
   description             = ""
   display_name            = "HDInsightSparkEnvironmentEvents"
   name                    = "HDInsightSparkEnvironmentEvents"
@@ -4389,7 +4414,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-478" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-479" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-482" {
   description             = ""
   display_name            = "HDInsightSparkExecutorEvents"
   name                    = "HDInsightSparkExecutorEvents"
@@ -4398,7 +4423,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-479" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-480" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-483" {
   description             = ""
   display_name            = "HDInsightSparkExtraEvents"
   name                    = "HDInsightSparkExtraEvents"
@@ -4407,7 +4432,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-480" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-481" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-484" {
   description             = ""
   display_name            = "HDInsightSparkJobEvents"
   name                    = "HDInsightSparkJobEvents"
@@ -4416,7 +4441,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-481" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-482" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-485" {
   description             = ""
   display_name            = "HDInsightSparkLogs"
   name                    = "HDInsightSparkLogs"
@@ -4425,7 +4450,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-482" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-483" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-486" {
   description             = ""
   display_name            = "HDInsightSparkSQLExecutionEvents"
   name                    = "HDInsightSparkSQLExecutionEvents"
@@ -4434,7 +4459,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-483" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-484" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-487" {
   description             = ""
   display_name            = "HDInsightSparkStageEvents"
   name                    = "HDInsightSparkStageEvents"
@@ -4443,7 +4468,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-484" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-485" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-488" {
   description             = ""
   display_name            = "HDInsightSparkStageTaskAccumulables"
   name                    = "HDInsightSparkStageTaskAccumulables"
@@ -4452,7 +4477,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-485" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-486" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-489" {
   description             = ""
   display_name            = "HDInsightSparkTaskEvents"
   name                    = "HDInsightSparkTaskEvents"
@@ -4461,7 +4486,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-486" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-487" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-490" {
   description             = ""
   display_name            = "HDInsightStormLogs"
   name                    = "HDInsightStormLogs"
@@ -4470,7 +4495,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-487" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-488" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-491" {
   description             = ""
   display_name            = "HDInsightStormMetrics"
   name                    = "HDInsightStormMetrics"
@@ -4479,7 +4504,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-488" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-489" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-492" {
   description             = ""
   display_name            = "HDInsightStormTopologyMetrics"
   name                    = "HDInsightStormTopologyMetrics"
@@ -4488,7 +4513,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-489" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-490" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-493" {
   description             = ""
   display_name            = "HealthStateChangeEvent"
   name                    = "HealthStateChangeEvent"
@@ -4497,7 +4522,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-490" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-491" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-494" {
   description             = ""
   display_name            = "Heartbeat"
   name                    = "Heartbeat"
@@ -4506,7 +4531,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-491" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-492" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-495" {
   description             = ""
   display_name            = "InsightsMetrics"
   name                    = "InsightsMetrics"
@@ -4515,7 +4540,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-492" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-493" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-496" {
   description             = ""
   display_name            = "IntuneAuditLogs"
   name                    = "IntuneAuditLogs"
@@ -4524,7 +4549,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-493" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-494" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-497" {
   description             = ""
   display_name            = "IntuneDeviceComplianceOrg"
   name                    = "IntuneDeviceComplianceOrg"
@@ -4533,7 +4558,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-494" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-495" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-498" {
   description             = ""
   display_name            = "IntuneDevices"
   name                    = "IntuneDevices"
@@ -4542,7 +4567,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-495" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-496" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-499" {
   description             = ""
   display_name            = "IntuneOperationalLogs"
   name                    = "IntuneOperationalLogs"
@@ -4551,7 +4576,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-496" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-497" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-500" {
   description             = ""
   display_name            = "KubeEvents"
   name                    = "KubeEvents"
@@ -4560,7 +4585,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-497" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-498" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-501" {
   description             = ""
   display_name            = "KubeHealth"
   name                    = "KubeHealth"
@@ -4569,7 +4594,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-498" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-499" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-502" {
   description             = ""
   display_name            = "KubeMonAgentEvents"
   name                    = "KubeMonAgentEvents"
@@ -4578,7 +4603,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-499" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-500" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-503" {
   description             = ""
   display_name            = "KubeNodeInventory"
   name                    = "KubeNodeInventory"
@@ -4587,7 +4612,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-500" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-501" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-504" {
   description             = ""
   display_name            = "KubePVInventory"
   name                    = "KubePVInventory"
@@ -4596,7 +4621,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-501" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-502" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-505" {
   description             = ""
   display_name            = "KubePodInventory"
   name                    = "KubePodInventory"
@@ -4605,7 +4630,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-502" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-503" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-506" {
   description             = ""
   display_name            = "KubeServices"
   name                    = "KubeServices"
@@ -4614,7 +4639,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-503" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-504" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-507" {
   description             = ""
   display_name            = "LAJobLogs"
   name                    = "LAJobLogs"
@@ -4623,7 +4648,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-504" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-505" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-508" {
   description             = ""
   display_name            = "LAQueryLogs"
   name                    = "LAQueryLogs"
@@ -4632,7 +4657,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-505" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-506" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-509" {
   description             = ""
   display_name            = "LASummaryLogs"
   name                    = "LASummaryLogs"
@@ -4641,7 +4666,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-506" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-507" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-510" {
   description             = ""
   display_name            = "LIATrackingEvents"
   name                    = "LIATrackingEvents"
@@ -4650,7 +4675,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-507" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-508" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-511" {
   description             = ""
   display_name            = "LedgerTransactionLogs"
   name                    = "LedgerTransactionLogs"
@@ -4659,7 +4684,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-508" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-509" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-512" {
   description             = ""
   display_name            = "LedgerUserDefinedLogs"
   name                    = "LedgerUserDefinedLogs"
@@ -4668,7 +4693,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-509" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-510" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-513" {
   description             = ""
   display_name            = "LogicAppWorkflowRuntime"
   name                    = "LogicAppWorkflowRuntime"
@@ -4677,7 +4702,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-510" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-511" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-514" {
   description             = ""
   display_name            = "MCCEventLogs"
   name                    = "MCCEventLogs"
@@ -4686,7 +4711,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-511" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-512" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-515" {
   description             = ""
   display_name            = "MCVPAuditLogs"
   name                    = "MCVPAuditLogs"
@@ -4695,7 +4720,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-512" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-513" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-516" {
   description             = ""
   display_name            = "MCVPOperationLogs"
   name                    = "MCVPOperationLogs"
@@ -4704,7 +4729,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-513" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-514" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-517" {
   description             = ""
   display_name            = "MDCDetectionDNSEvents"
   name                    = "MDCDetectionDNSEvents"
@@ -4713,7 +4738,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-514" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-515" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-518" {
   description             = ""
   display_name            = "MDCDetectionFimEvents"
   name                    = "MDCDetectionFimEvents"
@@ -4722,7 +4747,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-515" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-516" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-519" {
   description             = ""
   display_name            = "MDCDetectionGatingValidationEvents"
   name                    = "MDCDetectionGatingValidationEvents"
@@ -4731,7 +4756,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-516" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-517" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-520" {
   description             = ""
   display_name            = "MDCDetectionK8SApiEvents"
   name                    = "MDCDetectionK8SApiEvents"
@@ -4740,7 +4765,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-517" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-518" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-521" {
   description             = ""
   display_name            = "MDCDetectionProcessV2Events"
   name                    = "MDCDetectionProcessV2Events"
@@ -4749,7 +4774,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-518" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-519" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-522" {
   description             = ""
   display_name            = "MDCFileIntegrityMonitoringEvents"
   name                    = "MDCFileIntegrityMonitoringEvents"
@@ -4758,7 +4783,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-519" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-520" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-523" {
   description             = ""
   display_name            = "MDECustomCollectionDeviceFileEvents"
   name                    = "MDECustomCollectionDeviceFileEvents"
@@ -4767,7 +4792,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-520" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-521" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-524" {
   description             = ""
   display_name            = "MDPResourceLog"
   name                    = "MDPResourceLog"
@@ -4776,7 +4801,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-521" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-522" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-525" {
   description             = ""
   display_name            = "MNFDeviceUpdates"
   name                    = "MNFDeviceUpdates"
@@ -4785,7 +4810,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-522" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-523" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-526" {
   description             = ""
   display_name            = "MNFSystemSessionHistoryUpdates"
   name                    = "MNFSystemSessionHistoryUpdates"
@@ -4794,7 +4819,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-523" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-524" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-527" {
   description             = ""
   display_name            = "MNFSystemStateMessageUpdates"
   name                    = "MNFSystemStateMessageUpdates"
@@ -4803,7 +4828,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-524" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-525" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-528" {
   description             = ""
   display_name            = "MPCAuditLogs"
   name                    = "MPCAuditLogs"
@@ -4812,7 +4837,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-525" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-526" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-529" {
   description             = ""
   display_name            = "MPCIngestionLogs"
   name                    = "MPCIngestionLogs"
@@ -4821,7 +4846,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-526" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-527" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-530" {
   description             = ""
   display_name            = "MeshControlPlane"
   name                    = "MeshControlPlane"
@@ -4830,7 +4855,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-527" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-528" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-531" {
   description             = ""
   display_name            = "MicrosoftAzureBastionAuditLogs"
   name                    = "MicrosoftAzureBastionAuditLogs"
@@ -4839,7 +4864,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-528" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-529" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-532" {
   description             = ""
   display_name            = "MicrosoftDataShareReceivedSnapshotLog"
   name                    = "MicrosoftDataShareReceivedSnapshotLog"
@@ -4848,7 +4873,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-529" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-530" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-533" {
   description             = ""
   display_name            = "MicrosoftDataShareSentSnapshotLog"
   name                    = "MicrosoftDataShareSentSnapshotLog"
@@ -4857,7 +4882,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-530" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-531" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-534" {
   description             = ""
   display_name            = "MicrosoftDataShareShareLog"
   name                    = "MicrosoftDataShareShareLog"
@@ -4866,7 +4891,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-531" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-532" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-535" {
   description             = ""
   display_name            = "MicrosoftGraphActivityLogs"
   name                    = "MicrosoftGraphActivityLogs"
@@ -4875,7 +4900,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-532" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-533" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-536" {
   description             = ""
   display_name            = "MicrosoftGraphPolicyLogs"
   name                    = "MicrosoftGraphPolicyLogs"
@@ -4884,7 +4909,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-533" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-534" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-537" {
   description             = ""
   display_name            = "MicrosoftHealthcareApisAuditLogs"
   name                    = "MicrosoftHealthcareApisAuditLogs"
@@ -4893,7 +4918,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-534" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-535" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-538" {
   description             = ""
   display_name            = "MicrosoftServicePrincipalSignInLogs"
   name                    = "MicrosoftServicePrincipalSignInLogs"
@@ -4902,7 +4927,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-535" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-536" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-539" {
   description             = ""
   display_name            = "MySqlAuditLogs"
   name                    = "MySqlAuditLogs"
@@ -4911,7 +4936,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-536" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-537" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-540" {
   description             = ""
   display_name            = "MySqlSlowLogs"
   name                    = "MySqlSlowLogs"
@@ -4920,7 +4945,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-537" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-538" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-541" {
   description             = ""
   display_name            = "NCBMBreakGlassAuditLogs"
   name                    = "NCBMBreakGlassAuditLogs"
@@ -4929,7 +4954,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-538" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-539" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-542" {
   description             = ""
   display_name            = "NCBMSecurityDefenderLogs"
   name                    = "NCBMSecurityDefenderLogs"
@@ -4938,7 +4963,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-539" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-540" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-543" {
   description             = ""
   display_name            = "NCBMSecurityLogs"
   name                    = "NCBMSecurityLogs"
@@ -4947,7 +4972,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-540" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-541" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-544" {
   description             = ""
   display_name            = "NCBMSystemLogs"
   name                    = "NCBMSystemLogs"
@@ -4956,7 +4981,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-541" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-542" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-545" {
   description             = ""
   display_name            = "NCCIDRACLogs"
   name                    = "NCCIDRACLogs"
@@ -4965,7 +4990,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-542" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-543" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-546" {
   description             = ""
   display_name            = "NCCKubernetesAPIAuditLogs"
   name                    = "NCCKubernetesAPIAuditLogs"
@@ -4974,7 +4999,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-543" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-544" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-547" {
   description             = ""
   display_name            = "NCCKubernetesLogs"
   name                    = "NCCKubernetesLogs"
@@ -4983,7 +5008,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-544" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-545" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-548" {
   description             = ""
   display_name            = "NCCPlatformOperationsLogs"
   name                    = "NCCPlatformOperationsLogs"
@@ -4992,7 +5017,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-545" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-546" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-549" {
   description             = ""
   display_name            = "NCCVMOrchestrationLogs"
   name                    = "NCCVMOrchestrationLogs"
@@ -5001,7 +5026,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-546" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-547" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-550" {
   description             = ""
   display_name            = "NCMClusterOperationsLogs"
   name                    = "NCMClusterOperationsLogs"
@@ -5010,7 +5035,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-547" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-548" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-551" {
   description             = ""
   display_name            = "NCSStorageAlerts"
   name                    = "NCSStorageAlerts"
@@ -5019,7 +5044,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-548" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-549" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-552" {
   description             = ""
   display_name            = "NCSStorageAudits"
   name                    = "NCSStorageAudits"
@@ -5028,7 +5053,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-549" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-550" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-553" {
   description             = ""
   display_name            = "NCSStorageLogs"
   name                    = "NCSStorageLogs"
@@ -5037,7 +5062,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-550" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-551" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-554" {
   description             = ""
   display_name            = "NGXOperationLogs"
   name                    = "NGXOperationLogs"
@@ -5046,7 +5071,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-551" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-552" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-555" {
   description             = ""
   display_name            = "NGXSecurityLogs"
   name                    = "NGXSecurityLogs"
@@ -5055,7 +5080,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-552" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-553" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-556" {
   description             = ""
   display_name            = "NSPAccessLogs"
   name                    = "NSPAccessLogs"
@@ -5064,7 +5089,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-553" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-554" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-557" {
   description             = ""
   display_name            = "NTAInsights"
   name                    = "NTAInsights"
@@ -5073,7 +5098,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-554" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-555" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-558" {
   description             = ""
   display_name            = "NTAIpDetails"
   name                    = "NTAIpDetails"
@@ -5082,7 +5107,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-555" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-556" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-559" {
   description             = ""
   display_name            = "NTANetAnalytics"
   name                    = "NTANetAnalytics"
@@ -5091,7 +5116,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-556" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-557" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-560" {
   description             = ""
   display_name            = "NTANspRuleRecommendation"
   name                    = "NTANspRuleRecommendation"
@@ -5100,7 +5125,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-557" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-558" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-561" {
   description             = ""
   display_name            = "NTARuleRecommendation"
   name                    = "NTARuleRecommendation"
@@ -5109,7 +5134,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-558" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-559" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-562" {
   description             = ""
   display_name            = "NTATopologyDetails"
   name                    = "NTATopologyDetails"
@@ -5118,7 +5143,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-559" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-560" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-563" {
   description             = ""
   display_name            = "NWConnectionMonitorDNSResult"
   name                    = "NWConnectionMonitorDNSResult"
@@ -5127,7 +5152,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-560" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-561" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-564" {
   description             = ""
   display_name            = "NWConnectionMonitorDestinationListenerResult"
   name                    = "NWConnectionMonitorDestinationListenerResult"
@@ -5136,7 +5161,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-561" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-562" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-565" {
   description             = ""
   display_name            = "NWConnectionMonitorPathResult"
   name                    = "NWConnectionMonitorPathResult"
@@ -5145,7 +5170,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-562" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-563" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-566" {
   description             = ""
   display_name            = "NWConnectionMonitorTestResult"
   name                    = "NWConnectionMonitorTestResult"
@@ -5154,7 +5179,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-563" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-564" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-567" {
   description             = ""
   display_name            = "NatGatewayFlowlogsV1"
   name                    = "NatGatewayFlowlogsV1"
@@ -5163,7 +5188,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-564" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-565" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-568" {
   description             = ""
   display_name            = "NetworkAccessAlerts"
   name                    = "NetworkAccessAlerts"
@@ -5172,7 +5197,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-565" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-566" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-569" {
   description             = ""
   display_name            = "NetworkAccessConnectionEvents"
   name                    = "NetworkAccessConnectionEvents"
@@ -5181,7 +5206,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-566" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-567" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-570" {
   description             = ""
   display_name            = "NetworkAccessGenerativeAIInsights"
   name                    = "NetworkAccessGenerativeAIInsights"
@@ -5190,7 +5215,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-567" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-568" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-571" {
   description             = ""
   display_name            = "NetworkAccessTraffic"
   name                    = "NetworkAccessTraffic"
@@ -5199,7 +5224,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-568" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-569" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-572" {
   description             = ""
   display_name            = "NginxUpstreamUpdateLogs"
   name                    = "NginxUpstreamUpdateLogs"
@@ -5208,7 +5233,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-569" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-570" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-573" {
   description             = ""
   display_name            = "OEPAirFlowTask"
   name                    = "OEPAirFlowTask"
@@ -5217,7 +5242,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-570" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-571" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-574" {
   description             = ""
   display_name            = "OEPAuditLogs"
   name                    = "OEPAuditLogs"
@@ -5226,7 +5251,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-571" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-572" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-575" {
   description             = ""
   display_name            = "OEPDataplaneLogs"
   name                    = "OEPDataplaneLogs"
@@ -5235,7 +5260,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-572" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-573" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-576" {
   description             = ""
   display_name            = "OEPElasticOperator"
   name                    = "OEPElasticOperator"
@@ -5244,7 +5269,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-573" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-574" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-577" {
   description             = ""
   display_name            = "OEPElasticsearch"
   name                    = "OEPElasticsearch"
@@ -5253,7 +5278,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-574" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-575" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-578" {
   description             = ""
   display_name            = "OEWAuditLogs"
   name                    = "OEWAuditLogs"
@@ -5262,7 +5287,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-575" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-576" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-579" {
   description             = ""
   display_name            = "OEWExperimentAssignmentSummary"
   name                    = "OEWExperimentAssignmentSummary"
@@ -5271,7 +5296,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-576" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-577" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-580" {
   description             = ""
   display_name            = "OEWExperimentScorecardMetricPairs"
   name                    = "OEWExperimentScorecardMetricPairs"
@@ -5280,7 +5305,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-577" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-578" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-581" {
   description             = ""
   display_name            = "OEWExperimentScorecards"
   name                    = "OEWExperimentScorecards"
@@ -5289,7 +5314,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-578" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-579" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-582" {
   description             = ""
   display_name            = "OGOAuditLogs"
   name                    = "OGOAuditLogs"
@@ -5298,7 +5323,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-579" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-580" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-583" {
   description             = ""
   display_name            = "OLPSupplyChainEntityOperations"
   name                    = "OLPSupplyChainEntityOperations"
@@ -5307,7 +5332,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-580" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-581" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-584" {
   description             = ""
   display_name            = "OLPSupplyChainEvents"
   name                    = "OLPSupplyChainEvents"
@@ -5316,7 +5341,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-581" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-582" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-585" {
   description             = ""
   display_name            = "OTelEvents"
   name                    = "OTelEvents"
@@ -5325,7 +5350,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-582" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-583" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-586" {
   description             = ""
   display_name            = "OTelLogs"
   name                    = "OTelLogs"
@@ -5334,7 +5359,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-583" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-584" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-587" {
   description             = ""
   display_name            = "OTelResources"
   name                    = "OTelResources"
@@ -5343,7 +5368,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-584" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-585" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-588" {
   description             = ""
   display_name            = "OTelSpans"
   name                    = "OTelSpans"
@@ -5352,7 +5377,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-585" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-586" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-589" {
   description             = ""
   display_name            = "OTelTraces"
   name                    = "OTelTraces"
@@ -5361,7 +5386,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-586" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-587" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-590" {
   description             = ""
   display_name            = "OTelTracesAgent"
   name                    = "OTelTracesAgent"
@@ -5370,7 +5395,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-587" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-588" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-591" {
   description             = ""
   display_name            = "Operation"
   name                    = "Operation"
@@ -5379,7 +5404,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-588" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-589" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-592" {
   description             = ""
   display_name            = "OracleCloudDatabase"
   name                    = "OracleCloudDatabase"
@@ -5388,7 +5413,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-589" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-590" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-593" {
   description             = ""
   display_name            = "PFTitleAuditLogs"
   name                    = "PFTitleAuditLogs"
@@ -5397,7 +5422,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-590" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-591" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-594" {
   description             = ""
   display_name            = "PGSQLAutovacuumStats"
   name                    = "PGSQLAutovacuumStats"
@@ -5406,7 +5431,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-591" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-592" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-595" {
   description             = ""
   display_name            = "PGSQLDbTransactionsStats"
   name                    = "PGSQLDbTransactionsStats"
@@ -5415,7 +5440,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-592" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-593" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-596" {
   description             = ""
   display_name            = "PGSQLPgBouncer"
   name                    = "PGSQLPgBouncer"
@@ -5424,7 +5449,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-593" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-594" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-597" {
   description             = ""
   display_name            = "PGSQLPgStatActivitySessions"
   name                    = "PGSQLPgStatActivitySessions"
@@ -5433,7 +5458,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-594" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-595" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-598" {
   description             = ""
   display_name            = "PGSQLQueryStoreQueryText"
   name                    = "PGSQLQueryStoreQueryText"
@@ -5442,7 +5467,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-595" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-596" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-599" {
   description             = ""
   display_name            = "PGSQLQueryStoreRuntime"
   name                    = "PGSQLQueryStoreRuntime"
@@ -5451,7 +5476,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-596" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-597" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-600" {
   description             = ""
   display_name            = "PGSQLQueryStoreWaits"
   name                    = "PGSQLQueryStoreWaits"
@@ -5460,7 +5485,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-597" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-598" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-601" {
   description             = ""
   display_name            = "PGSQLServerLogs"
   name                    = "PGSQLServerLogs"
@@ -5469,7 +5494,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-598" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-599" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-602" {
   description             = ""
   display_name            = "Perf"
   name                    = "Perf"
@@ -5478,7 +5503,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-599" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-600" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-603" {
   description             = ""
   display_name            = "PerfInsightsFindings"
   name                    = "PerfInsightsFindings"
@@ -5487,7 +5512,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-600" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-601" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-604" {
   description             = ""
   display_name            = "PerfInsightsImpactedResources"
   name                    = "PerfInsightsImpactedResources"
@@ -5496,7 +5521,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-601" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-602" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-605" {
   description             = ""
   display_name            = "PerfInsightsRun"
   name                    = "PerfInsightsRun"
@@ -5505,7 +5530,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-602" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-603" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-606" {
   description             = ""
   display_name            = "PowerBIDatasetsTenant"
   name                    = "PowerBIDatasetsTenant"
@@ -5514,7 +5539,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-603" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-604" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-607" {
   description             = ""
   display_name            = "PowerBIDatasetsWorkspace"
   name                    = "PowerBIDatasetsWorkspace"
@@ -5523,7 +5548,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-604" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-605" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-608" {
   description             = ""
   display_name            = "PreAuthenticationDiscoveryLogs"
   name                    = "PreAuthenticationDiscoveryLogs"
@@ -5532,7 +5557,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-605" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-606" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-609" {
   description             = ""
   display_name            = "PurviewDataSensitivityLogs"
   name                    = "PurviewDataSensitivityLogs"
@@ -5541,7 +5566,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-606" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-607" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-610" {
   description             = ""
   display_name            = "PurviewScanStatusLogs"
   name                    = "PurviewScanStatusLogs"
@@ -5550,7 +5575,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-607" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-608" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-611" {
   description             = ""
   display_name            = "PurviewSecurityLogs"
   name                    = "PurviewSecurityLogs"
@@ -5559,7 +5584,16 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-608" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-609" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-612" {
+  description             = ""
+  display_name            = "QuantumProviderAccountDeviceOperationLogs"
+  name                    = "QuantumProviderAccountDeviceOperationLogs"
+  plan                    = "Analytics"
+  retention_in_days       = 0
+  total_retention_in_days = 0
+  workspace_id            = azurerm_log_analytics_workspace.res-2.id
+}
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-613" {
   description             = ""
   display_name            = "QuantumProviderAccountJobAuditLogs"
   name                    = "QuantumProviderAccountJobAuditLogs"
@@ -5568,7 +5602,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-609" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-610" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-614" {
   description             = ""
   display_name            = "QuantumProviderAccountQueueAuditLogs"
   name                    = "QuantumProviderAccountQueueAuditLogs"
@@ -5577,7 +5611,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-610" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-611" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-615" {
   description             = ""
   display_name            = "QuantumProviderAccountTargetAuditLogs"
   name                    = "QuantumProviderAccountTargetAuditLogs"
@@ -5586,7 +5620,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-611" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-612" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-616" {
   description             = ""
   display_name            = "QuantumWorkspaceJobAuditLogs"
   name                    = "QuantumWorkspaceJobAuditLogs"
@@ -5595,7 +5629,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-612" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-613" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-617" {
   description             = ""
   display_name            = "REDConnectionEvents"
   name                    = "REDConnectionEvents"
@@ -5604,7 +5638,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-613" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-614" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-618" {
   description             = ""
   display_name            = "RemoteNetworkHealthLogs"
   name                    = "RemoteNetworkHealthLogs"
@@ -5613,7 +5647,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-614" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-615" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-619" {
   description             = ""
   display_name            = "ResourceManagementPublicAccessLogs"
   name                    = "ResourceManagementPublicAccessLogs"
@@ -5622,7 +5656,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-615" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-616" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-620" {
   description             = ""
   display_name            = "RetinaNetworkFlowLogs"
   name                    = "RetinaNetworkFlowLogs"
@@ -5631,7 +5665,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-616" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-617" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-621" {
   description             = ""
   display_name            = "SCCMAssessmentRecommendation"
   name                    = "SCCMAssessmentRecommendation"
@@ -5640,7 +5674,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-617" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-618" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-622" {
   description             = ""
   display_name            = "SCGPoolExecutionLog"
   name                    = "SCGPoolExecutionLog"
@@ -5649,7 +5683,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-618" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-619" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-623" {
   description             = ""
   display_name            = "SCGPoolRequestLog"
   name                    = "SCGPoolRequestLog"
@@ -5658,7 +5692,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-619" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-620" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-624" {
   description             = ""
   display_name            = "SCOMAssessmentRecommendation"
   name                    = "SCOMAssessmentRecommendation"
@@ -5667,7 +5701,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-620" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-621" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-625" {
   description             = ""
   display_name            = "SPAssessmentRecommendation"
   name                    = "SPAssessmentRecommendation"
@@ -5676,7 +5710,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-621" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-622" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-626" {
   description             = ""
   display_name            = "SQLAssessmentRecommendation"
   name                    = "SQLAssessmentRecommendation"
@@ -5685,7 +5719,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-622" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-623" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-627" {
   description             = ""
   display_name            = "SQLSecurityAuditEvents"
   name                    = "SQLSecurityAuditEvents"
@@ -5694,7 +5728,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-623" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-624" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-628" {
   description             = ""
   display_name            = "SVMPoolExecutionLog"
   name                    = "SVMPoolExecutionLog"
@@ -5703,7 +5737,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-624" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-625" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-629" {
   description             = ""
   display_name            = "SVMPoolRequestLog"
   name                    = "SVMPoolRequestLog"
@@ -5712,7 +5746,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-625" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-626" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-630" {
   description             = ""
   display_name            = "SecurityCaseEvent"
   name                    = "SecurityCaseEvent"
@@ -5721,7 +5755,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-626" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-627" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-631" {
   description             = ""
   display_name            = "ServiceFabricOperationalEvent"
   name                    = "ServiceFabricOperationalEvent"
@@ -5730,7 +5764,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-627" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-628" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-632" {
   description             = ""
   display_name            = "ServiceFabricReliableActorEvent"
   name                    = "ServiceFabricReliableActorEvent"
@@ -5739,7 +5773,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-628" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-629" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-633" {
   description             = ""
   display_name            = "ServiceFabricReliableServiceEvent"
   name                    = "ServiceFabricReliableServiceEvent"
@@ -5748,7 +5782,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-629" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-630" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-634" {
   description             = ""
   display_name            = "SfBAssessmentRecommendation"
   name                    = "SfBAssessmentRecommendation"
@@ -5757,7 +5791,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-630" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-631" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-635" {
   description             = ""
   display_name            = "SfBOnlineAssessmentRecommendation"
   name                    = "SfBOnlineAssessmentRecommendation"
@@ -5766,7 +5800,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-631" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-632" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-636" {
   description             = ""
   display_name            = "SharePointOnlineAssessmentRecommendation"
   name                    = "SharePointOnlineAssessmentRecommendation"
@@ -5775,7 +5809,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-632" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-633" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-637" {
   description             = ""
   display_name            = "SignalRServiceDiagnosticLogs"
   name                    = "SignalRServiceDiagnosticLogs"
@@ -5784,7 +5818,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-633" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-634" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-638" {
   description             = ""
   display_name            = "SigninLogs"
   name                    = "SigninLogs"
@@ -5793,7 +5827,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-634" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-635" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-639" {
   description             = ""
   display_name            = "StorageAntimalwareScanResults"
   name                    = "StorageAntimalwareScanResults"
@@ -5802,7 +5836,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-635" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-636" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-640" {
   description             = ""
   display_name            = "StorageBlobLogs"
   name                    = "StorageBlobLogs"
@@ -5811,7 +5845,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-636" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-637" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-641" {
   description             = ""
   display_name            = "StorageCacheOperationEvents"
   name                    = "StorageCacheOperationEvents"
@@ -5820,7 +5854,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-637" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-638" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-642" {
   description             = ""
   display_name            = "StorageCacheUpgradeEvents"
   name                    = "StorageCacheUpgradeEvents"
@@ -5829,7 +5863,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-638" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-639" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-643" {
   description             = ""
   display_name            = "StorageCacheWarningEvents"
   name                    = "StorageCacheWarningEvents"
@@ -5838,7 +5872,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-639" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-640" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-644" {
   description             = ""
   display_name            = "StorageFileLogs"
   name                    = "StorageFileLogs"
@@ -5847,7 +5881,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-640" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-641" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-645" {
   description             = ""
   display_name            = "StorageMalwareScanningResults"
   name                    = "StorageMalwareScanningResults"
@@ -5856,7 +5890,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-641" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-642" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-646" {
   description             = ""
   display_name            = "StorageMoverAuditLogs"
   name                    = "StorageMoverAuditLogs"
@@ -5865,7 +5899,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-642" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-643" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-647" {
   description             = ""
   display_name            = "StorageMoverCopyLogsFailed"
   name                    = "StorageMoverCopyLogsFailed"
@@ -5874,7 +5908,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-643" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-644" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-648" {
   description             = ""
   display_name            = "StorageMoverCopyLogsTransferred"
   name                    = "StorageMoverCopyLogsTransferred"
@@ -5883,7 +5917,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-644" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-645" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-649" {
   description             = ""
   display_name            = "StorageMoverJobRunLogs"
   name                    = "StorageMoverJobRunLogs"
@@ -5892,7 +5926,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-645" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-646" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-650" {
   description             = ""
   display_name            = "StorageQueueLogs"
   name                    = "StorageQueueLogs"
@@ -5901,7 +5935,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-646" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-647" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-651" {
   description             = ""
   display_name            = "StorageTableLogs"
   name                    = "StorageTableLogs"
@@ -5910,7 +5944,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-647" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-648" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-652" {
   description             = ""
   display_name            = "SucceededIngestion"
   name                    = "SucceededIngestion"
@@ -5919,7 +5953,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-648" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-649" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-653" {
   description             = ""
   display_name            = "SynapseBigDataPoolApplicationsEnded"
   name                    = "SynapseBigDataPoolApplicationsEnded"
@@ -5928,7 +5962,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-649" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-650" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-654" {
   description             = ""
   display_name            = "SynapseBuiltinSqlPoolRequestsEnded"
   name                    = "SynapseBuiltinSqlPoolRequestsEnded"
@@ -5937,7 +5971,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-650" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-651" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-655" {
   description             = ""
   display_name            = "SynapseDXCommand"
   name                    = "SynapseDXCommand"
@@ -5946,7 +5980,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-651" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-652" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-656" {
   description             = ""
   display_name            = "SynapseDXFailedIngestion"
   name                    = "SynapseDXFailedIngestion"
@@ -5955,7 +5989,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-652" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-653" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-657" {
   description             = ""
   display_name            = "SynapseDXIngestionBatching"
   name                    = "SynapseDXIngestionBatching"
@@ -5964,7 +5998,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-653" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-654" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-658" {
   description             = ""
   display_name            = "SynapseDXQuery"
   name                    = "SynapseDXQuery"
@@ -5973,7 +6007,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-654" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-655" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-659" {
   description             = ""
   display_name            = "SynapseDXSucceededIngestion"
   name                    = "SynapseDXSucceededIngestion"
@@ -5982,7 +6016,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-655" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-656" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-660" {
   description             = ""
   display_name            = "SynapseDXTableDetails"
   name                    = "SynapseDXTableDetails"
@@ -5991,7 +6025,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-656" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-657" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-661" {
   description             = ""
   display_name            = "SynapseDXTableUsageStatistics"
   name                    = "SynapseDXTableUsageStatistics"
@@ -6000,7 +6034,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-657" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-658" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-662" {
   description             = ""
   display_name            = "SynapseGatewayApiRequests"
   name                    = "SynapseGatewayApiRequests"
@@ -6009,7 +6043,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-658" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-659" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-663" {
   description             = ""
   display_name            = "SynapseIntegrationActivityRuns"
   name                    = "SynapseIntegrationActivityRuns"
@@ -6018,7 +6052,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-659" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-660" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-664" {
   description             = ""
   display_name            = "SynapseIntegrationPipelineRuns"
   name                    = "SynapseIntegrationPipelineRuns"
@@ -6027,7 +6061,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-660" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-661" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-665" {
   description             = ""
   display_name            = "SynapseIntegrationTriggerRuns"
   name                    = "SynapseIntegrationTriggerRuns"
@@ -6036,7 +6070,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-661" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-662" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-666" {
   description             = ""
   display_name            = "SynapseLinkEvent"
   name                    = "SynapseLinkEvent"
@@ -6045,7 +6079,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-662" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-663" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-667" {
   description             = ""
   display_name            = "SynapseRbacOperations"
   name                    = "SynapseRbacOperations"
@@ -6054,7 +6088,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-663" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-664" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-668" {
   description             = ""
   display_name            = "SynapseScopePoolScopeJobsEnded"
   name                    = "SynapseScopePoolScopeJobsEnded"
@@ -6063,7 +6097,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-664" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-665" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-669" {
   description             = ""
   display_name            = "SynapseScopePoolScopeJobsStateChange"
   name                    = "SynapseScopePoolScopeJobsStateChange"
@@ -6072,7 +6106,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-665" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-666" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-670" {
   description             = ""
   display_name            = "SynapseSqlPoolDmsWorkers"
   name                    = "SynapseSqlPoolDmsWorkers"
@@ -6081,7 +6115,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-666" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-667" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-671" {
   description             = ""
   display_name            = "SynapseSqlPoolExecRequests"
   name                    = "SynapseSqlPoolExecRequests"
@@ -6090,7 +6124,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-667" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-668" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-672" {
   description             = ""
   display_name            = "SynapseSqlPoolRequestSteps"
   name                    = "SynapseSqlPoolRequestSteps"
@@ -6099,7 +6133,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-668" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-669" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-673" {
   description             = ""
   display_name            = "SynapseSqlPoolSqlRequests"
   name                    = "SynapseSqlPoolSqlRequests"
@@ -6108,7 +6142,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-669" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-670" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-674" {
   description             = ""
   display_name            = "SynapseSqlPoolWaits"
   name                    = "SynapseSqlPoolWaits"
@@ -6117,7 +6151,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-670" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-671" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-675" {
   description             = ""
   display_name            = "Syslog"
   name                    = "Syslog"
@@ -6126,7 +6160,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-671" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-672" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-676" {
   description             = ""
   display_name            = "TOUserAudits"
   name                    = "TOUserAudits"
@@ -6135,7 +6169,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-672" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-673" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-677" {
   description             = ""
   display_name            = "TOUserDiagnostics"
   name                    = "TOUserDiagnostics"
@@ -6144,7 +6178,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-673" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-674" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-678" {
   description             = ""
   display_name            = "TSIIngress"
   name                    = "TSIIngress"
@@ -6153,7 +6187,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-674" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-675" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-679" {
   description             = ""
   display_name            = "UCClient"
   name                    = "UCClient"
@@ -6162,7 +6196,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-675" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-676" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-680" {
   description             = ""
   display_name            = "UCClientReadinessStatus"
   name                    = "UCClientReadinessStatus"
@@ -6171,7 +6205,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-676" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-677" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-681" {
   description             = ""
   display_name            = "UCClientUpdateStatus"
   name                    = "UCClientUpdateStatus"
@@ -6180,7 +6214,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-677" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-678" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-682" {
   description             = ""
   display_name            = "UCDOAggregatedStatus"
   name                    = "UCDOAggregatedStatus"
@@ -6189,7 +6223,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-678" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-679" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-683" {
   description             = ""
   display_name            = "UCDOStatus"
   name                    = "UCDOStatus"
@@ -6198,7 +6232,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-679" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-680" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-684" {
   description             = ""
   display_name            = "UCDeviceAlert"
   name                    = "UCDeviceAlert"
@@ -6207,7 +6241,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-680" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-681" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-685" {
   description             = ""
   display_name            = "UCServiceUpdateStatus"
   name                    = "UCServiceUpdateStatus"
@@ -6216,7 +6250,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-681" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-682" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-686" {
   description             = ""
   display_name            = "UCUpdateAlert"
   name                    = "UCUpdateAlert"
@@ -6225,7 +6259,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-682" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-683" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-687" {
   description             = ""
   display_name            = "Usage"
   name                    = "Usage"
@@ -6234,7 +6268,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-683" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-684" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-688" {
   description             = ""
   display_name            = "VCoreMongoRequests"
   name                    = "VCoreMongoRequests"
@@ -6243,7 +6277,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-684" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-685" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-689" {
   description             = ""
   display_name            = "VIAudit"
   name                    = "VIAudit"
@@ -6252,7 +6286,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-685" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-686" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-690" {
   description             = ""
   display_name            = "VIIndexing"
   name                    = "VIIndexing"
@@ -6261,7 +6295,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-686" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-687" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-691" {
   description             = ""
   display_name            = "VMBoundPort"
   name                    = "VMBoundPort"
@@ -6270,7 +6304,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-687" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-688" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-692" {
   description             = ""
   display_name            = "VMComputer"
   name                    = "VMComputer"
@@ -6279,7 +6313,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-688" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-689" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-693" {
   description             = ""
   display_name            = "VMConnection"
   name                    = "VMConnection"
@@ -6288,7 +6322,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-689" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-690" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-694" {
   description             = ""
   display_name            = "VMProcess"
   name                    = "VMProcess"
@@ -6297,7 +6331,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-690" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-691" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-695" {
   description             = ""
   display_name            = "W3CIISLog"
   name                    = "W3CIISLog"
@@ -6306,7 +6340,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-691" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-692" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-696" {
   description             = ""
   display_name            = "WOUserAudits"
   name                    = "WOUserAudits"
@@ -6315,7 +6349,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-692" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-693" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-697" {
   description             = ""
   display_name            = "WOUserDiagnostics"
   name                    = "WOUserDiagnostics"
@@ -6324,7 +6358,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-693" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-694" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-698" {
   description             = ""
   display_name            = "WVDAgentHealthStatus"
   name                    = "WVDAgentHealthStatus"
@@ -6333,7 +6367,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-694" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-695" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-699" {
   description             = ""
   display_name            = "WVDAutoscaleEvaluationPooled"
   name                    = "WVDAutoscaleEvaluationPooled"
@@ -6342,7 +6376,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-695" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-696" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-700" {
   description             = ""
   display_name            = "WVDCheckpoints"
   name                    = "WVDCheckpoints"
@@ -6351,7 +6385,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-696" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-697" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-701" {
   description             = ""
   display_name            = "WVDConnectionGraphicsDataPreview"
   name                    = "WVDConnectionGraphicsDataPreview"
@@ -6360,7 +6394,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-697" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-698" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-702" {
   description             = ""
   display_name            = "WVDConnectionNetworkData"
   name                    = "WVDConnectionNetworkData"
@@ -6369,7 +6403,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-698" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-699" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-703" {
   description             = ""
   display_name            = "WVDConnections"
   name                    = "WVDConnections"
@@ -6378,7 +6412,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-699" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-700" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-704" {
   description             = ""
   display_name            = "WVDErrors"
   name                    = "WVDErrors"
@@ -6387,7 +6421,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-700" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-701" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-705" {
   description             = ""
   display_name            = "WVDFeeds"
   name                    = "WVDFeeds"
@@ -6396,7 +6430,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-701" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-702" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-706" {
   description             = ""
   display_name            = "WVDHostRegistrations"
   name                    = "WVDHostRegistrations"
@@ -6405,7 +6439,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-702" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-703" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-707" {
   description             = ""
   display_name            = "WVDManagement"
   name                    = "WVDManagement"
@@ -6414,7 +6448,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-703" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-704" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-708" {
   description             = ""
   display_name            = "WVDMultiLinkAdd"
   name                    = "WVDMultiLinkAdd"
@@ -6423,7 +6457,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-704" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-705" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-709" {
   description             = ""
   display_name            = "WVDSessionHostManagement"
   name                    = "WVDSessionHostManagement"
@@ -6432,7 +6466,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-705" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-706" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-710" {
   description             = ""
   display_name            = "WebPubSubConnectivity"
   name                    = "WebPubSubConnectivity"
@@ -6441,7 +6475,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-706" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-707" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-711" {
   description             = ""
   display_name            = "WebPubSubHttpRequest"
   name                    = "WebPubSubHttpRequest"
@@ -6450,7 +6484,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-707" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-708" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-712" {
   description             = ""
   display_name            = "WebPubSubMessaging"
   name                    = "WebPubSubMessaging"
@@ -6459,7 +6493,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-708" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-709" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-713" {
   description             = ""
   display_name            = "Windows365AuditLogs"
   name                    = "Windows365AuditLogs"
@@ -6468,7 +6502,43 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-709" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-710" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-714" {
+  description             = ""
+  display_name            = "Windows365CheckpointLogs"
+  name                    = "Windows365CheckpointLogs"
+  plan                    = "Analytics"
+  retention_in_days       = 0
+  total_retention_in_days = 0
+  workspace_id            = azurerm_log_analytics_workspace.res-2.id
+}
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-715" {
+  description             = ""
+  display_name            = "Windows365ConnectionErrorLogs"
+  name                    = "Windows365ConnectionErrorLogs"
+  plan                    = "Analytics"
+  retention_in_days       = 0
+  total_retention_in_days = 0
+  workspace_id            = azurerm_log_analytics_workspace.res-2.id
+}
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-716" {
+  description             = ""
+  display_name            = "Windows365ConnectionLogs"
+  name                    = "Windows365ConnectionLogs"
+  plan                    = "Analytics"
+  retention_in_days       = 0
+  total_retention_in_days = 0
+  workspace_id            = azurerm_log_analytics_workspace.res-2.id
+}
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-717" {
+  description             = ""
+  display_name            = "Windows365NetworkLogs"
+  name                    = "Windows365NetworkLogs"
+  plan                    = "Analytics"
+  retention_in_days       = 0
+  total_retention_in_days = 0
+  workspace_id            = azurerm_log_analytics_workspace.res-2.id
+}
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-718" {
   description             = ""
   display_name            = "WindowsClientAssessmentRecommendation"
   name                    = "WindowsClientAssessmentRecommendation"
@@ -6477,7 +6547,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-710" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-711" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-719" {
   description             = ""
   display_name            = "WindowsServerAssessmentRecommendation"
   name                    = "WindowsServerAssessmentRecommendation"
@@ -6486,7 +6556,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-711" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-712" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-720" {
   description             = ""
   display_name            = "WorkloadDiagnosticLogs"
   name                    = "WorkloadDiagnosticLogs"
@@ -6495,7 +6565,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-712" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-713" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-721" {
   description             = ""
   display_name            = "ZTSGraph"
   name                    = "ZTSGraph"
@@ -6504,7 +6574,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-713" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-714" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-722" {
   description             = ""
   display_name            = "ZTSJobStatus"
   name                    = "ZTSJobStatus"
@@ -6513,7 +6583,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-714" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-715" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-723" {
   description             = ""
   display_name            = "ZTSMetadata"
   name                    = "ZTSMetadata"
@@ -6522,7 +6592,7 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-715" {
   total_retention_in_days = 0
   workspace_id            = azurerm_log_analytics_workspace.res-2.id
 }
-resource "azurerm_log_analytics_workspace_table_custom_log" "res-716" {
+resource "azurerm_log_analytics_workspace_table_custom_log" "res-724" {
   description             = ""
   display_name            = "ZTSRequest"
   name                    = "ZTSRequest"
@@ -7094,2310 +7164,2342 @@ import {
   to = azurerm_log_analytics_workspace_table_custom_log.res-139
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSGrafanaLoginEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSGrafanaAlertAuthFailure"
   to = azurerm_log_analytics_workspace_table_custom_log.res-140
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSGrafanaUsageInsightsEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSGrafanaLoginEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-141
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSUpdateEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSGrafanaUsageInsightsEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-142
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGWAccessLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGSUpdateEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-143
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGWFirewallLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGWAccessLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-144
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGWPerformanceLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGWFirewallLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-145
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHCIDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AGWPerformanceLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-146
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSDeidAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHCIDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-147
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSDicomAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSDeidAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-148
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSDicomDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSDicomAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-149
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSMedTechDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSDicomDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-150
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AKSAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AHDSMedTechDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-151
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AKSAuditAdmin"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AKSAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-152
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AKSControlPlane"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AKSAuditAdmin"
   to = azurerm_log_analytics_workspace_table_custom_log.res-153
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ALBHealthEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AKSControlPlane"
   to = azurerm_log_analytics_workspace_table_custom_log.res-154
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMAHealth"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ALBHealthEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-155
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSKeyDeliveryRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMAHealth"
   to = azurerm_log_analytics_workspace_table_custom_log.res-156
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSLiveEventOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSKeyDeliveryRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-157
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSMediaAccountHealth"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSLiveEventOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-158
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSStreamingEndpointRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSMediaAccountHealth"
   to = azurerm_log_analytics_workspace_table_custom_log.res-159
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMWMetricsUsageDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMSStreamingEndpointRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-160
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFFileAccess"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AMWMetricsUsageDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-161
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopClientReadIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFFileAccess"
   to = azurerm_log_analytics_workspace_table_custom_log.res-162
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopClientWriteIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopClientReadIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-163
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopFileReadIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopClientWriteIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-164
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopFileWriteIOPS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopFileReadIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-165
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AOIDatabaseQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ANFTopFileWriteIOPS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-166
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AOIDigestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AOIDatabaseQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-167
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AOIStorage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AOIDigestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-168
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/APIMDevPortalAuditDiagnosticLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AOIStorage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-169
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASCAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/APIMDevPortalAuditDiagnosticLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-170
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASCDeviceEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASCAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-171
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRJobs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASCDeviceEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-172
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRReplicatedItems"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRJobs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-173
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2HealthEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRReplicatedItems"
   to = azurerm_log_analytics_workspace_table_custom_log.res-174
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2JobEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2HealthEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-175
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ProtectedItems"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2JobEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-176
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ReplicationExtensions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ProtectedItems"
   to = azurerm_log_analytics_workspace_table_custom_log.res-177
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ReplicationPolicies"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ReplicationExtensions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-178
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ReplicationVaults"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ReplicationPolicies"
   to = azurerm_log_analytics_workspace_table_custom_log.res-179
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ATCExpressRouteCircuitIpfix"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ASRv2ReplicationVaults"
   to = azurerm_log_analytics_workspace_table_custom_log.res-180
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ATCMicrosoftPeeringMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ATCExpressRouteCircuitIpfix"
   to = azurerm_log_analytics_workspace_table_custom_log.res-181
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ATCPrivatePeeringMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ATCMicrosoftPeeringMetadata"
   to = azurerm_log_analytics_workspace_table_custom_log.res-182
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMConnectivityConfigurationChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ATCPrivatePeeringMetadata"
   to = azurerm_log_analytics_workspace_table_custom_log.res-183
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMIPAMPoolAllocationChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMConnectivityConfigurationChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-184
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMNetworkGroupMembershipChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMIPAMPoolAllocationChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-185
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMRuleCollectionChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMNetworkGroupMembershipChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-186
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSEsxiFirewallSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVNMRuleCollectionChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-187
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSEsxiSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSEsxiFirewallSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-188
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSNsxEdgeSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSEsxiSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-189
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSNsxManagerSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSNsxEdgeSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-190
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSNsxManagerSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-191
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSVcSyslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-192
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWApplicationRule"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AVSVcSyslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-193
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWApplicationRuleAggregation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWApplicationRule"
   to = azurerm_log_analytics_workspace_table_custom_log.res-194
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWDnsFlowTrace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWApplicationRuleAggregation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-195
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWDnsQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWDnsFlowTrace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-196
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWFatFlow"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWDnsQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-197
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWFlowTrace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWFatFlow"
   to = azurerm_log_analytics_workspace_table_custom_log.res-198
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWIdpsSignature"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWFlowTrace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-199
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWInternalFqdnResolutionFailure"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWIdpsSignature"
   to = azurerm_log_analytics_workspace_table_custom_log.res-200
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNatRule"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWInternalFqdnResolutionFailure"
   to = azurerm_log_analytics_workspace_table_custom_log.res-201
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNatRuleAggregation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNatRule"
   to = azurerm_log_analytics_workspace_table_custom_log.res-202
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNetworkRule"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNatRuleAggregation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-203
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNetworkRuleAggregation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNetworkRule"
   to = azurerm_log_analytics_workspace_table_custom_log.res-204
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWThreatIntel"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWNetworkRuleAggregation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-205
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZKVAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZFWThreatIntel"
   to = azurerm_log_analytics_workspace_table_custom_log.res-206
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZKVPolicyEvaluationDetailsLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZKVAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-207
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSApplicationMetricLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZKVPolicyEvaluationDetailsLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-208
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSArchiveLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSApplicationMetricLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-209
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSAutoscaleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSArchiveLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-210
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSCustomerManagedKeyUserLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSAutoscaleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-211
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSDiagnosticErrorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSCustomerManagedKeyUserLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-212
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSHybridConnectionsEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSDiagnosticErrorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-213
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSKafkaCoordinatorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSHybridConnectionsEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-214
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSKafkaUserErrorLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSKafkaCoordinatorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-215
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSOperationalLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSKafkaUserErrorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-216
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSRunTimeAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSOperationalLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-217
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSVnetConnectionEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSRunTimeAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-218
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupAlerts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AZMSVnetConnectionEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-219
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupJobs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupAlerts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-220
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupPolicy"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupJobs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-221
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupProtectedInstance"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupPolicy"
   to = azurerm_log_analytics_workspace_table_custom_log.res-222
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupStorage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupProtectedInstance"
   to = azurerm_log_analytics_workspace_table_custom_log.res-223
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AegDataPlaneRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AddonAzureBackupStorage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-224
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AegDeliveryFailureLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AegDataPlaneRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-225
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AegPublishFailureLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AegDeliveryFailureLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-226
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodApplicationAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AegPublishFailureLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-227
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodFarmManagementLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodApplicationAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-228
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodFarmOperationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodFarmManagementLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-229
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodInsightLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodFarmOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-230
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodJobProcessedLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodInsightLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-231
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodModelInferenceLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodJobProcessedLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-232
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodProviderAuthLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodModelInferenceLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-233
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodSatelliteLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodProviderAuthLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-234
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodSensorManagementLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodSatelliteLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-235
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodWeatherLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodSensorManagementLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-236
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AirflowDagProcessingLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AgriFoodWeatherLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-237
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Alert"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AirflowDagProcessingLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-238
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeClusterEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Alert"
   to = azurerm_log_analytics_workspace_table_custom_log.res-239
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeClusterNodeEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeClusterEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-240
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeCpuGpuUtilization"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeClusterNodeEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-241
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeInstanceEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeCpuGpuUtilization"
   to = azurerm_log_analytics_workspace_table_custom_log.res-242
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeJobEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeInstanceEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-243
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDataLabelEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlComputeJobEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-244
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDataSetEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDataLabelEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-245
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDataStoreEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDataSetEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-246
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDeploymentEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDataStoreEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-247
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlEnvironmentEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlDeploymentEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-248
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlInferencingEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlEnvironmentEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-249
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlModelsEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlInferencingEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-250
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlOnlineEndpointConsoleLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlModelsEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-251
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlOnlineEndpointEventLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlOnlineEndpointConsoleLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-252
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlOnlineEndpointTrafficLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlOnlineEndpointEventLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-253
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlPipelineEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlOnlineEndpointTrafficLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-254
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRegistryReadEventsLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlPipelineEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-255
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRegistryWriteEventsLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRegistryReadEventsLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-256
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRunEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRegistryWriteEventsLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-257
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRunStatusChangedEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRunEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-258
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementGatewayLlmLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AmlRunStatusChangedEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-259
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementGatewayLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementGatewayLlmLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-260
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementGatewayMCPLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementGatewayLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-261
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementWebSocketConnectionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementGatewayMCPLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-262
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppAvailabilityResults"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ApiManagementWebSocketConnectionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-263
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppBrowserTimings"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppAvailabilityResults"
   to = azurerm_log_analytics_workspace_table_custom_log.res-264
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppCenterError"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppBrowserTimings"
   to = azurerm_log_analytics_workspace_table_custom_log.res-265
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppDependencies"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppCenterError"
   to = azurerm_log_analytics_workspace_table_custom_log.res-266
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSessionConsoleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppDependencies"
   to = azurerm_log_analytics_workspace_table_custom_log.res-267
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSessionLifecycleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSessionConsoleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-268
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSessionPoolEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSessionLifecycleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-269
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSpringAppConsoleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSessionPoolEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-270
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEnvSpringAppConsoleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-271
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppExceptions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-272
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppGenAIContent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppExceptions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-273
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppGenAIContent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-274
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPageViews"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-275
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPerformanceCounters"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPageViews"
   to = azurerm_log_analytics_workspace_table_custom_log.res-276
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformBuildLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPerformanceCounters"
   to = azurerm_log_analytics_workspace_table_custom_log.res-277
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformContainerEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformBuildLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-278
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformIngressLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformContainerEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-279
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformLogsforSpring"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformIngressLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-280
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformSystemLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformLogsforSpring"
   to = azurerm_log_analytics_workspace_table_custom_log.res-281
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppPlatformSystemLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-282
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAntivirusScanAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-283
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAppLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAntivirusScanAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-284
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAppLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-285
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAuthenticationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-286
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceConsoleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceAuthenticationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-287
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceEnvironmentPlatformLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceConsoleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-288
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceFileAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceEnvironmentPlatformLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-289
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceHTTPLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceFileAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-290
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceIPSecAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceHTTPLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-291
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServicePlatformLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceIPSecAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-292
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceServerlessSecurityPluginData"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServicePlatformLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-293
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppSystemEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppServiceServerlessSecurityPluginData"
   to = azurerm_log_analytics_workspace_table_custom_log.res-294
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppTraces"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppSystemEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-295
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ArcK8sAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AppTraces"
   to = azurerm_log_analytics_workspace_table_custom_log.res-296
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ArcK8sAuditAdmin"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ArcK8sAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-297
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ArcK8sControlPlane"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ArcK8sAuditAdmin"
   to = azurerm_log_analytics_workspace_table_custom_log.res-298
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ArcK8sControlPlane"
   to = azurerm_log_analytics_workspace_table_custom_log.res-299
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AutoscaleEvaluationsLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-300
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AutoscaleScaleActionsLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AutoscaleEvaluationsLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-301
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureActivity"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AutoscaleScaleActionsLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-302
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureActivityV2"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureActivity"
   to = azurerm_log_analytics_workspace_table_custom_log.res-303
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureActivityV2"
   to = azurerm_log_analytics_workspace_table_custom_log.res-304
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureAttestationDiagnostics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-305
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureBackupOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureAttestationDiagnostics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-306
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureDevOpsAuditing"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureBackupOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-307
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureLoadTestingOperation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureDevOpsAuditing"
   to = azurerm_log_analytics_workspace_table_custom_log.res-308
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureLoadTestingOperation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-309
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureMetricsV2"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-310
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureMonitorPipelineLogErrors"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureMetricsV2"
   to = azurerm_log_analytics_workspace_table_custom_log.res-311
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLAutomaticTuning"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureMonitorPipelineLogErrors"
   to = azurerm_log_analytics_workspace_table_custom_log.res-312
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLBlocks"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLAutomaticTuning"
   to = azurerm_log_analytics_workspace_table_custom_log.res-313
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLDatabaseWaitStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLBlocks"
   to = azurerm_log_analytics_workspace_table_custom_log.res-314
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLDeadlocks"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLDatabaseWaitStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-315
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLErrors"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLDeadlocks"
   to = azurerm_log_analytics_workspace_table_custom_log.res-316
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLQueryStoreRuntimeStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLErrors"
   to = azurerm_log_analytics_workspace_table_custom_log.res-317
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLQueryStoreWaitStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLQueryStoreRuntimeStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-318
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLResourceUsageStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLQueryStoreWaitStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-319
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLTimeouts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLResourceUsageStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-320
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BehaviorEntities"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/AzureSQLTimeouts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-321
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BehaviorInfo"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BehaviorEntities"
   to = azurerm_log_analytics_workspace_table_custom_log.res-322
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BlockchainApplicationLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BehaviorInfo"
   to = azurerm_log_analytics_workspace_table_custom_log.res-323
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BlockchainProxyLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BlockchainApplicationLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-324
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CCFApplicationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/BlockchainProxyLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-325
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBCassandraRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CCFApplicationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-326
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBControlPlaneRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBCassandraRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-327
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBDataPlaneRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBControlPlaneRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-328
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBDataPlaneRequests15M"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBDataPlaneRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-329
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBDataPlaneRequests5M"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBDataPlaneRequests15M"
   to = azurerm_log_analytics_workspace_table_custom_log.res-330
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBGremlinRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBDataPlaneRequests5M"
   to = azurerm_log_analytics_workspace_table_custom_log.res-331
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBMongoRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBGremlinRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-332
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBPartitionKeyRUConsumption"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBMongoRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-333
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBPartitionKeyStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBPartitionKeyRUConsumption"
   to = azurerm_log_analytics_workspace_table_custom_log.res-334
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBQueryRuntimeStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBPartitionKeyStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-335
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBTableApiRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBQueryRuntimeStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-336
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CHSMServiceOperationAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CDBTableApiRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-337
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CIEventsAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CHSMServiceOperationAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-338
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CIEventsOperational"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CIEventsAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-339
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CassandraAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CIEventsOperational"
   to = azurerm_log_analytics_workspace_table_custom_log.res-340
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CassandraLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CassandraAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-341
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ChaosStudioExperimentEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CassandraLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-342
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CloudHsmHardwareOperationAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ChaosStudioExperimentEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-343
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CloudHsmServiceOperationAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CloudHsmHardwareOperationAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-344
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ComputerGroup"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CloudHsmServiceOperationAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-345
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerAppConsoleLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ComputerGroup"
   to = azurerm_log_analytics_workspace_table_custom_log.res-346
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerAppHTTPLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerAppConsoleLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-347
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerAppSystemLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerAppHTTPLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-348
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerAppSystemLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-349
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerImageInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-350
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerInstanceLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerImageInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-351
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerInstanceLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-352
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-353
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerLogV2"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-354
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerNetworkLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerLogV2"
   to = azurerm_log_analytics_workspace_table_custom_log.res-355
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerNodeInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerNetworkLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-356
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerRegistryLoginEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerNodeInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-357
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerRegistryRepositoryEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerRegistryLoginEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-358
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerServiceLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerRegistryRepositoryEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-359
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CoreAzureBackup"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ContainerServiceLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-360
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DCRLogErrors"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/CoreAzureBackup"
   to = azurerm_log_analytics_workspace_table_custom_log.res-361
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DCRLogTroubleshooting"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DCRLogErrors"
   to = azurerm_log_analytics_workspace_table_custom_log.res-362
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DNSQueryLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DCRLogTroubleshooting"
   to = azurerm_log_analytics_workspace_table_custom_log.res-363
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DSMAzureBlobStorageLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DNSQueryLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-364
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DSMDataClassificationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DSMAzureBlobStorageLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-365
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DSMDataLabelingLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DSMDataClassificationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-366
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DataSetOutput"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DSMDataLabelingLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-367
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DataSetRuns"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DataSetOutput"
   to = azurerm_log_analytics_workspace_table_custom_log.res-368
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DataTransferOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DataSetRuns"
   to = azurerm_log_analytics_workspace_table_custom_log.res-369
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksAccounts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DataTransferOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-370
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksApps"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksAccounts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-371
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksBrickStoreHttpGateway"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksApps"
   to = azurerm_log_analytics_workspace_table_custom_log.res-372
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksBudgetPolicyCentral"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksBrickStoreHttpGateway"
   to = azurerm_log_analytics_workspace_table_custom_log.res-373
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksCapsule8Dataplane"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksBudgetPolicyCentral"
   to = azurerm_log_analytics_workspace_table_custom_log.res-374
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClamAVScan"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksCapsule8Dataplane"
   to = azurerm_log_analytics_workspace_table_custom_log.res-375
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksCloudStorageMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClamAVScan"
   to = azurerm_log_analytics_workspace_table_custom_log.res-376
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClusterLibraries"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksCloudStorageMetadata"
   to = azurerm_log_analytics_workspace_table_custom_log.res-377
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClusterPolicies"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClusterLibraries"
   to = azurerm_log_analytics_workspace_table_custom_log.res-378
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClusters"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClusterPolicies"
   to = azurerm_log_analytics_workspace_table_custom_log.res-379
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDBFS"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksClusters"
   to = azurerm_log_analytics_workspace_table_custom_log.res-380
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDashboards"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDBFS"
   to = azurerm_log_analytics_workspace_table_custom_log.res-381
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDataMonitoring"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDashboards"
   to = azurerm_log_analytics_workspace_table_custom_log.res-382
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDataRooms"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDataMonitoring"
   to = azurerm_log_analytics_workspace_table_custom_log.res-383
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDatabricksSQL"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDataRooms"
   to = azurerm_log_analytics_workspace_table_custom_log.res-384
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDeltaPipelines"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDatabricksSQL"
   to = azurerm_log_analytics_workspace_table_custom_log.res-385
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksFeatureStore"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksDeltaPipelines"
   to = azurerm_log_analytics_workspace_table_custom_log.res-386
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksFiles"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksFeatureStore"
   to = azurerm_log_analytics_workspace_table_custom_log.res-387
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksFilesystem"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksFiles"
   to = azurerm_log_analytics_workspace_table_custom_log.res-388
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGenie"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksFilesystem"
   to = azurerm_log_analytics_workspace_table_custom_log.res-389
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGitCredentials"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGenie"
   to = azurerm_log_analytics_workspace_table_custom_log.res-390
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGlobalInitScripts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGitCredentials"
   to = azurerm_log_analytics_workspace_table_custom_log.res-391
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGroups"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGlobalInitScripts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-392
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksIAMRole"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksGroups"
   to = azurerm_log_analytics_workspace_table_custom_log.res-393
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksIAMRole"
   to = azurerm_log_analytics_workspace_table_custom_log.res-394
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksInstancePools"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-395
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksJobs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksInstancePools"
   to = azurerm_log_analytics_workspace_table_custom_log.res-396
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksLakeviewConfig"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksJobs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-397
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksLineageTracking"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksLakeviewConfig"
   to = azurerm_log_analytics_workspace_table_custom_log.res-398
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMLflowAcledArtifact"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksLineageTracking"
   to = azurerm_log_analytics_workspace_table_custom_log.res-399
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMLflowExperiment"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMLflowAcledArtifact"
   to = azurerm_log_analytics_workspace_table_custom_log.res-400
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMarketplaceConsumer"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMLflowExperiment"
   to = azurerm_log_analytics_workspace_table_custom_log.res-401
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMarketplaceProvider"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMarketplaceConsumer"
   to = azurerm_log_analytics_workspace_table_custom_log.res-402
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksModelRegistry"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksMarketplaceProvider"
   to = azurerm_log_analytics_workspace_table_custom_log.res-403
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksNotebook"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksModelRegistry"
   to = azurerm_log_analytics_workspace_table_custom_log.res-404
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksOnlineTables"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksNotebook"
   to = azurerm_log_analytics_workspace_table_custom_log.res-405
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksPartnerHub"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksOnlineTables"
   to = azurerm_log_analytics_workspace_table_custom_log.res-406
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksPredictiveOptimization"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksPartnerHub"
   to = azurerm_log_analytics_workspace_table_custom_log.res-407
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRBAC"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksPredictiveOptimization"
   to = azurerm_log_analytics_workspace_table_custom_log.res-408
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRFA"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRBAC"
   to = azurerm_log_analytics_workspace_table_custom_log.res-409
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRemoteHistoryService"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRFA"
   to = azurerm_log_analytics_workspace_table_custom_log.res-410
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRepos"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRemoteHistoryService"
   to = azurerm_log_analytics_workspace_table_custom_log.res-411
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSQL"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksRepos"
   to = azurerm_log_analytics_workspace_table_custom_log.res-412
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSQLPermissions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSQL"
   to = azurerm_log_analytics_workspace_table_custom_log.res-413
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSSH"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSQLPermissions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-414
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSecrets"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSSH"
   to = azurerm_log_analytics_workspace_table_custom_log.res-415
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksServerlessRealTimeInference"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksSecrets"
   to = azurerm_log_analytics_workspace_table_custom_log.res-416
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksTables"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksServerlessRealTimeInference"
   to = azurerm_log_analytics_workspace_table_custom_log.res-417
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksUnityCatalog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksTables"
   to = azurerm_log_analytics_workspace_table_custom_log.res-418
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksVectorSearch"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksUnityCatalog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-419
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWebTerminal"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksVectorSearch"
   to = azurerm_log_analytics_workspace_table_custom_log.res-420
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWebhookNotifications"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWebTerminal"
   to = azurerm_log_analytics_workspace_table_custom_log.res-421
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWorkspace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWebhookNotifications"
   to = azurerm_log_analytics_workspace_table_custom_log.res-422
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWorkspaceFiles"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWorkspace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-423
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterAgentHealthLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DatabricksWorkspaceFiles"
   to = azurerm_log_analytics_workspace_table_custom_log.res-424
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterBillingEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterAgentHealthLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-425
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterConnectionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterBillingEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-426
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterConnectionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-427
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterResourceOperationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-428
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceBehaviorEntities"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevCenterResourceOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-429
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceBehaviorInfo"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DevOpsOperationsAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-430
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomFileEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceBehaviorEntities"
   to = azurerm_log_analytics_workspace_table_custom_log.res-431
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomImageLoadEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceBehaviorInfo"
   to = azurerm_log_analytics_workspace_table_custom_log.res-432
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomNetworkEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomFileEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-433
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomProcessEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomImageLoadEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-434
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomRegistryEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomNetworkEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-435
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomScriptEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomProcessEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-436
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DiscoveryBookshelfAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomRegistryEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-437
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DiscoverySupercomputerAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DeviceCustomScriptEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-438
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DiscoveryWorkspaceAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DiscoveryBookshelfAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-439
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DurableTaskSchedulerLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DiscoverySupercomputerAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-440
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedHttpDataPlaneOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DiscoveryWorkspaceAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-441
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedMqttConnections"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DragonCopilot"
   to = azurerm_log_analytics_workspace_table_custom_log.res-442
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedMqttPublishedMessages"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/DurableTaskSchedulerLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-443
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedMqttSubscriptions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedHttpDataPlaneOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-444
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNMqttDisconnections"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedMqttConnections"
   to = azurerm_log_analytics_workspace_table_custom_log.res-445
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNSuccessfulHttpDataPlaneOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedMqttPublishedMessages"
   to = azurerm_log_analytics_workspace_table_custom_log.res-446
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNSuccessfulMqttConnections"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNFailedMqttSubscriptions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-447
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ETWEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNMqttDisconnections"
   to = azurerm_log_analytics_workspace_table_custom_log.res-448
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EdgeActionConsoleLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNSuccessfulHttpDataPlaneOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-449
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EdgeActionServiceLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EGNSuccessfulMqttConnections"
   to = azurerm_log_analytics_workspace_table_custom_log.res-450
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EnrichedMicrosoft365AuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ETWEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-451
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Event"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EdgeActionConsoleLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-452
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ExchangeAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EdgeActionServiceLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-453
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ExchangeOnlineAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/EnrichedMicrosoft365AuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-454
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/FailedIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Event"
   to = azurerm_log_analytics_workspace_table_custom_log.res-455
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/FunctionAppLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ExchangeAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-456
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/GraphNotificationsActivityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ExchangeOnlineAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-457
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightAmbariClusterAlerts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/FailedIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-458
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightAmbariSystemMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/FunctionAppLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-459
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightGatewayAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/GraphNotificationsActivityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-460
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHBaseLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightAmbariClusterAlerts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-461
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHBaseMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightAmbariSystemMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-462
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHadoopAndYarnLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightGatewayAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-463
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHadoopAndYarnMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHBaseLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-464
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveAndLLAPLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHBaseMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-465
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveAndLLAPMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHadoopAndYarnLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-466
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveQueryAppStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHadoopAndYarnMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-467
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveTezAppStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveAndLLAPLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-468
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightJupyterNotebookEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveAndLLAPMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-469
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightKafkaLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveQueryAppStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-470
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightKafkaMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightHiveTezAppStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-471
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightKafkaServerLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightJupyterNotebookEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-472
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightOozieLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightKafkaLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-473
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightRangerAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightKafkaMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-474
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSecurityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightKafkaServerLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-475
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkApplicationEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightOozieLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-476
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkBlockManagerEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightRangerAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-477
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkEnvironmentEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSecurityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-478
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkExecutorEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkApplicationEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-479
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkExtraEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkBlockManagerEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-480
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkJobEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkEnvironmentEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-481
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkExecutorEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-482
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkSQLExecutionEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkExtraEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-483
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkStageEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkJobEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-484
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkStageTaskAccumulables"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-485
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkTaskEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkSQLExecutionEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-486
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightStormLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkStageEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-487
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightStormMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkStageTaskAccumulables"
   to = azurerm_log_analytics_workspace_table_custom_log.res-488
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightStormTopologyMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightSparkTaskEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-489
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HealthStateChangeEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightStormLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-490
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Heartbeat"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightStormMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-491
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/InsightsMetrics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HDInsightStormTopologyMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-492
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/HealthStateChangeEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-493
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneDeviceComplianceOrg"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Heartbeat"
   to = azurerm_log_analytics_workspace_table_custom_log.res-494
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneDevices"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/InsightsMetrics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-495
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneOperationalLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-496
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneDeviceComplianceOrg"
   to = azurerm_log_analytics_workspace_table_custom_log.res-497
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeHealth"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneDevices"
   to = azurerm_log_analytics_workspace_table_custom_log.res-498
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeMonAgentEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/IntuneOperationalLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-499
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeNodeInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-500
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubePVInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeHealth"
   to = azurerm_log_analytics_workspace_table_custom_log.res-501
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubePodInventory"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeMonAgentEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-502
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeServices"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeNodeInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-503
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LAJobLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubePVInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-504
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LAQueryLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubePodInventory"
   to = azurerm_log_analytics_workspace_table_custom_log.res-505
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LASummaryLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/KubeServices"
   to = azurerm_log_analytics_workspace_table_custom_log.res-506
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LIATrackingEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LAJobLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-507
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LedgerTransactionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LAQueryLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-508
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LedgerUserDefinedLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LASummaryLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-509
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LogicAppWorkflowRuntime"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LIATrackingEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-510
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MCCEventLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LedgerTransactionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-511
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MCVPAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LedgerUserDefinedLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-512
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MCVPOperationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/LogicAppWorkflowRuntime"
   to = azurerm_log_analytics_workspace_table_custom_log.res-513
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionDNSEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MCCEventLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-514
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionFimEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MCVPAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-515
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionGatingValidationEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MCVPOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-516
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionK8SApiEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionDNSEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-517
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionProcessV2Events"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionFimEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-518
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCFileIntegrityMonitoringEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionGatingValidationEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-519
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDECustomCollectionDeviceFileEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionK8SApiEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-520
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDPResourceLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCDetectionProcessV2Events"
   to = azurerm_log_analytics_workspace_table_custom_log.res-521
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MNFDeviceUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDCFileIntegrityMonitoringEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-522
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MNFSystemSessionHistoryUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDECustomCollectionDeviceFileEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-523
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MNFSystemStateMessageUpdates"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MDPResourceLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-524
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MPCAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MNFDeviceUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-525
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MPCIngestionLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MNFSystemSessionHistoryUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-526
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MeshControlPlane"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MNFSystemStateMessageUpdates"
   to = azurerm_log_analytics_workspace_table_custom_log.res-527
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftAzureBastionAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MPCAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-528
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftDataShareReceivedSnapshotLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MPCIngestionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-529
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftDataShareSentSnapshotLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MeshControlPlane"
   to = azurerm_log_analytics_workspace_table_custom_log.res-530
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftDataShareShareLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftAzureBastionAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-531
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftGraphActivityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftDataShareReceivedSnapshotLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-532
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftGraphPolicyLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftDataShareSentSnapshotLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-533
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftHealthcareApisAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftDataShareShareLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-534
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftServicePrincipalSignInLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftGraphActivityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-535
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MySqlAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftGraphPolicyLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-536
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MySqlSlowLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftHealthcareApisAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-537
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMBreakGlassAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MicrosoftServicePrincipalSignInLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-538
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMSecurityDefenderLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MySqlAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-539
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMSecurityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/MySqlSlowLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-540
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMSystemLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMBreakGlassAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-541
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCIDRACLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMSecurityDefenderLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-542
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCKubernetesAPIAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMSecurityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-543
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCKubernetesLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCBMSystemLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-544
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCPlatformOperationsLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCIDRACLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-545
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCVMOrchestrationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCKubernetesAPIAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-546
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCMClusterOperationsLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCKubernetesLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-547
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCSStorageAlerts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCPlatformOperationsLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-548
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCSStorageAudits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCCVMOrchestrationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-549
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCSStorageLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCMClusterOperationsLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-550
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NGXOperationLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCSStorageAlerts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-551
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NGXSecurityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCSStorageAudits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-552
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NSPAccessLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NCSStorageLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-553
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTAInsights"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NGXOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-554
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTAIpDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NGXSecurityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-555
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTANetAnalytics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NSPAccessLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-556
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTANspRuleRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTAInsights"
   to = azurerm_log_analytics_workspace_table_custom_log.res-557
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTARuleRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTAIpDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-558
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTATopologyDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTANetAnalytics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-559
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorDNSResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTANspRuleRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-560
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorDestinationListenerResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTARuleRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-561
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorPathResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NTATopologyDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-562
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorTestResult"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorDNSResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-563
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NatGatewayFlowlogsV1"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorDestinationListenerResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-564
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessAlerts"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorPathResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-565
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessConnectionEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NWConnectionMonitorTestResult"
   to = azurerm_log_analytics_workspace_table_custom_log.res-566
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessGenerativeAIInsights"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NatGatewayFlowlogsV1"
   to = azurerm_log_analytics_workspace_table_custom_log.res-567
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessTraffic"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessAlerts"
   to = azurerm_log_analytics_workspace_table_custom_log.res-568
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NginxUpstreamUpdateLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessConnectionEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-569
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPAirFlowTask"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessGenerativeAIInsights"
   to = azurerm_log_analytics_workspace_table_custom_log.res-570
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NetworkAccessTraffic"
   to = azurerm_log_analytics_workspace_table_custom_log.res-571
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPDataplaneLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/NginxUpstreamUpdateLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-572
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPElasticOperator"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPAirFlowTask"
   to = azurerm_log_analytics_workspace_table_custom_log.res-573
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPElasticsearch"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-574
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPDataplaneLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-575
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWExperimentAssignmentSummary"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPElasticOperator"
   to = azurerm_log_analytics_workspace_table_custom_log.res-576
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWExperimentScorecardMetricPairs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEPElasticsearch"
   to = azurerm_log_analytics_workspace_table_custom_log.res-577
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWExperimentScorecards"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-578
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OGOAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWExperimentAssignmentSummary"
   to = azurerm_log_analytics_workspace_table_custom_log.res-579
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OLPSupplyChainEntityOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWExperimentScorecardMetricPairs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-580
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OLPSupplyChainEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OEWExperimentScorecards"
   to = azurerm_log_analytics_workspace_table_custom_log.res-581
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OGOAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-582
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OLPSupplyChainEntityOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-583
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelResources"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OLPSupplyChainEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-584
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelSpans"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-585
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelTraces"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-586
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelTracesAgent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelResources"
   to = azurerm_log_analytics_workspace_table_custom_log.res-587
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Operation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelSpans"
   to = azurerm_log_analytics_workspace_table_custom_log.res-588
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OracleCloudDatabase"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelTraces"
   to = azurerm_log_analytics_workspace_table_custom_log.res-589
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PFTitleAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OTelTracesAgent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-590
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLAutovacuumStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Operation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-591
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLDbTransactionsStats"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/OracleCloudDatabase"
   to = azurerm_log_analytics_workspace_table_custom_log.res-592
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLPgBouncer"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PFTitleAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-593
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLPgStatActivitySessions"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLAutovacuumStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-594
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLQueryStoreQueryText"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLDbTransactionsStats"
   to = azurerm_log_analytics_workspace_table_custom_log.res-595
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLQueryStoreRuntime"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLPgBouncer"
   to = azurerm_log_analytics_workspace_table_custom_log.res-596
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLQueryStoreWaits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLPgStatActivitySessions"
   to = azurerm_log_analytics_workspace_table_custom_log.res-597
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLServerLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLQueryStoreQueryText"
   to = azurerm_log_analytics_workspace_table_custom_log.res-598
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Perf"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLQueryStoreRuntime"
   to = azurerm_log_analytics_workspace_table_custom_log.res-599
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PerfInsightsFindings"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLQueryStoreWaits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-600
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PerfInsightsImpactedResources"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PGSQLServerLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-601
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PerfInsightsRun"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Perf"
   to = azurerm_log_analytics_workspace_table_custom_log.res-602
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PowerBIDatasetsTenant"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PerfInsightsFindings"
   to = azurerm_log_analytics_workspace_table_custom_log.res-603
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PowerBIDatasetsWorkspace"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PerfInsightsImpactedResources"
   to = azurerm_log_analytics_workspace_table_custom_log.res-604
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PreAuthenticationDiscoveryLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PerfInsightsRun"
   to = azurerm_log_analytics_workspace_table_custom_log.res-605
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PurviewDataSensitivityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PowerBIDatasetsTenant"
   to = azurerm_log_analytics_workspace_table_custom_log.res-606
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PurviewScanStatusLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PowerBIDatasetsWorkspace"
   to = azurerm_log_analytics_workspace_table_custom_log.res-607
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PurviewSecurityLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PreAuthenticationDiscoveryLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-608
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountJobAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PurviewDataSensitivityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-609
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountQueueAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PurviewScanStatusLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-610
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountTargetAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/PurviewSecurityLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-611
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumWorkspaceJobAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountDeviceOperationLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-612
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/REDConnectionEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountJobAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-613
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/RemoteNetworkHealthLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountQueueAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-614
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ResourceManagementPublicAccessLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumProviderAccountTargetAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-615
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/RetinaNetworkFlowLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/QuantumWorkspaceJobAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-616
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCCMAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/REDConnectionEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-617
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCGPoolExecutionLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/RemoteNetworkHealthLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-618
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCGPoolRequestLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ResourceManagementPublicAccessLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-619
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCOMAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/RetinaNetworkFlowLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-620
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SPAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCCMAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-621
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SQLAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCGPoolExecutionLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-622
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SQLSecurityAuditEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCGPoolRequestLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-623
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SVMPoolExecutionLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SCOMAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-624
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SVMPoolRequestLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SPAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-625
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SecurityCaseEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SQLAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-626
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ServiceFabricOperationalEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SQLSecurityAuditEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-627
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ServiceFabricReliableActorEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SVMPoolExecutionLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-628
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ServiceFabricReliableServiceEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SVMPoolRequestLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-629
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SfBAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SecurityCaseEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-630
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SfBOnlineAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ServiceFabricOperationalEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-631
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SharePointOnlineAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ServiceFabricReliableActorEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-632
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SignalRServiceDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ServiceFabricReliableServiceEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-633
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SigninLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SfBAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-634
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageAntimalwareScanResults"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SfBOnlineAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-635
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageBlobLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SharePointOnlineAssessmentRecommendation"
   to = azurerm_log_analytics_workspace_table_custom_log.res-636
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageCacheOperationEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SignalRServiceDiagnosticLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-637
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageCacheUpgradeEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SigninLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-638
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageCacheWarningEvents"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageAntimalwareScanResults"
   to = azurerm_log_analytics_workspace_table_custom_log.res-639
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageFileLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageBlobLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-640
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMalwareScanningResults"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageCacheOperationEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-641
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverAuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageCacheUpgradeEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-642
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverCopyLogsFailed"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageCacheWarningEvents"
   to = azurerm_log_analytics_workspace_table_custom_log.res-643
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverCopyLogsTransferred"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageFileLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-644
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverJobRunLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMalwareScanningResults"
   to = azurerm_log_analytics_workspace_table_custom_log.res-645
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageQueueLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverAuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-646
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageTableLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverCopyLogsFailed"
   to = azurerm_log_analytics_workspace_table_custom_log.res-647
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SucceededIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverCopyLogsTransferred"
   to = azurerm_log_analytics_workspace_table_custom_log.res-648
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseBigDataPoolApplicationsEnded"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageMoverJobRunLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-649
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseBuiltinSqlPoolRequestsEnded"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageQueueLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-650
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXCommand"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/StorageTableLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-651
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXFailedIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SucceededIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-652
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXIngestionBatching"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseBigDataPoolApplicationsEnded"
   to = azurerm_log_analytics_workspace_table_custom_log.res-653
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXQuery"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseBuiltinSqlPoolRequestsEnded"
   to = azurerm_log_analytics_workspace_table_custom_log.res-654
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXSucceededIngestion"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXCommand"
   to = azurerm_log_analytics_workspace_table_custom_log.res-655
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXTableDetails"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXFailedIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-656
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXTableUsageStatistics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXIngestionBatching"
   to = azurerm_log_analytics_workspace_table_custom_log.res-657
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseGatewayApiRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXQuery"
   to = azurerm_log_analytics_workspace_table_custom_log.res-658
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseIntegrationActivityRuns"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXSucceededIngestion"
   to = azurerm_log_analytics_workspace_table_custom_log.res-659
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseIntegrationPipelineRuns"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXTableDetails"
   to = azurerm_log_analytics_workspace_table_custom_log.res-660
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseIntegrationTriggerRuns"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseDXTableUsageStatistics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-661
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseLinkEvent"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseGatewayApiRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-662
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseRbacOperations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseIntegrationActivityRuns"
   to = azurerm_log_analytics_workspace_table_custom_log.res-663
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseScopePoolScopeJobsEnded"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseIntegrationPipelineRuns"
   to = azurerm_log_analytics_workspace_table_custom_log.res-664
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseScopePoolScopeJobsStateChange"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseIntegrationTriggerRuns"
   to = azurerm_log_analytics_workspace_table_custom_log.res-665
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolDmsWorkers"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseLinkEvent"
   to = azurerm_log_analytics_workspace_table_custom_log.res-666
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolExecRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseRbacOperations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-667
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolRequestSteps"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseScopePoolScopeJobsEnded"
   to = azurerm_log_analytics_workspace_table_custom_log.res-668
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolSqlRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseScopePoolScopeJobsStateChange"
   to = azurerm_log_analytics_workspace_table_custom_log.res-669
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolWaits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolDmsWorkers"
   to = azurerm_log_analytics_workspace_table_custom_log.res-670
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Syslog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolExecRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-671
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/TOUserAudits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolRequestSteps"
   to = azurerm_log_analytics_workspace_table_custom_log.res-672
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/TOUserDiagnostics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolSqlRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-673
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/TSIIngress"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/SynapseSqlPoolWaits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-674
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCClient"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Syslog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-675
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCClientReadinessStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/TOUserAudits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-676
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCClientUpdateStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/TOUserDiagnostics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-677
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCDOAggregatedStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/TSIIngress"
   to = azurerm_log_analytics_workspace_table_custom_log.res-678
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCDOStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCClient"
   to = azurerm_log_analytics_workspace_table_custom_log.res-679
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCDeviceAlert"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCClientReadinessStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-680
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCServiceUpdateStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCClientUpdateStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-681
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCUpdateAlert"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCDOAggregatedStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-682
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Usage"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCDOStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-683
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VCoreMongoRequests"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCDeviceAlert"
   to = azurerm_log_analytics_workspace_table_custom_log.res-684
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VIAudit"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCServiceUpdateStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-685
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VIIndexing"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/UCUpdateAlert"
   to = azurerm_log_analytics_workspace_table_custom_log.res-686
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMBoundPort"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Usage"
   to = azurerm_log_analytics_workspace_table_custom_log.res-687
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMComputer"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VCoreMongoRequests"
   to = azurerm_log_analytics_workspace_table_custom_log.res-688
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMConnection"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VIAudit"
   to = azurerm_log_analytics_workspace_table_custom_log.res-689
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMProcess"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VIIndexing"
   to = azurerm_log_analytics_workspace_table_custom_log.res-690
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/W3CIISLog"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMBoundPort"
   to = azurerm_log_analytics_workspace_table_custom_log.res-691
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WOUserAudits"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMComputer"
   to = azurerm_log_analytics_workspace_table_custom_log.res-692
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WOUserDiagnostics"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMConnection"
   to = azurerm_log_analytics_workspace_table_custom_log.res-693
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDAgentHealthStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/VMProcess"
   to = azurerm_log_analytics_workspace_table_custom_log.res-694
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDAutoscaleEvaluationPooled"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/W3CIISLog"
   to = azurerm_log_analytics_workspace_table_custom_log.res-695
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDCheckpoints"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WOUserAudits"
   to = azurerm_log_analytics_workspace_table_custom_log.res-696
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDConnectionGraphicsDataPreview"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WOUserDiagnostics"
   to = azurerm_log_analytics_workspace_table_custom_log.res-697
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDConnectionNetworkData"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDAgentHealthStatus"
   to = azurerm_log_analytics_workspace_table_custom_log.res-698
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDConnections"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDAutoscaleEvaluationPooled"
   to = azurerm_log_analytics_workspace_table_custom_log.res-699
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDErrors"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDCheckpoints"
   to = azurerm_log_analytics_workspace_table_custom_log.res-700
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDFeeds"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDConnectionGraphicsDataPreview"
   to = azurerm_log_analytics_workspace_table_custom_log.res-701
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDHostRegistrations"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDConnectionNetworkData"
   to = azurerm_log_analytics_workspace_table_custom_log.res-702
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDManagement"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDConnections"
   to = azurerm_log_analytics_workspace_table_custom_log.res-703
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDMultiLinkAdd"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDErrors"
   to = azurerm_log_analytics_workspace_table_custom_log.res-704
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDSessionHostManagement"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDFeeds"
   to = azurerm_log_analytics_workspace_table_custom_log.res-705
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WebPubSubConnectivity"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDHostRegistrations"
   to = azurerm_log_analytics_workspace_table_custom_log.res-706
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WebPubSubHttpRequest"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDManagement"
   to = azurerm_log_analytics_workspace_table_custom_log.res-707
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WebPubSubMessaging"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDMultiLinkAdd"
   to = azurerm_log_analytics_workspace_table_custom_log.res-708
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365AuditLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WVDSessionHostManagement"
   to = azurerm_log_analytics_workspace_table_custom_log.res-709
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WindowsClientAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WebPubSubConnectivity"
   to = azurerm_log_analytics_workspace_table_custom_log.res-710
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WindowsServerAssessmentRecommendation"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WebPubSubHttpRequest"
   to = azurerm_log_analytics_workspace_table_custom_log.res-711
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WorkloadDiagnosticLogs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WebPubSubMessaging"
   to = azurerm_log_analytics_workspace_table_custom_log.res-712
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSGraph"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365AuditLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-713
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSJobStatus"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365CheckpointLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-714
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSMetadata"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365ConnectionErrorLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-715
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSRequest"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365ConnectionLogs"
   to = azurerm_log_analytics_workspace_table_custom_log.res-716
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/Windows365NetworkLogs"
+  to = azurerm_log_analytics_workspace_table_custom_log.res-717
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WindowsClientAssessmentRecommendation"
+  to = azurerm_log_analytics_workspace_table_custom_log.res-718
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WindowsServerAssessmentRecommendation"
+  to = azurerm_log_analytics_workspace_table_custom_log.res-719
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/WorkloadDiagnosticLogs"
+  to = azurerm_log_analytics_workspace_table_custom_log.res-720
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSGraph"
+  to = azurerm_log_analytics_workspace_table_custom_log.res-721
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSJobStatus"
+  to = azurerm_log_analytics_workspace_table_custom_log.res-722
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSMetadata"
+  to = azurerm_log_analytics_workspace_table_custom_log.res-723
+}
+import {
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p/tables/ZTSRequest"
+  to = azurerm_log_analytics_workspace_table_custom_log.res-724
 }

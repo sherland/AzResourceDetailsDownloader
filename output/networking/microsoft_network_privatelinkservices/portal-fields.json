@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-a3262f4eeb66a89e"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Alias",
+    "Value": "plsd0-7-olm.1b2f6781-906d-4f11-b080-000638de69db.norwayeast.azure.privatelinkservice"
+  },
+  {
+    "Label": "NAT subnet",
+    "Value": "vnet3rh8yq8u/default"
+  },
+  {
+    "Label": "NAT IPs",
+    "Value": "10.64.0.5"
+  },
+  {
+    "Label": "Load balancer",
+    "Value": "lbv3r8rnuu"
+  },
+  {
+    "Label": "Load balancer front end IP",
+    "Value": "feConfig"
+  }
+]

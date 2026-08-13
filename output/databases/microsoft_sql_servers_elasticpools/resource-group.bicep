@@ -4,7 +4,7 @@ param servers_sqlgtm7_5ek_name string
 
 resource servers_sqlgtm7_5ek_name_resource 'Microsoft.Sql/servers@2025-02-01-preview' = {
   name: servers_sqlgtm7_5ek_name
-  location: 'westeurope'
+  location: 'swedencentral'
   kind: 'v12.0'
   properties: {
     administratorLogin: 'azrddadmin'
@@ -67,7 +67,7 @@ resource servers_sqlgtm7_5ek_name_ForceLastGoodPlan 'Microsoft.Sql/servers/advis
 resource Microsoft_Sql_servers_auditingPolicies_servers_sqlgtm7_5ek_name_Default 'Microsoft.Sql/servers/auditingPolicies@2014-04-01' = {
   parent: servers_sqlgtm7_5ek_name_resource
   name: 'Default'
-  location: 'West Europe'
+  location: 'Sweden Central'
   properties: {
     auditingState: 'Disabled'
   }
@@ -90,7 +90,7 @@ resource Microsoft_Sql_servers_auditingSettings_servers_sqlgtm7_5ek_name_Default
 resource Microsoft_Sql_servers_connectionPolicies_servers_sqlgtm7_5ek_name_default 'Microsoft.Sql/servers/connectionPolicies@2025-02-01-preview' = {
   parent: servers_sqlgtm7_5ek_name_resource
   name: 'default'
-  location: 'westeurope'
+  location: 'swedencentral'
   properties: {
     connectionType: 'Default'
   }
@@ -108,7 +108,7 @@ resource servers_sqlgtm7_5ek_name_master_Default 'Microsoft.Sql/servers/database
 
 resource Microsoft_Sql_servers_databases_auditingPolicies_servers_sqlgtm7_5ek_name_master_Default 'Microsoft.Sql/servers/databases/auditingPolicies@2014-04-01' = {
   name: '${servers_sqlgtm7_5ek_name}/master/Default'
-  location: 'West Europe'
+  location: 'Sweden Central'
   properties: {
     auditingState: 'Disabled'
   }
@@ -146,7 +146,7 @@ resource Microsoft_Sql_servers_databases_extendedAuditingSettings_servers_sqlgtm
 resource Microsoft_Sql_servers_databases_geoBackupPolicies_servers_sqlgtm7_5ek_name_master_Default 'Microsoft.Sql/servers/databases/geoBackupPolicies@2025-02-01-preview' = {
   name: '${servers_sqlgtm7_5ek_name}/master/Default'
   properties: {
-    state: 'Disabled'
+    state: 'Enabled'
   }
   dependsOn: [
     servers_sqlgtm7_5ek_name_resource
@@ -216,7 +216,7 @@ resource Microsoft_Sql_servers_devOpsAuditingSettings_servers_sqlgtm7_5ek_name_D
 resource servers_sqlgtm7_5ek_name_poolcmer4b 'Microsoft.Sql/servers/elasticPools@2025-02-01-preview' = {
   parent: servers_sqlgtm7_5ek_name_resource
   name: 'poolcmer4b'
-  location: 'westeurope'
+  location: 'swedencentral'
   sku: {
     name: 'BasicPool'
     tier: 'Basic'

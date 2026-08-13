@@ -2,7 +2,7 @@ param flexibleServers_pgfd6vwwi6_name string
 
 resource flexibleServers_pgfd6vwwi6_name_resource 'Microsoft.DBforPostgreSQL/flexibleServers@2026-04-01-preview' = {
   name: flexibleServers_pgfd6vwwi6_name
-  location: 'West Europe'
+  location: 'Norway East'
   sku: {
     name: 'Standard_B1ms'
     tier: 'Burstable'

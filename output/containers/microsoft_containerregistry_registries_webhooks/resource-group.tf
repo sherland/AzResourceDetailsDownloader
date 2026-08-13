@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,23 +10,22 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-86a49318bbcdb3bd"
   tags = {
     armType    = "Microsoft.ContainerRegistry/registries/webhooks"
-    createdUtc = "2026-07-15T18:43:19.4413626Z"
+    createdUtc = "2026-08-13T12:55:15.3290434Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_container_registry" "res-1" {
   admin_enabled                 = false
-  admin_password                = "" # Masked sensitive attribute
   anonymous_pull_enabled        = false
   data_endpoint_enabled         = false
   encryption                    = []
   export_policy_enabled         = true
-  location                      = "westeurope"
+  location                      = "norwayeast"
   name                          = "acrhuv0ipc0"
   network_rule_bypass_option    = "AzureServices"
   network_rule_set              = []
@@ -91,7 +90,7 @@ resource "azurerm_container_registry_scope_map" "res-6" {
 }
 resource "azurerm_container_registry_webhook" "res-7" {
   actions             = ["push"]
-  location            = "westeurope"
+  location            = "norwayeast"
   name                = "wh8jol6k"
   registry_name       = "acrhuv0ipc0"
   resource_group_name = azurerm_resource_group.res-0.name

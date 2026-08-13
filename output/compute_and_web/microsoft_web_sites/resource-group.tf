@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,20 +10,20 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-c7c28ed4cbde6a4b"
   tags = {
     armType    = "Microsoft.Web/sites"
-    createdUtc = "2026-07-15T18:28:40.2297583Z"
+    createdUtc = "2026-08-13T14:53:21.1286175Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_service_plan" "res-1" {
   app_service_environment_id      = ""
-  location                        = "westeurope"
+  location                        = "swedencentral"
   maximum_elastic_worker_count    = 1
-  name                            = "planssdqc-0o"
+  name                            = "planstn43n7m"
   os_type                         = "Linux"
   per_site_scaling_enabled        = false
   premium_plan_auto_scale_enabled = false
@@ -39,17 +39,15 @@ resource "azurerm_linux_web_app" "res-2" {
   client_certificate_enabled                     = false
   client_certificate_exclusion_paths             = ""
   client_certificate_mode                        = "Required"
-  custom_domain_verification_id                  = "" # Masked sensitive attribute
   enabled                                        = true
   ftp_publish_basic_authentication_enabled       = true
   https_only                                     = true
   key_vault_reference_identity_id                = "SystemAssigned"
-  location                                       = "westeurope"
-  name                                           = "appr4jqbf1k"
+  location                                       = "swedencentral"
+  name                                           = "appr2opwtix"
   public_network_access_enabled                  = true
   resource_group_name                            = azurerm_resource_group.res-0.name
   service_plan_id                                = azurerm_service_plan.res-1.id
-  site_credential                                = [] # Masked sensitive attribute
   tags                                           = {}
   virtual_network_backup_restore_enabled         = false
   virtual_network_subnet_id                      = ""
@@ -72,6 +70,7 @@ resource "azurerm_linux_web_app" "res-2" {
     load_balancing_mode                           = "LeastRequests"
     local_mysql_enabled                           = false
     managed_pipeline_mode                         = "Integrated"
+    minimum_tls_cipher_suite                      = ""
     minimum_tls_version                           = "1.2"
     remote_debugging_enabled                      = false
     remote_debugging_version                      = ""
@@ -100,8 +99,8 @@ resource "azurerm_linux_web_app" "res-2" {
   }
 }
 resource "azurerm_app_service_custom_hostname_binding" "res-6" {
-  app_service_name    = "appr4jqbf1k"
-  hostname            = "appr4jqbf1k.azurewebsites.net"
+  app_service_name    = "appr2opwtix"
+  hostname            = "appr2opwtix.azurewebsites.net"
   resource_group_name = azurerm_resource_group.res-0.name
   ssl_state           = ""
   thumbprint          = ""
@@ -116,14 +115,14 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c7c28ed4cbde6a4b/providers/Microsoft.Web/serverFarms/planssdqc-0o"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c7c28ed4cbde6a4b/providers/Microsoft.Web/serverFarms/planstn43n7m"
   to = azurerm_service_plan.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c7c28ed4cbde6a4b/providers/Microsoft.Web/sites/appr4jqbf1k"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c7c28ed4cbde6a4b/providers/Microsoft.Web/sites/appr2opwtix"
   to = azurerm_linux_web_app.res-2
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c7c28ed4cbde6a4b/providers/Microsoft.Web/sites/appr4jqbf1k/hostNameBindings/appr4jqbf1k.azurewebsites.net"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c7c28ed4cbde6a4b/providers/Microsoft.Web/sites/appr2opwtix/hostNameBindings/appr2opwtix.azurewebsites.net"
   to = azurerm_app_service_custom_hostname_binding.res-6
 }

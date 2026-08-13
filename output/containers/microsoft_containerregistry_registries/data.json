@@ -6,19 +6,19 @@
   "type": "Microsoft.ContainerRegistry/registries",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1bbbd6c0728e9e29/providers/Microsoft.ContainerRegistry/registries/acrp0etmvv1",
   "name": "acrp0etmvv1",
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": {},
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:29:14.0620277\u002B00:00",
+    "createdAt": "2026-08-13T12:43:56.5779981\u002B00:00",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:29:14.0620277\u002B00:00"
+    "lastModifiedAt": "2026-08-13T12:43:56.5779981\u002B00:00"
   },
   "properties": {
     "loginServer": "acrp0etmvv1.azurecr.io",
-    "creationDate": "2026-07-15T18:29:14.0620277Z",
+    "creationDate": "2026-08-13T12:43:56.5779981Z",
     "provisioningState": "Succeeded",
     "adminUserEnabled": false,
     "policies": {
@@ -31,7 +31,7 @@
       },
       "retentionPolicy": {
         "days": 7,
-        "lastUpdatedTime": "2026-07-15T18:29:21.0943248\u002B00:00",
+        "lastUpdatedTime": "2026-08-13T12:44:03.4358873\u002B00:00",
         "status": "disabled"
       },
       "exportPolicy": {
@@ -42,7 +42,7 @@
       },
       "softDeletePolicy": {
         "retentionDays": 7,
-        "lastUpdatedTime": "2026-07-15T18:29:21.0943656\u002B00:00",
+        "lastUpdatedTime": "2026-08-13T12:44:03.4359205\u002B00:00",
         "status": "disabled"
       }
     },

@@ -1,0 +1,18 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-7f83b649b73888fd"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  }
+]

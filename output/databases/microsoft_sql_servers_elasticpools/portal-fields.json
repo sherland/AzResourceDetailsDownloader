@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-b5f32dd1b32c637f"
+  },
+  {
+    "Label": "Status",
+    "Value": "Creating"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Server name",
+    "Value": "sqlgtm7-5ek.database.windows.net"
+  },
+  {
+    "Label": "Pricing tier",
+    "Value": "Basic: 50 eDTUs"
+  },
+  {
+    "Label": "Elastic databases",
+    "Value": "0 databases"
+  },
+  {
+    "Label": "Elastic database settings",
+    "Value": "0-5 eDTUs"
+  }
+]

@@ -2,7 +2,7 @@ param maintenanceconfigurations_mclpeogsoh_name string
 
 resource maintenanceconfigurations_mclpeogsoh_name_resource 'microsoft.maintenance/maintenanceconfigurations@2023-10-01-preview' = {
   name: maintenanceconfigurations_mclpeogsoh_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     extensionProperties: {
       InGuestPatchMode: 'User'

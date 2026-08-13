@@ -1,15 +1,15 @@
 {
   "kind": null,
-  "etag": "\u00221202275a-0000-0200-0000-6a57d3b80000\u0022",
+  "etag": "\u0022cf0092e5-0000-0c00-0000-6a7dbdf10000\u0022",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1fe5141e0d0dffeb/providers/Microsoft.OperationalInsights/querypacks/qpdn2pzyb4",
   "name": "qpdn2pzyb4",
   "type": "microsoft.operationalinsights/querypacks",
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": {},
   "properties": {
-    "queryPackId": "9bc01b8e-bb0a-4d27-adcc-bd3e12b3514e",
-    "timeCreated": "2026-07-15T18:38:48.4971479Z",
-    "timeModified": "2026-07-15T18:38:48.4971479Z",
+    "queryPackId": "bac58d5a-1b9c-41eb-898d-45206fb11945",
+    "timeCreated": "2026-08-13T12:52:01.1957259Z",
+    "timeModified": "2026-08-13T12:52:01.1957259Z",
     "provisioningState": "Succeeded"
   }
 }

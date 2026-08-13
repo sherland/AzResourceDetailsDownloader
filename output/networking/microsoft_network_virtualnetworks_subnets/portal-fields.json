@@ -1,0 +1,22 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-83d5300c87a0f865"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource id",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-83d5300c87a0f865/providers/Microsoft.Network/virtualNetworks/vnet93wy8s69/subnets/subnetcua-vp"
+  },
+  {
+    "Label": "Type",
+    "Value": "Microsoft.Network/virtualNetworks/subnets"
+  }
+]

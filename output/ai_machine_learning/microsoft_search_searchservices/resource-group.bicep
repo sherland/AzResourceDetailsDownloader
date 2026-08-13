@@ -1,15 +1,15 @@
-param searchServices_srchqyqp_wtf_name string
+param searchServices_srchtfk_y8_j_name string
 
-resource searchServices_srchqyqp_wtf_name_resource 'Microsoft.Search/searchServices@2026-03-01-preview' = {
-  name: searchServices_srchqyqp_wtf_name
-  location: 'West Europe'
+resource searchServices_srchtfk_y8_j_name_resource 'Microsoft.Search/searchServices@2026-03-01-preview' = {
+  name: searchServices_srchtfk_y8_j_name
+  location: 'Norway East'
   sku: {
     name: 'free'
   }
   properties: {
     replicaCount: 1
     partitionCount: 1
-    endpoint: 'https://${searchServices_srchqyqp_wtf_name}.search.windows.net'
+    endpoint: 'https://${searchServices_srchtfk_y8_j_name}.search.windows.net'
     hostingMode: 'Default'
     computeType: 'Default'
     publicNetworkAccess: 'Enabled'
@@ -25,7 +25,7 @@ resource searchServices_srchqyqp_wtf_name_resource 'Microsoft.Search/searchServi
       apiKeyOnly: {}
     }
     dataExfiltrationProtections: []
-    semanticSearch: 'free'
+    semanticSearch: 'disabled'
     knowledgeRetrieval: 'free'
     upgradeAvailable: 'notAvailable'
   }

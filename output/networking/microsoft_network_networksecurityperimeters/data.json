@@ -1,20 +1,20 @@
 {
   "name": "nspoe-0-nxe",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0657a2f739507890/providers/Microsoft.Network/networkSecurityPerimeters/nspoe-0-nxe",
-  "location": "westeurope",
+  "location": "norwayeast",
   "type": "Microsoft.Network/networkSecurityPerimeters",
   "tags": {},
   "etag": "",
   "properties": {
-    "perimeterGuid": "0de30024-7a55-4e33-ab0d-ec3ca7dcc1cf",
+    "perimeterGuid": "6814868f-f3de-48be-bd20-6d213598bbce",
     "provisioningState": "Succeeded"
   },
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T19:25:46.9826375Z",
+    "createdAt": "2026-08-13T13:31:29.3406063Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T19:25:46.9826375Z"
+    "lastModifiedAt": "2026-08-13T13:31:29.3406063Z"
   }
 }

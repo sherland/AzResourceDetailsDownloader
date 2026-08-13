@@ -1,17 +1,17 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmoscibdp-jn",
-  "name": "cosmoscibdp-jn",
-  "location": "West Europe",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmosjbq-pv4b",
+  "name": "cosmosjbq-pv4b",
+  "location": "Sweden Central",
   "type": "Microsoft.DocumentDB/databaseAccounts",
   "kind": "GlobalDocumentDB",
   "tags": {},
   "systemData": {
-    "createdAt": "2026-07-15T18:23:50.6712739Z"
+    "createdAt": "2026-08-13T14:47:42.4744267Z"
   },
   "properties": {
     "provisioningState": "Succeeded",
-    "documentEndpoint": "https://cosmoscibdp-jn.documents.azure.com:443/",
-    "sqlEndpoint": "https://cosmoscibdp-jn.documents.azure.com:443/",
+    "documentEndpoint": "https://cosmosjbq-pv4b.documents.azure.com:443/",
+    "sqlEndpoint": "https://cosmosjbq-pv4b.documents.azure.com:443/",
     "publicNetworkAccess": "Enabled",
     "enableAutomaticFailover": true,
     "enableMultipleWriteLocations": false,
@@ -25,7 +25,7 @@
     "analyticalStorageConfiguration": {
       "schemaType": "WellDefined"
     },
-    "instanceId": "bba1d0c3-e17c-477b-965e-d08e3cc9090b",
+    "instanceId": "2e74c335-7e00-45dd-9b63-4b863b5944e3",
     "databaseAccountOfferType": "Standard",
     "defaultIdentity": "FirstPartyIdentity",
     "networkAclBypass": "None",
@@ -41,9 +41,9 @@
     "configurationOverrides": {},
     "writeLocations": [
       {
-        "id": "cosmoscibdp-jn-westeurope",
-        "locationName": "West Europe",
-        "documentEndpoint": "https://cosmoscibdp-jn-westeurope.documents.azure.com:443/",
+        "id": "cosmosjbq-pv4b-swedencentral",
+        "locationName": "Sweden Central",
+        "documentEndpoint": "https://cosmosjbq-pv4b-swedencentral.documents.azure.com:443/",
         "provisioningState": "Succeeded",
         "failoverPriority": 0,
         "isZoneRedundant": false
@@ -51,9 +51,9 @@
     ],
     "readLocations": [
       {
-        "id": "cosmoscibdp-jn-westeurope",
-        "locationName": "West Europe",
-        "documentEndpoint": "https://cosmoscibdp-jn-westeurope.documents.azure.com:443/",
+        "id": "cosmosjbq-pv4b-swedencentral",
+        "locationName": "Sweden Central",
+        "documentEndpoint": "https://cosmosjbq-pv4b-swedencentral.documents.azure.com:443/",
         "provisioningState": "Succeeded",
         "failoverPriority": 0,
         "isZoneRedundant": false
@@ -61,9 +61,9 @@
     ],
     "locations": [
       {
-        "id": "cosmoscibdp-jn-westeurope",
-        "locationName": "West Europe",
-        "documentEndpoint": "https://cosmoscibdp-jn-westeurope.documents.azure.com:443/",
+        "id": "cosmosjbq-pv4b-swedencentral",
+        "locationName": "Sweden Central",
+        "documentEndpoint": "https://cosmosjbq-pv4b-swedencentral.documents.azure.com:443/",
         "provisioningState": "Succeeded",
         "failoverPriority": 0,
         "isZoneRedundant": false
@@ -71,8 +71,8 @@
     ],
     "failoverPolicies": [
       {
-        "id": "cosmoscibdp-jn-westeurope",
-        "locationName": "West Europe",
+        "id": "cosmosjbq-pv4b-swedencentral",
+        "locationName": "Sweden Central",
         "failoverPriority": 0
       }
     ],
@@ -94,16 +94,16 @@
     "networkAclBypassResourceIds": [],
     "keysMetadata": {
       "primaryMasterKey": {
-        "generationTime": "2026-07-15T18:23:50.6712739Z"
+        "generationTime": "2026-08-13T14:47:42.4744267Z"
       },
       "secondaryMasterKey": {
-        "generationTime": "2026-07-15T18:23:50.6712739Z"
+        "generationTime": "2026-08-13T14:47:42.4744267Z"
       },
       "primaryReadonlyMasterKey": {
-        "generationTime": "2026-07-15T18:23:50.6712739Z"
+        "generationTime": "2026-08-13T14:47:42.4744267Z"
       },
       "secondaryReadonlyMasterKey": {
-        "generationTime": "2026-07-15T18:23:50.6712739Z"
+        "generationTime": "2026-08-13T14:47:42.4744267Z"
       }
     }
   },

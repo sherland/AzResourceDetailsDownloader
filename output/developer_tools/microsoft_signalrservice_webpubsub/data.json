@@ -7,8 +7,8 @@
   },
   "properties": {
     "provisioningState": "Succeeded",
-    "externalIP": "20.86.94.51",
-    "hostName": "wpswbqd8-py.webpubsub.azure.com",
+    "externalIP": "4.235.51.36",
+    "hostName": "wpseg8-bp2f.webpubsub.azure.com",
     "publicPort": 443,
     "serverPort": 443,
     "version": "1.0",
@@ -17,7 +17,7 @@
     "tls": {
       "clientCertEnabled": false
     },
-    "hostNamePrefix": "wpswbqd8-py",
+    "hostNamePrefix": "wpseg8-bp2f",
     "liveTraceConfiguration": null,
     "resourceLogConfiguration": null,
     "networkACLs": {
@@ -51,17 +51,17 @@
     "socketIO": null
   },
   "kind": "WebPubSub",
-  "location": "westeurope",
+  "location": "norwayeast",
   "tags": null,
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-91e7d15b849117c3/providers/Microsoft.SignalRService/WebPubSub/wpswbqd8-py",
-  "name": "wpswbqd8-py",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-91e7d15b849117c3/providers/Microsoft.SignalRService/WebPubSub/wpseg8-bp2f",
+  "name": "wpseg8-bp2f",
   "type": "Microsoft.SignalRService/WebPubSub",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T19:16:48.6248703Z",
+    "createdAt": "2026-08-13T14:37:17.4119509Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T19:16:48.6248703Z"
+    "lastModifiedAt": "2026-08-13T14:37:17.4119509Z"
   }
 }

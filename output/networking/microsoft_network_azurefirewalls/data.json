@@ -1,9 +1,9 @@
 {
-  "name": "afwd5edfm",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm",
-  "etag": "W/\u002214923183-761c-4356-bacc-a871ee4a96f6\u0022",
+  "name": "afwvzgvaw",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwvzgvaw",
+  "etag": "W/\u0022e1580f4f-4853-4a01-974d-5fc79f9601ff\u0022",
   "type": "Microsoft.Network/azureFirewalls",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
     "sku": {
@@ -14,35 +14,35 @@
     "additionalProperties": {},
     "managementIpConfiguration": {
       "name": "afwMgmtIpConfig",
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm/azureFirewallIpConfigurations/afwMgmtIpConfig",
-      "etag": "W/\u002214923183-761c-4356-bacc-a871ee4a96f6\u0022",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwvzgvaw/azureFirewallIpConfigurations/afwMgmtIpConfig",
+      "etag": "W/\u0022e1580f4f-4853-4a01-974d-5fc79f9601ff\u0022",
       "type": "Microsoft.Network/azureFirewalls/azureFirewallIpConfigurations",
       "properties": {
         "provisioningState": "Succeeded",
         "privateIPAllocationMethod": "Dynamic",
         "publicIPAddress": {
-          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/pipunesj-jt"
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/piptlxkj0-6"
         },
         "subnet": {
-          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetw4qxan-j/subnets/AzureFirewallManagementSubnet"
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetfdgcru-j/subnets/AzureFirewallManagementSubnet"
         }
       }
     },
     "ipConfigurations": [
       {
         "name": "afwIpConfig",
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm/azureFirewallIpConfigurations/afwIpConfig",
-        "etag": "W/\u002214923183-761c-4356-bacc-a871ee4a96f6\u0022",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwvzgvaw/azureFirewallIpConfigurations/afwIpConfig",
+        "etag": "W/\u0022e1580f4f-4853-4a01-974d-5fc79f9601ff\u0022",
         "type": "Microsoft.Network/azureFirewalls/azureFirewallIpConfigurations",
         "properties": {
           "provisioningState": "Succeeded",
           "privateIPAddress": "10.45.255.4",
           "privateIPAllocationMethod": "Dynamic",
           "publicIPAddress": {
-            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/piph5-e48-s"
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/pip7ia9-tq4"
           },
           "subnet": {
-            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetw4qxan-j/subnets/AzureFirewallSubnet"
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetfdgcru-j/subnets/AzureFirewallSubnet"
           }
         }
       }

@@ -5,7 +5,7 @@ param restorePointCollections_rpc0q_1q_i1_name string
 
 resource virtualNetworks_vnet4it9jcor_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnet4it9jcor_name
-  location: 'westeurope'
+  location: 'swedencentral'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -32,7 +32,7 @@ resource virtualNetworks_vnet4it9jcor_name_resource 'Microsoft.Network/virtualNe
 
 resource restorePointCollections_rpc0q_1q_i1_name_resource 'Microsoft.Compute/restorePointCollections@2025-11-01' = {
   name: restorePointCollections_rpc0q_1q_i1_name
-  location: 'westeurope'
+  location: 'swedencentral'
   properties: {
     source: {
       id: virtualMachines_swaz1fxf9i19802_name_resource.id
@@ -42,16 +42,7 @@ resource restorePointCollections_rpc0q_1q_i1_name_resource 'Microsoft.Compute/re
 
 resource virtualMachines_swaz1fxf9i19802_name_resource 'Microsoft.Compute/virtualMachines@2025-11-01' = {
   name: virtualMachines_swaz1fxf9i19802_name
-  location: 'westeurope'
-  tags: {
-    DISIT_OS_PATCHING: 'automatic'
-  }
-  identity: {
-    type: 'SystemAssigned, UserAssigned'
-    userAssignedIdentities: {
-      '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/Built-In-Identity-RG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/Built-In-Identity-westeurope': {}
-    }
-  }
+  location: 'swedencentral'
   properties: {
     hardwareProfile: {
       vmSize: 'Standard_D2s_v5'
@@ -65,14 +56,14 @@ resource virtualMachines_swaz1fxf9i19802_name_resource 'Microsoft.Compute/virtua
       }
       osDisk: {
         osType: 'Linux'
-        name: '${virtualMachines_swaz1fxf9i19802_name}_OsDisk_1_3305cef7d5ee4ebaab162d0880edeee8'
+        name: '${virtualMachines_swaz1fxf9i19802_name}_disk1_cc74c8da583c45b89535339c47fab5be'
         createOption: 'FromImage'
         caching: 'ReadWrite'
         managedDisk: {
           storageAccountType: 'StandardSSD_LRS'
           id: resourceId(
             'Microsoft.Compute/disks',
-            '${virtualMachines_swaz1fxf9i19802_name}_OsDisk_1_3305cef7d5ee4ebaab162d0880edeee8'
+            '${virtualMachines_swaz1fxf9i19802_name}_disk1_cc74c8da583c45b89535339c47fab5be'
           )
         }
         deleteOption: 'Detach'
@@ -89,6 +80,7 @@ resource virtualMachines_swaz1fxf9i19802_name_resource 'Microsoft.Compute/virtua
           patchMode: 'ImageDefault'
           assessmentMode: 'ImageDefault'
         }
+        enableVMAgentPlatformUpdates: true
       }
       secrets: []
       allowExtensionOperations: true
@@ -110,7 +102,7 @@ resource virtualMachines_swaz1fxf9i19802_name_resource 'Microsoft.Compute/virtua
 
 resource networkInterfaces_nic7a_5_uqh_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
   name: networkInterfaces_nic7a_5_uqh_name
-  location: 'westeurope'
+  location: 'swedencentral'
   kind: 'Regular'
   properties: {
     ipConfigurations: [

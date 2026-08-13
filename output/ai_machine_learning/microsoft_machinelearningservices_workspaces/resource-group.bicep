@@ -9,15 +9,15 @@ param datastores_workspacefilestore_secretsType string
 
 @secure()
 param datastores_workspaceworkingdirectory_secretsType string
-param vaults_kvfx4_8l4f_name string
-param components_aixa1t_bdf_name string
-param storageAccounts_st8g41vyg3_name string
-param workspaces_lawxzhza_zz_name string
-param workspaces_mlwb_8bzexm_name string
+param vaults_kv98v_brlw_name string
+param components_ai9n6dhqwp_name string
+param storageAccounts_stycmq73u2_name string
+param workspaces_lawe1vii9na_name string
+param workspaces_mlwtn_4e_c3_name string
 
-resource vaults_kvfx4_8l4f_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-preview' = {
-  name: vaults_kvfx4_8l4f_name
-  location: 'westeurope'
+resource vaults_kv98v_brlw_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-preview' = {
+  name: vaults_kv98v_brlw_name
+  location: 'norwayeast'
   properties: {
     sku: {
       family: 'A'
@@ -27,7 +27,7 @@ resource vaults_kvfx4_8l4f_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-p
     accessPolicies: [
       {
         tenantId: '11111111-1111-1111-1111-111111111111'
-        objectId: '54b76802-a889-42d2-8e84-e1fde6657291'
+        objectId: '7c675282-68a0-4436-bb7a-b79ea1d182a1'
         permissions: {
           keys: [
             'all'
@@ -47,15 +47,15 @@ resource vaults_kvfx4_8l4f_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-p
     softDeleteRetentionInDays: 90
     enableRbacAuthorization: true
     enablePurgeProtection: true
-    vaultUri: 'https://${vaults_kvfx4_8l4f_name}.vault.azure.net/'
+    vaultUri: 'https://${vaults_kv98v_brlw_name}.vault.azure.net/'
     provisioningState: 'Succeeded'
     publicNetworkAccess: 'Enabled'
   }
 }
 
-resource workspaces_lawxzhza_zz_name_resource 'Microsoft.OperationalInsights/workspaces@2025-07-01' = {
-  name: workspaces_lawxzhza_zz_name
-  location: 'westeurope'
+resource workspaces_lawe1vii9na_name_resource 'Microsoft.OperationalInsights/workspaces@2025-07-01' = {
+  name: workspaces_lawe1vii9na_name
+  location: 'norwayeast'
   properties: {
     sku: {
       name: 'PerGB2018'
@@ -74,9 +74,9 @@ resource workspaces_lawxzhza_zz_name_resource 'Microsoft.OperationalInsights/wor
   }
 }
 
-resource storageAccounts_st8g41vyg3_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
-  name: storageAccounts_st8g41vyg3_name
-  location: 'westeurope'
+resource storageAccounts_stycmq73u2_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
+  name: storageAccounts_stycmq73u2_name
+  location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'
@@ -111,24 +111,24 @@ resource storageAccounts_st8g41vyg3_name_resource 'Microsoft.Storage/storageAcco
   }
 }
 
-resource components_aixa1t_bdf_name_resource 'microsoft.insights/components@2020-02-02' = {
-  name: components_aixa1t_bdf_name
-  location: 'westeurope'
+resource components_ai9n6dhqwp_name_resource 'microsoft.insights/components@2020-02-02' = {
+  name: components_ai9n6dhqwp_name
+  location: 'norwayeast'
   kind: 'web'
   properties: {
     Application_Type: 'web'
     RetentionInDays: 90
-    WorkspaceResourceId: workspaces_lawxzhza_zz_name_resource.id
+    WorkspaceResourceId: workspaces_lawe1vii9na_name_resource.id
     IngestionMode: 'LogAnalytics'
     publicNetworkAccessForIngestion: 'Enabled'
     publicNetworkAccessForQuery: 'Enabled'
   }
 }
 
-resource components_aixa1t_bdf_name_degradationindependencyduration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_degradationindependencyduration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'degradationindependencyduration'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'degradationindependencyduration'
@@ -146,10 +146,10 @@ resource components_aixa1t_bdf_name_degradationindependencyduration 'microsoft.i
   }
 }
 
-resource components_aixa1t_bdf_name_degradationinserverresponsetime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_degradationinserverresponsetime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'degradationinserverresponsetime'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'degradationinserverresponsetime'
@@ -167,10 +167,10 @@ resource components_aixa1t_bdf_name_degradationinserverresponsetime 'microsoft.i
   }
 }
 
-resource components_aixa1t_bdf_name_digestMailConfiguration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_digestMailConfiguration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'digestMailConfiguration'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'digestMailConfiguration'
@@ -188,10 +188,10 @@ resource components_aixa1t_bdf_name_digestMailConfiguration 'microsoft.insights/
   }
 }
 
-resource components_aixa1t_bdf_name_extension_billingdatavolumedailyspikeextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_extension_billingdatavolumedailyspikeextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'extension_billingdatavolumedailyspikeextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_billingdatavolumedailyspikeextension'
@@ -209,10 +209,10 @@ resource components_aixa1t_bdf_name_extension_billingdatavolumedailyspikeextensi
   }
 }
 
-resource components_aixa1t_bdf_name_extension_canaryextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_extension_canaryextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'extension_canaryextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_canaryextension'
@@ -230,10 +230,10 @@ resource components_aixa1t_bdf_name_extension_canaryextension 'microsoft.insight
   }
 }
 
-resource components_aixa1t_bdf_name_extension_exceptionchangeextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_extension_exceptionchangeextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'extension_exceptionchangeextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_exceptionchangeextension'
@@ -251,10 +251,10 @@ resource components_aixa1t_bdf_name_extension_exceptionchangeextension 'microsof
   }
 }
 
-resource components_aixa1t_bdf_name_extension_memoryleakextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_extension_memoryleakextension 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'extension_memoryleakextension'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_memoryleakextension'
@@ -272,10 +272,10 @@ resource components_aixa1t_bdf_name_extension_memoryleakextension 'microsoft.ins
   }
 }
 
-resource components_aixa1t_bdf_name_extension_securityextensionspackage 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_extension_securityextensionspackage 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'extension_securityextensionspackage'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_securityextensionspackage'
@@ -293,10 +293,10 @@ resource components_aixa1t_bdf_name_extension_securityextensionspackage 'microso
   }
 }
 
-resource components_aixa1t_bdf_name_extension_traceseveritydetector 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_extension_traceseveritydetector 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'extension_traceseveritydetector'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'extension_traceseveritydetector'
@@ -314,10 +314,10 @@ resource components_aixa1t_bdf_name_extension_traceseveritydetector 'microsoft.i
   }
 }
 
-resource components_aixa1t_bdf_name_longdependencyduration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_longdependencyduration 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'longdependencyduration'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'longdependencyduration'
@@ -335,10 +335,10 @@ resource components_aixa1t_bdf_name_longdependencyduration 'microsoft.insights/c
   }
 }
 
-resource components_aixa1t_bdf_name_migrationToAlertRulesCompleted 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_migrationToAlertRulesCompleted 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'migrationToAlertRulesCompleted'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'migrationToAlertRulesCompleted'
@@ -356,10 +356,10 @@ resource components_aixa1t_bdf_name_migrationToAlertRulesCompleted 'microsoft.in
   }
 }
 
-resource components_aixa1t_bdf_name_slowpageloadtime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_slowpageloadtime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'slowpageloadtime'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'slowpageloadtime'
@@ -377,10 +377,10 @@ resource components_aixa1t_bdf_name_slowpageloadtime 'microsoft.insights/compone
   }
 }
 
-resource components_aixa1t_bdf_name_slowserverresponsetime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
-  parent: components_aixa1t_bdf_name_resource
+resource components_ai9n6dhqwp_name_slowserverresponsetime 'microsoft.insights/components/ProactiveDetectionConfigs@2018-05-01-preview' = {
+  parent: components_ai9n6dhqwp_name_resource
   name: 'slowserverresponsetime'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     ruleDefinitions: {
       Name: 'slowserverresponsetime'
@@ -398,60 +398,60 @@ resource components_aixa1t_bdf_name_slowserverresponsetime 'microsoft.insights/c
   }
 }
 
-resource vaults_kvfx4_8l4f_name_d8295493_1c28_4ac1_857a_47fc74059f14_8xAP8yuUP83oBxG11FxwIoON7y3rf6zf42e7_xw7vrk 'Microsoft.KeyVault/vaults/secrets@2026-03-01-preview' = {
-  parent: vaults_kvfx4_8l4f_name_resource
-  name: 'd8295493-1c28-4ac1-857a-47fc74059f14-8xAP8yuUP83oBxG11FxwIoON7y3rf6zf42e7-xw7vrk'
-  location: 'westeurope'
+resource vaults_kv98v_brlw_name_3dd8bf9f_9a52_42e2_afac_932541b0b730_2RBwj6ZqJksETCezw_ouW1zR7uUu6PpNGIjFaCU1NGc 'Microsoft.KeyVault/vaults/secrets@2026-03-01-preview' = {
+  parent: vaults_kv98v_brlw_name_resource
+  name: '3dd8bf9f-9a52-42e2-afac-932541b0b730-2RBwj6ZqJksETCezw-ouW1zR7uUu6PpNGIjFaCU1NGc'
+  location: 'norwayeast'
   properties: {
     contentType: 'application/vnd.ms-StorageAccountAccessKey'
     attributes: {
       enabled: true
-      exp: 1847301610
+      exp: 1849788421
     }
   }
 }
 
-resource vaults_kvfx4_8l4f_name_d8295493_1c28_4ac1_857a_47fc74059f14_AEy9BGDEpg_cUKRVak2Uw5MdM41XguIJZl9dJEb0aho 'Microsoft.KeyVault/vaults/secrets@2026-03-01-preview' = {
-  parent: vaults_kvfx4_8l4f_name_resource
-  name: 'd8295493-1c28-4ac1-857a-47fc74059f14-AEy9BGDEpg-cUKRVak2Uw5MdM41XguIJZl9dJEb0aho'
-  location: 'westeurope'
+resource vaults_kv98v_brlw_name_3dd8bf9f_9a52_42e2_afac_932541b0b730_K9MOjv2gLkn34YYjcpywWKqxfG6MuBxAeogchTKk_wY 'Microsoft.KeyVault/vaults/secrets@2026-03-01-preview' = {
+  parent: vaults_kv98v_brlw_name_resource
+  name: '3dd8bf9f-9a52-42e2-afac-932541b0b730-K9MOjv2gLkn34YYjcpywWKqxfG6MuBxAeogchTKk-wY'
+  location: 'norwayeast'
   properties: {
     contentType: 'application/vnd.ms-StorageAccountAccessKey'
     attributes: {
       enabled: true
-      exp: 1847301610
+      exp: 1849788419
     }
   }
 }
 
-resource vaults_kvfx4_8l4f_name_d8295493_1c28_4ac1_857a_47fc74059f14_HyBFe0x6xwBtGep_sgsFhDwRGaCjmXr1t5tl_FhpZ8 'Microsoft.KeyVault/vaults/secrets@2026-03-01-preview' = {
-  parent: vaults_kvfx4_8l4f_name_resource
-  name: 'd8295493-1c28-4ac1-857a-47fc74059f14--HyBFe0x6xwBtGep-sgsFhDwRGaCjmXr1t5tl-FhpZ8'
-  location: 'westeurope'
+resource vaults_kv98v_brlw_name_3dd8bf9f_9a52_42e2_afac_932541b0b730_VFd9zmSsVJ9DYJKFCdrfGtmuTxi45g0Ue5Qt0F8NAqU 'Microsoft.KeyVault/vaults/secrets@2026-03-01-preview' = {
+  parent: vaults_kv98v_brlw_name_resource
+  name: '3dd8bf9f-9a52-42e2-afac-932541b0b730-VFd9zmSsVJ9DYJKFCdrfGtmuTxi45g0Ue5Qt0F8NAqU'
+  location: 'norwayeast'
   properties: {
     contentType: 'application/vnd.ms-StorageAccountAccessKey'
     attributes: {
       enabled: true
-      exp: 1847301608
+      exp: 1849788421
     }
   }
 }
 
-resource vaults_kvfx4_8l4f_name_d8295493_1c28_4ac1_857a_47fc74059f14_oyDhUaJdstZ6FYDim7s4LZC6hfXf_LWNgCbwgw2LOP4 'Microsoft.KeyVault/vaults/secrets@2026-03-01-preview' = {
-  parent: vaults_kvfx4_8l4f_name_resource
-  name: 'd8295493-1c28-4ac1-857a-47fc74059f14-oyDhUaJdstZ6FYDim7s4LZC6hfXf-LWNgCbwgw2LOP4'
-  location: 'westeurope'
+resource vaults_kv98v_brlw_name_3dd8bf9f_9a52_42e2_afac_932541b0b730_x1WQUx1phf_dGmnP8ONnLQB_TKHkohOw21IkgKSvlpQ 'Microsoft.KeyVault/vaults/secrets@2026-03-01-preview' = {
+  parent: vaults_kv98v_brlw_name_resource
+  name: '3dd8bf9f-9a52-42e2-afac-932541b0b730-x1WQUx1phf-dGmnP8ONnLQB-TKHkohOw21IkgKSvlpQ'
+  location: 'norwayeast'
   properties: {
     contentType: 'application/vnd.ms-StorageAccountAccessKey'
     attributes: {
       enabled: true
-      exp: 1847301610
+      exp: 1849788421
     }
   }
 }
 
-resource workspaces_mlwb_8bzexm_name_workspaceartifactstore 'Microsoft.MachineLearningServices/workspaces/datastores@2026-03-15-preview' = {
-  parent: workspaces_mlwb_8bzexm_name_resource
+resource workspaces_mlwtn_4e_c3_name_workspaceartifactstore 'Microsoft.MachineLearningServices/workspaces/datastores@2026-03-15-preview' = {
+  parent: workspaces_mlwtn_4e_c3_name_resource
   name: 'workspaceartifactstore'
   properties: {
     credentials: {
@@ -463,7 +463,7 @@ resource workspaces_mlwb_8bzexm_name_workspaceartifactstore 'Microsoft.MachineLe
     subscriptionId: '00000000-0000-0000-0000-000000000000'
     resourceGroup: 'rg-ardl-f7e533e01923b0a9'
     datastoreType: 'AzureBlob'
-    accountName: 'st8g41vyg3'
+    accountName: 'stycmq73u2'
     containerName: 'azureml'
     endpoint: 'core.windows.net'
     protocol: 'https'
@@ -471,8 +471,8 @@ resource workspaces_mlwb_8bzexm_name_workspaceartifactstore 'Microsoft.MachineLe
   }
 }
 
-resource workspaces_mlwb_8bzexm_name_workspaceblobstore 'Microsoft.MachineLearningServices/workspaces/datastores@2026-03-15-preview' = {
-  parent: workspaces_mlwb_8bzexm_name_resource
+resource workspaces_mlwtn_4e_c3_name_workspaceblobstore 'Microsoft.MachineLearningServices/workspaces/datastores@2026-03-15-preview' = {
+  parent: workspaces_mlwtn_4e_c3_name_resource
   name: 'workspaceblobstore'
   properties: {
     credentials: {
@@ -484,16 +484,16 @@ resource workspaces_mlwb_8bzexm_name_workspaceblobstore 'Microsoft.MachineLearni
     subscriptionId: '00000000-0000-0000-0000-000000000000'
     resourceGroup: 'rg-ardl-f7e533e01923b0a9'
     datastoreType: 'AzureBlob'
-    accountName: 'st8g41vyg3'
-    containerName: 'azureml-blobstore-d8295493-1c28-4ac1-857a-47fc74059f14'
+    accountName: 'stycmq73u2'
+    containerName: 'azureml-blobstore-3dd8bf9f-9a52-42e2-afac-932541b0b730'
     endpoint: 'core.windows.net'
     protocol: 'https'
     serviceDataAccessAuthIdentity: 'WorkspaceSystemAssignedIdentity'
   }
 }
 
-resource workspaces_mlwb_8bzexm_name_workspacefilestore 'Microsoft.MachineLearningServices/workspaces/datastores@2026-03-15-preview' = {
-  parent: workspaces_mlwb_8bzexm_name_resource
+resource workspaces_mlwtn_4e_c3_name_workspacefilestore 'Microsoft.MachineLearningServices/workspaces/datastores@2026-03-15-preview' = {
+  parent: workspaces_mlwtn_4e_c3_name_resource
   name: 'workspacefilestore'
   properties: {
     credentials: {
@@ -505,16 +505,16 @@ resource workspaces_mlwb_8bzexm_name_workspacefilestore 'Microsoft.MachineLearni
     subscriptionId: '00000000-0000-0000-0000-000000000000'
     resourceGroup: 'rg-ardl-f7e533e01923b0a9'
     datastoreType: 'AzureFile'
-    accountName: 'st8g41vyg3'
-    fileShareName: 'azureml-filestore-d8295493-1c28-4ac1-857a-47fc74059f14'
+    accountName: 'stycmq73u2'
+    fileShareName: 'azureml-filestore-3dd8bf9f-9a52-42e2-afac-932541b0b730'
     endpoint: 'core.windows.net'
     protocol: 'https'
     serviceDataAccessAuthIdentity: 'None'
   }
 }
 
-resource workspaces_mlwb_8bzexm_name_workspaceworkingdirectory 'Microsoft.MachineLearningServices/workspaces/datastores@2026-03-15-preview' = {
-  parent: workspaces_mlwb_8bzexm_name_resource
+resource workspaces_mlwtn_4e_c3_name_workspaceworkingdirectory 'Microsoft.MachineLearningServices/workspaces/datastores@2026-03-15-preview' = {
+  parent: workspaces_mlwtn_4e_c3_name_resource
   name: 'workspaceworkingdirectory'
   properties: {
     credentials: {
@@ -526,7 +526,7 @@ resource workspaces_mlwb_8bzexm_name_workspaceworkingdirectory 'Microsoft.Machin
     subscriptionId: '00000000-0000-0000-0000-000000000000'
     resourceGroup: 'rg-ardl-f7e533e01923b0a9'
     datastoreType: 'AzureFile'
-    accountName: 'st8g41vyg3'
+    accountName: 'stycmq73u2'
     fileShareName: 'code-391ff5ac-6576-460f-ba4d-7e03433c68b6'
     endpoint: 'core.windows.net'
     protocol: 'https'
@@ -534,9 +534,9 @@ resource workspaces_mlwb_8bzexm_name_workspaceworkingdirectory 'Microsoft.Machin
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_General_AlphabeticallySortedComputers 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_General|AlphabeticallySortedComputers'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_General_AlphabeticallySortedComputers 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_General|AlphabeticallySortedComputers'
   properties: {
     category: 'General Exploration'
     displayName: 'All Computers with their most recent data'
@@ -545,9 +545,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_G
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_General_dataPointsPerManagementGroup 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_General|dataPointsPerManagementGroup'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_General_dataPointsPerManagementGroup 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_General|dataPointsPerManagementGroup'
   properties: {
     category: 'General Exploration'
     displayName: 'Which Management Group is generating the most data points?'
@@ -556,9 +556,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_G
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_General_dataTypeDistribution 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_General|dataTypeDistribution'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_General_dataTypeDistribution 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_General|dataTypeDistribution'
   properties: {
     category: 'General Exploration'
     displayName: 'Distribution of data Types'
@@ -567,9 +567,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_G
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_General_StaleComputers 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_General|StaleComputers'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_General_StaleComputers 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_General|StaleComputers'
   properties: {
     category: 'General Exploration'
     displayName: 'Stale Computers (data older than 24 hours)'
@@ -578,9 +578,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_G
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_AllEvents 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|AllEvents'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_AllEvents 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|AllEvents'
   properties: {
     category: 'Log Management'
     displayName: 'All Events'
@@ -589,9 +589,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_AllSyslog 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|AllSyslog'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_AllSyslog 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|AllSyslog'
   properties: {
     category: 'Log Management'
     displayName: 'All Syslogs'
@@ -600,9 +600,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_AllSyslogByFacility 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|AllSyslogByFacility'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_AllSyslogByFacility 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|AllSyslogByFacility'
   properties: {
     category: 'Log Management'
     displayName: 'All Syslog Records grouped by Facility'
@@ -611,9 +611,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_AllSyslogByProcess 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|AllSyslogByProcessName'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_AllSyslogByProcess 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|AllSyslogByProcessName'
   properties: {
     category: 'Log Management'
     displayName: 'All Syslog Records grouped by ProcessName'
@@ -622,9 +622,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_AllSyslogsWithErrors 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|AllSyslogsWithErrors'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_AllSyslogsWithErrors 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|AllSyslogsWithErrors'
   properties: {
     category: 'Log Management'
     displayName: 'All Syslog Records with Errors'
@@ -633,9 +633,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_AverageHTTPRequestTimeByClientIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|AverageHTTPRequestTimeByClientIPAddress'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_AverageHTTPRequestTimeByClientIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|AverageHTTPRequestTimeByClientIPAddress'
   properties: {
     category: 'Log Management'
     displayName: 'Average HTTP Request time by Client IP Address'
@@ -644,9 +644,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_AverageHTTPRequestTimeHTTPMethod 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|AverageHTTPRequestTimeHTTPMethod'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_AverageHTTPRequestTimeHTTPMethod 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|AverageHTTPRequestTimeHTTPMethod'
   properties: {
     category: 'Log Management'
     displayName: 'Average HTTP Request time by HTTP Method'
@@ -655,9 +655,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_CountIISLogEntriesClientIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|CountIISLogEntriesClientIPAddress'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_CountIISLogEntriesClientIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|CountIISLogEntriesClientIPAddress'
   properties: {
     category: 'Log Management'
     displayName: 'Count of IIS Log Entries by Client IP Address'
@@ -666,9 +666,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_CountIISLogEntriesHTTPRequestMethod 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|CountIISLogEntriesHTTPRequestMethod'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_CountIISLogEntriesHTTPRequestMethod 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|CountIISLogEntriesHTTPRequestMethod'
   properties: {
     category: 'Log Management'
     displayName: 'Count of IIS Log Entries by HTTP Request Method'
@@ -677,9 +677,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_CountIISLogEntriesHTTPUserAgent 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|CountIISLogEntriesHTTPUserAgent'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_CountIISLogEntriesHTTPUserAgent 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|CountIISLogEntriesHTTPUserAgent'
   properties: {
     category: 'Log Management'
     displayName: 'Count of IIS Log Entries by HTTP User Agent'
@@ -688,9 +688,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_CountOfIISLogEntriesByHostRequestedByClient 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|CountOfIISLogEntriesByHostRequestedByClient'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_CountOfIISLogEntriesByHostRequestedByClient 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|CountOfIISLogEntriesByHostRequestedByClient'
   properties: {
     category: 'Log Management'
     displayName: 'Count of IIS Log Entries by Host requested by client'
@@ -699,9 +699,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_CountOfIISLogEntriesByURLForHost 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|CountOfIISLogEntriesByURLForHost'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_CountOfIISLogEntriesByURLForHost 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|CountOfIISLogEntriesByURLForHost'
   properties: {
     category: 'Log Management'
     displayName: 'Count of IIS Log Entries by URL for the host "www.contoso.com" (replace with your own)'
@@ -710,9 +710,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_CountOfIISLogEntriesByURLRequestedByClient 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|CountOfIISLogEntriesByURLRequestedByClient'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_CountOfIISLogEntriesByURLRequestedByClient 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|CountOfIISLogEntriesByURLRequestedByClient'
   properties: {
     category: 'Log Management'
     displayName: 'Count of IIS Log Entries by URL requested by client (without query strings)'
@@ -721,9 +721,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_CountOfWarningEvents 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|CountOfWarningEvents'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_CountOfWarningEvents 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|CountOfWarningEvents'
   properties: {
     category: 'Log Management'
     displayName: 'Count of Events with level "Warning" grouped by Event ID'
@@ -732,9 +732,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_DisplayBreakdownRespondCodes 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|DisplayBreakdownRespondCodes'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_DisplayBreakdownRespondCodes 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|DisplayBreakdownRespondCodes'
   properties: {
     category: 'Log Management'
     displayName: 'Shows breakdown of response codes'
@@ -743,9 +743,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_EventsByEventLog 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|EventsByEventLog'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_EventsByEventLog 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|EventsByEventLog'
   properties: {
     category: 'Log Management'
     displayName: 'Count of Events grouped by Event Log'
@@ -754,9 +754,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_EventsByEventsID 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|EventsByEventsID'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_EventsByEventsID 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|EventsByEventsID'
   properties: {
     category: 'Log Management'
     displayName: 'Count of Events grouped by Event ID'
@@ -765,9 +765,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_EventsByEventSource 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|EventsByEventSource'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_EventsByEventSource 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|EventsByEventSource'
   properties: {
     category: 'Log Management'
     displayName: 'Count of Events grouped by Event Source'
@@ -776,9 +776,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_EventsInOMBetween2000to3000 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|EventsInOMBetween2000to3000'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_EventsInOMBetween2000to3000 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|EventsInOMBetween2000to3000'
   properties: {
     category: 'Log Management'
     displayName: 'Events in the Operations Manager Event Log whose Event ID is in the range between 2000 and 3000'
@@ -787,9 +787,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_EventsWithStartedinEventID 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|EventsWithStartedinEventID'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_EventsWithStartedinEventID 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|EventsWithStartedinEventID'
   properties: {
     category: 'Log Management'
     displayName: 'Count of Events containing the word "started" grouped by EventID'
@@ -798,9 +798,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_FindMaximumTimeTakenForEachPage 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|FindMaximumTimeTakenForEachPage'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_FindMaximumTimeTakenForEachPage 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|FindMaximumTimeTakenForEachPage'
   properties: {
     category: 'Log Management'
     displayName: 'Find the maximum time taken for each page'
@@ -809,9 +809,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_IISLogEntriesForClientIP 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|IISLogEntriesForClientIP'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_IISLogEntriesForClientIP 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|IISLogEntriesForClientIP'
   properties: {
     category: 'Log Management'
     displayName: 'IIS Log Entries for a specific client IP Address (replace with your own)'
@@ -820,9 +820,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_ListAllIISLogEntries 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|ListAllIISLogEntries'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_ListAllIISLogEntries 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|ListAllIISLogEntries'
   properties: {
     category: 'Log Management'
     displayName: 'All IIS Log Entries'
@@ -831,9 +831,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_NoOfConnectionsToOMSDKService 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|NoOfConnectionsToOMSDKService'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_NoOfConnectionsToOMSDKService 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|NoOfConnectionsToOMSDKService'
   properties: {
     category: 'Log Management'
     displayName: 'How many connections to Operations Manager\'s SDK service by day'
@@ -842,9 +842,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_ServerRestartTime 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|ServerRestartTime'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_ServerRestartTime 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|ServerRestartTime'
   properties: {
     category: 'Log Management'
     displayName: 'When did my servers initiate restart?'
@@ -853,9 +853,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_Show404PagesList 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|Show404PagesList'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_Show404PagesList 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|Show404PagesList'
   properties: {
     category: 'Log Management'
     displayName: 'Shows which pages people are getting a 404 for'
@@ -864,9 +864,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_ShowServersThrowingInternalServerError 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|ShowServersThrowingInternalServerError'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_ShowServersThrowingInternalServerError 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|ShowServersThrowingInternalServerError'
   properties: {
     category: 'Log Management'
     displayName: 'Shows servers that are throwing internal server error'
@@ -875,9 +875,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_TotalBytesReceivedByEachAzureRoleInstance 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|TotalBytesReceivedByEachAzureRoleInstance'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_TotalBytesReceivedByEachAzureRoleInstance 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|TotalBytesReceivedByEachAzureRoleInstance'
   properties: {
     category: 'Log Management'
     displayName: 'Total Bytes received by each Azure Role Instance'
@@ -886,9 +886,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_TotalBytesReceivedByEachIISComputer 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|TotalBytesReceivedByEachIISComputer'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_TotalBytesReceivedByEachIISComputer 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|TotalBytesReceivedByEachIISComputer'
   properties: {
     category: 'Log Management'
     displayName: 'Total Bytes received by each IIS Computer'
@@ -897,9 +897,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_TotalBytesRespondedToClientsByClientIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|TotalBytesRespondedToClientsByClientIPAddress'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_TotalBytesRespondedToClientsByClientIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|TotalBytesRespondedToClientsByClientIPAddress'
   properties: {
     category: 'Log Management'
     displayName: 'Total Bytes responded back to clients by Client IP Address'
@@ -908,9 +908,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_TotalBytesRespondedToClientsByEachIISServerIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_TotalBytesRespondedToClientsByEachIISServerIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|TotalBytesRespondedToClientsByEachIISServerIPAddress'
   properties: {
     category: 'Log Management'
     displayName: 'Total Bytes responded back to clients by each IIS ServerIP Address'
@@ -919,9 +919,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_TotalBytesSentByClientIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|TotalBytesSentByClientIPAddress'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_TotalBytesSentByClientIPAddress 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|TotalBytesSentByClientIPAddress'
   properties: {
     category: 'Log Management'
     displayName: 'Total Bytes sent by Client IP Address'
@@ -930,9 +930,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_WarningEvents 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|WarningEvents'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_WarningEvents 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|WarningEvents'
   properties: {
     category: 'Log Management'
     displayName: 'All Events with level "Warning"'
@@ -941,9 +941,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_WindowsFireawallPolicySettingsChanged 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|WindowsFireawallPolicySettingsChanged'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_WindowsFireawallPolicySettingsChanged 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|WindowsFireawallPolicySettingsChanged'
   properties: {
     category: 'Log Management'
     displayName: 'Windows Firewall Policy settings have changed'
@@ -952,9 +952,9 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_LogManagement_WindowsFireawallPolicySettingsChangedByMachines 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
-  name: 'LogManagement(${workspaces_lawxzhza_zz_name})_LogManagement|WindowsFireawallPolicySettingsChangedByMachines'
+resource workspaces_lawe1vii9na_name_LogManagement_workspaces_lawe1vii9na_name_LogManagement_WindowsFireawallPolicySettingsChangedByMachines 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'LogManagement(${workspaces_lawe1vii9na_name})_LogManagement|WindowsFireawallPolicySettingsChangedByMachines'
   properties: {
     category: 'Log Management'
     displayName: 'On which machines and how many times have Windows Firewall Policy settings changed'
@@ -963,8 +963,8 @@ resource workspaces_lawxzhza_zz_name_LogManagement_workspaces_lawxzhza_zz_name_L
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AACAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AACAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AACAudit'
   properties: {
     totalRetentionInDays: 30
@@ -977,8 +977,8 @@ resource workspaces_lawxzhza_zz_name_AACAudit 'Microsoft.OperationalInsights/wor
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AACHttpRequest 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AACHttpRequest 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AACHttpRequest'
   properties: {
     totalRetentionInDays: 30
@@ -991,8 +991,8 @@ resource workspaces_lawxzhza_zz_name_AACHttpRequest 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADAgentRiskEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADAgentRiskEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADAgentRiskEvents'
   properties: {
     totalRetentionInDays: 30
@@ -1005,8 +1005,8 @@ resource workspaces_lawxzhza_zz_name_AADAgentRiskEvents 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADB2CRequestLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADB2CRequestLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADB2CRequestLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1019,8 +1019,8 @@ resource workspaces_lawxzhza_zz_name_AADB2CRequestLogs 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADCustomSecurityAttributeAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADCustomSecurityAttributeAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADCustomSecurityAttributeAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1033,8 +1033,8 @@ resource workspaces_lawxzhza_zz_name_AADCustomSecurityAttributeAuditLogs 'Micros
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADDomainServicesAccountLogon 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADDomainServicesAccountLogon 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADDomainServicesAccountLogon'
   properties: {
     totalRetentionInDays: 30
@@ -1047,8 +1047,8 @@ resource workspaces_lawxzhza_zz_name_AADDomainServicesAccountLogon 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADDomainServicesAccountManagement 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADDomainServicesAccountManagement 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADDomainServicesAccountManagement'
   properties: {
     totalRetentionInDays: 30
@@ -1061,8 +1061,8 @@ resource workspaces_lawxzhza_zz_name_AADDomainServicesAccountManagement 'Microso
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADDomainServicesDirectoryServiceAccess 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADDomainServicesDirectoryServiceAccess 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADDomainServicesDirectoryServiceAccess'
   properties: {
     totalRetentionInDays: 30
@@ -1075,8 +1075,8 @@ resource workspaces_lawxzhza_zz_name_AADDomainServicesDirectoryServiceAccess 'Mi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADDomainServicesDNSAuditsDynamicUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADDomainServicesDNSAuditsDynamicUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADDomainServicesDNSAuditsDynamicUpdates'
   properties: {
     totalRetentionInDays: 30
@@ -1089,8 +1089,8 @@ resource workspaces_lawxzhza_zz_name_AADDomainServicesDNSAuditsDynamicUpdates 'M
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADDomainServicesDNSAuditsGeneral 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADDomainServicesDNSAuditsGeneral 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADDomainServicesDNSAuditsGeneral'
   properties: {
     totalRetentionInDays: 30
@@ -1103,8 +1103,8 @@ resource workspaces_lawxzhza_zz_name_AADDomainServicesDNSAuditsGeneral 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADDomainServicesLogonLogoff 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADDomainServicesLogonLogoff 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADDomainServicesLogonLogoff'
   properties: {
     totalRetentionInDays: 30
@@ -1117,8 +1117,8 @@ resource workspaces_lawxzhza_zz_name_AADDomainServicesLogonLogoff 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADDomainServicesPolicyChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADDomainServicesPolicyChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADDomainServicesPolicyChange'
   properties: {
     totalRetentionInDays: 30
@@ -1131,8 +1131,8 @@ resource workspaces_lawxzhza_zz_name_AADDomainServicesPolicyChange 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADDomainServicesPrivilegeUse 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADDomainServicesPrivilegeUse 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADDomainServicesPrivilegeUse'
   properties: {
     totalRetentionInDays: 30
@@ -1145,8 +1145,8 @@ resource workspaces_lawxzhza_zz_name_AADDomainServicesPrivilegeUse 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADDomainServicesSystemSecurity 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADDomainServicesSystemSecurity 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADDomainServicesSystemSecurity'
   properties: {
     totalRetentionInDays: 30
@@ -1159,8 +1159,8 @@ resource workspaces_lawxzhza_zz_name_AADDomainServicesSystemSecurity 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADFirstPartyToFirstPartySignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADFirstPartyToFirstPartySignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADFirstPartyToFirstPartySignInLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1173,8 +1173,8 @@ resource workspaces_lawxzhza_zz_name_AADFirstPartyToFirstPartySignInLogs 'Micros
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADGraphActivityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADGraphActivityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADGraphActivityLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1187,8 +1187,8 @@ resource workspaces_lawxzhza_zz_name_AADGraphActivityLogs 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADManagedIdentitySignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADManagedIdentitySignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADManagedIdentitySignInLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1201,8 +1201,8 @@ resource workspaces_lawxzhza_zz_name_AADManagedIdentitySignInLogs 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADNonInteractiveUserSignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADNonInteractiveUserSignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADNonInteractiveUserSignInLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1215,8 +1215,8 @@ resource workspaces_lawxzhza_zz_name_AADNonInteractiveUserSignInLogs 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADProvisioningLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADProvisioningLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADProvisioningLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1229,8 +1229,8 @@ resource workspaces_lawxzhza_zz_name_AADProvisioningLogs 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADRiskyAgents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADRiskyAgents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADRiskyAgents'
   properties: {
     totalRetentionInDays: 30
@@ -1243,8 +1243,8 @@ resource workspaces_lawxzhza_zz_name_AADRiskyAgents 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADRiskyServicePrincipals 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADRiskyServicePrincipals 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADRiskyServicePrincipals'
   properties: {
     totalRetentionInDays: 30
@@ -1257,8 +1257,8 @@ resource workspaces_lawxzhza_zz_name_AADRiskyServicePrincipals 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADRiskyUsers 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADRiskyUsers 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADRiskyUsers'
   properties: {
     totalRetentionInDays: 30
@@ -1271,8 +1271,8 @@ resource workspaces_lawxzhza_zz_name_AADRiskyUsers 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADServicePrincipalRiskEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADServicePrincipalRiskEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADServicePrincipalRiskEvents'
   properties: {
     totalRetentionInDays: 30
@@ -1285,8 +1285,8 @@ resource workspaces_lawxzhza_zz_name_AADServicePrincipalRiskEvents 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADServicePrincipalSignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADServicePrincipalSignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADServicePrincipalSignInLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1299,8 +1299,8 @@ resource workspaces_lawxzhza_zz_name_AADServicePrincipalSignInLogs 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AADUserRiskEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AADUserRiskEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AADUserRiskEvents'
   properties: {
     totalRetentionInDays: 30
@@ -1313,8 +1313,8 @@ resource workspaces_lawxzhza_zz_name_AADUserRiskEvents 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ABSBotRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ABSBotRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ABSBotRequests'
   properties: {
     totalRetentionInDays: 30
@@ -1327,8 +1327,8 @@ resource workspaces_lawxzhza_zz_name_ABSBotRequests 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACICollaborationAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACICollaborationAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACICollaborationAudit'
   properties: {
     totalRetentionInDays: 30
@@ -1341,8 +1341,8 @@ resource workspaces_lawxzhza_zz_name_ACICollaborationAudit 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACLTransactionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACLTransactionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACLTransactionLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1355,8 +1355,8 @@ resource workspaces_lawxzhza_zz_name_ACLTransactionLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACLUserDefinedLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACLUserDefinedLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACLUserDefinedLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1369,8 +1369,8 @@ resource workspaces_lawxzhza_zz_name_ACLUserDefinedLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACRConnectedClientList 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACRConnectedClientList 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACRConnectedClientList'
   properties: {
     totalRetentionInDays: 30
@@ -1383,8 +1383,8 @@ resource workspaces_lawxzhza_zz_name_ACRConnectedClientList 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACREntraAuthenticationAuditLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACREntraAuthenticationAuditLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACREntraAuthenticationAuditLog'
   properties: {
     totalRetentionInDays: 30
@@ -1397,8 +1397,8 @@ resource workspaces_lawxzhza_zz_name_ACREntraAuthenticationAuditLog 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSAdvancedMessagingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSAdvancedMessagingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSAdvancedMessagingOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1411,8 +1411,8 @@ resource workspaces_lawxzhza_zz_name_ACSAdvancedMessagingOperations 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSAuthIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSAuthIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSAuthIncomingOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1425,8 +1425,8 @@ resource workspaces_lawxzhza_zz_name_ACSAuthIncomingOperations 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSBillingUsage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSBillingUsage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSBillingUsage'
   properties: {
     totalRetentionInDays: 30
@@ -1439,8 +1439,8 @@ resource workspaces_lawxzhza_zz_name_ACSBillingUsage 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallAutomationIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallAutomationIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallAutomationIncomingOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1453,8 +1453,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallAutomationIncomingOperations 'Micros
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallAutomationMediaSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallAutomationMediaSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallAutomationMediaSummary'
   properties: {
     totalRetentionInDays: 30
@@ -1467,8 +1467,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallAutomationMediaSummary 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallAutomationStreamingUsage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallAutomationStreamingUsage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallAutomationStreamingUsage'
   properties: {
     totalRetentionInDays: 30
@@ -1481,8 +1481,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallAutomationStreamingUsage 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallClientMediaStatsTimeSeries 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallClientMediaStatsTimeSeries 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallClientMediaStatsTimeSeries'
   properties: {
     totalRetentionInDays: 30
@@ -1495,8 +1495,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallClientMediaStatsTimeSeries 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallClientOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallClientOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallClientOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1509,8 +1509,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallClientOperations 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallClientServiceRequestAndOutcome 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallClientServiceRequestAndOutcome 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallClientServiceRequestAndOutcome'
   properties: {
     totalRetentionInDays: 30
@@ -1523,8 +1523,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallClientServiceRequestAndOutcome 'Micr
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallClosedCaptionsSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallClosedCaptionsSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallClosedCaptionsSummary'
   properties: {
     totalRetentionInDays: 30
@@ -1537,8 +1537,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallClosedCaptionsSummary 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallDiagnostics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallDiagnostics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallDiagnostics'
   properties: {
     totalRetentionInDays: 30
@@ -1551,8 +1551,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallDiagnostics 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallDiagnosticsUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallDiagnosticsUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallDiagnosticsUpdates'
   properties: {
     totalRetentionInDays: 30
@@ -1565,8 +1565,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallDiagnosticsUpdates 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallingMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallingMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallingMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -1579,8 +1579,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallingMetrics 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallRecordingIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallRecordingIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallRecordingIncomingOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1593,8 +1593,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallRecordingIncomingOperations 'Microso
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallRecordingSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallRecordingSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallRecordingSummary'
   properties: {
     totalRetentionInDays: 30
@@ -1607,8 +1607,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallRecordingSummary 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallSummary'
   properties: {
     totalRetentionInDays: 30
@@ -1621,8 +1621,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallSummary 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallSummaryUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallSummaryUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallSummaryUpdates'
   properties: {
     totalRetentionInDays: 30
@@ -1635,8 +1635,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallSummaryUpdates 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSCallSurvey 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSCallSurvey 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSCallSurvey'
   properties: {
     totalRetentionInDays: 30
@@ -1649,8 +1649,8 @@ resource workspaces_lawxzhza_zz_name_ACSCallSurvey 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSChatIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSChatIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSChatIncomingOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1663,8 +1663,8 @@ resource workspaces_lawxzhza_zz_name_ACSChatIncomingOperations 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSEmailSendMailOperational 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSEmailSendMailOperational 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSEmailSendMailOperational'
   properties: {
     totalRetentionInDays: 30
@@ -1677,8 +1677,8 @@ resource workspaces_lawxzhza_zz_name_ACSEmailSendMailOperational 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSEmailStatusUpdateOperational 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSEmailStatusUpdateOperational 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSEmailStatusUpdateOperational'
   properties: {
     totalRetentionInDays: 30
@@ -1691,8 +1691,8 @@ resource workspaces_lawxzhza_zz_name_ACSEmailStatusUpdateOperational 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSEmailUserEngagementOperational 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSEmailUserEngagementOperational 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSEmailUserEngagementOperational'
   properties: {
     totalRetentionInDays: 30
@@ -1705,8 +1705,8 @@ resource workspaces_lawxzhza_zz_name_ACSEmailUserEngagementOperational 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSJobRouterIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSJobRouterIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSJobRouterIncomingOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1719,8 +1719,8 @@ resource workspaces_lawxzhza_zz_name_ACSJobRouterIncomingOperations 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSOptOutManagementOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSOptOutManagementOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSOptOutManagementOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1733,8 +1733,8 @@ resource workspaces_lawxzhza_zz_name_ACSOptOutManagementOperations 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSRoomsIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSRoomsIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSRoomsIncomingOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1747,8 +1747,8 @@ resource workspaces_lawxzhza_zz_name_ACSRoomsIncomingOperations 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ACSSMSIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ACSSMSIncomingOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ACSSMSIncomingOperations'
   properties: {
     totalRetentionInDays: 30
@@ -1761,8 +1761,8 @@ resource workspaces_lawxzhza_zz_name_ACSSMSIncomingOperations 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -1775,8 +1775,8 @@ resource workspaces_lawxzhza_zz_name_ADAssessmentRecommendation 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AddonAzureBackupAlerts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AddonAzureBackupAlerts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AddonAzureBackupAlerts'
   properties: {
     totalRetentionInDays: 30
@@ -1789,8 +1789,8 @@ resource workspaces_lawxzhza_zz_name_AddonAzureBackupAlerts 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AddonAzureBackupJobs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AddonAzureBackupJobs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AddonAzureBackupJobs'
   properties: {
     totalRetentionInDays: 30
@@ -1803,8 +1803,8 @@ resource workspaces_lawxzhza_zz_name_AddonAzureBackupJobs 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AddonAzureBackupPolicy 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AddonAzureBackupPolicy 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AddonAzureBackupPolicy'
   properties: {
     totalRetentionInDays: 30
@@ -1817,8 +1817,8 @@ resource workspaces_lawxzhza_zz_name_AddonAzureBackupPolicy 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AddonAzureBackupProtectedInstance 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AddonAzureBackupProtectedInstance 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AddonAzureBackupProtectedInstance'
   properties: {
     totalRetentionInDays: 30
@@ -1831,8 +1831,8 @@ resource workspaces_lawxzhza_zz_name_AddonAzureBackupProtectedInstance 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AddonAzureBackupStorage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AddonAzureBackupStorage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AddonAzureBackupStorage'
   properties: {
     totalRetentionInDays: 30
@@ -1845,8 +1845,8 @@ resource workspaces_lawxzhza_zz_name_AddonAzureBackupStorage 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFActivityRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFActivityRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFActivityRun'
   properties: {
     totalRetentionInDays: 30
@@ -1859,8 +1859,8 @@ resource workspaces_lawxzhza_zz_name_ADFActivityRun 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFAirflowSchedulerLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFAirflowSchedulerLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFAirflowSchedulerLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1873,8 +1873,8 @@ resource workspaces_lawxzhza_zz_name_ADFAirflowSchedulerLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFAirflowTaskLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFAirflowTaskLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFAirflowTaskLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1887,8 +1887,8 @@ resource workspaces_lawxzhza_zz_name_ADFAirflowTaskLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFAirflowWebLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFAirflowWebLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFAirflowWebLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1901,8 +1901,8 @@ resource workspaces_lawxzhza_zz_name_ADFAirflowWebLogs 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFAirflowWorkerLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFAirflowWorkerLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFAirflowWorkerLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1915,8 +1915,8 @@ resource workspaces_lawxzhza_zz_name_ADFAirflowWorkerLogs 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFPipelineRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFPipelineRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFPipelineRun'
   properties: {
     totalRetentionInDays: 30
@@ -1929,8 +1929,8 @@ resource workspaces_lawxzhza_zz_name_ADFPipelineRun 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFSandboxActivityRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFSandboxActivityRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFSandboxActivityRun'
   properties: {
     totalRetentionInDays: 30
@@ -1943,8 +1943,8 @@ resource workspaces_lawxzhza_zz_name_ADFSandboxActivityRun 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFSandboxPipelineRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFSandboxPipelineRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFSandboxPipelineRun'
   properties: {
     totalRetentionInDays: 30
@@ -1957,8 +1957,8 @@ resource workspaces_lawxzhza_zz_name_ADFSandboxPipelineRun 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFSSignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFSSignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFSSignInLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1971,8 +1971,8 @@ resource workspaces_lawxzhza_zz_name_ADFSSignInLogs 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFSSISIntegrationRuntimeLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFSSISIntegrationRuntimeLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFSSISIntegrationRuntimeLogs'
   properties: {
     totalRetentionInDays: 30
@@ -1985,8 +1985,8 @@ resource workspaces_lawxzhza_zz_name_ADFSSISIntegrationRuntimeLogs 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFSSISPackageEventMessageContext 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFSSISPackageEventMessageContext 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFSSISPackageEventMessageContext'
   properties: {
     totalRetentionInDays: 30
@@ -1999,8 +1999,8 @@ resource workspaces_lawxzhza_zz_name_ADFSSISPackageEventMessageContext 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFSSISPackageEventMessages 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFSSISPackageEventMessages 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFSSISPackageEventMessages'
   properties: {
     totalRetentionInDays: 30
@@ -2013,8 +2013,8 @@ resource workspaces_lawxzhza_zz_name_ADFSSISPackageEventMessages 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFSSISPackageExecutableStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFSSISPackageExecutableStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFSSISPackageExecutableStatistics'
   properties: {
     totalRetentionInDays: 30
@@ -2027,8 +2027,8 @@ resource workspaces_lawxzhza_zz_name_ADFSSISPackageExecutableStatistics 'Microso
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFSSISPackageExecutionComponentPhases 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFSSISPackageExecutionComponentPhases 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFSSISPackageExecutionComponentPhases'
   properties: {
     totalRetentionInDays: 30
@@ -2041,8 +2041,8 @@ resource workspaces_lawxzhza_zz_name_ADFSSISPackageExecutionComponentPhases 'Mic
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFSSISPackageExecutionDataStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFSSISPackageExecutionDataStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFSSISPackageExecutionDataStatistics'
   properties: {
     totalRetentionInDays: 30
@@ -2055,8 +2055,8 @@ resource workspaces_lawxzhza_zz_name_ADFSSISPackageExecutionDataStatistics 'Micr
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADFTriggerRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADFTriggerRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADFTriggerRun'
   properties: {
     totalRetentionInDays: 30
@@ -2069,8 +2069,8 @@ resource workspaces_lawxzhza_zz_name_ADFTriggerRun 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADGSyslogEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADGSyslogEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADGSyslogEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2083,8 +2083,8 @@ resource workspaces_lawxzhza_zz_name_ADGSyslogEvent 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADReplicationResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADReplicationResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADReplicationResult'
   properties: {
     totalRetentionInDays: 30
@@ -2097,8 +2097,8 @@ resource workspaces_lawxzhza_zz_name_ADReplicationResult 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADSecurityAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADSecurityAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADSecurityAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -2111,8 +2111,8 @@ resource workspaces_lawxzhza_zz_name_ADSecurityAssessmentRecommendation 'Microso
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADTDataHistoryOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADTDataHistoryOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADTDataHistoryOperation'
   properties: {
     totalRetentionInDays: 30
@@ -2125,8 +2125,8 @@ resource workspaces_lawxzhza_zz_name_ADTDataHistoryOperation 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADTDigitalTwinsOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADTDigitalTwinsOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADTDigitalTwinsOperation'
   properties: {
     totalRetentionInDays: 30
@@ -2139,8 +2139,8 @@ resource workspaces_lawxzhza_zz_name_ADTDigitalTwinsOperation 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADTEventRoutesOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADTEventRoutesOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADTEventRoutesOperation'
   properties: {
     totalRetentionInDays: 30
@@ -2153,8 +2153,8 @@ resource workspaces_lawxzhza_zz_name_ADTEventRoutesOperation 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADTModelsOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADTModelsOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADTModelsOperation'
   properties: {
     totalRetentionInDays: 30
@@ -2167,8 +2167,8 @@ resource workspaces_lawxzhza_zz_name_ADTModelsOperation 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADTQueryOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADTQueryOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADTQueryOperation'
   properties: {
     totalRetentionInDays: 30
@@ -2181,8 +2181,8 @@ resource workspaces_lawxzhza_zz_name_ADTQueryOperation 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADXCommand 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADXCommand 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADXCommand'
   properties: {
     totalRetentionInDays: 30
@@ -2195,8 +2195,8 @@ resource workspaces_lawxzhza_zz_name_ADXCommand 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADXDataOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADXDataOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADXDataOperation'
   properties: {
     totalRetentionInDays: 30
@@ -2209,8 +2209,8 @@ resource workspaces_lawxzhza_zz_name_ADXDataOperation 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADXIngestionBatching 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADXIngestionBatching 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADXIngestionBatching'
   properties: {
     totalRetentionInDays: 30
@@ -2223,8 +2223,8 @@ resource workspaces_lawxzhza_zz_name_ADXIngestionBatching 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADXJournal 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADXJournal 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADXJournal'
   properties: {
     totalRetentionInDays: 30
@@ -2237,8 +2237,8 @@ resource workspaces_lawxzhza_zz_name_ADXJournal 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADXQuery 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADXQuery 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADXQuery'
   properties: {
     totalRetentionInDays: 30
@@ -2251,8 +2251,8 @@ resource workspaces_lawxzhza_zz_name_ADXQuery 'Microsoft.OperationalInsights/wor
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADXTableDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADXTableDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADXTableDetails'
   properties: {
     totalRetentionInDays: 30
@@ -2265,8 +2265,8 @@ resource workspaces_lawxzhza_zz_name_ADXTableDetails 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ADXTableUsageStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ADXTableUsageStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ADXTableUsageStatistics'
   properties: {
     totalRetentionInDays: 30
@@ -2279,8 +2279,8 @@ resource workspaces_lawxzhza_zz_name_ADXTableUsageStatistics 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AegDataPlaneRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AegDataPlaneRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AegDataPlaneRequests'
   properties: {
     totalRetentionInDays: 30
@@ -2293,8 +2293,8 @@ resource workspaces_lawxzhza_zz_name_AegDataPlaneRequests 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AegDeliveryFailureLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AegDeliveryFailureLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AegDeliveryFailureLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2307,8 +2307,8 @@ resource workspaces_lawxzhza_zz_name_AegDeliveryFailureLogs 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AegPublishFailureLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AegPublishFailureLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AegPublishFailureLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2321,8 +2321,8 @@ resource workspaces_lawxzhza_zz_name_AegPublishFailureLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AEWAssignmentBlobLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AEWAssignmentBlobLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AEWAssignmentBlobLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2335,8 +2335,8 @@ resource workspaces_lawxzhza_zz_name_AEWAssignmentBlobLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AEWAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AEWAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AEWAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2349,8 +2349,8 @@ resource workspaces_lawxzhza_zz_name_AEWAuditLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AEWComputePipelinesLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AEWComputePipelinesLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AEWComputePipelinesLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2363,8 +2363,8 @@ resource workspaces_lawxzhza_zz_name_AEWComputePipelinesLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AEWExperimentAssignmentSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AEWExperimentAssignmentSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AEWExperimentAssignmentSummary'
   properties: {
     totalRetentionInDays: 30
@@ -2377,8 +2377,8 @@ resource workspaces_lawxzhza_zz_name_AEWExperimentAssignmentSummary 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AEWExperimentScorecardMetricPairs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AEWExperimentScorecardMetricPairs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AEWExperimentScorecardMetricPairs'
   properties: {
     totalRetentionInDays: 30
@@ -2391,8 +2391,8 @@ resource workspaces_lawxzhza_zz_name_AEWExperimentScorecardMetricPairs 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AEWExperimentScorecards 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AEWExperimentScorecards 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AEWExperimentScorecards'
   properties: {
     totalRetentionInDays: 30
@@ -2405,8 +2405,8 @@ resource workspaces_lawxzhza_zz_name_AEWExperimentScorecards 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AFSAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AFSAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AFSAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2419,8 +2419,8 @@ resource workspaces_lawxzhza_zz_name_AFSAuditLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AGCAccessLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AGCAccessLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AGCAccessLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2433,8 +2433,8 @@ resource workspaces_lawxzhza_zz_name_AGCAccessLogs 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AGCFirewallLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AGCFirewallLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AGCFirewallLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2447,8 +2447,8 @@ resource workspaces_lawxzhza_zz_name_AGCFirewallLogs 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodApplicationAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodApplicationAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodApplicationAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2461,8 +2461,8 @@ resource workspaces_lawxzhza_zz_name_AgriFoodApplicationAuditLogs 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodFarmManagementLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodFarmManagementLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodFarmManagementLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2475,8 +2475,8 @@ resource workspaces_lawxzhza_zz_name_AgriFoodFarmManagementLogs 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodFarmOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodFarmOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodFarmOperationLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2489,8 +2489,8 @@ resource workspaces_lawxzhza_zz_name_AgriFoodFarmOperationLogs 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodInsightLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodInsightLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodInsightLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2503,8 +2503,8 @@ resource workspaces_lawxzhza_zz_name_AgriFoodInsightLogs 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodJobProcessedLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodJobProcessedLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodJobProcessedLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2517,8 +2517,8 @@ resource workspaces_lawxzhza_zz_name_AgriFoodJobProcessedLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodModelInferenceLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodModelInferenceLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodModelInferenceLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2531,8 +2531,8 @@ resource workspaces_lawxzhza_zz_name_AgriFoodModelInferenceLogs 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodProviderAuthLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodProviderAuthLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodProviderAuthLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2545,8 +2545,8 @@ resource workspaces_lawxzhza_zz_name_AgriFoodProviderAuthLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodSatelliteLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodSatelliteLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodSatelliteLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2559,8 +2559,8 @@ resource workspaces_lawxzhza_zz_name_AgriFoodSatelliteLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodSensorManagementLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodSensorManagementLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodSensorManagementLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2573,8 +2573,8 @@ resource workspaces_lawxzhza_zz_name_AgriFoodSensorManagementLogs 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AgriFoodWeatherLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AgriFoodWeatherLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AgriFoodWeatherLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2587,8 +2587,22 @@ resource workspaces_lawxzhza_zz_name_AgriFoodWeatherLogs 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AGSGrafanaLoginEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AGSGrafanaAlertAuthFailure 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'AGSGrafanaAlertAuthFailure'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'AGSGrafanaAlertAuthFailure'
+      displayName: 'AGSGrafanaAlertAuthFailure'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawe1vii9na_name_AGSGrafanaLoginEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AGSGrafanaLoginEvents'
   properties: {
     totalRetentionInDays: 30
@@ -2601,8 +2615,8 @@ resource workspaces_lawxzhza_zz_name_AGSGrafanaLoginEvents 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AGSGrafanaUsageInsightsEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AGSGrafanaUsageInsightsEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AGSGrafanaUsageInsightsEvents'
   properties: {
     totalRetentionInDays: 30
@@ -2615,8 +2629,8 @@ resource workspaces_lawxzhza_zz_name_AGSGrafanaUsageInsightsEvents 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AGSUpdateEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AGSUpdateEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AGSUpdateEvents'
   properties: {
     totalRetentionInDays: 30
@@ -2629,8 +2643,8 @@ resource workspaces_lawxzhza_zz_name_AGSUpdateEvents 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AGWAccessLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AGWAccessLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AGWAccessLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2643,8 +2657,8 @@ resource workspaces_lawxzhza_zz_name_AGWAccessLogs 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AGWFirewallLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AGWFirewallLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AGWFirewallLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2657,8 +2671,8 @@ resource workspaces_lawxzhza_zz_name_AGWFirewallLogs 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AGWPerformanceLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AGWPerformanceLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AGWPerformanceLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2671,8 +2685,8 @@ resource workspaces_lawxzhza_zz_name_AGWPerformanceLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AHCIDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AHCIDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AHCIDiagnosticLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2685,8 +2699,8 @@ resource workspaces_lawxzhza_zz_name_AHCIDiagnosticLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AHDSDeidAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AHDSDeidAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AHDSDeidAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2699,8 +2713,8 @@ resource workspaces_lawxzhza_zz_name_AHDSDeidAuditLogs 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AHDSDicomAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AHDSDicomAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AHDSDicomAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2713,8 +2727,8 @@ resource workspaces_lawxzhza_zz_name_AHDSDicomAuditLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AHDSDicomDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AHDSDicomDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AHDSDicomDiagnosticLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2727,8 +2741,8 @@ resource workspaces_lawxzhza_zz_name_AHDSDicomDiagnosticLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AHDSMedTechDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AHDSMedTechDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AHDSMedTechDiagnosticLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2741,8 +2755,8 @@ resource workspaces_lawxzhza_zz_name_AHDSMedTechDiagnosticLogs 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AirflowDagProcessingLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AirflowDagProcessingLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AirflowDagProcessingLogs'
   properties: {
     totalRetentionInDays: 30
@@ -2755,8 +2769,8 @@ resource workspaces_lawxzhza_zz_name_AirflowDagProcessingLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AKSAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AKSAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AKSAudit'
   properties: {
     totalRetentionInDays: 30
@@ -2769,8 +2783,8 @@ resource workspaces_lawxzhza_zz_name_AKSAudit 'Microsoft.OperationalInsights/wor
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AKSAuditAdmin 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AKSAuditAdmin 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AKSAuditAdmin'
   properties: {
     totalRetentionInDays: 30
@@ -2783,8 +2797,8 @@ resource workspaces_lawxzhza_zz_name_AKSAuditAdmin 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AKSControlPlane 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AKSControlPlane 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AKSControlPlane'
   properties: {
     totalRetentionInDays: 30
@@ -2797,8 +2811,8 @@ resource workspaces_lawxzhza_zz_name_AKSControlPlane 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ALBHealthEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ALBHealthEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ALBHealthEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2811,8 +2825,8 @@ resource workspaces_lawxzhza_zz_name_ALBHealthEvent 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_Alert 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_Alert 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'Alert'
   properties: {
     totalRetentionInDays: 30
@@ -2825,8 +2839,8 @@ resource workspaces_lawxzhza_zz_name_Alert 'Microsoft.OperationalInsights/worksp
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AMAHealth 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AMAHealth 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AMAHealth'
   properties: {
     totalRetentionInDays: 30
@@ -2839,8 +2853,8 @@ resource workspaces_lawxzhza_zz_name_AMAHealth 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlComputeClusterEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlComputeClusterEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlComputeClusterEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2853,8 +2867,8 @@ resource workspaces_lawxzhza_zz_name_AmlComputeClusterEvent 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlComputeClusterNodeEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlComputeClusterNodeEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlComputeClusterNodeEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2867,8 +2881,8 @@ resource workspaces_lawxzhza_zz_name_AmlComputeClusterNodeEvent 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlComputeCpuGpuUtilization 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlComputeCpuGpuUtilization 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlComputeCpuGpuUtilization'
   properties: {
     totalRetentionInDays: 30
@@ -2881,8 +2895,8 @@ resource workspaces_lawxzhza_zz_name_AmlComputeCpuGpuUtilization 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlComputeInstanceEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlComputeInstanceEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlComputeInstanceEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2895,8 +2909,8 @@ resource workspaces_lawxzhza_zz_name_AmlComputeInstanceEvent 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlComputeJobEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlComputeJobEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlComputeJobEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2909,8 +2923,8 @@ resource workspaces_lawxzhza_zz_name_AmlComputeJobEvent 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlDataLabelEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlDataLabelEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlDataLabelEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2923,8 +2937,8 @@ resource workspaces_lawxzhza_zz_name_AmlDataLabelEvent 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlDataSetEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlDataSetEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlDataSetEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2937,8 +2951,8 @@ resource workspaces_lawxzhza_zz_name_AmlDataSetEvent 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlDataStoreEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlDataStoreEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlDataStoreEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2951,8 +2965,8 @@ resource workspaces_lawxzhza_zz_name_AmlDataStoreEvent 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlDeploymentEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlDeploymentEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlDeploymentEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2965,8 +2979,8 @@ resource workspaces_lawxzhza_zz_name_AmlDeploymentEvent 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlEnvironmentEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlEnvironmentEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlEnvironmentEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2979,8 +2993,8 @@ resource workspaces_lawxzhza_zz_name_AmlEnvironmentEvent 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlInferencingEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlInferencingEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlInferencingEvent'
   properties: {
     totalRetentionInDays: 30
@@ -2993,8 +3007,8 @@ resource workspaces_lawxzhza_zz_name_AmlInferencingEvent 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlModelsEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlModelsEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlModelsEvent'
   properties: {
     totalRetentionInDays: 30
@@ -3007,8 +3021,8 @@ resource workspaces_lawxzhza_zz_name_AmlModelsEvent 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlOnlineEndpointConsoleLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlOnlineEndpointConsoleLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlOnlineEndpointConsoleLog'
   properties: {
     totalRetentionInDays: 30
@@ -3021,8 +3035,8 @@ resource workspaces_lawxzhza_zz_name_AmlOnlineEndpointConsoleLog 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlOnlineEndpointEventLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlOnlineEndpointEventLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlOnlineEndpointEventLog'
   properties: {
     totalRetentionInDays: 30
@@ -3035,8 +3049,8 @@ resource workspaces_lawxzhza_zz_name_AmlOnlineEndpointEventLog 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlOnlineEndpointTrafficLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlOnlineEndpointTrafficLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlOnlineEndpointTrafficLog'
   properties: {
     totalRetentionInDays: 30
@@ -3049,8 +3063,8 @@ resource workspaces_lawxzhza_zz_name_AmlOnlineEndpointTrafficLog 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlPipelineEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlPipelineEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlPipelineEvent'
   properties: {
     totalRetentionInDays: 30
@@ -3063,8 +3077,8 @@ resource workspaces_lawxzhza_zz_name_AmlPipelineEvent 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlRegistryReadEventsLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlRegistryReadEventsLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlRegistryReadEventsLog'
   properties: {
     totalRetentionInDays: 30
@@ -3077,8 +3091,8 @@ resource workspaces_lawxzhza_zz_name_AmlRegistryReadEventsLog 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlRegistryWriteEventsLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlRegistryWriteEventsLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlRegistryWriteEventsLog'
   properties: {
     totalRetentionInDays: 30
@@ -3091,8 +3105,8 @@ resource workspaces_lawxzhza_zz_name_AmlRegistryWriteEventsLog 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlRunEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlRunEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlRunEvent'
   properties: {
     totalRetentionInDays: 30
@@ -3105,8 +3119,8 @@ resource workspaces_lawxzhza_zz_name_AmlRunEvent 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AmlRunStatusChangedEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AmlRunStatusChangedEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AmlRunStatusChangedEvent'
   properties: {
     totalRetentionInDays: 30
@@ -3119,8 +3133,8 @@ resource workspaces_lawxzhza_zz_name_AmlRunStatusChangedEvent 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AMSKeyDeliveryRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AMSKeyDeliveryRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AMSKeyDeliveryRequests'
   properties: {
     totalRetentionInDays: 30
@@ -3133,8 +3147,8 @@ resource workspaces_lawxzhza_zz_name_AMSKeyDeliveryRequests 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AMSLiveEventOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AMSLiveEventOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AMSLiveEventOperations'
   properties: {
     totalRetentionInDays: 30
@@ -3147,8 +3161,8 @@ resource workspaces_lawxzhza_zz_name_AMSLiveEventOperations 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AMSMediaAccountHealth 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AMSMediaAccountHealth 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AMSMediaAccountHealth'
   properties: {
     totalRetentionInDays: 30
@@ -3161,8 +3175,8 @@ resource workspaces_lawxzhza_zz_name_AMSMediaAccountHealth 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AMSStreamingEndpointRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AMSStreamingEndpointRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AMSStreamingEndpointRequests'
   properties: {
     totalRetentionInDays: 30
@@ -3175,8 +3189,8 @@ resource workspaces_lawxzhza_zz_name_AMSStreamingEndpointRequests 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AMWMetricsUsageDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AMWMetricsUsageDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AMWMetricsUsageDetails'
   properties: {
     totalRetentionInDays: 30
@@ -3189,8 +3203,8 @@ resource workspaces_lawxzhza_zz_name_AMWMetricsUsageDetails 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ANFFileAccess 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ANFFileAccess 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ANFFileAccess'
   properties: {
     totalRetentionInDays: 30
@@ -3203,8 +3217,8 @@ resource workspaces_lawxzhza_zz_name_ANFFileAccess 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ANFTopClientReadIOPS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ANFTopClientReadIOPS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ANFTopClientReadIOPS'
   properties: {
     totalRetentionInDays: 30
@@ -3217,8 +3231,8 @@ resource workspaces_lawxzhza_zz_name_ANFTopClientReadIOPS 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ANFTopClientWriteIOPS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ANFTopClientWriteIOPS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ANFTopClientWriteIOPS'
   properties: {
     totalRetentionInDays: 30
@@ -3231,8 +3245,8 @@ resource workspaces_lawxzhza_zz_name_ANFTopClientWriteIOPS 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ANFTopFileReadIOPS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ANFTopFileReadIOPS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ANFTopFileReadIOPS'
   properties: {
     totalRetentionInDays: 30
@@ -3245,8 +3259,8 @@ resource workspaces_lawxzhza_zz_name_ANFTopFileReadIOPS 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ANFTopFileWriteIOPS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ANFTopFileWriteIOPS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ANFTopFileWriteIOPS'
   properties: {
     totalRetentionInDays: 30
@@ -3259,8 +3273,8 @@ resource workspaces_lawxzhza_zz_name_ANFTopFileWriteIOPS 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AOIDatabaseQuery 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AOIDatabaseQuery 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AOIDatabaseQuery'
   properties: {
     totalRetentionInDays: 30
@@ -3273,8 +3287,8 @@ resource workspaces_lawxzhza_zz_name_AOIDatabaseQuery 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AOIDigestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AOIDigestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AOIDigestion'
   properties: {
     totalRetentionInDays: 30
@@ -3287,8 +3301,8 @@ resource workspaces_lawxzhza_zz_name_AOIDigestion 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AOIStorage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AOIStorage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AOIStorage'
   properties: {
     totalRetentionInDays: 30
@@ -3301,8 +3315,8 @@ resource workspaces_lawxzhza_zz_name_AOIStorage 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ApiManagementGatewayLlmLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ApiManagementGatewayLlmLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ApiManagementGatewayLlmLog'
   properties: {
     totalRetentionInDays: 30
@@ -3315,8 +3329,8 @@ resource workspaces_lawxzhza_zz_name_ApiManagementGatewayLlmLog 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ApiManagementGatewayLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ApiManagementGatewayLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ApiManagementGatewayLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3329,8 +3343,8 @@ resource workspaces_lawxzhza_zz_name_ApiManagementGatewayLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ApiManagementGatewayMCPLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ApiManagementGatewayMCPLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ApiManagementGatewayMCPLog'
   properties: {
     totalRetentionInDays: 30
@@ -3343,8 +3357,8 @@ resource workspaces_lawxzhza_zz_name_ApiManagementGatewayMCPLog 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ApiManagementWebSocketConnectionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ApiManagementWebSocketConnectionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ApiManagementWebSocketConnectionLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3357,8 +3371,8 @@ resource workspaces_lawxzhza_zz_name_ApiManagementWebSocketConnectionLogs 'Micro
   }
 }
 
-resource workspaces_lawxzhza_zz_name_APIMDevPortalAuditDiagnosticLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_APIMDevPortalAuditDiagnosticLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'APIMDevPortalAuditDiagnosticLog'
   properties: {
     totalRetentionInDays: 30
@@ -3371,8 +3385,8 @@ resource workspaces_lawxzhza_zz_name_APIMDevPortalAuditDiagnosticLog 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppAvailabilityResults 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppAvailabilityResults 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppAvailabilityResults'
   properties: {
     totalRetentionInDays: 90
@@ -3385,8 +3399,8 @@ resource workspaces_lawxzhza_zz_name_AppAvailabilityResults 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppBrowserTimings 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppBrowserTimings 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppBrowserTimings'
   properties: {
     totalRetentionInDays: 90
@@ -3399,8 +3413,8 @@ resource workspaces_lawxzhza_zz_name_AppBrowserTimings 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppCenterError 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppCenterError 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppCenterError'
   properties: {
     totalRetentionInDays: 30
@@ -3413,8 +3427,8 @@ resource workspaces_lawxzhza_zz_name_AppCenterError 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppDependencies 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppDependencies 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppDependencies'
   properties: {
     totalRetentionInDays: 90
@@ -3427,8 +3441,8 @@ resource workspaces_lawxzhza_zz_name_AppDependencies 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppEnvSessionConsoleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppEnvSessionConsoleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppEnvSessionConsoleLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3441,8 +3455,8 @@ resource workspaces_lawxzhza_zz_name_AppEnvSessionConsoleLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppEnvSessionLifecycleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppEnvSessionLifecycleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppEnvSessionLifecycleLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3455,8 +3469,8 @@ resource workspaces_lawxzhza_zz_name_AppEnvSessionLifecycleLogs 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppEnvSessionPoolEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppEnvSessionPoolEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppEnvSessionPoolEventLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3469,8 +3483,8 @@ resource workspaces_lawxzhza_zz_name_AppEnvSessionPoolEventLogs 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppEnvSpringAppConsoleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppEnvSpringAppConsoleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppEnvSpringAppConsoleLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3483,8 +3497,8 @@ resource workspaces_lawxzhza_zz_name_AppEnvSpringAppConsoleLogs 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppEvents'
   properties: {
     totalRetentionInDays: 90
@@ -3497,8 +3511,8 @@ resource workspaces_lawxzhza_zz_name_AppEvents 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppExceptions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppExceptions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppExceptions'
   properties: {
     totalRetentionInDays: 90
@@ -3511,22 +3525,22 @@ resource workspaces_lawxzhza_zz_name_AppExceptions 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppGenAIContent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppGenAIContent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppGenAIContent'
   properties: {
-    totalRetentionInDays: 30
+    totalRetentionInDays: 90
     plan: 'Analytics'
     schema: {
       name: 'AppGenAIContent'
       displayName: 'AppGenAIContent'
     }
-    retentionInDays: 30
+    retentionInDays: 90
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppMetrics'
   properties: {
     totalRetentionInDays: 90
@@ -3539,8 +3553,8 @@ resource workspaces_lawxzhza_zz_name_AppMetrics 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppPageViews 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppPageViews 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppPageViews'
   properties: {
     totalRetentionInDays: 90
@@ -3553,8 +3567,8 @@ resource workspaces_lawxzhza_zz_name_AppPageViews 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppPerformanceCounters 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppPerformanceCounters 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppPerformanceCounters'
   properties: {
     totalRetentionInDays: 90
@@ -3567,8 +3581,8 @@ resource workspaces_lawxzhza_zz_name_AppPerformanceCounters 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppPlatformBuildLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppPlatformBuildLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppPlatformBuildLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3581,8 +3595,8 @@ resource workspaces_lawxzhza_zz_name_AppPlatformBuildLogs 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppPlatformContainerEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppPlatformContainerEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppPlatformContainerEventLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3595,8 +3609,8 @@ resource workspaces_lawxzhza_zz_name_AppPlatformContainerEventLogs 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppPlatformIngressLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppPlatformIngressLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppPlatformIngressLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3609,8 +3623,8 @@ resource workspaces_lawxzhza_zz_name_AppPlatformIngressLogs 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppPlatformLogsforSpring 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppPlatformLogsforSpring 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppPlatformLogsforSpring'
   properties: {
     totalRetentionInDays: 30
@@ -3623,8 +3637,8 @@ resource workspaces_lawxzhza_zz_name_AppPlatformLogsforSpring 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppPlatformSystemLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppPlatformSystemLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppPlatformSystemLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3637,8 +3651,8 @@ resource workspaces_lawxzhza_zz_name_AppPlatformSystemLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppRequests'
   properties: {
     totalRetentionInDays: 90
@@ -3651,8 +3665,8 @@ resource workspaces_lawxzhza_zz_name_AppRequests 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceAntivirusScanAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceAntivirusScanAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceAntivirusScanAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3665,8 +3679,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceAntivirusScanAuditLogs 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceAppLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceAppLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceAppLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3679,8 +3693,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceAppLogs 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3693,8 +3707,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceAuditLogs 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceAuthenticationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceAuthenticationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceAuthenticationLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3707,8 +3721,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceAuthenticationLogs 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceConsoleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceConsoleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceConsoleLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3721,8 +3735,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceConsoleLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceEnvironmentPlatformLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceEnvironmentPlatformLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceEnvironmentPlatformLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3735,8 +3749,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceEnvironmentPlatformLogs 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceFileAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceFileAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceFileAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3749,8 +3763,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceFileAuditLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceHTTPLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceHTTPLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceHTTPLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3763,8 +3777,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceHTTPLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceIPSecAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceIPSecAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceIPSecAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3777,8 +3791,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceIPSecAuditLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServicePlatformLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServicePlatformLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServicePlatformLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3791,8 +3805,8 @@ resource workspaces_lawxzhza_zz_name_AppServicePlatformLogs 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppServiceServerlessSecurityPluginData 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppServiceServerlessSecurityPluginData 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppServiceServerlessSecurityPluginData'
   properties: {
     totalRetentionInDays: 30
@@ -3805,8 +3819,8 @@ resource workspaces_lawxzhza_zz_name_AppServiceServerlessSecurityPluginData 'Mic
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppSystemEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppSystemEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppSystemEvents'
   properties: {
     totalRetentionInDays: 90
@@ -3819,8 +3833,8 @@ resource workspaces_lawxzhza_zz_name_AppSystemEvents 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AppTraces 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AppTraces 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AppTraces'
   properties: {
     totalRetentionInDays: 90
@@ -3833,8 +3847,8 @@ resource workspaces_lawxzhza_zz_name_AppTraces 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ArcK8sAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ArcK8sAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ArcK8sAudit'
   properties: {
     totalRetentionInDays: 30
@@ -3847,8 +3861,8 @@ resource workspaces_lawxzhza_zz_name_ArcK8sAudit 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ArcK8sAuditAdmin 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ArcK8sAuditAdmin 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ArcK8sAuditAdmin'
   properties: {
     totalRetentionInDays: 30
@@ -3861,8 +3875,8 @@ resource workspaces_lawxzhza_zz_name_ArcK8sAuditAdmin 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ArcK8sControlPlane 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ArcK8sControlPlane 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ArcK8sControlPlane'
   properties: {
     totalRetentionInDays: 30
@@ -3875,8 +3889,8 @@ resource workspaces_lawxzhza_zz_name_ArcK8sControlPlane 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASCAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASCAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASCAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -3889,8 +3903,8 @@ resource workspaces_lawxzhza_zz_name_ASCAuditLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASCDeviceEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASCDeviceEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASCDeviceEvents'
   properties: {
     totalRetentionInDays: 30
@@ -3903,8 +3917,8 @@ resource workspaces_lawxzhza_zz_name_ASCDeviceEvents 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASRJobs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASRJobs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASRJobs'
   properties: {
     totalRetentionInDays: 30
@@ -3917,8 +3931,8 @@ resource workspaces_lawxzhza_zz_name_ASRJobs 'Microsoft.OperationalInsights/work
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASRReplicatedItems 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASRReplicatedItems 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASRReplicatedItems'
   properties: {
     totalRetentionInDays: 30
@@ -3931,8 +3945,8 @@ resource workspaces_lawxzhza_zz_name_ASRReplicatedItems 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASRv2HealthEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASRv2HealthEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASRv2HealthEvents'
   properties: {
     totalRetentionInDays: 30
@@ -3945,8 +3959,8 @@ resource workspaces_lawxzhza_zz_name_ASRv2HealthEvents 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASRv2JobEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASRv2JobEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASRv2JobEvents'
   properties: {
     totalRetentionInDays: 30
@@ -3959,8 +3973,8 @@ resource workspaces_lawxzhza_zz_name_ASRv2JobEvents 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASRv2ProtectedItems 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASRv2ProtectedItems 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASRv2ProtectedItems'
   properties: {
     totalRetentionInDays: 30
@@ -3973,8 +3987,8 @@ resource workspaces_lawxzhza_zz_name_ASRv2ProtectedItems 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASRv2ReplicationExtensions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASRv2ReplicationExtensions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASRv2ReplicationExtensions'
   properties: {
     totalRetentionInDays: 30
@@ -3987,8 +4001,8 @@ resource workspaces_lawxzhza_zz_name_ASRv2ReplicationExtensions 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASRv2ReplicationPolicies 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASRv2ReplicationPolicies 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASRv2ReplicationPolicies'
   properties: {
     totalRetentionInDays: 30
@@ -4001,8 +4015,8 @@ resource workspaces_lawxzhza_zz_name_ASRv2ReplicationPolicies 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ASRv2ReplicationVaults 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ASRv2ReplicationVaults 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ASRv2ReplicationVaults'
   properties: {
     totalRetentionInDays: 30
@@ -4015,8 +4029,8 @@ resource workspaces_lawxzhza_zz_name_ASRv2ReplicationVaults 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ATCExpressRouteCircuitIpfix 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ATCExpressRouteCircuitIpfix 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ATCExpressRouteCircuitIpfix'
   properties: {
     totalRetentionInDays: 30
@@ -4029,8 +4043,8 @@ resource workspaces_lawxzhza_zz_name_ATCExpressRouteCircuitIpfix 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ATCMicrosoftPeeringMetadata 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ATCMicrosoftPeeringMetadata 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ATCMicrosoftPeeringMetadata'
   properties: {
     totalRetentionInDays: 30
@@ -4043,8 +4057,8 @@ resource workspaces_lawxzhza_zz_name_ATCMicrosoftPeeringMetadata 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ATCPrivatePeeringMetadata 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ATCPrivatePeeringMetadata 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ATCPrivatePeeringMetadata'
   properties: {
     totalRetentionInDays: 30
@@ -4057,8 +4071,8 @@ resource workspaces_lawxzhza_zz_name_ATCPrivatePeeringMetadata 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4071,8 +4085,8 @@ resource workspaces_lawxzhza_zz_name_AuditLogs 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AutoscaleEvaluationsLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AutoscaleEvaluationsLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AutoscaleEvaluationsLog'
   properties: {
     totalRetentionInDays: 30
@@ -4085,8 +4099,8 @@ resource workspaces_lawxzhza_zz_name_AutoscaleEvaluationsLog 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AutoscaleScaleActionsLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AutoscaleScaleActionsLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AutoscaleScaleActionsLog'
   properties: {
     totalRetentionInDays: 30
@@ -4099,8 +4113,8 @@ resource workspaces_lawxzhza_zz_name_AutoscaleScaleActionsLog 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVNMConnectivityConfigurationChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVNMConnectivityConfigurationChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVNMConnectivityConfigurationChange'
   properties: {
     totalRetentionInDays: 30
@@ -4113,8 +4127,8 @@ resource workspaces_lawxzhza_zz_name_AVNMConnectivityConfigurationChange 'Micros
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVNMIPAMPoolAllocationChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVNMIPAMPoolAllocationChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVNMIPAMPoolAllocationChange'
   properties: {
     totalRetentionInDays: 30
@@ -4127,8 +4141,8 @@ resource workspaces_lawxzhza_zz_name_AVNMIPAMPoolAllocationChange 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVNMNetworkGroupMembershipChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVNMNetworkGroupMembershipChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVNMNetworkGroupMembershipChange'
   properties: {
     totalRetentionInDays: 30
@@ -4141,8 +4155,8 @@ resource workspaces_lawxzhza_zz_name_AVNMNetworkGroupMembershipChange 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVNMRuleCollectionChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVNMRuleCollectionChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVNMRuleCollectionChange'
   properties: {
     totalRetentionInDays: 30
@@ -4155,8 +4169,8 @@ resource workspaces_lawxzhza_zz_name_AVNMRuleCollectionChange 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVSEsxiFirewallSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVSEsxiFirewallSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVSEsxiFirewallSyslog'
   properties: {
     totalRetentionInDays: 30
@@ -4169,8 +4183,8 @@ resource workspaces_lawxzhza_zz_name_AVSEsxiFirewallSyslog 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVSEsxiSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVSEsxiSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVSEsxiSyslog'
   properties: {
     totalRetentionInDays: 30
@@ -4183,8 +4197,8 @@ resource workspaces_lawxzhza_zz_name_AVSEsxiSyslog 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVSNsxEdgeSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVSNsxEdgeSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVSNsxEdgeSyslog'
   properties: {
     totalRetentionInDays: 30
@@ -4197,8 +4211,8 @@ resource workspaces_lawxzhza_zz_name_AVSNsxEdgeSyslog 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVSNsxManagerSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVSNsxManagerSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVSNsxManagerSyslog'
   properties: {
     totalRetentionInDays: 30
@@ -4211,8 +4225,8 @@ resource workspaces_lawxzhza_zz_name_AVSNsxManagerSyslog 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVSSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVSSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVSSyslog'
   properties: {
     totalRetentionInDays: 30
@@ -4225,8 +4239,8 @@ resource workspaces_lawxzhza_zz_name_AVSSyslog 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AVSVcSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AVSVcSyslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AVSVcSyslog'
   properties: {
     totalRetentionInDays: 30
@@ -4239,8 +4253,8 @@ resource workspaces_lawxzhza_zz_name_AVSVcSyslog 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWApplicationRule 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWApplicationRule 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWApplicationRule'
   properties: {
     totalRetentionInDays: 30
@@ -4253,8 +4267,8 @@ resource workspaces_lawxzhza_zz_name_AZFWApplicationRule 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWApplicationRuleAggregation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWApplicationRuleAggregation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWApplicationRuleAggregation'
   properties: {
     totalRetentionInDays: 30
@@ -4267,8 +4281,8 @@ resource workspaces_lawxzhza_zz_name_AZFWApplicationRuleAggregation 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWDnsFlowTrace 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWDnsFlowTrace 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWDnsFlowTrace'
   properties: {
     totalRetentionInDays: 30
@@ -4281,8 +4295,8 @@ resource workspaces_lawxzhza_zz_name_AZFWDnsFlowTrace 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWDnsQuery 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWDnsQuery 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWDnsQuery'
   properties: {
     totalRetentionInDays: 30
@@ -4295,8 +4309,8 @@ resource workspaces_lawxzhza_zz_name_AZFWDnsQuery 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWFatFlow 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWFatFlow 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWFatFlow'
   properties: {
     totalRetentionInDays: 30
@@ -4309,8 +4323,8 @@ resource workspaces_lawxzhza_zz_name_AZFWFatFlow 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWFlowTrace 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWFlowTrace 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWFlowTrace'
   properties: {
     totalRetentionInDays: 30
@@ -4323,8 +4337,8 @@ resource workspaces_lawxzhza_zz_name_AZFWFlowTrace 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWIdpsSignature 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWIdpsSignature 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWIdpsSignature'
   properties: {
     totalRetentionInDays: 30
@@ -4337,8 +4351,8 @@ resource workspaces_lawxzhza_zz_name_AZFWIdpsSignature 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWInternalFqdnResolutionFailure 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWInternalFqdnResolutionFailure 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWInternalFqdnResolutionFailure'
   properties: {
     totalRetentionInDays: 30
@@ -4351,8 +4365,8 @@ resource workspaces_lawxzhza_zz_name_AZFWInternalFqdnResolutionFailure 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWNatRule 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWNatRule 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWNatRule'
   properties: {
     totalRetentionInDays: 30
@@ -4365,8 +4379,8 @@ resource workspaces_lawxzhza_zz_name_AZFWNatRule 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWNatRuleAggregation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWNatRuleAggregation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWNatRuleAggregation'
   properties: {
     totalRetentionInDays: 30
@@ -4379,8 +4393,8 @@ resource workspaces_lawxzhza_zz_name_AZFWNatRuleAggregation 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWNetworkRule 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWNetworkRule 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWNetworkRule'
   properties: {
     totalRetentionInDays: 30
@@ -4393,8 +4407,8 @@ resource workspaces_lawxzhza_zz_name_AZFWNetworkRule 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWNetworkRuleAggregation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWNetworkRuleAggregation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWNetworkRuleAggregation'
   properties: {
     totalRetentionInDays: 30
@@ -4407,8 +4421,8 @@ resource workspaces_lawxzhza_zz_name_AZFWNetworkRuleAggregation 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZFWThreatIntel 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZFWThreatIntel 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZFWThreatIntel'
   properties: {
     totalRetentionInDays: 30
@@ -4421,8 +4435,8 @@ resource workspaces_lawxzhza_zz_name_AZFWThreatIntel 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZKVAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZKVAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZKVAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4435,8 +4449,8 @@ resource workspaces_lawxzhza_zz_name_AZKVAuditLogs 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZKVPolicyEvaluationDetailsLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZKVPolicyEvaluationDetailsLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZKVPolicyEvaluationDetailsLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4449,8 +4463,8 @@ resource workspaces_lawxzhza_zz_name_AZKVPolicyEvaluationDetailsLogs 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSApplicationMetricLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSApplicationMetricLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSApplicationMetricLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4463,8 +4477,8 @@ resource workspaces_lawxzhza_zz_name_AZMSApplicationMetricLogs 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSArchiveLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSArchiveLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSArchiveLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4477,8 +4491,8 @@ resource workspaces_lawxzhza_zz_name_AZMSArchiveLogs 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSAutoscaleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSAutoscaleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSAutoscaleLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4491,8 +4505,8 @@ resource workspaces_lawxzhza_zz_name_AZMSAutoscaleLogs 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSCustomerManagedKeyUserLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSCustomerManagedKeyUserLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSCustomerManagedKeyUserLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4505,8 +4519,8 @@ resource workspaces_lawxzhza_zz_name_AZMSCustomerManagedKeyUserLogs 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSDiagnosticErrorLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSDiagnosticErrorLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSDiagnosticErrorLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4519,8 +4533,8 @@ resource workspaces_lawxzhza_zz_name_AZMSDiagnosticErrorLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSHybridConnectionsEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSHybridConnectionsEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSHybridConnectionsEvents'
   properties: {
     totalRetentionInDays: 30
@@ -4533,8 +4547,8 @@ resource workspaces_lawxzhza_zz_name_AZMSHybridConnectionsEvents 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSKafkaCoordinatorLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSKafkaCoordinatorLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSKafkaCoordinatorLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4547,8 +4561,8 @@ resource workspaces_lawxzhza_zz_name_AZMSKafkaCoordinatorLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSKafkaUserErrorLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSKafkaUserErrorLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSKafkaUserErrorLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4561,8 +4575,8 @@ resource workspaces_lawxzhza_zz_name_AZMSKafkaUserErrorLogs 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSOperationalLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSOperationalLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSOperationalLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4575,8 +4589,8 @@ resource workspaces_lawxzhza_zz_name_AZMSOperationalLogs 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSRunTimeAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSRunTimeAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSRunTimeAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4589,8 +4603,8 @@ resource workspaces_lawxzhza_zz_name_AZMSRunTimeAuditLogs 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AZMSVnetConnectionEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AZMSVnetConnectionEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AZMSVnetConnectionEvents'
   properties: {
     totalRetentionInDays: 30
@@ -4603,8 +4617,8 @@ resource workspaces_lawxzhza_zz_name_AZMSVnetConnectionEvents 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureActivity 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureActivity 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureActivity'
   properties: {
     totalRetentionInDays: 90
@@ -4617,8 +4631,8 @@ resource workspaces_lawxzhza_zz_name_AzureActivity 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureActivityV2 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureActivityV2 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureActivityV2'
   properties: {
     totalRetentionInDays: 30
@@ -4631,8 +4645,8 @@ resource workspaces_lawxzhza_zz_name_AzureActivityV2 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -4645,8 +4659,8 @@ resource workspaces_lawxzhza_zz_name_AzureAssessmentRecommendation 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureAttestationDiagnostics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureAttestationDiagnostics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureAttestationDiagnostics'
   properties: {
     totalRetentionInDays: 30
@@ -4659,8 +4673,8 @@ resource workspaces_lawxzhza_zz_name_AzureAttestationDiagnostics 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureBackupOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureBackupOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureBackupOperations'
   properties: {
     totalRetentionInDays: 30
@@ -4673,8 +4687,8 @@ resource workspaces_lawxzhza_zz_name_AzureBackupOperations 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureDevOpsAuditing 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureDevOpsAuditing 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureDevOpsAuditing'
   properties: {
     totalRetentionInDays: 30
@@ -4687,8 +4701,8 @@ resource workspaces_lawxzhza_zz_name_AzureDevOpsAuditing 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureLoadTestingOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureLoadTestingOperation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureLoadTestingOperation'
   properties: {
     totalRetentionInDays: 30
@@ -4701,8 +4715,8 @@ resource workspaces_lawxzhza_zz_name_AzureLoadTestingOperation 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -4715,8 +4729,8 @@ resource workspaces_lawxzhza_zz_name_AzureMetrics 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureMetricsV2 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureMetricsV2 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureMetricsV2'
   properties: {
     totalRetentionInDays: 30
@@ -4729,8 +4743,8 @@ resource workspaces_lawxzhza_zz_name_AzureMetricsV2 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureMonitorPipelineLogErrors 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureMonitorPipelineLogErrors 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureMonitorPipelineLogErrors'
   properties: {
     totalRetentionInDays: 30
@@ -4743,8 +4757,8 @@ resource workspaces_lawxzhza_zz_name_AzureMonitorPipelineLogErrors 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureSQLAutomaticTuning 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureSQLAutomaticTuning 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureSQLAutomaticTuning'
   properties: {
     totalRetentionInDays: 30
@@ -4757,8 +4771,8 @@ resource workspaces_lawxzhza_zz_name_AzureSQLAutomaticTuning 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureSQLBlocks 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureSQLBlocks 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureSQLBlocks'
   properties: {
     totalRetentionInDays: 30
@@ -4771,8 +4785,8 @@ resource workspaces_lawxzhza_zz_name_AzureSQLBlocks 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureSQLDatabaseWaitStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureSQLDatabaseWaitStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureSQLDatabaseWaitStatistics'
   properties: {
     totalRetentionInDays: 30
@@ -4785,8 +4799,8 @@ resource workspaces_lawxzhza_zz_name_AzureSQLDatabaseWaitStatistics 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureSQLDeadlocks 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureSQLDeadlocks 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureSQLDeadlocks'
   properties: {
     totalRetentionInDays: 30
@@ -4799,8 +4813,8 @@ resource workspaces_lawxzhza_zz_name_AzureSQLDeadlocks 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureSQLErrors 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureSQLErrors 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureSQLErrors'
   properties: {
     totalRetentionInDays: 30
@@ -4813,8 +4827,8 @@ resource workspaces_lawxzhza_zz_name_AzureSQLErrors 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureSQLQueryStoreRuntimeStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureSQLQueryStoreRuntimeStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureSQLQueryStoreRuntimeStatistics'
   properties: {
     totalRetentionInDays: 30
@@ -4827,8 +4841,8 @@ resource workspaces_lawxzhza_zz_name_AzureSQLQueryStoreRuntimeStatistics 'Micros
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureSQLQueryStoreWaitStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureSQLQueryStoreWaitStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureSQLQueryStoreWaitStatistics'
   properties: {
     totalRetentionInDays: 30
@@ -4841,8 +4855,8 @@ resource workspaces_lawxzhza_zz_name_AzureSQLQueryStoreWaitStatistics 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureSQLResourceUsageStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureSQLResourceUsageStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureSQLResourceUsageStats'
   properties: {
     totalRetentionInDays: 30
@@ -4855,8 +4869,8 @@ resource workspaces_lawxzhza_zz_name_AzureSQLResourceUsageStats 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_AzureSQLTimeouts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_AzureSQLTimeouts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'AzureSQLTimeouts'
   properties: {
     totalRetentionInDays: 30
@@ -4869,8 +4883,8 @@ resource workspaces_lawxzhza_zz_name_AzureSQLTimeouts 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_BehaviorEntities 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_BehaviorEntities 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'BehaviorEntities'
   properties: {
     totalRetentionInDays: 30
@@ -4883,8 +4897,8 @@ resource workspaces_lawxzhza_zz_name_BehaviorEntities 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_BehaviorInfo 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_BehaviorInfo 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'BehaviorInfo'
   properties: {
     totalRetentionInDays: 30
@@ -4897,8 +4911,8 @@ resource workspaces_lawxzhza_zz_name_BehaviorInfo 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_BlockchainApplicationLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_BlockchainApplicationLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'BlockchainApplicationLog'
   properties: {
     totalRetentionInDays: 30
@@ -4911,8 +4925,8 @@ resource workspaces_lawxzhza_zz_name_BlockchainApplicationLog 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_BlockchainProxyLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_BlockchainProxyLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'BlockchainProxyLog'
   properties: {
     totalRetentionInDays: 30
@@ -4925,8 +4939,8 @@ resource workspaces_lawxzhza_zz_name_BlockchainProxyLog 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CassandraAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CassandraAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CassandraAudit'
   properties: {
     totalRetentionInDays: 30
@@ -4939,8 +4953,8 @@ resource workspaces_lawxzhza_zz_name_CassandraAudit 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CassandraLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CassandraLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CassandraLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4953,8 +4967,8 @@ resource workspaces_lawxzhza_zz_name_CassandraLogs 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CCFApplicationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CCFApplicationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CCFApplicationLogs'
   properties: {
     totalRetentionInDays: 30
@@ -4967,8 +4981,8 @@ resource workspaces_lawxzhza_zz_name_CCFApplicationLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBCassandraRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBCassandraRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBCassandraRequests'
   properties: {
     totalRetentionInDays: 30
@@ -4981,8 +4995,8 @@ resource workspaces_lawxzhza_zz_name_CDBCassandraRequests 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBControlPlaneRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBControlPlaneRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBControlPlaneRequests'
   properties: {
     totalRetentionInDays: 30
@@ -4995,8 +5009,8 @@ resource workspaces_lawxzhza_zz_name_CDBControlPlaneRequests 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBDataPlaneRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBDataPlaneRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBDataPlaneRequests'
   properties: {
     totalRetentionInDays: 30
@@ -5009,8 +5023,8 @@ resource workspaces_lawxzhza_zz_name_CDBDataPlaneRequests 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBDataPlaneRequests15M 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBDataPlaneRequests15M 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBDataPlaneRequests15M'
   properties: {
     totalRetentionInDays: 30
@@ -5023,8 +5037,8 @@ resource workspaces_lawxzhza_zz_name_CDBDataPlaneRequests15M 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBDataPlaneRequests5M 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBDataPlaneRequests5M 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBDataPlaneRequests5M'
   properties: {
     totalRetentionInDays: 30
@@ -5037,8 +5051,8 @@ resource workspaces_lawxzhza_zz_name_CDBDataPlaneRequests5M 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBGremlinRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBGremlinRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBGremlinRequests'
   properties: {
     totalRetentionInDays: 30
@@ -5051,8 +5065,8 @@ resource workspaces_lawxzhza_zz_name_CDBGremlinRequests 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBMongoRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBMongoRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBMongoRequests'
   properties: {
     totalRetentionInDays: 30
@@ -5065,8 +5079,8 @@ resource workspaces_lawxzhza_zz_name_CDBMongoRequests 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBPartitionKeyRUConsumption 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBPartitionKeyRUConsumption 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBPartitionKeyRUConsumption'
   properties: {
     totalRetentionInDays: 30
@@ -5079,8 +5093,8 @@ resource workspaces_lawxzhza_zz_name_CDBPartitionKeyRUConsumption 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBPartitionKeyStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBPartitionKeyStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBPartitionKeyStatistics'
   properties: {
     totalRetentionInDays: 30
@@ -5093,8 +5107,8 @@ resource workspaces_lawxzhza_zz_name_CDBPartitionKeyStatistics 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBQueryRuntimeStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBQueryRuntimeStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBQueryRuntimeStatistics'
   properties: {
     totalRetentionInDays: 30
@@ -5107,8 +5121,8 @@ resource workspaces_lawxzhza_zz_name_CDBQueryRuntimeStatistics 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CDBTableApiRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CDBTableApiRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CDBTableApiRequests'
   properties: {
     totalRetentionInDays: 30
@@ -5121,8 +5135,8 @@ resource workspaces_lawxzhza_zz_name_CDBTableApiRequests 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ChaosStudioExperimentEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ChaosStudioExperimentEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ChaosStudioExperimentEventLogs'
   properties: {
     totalRetentionInDays: 30
@@ -5135,8 +5149,8 @@ resource workspaces_lawxzhza_zz_name_ChaosStudioExperimentEventLogs 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CHSMServiceOperationAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CHSMServiceOperationAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CHSMServiceOperationAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -5149,8 +5163,8 @@ resource workspaces_lawxzhza_zz_name_CHSMServiceOperationAuditLogs 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CIEventsAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CIEventsAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CIEventsAudit'
   properties: {
     totalRetentionInDays: 30
@@ -5163,8 +5177,8 @@ resource workspaces_lawxzhza_zz_name_CIEventsAudit 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CIEventsOperational 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CIEventsOperational 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CIEventsOperational'
   properties: {
     totalRetentionInDays: 30
@@ -5177,8 +5191,8 @@ resource workspaces_lawxzhza_zz_name_CIEventsOperational 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CloudHsmHardwareOperationAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CloudHsmHardwareOperationAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CloudHsmHardwareOperationAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -5191,8 +5205,8 @@ resource workspaces_lawxzhza_zz_name_CloudHsmHardwareOperationAuditLogs 'Microso
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CloudHsmServiceOperationAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CloudHsmServiceOperationAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CloudHsmServiceOperationAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -5205,8 +5219,8 @@ resource workspaces_lawxzhza_zz_name_CloudHsmServiceOperationAuditLogs 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ComputerGroup 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ComputerGroup 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ComputerGroup'
   properties: {
     totalRetentionInDays: 30
@@ -5219,8 +5233,8 @@ resource workspaces_lawxzhza_zz_name_ComputerGroup 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerAppConsoleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerAppConsoleLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerAppConsoleLogs'
   properties: {
     totalRetentionInDays: 30
@@ -5233,8 +5247,8 @@ resource workspaces_lawxzhza_zz_name_ContainerAppConsoleLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerAppHTTPLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerAppHTTPLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerAppHTTPLogs'
   properties: {
     totalRetentionInDays: 30
@@ -5247,8 +5261,8 @@ resource workspaces_lawxzhza_zz_name_ContainerAppHTTPLogs 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerAppSystemLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerAppSystemLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerAppSystemLogs'
   properties: {
     totalRetentionInDays: 30
@@ -5261,8 +5275,8 @@ resource workspaces_lawxzhza_zz_name_ContainerAppSystemLogs 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerEvent'
   properties: {
     totalRetentionInDays: 30
@@ -5275,8 +5289,8 @@ resource workspaces_lawxzhza_zz_name_ContainerEvent 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerImageInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerImageInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerImageInventory'
   properties: {
     totalRetentionInDays: 30
@@ -5289,8 +5303,8 @@ resource workspaces_lawxzhza_zz_name_ContainerImageInventory 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerInstanceLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerInstanceLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerInstanceLog'
   properties: {
     totalRetentionInDays: 30
@@ -5303,8 +5317,8 @@ resource workspaces_lawxzhza_zz_name_ContainerInstanceLog 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerInventory'
   properties: {
     totalRetentionInDays: 30
@@ -5317,8 +5331,8 @@ resource workspaces_lawxzhza_zz_name_ContainerInventory 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerLog'
   properties: {
     totalRetentionInDays: 30
@@ -5331,8 +5345,8 @@ resource workspaces_lawxzhza_zz_name_ContainerLog 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerLogV2 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerLogV2 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerLogV2'
   properties: {
     totalRetentionInDays: 30
@@ -5345,8 +5359,8 @@ resource workspaces_lawxzhza_zz_name_ContainerLogV2 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerNetworkLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerNetworkLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerNetworkLogs'
   properties: {
     totalRetentionInDays: 30
@@ -5359,8 +5373,8 @@ resource workspaces_lawxzhza_zz_name_ContainerNetworkLogs 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerNodeInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerNodeInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerNodeInventory'
   properties: {
     totalRetentionInDays: 30
@@ -5373,8 +5387,8 @@ resource workspaces_lawxzhza_zz_name_ContainerNodeInventory 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerRegistryLoginEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerRegistryLoginEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerRegistryLoginEvents'
   properties: {
     totalRetentionInDays: 30
@@ -5387,8 +5401,8 @@ resource workspaces_lawxzhza_zz_name_ContainerRegistryLoginEvents 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerRegistryRepositoryEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerRegistryRepositoryEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerRegistryRepositoryEvents'
   properties: {
     totalRetentionInDays: 30
@@ -5401,8 +5415,8 @@ resource workspaces_lawxzhza_zz_name_ContainerRegistryRepositoryEvents 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ContainerServiceLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ContainerServiceLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ContainerServiceLog'
   properties: {
     totalRetentionInDays: 30
@@ -5415,8 +5429,8 @@ resource workspaces_lawxzhza_zz_name_ContainerServiceLog 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_CoreAzureBackup 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_CoreAzureBackup 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'CoreAzureBackup'
   properties: {
     totalRetentionInDays: 30
@@ -5429,8 +5443,8 @@ resource workspaces_lawxzhza_zz_name_CoreAzureBackup 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksAccounts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksAccounts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksAccounts'
   properties: {
     totalRetentionInDays: 30
@@ -5443,8 +5457,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksAccounts 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksApps 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksApps 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksApps'
   properties: {
     totalRetentionInDays: 30
@@ -5457,8 +5471,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksApps 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksBrickStoreHttpGateway 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksBrickStoreHttpGateway 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksBrickStoreHttpGateway'
   properties: {
     totalRetentionInDays: 30
@@ -5471,8 +5485,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksBrickStoreHttpGateway 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksBudgetPolicyCentral 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksBudgetPolicyCentral 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksBudgetPolicyCentral'
   properties: {
     totalRetentionInDays: 30
@@ -5485,8 +5499,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksBudgetPolicyCentral 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksCapsule8Dataplane 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksCapsule8Dataplane 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksCapsule8Dataplane'
   properties: {
     totalRetentionInDays: 30
@@ -5499,8 +5513,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksCapsule8Dataplane 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksClamAVScan 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksClamAVScan 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksClamAVScan'
   properties: {
     totalRetentionInDays: 30
@@ -5513,8 +5527,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksClamAVScan 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksCloudStorageMetadata 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksCloudStorageMetadata 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksCloudStorageMetadata'
   properties: {
     totalRetentionInDays: 30
@@ -5527,8 +5541,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksCloudStorageMetadata 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksClusterLibraries 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksClusterLibraries 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksClusterLibraries'
   properties: {
     totalRetentionInDays: 30
@@ -5541,8 +5555,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksClusterLibraries 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksClusterPolicies 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksClusterPolicies 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksClusterPolicies'
   properties: {
     totalRetentionInDays: 30
@@ -5555,8 +5569,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksClusterPolicies 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksClusters 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksClusters 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksClusters'
   properties: {
     totalRetentionInDays: 30
@@ -5569,8 +5583,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksClusters 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksDashboards 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksDashboards 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksDashboards'
   properties: {
     totalRetentionInDays: 30
@@ -5583,8 +5597,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksDashboards 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksDatabricksSQL 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksDatabricksSQL 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksDatabricksSQL'
   properties: {
     totalRetentionInDays: 30
@@ -5597,8 +5611,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksDatabricksSQL 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksDataMonitoring 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksDataMonitoring 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksDataMonitoring'
   properties: {
     totalRetentionInDays: 30
@@ -5611,8 +5625,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksDataMonitoring 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksDataRooms 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksDataRooms 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksDataRooms'
   properties: {
     totalRetentionInDays: 30
@@ -5625,8 +5639,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksDataRooms 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksDBFS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksDBFS 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksDBFS'
   properties: {
     totalRetentionInDays: 30
@@ -5639,8 +5653,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksDBFS 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksDeltaPipelines 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksDeltaPipelines 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksDeltaPipelines'
   properties: {
     totalRetentionInDays: 30
@@ -5653,8 +5667,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksDeltaPipelines 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksFeatureStore 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksFeatureStore 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksFeatureStore'
   properties: {
     totalRetentionInDays: 30
@@ -5667,8 +5681,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksFeatureStore 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksFiles 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksFiles 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksFiles'
   properties: {
     totalRetentionInDays: 30
@@ -5681,8 +5695,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksFiles 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksFilesystem 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksFilesystem 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksFilesystem'
   properties: {
     totalRetentionInDays: 30
@@ -5695,8 +5709,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksFilesystem 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksGenie 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksGenie 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksGenie'
   properties: {
     totalRetentionInDays: 30
@@ -5709,8 +5723,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksGenie 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksGitCredentials 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksGitCredentials 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksGitCredentials'
   properties: {
     totalRetentionInDays: 30
@@ -5723,8 +5737,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksGitCredentials 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksGlobalInitScripts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksGlobalInitScripts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksGlobalInitScripts'
   properties: {
     totalRetentionInDays: 30
@@ -5737,8 +5751,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksGlobalInitScripts 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksGroups 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksGroups 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksGroups'
   properties: {
     totalRetentionInDays: 30
@@ -5751,8 +5765,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksGroups 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksIAMRole 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksIAMRole 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksIAMRole'
   properties: {
     totalRetentionInDays: 30
@@ -5765,8 +5779,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksIAMRole 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksIngestion'
   properties: {
     totalRetentionInDays: 30
@@ -5779,8 +5793,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksIngestion 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksInstancePools 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksInstancePools 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksInstancePools'
   properties: {
     totalRetentionInDays: 30
@@ -5793,8 +5807,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksInstancePools 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksJobs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksJobs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksJobs'
   properties: {
     totalRetentionInDays: 30
@@ -5807,8 +5821,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksJobs 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksLakeviewConfig 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksLakeviewConfig 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksLakeviewConfig'
   properties: {
     totalRetentionInDays: 30
@@ -5821,8 +5835,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksLakeviewConfig 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksLineageTracking 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksLineageTracking 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksLineageTracking'
   properties: {
     totalRetentionInDays: 30
@@ -5835,8 +5849,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksLineageTracking 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksMarketplaceConsumer 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksMarketplaceConsumer 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksMarketplaceConsumer'
   properties: {
     totalRetentionInDays: 30
@@ -5849,8 +5863,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksMarketplaceConsumer 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksMarketplaceProvider 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksMarketplaceProvider 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksMarketplaceProvider'
   properties: {
     totalRetentionInDays: 30
@@ -5863,8 +5877,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksMarketplaceProvider 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksMLflowAcledArtifact 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksMLflowAcledArtifact 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksMLflowAcledArtifact'
   properties: {
     totalRetentionInDays: 30
@@ -5877,8 +5891,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksMLflowAcledArtifact 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksMLflowExperiment 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksMLflowExperiment 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksMLflowExperiment'
   properties: {
     totalRetentionInDays: 30
@@ -5891,8 +5905,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksMLflowExperiment 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksModelRegistry 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksModelRegistry 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksModelRegistry'
   properties: {
     totalRetentionInDays: 30
@@ -5905,8 +5919,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksModelRegistry 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksNotebook 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksNotebook 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksNotebook'
   properties: {
     totalRetentionInDays: 30
@@ -5919,8 +5933,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksNotebook 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksOnlineTables 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksOnlineTables 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksOnlineTables'
   properties: {
     totalRetentionInDays: 30
@@ -5933,8 +5947,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksOnlineTables 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksPartnerHub 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksPartnerHub 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksPartnerHub'
   properties: {
     totalRetentionInDays: 30
@@ -5947,8 +5961,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksPartnerHub 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksPredictiveOptimization 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksPredictiveOptimization 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksPredictiveOptimization'
   properties: {
     totalRetentionInDays: 30
@@ -5961,8 +5975,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksPredictiveOptimization 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksRBAC 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksRBAC 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksRBAC'
   properties: {
     totalRetentionInDays: 30
@@ -5975,8 +5989,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksRBAC 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksRemoteHistoryService 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksRemoteHistoryService 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksRemoteHistoryService'
   properties: {
     totalRetentionInDays: 30
@@ -5989,8 +6003,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksRemoteHistoryService 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksRepos 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksRepos 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksRepos'
   properties: {
     totalRetentionInDays: 30
@@ -6003,8 +6017,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksRepos 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksRFA 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksRFA 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksRFA'
   properties: {
     totalRetentionInDays: 30
@@ -6017,8 +6031,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksRFA 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksSecrets 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksSecrets 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksSecrets'
   properties: {
     totalRetentionInDays: 30
@@ -6031,8 +6045,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksSecrets 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksServerlessRealTimeInference 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksServerlessRealTimeInference 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksServerlessRealTimeInference'
   properties: {
     totalRetentionInDays: 30
@@ -6045,8 +6059,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksServerlessRealTimeInference 'Micr
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksSQL 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksSQL 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksSQL'
   properties: {
     totalRetentionInDays: 30
@@ -6059,8 +6073,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksSQL 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksSQLPermissions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksSQLPermissions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksSQLPermissions'
   properties: {
     totalRetentionInDays: 30
@@ -6073,8 +6087,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksSQLPermissions 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksSSH 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksSSH 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksSSH'
   properties: {
     totalRetentionInDays: 30
@@ -6087,8 +6101,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksSSH 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksTables 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksTables 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksTables'
   properties: {
     totalRetentionInDays: 30
@@ -6101,8 +6115,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksTables 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksUnityCatalog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksUnityCatalog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksUnityCatalog'
   properties: {
     totalRetentionInDays: 30
@@ -6115,8 +6129,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksUnityCatalog 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksVectorSearch 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksVectorSearch 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksVectorSearch'
   properties: {
     totalRetentionInDays: 30
@@ -6129,8 +6143,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksVectorSearch 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksWebhookNotifications 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksWebhookNotifications 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksWebhookNotifications'
   properties: {
     totalRetentionInDays: 30
@@ -6143,8 +6157,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksWebhookNotifications 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksWebTerminal 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksWebTerminal 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksWebTerminal'
   properties: {
     totalRetentionInDays: 30
@@ -6157,8 +6171,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksWebTerminal 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksWorkspace 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksWorkspace 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksWorkspace'
   properties: {
     totalRetentionInDays: 30
@@ -6171,8 +6185,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksWorkspace 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DatabricksWorkspaceFiles 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DatabricksWorkspaceFiles 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DatabricksWorkspaceFiles'
   properties: {
     totalRetentionInDays: 30
@@ -6185,8 +6199,8 @@ resource workspaces_lawxzhza_zz_name_DatabricksWorkspaceFiles 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DataSetOutput 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DataSetOutput 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DataSetOutput'
   properties: {
     totalRetentionInDays: 30
@@ -6199,8 +6213,8 @@ resource workspaces_lawxzhza_zz_name_DataSetOutput 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DataSetRuns 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DataSetRuns 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DataSetRuns'
   properties: {
     totalRetentionInDays: 30
@@ -6213,8 +6227,8 @@ resource workspaces_lawxzhza_zz_name_DataSetRuns 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DataTransferOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DataTransferOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DataTransferOperations'
   properties: {
     totalRetentionInDays: 30
@@ -6227,8 +6241,8 @@ resource workspaces_lawxzhza_zz_name_DataTransferOperations 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DCRLogErrors 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DCRLogErrors 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DCRLogErrors'
   properties: {
     totalRetentionInDays: 30
@@ -6241,8 +6255,8 @@ resource workspaces_lawxzhza_zz_name_DCRLogErrors 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DCRLogTroubleshooting 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DCRLogTroubleshooting 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DCRLogTroubleshooting'
   properties: {
     totalRetentionInDays: 30
@@ -6255,8 +6269,8 @@ resource workspaces_lawxzhza_zz_name_DCRLogTroubleshooting 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DevCenterAgentHealthLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DevCenterAgentHealthLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DevCenterAgentHealthLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6269,8 +6283,8 @@ resource workspaces_lawxzhza_zz_name_DevCenterAgentHealthLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DevCenterBillingEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DevCenterBillingEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DevCenterBillingEventLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6283,8 +6297,8 @@ resource workspaces_lawxzhza_zz_name_DevCenterBillingEventLogs 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DevCenterConnectionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DevCenterConnectionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DevCenterConnectionLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6297,8 +6311,8 @@ resource workspaces_lawxzhza_zz_name_DevCenterConnectionLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DevCenterDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DevCenterDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DevCenterDiagnosticLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6311,8 +6325,8 @@ resource workspaces_lawxzhza_zz_name_DevCenterDiagnosticLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DevCenterResourceOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DevCenterResourceOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DevCenterResourceOperationLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6325,8 +6339,8 @@ resource workspaces_lawxzhza_zz_name_DevCenterResourceOperationLogs 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DeviceBehaviorEntities 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DeviceBehaviorEntities 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DeviceBehaviorEntities'
   properties: {
     totalRetentionInDays: 30
@@ -6339,8 +6353,8 @@ resource workspaces_lawxzhza_zz_name_DeviceBehaviorEntities 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DeviceBehaviorInfo 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DeviceBehaviorInfo 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DeviceBehaviorInfo'
   properties: {
     totalRetentionInDays: 30
@@ -6353,8 +6367,8 @@ resource workspaces_lawxzhza_zz_name_DeviceBehaviorInfo 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DeviceCustomFileEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DeviceCustomFileEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DeviceCustomFileEvents'
   properties: {
     totalRetentionInDays: 30
@@ -6367,8 +6381,8 @@ resource workspaces_lawxzhza_zz_name_DeviceCustomFileEvents 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DeviceCustomImageLoadEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DeviceCustomImageLoadEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DeviceCustomImageLoadEvents'
   properties: {
     totalRetentionInDays: 30
@@ -6381,8 +6395,8 @@ resource workspaces_lawxzhza_zz_name_DeviceCustomImageLoadEvents 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DeviceCustomNetworkEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DeviceCustomNetworkEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DeviceCustomNetworkEvents'
   properties: {
     totalRetentionInDays: 30
@@ -6395,8 +6409,8 @@ resource workspaces_lawxzhza_zz_name_DeviceCustomNetworkEvents 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DeviceCustomProcessEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DeviceCustomProcessEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DeviceCustomProcessEvents'
   properties: {
     totalRetentionInDays: 30
@@ -6409,8 +6423,8 @@ resource workspaces_lawxzhza_zz_name_DeviceCustomProcessEvents 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DeviceCustomRegistryEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DeviceCustomRegistryEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DeviceCustomRegistryEvents'
   properties: {
     totalRetentionInDays: 30
@@ -6423,8 +6437,8 @@ resource workspaces_lawxzhza_zz_name_DeviceCustomRegistryEvents 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DeviceCustomScriptEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DeviceCustomScriptEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DeviceCustomScriptEvents'
   properties: {
     totalRetentionInDays: 30
@@ -6437,8 +6451,22 @@ resource workspaces_lawxzhza_zz_name_DeviceCustomScriptEvents 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DiscoveryBookshelfAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DevOpsOperationsAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'DevOpsOperationsAudit'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'DevOpsOperationsAudit'
+      displayName: 'DevOpsOperationsAudit'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawe1vii9na_name_DiscoveryBookshelfAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DiscoveryBookshelfAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6451,8 +6479,8 @@ resource workspaces_lawxzhza_zz_name_DiscoveryBookshelfAuditLogs 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DiscoverySupercomputerAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DiscoverySupercomputerAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DiscoverySupercomputerAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6465,8 +6493,8 @@ resource workspaces_lawxzhza_zz_name_DiscoverySupercomputerAuditLogs 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DiscoveryWorkspaceAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DiscoveryWorkspaceAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DiscoveryWorkspaceAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6479,8 +6507,8 @@ resource workspaces_lawxzhza_zz_name_DiscoveryWorkspaceAuditLogs 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DNSQueryLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DNSQueryLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DNSQueryLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6493,8 +6521,22 @@ resource workspaces_lawxzhza_zz_name_DNSQueryLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DSMAzureBlobStorageLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DragonCopilot 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'DragonCopilot'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'DragonCopilot'
+      displayName: 'DragonCopilot'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawe1vii9na_name_DSMAzureBlobStorageLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DSMAzureBlobStorageLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6507,8 +6549,8 @@ resource workspaces_lawxzhza_zz_name_DSMAzureBlobStorageLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DSMDataClassificationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DSMDataClassificationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DSMDataClassificationLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6521,8 +6563,8 @@ resource workspaces_lawxzhza_zz_name_DSMDataClassificationLogs 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DSMDataLabelingLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DSMDataLabelingLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DSMDataLabelingLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6535,8 +6577,8 @@ resource workspaces_lawxzhza_zz_name_DSMDataLabelingLogs 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_DurableTaskSchedulerLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_DurableTaskSchedulerLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'DurableTaskSchedulerLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6549,8 +6591,8 @@ resource workspaces_lawxzhza_zz_name_DurableTaskSchedulerLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EdgeActionConsoleLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EdgeActionConsoleLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EdgeActionConsoleLog'
   properties: {
     totalRetentionInDays: 30
@@ -6563,8 +6605,8 @@ resource workspaces_lawxzhza_zz_name_EdgeActionConsoleLog 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EdgeActionServiceLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EdgeActionServiceLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EdgeActionServiceLog'
   properties: {
     totalRetentionInDays: 30
@@ -6577,8 +6619,8 @@ resource workspaces_lawxzhza_zz_name_EdgeActionServiceLog 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EGNFailedHttpDataPlaneOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EGNFailedHttpDataPlaneOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EGNFailedHttpDataPlaneOperations'
   properties: {
     totalRetentionInDays: 30
@@ -6591,8 +6633,8 @@ resource workspaces_lawxzhza_zz_name_EGNFailedHttpDataPlaneOperations 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EGNFailedMqttConnections 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EGNFailedMqttConnections 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EGNFailedMqttConnections'
   properties: {
     totalRetentionInDays: 30
@@ -6605,8 +6647,8 @@ resource workspaces_lawxzhza_zz_name_EGNFailedMqttConnections 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EGNFailedMqttPublishedMessages 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EGNFailedMqttPublishedMessages 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EGNFailedMqttPublishedMessages'
   properties: {
     totalRetentionInDays: 30
@@ -6619,8 +6661,8 @@ resource workspaces_lawxzhza_zz_name_EGNFailedMqttPublishedMessages 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EGNFailedMqttSubscriptions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EGNFailedMqttSubscriptions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EGNFailedMqttSubscriptions'
   properties: {
     totalRetentionInDays: 30
@@ -6633,8 +6675,8 @@ resource workspaces_lawxzhza_zz_name_EGNFailedMqttSubscriptions 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EGNMqttDisconnections 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EGNMqttDisconnections 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EGNMqttDisconnections'
   properties: {
     totalRetentionInDays: 30
@@ -6647,8 +6689,8 @@ resource workspaces_lawxzhza_zz_name_EGNMqttDisconnections 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EGNSuccessfulHttpDataPlaneOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EGNSuccessfulHttpDataPlaneOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EGNSuccessfulHttpDataPlaneOperations'
   properties: {
     totalRetentionInDays: 30
@@ -6661,8 +6703,8 @@ resource workspaces_lawxzhza_zz_name_EGNSuccessfulHttpDataPlaneOperations 'Micro
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EGNSuccessfulMqttConnections 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EGNSuccessfulMqttConnections 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EGNSuccessfulMqttConnections'
   properties: {
     totalRetentionInDays: 30
@@ -6675,8 +6717,8 @@ resource workspaces_lawxzhza_zz_name_EGNSuccessfulMqttConnections 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_EnrichedMicrosoft365AuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_EnrichedMicrosoft365AuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'EnrichedMicrosoft365AuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6689,8 +6731,8 @@ resource workspaces_lawxzhza_zz_name_EnrichedMicrosoft365AuditLogs 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ETWEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ETWEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ETWEvent'
   properties: {
     totalRetentionInDays: 30
@@ -6703,8 +6745,8 @@ resource workspaces_lawxzhza_zz_name_ETWEvent 'Microsoft.OperationalInsights/wor
   }
 }
 
-resource workspaces_lawxzhza_zz_name_Event 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_Event 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'Event'
   properties: {
     totalRetentionInDays: 30
@@ -6717,8 +6759,8 @@ resource workspaces_lawxzhza_zz_name_Event 'Microsoft.OperationalInsights/worksp
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ExchangeAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ExchangeAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ExchangeAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -6731,8 +6773,8 @@ resource workspaces_lawxzhza_zz_name_ExchangeAssessmentRecommendation 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ExchangeOnlineAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ExchangeOnlineAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ExchangeOnlineAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -6745,8 +6787,8 @@ resource workspaces_lawxzhza_zz_name_ExchangeOnlineAssessmentRecommendation 'Mic
   }
 }
 
-resource workspaces_lawxzhza_zz_name_FailedIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_FailedIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'FailedIngestion'
   properties: {
     totalRetentionInDays: 30
@@ -6759,8 +6801,8 @@ resource workspaces_lawxzhza_zz_name_FailedIngestion 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_FunctionAppLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_FunctionAppLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'FunctionAppLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6773,8 +6815,8 @@ resource workspaces_lawxzhza_zz_name_FunctionAppLogs 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_GraphNotificationsActivityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_GraphNotificationsActivityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'GraphNotificationsActivityLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6787,8 +6829,8 @@ resource workspaces_lawxzhza_zz_name_GraphNotificationsActivityLogs 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightAmbariClusterAlerts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightAmbariClusterAlerts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightAmbariClusterAlerts'
   properties: {
     totalRetentionInDays: 30
@@ -6801,8 +6843,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightAmbariClusterAlerts 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightAmbariSystemMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightAmbariSystemMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightAmbariSystemMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -6815,8 +6857,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightAmbariSystemMetrics 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightGatewayAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightGatewayAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightGatewayAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6829,8 +6871,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightGatewayAuditLogs 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightHadoopAndYarnLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightHadoopAndYarnLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightHadoopAndYarnLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6843,8 +6885,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightHadoopAndYarnLogs 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightHadoopAndYarnMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightHadoopAndYarnMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightHadoopAndYarnMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -6857,8 +6899,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightHadoopAndYarnMetrics 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightHBaseLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightHBaseLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightHBaseLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6871,8 +6913,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightHBaseLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightHBaseMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightHBaseMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightHBaseMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -6885,8 +6927,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightHBaseMetrics 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightHiveAndLLAPLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightHiveAndLLAPLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightHiveAndLLAPLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6899,8 +6941,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightHiveAndLLAPLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightHiveAndLLAPMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightHiveAndLLAPMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightHiveAndLLAPMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -6913,8 +6955,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightHiveAndLLAPMetrics 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightHiveQueryAppStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightHiveQueryAppStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightHiveQueryAppStats'
   properties: {
     totalRetentionInDays: 30
@@ -6927,8 +6969,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightHiveQueryAppStats 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightHiveTezAppStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightHiveTezAppStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightHiveTezAppStats'
   properties: {
     totalRetentionInDays: 30
@@ -6941,8 +6983,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightHiveTezAppStats 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightJupyterNotebookEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightJupyterNotebookEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightJupyterNotebookEvents'
   properties: {
     totalRetentionInDays: 30
@@ -6955,8 +6997,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightJupyterNotebookEvents 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightKafkaLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightKafkaLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightKafkaLogs'
   properties: {
     totalRetentionInDays: 30
@@ -6969,8 +7011,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightKafkaLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightKafkaMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightKafkaMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightKafkaMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -6983,8 +7025,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightKafkaMetrics 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightKafkaServerLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightKafkaServerLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightKafkaServerLog'
   properties: {
     totalRetentionInDays: 30
@@ -6997,8 +7039,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightKafkaServerLog 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightOozieLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightOozieLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightOozieLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7011,8 +7053,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightOozieLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightRangerAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightRangerAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightRangerAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7025,8 +7067,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightRangerAuditLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSecurityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSecurityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSecurityLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7039,8 +7081,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSecurityLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkApplicationEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkApplicationEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkApplicationEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7053,8 +7095,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkApplicationEvents 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkBlockManagerEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkBlockManagerEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkBlockManagerEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7067,8 +7109,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkBlockManagerEvents 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkEnvironmentEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkEnvironmentEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkEnvironmentEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7081,8 +7123,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkEnvironmentEvents 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkExecutorEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkExecutorEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkExecutorEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7095,8 +7137,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkExecutorEvents 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkExtraEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkExtraEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkExtraEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7109,8 +7151,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkExtraEvents 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkJobEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkJobEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkJobEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7123,8 +7165,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkJobEvents 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7137,8 +7179,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkSQLExecutionEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkSQLExecutionEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkSQLExecutionEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7151,8 +7193,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkSQLExecutionEvents 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkStageEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkStageEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkStageEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7165,8 +7207,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkStageEvents 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkStageTaskAccumulables 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkStageTaskAccumulables 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkStageTaskAccumulables'
   properties: {
     totalRetentionInDays: 30
@@ -7179,8 +7221,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkStageTaskAccumulables 'Micros
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightSparkTaskEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightSparkTaskEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightSparkTaskEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7193,8 +7235,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightSparkTaskEvents 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightStormLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightStormLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightStormLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7207,8 +7249,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightStormLogs 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightStormMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightStormMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightStormMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -7221,8 +7263,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightStormMetrics 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HDInsightStormTopologyMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HDInsightStormTopologyMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HDInsightStormTopologyMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -7235,8 +7277,8 @@ resource workspaces_lawxzhza_zz_name_HDInsightStormTopologyMetrics 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_HealthStateChangeEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_HealthStateChangeEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'HealthStateChangeEvent'
   properties: {
     totalRetentionInDays: 30
@@ -7249,8 +7291,8 @@ resource workspaces_lawxzhza_zz_name_HealthStateChangeEvent 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_Heartbeat 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_Heartbeat 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'Heartbeat'
   properties: {
     totalRetentionInDays: 30
@@ -7263,8 +7305,8 @@ resource workspaces_lawxzhza_zz_name_Heartbeat 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_InsightsMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_InsightsMetrics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'InsightsMetrics'
   properties: {
     totalRetentionInDays: 30
@@ -7277,8 +7319,8 @@ resource workspaces_lawxzhza_zz_name_InsightsMetrics 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_IntuneAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_IntuneAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'IntuneAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7291,8 +7333,8 @@ resource workspaces_lawxzhza_zz_name_IntuneAuditLogs 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_IntuneDeviceComplianceOrg 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_IntuneDeviceComplianceOrg 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'IntuneDeviceComplianceOrg'
   properties: {
     totalRetentionInDays: 30
@@ -7305,8 +7347,8 @@ resource workspaces_lawxzhza_zz_name_IntuneDeviceComplianceOrg 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_IntuneDevices 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_IntuneDevices 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'IntuneDevices'
   properties: {
     totalRetentionInDays: 30
@@ -7319,8 +7361,8 @@ resource workspaces_lawxzhza_zz_name_IntuneDevices 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_IntuneOperationalLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_IntuneOperationalLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'IntuneOperationalLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7333,8 +7375,8 @@ resource workspaces_lawxzhza_zz_name_IntuneOperationalLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_KubeEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_KubeEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'KubeEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7347,8 +7389,8 @@ resource workspaces_lawxzhza_zz_name_KubeEvents 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_KubeHealth 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_KubeHealth 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'KubeHealth'
   properties: {
     totalRetentionInDays: 30
@@ -7361,8 +7403,8 @@ resource workspaces_lawxzhza_zz_name_KubeHealth 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_KubeMonAgentEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_KubeMonAgentEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'KubeMonAgentEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7375,8 +7417,8 @@ resource workspaces_lawxzhza_zz_name_KubeMonAgentEvents 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_KubeNodeInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_KubeNodeInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'KubeNodeInventory'
   properties: {
     totalRetentionInDays: 30
@@ -7389,8 +7431,8 @@ resource workspaces_lawxzhza_zz_name_KubeNodeInventory 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_KubePodInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_KubePodInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'KubePodInventory'
   properties: {
     totalRetentionInDays: 30
@@ -7403,8 +7445,8 @@ resource workspaces_lawxzhza_zz_name_KubePodInventory 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_KubePVInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_KubePVInventory 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'KubePVInventory'
   properties: {
     totalRetentionInDays: 30
@@ -7417,8 +7459,8 @@ resource workspaces_lawxzhza_zz_name_KubePVInventory 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_KubeServices 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_KubeServices 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'KubeServices'
   properties: {
     totalRetentionInDays: 30
@@ -7431,8 +7473,8 @@ resource workspaces_lawxzhza_zz_name_KubeServices 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LAJobLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_LAJobLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'LAJobLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7445,8 +7487,8 @@ resource workspaces_lawxzhza_zz_name_LAJobLogs 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LAQueryLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_LAQueryLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'LAQueryLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7459,8 +7501,8 @@ resource workspaces_lawxzhza_zz_name_LAQueryLogs 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LASummaryLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_LASummaryLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'LASummaryLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7473,8 +7515,8 @@ resource workspaces_lawxzhza_zz_name_LASummaryLogs 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LedgerTransactionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_LedgerTransactionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'LedgerTransactionLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7487,8 +7529,8 @@ resource workspaces_lawxzhza_zz_name_LedgerTransactionLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LedgerUserDefinedLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_LedgerUserDefinedLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'LedgerUserDefinedLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7501,8 +7543,8 @@ resource workspaces_lawxzhza_zz_name_LedgerUserDefinedLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LIATrackingEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_LIATrackingEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'LIATrackingEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7515,8 +7557,8 @@ resource workspaces_lawxzhza_zz_name_LIATrackingEvents 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_LogicAppWorkflowRuntime 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_LogicAppWorkflowRuntime 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'LogicAppWorkflowRuntime'
   properties: {
     totalRetentionInDays: 30
@@ -7529,8 +7571,8 @@ resource workspaces_lawxzhza_zz_name_LogicAppWorkflowRuntime 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MCCEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MCCEventLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MCCEventLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7543,8 +7585,8 @@ resource workspaces_lawxzhza_zz_name_MCCEventLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MCVPAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MCVPAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MCVPAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7557,8 +7599,8 @@ resource workspaces_lawxzhza_zz_name_MCVPAuditLogs 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MCVPOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MCVPOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MCVPOperationLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7571,8 +7613,8 @@ resource workspaces_lawxzhza_zz_name_MCVPOperationLogs 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MDCDetectionDNSEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MDCDetectionDNSEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MDCDetectionDNSEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7585,8 +7627,8 @@ resource workspaces_lawxzhza_zz_name_MDCDetectionDNSEvents 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MDCDetectionFimEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MDCDetectionFimEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MDCDetectionFimEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7599,8 +7641,8 @@ resource workspaces_lawxzhza_zz_name_MDCDetectionFimEvents 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MDCDetectionGatingValidationEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MDCDetectionGatingValidationEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MDCDetectionGatingValidationEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7613,8 +7655,8 @@ resource workspaces_lawxzhza_zz_name_MDCDetectionGatingValidationEvents 'Microso
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MDCDetectionK8SApiEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MDCDetectionK8SApiEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MDCDetectionK8SApiEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7627,8 +7669,8 @@ resource workspaces_lawxzhza_zz_name_MDCDetectionK8SApiEvents 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MDCDetectionProcessV2Events 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MDCDetectionProcessV2Events 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MDCDetectionProcessV2Events'
   properties: {
     totalRetentionInDays: 30
@@ -7641,8 +7683,8 @@ resource workspaces_lawxzhza_zz_name_MDCDetectionProcessV2Events 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MDCFileIntegrityMonitoringEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MDCFileIntegrityMonitoringEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MDCFileIntegrityMonitoringEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7655,8 +7697,8 @@ resource workspaces_lawxzhza_zz_name_MDCFileIntegrityMonitoringEvents 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MDECustomCollectionDeviceFileEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MDECustomCollectionDeviceFileEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MDECustomCollectionDeviceFileEvents'
   properties: {
     totalRetentionInDays: 30
@@ -7669,8 +7711,8 @@ resource workspaces_lawxzhza_zz_name_MDECustomCollectionDeviceFileEvents 'Micros
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MDPResourceLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MDPResourceLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MDPResourceLog'
   properties: {
     totalRetentionInDays: 30
@@ -7683,8 +7725,8 @@ resource workspaces_lawxzhza_zz_name_MDPResourceLog 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MeshControlPlane 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MeshControlPlane 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MeshControlPlane'
   properties: {
     totalRetentionInDays: 30
@@ -7697,8 +7739,8 @@ resource workspaces_lawxzhza_zz_name_MeshControlPlane 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MicrosoftAzureBastionAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MicrosoftAzureBastionAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MicrosoftAzureBastionAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7711,8 +7753,8 @@ resource workspaces_lawxzhza_zz_name_MicrosoftAzureBastionAuditLogs 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MicrosoftDataShareReceivedSnapshotLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MicrosoftDataShareReceivedSnapshotLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MicrosoftDataShareReceivedSnapshotLog'
   properties: {
     totalRetentionInDays: 30
@@ -7725,8 +7767,8 @@ resource workspaces_lawxzhza_zz_name_MicrosoftDataShareReceivedSnapshotLog 'Micr
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MicrosoftDataShareSentSnapshotLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MicrosoftDataShareSentSnapshotLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MicrosoftDataShareSentSnapshotLog'
   properties: {
     totalRetentionInDays: 30
@@ -7739,8 +7781,8 @@ resource workspaces_lawxzhza_zz_name_MicrosoftDataShareSentSnapshotLog 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MicrosoftDataShareShareLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MicrosoftDataShareShareLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MicrosoftDataShareShareLog'
   properties: {
     totalRetentionInDays: 30
@@ -7753,8 +7795,8 @@ resource workspaces_lawxzhza_zz_name_MicrosoftDataShareShareLog 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MicrosoftGraphActivityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MicrosoftGraphActivityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MicrosoftGraphActivityLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7767,8 +7809,8 @@ resource workspaces_lawxzhza_zz_name_MicrosoftGraphActivityLogs 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MicrosoftGraphPolicyLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MicrosoftGraphPolicyLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MicrosoftGraphPolicyLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7781,8 +7823,8 @@ resource workspaces_lawxzhza_zz_name_MicrosoftGraphPolicyLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MicrosoftHealthcareApisAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MicrosoftHealthcareApisAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MicrosoftHealthcareApisAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7795,8 +7837,8 @@ resource workspaces_lawxzhza_zz_name_MicrosoftHealthcareApisAuditLogs 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MicrosoftServicePrincipalSignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MicrosoftServicePrincipalSignInLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MicrosoftServicePrincipalSignInLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7809,8 +7851,8 @@ resource workspaces_lawxzhza_zz_name_MicrosoftServicePrincipalSignInLogs 'Micros
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MNFDeviceUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MNFDeviceUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MNFDeviceUpdates'
   properties: {
     totalRetentionInDays: 30
@@ -7823,8 +7865,8 @@ resource workspaces_lawxzhza_zz_name_MNFDeviceUpdates 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MNFSystemSessionHistoryUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MNFSystemSessionHistoryUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MNFSystemSessionHistoryUpdates'
   properties: {
     totalRetentionInDays: 30
@@ -7837,8 +7879,8 @@ resource workspaces_lawxzhza_zz_name_MNFSystemSessionHistoryUpdates 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MNFSystemStateMessageUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MNFSystemStateMessageUpdates 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MNFSystemStateMessageUpdates'
   properties: {
     totalRetentionInDays: 30
@@ -7851,8 +7893,8 @@ resource workspaces_lawxzhza_zz_name_MNFSystemStateMessageUpdates 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MPCAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MPCAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MPCAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7865,8 +7907,8 @@ resource workspaces_lawxzhza_zz_name_MPCAuditLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MPCIngestionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MPCIngestionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MPCIngestionLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7879,8 +7921,8 @@ resource workspaces_lawxzhza_zz_name_MPCIngestionLogs 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MySqlAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MySqlAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MySqlAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7893,8 +7935,8 @@ resource workspaces_lawxzhza_zz_name_MySqlAuditLogs 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_MySqlSlowLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_MySqlSlowLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'MySqlSlowLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7907,8 +7949,8 @@ resource workspaces_lawxzhza_zz_name_MySqlSlowLogs 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NatGatewayFlowlogsV1 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NatGatewayFlowlogsV1 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NatGatewayFlowlogsV1'
   properties: {
     totalRetentionInDays: 30
@@ -7921,8 +7963,8 @@ resource workspaces_lawxzhza_zz_name_NatGatewayFlowlogsV1 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCBMBreakGlassAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCBMBreakGlassAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCBMBreakGlassAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7935,8 +7977,8 @@ resource workspaces_lawxzhza_zz_name_NCBMBreakGlassAuditLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCBMSecurityDefenderLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCBMSecurityDefenderLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCBMSecurityDefenderLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7949,8 +7991,8 @@ resource workspaces_lawxzhza_zz_name_NCBMSecurityDefenderLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCBMSecurityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCBMSecurityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCBMSecurityLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7963,8 +8005,8 @@ resource workspaces_lawxzhza_zz_name_NCBMSecurityLogs 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCBMSystemLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCBMSystemLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCBMSystemLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7977,8 +8019,8 @@ resource workspaces_lawxzhza_zz_name_NCBMSystemLogs 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCCIDRACLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCCIDRACLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCCIDRACLogs'
   properties: {
     totalRetentionInDays: 30
@@ -7991,8 +8033,8 @@ resource workspaces_lawxzhza_zz_name_NCCIDRACLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCCKubernetesAPIAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCCKubernetesAPIAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCCKubernetesAPIAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8005,8 +8047,8 @@ resource workspaces_lawxzhza_zz_name_NCCKubernetesAPIAuditLogs 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCCKubernetesLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCCKubernetesLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCCKubernetesLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8019,8 +8061,8 @@ resource workspaces_lawxzhza_zz_name_NCCKubernetesLogs 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCCPlatformOperationsLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCCPlatformOperationsLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCCPlatformOperationsLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8033,8 +8075,8 @@ resource workspaces_lawxzhza_zz_name_NCCPlatformOperationsLogs 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCCVMOrchestrationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCCVMOrchestrationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCCVMOrchestrationLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8047,8 +8089,8 @@ resource workspaces_lawxzhza_zz_name_NCCVMOrchestrationLogs 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCMClusterOperationsLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCMClusterOperationsLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCMClusterOperationsLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8061,8 +8103,8 @@ resource workspaces_lawxzhza_zz_name_NCMClusterOperationsLogs 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCSStorageAlerts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCSStorageAlerts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCSStorageAlerts'
   properties: {
     totalRetentionInDays: 30
@@ -8075,8 +8117,8 @@ resource workspaces_lawxzhza_zz_name_NCSStorageAlerts 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCSStorageAudits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCSStorageAudits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCSStorageAudits'
   properties: {
     totalRetentionInDays: 30
@@ -8089,8 +8131,8 @@ resource workspaces_lawxzhza_zz_name_NCSStorageAudits 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NCSStorageLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NCSStorageLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NCSStorageLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8103,8 +8145,8 @@ resource workspaces_lawxzhza_zz_name_NCSStorageLogs 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NetworkAccessAlerts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NetworkAccessAlerts 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NetworkAccessAlerts'
   properties: {
     totalRetentionInDays: 30
@@ -8117,8 +8159,8 @@ resource workspaces_lawxzhza_zz_name_NetworkAccessAlerts 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NetworkAccessConnectionEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NetworkAccessConnectionEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NetworkAccessConnectionEvents'
   properties: {
     totalRetentionInDays: 30
@@ -8131,8 +8173,8 @@ resource workspaces_lawxzhza_zz_name_NetworkAccessConnectionEvents 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NetworkAccessGenerativeAIInsights 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NetworkAccessGenerativeAIInsights 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NetworkAccessGenerativeAIInsights'
   properties: {
     totalRetentionInDays: 30
@@ -8145,8 +8187,8 @@ resource workspaces_lawxzhza_zz_name_NetworkAccessGenerativeAIInsights 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NetworkAccessTraffic 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NetworkAccessTraffic 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NetworkAccessTraffic'
   properties: {
     totalRetentionInDays: 30
@@ -8159,8 +8201,8 @@ resource workspaces_lawxzhza_zz_name_NetworkAccessTraffic 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NginxUpstreamUpdateLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NginxUpstreamUpdateLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NginxUpstreamUpdateLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8173,8 +8215,8 @@ resource workspaces_lawxzhza_zz_name_NginxUpstreamUpdateLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NGXOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NGXOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NGXOperationLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8187,8 +8229,8 @@ resource workspaces_lawxzhza_zz_name_NGXOperationLogs 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NGXSecurityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NGXSecurityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NGXSecurityLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8201,8 +8243,8 @@ resource workspaces_lawxzhza_zz_name_NGXSecurityLogs 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NSPAccessLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NSPAccessLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NSPAccessLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8215,8 +8257,8 @@ resource workspaces_lawxzhza_zz_name_NSPAccessLogs 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NTAInsights 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NTAInsights 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NTAInsights'
   properties: {
     totalRetentionInDays: 30
@@ -8229,8 +8271,8 @@ resource workspaces_lawxzhza_zz_name_NTAInsights 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NTAIpDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NTAIpDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NTAIpDetails'
   properties: {
     totalRetentionInDays: 30
@@ -8243,8 +8285,8 @@ resource workspaces_lawxzhza_zz_name_NTAIpDetails 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NTANetAnalytics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NTANetAnalytics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NTANetAnalytics'
   properties: {
     totalRetentionInDays: 30
@@ -8257,8 +8299,8 @@ resource workspaces_lawxzhza_zz_name_NTANetAnalytics 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NTANspRuleRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NTANspRuleRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NTANspRuleRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -8271,8 +8313,8 @@ resource workspaces_lawxzhza_zz_name_NTANspRuleRecommendation 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NTARuleRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NTARuleRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NTARuleRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -8285,8 +8327,8 @@ resource workspaces_lawxzhza_zz_name_NTARuleRecommendation 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NTATopologyDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NTATopologyDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NTATopologyDetails'
   properties: {
     totalRetentionInDays: 30
@@ -8299,8 +8341,8 @@ resource workspaces_lawxzhza_zz_name_NTATopologyDetails 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NWConnectionMonitorDestinationListenerResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NWConnectionMonitorDestinationListenerResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NWConnectionMonitorDestinationListenerResult'
   properties: {
     totalRetentionInDays: 30
@@ -8313,8 +8355,8 @@ resource workspaces_lawxzhza_zz_name_NWConnectionMonitorDestinationListenerResul
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NWConnectionMonitorDNSResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NWConnectionMonitorDNSResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NWConnectionMonitorDNSResult'
   properties: {
     totalRetentionInDays: 30
@@ -8327,8 +8369,8 @@ resource workspaces_lawxzhza_zz_name_NWConnectionMonitorDNSResult 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NWConnectionMonitorPathResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NWConnectionMonitorPathResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NWConnectionMonitorPathResult'
   properties: {
     totalRetentionInDays: 30
@@ -8341,8 +8383,8 @@ resource workspaces_lawxzhza_zz_name_NWConnectionMonitorPathResult 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_NWConnectionMonitorTestResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_NWConnectionMonitorTestResult 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'NWConnectionMonitorTestResult'
   properties: {
     totalRetentionInDays: 30
@@ -8355,8 +8397,8 @@ resource workspaces_lawxzhza_zz_name_NWConnectionMonitorTestResult 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OEPAirFlowTask 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OEPAirFlowTask 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OEPAirFlowTask'
   properties: {
     totalRetentionInDays: 30
@@ -8369,8 +8411,8 @@ resource workspaces_lawxzhza_zz_name_OEPAirFlowTask 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OEPAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OEPAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OEPAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8383,8 +8425,8 @@ resource workspaces_lawxzhza_zz_name_OEPAuditLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OEPDataplaneLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OEPDataplaneLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OEPDataplaneLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8397,8 +8439,8 @@ resource workspaces_lawxzhza_zz_name_OEPDataplaneLogs 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OEPElasticOperator 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OEPElasticOperator 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OEPElasticOperator'
   properties: {
     totalRetentionInDays: 30
@@ -8411,8 +8453,8 @@ resource workspaces_lawxzhza_zz_name_OEPElasticOperator 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OEPElasticsearch 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OEPElasticsearch 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OEPElasticsearch'
   properties: {
     totalRetentionInDays: 30
@@ -8425,8 +8467,8 @@ resource workspaces_lawxzhza_zz_name_OEPElasticsearch 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OEWAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OEWAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OEWAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8439,8 +8481,8 @@ resource workspaces_lawxzhza_zz_name_OEWAuditLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OEWExperimentAssignmentSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OEWExperimentAssignmentSummary 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OEWExperimentAssignmentSummary'
   properties: {
     totalRetentionInDays: 30
@@ -8453,8 +8495,8 @@ resource workspaces_lawxzhza_zz_name_OEWExperimentAssignmentSummary 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OEWExperimentScorecardMetricPairs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OEWExperimentScorecardMetricPairs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OEWExperimentScorecardMetricPairs'
   properties: {
     totalRetentionInDays: 30
@@ -8467,8 +8509,8 @@ resource workspaces_lawxzhza_zz_name_OEWExperimentScorecardMetricPairs 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OEWExperimentScorecards 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OEWExperimentScorecards 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OEWExperimentScorecards'
   properties: {
     totalRetentionInDays: 30
@@ -8481,8 +8523,8 @@ resource workspaces_lawxzhza_zz_name_OEWExperimentScorecards 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OGOAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OGOAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OGOAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8495,8 +8537,8 @@ resource workspaces_lawxzhza_zz_name_OGOAuditLogs 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OLPSupplyChainEntityOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OLPSupplyChainEntityOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OLPSupplyChainEntityOperations'
   properties: {
     totalRetentionInDays: 30
@@ -8509,8 +8551,8 @@ resource workspaces_lawxzhza_zz_name_OLPSupplyChainEntityOperations 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OLPSupplyChainEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OLPSupplyChainEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OLPSupplyChainEvents'
   properties: {
     totalRetentionInDays: 30
@@ -8523,8 +8565,8 @@ resource workspaces_lawxzhza_zz_name_OLPSupplyChainEvents 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_Operation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_Operation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'Operation'
   properties: {
     totalRetentionInDays: 30
@@ -8537,8 +8579,8 @@ resource workspaces_lawxzhza_zz_name_Operation 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OracleCloudDatabase 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OracleCloudDatabase 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OracleCloudDatabase'
   properties: {
     totalRetentionInDays: 30
@@ -8551,8 +8593,8 @@ resource workspaces_lawxzhza_zz_name_OracleCloudDatabase 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OTelEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OTelEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OTelEvents'
   properties: {
     totalRetentionInDays: 30
@@ -8565,8 +8607,8 @@ resource workspaces_lawxzhza_zz_name_OTelEvents 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OTelLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OTelLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OTelLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8579,8 +8621,8 @@ resource workspaces_lawxzhza_zz_name_OTelLogs 'Microsoft.OperationalInsights/wor
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OTelResources 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OTelResources 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OTelResources'
   properties: {
     totalRetentionInDays: 30
@@ -8593,8 +8635,8 @@ resource workspaces_lawxzhza_zz_name_OTelResources 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OTelSpans 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OTelSpans 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OTelSpans'
   properties: {
     totalRetentionInDays: 30
@@ -8607,8 +8649,8 @@ resource workspaces_lawxzhza_zz_name_OTelSpans 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OTelTraces 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OTelTraces 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OTelTraces'
   properties: {
     totalRetentionInDays: 30
@@ -8621,8 +8663,8 @@ resource workspaces_lawxzhza_zz_name_OTelTraces 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_OTelTracesAgent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_OTelTracesAgent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'OTelTracesAgent'
   properties: {
     totalRetentionInDays: 30
@@ -8635,8 +8677,8 @@ resource workspaces_lawxzhza_zz_name_OTelTracesAgent 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_Perf 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_Perf 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'Perf'
   properties: {
     totalRetentionInDays: 30
@@ -8649,8 +8691,8 @@ resource workspaces_lawxzhza_zz_name_Perf 'Microsoft.OperationalInsights/workspa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PerfInsightsFindings 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PerfInsightsFindings 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PerfInsightsFindings'
   properties: {
     totalRetentionInDays: 30
@@ -8663,8 +8705,8 @@ resource workspaces_lawxzhza_zz_name_PerfInsightsFindings 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PerfInsightsImpactedResources 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PerfInsightsImpactedResources 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PerfInsightsImpactedResources'
   properties: {
     totalRetentionInDays: 30
@@ -8677,8 +8719,8 @@ resource workspaces_lawxzhza_zz_name_PerfInsightsImpactedResources 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PerfInsightsRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PerfInsightsRun 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PerfInsightsRun'
   properties: {
     totalRetentionInDays: 30
@@ -8691,8 +8733,8 @@ resource workspaces_lawxzhza_zz_name_PerfInsightsRun 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PFTitleAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PFTitleAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PFTitleAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8705,8 +8747,8 @@ resource workspaces_lawxzhza_zz_name_PFTitleAuditLogs 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PGSQLAutovacuumStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PGSQLAutovacuumStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PGSQLAutovacuumStats'
   properties: {
     totalRetentionInDays: 30
@@ -8719,8 +8761,8 @@ resource workspaces_lawxzhza_zz_name_PGSQLAutovacuumStats 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PGSQLDbTransactionsStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PGSQLDbTransactionsStats 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PGSQLDbTransactionsStats'
   properties: {
     totalRetentionInDays: 30
@@ -8733,8 +8775,8 @@ resource workspaces_lawxzhza_zz_name_PGSQLDbTransactionsStats 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PGSQLPgBouncer 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PGSQLPgBouncer 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PGSQLPgBouncer'
   properties: {
     totalRetentionInDays: 30
@@ -8747,8 +8789,8 @@ resource workspaces_lawxzhza_zz_name_PGSQLPgBouncer 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PGSQLPgStatActivitySessions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PGSQLPgStatActivitySessions 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PGSQLPgStatActivitySessions'
   properties: {
     totalRetentionInDays: 30
@@ -8761,8 +8803,8 @@ resource workspaces_lawxzhza_zz_name_PGSQLPgStatActivitySessions 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PGSQLQueryStoreQueryText 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PGSQLQueryStoreQueryText 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PGSQLQueryStoreQueryText'
   properties: {
     totalRetentionInDays: 30
@@ -8775,8 +8817,8 @@ resource workspaces_lawxzhza_zz_name_PGSQLQueryStoreQueryText 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PGSQLQueryStoreRuntime 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PGSQLQueryStoreRuntime 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PGSQLQueryStoreRuntime'
   properties: {
     totalRetentionInDays: 30
@@ -8789,8 +8831,8 @@ resource workspaces_lawxzhza_zz_name_PGSQLQueryStoreRuntime 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PGSQLQueryStoreWaits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PGSQLQueryStoreWaits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PGSQLQueryStoreWaits'
   properties: {
     totalRetentionInDays: 30
@@ -8803,8 +8845,8 @@ resource workspaces_lawxzhza_zz_name_PGSQLQueryStoreWaits 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PGSQLServerLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PGSQLServerLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PGSQLServerLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8817,8 +8859,8 @@ resource workspaces_lawxzhza_zz_name_PGSQLServerLogs 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PowerBIDatasetsTenant 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PowerBIDatasetsTenant 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PowerBIDatasetsTenant'
   properties: {
     totalRetentionInDays: 30
@@ -8831,8 +8873,8 @@ resource workspaces_lawxzhza_zz_name_PowerBIDatasetsTenant 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PowerBIDatasetsWorkspace 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PowerBIDatasetsWorkspace 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PowerBIDatasetsWorkspace'
   properties: {
     totalRetentionInDays: 30
@@ -8845,8 +8887,8 @@ resource workspaces_lawxzhza_zz_name_PowerBIDatasetsWorkspace 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PreAuthenticationDiscoveryLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PreAuthenticationDiscoveryLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PreAuthenticationDiscoveryLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8859,8 +8901,8 @@ resource workspaces_lawxzhza_zz_name_PreAuthenticationDiscoveryLogs 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PurviewDataSensitivityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PurviewDataSensitivityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PurviewDataSensitivityLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8873,8 +8915,8 @@ resource workspaces_lawxzhza_zz_name_PurviewDataSensitivityLogs 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PurviewScanStatusLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PurviewScanStatusLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PurviewScanStatusLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8887,8 +8929,8 @@ resource workspaces_lawxzhza_zz_name_PurviewScanStatusLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_PurviewSecurityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_PurviewSecurityLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'PurviewSecurityLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8901,8 +8943,22 @@ resource workspaces_lawxzhza_zz_name_PurviewSecurityLogs 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_QuantumProviderAccountJobAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_QuantumProviderAccountDeviceOperationLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'QuantumProviderAccountDeviceOperationLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'QuantumProviderAccountDeviceOperationLogs'
+      displayName: 'QuantumProviderAccountDeviceOperationLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawe1vii9na_name_QuantumProviderAccountJobAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'QuantumProviderAccountJobAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8915,8 +8971,8 @@ resource workspaces_lawxzhza_zz_name_QuantumProviderAccountJobAuditLogs 'Microso
   }
 }
 
-resource workspaces_lawxzhza_zz_name_QuantumProviderAccountQueueAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_QuantumProviderAccountQueueAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'QuantumProviderAccountQueueAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8929,8 +8985,8 @@ resource workspaces_lawxzhza_zz_name_QuantumProviderAccountQueueAuditLogs 'Micro
   }
 }
 
-resource workspaces_lawxzhza_zz_name_QuantumProviderAccountTargetAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_QuantumProviderAccountTargetAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'QuantumProviderAccountTargetAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8943,8 +8999,8 @@ resource workspaces_lawxzhza_zz_name_QuantumProviderAccountTargetAuditLogs 'Micr
   }
 }
 
-resource workspaces_lawxzhza_zz_name_QuantumWorkspaceJobAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_QuantumWorkspaceJobAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'QuantumWorkspaceJobAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8957,8 +9013,8 @@ resource workspaces_lawxzhza_zz_name_QuantumWorkspaceJobAuditLogs 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_REDConnectionEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_REDConnectionEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'REDConnectionEvents'
   properties: {
     totalRetentionInDays: 30
@@ -8971,8 +9027,8 @@ resource workspaces_lawxzhza_zz_name_REDConnectionEvents 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_RemoteNetworkHealthLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_RemoteNetworkHealthLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'RemoteNetworkHealthLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8985,8 +9041,8 @@ resource workspaces_lawxzhza_zz_name_RemoteNetworkHealthLogs 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ResourceManagementPublicAccessLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ResourceManagementPublicAccessLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ResourceManagementPublicAccessLogs'
   properties: {
     totalRetentionInDays: 30
@@ -8999,8 +9055,8 @@ resource workspaces_lawxzhza_zz_name_ResourceManagementPublicAccessLogs 'Microso
   }
 }
 
-resource workspaces_lawxzhza_zz_name_RetinaNetworkFlowLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_RetinaNetworkFlowLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'RetinaNetworkFlowLogs'
   properties: {
     totalRetentionInDays: 30
@@ -9013,8 +9069,8 @@ resource workspaces_lawxzhza_zz_name_RetinaNetworkFlowLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SCCMAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SCCMAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SCCMAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -9027,8 +9083,8 @@ resource workspaces_lawxzhza_zz_name_SCCMAssessmentRecommendation 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SCGPoolExecutionLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SCGPoolExecutionLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SCGPoolExecutionLog'
   properties: {
     totalRetentionInDays: 30
@@ -9041,8 +9097,8 @@ resource workspaces_lawxzhza_zz_name_SCGPoolExecutionLog 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SCGPoolRequestLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SCGPoolRequestLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SCGPoolRequestLog'
   properties: {
     totalRetentionInDays: 30
@@ -9055,8 +9111,8 @@ resource workspaces_lawxzhza_zz_name_SCGPoolRequestLog 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SCOMAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SCOMAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SCOMAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -9069,8 +9125,8 @@ resource workspaces_lawxzhza_zz_name_SCOMAssessmentRecommendation 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SecurityCaseEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SecurityCaseEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SecurityCaseEvent'
   properties: {
     totalRetentionInDays: 30
@@ -9083,8 +9139,8 @@ resource workspaces_lawxzhza_zz_name_SecurityCaseEvent 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ServiceFabricOperationalEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ServiceFabricOperationalEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ServiceFabricOperationalEvent'
   properties: {
     totalRetentionInDays: 30
@@ -9097,8 +9153,8 @@ resource workspaces_lawxzhza_zz_name_ServiceFabricOperationalEvent 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ServiceFabricReliableActorEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ServiceFabricReliableActorEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ServiceFabricReliableActorEvent'
   properties: {
     totalRetentionInDays: 30
@@ -9111,8 +9167,8 @@ resource workspaces_lawxzhza_zz_name_ServiceFabricReliableActorEvent 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ServiceFabricReliableServiceEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ServiceFabricReliableServiceEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ServiceFabricReliableServiceEvent'
   properties: {
     totalRetentionInDays: 30
@@ -9125,8 +9181,8 @@ resource workspaces_lawxzhza_zz_name_ServiceFabricReliableServiceEvent 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SfBAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SfBAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SfBAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -9139,8 +9195,8 @@ resource workspaces_lawxzhza_zz_name_SfBAssessmentRecommendation 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SfBOnlineAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SfBOnlineAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SfBOnlineAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -9153,8 +9209,8 @@ resource workspaces_lawxzhza_zz_name_SfBOnlineAssessmentRecommendation 'Microsof
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SharePointOnlineAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SharePointOnlineAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SharePointOnlineAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -9167,8 +9223,8 @@ resource workspaces_lawxzhza_zz_name_SharePointOnlineAssessmentRecommendation 'M
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SignalRServiceDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SignalRServiceDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SignalRServiceDiagnosticLogs'
   properties: {
     totalRetentionInDays: 30
@@ -9181,8 +9237,8 @@ resource workspaces_lawxzhza_zz_name_SignalRServiceDiagnosticLogs 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SigninLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SigninLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SigninLogs'
   properties: {
     totalRetentionInDays: 30
@@ -9195,8 +9251,8 @@ resource workspaces_lawxzhza_zz_name_SigninLogs 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SPAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SPAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SPAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -9209,8 +9265,8 @@ resource workspaces_lawxzhza_zz_name_SPAssessmentRecommendation 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SQLAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SQLAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SQLAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -9223,8 +9279,8 @@ resource workspaces_lawxzhza_zz_name_SQLAssessmentRecommendation 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SQLSecurityAuditEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SQLSecurityAuditEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SQLSecurityAuditEvents'
   properties: {
     totalRetentionInDays: 30
@@ -9237,8 +9293,8 @@ resource workspaces_lawxzhza_zz_name_SQLSecurityAuditEvents 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageAntimalwareScanResults 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageAntimalwareScanResults 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageAntimalwareScanResults'
   properties: {
     totalRetentionInDays: 30
@@ -9251,8 +9307,8 @@ resource workspaces_lawxzhza_zz_name_StorageAntimalwareScanResults 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageBlobLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageBlobLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageBlobLogs'
   properties: {
     totalRetentionInDays: 30
@@ -9265,8 +9321,8 @@ resource workspaces_lawxzhza_zz_name_StorageBlobLogs 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageCacheOperationEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageCacheOperationEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageCacheOperationEvents'
   properties: {
     totalRetentionInDays: 30
@@ -9279,8 +9335,8 @@ resource workspaces_lawxzhza_zz_name_StorageCacheOperationEvents 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageCacheUpgradeEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageCacheUpgradeEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageCacheUpgradeEvents'
   properties: {
     totalRetentionInDays: 30
@@ -9293,8 +9349,8 @@ resource workspaces_lawxzhza_zz_name_StorageCacheUpgradeEvents 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageCacheWarningEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageCacheWarningEvents 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageCacheWarningEvents'
   properties: {
     totalRetentionInDays: 30
@@ -9307,8 +9363,8 @@ resource workspaces_lawxzhza_zz_name_StorageCacheWarningEvents 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageFileLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageFileLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageFileLogs'
   properties: {
     totalRetentionInDays: 30
@@ -9321,8 +9377,8 @@ resource workspaces_lawxzhza_zz_name_StorageFileLogs 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageMalwareScanningResults 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageMalwareScanningResults 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageMalwareScanningResults'
   properties: {
     totalRetentionInDays: 30
@@ -9335,8 +9391,8 @@ resource workspaces_lawxzhza_zz_name_StorageMalwareScanningResults 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageMoverAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageMoverAuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageMoverAuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -9349,8 +9405,8 @@ resource workspaces_lawxzhza_zz_name_StorageMoverAuditLogs 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageMoverCopyLogsFailed 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageMoverCopyLogsFailed 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageMoverCopyLogsFailed'
   properties: {
     totalRetentionInDays: 30
@@ -9363,8 +9419,8 @@ resource workspaces_lawxzhza_zz_name_StorageMoverCopyLogsFailed 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageMoverCopyLogsTransferred 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageMoverCopyLogsTransferred 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageMoverCopyLogsTransferred'
   properties: {
     totalRetentionInDays: 30
@@ -9377,8 +9433,8 @@ resource workspaces_lawxzhza_zz_name_StorageMoverCopyLogsTransferred 'Microsoft.
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageMoverJobRunLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageMoverJobRunLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageMoverJobRunLogs'
   properties: {
     totalRetentionInDays: 30
@@ -9391,8 +9447,8 @@ resource workspaces_lawxzhza_zz_name_StorageMoverJobRunLogs 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageQueueLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageQueueLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageQueueLogs'
   properties: {
     totalRetentionInDays: 30
@@ -9405,8 +9461,8 @@ resource workspaces_lawxzhza_zz_name_StorageQueueLogs 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_StorageTableLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_StorageTableLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'StorageTableLogs'
   properties: {
     totalRetentionInDays: 30
@@ -9419,8 +9475,8 @@ resource workspaces_lawxzhza_zz_name_StorageTableLogs 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SucceededIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SucceededIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SucceededIngestion'
   properties: {
     totalRetentionInDays: 30
@@ -9433,8 +9489,8 @@ resource workspaces_lawxzhza_zz_name_SucceededIngestion 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SVMPoolExecutionLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SVMPoolExecutionLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SVMPoolExecutionLog'
   properties: {
     totalRetentionInDays: 30
@@ -9447,8 +9503,8 @@ resource workspaces_lawxzhza_zz_name_SVMPoolExecutionLog 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SVMPoolRequestLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SVMPoolRequestLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SVMPoolRequestLog'
   properties: {
     totalRetentionInDays: 30
@@ -9461,8 +9517,8 @@ resource workspaces_lawxzhza_zz_name_SVMPoolRequestLog 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseBigDataPoolApplicationsEnded 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseBigDataPoolApplicationsEnded 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseBigDataPoolApplicationsEnded'
   properties: {
     totalRetentionInDays: 30
@@ -9475,8 +9531,8 @@ resource workspaces_lawxzhza_zz_name_SynapseBigDataPoolApplicationsEnded 'Micros
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseBuiltinSqlPoolRequestsEnded 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseBuiltinSqlPoolRequestsEnded 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseBuiltinSqlPoolRequestsEnded'
   properties: {
     totalRetentionInDays: 30
@@ -9489,8 +9545,8 @@ resource workspaces_lawxzhza_zz_name_SynapseBuiltinSqlPoolRequestsEnded 'Microso
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseDXCommand 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseDXCommand 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseDXCommand'
   properties: {
     totalRetentionInDays: 30
@@ -9503,8 +9559,8 @@ resource workspaces_lawxzhza_zz_name_SynapseDXCommand 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseDXFailedIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseDXFailedIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseDXFailedIngestion'
   properties: {
     totalRetentionInDays: 30
@@ -9517,8 +9573,8 @@ resource workspaces_lawxzhza_zz_name_SynapseDXFailedIngestion 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseDXIngestionBatching 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseDXIngestionBatching 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseDXIngestionBatching'
   properties: {
     totalRetentionInDays: 30
@@ -9531,8 +9587,8 @@ resource workspaces_lawxzhza_zz_name_SynapseDXIngestionBatching 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseDXQuery 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseDXQuery 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseDXQuery'
   properties: {
     totalRetentionInDays: 30
@@ -9545,8 +9601,8 @@ resource workspaces_lawxzhza_zz_name_SynapseDXQuery 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseDXSucceededIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseDXSucceededIngestion 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseDXSucceededIngestion'
   properties: {
     totalRetentionInDays: 30
@@ -9559,8 +9615,8 @@ resource workspaces_lawxzhza_zz_name_SynapseDXSucceededIngestion 'Microsoft.Oper
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseDXTableDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseDXTableDetails 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseDXTableDetails'
   properties: {
     totalRetentionInDays: 30
@@ -9573,8 +9629,8 @@ resource workspaces_lawxzhza_zz_name_SynapseDXTableDetails 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseDXTableUsageStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseDXTableUsageStatistics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseDXTableUsageStatistics'
   properties: {
     totalRetentionInDays: 30
@@ -9587,8 +9643,8 @@ resource workspaces_lawxzhza_zz_name_SynapseDXTableUsageStatistics 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseGatewayApiRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseGatewayApiRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseGatewayApiRequests'
   properties: {
     totalRetentionInDays: 30
@@ -9601,8 +9657,8 @@ resource workspaces_lawxzhza_zz_name_SynapseGatewayApiRequests 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseIntegrationActivityRuns 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseIntegrationActivityRuns 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseIntegrationActivityRuns'
   properties: {
     totalRetentionInDays: 30
@@ -9615,8 +9671,8 @@ resource workspaces_lawxzhza_zz_name_SynapseIntegrationActivityRuns 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseIntegrationPipelineRuns 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseIntegrationPipelineRuns 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseIntegrationPipelineRuns'
   properties: {
     totalRetentionInDays: 30
@@ -9629,8 +9685,8 @@ resource workspaces_lawxzhza_zz_name_SynapseIntegrationPipelineRuns 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseIntegrationTriggerRuns 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseIntegrationTriggerRuns 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseIntegrationTriggerRuns'
   properties: {
     totalRetentionInDays: 30
@@ -9643,8 +9699,8 @@ resource workspaces_lawxzhza_zz_name_SynapseIntegrationTriggerRuns 'Microsoft.Op
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseLinkEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseLinkEvent 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseLinkEvent'
   properties: {
     totalRetentionInDays: 30
@@ -9657,8 +9713,8 @@ resource workspaces_lawxzhza_zz_name_SynapseLinkEvent 'Microsoft.OperationalInsi
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseRbacOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseRbacOperations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseRbacOperations'
   properties: {
     totalRetentionInDays: 30
@@ -9671,8 +9727,8 @@ resource workspaces_lawxzhza_zz_name_SynapseRbacOperations 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseScopePoolScopeJobsEnded 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseScopePoolScopeJobsEnded 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseScopePoolScopeJobsEnded'
   properties: {
     totalRetentionInDays: 30
@@ -9685,8 +9741,8 @@ resource workspaces_lawxzhza_zz_name_SynapseScopePoolScopeJobsEnded 'Microsoft.O
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseScopePoolScopeJobsStateChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseScopePoolScopeJobsStateChange 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseScopePoolScopeJobsStateChange'
   properties: {
     totalRetentionInDays: 30
@@ -9699,8 +9755,8 @@ resource workspaces_lawxzhza_zz_name_SynapseScopePoolScopeJobsStateChange 'Micro
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseSqlPoolDmsWorkers 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseSqlPoolDmsWorkers 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseSqlPoolDmsWorkers'
   properties: {
     totalRetentionInDays: 30
@@ -9713,8 +9769,8 @@ resource workspaces_lawxzhza_zz_name_SynapseSqlPoolDmsWorkers 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseSqlPoolExecRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseSqlPoolExecRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseSqlPoolExecRequests'
   properties: {
     totalRetentionInDays: 30
@@ -9727,8 +9783,8 @@ resource workspaces_lawxzhza_zz_name_SynapseSqlPoolExecRequests 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseSqlPoolRequestSteps 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseSqlPoolRequestSteps 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseSqlPoolRequestSteps'
   properties: {
     totalRetentionInDays: 30
@@ -9741,8 +9797,8 @@ resource workspaces_lawxzhza_zz_name_SynapseSqlPoolRequestSteps 'Microsoft.Opera
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseSqlPoolSqlRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseSqlPoolSqlRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseSqlPoolSqlRequests'
   properties: {
     totalRetentionInDays: 30
@@ -9755,8 +9811,8 @@ resource workspaces_lawxzhza_zz_name_SynapseSqlPoolSqlRequests 'Microsoft.Operat
   }
 }
 
-resource workspaces_lawxzhza_zz_name_SynapseSqlPoolWaits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_SynapseSqlPoolWaits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'SynapseSqlPoolWaits'
   properties: {
     totalRetentionInDays: 30
@@ -9769,8 +9825,8 @@ resource workspaces_lawxzhza_zz_name_SynapseSqlPoolWaits 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_Syslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_Syslog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'Syslog'
   properties: {
     totalRetentionInDays: 30
@@ -9783,8 +9839,8 @@ resource workspaces_lawxzhza_zz_name_Syslog 'Microsoft.OperationalInsights/works
   }
 }
 
-resource workspaces_lawxzhza_zz_name_TOUserAudits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_TOUserAudits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'TOUserAudits'
   properties: {
     totalRetentionInDays: 30
@@ -9797,8 +9853,8 @@ resource workspaces_lawxzhza_zz_name_TOUserAudits 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_TOUserDiagnostics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_TOUserDiagnostics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'TOUserDiagnostics'
   properties: {
     totalRetentionInDays: 30
@@ -9811,8 +9867,8 @@ resource workspaces_lawxzhza_zz_name_TOUserDiagnostics 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_TSIIngress 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_TSIIngress 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'TSIIngress'
   properties: {
     totalRetentionInDays: 30
@@ -9825,8 +9881,8 @@ resource workspaces_lawxzhza_zz_name_TSIIngress 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_UCClient 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_UCClient 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'UCClient'
   properties: {
     totalRetentionInDays: 30
@@ -9839,8 +9895,8 @@ resource workspaces_lawxzhza_zz_name_UCClient 'Microsoft.OperationalInsights/wor
   }
 }
 
-resource workspaces_lawxzhza_zz_name_UCClientReadinessStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_UCClientReadinessStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'UCClientReadinessStatus'
   properties: {
     totalRetentionInDays: 30
@@ -9853,8 +9909,8 @@ resource workspaces_lawxzhza_zz_name_UCClientReadinessStatus 'Microsoft.Operatio
   }
 }
 
-resource workspaces_lawxzhza_zz_name_UCClientUpdateStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_UCClientUpdateStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'UCClientUpdateStatus'
   properties: {
     totalRetentionInDays: 30
@@ -9867,8 +9923,8 @@ resource workspaces_lawxzhza_zz_name_UCClientUpdateStatus 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_UCDeviceAlert 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_UCDeviceAlert 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'UCDeviceAlert'
   properties: {
     totalRetentionInDays: 30
@@ -9881,8 +9937,8 @@ resource workspaces_lawxzhza_zz_name_UCDeviceAlert 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_UCDOAggregatedStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_UCDOAggregatedStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'UCDOAggregatedStatus'
   properties: {
     totalRetentionInDays: 30
@@ -9895,8 +9951,8 @@ resource workspaces_lawxzhza_zz_name_UCDOAggregatedStatus 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_UCDOStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_UCDOStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'UCDOStatus'
   properties: {
     totalRetentionInDays: 30
@@ -9909,8 +9965,8 @@ resource workspaces_lawxzhza_zz_name_UCDOStatus 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_UCServiceUpdateStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_UCServiceUpdateStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'UCServiceUpdateStatus'
   properties: {
     totalRetentionInDays: 30
@@ -9923,8 +9979,8 @@ resource workspaces_lawxzhza_zz_name_UCServiceUpdateStatus 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_UCUpdateAlert 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_UCUpdateAlert 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'UCUpdateAlert'
   properties: {
     totalRetentionInDays: 30
@@ -9937,8 +9993,8 @@ resource workspaces_lawxzhza_zz_name_UCUpdateAlert 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_Usage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_Usage 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'Usage'
   properties: {
     totalRetentionInDays: 90
@@ -9951,8 +10007,8 @@ resource workspaces_lawxzhza_zz_name_Usage 'Microsoft.OperationalInsights/worksp
   }
 }
 
-resource workspaces_lawxzhza_zz_name_VCoreMongoRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_VCoreMongoRequests 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'VCoreMongoRequests'
   properties: {
     totalRetentionInDays: 30
@@ -9965,8 +10021,8 @@ resource workspaces_lawxzhza_zz_name_VCoreMongoRequests 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_VIAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_VIAudit 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'VIAudit'
   properties: {
     totalRetentionInDays: 30
@@ -9979,8 +10035,8 @@ resource workspaces_lawxzhza_zz_name_VIAudit 'Microsoft.OperationalInsights/work
   }
 }
 
-resource workspaces_lawxzhza_zz_name_VIIndexing 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_VIIndexing 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'VIIndexing'
   properties: {
     totalRetentionInDays: 30
@@ -9993,8 +10049,8 @@ resource workspaces_lawxzhza_zz_name_VIIndexing 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_VMBoundPort 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_VMBoundPort 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'VMBoundPort'
   properties: {
     totalRetentionInDays: 30
@@ -10007,8 +10063,8 @@ resource workspaces_lawxzhza_zz_name_VMBoundPort 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_VMComputer 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_VMComputer 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'VMComputer'
   properties: {
     totalRetentionInDays: 30
@@ -10021,8 +10077,8 @@ resource workspaces_lawxzhza_zz_name_VMComputer 'Microsoft.OperationalInsights/w
   }
 }
 
-resource workspaces_lawxzhza_zz_name_VMConnection 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_VMConnection 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'VMConnection'
   properties: {
     totalRetentionInDays: 30
@@ -10035,8 +10091,8 @@ resource workspaces_lawxzhza_zz_name_VMConnection 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_VMProcess 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_VMProcess 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'VMProcess'
   properties: {
     totalRetentionInDays: 30
@@ -10049,8 +10105,8 @@ resource workspaces_lawxzhza_zz_name_VMProcess 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_W3CIISLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_W3CIISLog 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'W3CIISLog'
   properties: {
     totalRetentionInDays: 30
@@ -10063,8 +10119,8 @@ resource workspaces_lawxzhza_zz_name_W3CIISLog 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WebPubSubConnectivity 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WebPubSubConnectivity 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WebPubSubConnectivity'
   properties: {
     totalRetentionInDays: 30
@@ -10077,8 +10133,8 @@ resource workspaces_lawxzhza_zz_name_WebPubSubConnectivity 'Microsoft.Operationa
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WebPubSubHttpRequest 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WebPubSubHttpRequest 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WebPubSubHttpRequest'
   properties: {
     totalRetentionInDays: 30
@@ -10091,8 +10147,8 @@ resource workspaces_lawxzhza_zz_name_WebPubSubHttpRequest 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WebPubSubMessaging 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WebPubSubMessaging 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WebPubSubMessaging'
   properties: {
     totalRetentionInDays: 30
@@ -10105,8 +10161,8 @@ resource workspaces_lawxzhza_zz_name_WebPubSubMessaging 'Microsoft.OperationalIn
   }
 }
 
-resource workspaces_lawxzhza_zz_name_Windows365AuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_Windows365AuditLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'Windows365AuditLogs'
   properties: {
     totalRetentionInDays: 30
@@ -10119,8 +10175,64 @@ resource workspaces_lawxzhza_zz_name_Windows365AuditLogs 'Microsoft.OperationalI
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WindowsClientAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_Windows365CheckpointLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'Windows365CheckpointLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365CheckpointLogs'
+      displayName: 'Windows365CheckpointLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawe1vii9na_name_Windows365ConnectionErrorLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'Windows365ConnectionErrorLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365ConnectionErrorLogs'
+      displayName: 'Windows365ConnectionErrorLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawe1vii9na_name_Windows365ConnectionLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'Windows365ConnectionLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365ConnectionLogs'
+      displayName: 'Windows365ConnectionLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawe1vii9na_name_Windows365NetworkLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
+  name: 'Windows365NetworkLogs'
+  properties: {
+    totalRetentionInDays: 30
+    plan: 'Analytics'
+    schema: {
+      name: 'Windows365NetworkLogs'
+      displayName: 'Windows365NetworkLogs'
+    }
+    retentionInDays: 30
+  }
+}
+
+resource workspaces_lawe1vii9na_name_WindowsClientAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WindowsClientAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -10133,8 +10245,8 @@ resource workspaces_lawxzhza_zz_name_WindowsClientAssessmentRecommendation 'Micr
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WindowsServerAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WindowsServerAssessmentRecommendation 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WindowsServerAssessmentRecommendation'
   properties: {
     totalRetentionInDays: 30
@@ -10147,8 +10259,8 @@ resource workspaces_lawxzhza_zz_name_WindowsServerAssessmentRecommendation 'Micr
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WorkloadDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WorkloadDiagnosticLogs 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WorkloadDiagnosticLogs'
   properties: {
     totalRetentionInDays: 30
@@ -10161,8 +10273,8 @@ resource workspaces_lawxzhza_zz_name_WorkloadDiagnosticLogs 'Microsoft.Operation
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WOUserAudits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WOUserAudits 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WOUserAudits'
   properties: {
     totalRetentionInDays: 30
@@ -10175,8 +10287,8 @@ resource workspaces_lawxzhza_zz_name_WOUserAudits 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WOUserDiagnostics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WOUserDiagnostics 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WOUserDiagnostics'
   properties: {
     totalRetentionInDays: 30
@@ -10189,8 +10301,8 @@ resource workspaces_lawxzhza_zz_name_WOUserDiagnostics 'Microsoft.OperationalIns
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDAgentHealthStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDAgentHealthStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDAgentHealthStatus'
   properties: {
     totalRetentionInDays: 30
@@ -10203,8 +10315,8 @@ resource workspaces_lawxzhza_zz_name_WVDAgentHealthStatus 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDAutoscaleEvaluationPooled 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDAutoscaleEvaluationPooled 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDAutoscaleEvaluationPooled'
   properties: {
     totalRetentionInDays: 30
@@ -10217,8 +10329,8 @@ resource workspaces_lawxzhza_zz_name_WVDAutoscaleEvaluationPooled 'Microsoft.Ope
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDCheckpoints 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDCheckpoints 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDCheckpoints'
   properties: {
     totalRetentionInDays: 30
@@ -10231,8 +10343,8 @@ resource workspaces_lawxzhza_zz_name_WVDCheckpoints 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDConnectionGraphicsDataPreview 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDConnectionGraphicsDataPreview 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDConnectionGraphicsDataPreview'
   properties: {
     totalRetentionInDays: 30
@@ -10245,8 +10357,8 @@ resource workspaces_lawxzhza_zz_name_WVDConnectionGraphicsDataPreview 'Microsoft
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDConnectionNetworkData 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDConnectionNetworkData 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDConnectionNetworkData'
   properties: {
     totalRetentionInDays: 30
@@ -10259,8 +10371,8 @@ resource workspaces_lawxzhza_zz_name_WVDConnectionNetworkData 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDConnections 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDConnections 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDConnections'
   properties: {
     totalRetentionInDays: 30
@@ -10273,8 +10385,8 @@ resource workspaces_lawxzhza_zz_name_WVDConnections 'Microsoft.OperationalInsigh
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDErrors 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDErrors 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDErrors'
   properties: {
     totalRetentionInDays: 30
@@ -10287,8 +10399,8 @@ resource workspaces_lawxzhza_zz_name_WVDErrors 'Microsoft.OperationalInsights/wo
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDFeeds 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDFeeds 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDFeeds'
   properties: {
     totalRetentionInDays: 30
@@ -10301,8 +10413,8 @@ resource workspaces_lawxzhza_zz_name_WVDFeeds 'Microsoft.OperationalInsights/wor
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDHostRegistrations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDHostRegistrations 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDHostRegistrations'
   properties: {
     totalRetentionInDays: 30
@@ -10315,8 +10427,8 @@ resource workspaces_lawxzhza_zz_name_WVDHostRegistrations 'Microsoft.Operational
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDManagement 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDManagement 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDManagement'
   properties: {
     totalRetentionInDays: 30
@@ -10329,8 +10441,8 @@ resource workspaces_lawxzhza_zz_name_WVDManagement 'Microsoft.OperationalInsight
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDMultiLinkAdd 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDMultiLinkAdd 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDMultiLinkAdd'
   properties: {
     totalRetentionInDays: 30
@@ -10343,8 +10455,8 @@ resource workspaces_lawxzhza_zz_name_WVDMultiLinkAdd 'Microsoft.OperationalInsig
   }
 }
 
-resource workspaces_lawxzhza_zz_name_WVDSessionHostManagement 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_WVDSessionHostManagement 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'WVDSessionHostManagement'
   properties: {
     totalRetentionInDays: 30
@@ -10357,8 +10469,8 @@ resource workspaces_lawxzhza_zz_name_WVDSessionHostManagement 'Microsoft.Operati
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ZTSGraph 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ZTSGraph 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ZTSGraph'
   properties: {
     totalRetentionInDays: 30
@@ -10371,8 +10483,8 @@ resource workspaces_lawxzhza_zz_name_ZTSGraph 'Microsoft.OperationalInsights/wor
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ZTSJobStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ZTSJobStatus 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ZTSJobStatus'
   properties: {
     totalRetentionInDays: 30
@@ -10385,8 +10497,8 @@ resource workspaces_lawxzhza_zz_name_ZTSJobStatus 'Microsoft.OperationalInsights
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ZTSMetadata 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ZTSMetadata 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ZTSMetadata'
   properties: {
     totalRetentionInDays: 30
@@ -10399,8 +10511,8 @@ resource workspaces_lawxzhza_zz_name_ZTSMetadata 'Microsoft.OperationalInsights/
   }
 }
 
-resource workspaces_lawxzhza_zz_name_ZTSRequest 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspaces_lawxzhza_zz_name_resource
+resource workspaces_lawe1vii9na_name_ZTSRequest 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspaces_lawe1vii9na_name_resource
   name: 'ZTSRequest'
   properties: {
     totalRetentionInDays: 30
@@ -10413,8 +10525,8 @@ resource workspaces_lawxzhza_zz_name_ZTSRequest 'Microsoft.OperationalInsights/w
   }
 }
 
-resource storageAccounts_st8g41vyg3_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
-  parent: storageAccounts_st8g41vyg3_name_resource
+resource storageAccounts_stycmq73u2_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
+  parent: storageAccounts_stycmq73u2_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -10434,8 +10546,8 @@ resource storageAccounts_st8g41vyg3_name_default 'Microsoft.Storage/storageAccou
   }
 }
 
-resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st8g41vyg3_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
-  parent: storageAccounts_st8g41vyg3_name_resource
+resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stycmq73u2_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
+  parent: storageAccounts_stycmq73u2_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -10455,8 +10567,8 @@ resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st8g41vy
   }
 }
 
-resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_st8g41vyg3_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
-  parent: storageAccounts_st8g41vyg3_name_resource
+resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stycmq73u2_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
+  parent: storageAccounts_stycmq73u2_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -10465,8 +10577,8 @@ resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_st8g41v
   }
 }
 
-resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_st8g41vyg3_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
-  parent: storageAccounts_st8g41vyg3_name_resource
+resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stycmq73u2_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
+  parent: storageAccounts_stycmq73u2_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -10475,8 +10587,8 @@ resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_st8g41v
   }
 }
 
-resource storageAccounts_st8g41vyg3_name_default_azureml 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-04-01' = {
-  parent: storageAccounts_st8g41vyg3_name_default
+resource storageAccounts_stycmq73u2_name_default_azureml 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-04-01' = {
+  parent: storageAccounts_stycmq73u2_name_default
   name: 'azureml'
   properties: {
     immutableStorageWithVersioning: {
@@ -10487,13 +10599,13 @@ resource storageAccounts_st8g41vyg3_name_default_azureml 'Microsoft.Storage/stor
     publicAccess: 'None'
   }
   dependsOn: [
-    storageAccounts_st8g41vyg3_name_resource
+    storageAccounts_stycmq73u2_name_resource
   ]
 }
 
-resource storageAccounts_st8g41vyg3_name_default_azureml_blobstore_d8295493_1c28_4ac1_857a_47fc74059f14 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-04-01' = {
-  parent: storageAccounts_st8g41vyg3_name_default
-  name: 'azureml-blobstore-d8295493-1c28-4ac1-857a-47fc74059f14'
+resource storageAccounts_stycmq73u2_name_default_azureml_blobstore_3dd8bf9f_9a52_42e2_afac_932541b0b730 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-04-01' = {
+  parent: storageAccounts_stycmq73u2_name_default
+  name: 'azureml-blobstore-3dd8bf9f-9a52-42e2-afac-932541b0b730'
   properties: {
     immutableStorageWithVersioning: {
       enabled: false
@@ -10503,41 +10615,25 @@ resource storageAccounts_st8g41vyg3_name_default_azureml_blobstore_d8295493_1c28
     publicAccess: 'None'
   }
   dependsOn: [
-    storageAccounts_st8g41vyg3_name_resource
+    storageAccounts_stycmq73u2_name_resource
   ]
 }
 
-resource storageAccounts_st8g41vyg3_name_default_insights_logs_auditevent 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-04-01' = {
-  parent: storageAccounts_st8g41vyg3_name_default
-  name: 'insights-logs-auditevent'
-  properties: {
-    immutableStorageWithVersioning: {
-      enabled: false
-    }
-    defaultEncryptionScope: '$account-encryption-key'
-    denyEncryptionScopeOverride: false
-    publicAccess: 'None'
-  }
-  dependsOn: [
-    storageAccounts_st8g41vyg3_name_resource
-  ]
-}
-
-resource storageAccounts_st8g41vyg3_name_default_azureml_filestore_d8295493_1c28_4ac1_857a_47fc74059f14 'Microsoft.Storage/storageAccounts/fileServices/shares@2026-04-01' = {
-  parent: Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st8g41vyg3_name_default
-  name: 'azureml-filestore-d8295493-1c28-4ac1-857a-47fc74059f14'
+resource storageAccounts_stycmq73u2_name_default_azureml_filestore_3dd8bf9f_9a52_42e2_afac_932541b0b730 'Microsoft.Storage/storageAccounts/fileServices/shares@2026-04-01' = {
+  parent: Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stycmq73u2_name_default
+  name: 'azureml-filestore-3dd8bf9f-9a52-42e2-afac-932541b0b730'
   properties: {
     accessTier: 'TransactionOptimized'
     shareQuota: 102400
     enabledProtocols: 'SMB'
   }
   dependsOn: [
-    storageAccounts_st8g41vyg3_name_resource
+    storageAccounts_stycmq73u2_name_resource
   ]
 }
 
-resource storageAccounts_st8g41vyg3_name_default_code_391ff5ac_6576_460f_ba4d_7e03433c68b6 'Microsoft.Storage/storageAccounts/fileServices/shares@2026-04-01' = {
-  parent: Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st8g41vyg3_name_default
+resource storageAccounts_stycmq73u2_name_default_code_391ff5ac_6576_460f_ba4d_7e03433c68b6 'Microsoft.Storage/storageAccounts/fileServices/shares@2026-04-01' = {
+  parent: Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stycmq73u2_name_default
   name: 'code-391ff5ac-6576-460f-ba4d-7e03433c68b6'
   properties: {
     accessTier: 'TransactionOptimized'
@@ -10545,13 +10641,13 @@ resource storageAccounts_st8g41vyg3_name_default_code_391ff5ac_6576_460f_ba4d_7e
     enabledProtocols: 'SMB'
   }
   dependsOn: [
-    storageAccounts_st8g41vyg3_name_resource
+    storageAccounts_stycmq73u2_name_resource
   ]
 }
 
-resource workspaces_mlwb_8bzexm_name_resource 'Microsoft.MachineLearningServices/workspaces@2026-03-15-preview' = {
-  name: workspaces_mlwb_8bzexm_name
-  location: 'westeurope'
+resource workspaces_mlwtn_4e_c3_name_resource 'Microsoft.MachineLearningServices/workspaces@2026-03-15-preview' = {
+  name: workspaces_mlwtn_4e_c3_name
+  location: 'norwayeast'
   sku: {
     name: 'Basic'
     tier: 'Basic'
@@ -10562,9 +10658,9 @@ resource workspaces_mlwb_8bzexm_name_resource 'Microsoft.MachineLearningServices
   }
   properties: {
     friendlyName: 'ARDL ML workspace'
-    storageAccount: storageAccounts_st8g41vyg3_name_resource.id
-    keyVault: vaults_kvfx4_8l4f_name_resource.id
-    applicationInsights: components_aixa1t_bdf_name_resource.id
+    storageAccount: storageAccounts_stycmq73u2_name_resource.id
+    keyVault: vaults_kv98v_brlw_name_resource.id
+    applicationInsights: components_ai9n6dhqwp_name_resource.id
     hbiWorkspace: false
     managedNetwork: {
       isolationMode: 'Disabled'
@@ -10579,7 +10675,7 @@ resource workspaces_mlwb_8bzexm_name_resource 'Microsoft.MachineLearningServices
       defaultAction: 'Allow'
       ipRules: []
     }
-    discoveryUrl: 'https://westeurope.api.azureml.ms/discovery'
+    discoveryUrl: 'https://norwayeast.api.azureml.ms/discovery'
     EnableSoftwareBillOfMaterials: false
     enableDataIsolation: false
     systemDatastoresAuthMode: 'accesskey'

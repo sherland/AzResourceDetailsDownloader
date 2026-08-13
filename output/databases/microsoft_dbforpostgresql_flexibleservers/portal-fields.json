@@ -1,0 +1,62 @@
+[
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-8dd0677652d313d5"
+  },
+  {
+    "Label": "Server name",
+    "Value": "pgfd6vwwi6"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Status",
+    "Value": "Provisioning"
+  },
+  {
+    "Label": "Created on",
+    "Value": "2026-08-13 13:14:05 (UTC)"
+  },
+  {
+    "Label": "Endpoint",
+    "Value": "pgfd6vwwi6.postgres.database.azure.com"
+  },
+  {
+    "Label": "Virtual endpoint",
+    "Value": "Not enabled"
+  },
+  {
+    "Label": "Administrator login",
+    "Value": "azrddadmin"
+  },
+  {
+    "Label": "Configuration",
+    "Value": "Burstable, B1ms, 1 vCores, 2 GiB RAM, 32 GiB storage"
+  },
+  {
+    "Label": "PostgreSQL version",
+    "Value": "16"
+  },
+  {
+    "Label": "Availability zone",
+    "Value": "2"
+  },
+  {
+    "Label": "High availability",
+    "Value": "Not enabled"
+  },
+  {
+    "Label": "Next maintenance",
+    "Value": "---"
+  }
+]

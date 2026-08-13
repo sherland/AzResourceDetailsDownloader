@@ -2,7 +2,7 @@ param domains_egdy_n1aqei_name string
 
 resource domains_egdy_n1aqei_name_resource 'Microsoft.EventGrid/domains@2025-07-15-preview' = {
   name: domains_egdy_n1aqei_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Basic'
   }

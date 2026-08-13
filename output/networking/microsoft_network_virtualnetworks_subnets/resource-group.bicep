@@ -2,7 +2,7 @@ param virtualNetworks_vnet93wy8s69_name string
 
 resource virtualNetworks_vnet93wy8s69_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnet93wy8s69_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [

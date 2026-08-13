@@ -9,7 +9,7 @@ resource privateDnsZones_ardltawm47lo_private_contoso_com_name_resource 'Microso
 
 resource virtualNetworks_vnetqj_7mjap_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnetqj_7mjap_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     addressSpace: {
       addressPrefixes: [

@@ -2,7 +2,7 @@ param namespaces_ehnsw2y13x4d_name string
 
 resource namespaces_ehnsw2y13x4d_name_resource 'Microsoft.EventHub/namespaces@2026-01-01' = {
   name: namespaces_ehnsw2y13x4d_name
-  location: 'westeurope'
+  location: 'norwayeast'
   sku: {
     name: 'Basic'
     tier: 'Basic'
@@ -18,7 +18,7 @@ resource namespaces_ehnsw2y13x4d_name_resource 'Microsoft.EventHub/namespaces@20
       maxReplicationLagDurationInSeconds: 0
       locations: [
         {
-          locationName: 'westeurope'
+          locationName: 'norwayeast'
           roleType: 'Primary'
         }
       ]
@@ -36,7 +36,7 @@ resource namespaces_ehnsw2y13x4d_name_resource 'Microsoft.EventHub/namespaces@20
 resource namespaces_ehnsw2y13x4d_name_RootManageSharedAccessKey 'Microsoft.EventHub/namespaces/authorizationrules@2026-01-01' = {
   parent: namespaces_ehnsw2y13x4d_name_resource
   name: 'RootManageSharedAccessKey'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     rights: [
       'Listen'
@@ -49,7 +49,7 @@ resource namespaces_ehnsw2y13x4d_name_RootManageSharedAccessKey 'Microsoft.Event
 resource namespaces_ehnsw2y13x4d_name_default 'Microsoft.EventHub/namespaces/networkrulesets@2026-01-01' = {
   parent: namespaces_ehnsw2y13x4d_name_resource
   name: 'default'
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     publicNetworkAccess: 'Enabled'
     defaultAction: 'Allow'

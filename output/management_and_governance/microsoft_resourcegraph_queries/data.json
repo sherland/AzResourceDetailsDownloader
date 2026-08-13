@@ -1,7 +1,7 @@
 {
   "properties": {
     "resultKind": "UnKnown",
-    "timeModified": "2026-07-15T18:47:52.4260674Z",
+    "timeModified": "2026-08-13T12:57:55.5601242Z",
     "query": "Resources | take 1"
   },
   "type": "microsoft.resourcegraph/queries",
@@ -10,5 +10,5 @@
   "resourceGroup": "rg-ardl-20c884988ac25a0c",
   "name": "rgqnhli-a7r",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-20c884988ac25a0c/providers/microsoft.resourcegraph/queries/rgqnhli-a7r",
-  "etag": "\u00221b000b0e-0000-0d00-0000-6a57d5d80000\u0022"
+  "etag": "\u00220802fe50-0000-0d00-0000-6a7dbf530000\u0022"
 }

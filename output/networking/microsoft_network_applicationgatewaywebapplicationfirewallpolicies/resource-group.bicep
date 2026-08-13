@@ -2,7 +2,7 @@ param ApplicationGatewayWebApplicationFirewallPolicies_wafiorgu_xh_name string
 
 resource ApplicationGatewayWebApplicationFirewallPolicies_wafiorgu_xh_name_resource 'Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies@2025-07-01' = {
   name: ApplicationGatewayWebApplicationFirewallPolicies_wafiorgu_xh_name
-  location: 'westeurope'
+  location: 'norwayeast'
   properties: {
     customRules: []
     policySettings: {

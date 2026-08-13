@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "azurerm"
-      version = "4.66.0"
+      version = "4.80.0"
     }
   }
 }
@@ -10,12 +10,12 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "res-0" {
-  location   = "westeurope"
+  location   = "norwayeast"
   managed_by = ""
   name       = "rg-ardl-8d621c7a6b0df561"
   tags = {
     armType    = "Microsoft.Maps/accounts"
-    createdUtc = "2026-07-15T19:15:36.1793790Z"
+    createdUtc = "2026-08-13T13:21:32.4512601Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,9 +23,7 @@ resource "azurerm_maps_account" "res-1" {
   local_authentication_enabled = true
   location                     = "global"
   name                         = "mapsd-2raxh4"
-  primary_access_key           = "" # Masked sensitive attribute
   resource_group_name          = azurerm_resource_group.res-0.name
-  secondary_access_key         = "" # Masked sensitive attribute
   sku_name                     = "G2"
   tags                         = {}
 }

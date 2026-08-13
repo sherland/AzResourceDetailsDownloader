@@ -1,5 +1,5 @@
 {
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "mainTemplate": {
       "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -10,10 +10,10 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-07-15T18:47:38.8102491Z",
+    "createdAt": "2026-08-13T12:57:25.6586999Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-07-15T18:47:38.8102491Z"
+    "lastModifiedAt": "2026-08-13T12:57:25.6586999Z"
   },
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4965fec5d0d82612/providers/Microsoft.Resources/templateSpecs/ts3l4-yx-a/versions/v1",
   "type": "Microsoft.Resources/templateSpecs/versions",

@@ -1,10 +1,10 @@
 {
   "name": "peer-to-b",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-958b9ff2a7840139/providers/Microsoft.Network/virtualNetworks/vnet5nvk-1-n/virtualNetworkPeerings/peer-to-b",
-  "etag": "W/\u00225de0d04d-3b9f-4c37-888c-f5ccc499b9a6\u0022",
+  "etag": "W/\u0022f658b543-4591-4c11-94d9-0cfe7d8c7b1c\u0022",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "907b9370-86e0-04b1-0578-3b8685e6366c",
+    "resourceGuid": "7c9df707-8f6b-062b-273a-5afc07a7d27b",
     "peeringState": "Initiated",
     "peeringSyncLevel": "RemoteNotInSync",
     "remoteVirtualNetwork": {

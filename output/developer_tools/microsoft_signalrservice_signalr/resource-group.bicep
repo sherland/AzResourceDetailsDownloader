@@ -1,8 +1,8 @@
-param SignalR_sigrx1nr_0wu_name string
+param SignalR_sigr3beb_6nx_name string
 
-resource SignalR_sigrx1nr_0wu_name_resource 'Microsoft.SignalRService/SignalR@2025-01-01-preview' = {
-  name: SignalR_sigrx1nr_0wu_name
-  location: 'westeurope'
+resource SignalR_sigr3beb_6nx_name_resource 'Microsoft.SignalRService/SignalR@2025-01-01-preview' = {
+  name: SignalR_sigr3beb_6nx_name
+  location: 'norwayeast'
   sku: {
     name: 'Free_F1'
     tier: 'Free'

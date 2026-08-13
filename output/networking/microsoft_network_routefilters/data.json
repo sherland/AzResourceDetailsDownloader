@@ -1,9 +1,9 @@
 {
   "name": "rfa-y-8x89",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d924d0c6078bf7ed/providers/Microsoft.Network/routeFilters/rfa-y-8x89",
-  "etag": "W/\u0022b9c07ee7-88bb-4a22-8978-0289b06ffa10\u0022",
+  "etag": "W/\u0022f9b0e40f-dbf2-495b-8536-9960ef677359\u0022",
   "type": "Microsoft.Network/routeFilters",
-  "location": "westeurope",
+  "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
     "rules": []
