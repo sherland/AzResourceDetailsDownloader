@@ -59,6 +59,23 @@ public static class FieldRecipeResolver
         "Status", "Managed", "Forward messages to", "Dead lettering", "Automatic failover enabled",
         "Non-TLS access", "Autoscale", "Availability zones", "Availability zone",
         "Public network access", "Managed virtual network", "Auto-inflate throughput units",
+        // Missed in the original "Status" investigation despite being found live: Container
+        // Registry's "Provisioning state" is a plain passthrough of properties.provisioningState —
+        // caught by actually generating a template and finding it fall back to a TODO row it
+        // shouldn't have needed, not by re-auditing the label list.
+        "Provisioning state",
+        // The "different API surface" bucket had the same problem: Application Insights stores its
+        // "Instrumentation key"/"Connection string" as plain resource properties (unlike, say,
+        // Storage Account keys, which genuinely do require a separate listKeys call), and SSH
+        // Public Keys' "Public key" is a direct properties.publicKey passthrough. Attempting these
+        // costs nothing where the original classification was actually right (URL, Account URI,
+        // Queue/Topic URL, Logs workspace, Metrics ingestion endpoint, Origin response timeout,
+        // Ports all correctly stay Unresolved) — "Endpoint" lands on a genuinely mixed
+        // Ambiguous/NeedsReview/Unresolved verdict per type, which is more honest than a blanket
+        // skip either way.
+        "Endpoint", "URL", "Account URI", "Queue URL", "Topic URL", "Instrumentation key",
+        "Connection string", "Logs workspace", "Metrics ingestion endpoint", "Origin response timeout",
+        "Public key", "Ports",
     };
 
     public static FieldRecipe Resolve(string label, string value, JsonElement root)

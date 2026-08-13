@@ -76,6 +76,25 @@ Two concurrency-induced failure modes are handled automatically, both found live
 - **Subscription quota exhaustion**: if a unit fails with a detected quota error (`QuotaErrorDetector` — Azure's `OperationNotAllowed`/`QuotaExceeded` codes), it's automatically retried once, after the main pass, at a lower `Pipeline:QuotaRetryConcurrency` (1 by default) — quota exhaustion is usually a symptom of too many compute-heavy units running at once, not a real per-unit failure, so a quieter retry pass alone often succeeds.
 - **Transient ARM operation locks**: live-observed running units concurrently — a VPN Gateway operation in flight can make Azure's networking RP return `429 RetryableErrorDueToAnotherOperation` to completely unrelated VNet-touching operations elsewhere in the subscription (different resource group, different VNet). Since ARM's own error code is literally "RetryableError", `RawArmClient` now retries any 429 a few times with backoff (respecting `Retry-After` if Azure sends one) before giving up.
 
+## Generating Obsidian vault templates
+
+```
+dotnet run --generate-field-recipes    # writes config/portal-field-recipes.json
+dotnet run --generate-templates        # writes templates/*.sbn + output/{category}/{armType}/rendered-preview.md
+```
+
+Beyond the raw ARM JSON/screenshot capture above, this tool can also turn what it captured into
+reusable [Scriban](https://github.com/scriban/scriban) templates for an Obsidian vault — one per
+resource type, built from the same fields Azure's own portal highlights in its Essentials panel
+(`portal-fields.json`), not a hand-picked subset. `--generate-field-recipes` analyzes every real
+capture and decides, per field, how a template should reproduce it (a direct property path, a known
+formatting transform, or an honest "needs a human" verdict); `--generate-templates` turns that analysis
+into `.sbn` files and immediately renders each one against the resource it was generated from, as a
+self-check, writing the result alongside that capture's other files. See **AGENT.md** for how the field
+resolution actually works, including several real mismatches it caught along the way (a computed SKU
+label differing from the portal only in casing; two labels that confidently matched the wrong property
+on a single coincidental word).
+
 ## Config: `config/resource-types.json`
 
 **159 entries, spanning storage, compute, networking, databases, security/identity, monitoring, web/app hosting, containers, messaging, AI/cognitive services, analytics/IoT, and desktop virtualization** — covering every armType `config/resource-abbreviations.json` lists (Microsoft's own abbreviations table), minus the entries deliberately excluded below. Cost tier (`Free`/`Low`/`Medium`/`High`/`VeryHigh`) is derived purely from each entry's real, sourced Azure cost — see "Genuinely expensive" below for the `VeryHigh` entries specifically.

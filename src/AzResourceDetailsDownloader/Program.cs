@@ -21,7 +21,7 @@ catch (ArgumentException ex)
 {
     Console.Error.WriteLine(ex.Message);
     Console.Error.WriteLine(
-        "Usage: [--dry-run | --login | --run | --generate-field-recipes] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High|VeryHigh] [--max-concurrency <n>]");
+        "Usage: [--dry-run | --login | --run | --generate-field-recipes | --generate-templates] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High|VeryHigh] [--max-concurrency <n>]");
     return 1;
 }
 
@@ -35,6 +35,20 @@ if (parsedArgs.Mode == RunMode.GenerateFieldRecipes)
     PortalFieldRecipeCatalogGenerator.WriteCatalog(entries, catalogOutputPath);
     Console.WriteLine($"Wrote {catalogOutputPath}");
     Console.WriteLine(PortalFieldRecipeCatalogGenerator.Summarize(entries));
+    return 0;
+}
+
+if (parsedArgs.Mode == RunMode.GenerateTemplates)
+{
+    var templateSourceRoot = Path.Combine(repoRoot, "output");
+    var templatesDir = Path.Combine(repoRoot, "templates");
+    var results = TemplateBatchGenerator.GenerateAll(templateSourceRoot, templatesDir);
+    foreach (var result in results)
+    {
+        Console.WriteLine($"{result.ArmType}: {result.TemplatePath} ({result.TodoRowCount} TODO row(s))");
+    }
+    var totalTodos = results.Sum(r => r.TodoRowCount);
+    Console.WriteLine($"Generated {results.Count} templates, {totalTodos} TODO rows total across all of them.");
     return 0;
 }
 
