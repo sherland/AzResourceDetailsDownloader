@@ -122,6 +122,24 @@ public static class PortalFieldKnowledge
         "Time created", "Last modified", "Last Updated Date",
     };
 
+    // Orthogonal to every other table here — resolvability (Kind) says whether we can find a
+    // source for the value; this says whether that value is a durable setting someone chose
+    // (SKU, Location, whether soft-delete is on) or a live, currently-observed condition that can
+    // change independent of any configuration change and goes stale the moment the capture isn't
+    // re-run (Status, a resource count, "last modified"). A vault note built from a one-time
+    // capture is a snapshot, not a dashboard — a renderer needs to know which fields it's honestly
+    // allowed to present as still-true today, without silently dropping the row and breaking
+    // portal-layout parity. "Created"/"Creation date"/etc. are deliberately NOT here: a creation
+    // instant is a historical fact, it never goes stale. "Updated"/"Last modified" are, though —
+    // the value itself doesn't change retroactively, but it stops being *true* the next time the
+    // real resource is touched, which a static capture has no way to know about.
+    public static readonly HashSet<string> LiveStateLabels = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "Status", "Provisioning state", "Updated", "Modified Time", "Last modified", "Last Updated Date",
+        "App(s) / Slots", "Assigned host pools", "Inbound endpoints", "Virtual hubs",
+        "Colocation status", "Operational issues", "Maintenance events",
+    };
+
     // Boolean/enum ARM values the portal renders as a friendlier English phrase instead of the raw
     // "true"/"false" token — but only for labels individually confirmed (2026-08-13, against the
     // committed corpus) to be a direct rendering of one named property with no further composition.

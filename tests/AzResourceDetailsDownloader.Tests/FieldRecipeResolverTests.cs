@@ -240,6 +240,44 @@ public class FieldRecipeResolverTests
         Assert.Equal("model.resource_group", recipe.Target);
     }
 
+    // A resolvable field can still be live/transient state — IsLiveState is orthogonal to Kind, so
+    // a resolved "Status" must still come back flagged, not just an unresolved one.
+    [Fact]
+    public void Resolve_LiveStateLabel_IsFlagged_EvenWhenResolved()
+    {
+        var root = LoadCapturedResource("containers", "microsoft_containerregistry_registries");
+
+        var recipe = FieldRecipeResolver.Resolve("Provisioning state", "Succeeded", root);
+
+        Assert.True(recipe.IsLiveState);
+    }
+
+    // The VM's power state isn't in the capture body at all — Unresolved — but it's still live
+    // state, and a renderer needs that flag regardless of whether a value could be found, so it
+    // can show a "see the portal" placeholder instead of silently dropping the row.
+    [Fact]
+    public void Resolve_LiveStateLabel_IsFlagged_EvenWhenUnresolved()
+    {
+        var root = LoadCapturedResource("compute_and_web", "microsoft_compute_virtualmachines");
+
+        var recipe = FieldRecipeResolver.Resolve("Status", "Running", root);
+
+        Assert.True(recipe.IsLiveState);
+        Assert.Equal(FieldRecipeKind.Unresolved, recipe.Kind);
+    }
+
+    // A stable configuration value (SKU) must never be flagged as live state, even though it's
+    // resolved via the same code paths.
+    [Fact]
+    public void Resolve_StableConfigLabel_IsNotFlaggedAsLiveState()
+    {
+        var root = LoadCapturedResource("security", "microsoft_keyvault_vaults");
+
+        var recipe = FieldRecipeResolver.Resolve("Vault URI", "https://kvrq6-2c9f.vault.azure.net/", root);
+
+        Assert.False(recipe.IsLiveState);
+    }
+
     private static JsonElement LoadCapturedResource(string category, string armTypeFolder)
     {
         var repoRoot = RepoPaths.ResolveRepoRoot();
