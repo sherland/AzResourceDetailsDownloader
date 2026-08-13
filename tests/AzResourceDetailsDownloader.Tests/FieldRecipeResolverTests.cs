@@ -158,6 +158,34 @@ public class FieldRecipeResolverTests
         Assert.Equal(FieldRecipeKind.Ambiguous, recipe.Kind);
     }
 
+    // Live-run regression: "Forward messages to" = "Disabled" on Service Bus queues previously
+    // matched properties.deadLetteringOnMessageExpiration as a "Direct" (fully-trusted) recipe —
+    // wrong property, just a coincidental value match propped up by "messages" fuzzy-stemming
+    // against "message". Must come back as a low-confidence NeedsReview instead, never Direct.
+    [Fact]
+    public void Resolve_ForwardMessagesTo_IsNotConfidentlyMatched_ToUnrelatedDeadLetterProperty()
+    {
+        var root = LoadCapturedResource("integration", "microsoft_servicebus_namespaces_queues");
+
+        var recipe = FieldRecipeResolver.Resolve("Forward messages to", "Disabled", root);
+
+        Assert.NotEqual(FieldRecipeKind.Direct, recipe.Kind);
+    }
+
+    // Live-run regression: "Managed virtual network" = "No" on Synapse workspaces previously
+    // matched properties.defaultDataLakeStorage.createManagedPrivateEndpoint as "Direct" — wrong
+    // property, just the generic word "managed" coincidentally appearing in both. Must come back as
+    // NeedsReview, never a confidently-trusted Direct match.
+    [Fact]
+    public void Resolve_ManagedVirtualNetwork_IsNotConfidentlyMatched_ToUnrelatedProperty()
+    {
+        var root = LoadCapturedResource("analytics_and_iot", "microsoft_synapse_workspaces");
+
+        var recipe = FieldRecipeResolver.Resolve("Managed virtual network", "No", root);
+
+        Assert.NotEqual(FieldRecipeKind.Direct, recipe.Kind);
+    }
+
     private static JsonElement LoadCapturedResource(string category, string armTypeFolder)
     {
         var repoRoot = RepoPaths.ResolveRepoRoot();
