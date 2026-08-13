@@ -28,10 +28,6 @@
     "Value": "DW100c"
   },
   {
-    "Label": "Connection strings",
-    "Value": "Show database connection strings"
-  },
-  {
     "Label": "Maintenance schedule",
     "Value": "l\u00F8r. 14:00 UTC (8h) / tir. 16:00 UTC (8h)"
   }

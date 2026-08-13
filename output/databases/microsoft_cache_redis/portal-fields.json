@@ -26,17 +26,5 @@
   {
     "Label": "Ports",
     "Value": "Non-SSL port (6379) disabled"
-  },
-  {
-    "Label": "Keys",
-    "Value": "Show access keys..."
-  },
-  {
-    "Label": "Best practices",
-    "Value": "https://aka.ms/redis/p/bestpractices"
-  },
-  {
-    "Label": "New features",
-    "Value": "https://aka.ms/newfeatures"
   }
 ]

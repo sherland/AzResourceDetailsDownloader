@@ -32,10 +32,6 @@
     "Value": "https://ardlcog8l2-q-ck.cognitiveservices.azure.com/"
   },
   {
-    "Label": "Manage keys",
-    "Value": "Click here to manage keys"
-  },
-  {
     "Label": "Autoscale",
     "Value": "Disabled"
   }
