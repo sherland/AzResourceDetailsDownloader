@@ -1116,10 +1116,10 @@
   },
   {
     "Label": "Location",
-    "Kind": "Shortcut",
+    "Kind": "ShortcutVerified",
     "Confidence": 1,
     "Target": "model.location",
-    "Notes": "First-class model field \u2014 exact portal-text fidelity NOT verified here (e.g. location is the raw ARM string like \u0022norwayeast\u0022, not the portal\u0027s \u0022Norway East\u0022; a real renderer needs its own formatting pass for this one, not just a path).",
+    "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name.",
     "ObservedArmTypes": [
       "Microsoft.ApiManagement/service",
       "Microsoft.Automation/AutomationAccounts/Runbooks",
@@ -1195,7 +1195,440 @@
       "unknown"
     ],
     "SampleValue": "Norway East",
-    "Conflicts": null
+    "Conflicts": {
+      "Microsoft.CognitiveServices/accounts": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Databricks/accessConnectors": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Databricks/workspaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.DataFactory/factories": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Devices/IotHubs": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Devices/provisioningServices": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.DigitalTwins/digitalTwinsInstances": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.EventGrid/domains": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.EventGrid/systemTopics": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.EventGrid/topics": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.EventHub/Namespaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.EventHub/namespaces/eventhubs": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Synapse/workspaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Synapse/workspaces/sqlPools": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Batch/batchAccounts": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Compute/availabilitySets": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Compute/proximityPlacementGroups": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Compute/virtualMachines": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "microsoft.loadtestservice/loadtests": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Maintenance/maintenanceConfigurations": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.NotificationHubs/namespaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly."
+      },
+      "Microsoft.NotificationHubs/namespaces/notificationHubs": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly."
+      },
+      "Microsoft.Web/serverfarms": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly."
+      },
+      "Microsoft.ContainerInstance/containerGroups": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.ContainerRegistry/registries": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.ContainerRegistry/registries/webhooks": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Cache/Redis": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly."
+      },
+      "Microsoft.Cache/redisEnterprise/databases": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "This capture has no root \u0027location\u0027 field."
+      },
+      "Microsoft.DBforPostgreSQL/flexibleServers": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly."
+      },
+      "Microsoft.Sql/servers": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Sql/servers/elasticPools": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Maps/accounts": {
+        "Kind": "ShortcutCasingMismatch",
+        "Confidence": 0.7,
+        "Target": "model.location",
+        "Notes": "Raw \u0022global\u0022 vs portal \u0022Global\u0022 \u2014 same value, different casing."
+      },
+      "Microsoft.SignalRService/SignalR": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.ApiManagement/service": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly."
+      },
+      "Microsoft.Logic/integrationAccounts": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Automation/AutomationAccounts/Runbooks": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Insights/autoscaleSettings": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "microsoft.insights/components": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Insights/dataCollectionEndpoints": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "microsoft.insights/webtests": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Monitor/accounts": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.OperationalInsights/workspaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.OperationsManagement/solutions": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Purview/accounts": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Resources/templateSpecs": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.DataMigration/services": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Migrate/assessmentProjects": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.RecoveryServices/vaults": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Cdn/profiles": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly."
+      },
+      "Microsoft.Cdn/profiles/afdendpoints": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified: this capture\u0027s raw \u0027location\u0027 is already in display form, matches the portal exactly."
+      },
+      "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/azureFirewalls": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/dnsForwardingRulesets": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/dnsResolvers": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/FirewallPolicies": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/localNetworkGateways": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/natGateways": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/networkSecurityGroups": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/privateLinkServices": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/routeFilters": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/routeTables": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/serviceEndpointPolicies": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/virtualNetworkGateways": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/virtualWans": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "unknown": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.KeyVault/vaults": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.Network/bastionHosts": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.DataProtection/resourceGuards": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.DesktopVirtualization/applicationgroups": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.DesktopVirtualization/hostpools": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.DesktopVirtualization/scalingplans": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      },
+      "Microsoft.DesktopVirtualization/workspaces": {
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.location",
+        "Notes": "Verified via config/azure-locations.json \u2014 transform: region_display_name."
+      }
+    }
   },
   {
     "Label": "Location ID",
@@ -2130,10 +2563,10 @@
   },
   {
     "Label": "Resource group",
-    "Kind": "Shortcut",
+    "Kind": "ShortcutVerified",
     "Confidence": 1,
     "Target": "model.resource_group",
-    "Notes": "First-class model field \u2014 exact portal-text fidelity NOT verified here (e.g. location is the raw ARM string like \u0022norwayeast\u0022, not the portal\u0027s \u0022Norway East\u0022; a real renderer needs its own formatting pass for this one, not just a path).",
+    "Notes": "Verified: resource group name extracted from \u0027id\u0027 matches the portal value exactly.",
     "ObservedArmTypes": [
       "Microsoft.ApiManagement/service",
       "Microsoft.Automation/AutomationAccounts/Runbooks",

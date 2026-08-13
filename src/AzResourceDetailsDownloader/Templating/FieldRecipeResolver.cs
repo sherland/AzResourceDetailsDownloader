@@ -32,12 +32,6 @@ public sealed record FieldRecipe(FieldRecipeKind Kind, double Confidence, string
 // property's value more often than you'd expect across a whole ARM properties bag.
 public static class FieldRecipeResolver
 {
-    private static readonly Dictionary<string, string> ShortcutLabels = new(StringComparer.OrdinalIgnoreCase)
-    {
-        ["Location"] = "model.location",
-        ["Resource group"] = "model.resource_group",
-    };
-
     // Deliberately does NOT include "Type" — its portal value is sometimes a friendly composite
     // string (e.g. Data Factory shows "Data factory (V2)", not the raw ARM type
     // "Microsoft.DataFactory/factories") rather than a literal passthrough, so it stays classified
@@ -62,12 +56,13 @@ public static class FieldRecipeResolver
 
     public static FieldRecipe Resolve(string label, string value, JsonElement root)
     {
-        if (ShortcutLabels.TryGetValue(label, out var shortcut))
+        if (label.Equals("Location", StringComparison.OrdinalIgnoreCase))
         {
-            return new FieldRecipe(FieldRecipeKind.Shortcut, 1.0, shortcut,
-                "First-class model field — exact portal-text fidelity NOT verified here (e.g. " +
-                "location is the raw ARM string like \"norwayeast\", not the portal's \"Norway East\"; " +
-                "a real renderer needs its own formatting pass for this one, not just a path).");
+            return ResolveLocationShortcut(value, root);
+        }
+        if (label.Equals("Resource group", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveResourceGroupShortcut(value, root);
         }
 
         var (baseLabel, _) = StripParenthetical(label);
@@ -140,6 +135,87 @@ public static class FieldRecipeResolver
         }
         return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.sku_label",
             $"Computed \"{computed}\" does NOT match portal \"{value}\" for this type — do not trust this shortcut here.");
+    }
+
+    // "norwayeast" -> "Norway East" via config/azure-locations.json (fetch-azure-reference-data.ps1)
+    // — the raw ARM location code is never the portal's display text, so this always needed a real
+    // lookup, not just a path. Normalize()-equality alone would already bridge most regions (they're
+    // literally the display name with spaces/casing stripped), but the fetched table is used instead
+    // of relying on that always holding — it's the authoritative source, not an assumption.
+    private static FieldRecipe ResolveLocationShortcut(string value, JsonElement root)
+    {
+        var rawLocation = JsonTree.GetString(root, "location");
+        if (rawLocation is null)
+        {
+            return new FieldRecipe(FieldRecipeKind.Unresolved, 0.0, null, "This capture has no root 'location' field.");
+        }
+
+        // Not every resource provider returns the usual lowercase ARM code — live-observed:
+        // Notification Hubs, App Service Plans, and others return "location" already in display
+        // form ("Norway East"), and non-regional values like "global"/"Global" are legitimate,
+        // stable location values with no entry in the physical-regions-only lookup table anyway.
+        // Check direct equality before consulting the lookup, so both shapes verify correctly
+        // instead of the display-form/global cases falling through to "not in table".
+        if (rawLocation == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.location",
+                "Verified: this capture's raw 'location' is already in display form, matches the portal exactly.");
+        }
+        if (string.Equals(rawLocation, value, StringComparison.OrdinalIgnoreCase))
+        {
+            // e.g. Azure Maps: raw "global" vs portal "Global" — a non-regional value, so it was
+            // never going to be in the physical-regions lookup below either way.
+            return new FieldRecipe(FieldRecipeKind.ShortcutCasingMismatch, 0.7, "model.location",
+                $"Raw \"{rawLocation}\" vs portal \"{value}\" — same value, different casing.");
+        }
+
+        if (!RegionDisplayNames.TryGetDisplayName(rawLocation, out var displayName))
+        {
+            return new FieldRecipe(FieldRecipeKind.Shortcut, 0.3, "model.location",
+                $"Region '{rawLocation}' isn't in config/azure-locations.json (stale fetch, or a new/preview " +
+                "region) — falling back to the raw ARM value, unverified. Re-run fetch-azure-reference-data.ps1.");
+        }
+
+        if (displayName == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.location",
+                "Verified via config/azure-locations.json — transform: region_display_name.");
+        }
+
+        return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.location",
+            $"config/azure-locations.json says '{rawLocation}' displays as \"{displayName}\", but the portal " +
+            $"showed \"{value}\" — investigate before trusting this shortcut for this type.");
+    }
+
+    private static readonly Regex ResourceGroupFromId = new(@"/resourceGroups/([^/]+)/", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    // The resource group name isn't a separate field in a raw ARM GET response — only embedded in
+    // `id` — but since OutputNormalizer redacts it to the same placeholder everywhere it appears
+    // (both inside `id` and in the portal's own "Resource group" field), no formatting transform is
+    // needed here, just extraction and an exact comparison.
+    private static FieldRecipe ResolveResourceGroupShortcut(string value, JsonElement root)
+    {
+        var id = JsonTree.GetString(root, "id");
+        var match = id is null ? null : ResourceGroupFromId.Match(id);
+        if (match is not { Success: true })
+        {
+            return new FieldRecipe(FieldRecipeKind.Unresolved, 0.0, null,
+                "Couldn't extract a resource group name from this capture's 'id' field.");
+        }
+
+        var extracted = match.Groups[1].Value;
+        if (extracted == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.resource_group",
+                "Verified: resource group name extracted from 'id' matches the portal value exactly.");
+        }
+        if (string.Equals(extracted, value, StringComparison.OrdinalIgnoreCase))
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutCasingMismatch, 0.7, "model.resource_group",
+                $"Extracted \"{extracted}\" vs portal \"{value}\" — same value, different casing.");
+        }
+        return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.resource_group",
+            $"Extracted \"{extracted}\" from 'id' but the portal showed \"{value}\" — investigate.");
     }
 
     private static FieldRecipe ResolveTimestamp(string baseLabel, string value, JsonElement root)
