@@ -1,4 +1,4 @@
-# id9smfdnx8
+# idntomdsx0
 
 | Property | Value |
 |---|---|
@@ -7,7 +7,7 @@
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Type** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Microsoft.ManagedIdentity/userAssignedIdentities |
-| **Client ID** | c2c81db5-9f8e-4044-ad69-68fb0a893d28 |
-| **Object (principal) ID** | e5cf2f15-fc0d-40b9-a418-e705fa47b2f1 |
+| **Client ID** | 6926d1e7-8e58-4dc4-b001-0be07215215d |
+| **Object (principal) ID** | 27e89a65-5fd6-4263-8029-74a51a7e7ea7 |
 | **Isolation Scope** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> None |
 | **Resource (Preview)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> None |

@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-872102314c593a7d"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Workflow URL",
+    "Value": "--"
+  },
+  {
+    "Label": "Definition",
+    "Value": "0 triggers, 0 actions"
+  },
+  {
+    "Label": "Status",
+    "Value": "Enabled"
+  },
+  {
+    "Label": "Runs last 24 hours",
+    "Value": "0 successful, 0 failed"
+  },
+  {
+    "Label": "Integration Account",
+    "Value": "--"
+  },
+  {
+    "Label": "Workflow Type",
+    "Value": "Stateful"
+  }
+]

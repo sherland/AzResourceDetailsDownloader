@@ -1,6 +1,6 @@
 {
-  "name": "diskbpe8-oy2",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ab7325b8645ba734/providers/Microsoft.Compute/disks/diskbpe8-oy2",
+  "name": "disk4-94-a-6",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ab7325b8645ba734/providers/Microsoft.Compute/disks/disk4-94-a-6",
   "type": "Microsoft.Compute/disks",
   "location": "norwayeast",
   "sku": {
@@ -19,10 +19,10 @@
     },
     "networkAccessPolicy": "AllowAll",
     "publicNetworkAccess": "Enabled",
-    "timeCreated": "2026-08-14T06:53:48.1341128\u002B00:00",
+    "timeCreated": "2026-08-14T10:28:04.9192592\u002B00:00",
     "provisioningState": "Succeeded",
     "diskState": "Unattached",
     "diskSizeBytes": 4294967296,
-    "uniqueId": "fb41d753-58bc-46db-a652-b73eb70fb437"
+    "uniqueId": "1d762c1f-bc3c-40df-9ce8-45e9574c1dcc"
   }
 }

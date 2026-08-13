@@ -1,35 +1,35 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-a157244b5485ef94/providers/Microsoft.ServiceFabric/managedClusters/sfmc9-v2v-ub",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-a157244b5485ef94/providers/Microsoft.ServiceFabric/managedClusters/sfmcdzd-ox-0",
   "type": "Microsoft.ServiceFabric/managedclusters",
   "location": "norwayeast",
-  "name": "sfmc9-v2v-ub",
+  "name": "sfmcdzd-ox-0",
   "tags": {
     "SFRP.DisableDefaultOutboundAccess": "true"
   },
   "systemData": {
     "createdBy": "*** REDACTED ***",
     "createdByType": "User",
-    "createdAt": "2026-08-13T13:36:54.7124393\u002B00:00",
+    "createdAt": "2026-08-14T10:52:28.8679393\u002B00:00",
     "lastModifiedBy": "*** REDACTED ***",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T13:36:54.7124393\u002B00:00"
+    "lastModifiedAt": "2026-08-14T10:52:28.8679393\u002B00:00"
   },
   "sku": {
     "name": "Basic"
   },
   "properties": {
     "provisioningState": "Succeeded",
-    "clusterId": "d76f4630-bf26-4d4f-8183-55b08f00be84",
+    "clusterId": "59c40250-980f-4369-af5c-a1899b3e0ce7",
     "clusterState": "WaitingForNodes",
     "clusterUpgradeMode": "Automatic",
     "isPrivateClusterCodeVersion": false,
     "clusterUpgradeCadence": "Wave0",
     "adminUserName": "azrddadmin",
-    "dnsName": "ardlsfmc0c-f-h",
-    "fqdn": "ardlsfmc0c-f-h.norwayeast.cloudapp.azure.com",
-    "ipv4Address": "20.251.113.80",
+    "dnsName": "ardlsfmcjj9reg",
+    "fqdn": "ardlsfmcjj9reg.norwayeast.cloudapp.azure.com",
+    "ipv4Address": "20.251.117.108",
     "clusterCertificateThumbprints": [
-      "52CCD21A179139526672C0DAAC102D73409E2F40"
+      "62853506103C783D56353745BF8CDAC6E27A0A29"
     ],
     "clientConnectionPort": 19000,
     "httpGatewayConnectionPort": 19080,

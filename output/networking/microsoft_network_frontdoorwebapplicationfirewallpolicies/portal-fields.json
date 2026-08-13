@@ -1,0 +1,34 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-376bac41699b1ff1"
+  },
+  {
+    "Label": "Status",
+    "Value": "Enabled"
+  },
+  {
+    "Label": "Policy mode",
+    "Value": "Prevention"
+  },
+  {
+    "Label": "Custom rules",
+    "Value": "0"
+  },
+  {
+    "Label": "Associations",
+    "Value": "0"
+  },
+  {
+    "Label": "Tier",
+    "Value": "Azure Front Door Standard"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  }
+]

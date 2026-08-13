@@ -1,8 +1,8 @@
-param metricAlerts_maze_sgdsc_name string
-param storageAccounts_stc1k2bcxi_name string
+param metricAlerts_ma1gb7eym1_name string
+param storageAccounts_st5rlbh116_name string
 
-resource storageAccounts_stc1k2bcxi_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
-  name: storageAccounts_stc1k2bcxi_name
+resource storageAccounts_st5rlbh116_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
+  name: storageAccounts_st5rlbh116_name
   location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
@@ -38,14 +38,14 @@ resource storageAccounts_stc1k2bcxi_name_resource 'Microsoft.Storage/storageAcco
   }
 }
 
-resource metricAlerts_maze_sgdsc_name_resource 'Microsoft.Insights/metricAlerts@2024-03-01-preview' = {
-  name: metricAlerts_maze_sgdsc_name
+resource metricAlerts_ma1gb7eym1_name_resource 'Microsoft.Insights/metricAlerts@2024-03-01-preview' = {
+  name: metricAlerts_ma1gb7eym1_name
   location: 'global'
   properties: {
     severity: 3
     enabled: true
     scopes: [
-      storageAccounts_stc1k2bcxi_name_resource.id
+      storageAccounts_st5rlbh116_name_resource.id
     ]
     evaluationFrequency: 'PT5M'
     actions: []
@@ -67,8 +67,8 @@ resource metricAlerts_maze_sgdsc_name_resource 'Microsoft.Insights/metricAlerts@
   }
 }
 
-resource storageAccounts_stc1k2bcxi_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
-  parent: storageAccounts_stc1k2bcxi_name_resource
+resource storageAccounts_st5rlbh116_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
+  parent: storageAccounts_st5rlbh116_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -88,8 +88,8 @@ resource storageAccounts_stc1k2bcxi_name_default 'Microsoft.Storage/storageAccou
   }
 }
 
-resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stc1k2bcxi_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
-  parent: storageAccounts_stc1k2bcxi_name_resource
+resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st5rlbh116_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
+  parent: storageAccounts_st5rlbh116_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -109,8 +109,8 @@ resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stc1k2bc
   }
 }
 
-resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stc1k2bcxi_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
-  parent: storageAccounts_stc1k2bcxi_name_resource
+resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_st5rlbh116_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
+  parent: storageAccounts_st5rlbh116_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -119,8 +119,8 @@ resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stc1k2b
   }
 }
 
-resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stc1k2bcxi_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
-  parent: storageAccounts_stc1k2bcxi_name_resource
+resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_st5rlbh116_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
+  parent: storageAccounts_st5rlbh116_name_resource
   name: 'default'
   properties: {
     cors: {

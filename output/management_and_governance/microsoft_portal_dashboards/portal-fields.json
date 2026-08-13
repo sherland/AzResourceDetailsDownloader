@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Name",
+    "Value": "dashhb-yt3kg (ARDL Dashboard)"
+  },
+  {
+    "Label": "Resource type",
+    "Value": "Microsoft.Portal/dashboards"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Location ID",
+    "Value": "norwayeast"
+  },
+  {
+    "Label": "Resource ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6a40d03fb53e43c5/providers/Microsoft.Portal/dashboards/dashhb-yt3kg"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-6a40d03fb53e43c5"
+  },
+  {
+    "Label": "Resource group ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6a40d03fb53e43c5"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000"
+  }
+]

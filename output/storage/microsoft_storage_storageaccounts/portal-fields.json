@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-652dbcc623f75a16"
+  },
+  {
+    "Label": "Location",
+    "Value": "norwayeast"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Disk state",
+    "Value": "Available"
+  },
+  {
+    "Label": "Performance",
+    "Value": "Standard"
+  },
+  {
+    "Label": "Replication",
+    "Value": "Locally redundant storage (LRS)"
+  },
+  {
+    "Label": "Account kind",
+    "Value": "StorageV2 (general purpose v2)"
+  },
+  {
+    "Label": "Provisioning state",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Created",
+    "Value": "14.8.2026, 12:28:04"
+  }
+]

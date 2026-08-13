@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-dce9c274708612f0"
   tags = {
     armType    = "Microsoft.VideoIndexer/accounts"
-    createdUtc = "2026-08-13T14:24:43.7817311Z"
+    createdUtc = "2026-08-14T10:46:26.9647971Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -37,7 +37,7 @@ resource "azurerm_storage_account" "res-1" {
   local_user_enabled                = true
   location                          = "norwayeast"
   min_tls_version                   = "TLS1_2"
-  name                              = "stsxpptwtg"
+  name                              = "stuop4pbp3"
   nfsv3_enabled                     = false
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
@@ -68,7 +68,7 @@ resource "azurerm_storage_account" "res-1" {
 }
 resource "azurerm_video_indexer_account" "res-6" {
   location              = "swedencentral"
-  name                  = "aviz5-9-ivt"
+  name                  = "avin3f5p-m4"
   public_network_access = ""
   resource_group_name   = azurerm_resource_group.res-0.name
   tags                  = {}
@@ -88,14 +88,14 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/stsxpptwtg"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/stuop4pbp3"
   to = azurerm_storage_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/stsxpptwtg"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.Storage/storageAccounts/stuop4pbp3"
   to = azurerm_storage_account_queue_properties.res-4
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.VideoIndexer/accounts/aviz5-9-ivt"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-dce9c274708612f0/providers/Microsoft.VideoIndexer/accounts/avin3f5p-m4"
   to = azurerm_video_indexer_account.res-6
 }

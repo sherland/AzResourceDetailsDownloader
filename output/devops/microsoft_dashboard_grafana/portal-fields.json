@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Endpoint",
+    "Value": "https://grfobls6-wo-byceegbubtaybvc2.eno.grafana.azure.com"
+  },
+  {
+    "Label": "MCP Endpoint",
+    "Value": "https://grfobls6-wo-byceegbubtaybvc2.eno.grafana.azure.com/api/azure-mcp"
+  },
+  {
+    "Label": "Grafana Version",
+    "Value": "12.4.6"
+  },
+  {
+    "Label": "Pricing Plan",
+    "Value": "Standard"
+  },
+  {
+    "Label": "Size",
+    "Value": "X1"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-9c207da75b61d6f9"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Provisioning State",
+    "Value": "Succeeded"
+  }
+]

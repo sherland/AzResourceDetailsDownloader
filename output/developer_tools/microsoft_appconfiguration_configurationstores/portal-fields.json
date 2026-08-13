@@ -1,0 +1,46 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-833890ef5c1b6d5f"
+  },
+  {
+    "Label": "Status",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Endpoint",
+    "Value": "https://appcslcx-jhpz.azconfig.io"
+  },
+  {
+    "Label": "Pricing tier",
+    "Value": "Free (Click to upgrade)"
+  },
+  {
+    "Label": "Soft-delete",
+    "Value": "N/A"
+  },
+  {
+    "Label": "Purge protection",
+    "Value": "N/A"
+  },
+  {
+    "Label": "Geo-replication",
+    "Value": "N/A"
+  },
+  {
+    "Label": "Telemetry",
+    "Value": "Disabled"
+  }
+]

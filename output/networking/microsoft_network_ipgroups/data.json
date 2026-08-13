@@ -7,9 +7,9 @@
     ],
     "provisioningState": "Succeeded"
   },
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a6f2232c1cae065f/providers/Microsoft.Network/ipGroups/ipg9dzw5niw",
-  "name": "ipg9dzw5niw",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a6f2232c1cae065f/providers/Microsoft.Network/ipGroups/ipg3612-y64",
+  "name": "ipg3612-y64",
   "type": "Microsoft.Network/IpGroups",
-  "etag": "b281d264-77d2-4ad2-96dd-24ac4dbc991e",
+  "etag": "525b9ce2-4c1f-48c3-a99e-e67f39f1ddfa",
   "location": "norwayeast"
 }

@@ -1,0 +1,34 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-75150be80ffb7a66"
+  },
+  {
+    "Label": "Status",
+    "Value": "Ready"
+  },
+  {
+    "Label": "Location",
+    "Value": "Sweden Central"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Server name",
+    "Value": "sqltcfi-k-s"
+  },
+  {
+    "Label": "Database name",
+    "Value": "jobagentdb"
+  },
+  {
+    "Label": "Pricing tier",
+    "Value": "JA100"
+  }
+]

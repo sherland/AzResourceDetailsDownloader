@@ -8,4 +8,4 @@
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Gateway URL** | https://apimaib-5hed.azure-api.net |
-| **Tier** | <!-- TODO (NotAddressable): Traceable via 'sku.name' (exact value match), but that's outside properties.*/kind/name/id/location — not reachable from a template. --> Consumption |
+| **Tier** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Consumption |

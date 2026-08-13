@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-f7e533e01923b0a9"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Storage",
+    "Value": "sth6t6yrwo"
+  },
+  {
+    "Label": "Studio web URL",
+    "Value": "https://ml.azure.com?tid=11111111-1111-1111-1111-111111111111\u0026wsid=/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-f7e533e01923b0a9/providers/Microsoft.MachineLearningServices/workspaces/mlwrc-5ff4m"
+  },
+  {
+    "Label": "Container Registry",
+    "Value": "..."
+  },
+  {
+    "Label": "Key Vault",
+    "Value": "kv7s29-71a"
+  },
+  {
+    "Label": "Application Insights",
+    "Value": "ai2rhbhwk1"
+  },
+  {
+    "Label": "Provisioning State",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "MLflow tracking URI",
+    "Value": "azureml://norwayeast.api.azureml.ms/mlflow/v1.0/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-f7e533e01923b0a9/providers/Microsoft.MachineLearningServices/workspaces/mlwrc-5ff4m"
+  }
+]

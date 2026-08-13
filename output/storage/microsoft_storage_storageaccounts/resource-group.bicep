@@ -1,7 +1,7 @@
-param storageAccounts_stedrfc3h1_name string
+param storageAccounts_st79pr3my4_name string
 
-resource storageAccounts_stedrfc3h1_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
-  name: storageAccounts_stedrfc3h1_name
+resource storageAccounts_st79pr3my4_name_resource 'Microsoft.Storage/storageAccounts@2026-04-01' = {
+  name: storageAccounts_st79pr3my4_name
   location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
@@ -37,8 +37,8 @@ resource storageAccounts_stedrfc3h1_name_resource 'Microsoft.Storage/storageAcco
   }
 }
 
-resource storageAccounts_stedrfc3h1_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
-  parent: storageAccounts_stedrfc3h1_name_resource
+resource storageAccounts_st79pr3my4_name_default 'Microsoft.Storage/storageAccounts/blobServices@2026-04-01' = {
+  parent: storageAccounts_st79pr3my4_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -58,8 +58,8 @@ resource storageAccounts_stedrfc3h1_name_default 'Microsoft.Storage/storageAccou
   }
 }
 
-resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stedrfc3h1_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
-  parent: storageAccounts_stedrfc3h1_name_resource
+resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_st79pr3my4_name_default 'Microsoft.Storage/storageAccounts/fileServices@2026-04-01' = {
+  parent: storageAccounts_st79pr3my4_name_resource
   name: 'default'
   sku: {
     name: 'Standard_LRS'
@@ -79,8 +79,8 @@ resource Microsoft_Storage_storageAccounts_fileServices_storageAccounts_stedrfc3
   }
 }
 
-resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stedrfc3h1_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
-  parent: storageAccounts_stedrfc3h1_name_resource
+resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_st79pr3my4_name_default 'Microsoft.Storage/storageAccounts/queueServices@2026-04-01' = {
+  parent: storageAccounts_st79pr3my4_name_resource
   name: 'default'
   properties: {
     cors: {
@@ -89,8 +89,8 @@ resource Microsoft_Storage_storageAccounts_queueServices_storageAccounts_stedrfc
   }
 }
 
-resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_stedrfc3h1_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
-  parent: storageAccounts_stedrfc3h1_name_resource
+resource Microsoft_Storage_storageAccounts_tableServices_storageAccounts_st79pr3my4_name_default 'Microsoft.Storage/storageAccounts/tableServices@2026-04-01' = {
+  parent: storageAccounts_st79pr3my4_name_resource
   name: 'default'
   properties: {
     cors: {

@@ -1,7 +1,7 @@
-param disks_diskbpe8_oy2_name string
+param disks_disk4_94_a_6_name string
 
-resource disks_diskbpe8_oy2_name_resource 'Microsoft.Compute/disks@2025-01-02' = {
-  name: disks_diskbpe8_oy2_name
+resource disks_disk4_94_a_6_name_resource 'Microsoft.Compute/disks@2025-01-02' = {
+  name: disks_disk4_94_a_6_name
   location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'

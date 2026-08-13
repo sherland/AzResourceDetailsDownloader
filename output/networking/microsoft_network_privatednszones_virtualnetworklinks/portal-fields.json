@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Name",
+    "Value": "linkwq5sky"
+  },
+  {
+    "Label": "Resource type",
+    "Value": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+  },
+  {
+    "Label": "Location",
+    "Value": "Global"
+  },
+  {
+    "Label": "Location ID",
+    "Value": "global"
+  },
+  {
+    "Label": "Resource ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75df539555d183d9/providers/Microsoft.Network/privateDnsZones/ardlaksrdys9.private.contoso.com/virtualNetworkLinks/linkwq5sky"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-75df539555d183d9"
+  },
+  {
+    "Label": "Resource group ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75df539555d183d9"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-e325f80fb473f771"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Provisioning state",
+    "Value": "Succeeded"
+  },
+  {
+    "Label": "Host name",
+    "Value": "sb9r-ffj1z.servicebus.windows.net"
+  },
+  {
+    "Label": "Created",
+    "Value": "fre. 14. aug. 2026, 12:32:02 p.m. CEST"
+  },
+  {
+    "Label": "Updated",
+    "Value": "fre. 14. aug. 2026, 12:32:02 p.m. CEST"
+  },
+  {
+    "Label": "Pricing tier",
+    "Value": "Basic"
+  },
+  {
+    "Label": "Local Authentication",
+    "Value": "Enabled"
+  }
+]

@@ -1,7 +1,7 @@
-param ipGroups_ipg9dzw5niw_name string
+param ipGroups_ipg3612_y64_name string
 
-resource ipGroups_ipg9dzw5niw_name_resource 'Microsoft.Network/ipGroups@2025-07-01' = {
-  name: ipGroups_ipg9dzw5niw_name
+resource ipGroups_ipg3612_y64_name_resource 'Microsoft.Network/ipGroups@2025-07-01' = {
+  name: ipGroups_ipg3612_y64_name
   location: 'norwayeast'
   properties: {
     ipAddresses: [

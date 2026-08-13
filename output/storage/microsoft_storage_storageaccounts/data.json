@@ -4,15 +4,15 @@
     "tier": "Standard"
   },
   "kind": "StorageV2",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/stedrfc3h1",
-  "name": "stedrfc3h1",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-652dbcc623f75a16/providers/Microsoft.Storage/storageAccounts/st79pr3my4",
+  "name": "st79pr3my4",
   "type": "Microsoft.Storage/storageAccounts",
   "location": "norwayeast",
   "tags": {},
   "properties": {
     "keyCreationTime": {
-      "key1": "2026-08-13T14:02:28.0419088Z",
-      "key2": "2026-08-13T14:02:28.0419088Z"
+      "key1": "2026-08-14T10:28:04.6471186Z",
+      "key2": "2026-08-14T10:28:04.6471186Z"
     },
     "allowCrossTenantReplication": false,
     "privateEndpointConnections": [],
@@ -31,26 +31,26 @@
         "file": {
           "keyType": "Account",
           "enabled": true,
-          "lastEnabledTime": "2026-08-13T14:02:28.0542219Z"
+          "lastEnabledTime": "2026-08-14T10:28:04.6573697Z"
         },
         "blob": {
           "keyType": "Account",
           "enabled": true,
-          "lastEnabledTime": "2026-08-13T14:02:28.0542219Z"
+          "lastEnabledTime": "2026-08-14T10:28:04.6573697Z"
         }
       },
       "keySource": "Microsoft.Storage"
     },
     "accessTier": "Hot",
     "provisioningState": "Succeeded",
-    "creationTime": "2026-08-13T14:02:27.9437902Z",
+    "creationTime": "2026-08-14T10:28:04.5334159Z",
     "primaryEndpoints": {
-      "dfs": "https://stedrfc3h1.dfs.core.windows.net/",
-      "web": "https://stedrfc3h1.z1.web.core.windows.net/",
-      "blob": "https://stedrfc3h1.blob.core.windows.net/",
-      "queue": "https://stedrfc3h1.queue.core.windows.net/",
-      "table": "https://stedrfc3h1.table.core.windows.net/",
-      "file": "https://stedrfc3h1.file.core.windows.net/"
+      "dfs": "https://st79pr3my4.dfs.core.windows.net/",
+      "web": "https://st79pr3my4.z1.web.core.windows.net/",
+      "blob": "https://st79pr3my4.blob.core.windows.net/",
+      "queue": "https://st79pr3my4.queue.core.windows.net/",
+      "table": "https://st79pr3my4.table.core.windows.net/",
+      "file": "https://st79pr3my4.file.core.windows.net/"
     },
     "primaryLocation": "norwayeast",
     "statusOfPrimary": "available"

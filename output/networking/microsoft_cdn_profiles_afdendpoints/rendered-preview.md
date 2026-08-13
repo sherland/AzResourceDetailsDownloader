@@ -2,7 +2,7 @@
 
 | Property | Value |
 |---|---|
-| **Name** | afdepl-85k0 |
+| **Name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> afdepl-85k0 |
 | **Resource type** | Microsoft.Cdn/profiles/afdendpoints |
 | **Location** | Global |
 | **Location ID** | Global |

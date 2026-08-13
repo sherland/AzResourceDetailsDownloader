@@ -15,14 +15,14 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-3556a0936d77e0d2"
   tags = {
     armType    = "Microsoft.Network/privateEndpoints"
-    createdUtc = "2026-08-13T14:02:24.1949292Z"
+    createdUtc = "2026-08-14T10:32:51.6127286Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_private_endpoint" "res-1" {
   custom_network_interface_name = ""
   location                      = "norwayeast"
-  name                          = "peavc8p-9p"
+  name                          = "pe04-kvqau"
   resource_group_name           = azurerm_resource_group.res-0.name
   subnet_id                     = azurerm_subnet.res-3.id
   tags                          = {}
@@ -42,14 +42,14 @@ resource "azurerm_virtual_network" "res-2" {
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
   location                       = "norwayeast"
-  name                           = "vnetari4-k-l"
+  name                           = "vnet0h2lk99r"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name
   subnet = [{
     address_prefixes                              = ["10.42.0.0/24"]
     default_outbound_access_enabled               = false
     delegation                                    = []
-    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/virtualNetworks/vnetari4-k-l/subnets/default"
+    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/virtualNetworks/vnet0h2lk99r/subnets/default"
     name                                          = "default"
     private_endpoint_network_policies             = "Disabled"
     private_link_service_network_policies_enabled = true
@@ -70,7 +70,7 @@ resource "azurerm_subnet" "res-3" {
   service_endpoint_policy_ids                   = []
   service_endpoints                             = []
   sharing_scope                                 = ""
-  virtual_network_name                          = "vnetari4-k-l"
+  virtual_network_name                          = "vnet0h2lk99r"
   depends_on = [
     azurerm_virtual_network.res-2,
   ]
@@ -93,7 +93,7 @@ resource "azurerm_storage_account" "res-4" {
   local_user_enabled                = true
   location                          = "norwayeast"
   min_tls_version                   = "TLS1_2"
-  name                              = "stzbwkrmnn"
+  name                              = "stgrpess3j"
   nfsv3_enabled                     = false
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
@@ -129,22 +129,22 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/privateEndpoints/peavc8p-9p"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/privateEndpoints/pe04-kvqau"
   to = azurerm_private_endpoint.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/virtualNetworks/vnetari4-k-l"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/virtualNetworks/vnet0h2lk99r"
   to = azurerm_virtual_network.res-2
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/virtualNetworks/vnetari4-k-l/subnets/default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Network/virtualNetworks/vnet0h2lk99r/subnets/default"
   to = azurerm_subnet.res-3
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Storage/storageAccounts/stzbwkrmnn"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Storage/storageAccounts/stgrpess3j"
   to = azurerm_storage_account.res-4
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Storage/storageAccounts/stzbwkrmnn"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-3556a0936d77e0d2/providers/Microsoft.Storage/storageAccounts/stgrpess3j"
   to = azurerm_storage_account_queue_properties.res-8
 }

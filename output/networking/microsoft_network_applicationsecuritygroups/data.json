@@ -1,7 +1,7 @@
 {
-  "name": "asg02-5ciaw",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ba9eb33111484f38/providers/Microsoft.Network/applicationSecurityGroups/asg02-5ciaw",
-  "etag": "W/\u0022c4951e46-70ad-4c66-b1a0-d39731a158cc\u0022",
+  "name": "asgd0cn8mn8",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ba9eb33111484f38/providers/Microsoft.Network/applicationSecurityGroups/asgd0cn8mn8",
+  "etag": "W/\u002266a63819-00d3-46ae-bbf2-ceb3d35f0824\u0022",
   "type": "Microsoft.Network/applicationSecurityGroups",
   "location": "norwayeast",
   "properties": {

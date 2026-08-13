@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-1c6da0a56560fd63"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Immutable ID",
+    "Value": "dcr-9db38fb6d20c4fc3ba908e792a6c3fa7"
+  },
+  {
+    "Label": "Data Sources",
+    "Value": "1"
+  },
+  {
+    "Label": "Connected resources",
+    "Value": "0"
+  },
+  {
+    "Label": "Platform Type",
+    "Value": "All"
+  },
+  {
+    "Label": "Data Collection Endpoint",
+    "Value": "-"
+  }
+]

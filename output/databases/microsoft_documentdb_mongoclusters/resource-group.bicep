@@ -1,7 +1,7 @@
-param mongoClusters_mc7id9mtlp_name string
+param mongoClusters_mcmfaoowj5_name string
 
-resource mongoClusters_mc7id9mtlp_name_resource 'Microsoft.DocumentDB/mongoClusters@2026-02-01-preview' = {
-  name: mongoClusters_mc7id9mtlp_name
+resource mongoClusters_mcmfaoowj5_name_resource 'Microsoft.DocumentDB/mongoClusters@2026-02-01-preview' = {
+  name: mongoClusters_mcmfaoowj5_name
   location: 'norwayeast'
   identity: {
     type: 'None'
@@ -39,8 +39,8 @@ resource mongoClusters_mc7id9mtlp_name_resource 'Microsoft.DocumentDB/mongoClust
   }
 }
 
-resource mongoClusters_mc7id9mtlp_name_azrddadmin 'Microsoft.DocumentDB/mongoClusters/users@2026-02-01-preview' = {
-  parent: mongoClusters_mc7id9mtlp_name_resource
+resource mongoClusters_mcmfaoowj5_name_azrddadmin 'Microsoft.DocumentDB/mongoClusters/users@2026-02-01-preview' = {
+  parent: mongoClusters_mcmfaoowj5_name_resource
   name: 'azrddadmin'
   properties: {}
 }

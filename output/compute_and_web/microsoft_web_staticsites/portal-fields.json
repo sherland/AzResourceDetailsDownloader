@@ -1,0 +1,26 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-50afc5ec1d1fef44"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Location",
+    "Value": "Global"
+  },
+  {
+    "Label": "URL",
+    "Value": "https://witty-smoke-0db93b00f.7.azurestaticapps.net"
+  },
+  {
+    "Label": "Sku",
+    "Value": "Free"
+  }
+]

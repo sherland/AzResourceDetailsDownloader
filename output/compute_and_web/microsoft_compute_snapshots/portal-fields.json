@@ -1,0 +1,42 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-e1235e71e818a48b"
+  },
+  {
+    "Label": "Location",
+    "Value": "Norway East"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Created",
+    "Value": "8/14/2026, 12:32:53 PM"
+  },
+  {
+    "Label": "Storage type",
+    "Value": "Standard HDD LRS"
+  },
+  {
+    "Label": "Source",
+    "Value": "diskflr4a67c"
+  },
+  {
+    "Label": "Size",
+    "Value": "4 GiB"
+  },
+  {
+    "Label": "Encryption",
+    "Value": "Platform-managed key"
+  },
+  {
+    "Label": "Snapshot access state",
+    "Value": "Available"
+  }
+]
