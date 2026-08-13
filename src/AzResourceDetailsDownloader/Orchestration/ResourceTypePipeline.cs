@@ -118,7 +118,8 @@ public sealed class ResourceTypePipeline(
             await OutputWriter.WriteAsync(
                 outputRoot, def.ArmType, category, rawJson, capture.Screenshot,
                 subscriptionId, secrets["tenantId"], rgName,
-                bicep, terraform, capture.Notices, capture.Fields, ct);
+                bicep, terraform, capture.Notices, capture.Fields,
+                secrets.GetValueOrDefault("userPrincipalName"), ct);
 
             unitLogger.LogInformation("  captured '{ArmType}' successfully in {Elapsed}", def.ArmType, stopwatch.Elapsed);
             return new RunResult(def.ArmType, true, stopwatch.Elapsed, null);

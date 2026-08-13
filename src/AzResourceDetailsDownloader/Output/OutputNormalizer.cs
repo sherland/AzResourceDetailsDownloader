@@ -24,14 +24,34 @@ public static class OutputNormalizer
     // artifact that ever contains these display names — data.json/bicep/tf don't.
     public const string PlaceholderDirectoryName = "example-tenant";
     public const string PlaceholderSubscriptionName = "Example Subscription";
+    // Live-observed leak (2026-08-13, Microsoft.Synapse/workspaces): "SQL Microsoft Entra admin"
+    // defaults to whichever AAD identity created the resource — surfaced the operator's real,
+    // personal email address. Matched by substring rather than an exact label, since other SQL/DB
+    // types show the same concept under a slightly different label (e.g. plain "Microsoft Entra
+    // admin" on Microsoft.Sql/servers itself) — better to over-redact than repeat this leak under
+    // a label variant this list doesn't happen to have verbatim.
+    public const string PlaceholderEntraAdmin = "admin@example.com";
 
-    public static string Normalize(string text, string subscriptionId, string tenantId, string actualRgName, string armType)
+    // Same leak as PlaceholderEntraAdmin, but in data.json/bicep/tf rather than portal-fields.json:
+    // ARM auto-stamps the signed-in user's UPN into every resource's systemData.createdBy/
+    // lastModifiedBy. Reuses the Entra-admin placeholder so both artifacts show the same
+    // recognizably-fake identity rather than two different placeholder strings for the same kind
+    // of redacted value.
+    public const string PlaceholderUserPrincipalName = PlaceholderEntraAdmin;
+
+    public static string Normalize(
+        string text, string subscriptionId, string tenantId, string actualRgName, string armType,
+        string? userPrincipalName = null)
     {
         var placeholderRgName = DeterministicNaming.PlaceholderResourceGroupName(armType);
 
         text = ReplaceCaseInsensitive(text, actualRgName, placeholderRgName);
         text = ReplaceCaseInsensitive(text, subscriptionId, PlaceholderSubscriptionId);
         text = ReplaceCaseInsensitive(text, tenantId, PlaceholderTenantId);
+        if (!string.IsNullOrEmpty(userPrincipalName))
+        {
+            text = ReplaceCaseInsensitive(text, userPrincipalName, PlaceholderUserPrincipalName);
+        }
         return text;
     }
 
@@ -43,6 +63,8 @@ public static class OutputNormalizer
         {
             "Directory Name" => f with { Value = PlaceholderDirectoryName },
             "Subscription" => f with { Value = PlaceholderSubscriptionName },
+            var label when label.Contains("Entra admin", StringComparison.OrdinalIgnoreCase)
+                => f with { Value = PlaceholderEntraAdmin },
             _ => f,
         }).ToList();
 

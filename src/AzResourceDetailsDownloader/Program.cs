@@ -94,17 +94,23 @@ if (parsedArgs.Mode == RunMode.DryRun)
 // RunMode.Run: real Azure provisioning against the caller's already-logged-in `az` session.
 var tenantId = options.TenantId;
 var subscriptionId = options.SubscriptionId;
-if (tenantId is null || subscriptionId is null)
-{
-    logger.LogInformation("TenantId/SubscriptionId not set in appsettings — resolving from 'az account show'...");
-    var account = await AzCliContext.ResolveAsync();
-    tenantId ??= account.TenantId;
-    subscriptionId ??= account.SubscriptionId;
-    logger.LogInformation("Using tenant {TenantId}, subscription {SubscriptionId}", tenantId, subscriptionId);
-}
+// Always resolved (not just when tenantId/subscriptionId are unset) — this is also the only way
+// to learn the signed-in user's UPN, which ARM auto-stamps into every resource's systemData
+// (createdBy/lastModifiedBy) and which needs the same redaction treatment as subscription/tenant
+// ID. Live-observed leak (2026-08-13): the operator's real personal email address, uncaught
+// because nothing upstream of OutputNormalizer ever knew what value to redact.
+logger.LogInformation("Resolving account context from 'az account show'...");
+var account = await AzCliContext.ResolveAsync();
+tenantId ??= account.TenantId;
+subscriptionId ??= account.SubscriptionId;
+logger.LogInformation("Using tenant {TenantId}, subscription {SubscriptionId}", tenantId, subscriptionId);
 
 secrets["subscriptionId"] = subscriptionId;
 secrets["tenantId"] = tenantId;
+if (account.UserPrincipalName is { Length: > 0 } upn)
+{
+    secrets["userPrincipalName"] = upn;
+}
 
 var credential = new AzureCliCredential();
 var armClient = new ArmClient(credential, subscriptionId);

@@ -50,6 +50,50 @@ public class OutputNormalizerTests
     }
 
     [Fact]
+    public void Normalize_RedactsUserPrincipalName_WhenProvided()
+    {
+        // Live-observed leak (2026-08-13, Microsoft.CognitiveServices/accounts and 30+ other types):
+        // ARM auto-stamps the signed-in user's real UPN into every resource's
+        // systemData.createdBy/lastModifiedBy — uncaught because nothing upstream of this method
+        // knew what value to redact until AzCliContext started resolving it.
+        const string upn = "jane.doe@example.com";
+        var text = $"{{\"systemData\": {{\"createdBy\": \"{upn}\", \"lastModifiedBy\": \"{upn}\"}}}}";
+
+        var result = OutputNormalizer.Normalize(text, "sub", "tenant", "rg", "Microsoft.Storage/storageAccounts", upn);
+
+        Assert.DoesNotContain(upn, result);
+        Assert.Contains(OutputNormalizer.PlaceholderUserPrincipalName, result);
+    }
+
+    [Fact]
+    public void Normalize_LeavesTextUnchanged_WhenUserPrincipalNameIsNull()
+    {
+        var text = """{"systemData": {"createdBy": "someone@example.org"}}""";
+
+        var result = OutputNormalizer.Normalize(text, "sub-id", "tenant-id", "rg-ardl-abcdef0123456789", "Microsoft.Storage/storageAccounts", userPrincipalName: null);
+
+        Assert.Equal(text, result);
+    }
+
+    [Fact]
+    public void NormalizePortalFields_RedactsEntraAdminFields_RegardlessOfExactLabel()
+    {
+        // Live-observed leak (2026-08-13, Microsoft.Synapse/workspaces): "SQL Microsoft Entra admin"
+        // surfaced the operator's real personal email. Matched by substring ("Entra admin") rather
+        // than an exact label, since other SQL/DB types expose the same concept under a different
+        // exact label (e.g. plain "Microsoft Entra admin").
+        var fields = new List<PortalField>
+        {
+            new("SQL Microsoft Entra admin", "live.com#jane.doe@example.com"),
+            new("Microsoft Entra admin", "someone@realcompany.com"),
+        };
+
+        var result = OutputNormalizer.NormalizePortalFields(fields);
+
+        Assert.All(result, f => Assert.Equal(OutputNormalizer.PlaceholderEntraAdmin, f.Value));
+    }
+
+    [Fact]
     public void NormalizePortalFields_RedactsDirectoryAndSubscriptionDisplayNames()
     {
         // Live-observed leak (2026-08-13): a real capture surfaced the actual AAD tenant name under
