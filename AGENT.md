@@ -19,6 +19,8 @@ Either can expire without the other doing so. Key lessons:
   Trust this over `az account show`.
 - **A plain `az login` can silently no-op.** If there's an existing SSO session, `az login` alone can reuse it without resetting the conditional-access clock, so the CLI session keeps expiring on the same schedule. Use `./authenticate.ps1` instead of a bare `az login` — it runs `az logout` first to force a genuinely fresh login, then `az login`, then this tool's own `--login` mode to refresh the portal session too.
 - Run `./authenticate.ps1` proactively before starting a long unattended batch (`--run` without `--only`), not just reactively after a failure — a mid-batch expiry wastes every unit that runs after it.
+- `authenticate.ps1`'s `-TenantId` default is read from the *current* `az` session (`az account show`) before it logs out — it no longer hardcodes a tenant. If `az account show` fails right after a logout with no prior session to read (e.g. this machine has never logged in, or you're switching tenants for the first time), it falls back to a plain interactive `az login` that lets you pick the tenant/account yourself. Found live: an earlier hardcoded default pointed at the wrong tenant entirely (it had drifted from a stray test-fixture GUID, not any real second tenant this project uses), so `az logout` succeeded but the follow-up login silently authenticated into a tenant with no accessible subscription — `az account show` then fails with "No subscription found" even though the script itself exited 0.
+- If `dotnet run --login` reports success but `.auth/storage_state.json`'s mtime doesn't actually change, the interactive Chromium window either never got a login completed in it, or was closed before `WaitForLoginAsync` detected the post-login redirect (it polls for the URL settling on `portal.azure.com` with a non-empty fragment, up to 5 minutes) — rerun it and leave the window alone until it reports "Saved session state" and tells you it's safe to close.
 
 ## Windows-specific: `.gitignore` matches case-insensitively
 
@@ -37,6 +39,109 @@ Categorization is layered across two config files — for an unmatched armType, 
 2. `config/category-overrides.json` — hand-curated, never touched by any script. Add an entry here for any armType Microsoft's table doesn't cover, even via `CategoryResolver`'s parent-type walk.
 
 Anything unmatched by both lands in `output/uncategorized/` — worth checking after adding new catalog entries.
+
+## Debugging `EssentialsExtractor` (portal-fields.json) against a real page
+
+`EssentialsExtractor.cs` scrapes the Overview blade's "Essentials" panel (see README) via the
+`div.fxc-essentials-item` / `label.fxc-essentials-label` / `.fxc-essentials-value` pattern, found by
+live DOM inspection against a real `Microsoft.KeyVault/vaults` and `Microsoft.ContainerRegistry/registries`
+capture (2026-08-13) — not guessed, same practice as `notes.md`'s `BannerExtractor`. If a future Azure
+Portal UI change breaks this (fields extracted drops to 0, or `--run` logs show `extracted 0 Essentials
+field(s)` where there clearly are some), re-inspect the real markup rather than guessing a fix:
+
+```
+ARDL_DEBUG_ESSENTIALS_DIR=/path/to/scratch/dir dotnet run -- --run --only <one cheap armType>
+```
+
+This dumps the DOM subtree around the `Essentials` text landmark to `{ArmType-safe-name}.html` in that
+directory, permanently (not scaffolding — keep this env var and `EssentialsExtractor.DumpDebugHtmlAsync`
+in place). The dumped HTML comes back as one giant single-line string; reformat it before reading:
+
+```
+sed 's/></>\n</g' dumped.html > dumped.pretty.html
+```
+
+then grep for a known field label (e.g. `"Resource group"`) with wide context to see the real structure.
+
+**Render-timing gotcha**: a capture taken right as `StableRenderWaiter`'s loading-indicator wait times out
+(page not fully settled — the `loading indicators ... still visible after 15s; capturing anyway` warning)
+can produce a real screenshot but a genuinely empty `portal-fields.json`, because the Essentials panel can
+render slightly *after* the generic loading-indicator-clear signal fires. `EssentialsExtractor.ExtractAsync`
+now waits up to 10s specifically for `.fxc-essentials-item` to appear before extracting, independent of the
+caller's own render-stable signal — found live (Key Vault dropped from a reliable 10 fields to 0 on one
+capture), fixed, and re-confirmed live afterward. If `extracted 0` recurs despite this, it's either a
+genuine type with no Essentials panel or a bigger render delay than 10s, not (necessarily) a selector bug.
+
+**Redaction gotcha**: the Essentials panel exposes human-readable identity fields — "Directory Name" (AAD
+tenant display name) and "Subscription" (subscription display name) — that never appear in `data.json`/
+bicep/tf, so the existing GUID-based `OutputNormalizer.Normalize` doesn't catch them (they're not the ID
+string it substring-replaces). These are separately redacted by label in
+`OutputNormalizer.NormalizePortalFields`, found live on the very first real capture (it wrote the actual
+tenant name into a file destined for commit) — if the extractor is extended to surface more Essentials
+fields for other resource types, check for the same class of leak (any field that's a human-readable name
+rather than a GUID/resource-name already covered by `Normalize`).
+
+## This subscription is Free Trial/Student-tier — read this before chasing another region/quota failure
+
+Confirmed via two independent, explicit ARM error messages (not inferred from behavior): `Microsoft.Automation/automationAccounts` — *"Free Trial and Student subscriptions cannot create accounts in this location. Please select from the allowed regions: [eastus, eastus2, westus, northeurope, southeastasia, japanwest]"* — and `Microsoft.Cdn/profiles` — *"Free Trial and Student account is forbidden for Azure Frontdoor resources"* (permanent, no region fixes it). This single fact explains a disproportionate share of this catalog's regional and quota failures: a narrow region allowlist for some services, `Microsoft.Cdn/profiles`/`.../afdEndpoints` being permanently uncreatable, and unusually low per-region quotas (3 Standard-SKU public IPs, 1 `Microsoft.App/managedEnvironments`, 1 `Microsoft.Automation/automationAccounts` — the last with what looks like a grace period after deletion, since a same-region retry moments after teardown can still fail). If you hit a new, unexplained region/quota error on this subscription, check whether it's this class of restriction before assuming it's a bug in this tool or a generic Azure limitation — a paid subscription likely won't reproduce any of it.
+
+## Diagnosing a region/quota/naming failure — the pattern used to fix ~36 entries in one session
+
+Don't guess a fix; get real evidence, then apply it precisely. In order of what to check:
+
+1. **Read the actual ARM error code and message in full**, not just the truncated summary line — `SkuNotAvailable`, `LocationNotAvailableForResourceType`, `StorageAccountAlreadyTaken`, `SqlServerRegionDoesNotAllowProvisioning`, `MaxNumberOfRegionalEnvironmentsInSubExceeded` etc. are all precise and mean something different. A generic-sounding message like "BadArgument" can still contain the real reason in its text (e.g. `SignalRService`'s `"Leaf domain X is reserved"` is a naming collision, not a validation error).
+2. **For "this SKU/type isn't available here"**: query the real API before picking a replacement region — `az vm list-skus --size <sku> --all -o json` for compute SKUs (gives per-region `restrictions[]`, distinguishing a *static* `NotAvailableForSubscription` block from a transient capacity error), or `az provider show --namespace <RP> --query "resourceTypes[?resourceType=='<type>'].locations"` for general type availability (note: `resourceType` here is the **lowercase** ARM type segment, e.g. `hostpools` not `hostPools` — case-sensitive match). Neither API tells you whether the *subscription* can actually create things there (a region can appear "available" and still be blocked, e.g. `westeurope`'s blanket "not accepting new customers" for this subscription) — cross-reference against regions already proven to work.
+3. **For "already exists"/"already taken"/"is reserved"**: this is a naming collision, not a region problem — use `--name-prefix` (see below), not a region change.
+4. **When pinning a region on an entry with prerequisites**: pin the *first* resource in the dependency chain that's actually region-constrained (usually the first VNet, or the resource with the SKU/type restriction), then chain every *downstream* resource to it via `{prereq.<alias>.location}` rather than pinning each one independently — see the `Standard_D2s_v5` section below for why independent pins silently produce region-mismatched resources.
+5. **Check for a region hardcoded inside `requestBody` itself**, not just the entry's own `location`/`locationFallbacks` — some resource types (Cosmos DB's `properties.locations[].locationName`) have a *separate* region field inside the request body that the `location`/`locationFallbacks` mechanism doesn't touch at all. A `provisioningState: "Failed"` with no obviously wrong top-level field is a strong hint to grep the whole `requestBody` for a suspicious literal region string.
+6. **Build and dry-run (`--dry-run --only <type>`) before spending real provisioning time** — it validates the JSON and shows exactly how prerequisite `location` chains resolve, catching an unresolved `{prereq.X.location}` typo or a missing chain link for free.
+
+## `Standard_D2s_v5` is permanently blocked on this subscription in most regions — pinned to `swedencentral`
+
+Live-confirmed 2026-08-13 via `az vm list-skus --size Standard_D2s_v5 --all -o json`: this subscription has a
+**static** `NotAvailableForSubscription` restriction for this SKU in `norwayeast` (the default region),
+`westeurope`, `eastus`, `francecentral`, and most others — not a transient capacity blip, so retrying the
+same region never helps. `swedencentral` and `polandcentral` came back fully unrestricted; every catalog
+entry using this SKU (`Microsoft.Compute/virtualMachines`, `.../virtualMachineScaleSets`,
+`Microsoft.ContainerService/managedClusters` and its `agentPools`, and the VM prerequisite chain under
+`Microsoft.Compute/restorePointCollections`) is now pinned to `"location": "swedencentral"` (or chained via
+`{prereq.<alias>.location}` for anything downstream of a VNet/NIC in the same unit) instead of relying on
+`locationFallbacks`.
+
+**Why not `locationFallbacks`, which already exists for exactly this kind of problem?** It only retries the
+*same* resource across regions when *that resource itself* gets a capacity error. Live-verified this doesn't
+work for a VM: the VNet/Subnet/NIC prerequisites have no SKU restriction of their own, so they always
+succeed in `norwayeast` on the first try — the fallback machinery never engages, because nothing failed yet.
+Only the VM *target* fails, several steps later, by which point its NIC is already stuck in the wrong
+region. If you hit an analogous case (a downstream resource in a chain is what's actually SKU-restricted,
+not the resource that would naturally trigger the retry), pin the whole chain to a literal known-good region
+instead of trying to make `locationFallbacks` reach backwards through prerequisites it doesn't know about.
+
+If this subscription's restrictions ever change (re-check with the same `az vm list-skus` query — don't
+guess), or a different SKU needs the same treatment, that command is the source of truth, not this file.
+
+## Resource-provider auto-registration covers two different error shapes
+
+`ResourceProviderRegistrationErrorDetector.TryGetUnregisteredNamespace` recognizes **both** wordings Azure
+uses for "this subscription has never used this provider": the standard ARM PUT error
+(`MissingSubscriptionRegistration` / "not registered to use namespace 'X'", handled in
+`ResourceTypePipeline`'s provisioning retry) and the separate shape `Microsoft.AzureTerraform`'s
+`exportTerraform` action returns (`RPNotRegistered` / "make sure the resource provider 'X' is registered",
+handled in `IacExportService.TryExportTerraformAsync`) — live-hit on nearly every unit's Terraform export
+before this was wired up. If a *third* provider-registration wording ever turns up (different ARM action,
+different phrasing), extend the same detector rather than adding a one-off check at the new call site.
+
+## `--name-prefix` dodges globally-unique naming collisions
+
+Deterministic naming (`DeterministicNaming.cs`) seeds purely from `armType`, so **any** prior run of this
+tool anywhere — this subscription, a different one, even a different tenant — can permanently reserve the
+unprefixed deterministic name for a globally-unique-named type (Storage Accounts, Container Registries,
+Cosmos DB, ...). Live-hit: `Microsoft.Storage/storageAccounts` collided with `StorageAccountAlreadyTaken`
+against a name that didn't exist anywhere in the current subscription. `--name-prefix <text>` (or
+`Pipeline:NamePrefix` in appsettings) shifts the deterministic seed for every non-exempt armType without
+changing any `nameTemplate`'s structure — safe for entries with tenant-mandated naming conventions (e.g.
+`Microsoft.Compute/virtualMachines`' `swaz{rand9}01`) or strict length limits (Storage's 24 chars), since the
+prefix never gets literally prepended into the name text itself.
 
 ## Long-running `--run` batches can show no console output for a while — that's normal
 
