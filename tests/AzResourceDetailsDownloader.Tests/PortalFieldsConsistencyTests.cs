@@ -34,10 +34,13 @@ public class PortalFieldsConsistencyTests
 
         // Boolean/enum ARM values the portal renders as a friendlier English phrase instead of the
         // raw "true"/"false"/enum token (e.g. Redis's real provisioningState "Succeeded" displays
-        // as "Running" once the cache is actually serving traffic).
-        "Status", "Managed", "Zone redundant", "Partitioning", "Duplicate detection", "Sessions",
-        "Forward messages to", "Dead lettering", "Support ordering", "Branch-to-branch",
-        "Automatic failover enabled", "Enable No Public IP", "High availability", "Virtual endpoint",
+        // as "Running" once the cache is actually serving traffic). "Status" and most of its
+        // neighbors below stay here rather than in BooleanBackedLabels because each resource type
+        // has its own status vocabulary (Active/Succeeded/Online/Running/Ready/...) assembled by a
+        // portal-side lookup, not a single boolean — genuinely not mechanically checkable. The
+        // handful that *are* a direct single-property rendering moved to BooleanBackedLabels
+        // instead of living here.
+        "Status", "Managed", "Forward messages to", "Dead lettering", "Automatic failover enabled",
         "Non-TLS access", "Autoscale", "Availability zones", "Availability zone",
         "Public network access", "Managed virtual network", "Auto-inflate throughput units",
 
@@ -114,6 +117,38 @@ public class PortalFieldsConsistencyTests
     // timestamp silently fails to match.
     private static readonly Regex JsonUnicodeEscape = new("\\\\u([0-9A-Fa-f]{4})", RegexOptions.Compiled);
 
+    // Boolean/enum ARM values the portal renders as a friendlier English phrase instead of the raw
+    // "true"/"false" token — but only for labels individually confirmed (2026-08-13, against the
+    // committed corpus) to be a direct rendering of one named property with no further composition.
+    // Everything else that fits the general shape (e.g. "Status") stays in NonTraceableLabels
+    // instead of being force-fit into this, since it's actually a per-resource-type vocabulary or
+    // multi-property composite, not a single boolean.
+    private static readonly Dictionary<string, string> BooleanBackedLabels =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Zone redundant"] = "zoneRedundant",
+            ["Partitioning"] = "enablePartitioning",
+            ["Duplicate detection"] = "requiresDuplicateDetection",
+            ["Sessions"] = "requiresSession",
+            ["Support ordering"] = "supportOrdering",
+            ["Branch-to-branch"] = "allowBranchToBranchTraffic",
+            ["Enable No Public IP"] = "enableNoPublicIp",
+            ["High availability"] = "highAvailability",
+            ["Virtual endpoint"] = "highAvailability",
+        };
+
+    private static readonly Dictionary<string, bool> FriendlyBoolWords =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Yes"] = true,
+            ["No"] = false,
+            ["Enabled"] = true,
+            ["Disabled"] = false,
+            ["Not enabled"] = false,
+        };
+
+    private static readonly Regex RawBoolToken = new(@"true|false|""Enabled""|""Disabled""", RegexOptions.Compiled);
+
     public static IEnumerable<object[]> PortalFieldsFiles()
     {
         var repoRoot = RepoPaths.ResolveRepoRoot();
@@ -163,6 +198,11 @@ public class PortalFieldsConsistencyTests
             }
 
             if (TimestampLabels.Contains(f.Label) && TimestampIsTraceable(f.Value, rawDataJson))
+            {
+                continue;
+            }
+
+            if (BooleanBackedLabels.ContainsKey(f.Label) && BooleanBackedFieldMatches(f.Label, f.Value, rawDataJson))
             {
                 continue;
             }
@@ -254,6 +294,41 @@ public class PortalFieldsConsistencyTests
         {
             var offset = TimeSpan.FromMinutes(offsetMinutes);
             if (candidates.Any(c => Math.Abs((c.ToOffset(offset).DateTime - naive).TotalSeconds) < 60))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Looks up BooleanBackedLabels[label]'s raw property name in data.json and checks the nearest
+    // true/false (or "Enabled"/"Disabled") token after it against the friendly word's expected
+    // value. A 150-character window tolerates the property being nested (e.g. Databricks' template
+    // parameters shape: "enableNoPublicIp": { "type": "Bool", "value": true }) without requiring an
+    // exact structural match.
+    private static bool BooleanBackedFieldMatches(string label, string friendlyValue, string rawDataJson)
+    {
+        if (!BooleanBackedLabels.TryGetValue(label, out var propertyName)
+            || !FriendlyBoolWords.TryGetValue(friendlyValue, out var expectedBool))
+        {
+            return false;
+        }
+
+        foreach (Match occurrence in Regex.Matches(rawDataJson, $@"""{Regex.Escape(propertyName)}""\s*:"))
+        {
+            var windowStart = occurrence.Index + occurrence.Length;
+            var windowLength = Math.Min(150, rawDataJson.Length - windowStart);
+            var window = rawDataJson.Substring(windowStart, windowLength);
+
+            var tokenMatch = RawBoolToken.Match(window);
+            if (!tokenMatch.Success)
+            {
+                continue;
+            }
+
+            var actualBool = tokenMatch.Value is "true" or "\"Enabled\"";
+            if (actualBool == expectedBool)
             {
                 return true;
             }
