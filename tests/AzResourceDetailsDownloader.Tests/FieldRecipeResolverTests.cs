@@ -186,6 +186,60 @@ public class FieldRecipeResolverTests
         Assert.NotEqual(FieldRecipeKind.Direct, recipe.Kind);
     }
 
+    // Key Vault's raw "location" is the usual lowercase ARM code ("norwayeast") — verified via
+    // config/azure-locations.json, not just trusted with a caveat like before this lookup existed.
+    [Fact]
+    public void Resolve_Location_VerifiesLowercaseArmCode_ViaRegionLookup()
+    {
+        var root = LoadCapturedResource("security", "microsoft_keyvault_vaults");
+
+        var recipe = FieldRecipeResolver.Resolve("Location", "Norway East", root);
+
+        Assert.Equal(FieldRecipeKind.ShortcutVerified, recipe.Kind);
+        Assert.Equal("model.location", recipe.Target);
+    }
+
+    // Live-run regression: Notification Hubs' raw "location" is already display text ("Norway
+    // East"), not the lowercase code most types return. Must verify directly instead of failing to
+    // find "Norway East" in a table keyed by lowercase codes.
+    [Fact]
+    public void Resolve_Location_VerifiesAlreadyDisplayFormRegion()
+    {
+        var root = LoadCapturedResource("compute_and_web", "microsoft_notificationhubs_namespaces");
+
+        var recipe = FieldRecipeResolver.Resolve("Location", "Norway East", root);
+
+        Assert.Equal(FieldRecipeKind.ShortcutVerified, recipe.Kind);
+    }
+
+    // Live-run regression: Azure Maps' raw "location" is "global" (lowercase), portal shows
+    // "Global" — a non-regional value with no entry in the physical-regions lookup either way, so
+    // this must resolve via the casing-insensitive fallback, not fall through to "unverified".
+    [Fact]
+    public void Resolve_Location_HandlesGlobalCasingDifference()
+    {
+        var root = LoadCapturedResource("developer_tools", "microsoft_maps_accounts");
+
+        var recipe = FieldRecipeResolver.Resolve("Location", "Global", root);
+
+        Assert.Equal(FieldRecipeKind.ShortcutCasingMismatch, recipe.Kind);
+    }
+
+    // Resource group isn't its own field in a raw ARM GET response — only embedded in "id" — so
+    // this locks in the extraction-and-compare logic actually verifying it instead of blindly
+    // trusting model.resource_group like the pre-fix behavior did.
+    [Fact]
+    public void Resolve_ResourceGroup_VerifiesAgainstIdExtraction()
+    {
+        var root = LoadCapturedResource("security", "microsoft_keyvault_vaults");
+        var expectedRg = root.GetProperty("id").GetString()!.Split('/')[4];
+
+        var recipe = FieldRecipeResolver.Resolve("Resource group", expectedRg, root);
+
+        Assert.Equal(FieldRecipeKind.ShortcutVerified, recipe.Kind);
+        Assert.Equal("model.resource_group", recipe.Target);
+    }
+
     private static JsonElement LoadCapturedResource(string category, string armTypeFolder)
     {
         var repoRoot = RepoPaths.ResolveRepoRoot();
