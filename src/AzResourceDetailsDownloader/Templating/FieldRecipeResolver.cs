@@ -21,7 +21,14 @@ public enum FieldRecipeKind
     Unresolved,
 }
 
-public sealed record FieldRecipe(FieldRecipeKind Kind, double Confidence, string? Target, string Notes);
+// IsLiveState marks a label as PortalFieldKnowledge.LiveStateLabels does — a currently-observed
+// condition rather than a durable setting — independent of Kind/Target/Confidence entirely. A
+// renderer should still emit this field's row (dropping it breaks portal-layout parity), but treat
+// the value as a "true as of the last capture" snapshot rather than a current fact: e.g. append a
+// captured-at caveat, or — when Kind is Unresolved/NotAddressable, meaning there's no captured
+// value to show at all (VM power state isn't in the capture body) — render an explicit
+// "see the Azure Portal for current status" placeholder instead of silently omitting the row.
+public sealed record FieldRecipe(FieldRecipeKind Kind, double Confidence, string? Target, string Notes, bool IsLiveState = false);
 
 // Resolves a captured portal Essentials label/value pair down to a "recipe" describing how a
 // future template generator could reproduce it: a direct model.props.* path, a known transform
@@ -55,6 +62,12 @@ public static class FieldRecipeResolver
     };
 
     public static FieldRecipe Resolve(string label, string value, JsonElement root)
+    {
+        var recipe = ResolveCore(label, value, root);
+        return recipe with { IsLiveState = PortalFieldKnowledge.LiveStateLabels.Contains(label) };
+    }
+
+    private static FieldRecipe ResolveCore(string label, string value, JsonElement root)
     {
         if (label.Equals("Location", StringComparison.OrdinalIgnoreCase))
         {

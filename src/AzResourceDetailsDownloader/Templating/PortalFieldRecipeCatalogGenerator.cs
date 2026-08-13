@@ -11,6 +11,7 @@ public sealed record RecipeCatalogEntry(
     double Confidence,
     string? Target,
     string Notes,
+    bool IsLiveState,
     IReadOnlyList<string> ObservedArmTypes,
     string SampleValue,
     IReadOnlyDictionary<string, FieldRecipe>? Conflicts);
@@ -78,6 +79,7 @@ public static class PortalFieldRecipeCatalogGenerator
                 primary.Recipe.Confidence,
                 primary.Recipe.Target,
                 primary.Recipe.Notes,
+                primary.Recipe.IsLiveState,
                 observations.Select(o => o.ArmType).Distinct(StringComparer.OrdinalIgnoreCase)
                     .OrderBy(a => a, StringComparer.OrdinalIgnoreCase).ToList(),
                 primary.Value,
