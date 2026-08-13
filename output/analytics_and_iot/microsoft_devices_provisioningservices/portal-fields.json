@@ -38,9 +38,5 @@
   {
     "Label": "Automatic failover enabled",
     "Value": "Yes"
-  },
-  {
-    "Label": "ADR namespace",
-    "Value": "Click here to add a namespace"
   }
 ]

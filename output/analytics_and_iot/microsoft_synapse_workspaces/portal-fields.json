@@ -32,10 +32,6 @@
     "Value": "https://web.azuresynapse.net?workspace=%2fsubscriptions%2f00000000-0000-0000-0000-000000000000%2fresourceGroups%2frg-ardl-bb17cace9b9db143%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsynjhp9-iao"
   },
   {
-    "Label": "Networking",
-    "Value": "Show firewall settings"
-  },
-  {
     "Label": "Primary ADLS Gen2 account URL",
     "Value": "https://stuyb3hfcc.dfs.core.windows.net"
   },

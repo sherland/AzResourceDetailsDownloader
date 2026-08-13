@@ -20,6 +20,20 @@ public sealed record PortalField(string Label, string Value);
 // reasoning that made BannerExtractor prefer `aria-label` over visible text nodes.
 public static class EssentialsExtractor
 {
+    // Labels that are portal navigation/action chrome — never resource data — but render inside
+    // .fxc-essentials-item just like real fields, so the DOM selector alone can't tell them apart.
+    // Identified by manual inspection of the values they actually carry (2026-08-13): "Click here to
+    // manage keys", "Show firewall settings", "https://aka.ms/asrs/faq", etc. — action prompts and
+    // doc links, not anything captured elsewhere in the resource's own ARM body. If a resource type
+    // ever needs a *different* field that happens to share one of these labels, that's a portal UI
+    // collision worth investigating on its own, not a reason to remove the label from this set.
+    private static readonly HashSet<string> ChromeLabels = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "Getting started", "Manage keys", "ADR namespace", "Management services", "Networking",
+        "Topology", "Troubleshooting Guide", "FAQs", "Connection strings", "Keys",
+        "Best practices", "New features", "OTLP connection info",
+    };
+
     private const string ExtractEssentialsJs = @"() => {
         const clean = s => (s || '').replace(/\s+/g, ' ').trim();
         return Array.from(document.querySelectorAll('.fxc-essentials-item')).map(item => {
@@ -60,6 +74,7 @@ public static class EssentialsExtractor
             return rows
                 .Where(r => r.Length == 2 && !string.IsNullOrWhiteSpace(r[0]) && !string.IsNullOrWhiteSpace(r[1]))
                 .Select(r => new PortalField(r[0]!.Trim(), r[1]!.Trim()))
+                .Where(f => !ChromeLabels.Contains(f.Label))
                 // The portal can render an item twice during certain transitions (e.g. move-target
                 // pickers); de-dupe by label, keeping the first occurrence.
                 .DistinctBy(f => f.Label, StringComparer.OrdinalIgnoreCase)

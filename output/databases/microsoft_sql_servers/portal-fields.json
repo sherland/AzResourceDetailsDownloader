@@ -24,10 +24,6 @@
     "Value": "azrddadmin"
   },
   {
-    "Label": "Networking",
-    "Value": "Show networking settings"
-  },
-  {
     "Label": "Microsoft Entra admin",
     "Value": "Not configured"
   },

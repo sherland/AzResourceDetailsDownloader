@@ -26,9 +26,5 @@
   {
     "Label": "Logs workspace",
     "Value": "managed-aic-x782c5-ws"
-  },
-  {
-    "Label": "OTLP connection info",
-    "Value": "Turn on OTLP support"
   }
 ]

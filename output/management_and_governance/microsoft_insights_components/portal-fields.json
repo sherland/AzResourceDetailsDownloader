@@ -26,9 +26,5 @@
   {
     "Label": "Logs workspace",
     "Value": "lawr-uvykju"
-  },
-  {
-    "Label": "OTLP connection info",
-    "Value": "Turn on OTLP support"
   }
 ]

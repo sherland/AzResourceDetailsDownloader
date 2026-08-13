@@ -59,11 +59,11 @@ public class PortalFieldsConsistencyTests
         "IDPS mode (Premium)", "Paired recovery region", "Domain name label scope",
         "Service/UI Version", "Type", "Provisioning state",
 
-        // Portal-only chrome: navigation links, action prompts, and "click to configure" placeholders
-        // that were never resource data in the first place.
-        "OTLP connection info", "Getting started", "ADR namespace", "Management services",
-        "Networking", "Manage keys", "Topology", "Troubleshooting Guide", "FAQs",
-        "Connection strings", "Keys", "Best practices", "New features",
+        // Portal-only chrome (navigation links, action prompts, "click to configure" placeholders)
+        // used to live here too, but EssentialsExtractor.ChromeLabels now filters those out at
+        // capture time instead — a label that was never resource data shouldn't need a test-side
+        // exemption at all. If a *new* chrome label shows up in a future capture, add it there, not
+        // here.
 
         // Values sourced from a different API surface than the main resource GET this tool captures
         // (a separate keys/connection-string endpoint, or a portal-computed URL/endpoint not stored
