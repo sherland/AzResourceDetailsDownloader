@@ -96,20 +96,22 @@ dependency on that repo's code.
 
 ## Debugging `EssentialsExtractor` (portal-fields.json) against a real page
 
-`EssentialsExtractor.cs` scrapes the Overview blade's "Essentials" panel (see README) via the
-`div.fxc-essentials-item` / `label.fxc-essentials-label` / `.fxc-essentials-value` pattern, found by
-live DOM inspection against a real `Microsoft.KeyVault/vaults` and `Microsoft.ContainerRegistry/registries`
-capture (2026-08-13) — not guessed, same practice as `notes.md`'s `BannerExtractor`. If a future Azure
-Portal UI change breaks this (fields extracted drops to 0, or `--run` logs show `extracted 0 Essentials
-field(s)` where there clearly are some), re-inspect the real markup rather than guessing a fix:
+`EssentialsExtractor.cs` scrapes the Overview blade's "Essentials" panel (see README). Original
+selector (`div.fxc-essentials-item` / `label.fxc-essentials-label` / `.fxc-essentials-value`) found
+by live DOM inspection against `Microsoft.KeyVault/vaults`/`Microsoft.ContainerRegistry/registries`
+(2026-08-13). If a future Azure Portal UI change breaks this again (fields extracted drops to 0, or
+`--run` logs show `extracted 0 Essentials field(s)` where there clearly are some), re-inspect the
+real markup rather than guessing a fix — see the two live-caught failure modes below first, since a
+repeat of either wouldn't need new investigation, just re-applying the same pattern.
 
 ```
 ARDL_DEBUG_ESSENTIALS_DIR=/path/to/scratch/dir dotnet run -- --run --only <one cheap armType>
 ```
 
-This dumps the DOM subtree around the `Essentials` text landmark to `{ArmType-safe-name}.html` in that
-directory, permanently (not scaffolding — keep this env var and `EssentialsExtractor.DumpDebugHtmlAsync`
-in place). The dumped HTML comes back as one giant single-line string; reformat it before reading:
+This dumps the DOM subtree around the `Essentials` text landmark (or the sandbox frame's body if
+present — see below) to `{ArmType-safe-name}.html` in that directory, permanently (not scaffolding —
+keep this env var and `EssentialsExtractor.DumpDebugHtmlAsync` in place). The dumped HTML comes back
+as one giant single-line string; reformat it before reading:
 
 ```
 sed 's/></>\n</g' dumped.html > dumped.pretty.html
@@ -117,14 +119,41 @@ sed 's/></>\n</g' dumped.html > dumped.pretty.html
 
 then grep for a known field label (e.g. `"Resource group"`) with wide context to see the real structure.
 
-**Render-timing gotcha**: a capture taken right as `StableRenderWaiter`'s loading-indicator wait times out
-(page not fully settled — the `loading indicators ... still visible after 15s; capturing anyway` warning)
-can produce a real screenshot but a genuinely empty `portal-fields.json`, because the Essentials panel can
-render slightly *after* the generic loading-indicator-clear signal fires. `EssentialsExtractor.ExtractAsync`
-now waits up to 10s specifically for `.fxc-essentials-item` to appear before extracting, independent of the
-caller's own render-stable signal — found live (Key Vault dropped from a reliable 10 fields to 0 on one
-capture), fixed, and re-confirmed live afterward. If `extracted 0` recurs despite this, it's either a
-genuine type with no Essentials panel or a bigger render delay than 10s, not (necessarily) a selector bug.
+**Render-timing gotcha** (2026-08-13, still applies): a capture taken right as `StableRenderWaiter`'s
+loading-indicator wait times out (page not fully settled — the `loading indicators ... still visible
+after 15s; capturing anyway` warning) can produce a real screenshot but a genuinely empty
+`portal-fields.json`, because the Essentials panel can render slightly *after* the generic
+loading-indicator-clear signal fires. `ExtractAsync` waits specifically for the panel to appear
+before extracting, independent of the caller's own render-stable signal.
+
+**Sandbox-iframe gotcha** (2026-08-14, the bigger one — every single capture came back with 0
+fields, not an occasional flake): the Overview blade started rendering inside a cross-origin sandbox
+iframe (`*.reactblade.portal.azure.net`, named `ResourceOverview.ReactView`) as a real Azure Portal
+architecture change. `document.querySelectorAll`/`page.EvaluateAsync` from the top-level page can
+never see into a cross-origin iframe — a browser security boundary, not a bug — even though the
+content is fully rendered and visible in the screenshot. Diagnosed by checking every `<iframe>`'s
+`src` and `contentDocument` reachability live (`reachable=false` on a cross-origin frame confirms it),
+then pulling the frame's real `innerHTML` through Playwright's `FrameLocator`/`ILocator` API, which
+operates at the browser-automation layer and isn't subject to that restriction — never assume
+`page.EvaluateAsync` reaches everything just because a screenshot shows it. The class names inside
+also changed in the same redesign (`fxc-essentials-item` → `essentialsItem-NNN`, `NNN` looking like a
+per-render id, matched as a substring not an exact class) — a portal UI change can rename the wrapper
+*and* relocate it into a new frame at the same time, so confirm both independently rather than
+stopping at the first explanation that fits. `ExtractAsync` now tries four combinations (new classes
+in the sandbox frame, new classes top-level, legacy classes in the sandbox frame, legacy classes
+top-level) before giving up, since different blade types may not migrate at the same time.
+
+**If you fix a `0 fields` regression and get real values back, check the values themselves before
+declaring victory** — two more issues only showed up once extraction started working again: the new
+value markup contains a second, hidden, off-screen duplicate of the same link (a tooltip), so
+`textContent` silently doubles every value (`"rg-foorg-foo"`) — use `innerText`, which respects
+rendered visibility, instead. And Fluent UI's icon font (e.g. a "copy" glyph immediately after the
+value) renders as a Private Use Area Unicode character that `innerText` includes as if it were real
+text — every value came back with a trailing icon glyph until filtered by numeric code-point
+comparison (`0xE000`-`0xF8FF`). Don't hand-type `\uXXXX` escape sequences into a file via a text-based
+edit tool for this kind of filter — a real fix attempt this session got the escape sequence corrupted
+into literal (wrong) raw bytes in transit; a numeric-comparison approach (`char.codePointAt(0) >=
+0xE000`) sidesteps the whole class of problem.
 
 **Redaction gotcha**: the Essentials panel exposes human-readable identity fields — "Directory Name" (AAD
 tenant display name) and "Subscription" (subscription display name) — that never appear in `data.json`/
