@@ -81,6 +81,19 @@ tenant name into a file destined for commit) — if the extractor is extended to
 fields for other resource types, check for the same class of leak (any field that's a human-readable name
 rather than a GUID/resource-name already covered by `Normalize`).
 
+## `portal-fields.inferred.json` — the one deliberate exception to "never guessed, always live-verified"
+
+For a handful of entries this tool could never live-capture on this subscription (retired
+services, missing real secrets, permanent subscription-tier blocks — see README's Known
+limitations), the fields a live capture *would* have produced were instead transcribed by hand
+from public third-party sources (Microsoft Learn docs/screenshots, tutorials) and written to
+`portal-fields.inferred.json` — deliberately **not** `portal-fields.json`, which is reserved for
+genuine live DOM captures via `EssentialsExtractor`. Every `.inferred.json` file has a sibling
+`portal-fields.inferred.sources.md` naming exactly which source(s) it came from — don't create one
+without the other. If a type later becomes live-capturable (quota clears, a secret gets supplied,
+a service comes back), replace both files with a real `--run` capture rather than leaving the
+inferred version alongside a real one.
+
 ## This subscription is Free Trial/Student-tier — read this before chasing another region/quota failure
 
 Confirmed via two independent, explicit ARM error messages (not inferred from behavior): `Microsoft.Automation/automationAccounts` — *"Free Trial and Student subscriptions cannot create accounts in this location. Please select from the allowed regions: [eastus, eastus2, westus, northeurope, southeastasia, japanwest]"* — and `Microsoft.Cdn/profiles` — *"Free Trial and Student account is forbidden for Azure Frontdoor resources"* (permanent, no region fixes it). This single fact explains a disproportionate share of this catalog's regional and quota failures: a narrow region allowlist for some services, `Microsoft.Cdn/profiles`/`.../afdEndpoints` being permanently uncreatable, and unusually low per-region quotas (3 Standard-SKU public IPs, 1 `Microsoft.App/managedEnvironments`, 1 `Microsoft.Automation/automationAccounts` — the last with what looks like a grace period after deletion, since a same-region retry moments after teardown can still fail). If you hit a new, unexplained region/quota error on this subscription, check whether it's this class of restriction before assuming it's a bug in this tool or a generic Azure limitation — a paid subscription likely won't reproduce any of it.

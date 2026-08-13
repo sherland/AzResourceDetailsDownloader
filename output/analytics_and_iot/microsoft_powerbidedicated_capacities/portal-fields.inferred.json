@@ -1,0 +1,10 @@
+[
+  { "Label": "Resource group", "Value": "example-resource-group" },
+  { "Label": "Status", "Value": "Active" },
+  { "Label": "Location", "Value": "East US" },
+  { "Label": "Subscription name", "Value": "Example Subscription" },
+  { "Label": "Subscription ID", "Value": "00000000-0000-0000-0000-000000000000" },
+  { "Label": "Resource name", "Value": "examplepowerbicapacity" },
+  { "Label": "SKU", "Value": "A1" },
+  { "Label": "Resource mode", "Value": "Generation 1" }
+]

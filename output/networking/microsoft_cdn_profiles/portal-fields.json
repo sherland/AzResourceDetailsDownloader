@@ -1,0 +1,38 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-25ff70224f326e0e"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Location",
+    "Value": "Global"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Name",
+    "Value": "cdncz-d9z3m"
+  },
+  {
+    "Label": "Pricing Tier",
+    "Value": "Azure Front Door Standard"
+  },
+  {
+    "Label": "Front Door ID",
+    "Value": "09f0ef42-c3eb-4470-9b43-03ea5093272b"
+  },
+  {
+    "Label": "Origin response timeout",
+    "Value": "30 Seconds"
+  }
+]

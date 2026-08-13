@@ -1,0 +1,12 @@
+[
+  { "Label": "Resource group", "Value": "example-resource-group" },
+  { "Label": "Status", "Value": "Ready" },
+  { "Label": "Location", "Value": "East US" },
+  { "Label": "Subscription name", "Value": "Example Subscription" },
+  { "Label": "Subscription ID", "Value": "00000000-0000-0000-0000-000000000000" },
+  { "Label": "Service Fabric version", "Value": "6.1.456.9494" },
+  { "Label": "Client connection endpoint", "Value": "examplecluster.eastus.cloudapp.azure.com:19000" },
+  { "Label": "Node count", "Value": "5" },
+  { "Label": "Application count", "Value": "0" },
+  { "Label": "Service Fabric Explorer", "Value": "https://examplecluster.eastus.cloudapp.azure.com:19080/Explorer" }
+]

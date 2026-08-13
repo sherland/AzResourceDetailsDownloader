@@ -1,0 +1,10 @@
+[
+  { "Label": "Resource group", "Value": "example-resource-group" },
+  { "Label": "Status", "Value": "Active" },
+  { "Label": "Location", "Value": "East US" },
+  { "Label": "Subscription", "Value": "Example Subscription" },
+  { "Label": "Subscription ID", "Value": "00000000-0000-0000-0000-000000000000" },
+  { "Label": "Resource name", "Value": "examplefabriccapacity" },
+  { "Label": "SKU", "Value": "F2" },
+  { "Label": "Resource mode", "Value": "Generation 2" }
+]

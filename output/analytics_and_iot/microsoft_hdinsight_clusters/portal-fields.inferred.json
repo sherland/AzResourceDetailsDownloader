@@ -1,0 +1,12 @@
+[
+  { "Label": "Resource group", "Value": "example-resource-group" },
+  { "Label": "Status", "Value": "Running" },
+  { "Label": "Location", "Value": "East US" },
+  { "Label": "Subscription", "Value": "Example Subscription" },
+  { "Label": "Subscription ID", "Value": "00000000-0000-0000-0000-000000000000" },
+  { "Label": "Learn More", "Value": "Documentation" },
+  { "Label": "Cluster type, HDI version", "Value": "Hadoop 3.1 (HDI 4.0)" },
+  { "Label": "Image version", "Value": "4.0.3000.1" },
+  { "Label": "URL", "Value": "https://examplehdi.azurehdinsight.net" },
+  { "Label": "Cluster ID", "Value": "00000000-0000-0000-0000-000000000000" }
+]

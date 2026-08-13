@@ -1,0 +1,10 @@
+[
+  { "Label": "Resource group", "Value": "example-resource-group" },
+  { "Label": "Status", "Value": "Running" },
+  { "Label": "Location", "Value": "West US 2" },
+  { "Label": "Subscription", "Value": "Example Subscription" },
+  { "Label": "Subscription ID", "Value": "00000000-0000-0000-0000-000000000000" },
+  { "Label": "URI", "Value": "https://examplekusto.westus2.kusto.windows.net" },
+  { "Label": "Data ingestion URI", "Value": "https://ingest-examplekusto.westus2.kusto.windows.net" },
+  { "Label": "SKU", "Value": "Dev(No SLA)_Standard_E2a_v4" }
+]
