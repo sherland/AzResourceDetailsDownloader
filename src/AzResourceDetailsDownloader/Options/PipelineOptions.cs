@@ -29,4 +29,9 @@ public sealed class PipelineOptions
     // artifact of running too many compute-heavy units at once, not a real per-unit failure, so a quieter
     // retry pass often succeeds where the crowded first pass didn't.
     public int QuotaRetryConcurrency { get; set; } = 1;
+    // Optional. Shifts the deterministic-naming seed (see DeterministicNaming) for every non-exempt armType,
+    // without changing any nameTemplate's structure — use this to dodge a global-uniqueness naming collision
+    // (Storage Accounts, Container Registries, Cosmos DB, ...) against a name reserved by a previous run
+    // anywhere, not just this subscription. Empty/null reproduces the original unprefixed seed.
+    public string? NamePrefix { get; set; }
 }

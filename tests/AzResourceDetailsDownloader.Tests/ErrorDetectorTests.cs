@@ -48,6 +48,20 @@ public class ErrorDetectorTests
     }
 
     [Fact]
+    public void ResourceProviderRegistrationErrorDetector_ExtractsNamespace_FromRpNotRegisteredShape()
+    {
+        // Distinct wording from the MissingSubscriptionRegistration case above — live-observed from
+        // Microsoft.AzureTerraform's exportTerraform action (IacExportService), a separate code path
+        // from the main ARM PUT provisioning flow.
+        var found = ResourceProviderRegistrationErrorDetector.TryGetUnregisteredNamespace(
+            "{\"error\":{\"code\":\"RPNotRegistered\",\"message\":\"Resource Provider not registered, please make sure the resource provider 'Microsoft.AzureTerraform' is registered on the subscription. Please refer to documentation how to register at https://aka.ms/AzureTerraformRPRegistration\"}}",
+            out var namespaceName);
+
+        Assert.True(found);
+        Assert.Equal("Microsoft.AzureTerraform", namespaceName);
+    }
+
+    [Fact]
     public void ResourceProviderRegistrationErrorDetector_IgnoresUnrelatedError()
     {
         Assert.False(ResourceProviderRegistrationErrorDetector.TryGetUnregisteredNamespace(

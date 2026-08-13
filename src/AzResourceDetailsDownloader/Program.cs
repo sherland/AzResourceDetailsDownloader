@@ -109,15 +109,21 @@ secrets["tenantId"] = tenantId;
 var credential = new AzureCliCredential();
 var armClient = new ArmClient(credential, subscriptionId);
 using var rawArmClient = new RawArmClient(credential);
-using var iacExport = new IacExportService(credential);
+using var iacExport = new IacExportService(credential, rawArmClient);
 await using var portalCapture = await PortalCaptureService.CreateAsync(
     options.PortalBaseUrl, tenantId, storageStatePath);
+
+var namePrefix = parsedArgs.NamePrefixOverride ?? options.NamePrefix ?? "";
+if (namePrefix.Length > 0)
+{
+    logger.LogInformation("Using name prefix '{NamePrefix}' (shifts deterministic naming to dodge global-uniqueness collisions)", namePrefix);
+}
 
 var outputRoot = RepoPaths.Resolve(repoRoot, options.OutputRoot);
 var pipeline = new ResourceTypePipeline(
     armClient, rawArmClient, subscriptionId, options.DefaultLocation, outputRoot, portalCapture, iacExport,
     categoryResolver, secrets, options.DefaultProvisioningTimeoutMinutes, options.ProvisioningTimeoutHeadroomMinutes,
-    logger);
+    logger, namePrefix);
 
 var maxConcurrency = parsedArgs.MaxConcurrencyOverride ?? options.MaxConcurrentUnits;
 logger.LogInformation("Running with max concurrency {MaxConcurrency}", maxConcurrency);

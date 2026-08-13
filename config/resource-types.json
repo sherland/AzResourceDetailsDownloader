@@ -257,7 +257,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "swedencentral",
       "nameTemplate": "sql{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -289,7 +289,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.00670833333333333
       },
-      "location": null,
+      "location": "{prereq.sqlServer.location}",
       "nameTemplate": "{prereq.sqlServer.name}/db{rand6}",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -308,6 +308,7 @@
           "alias": "sqlServer",
           "armType": "Microsoft.Sql/servers",
           "apiVersion": "2023-08-01",
+          "location": "swedencentral",
           "nameTemplate": "sql{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -331,7 +332,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "swedencentral",
       "nameTemplate": "cosmos{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -343,7 +344,7 @@
           "databaseAccountOfferType": "Standard",
           "locations": [
             {
-              "locationName": "westeurope",
+              "locationName": "swedencentral",
               "failoverPriority": 0
             }
           ],
@@ -608,7 +609,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "northeurope",
       "nameTemplate": "aa{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -638,7 +639,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.018
       },
-      "location": null,
+      "location": "swedencentral",
       "nameTemplate": "plan{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -663,7 +664,7 @@
         "tier": "Low",
         "perHourAccumulated": 0.018
       },
-      "location": null,
+      "location": "{prereq.appServicePlan.location}",
       "nameTemplate": "app{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -684,6 +685,7 @@
           "alias": "appServicePlan",
           "armType": "Microsoft.Web/serverfarms",
           "apiVersion": "2023-12-01",
+          "location": "swedencentral",
           "nameTemplate": "plan{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -709,7 +711,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "eastus2",
       "nameTemplate": "stapp{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -996,7 +998,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.115
       },
-      "location": null,
+      "location": "{prereq.nic.location}",
       "nameTemplate": "swaz{rand9}01",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -1040,6 +1042,7 @@
           "alias": "vmVnet",
           "armType": "Microsoft.Network/virtualNetworks",
           "apiVersion": "2023-09-01",
+          "location": "swedencentral",
           "nameTemplate": "vnet{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -1074,6 +1077,7 @@
           "alias": "nic",
           "armType": "Microsoft.Network/networkInterfaces",
           "apiVersion": "2023-09-01",
+          "location": "{prereq.vmVnet.location}",
           "nameTemplate": "nic{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -1943,7 +1947,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "northeurope",
       "nameTemplate": "avdws{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -1961,7 +1965,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "northeurope",
       "nameTemplate": "avdhp{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -1983,7 +1987,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "northeurope",
       "nameTemplate": "avdag{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -2000,6 +2004,7 @@
           "alias": "hostPool",
           "armType": "Microsoft.DesktopVirtualization/hostPools",
           "apiVersion": "2024-04-03",
+          "location": "northeurope",
           "nameTemplate": "avdhp{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -2208,7 +2213,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.100833333333333
       },
-      "location": null,
+      "location": "{prereq.sqlServer.location}",
       "nameTemplate": "{prereq.sqlServer.name}/pool{rand6}",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -2227,6 +2232,7 @@
           "alias": "sqlServer",
           "armType": "Microsoft.Sql/servers",
           "apiVersion": "2023-08-01",
+          "location": "swedencentral",
           "nameTemplate": "sql{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -2611,7 +2617,7 @@
         "tier": "Low",
         "perHourAccumulated": 0.018
       },
-      "location": null,
+      "location": "{prereq.targetPlan.location}",
       "nameTemplate": "as{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -2639,6 +2645,7 @@
           "alias": "targetPlan",
           "armType": "Microsoft.Web/serverfarms",
           "apiVersion": "2023-12-01",
+          "location": "swedencentral",
           "nameTemplate": "plan{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -2761,7 +2768,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "{prereq.automationAccount.location}",
       "nameTemplate": "{prereq.automationAccount.name}/runbook{rand6}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -2779,6 +2786,7 @@
           "alias": "automationAccount",
           "armType": "Microsoft.Automation/automationAccounts",
           "apiVersion": "2023-11-01",
+          "location": "eastus2",
           "nameTemplate": "aa{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -3067,7 +3075,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "swedencentral",
       "nameTemplate": "aks{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -3392,7 +3400,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.115
       },
-      "location": null,
+      "location": "{prereq.vmssVnet.location}",
       "nameTemplate": "vmss{rand6}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -3450,6 +3458,7 @@
           "alias": "vmssVnet",
           "armType": "Microsoft.Network/virtualNetworks",
           "apiVersion": "2023-09-01",
+          "location": "swedencentral",
           "nameTemplate": "vnet{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -3639,7 +3648,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "{prereq.cosmosSqlAccount.location}",
       "nameTemplate": "{prereq.cosmosSqlAccount.name}/sqldb",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -3658,6 +3667,7 @@
           "alias": "cosmosSqlAccount",
           "armType": "Microsoft.DocumentDB/databaseAccounts",
           "apiVersion": "2024-05-15",
+          "location": "swedencentral",
           "nameTemplate": "cosmos{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -3669,7 +3679,7 @@
               "databaseAccountOfferType": "Standard",
               "locations": [
                 {
-                  "locationName": "westeurope",
+                  "locationName": "swedencentral",
                   "failoverPriority": 0
                 }
               ],
@@ -4036,7 +4046,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.0447083333333333
       },
-      "location": null,
+      "location": "{prereq.jobAgentServer.location}",
       "nameTemplate": "{prereq.jobAgentServer.name}/jobagent{rand6}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -4052,6 +4062,7 @@
           "alias": "jobAgentServer",
           "armType": "Microsoft.Sql/servers",
           "apiVersion": "2023-08-01",
+          "location": "swedencentral",
           "nameTemplate": "sql{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -4070,6 +4081,7 @@
           "alias": "jobAgentDb",
           "armType": "Microsoft.Sql/servers/databases",
           "apiVersion": "2023-08-01",
+          "location": "{prereq.jobAgentServer.location}",
           "nameTemplate": "{prereq.jobAgentServer.name}/jobagentdb",
           "nameRules": {
             "charset": "lowerAlnum",
@@ -4214,7 +4226,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "northeurope",
       "nameTemplate": "dt{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -4232,7 +4244,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "swedencentral",
       "nameTemplate": "avi{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -4428,7 +4440,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "northeurope",
       "nameTemplate": "dps{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -4487,7 +4499,7 @@
         "tier": "Medium",
         "perHourAccumulated": 0.115
       },
-      "location": null,
+      "location": "{prereq.rpcVm.location}",
       "nameTemplate": "rpc{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -4505,6 +4517,7 @@
           "alias": "rpcVmVnet",
           "armType": "Microsoft.Network/virtualNetworks",
           "apiVersion": "2023-09-01",
+          "location": "swedencentral",
           "nameTemplate": "vnet{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -4539,6 +4552,7 @@
           "alias": "rpcVmNic",
           "armType": "Microsoft.Network/networkInterfaces",
           "apiVersion": "2023-09-01",
+          "location": "{prereq.rpcVmVnet.location}",
           "nameTemplate": "nic{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -4563,6 +4577,7 @@
           "alias": "rpcVm",
           "armType": "Microsoft.Compute/virtualMachines",
           "apiVersion": "2024-03-01",
+          "location": "{prereq.rpcVmNic.location}",
           "nameTemplate": "swaz{rand9}02",
           "nameRules": {
             "charset": "lowerAlnum",
@@ -4671,7 +4686,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "swedencentral",
       "nameTemplate": "lt{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -4824,7 +4839,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "northeurope",
       "nameTemplate": "avdsp{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -5585,7 +5600,7 @@
         "perHour": 0.152,
         "perHourAccumulated": 0.152
       },
-      "location": null,
+      "location": "eastus2",
       "nameTemplate": "adx{rand8}",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -5611,7 +5626,7 @@
         "tier": "Medium",
         "perHourAccumulated": 0.152
       },
-      "location": null,
+      "location": "{prereq.kustoCluster.location}",
       "nameTemplate": "{prereq.kustoCluster.name}/db{rand6}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -5628,6 +5643,7 @@
           "alias": "kustoCluster",
           "armType": "Microsoft.Kusto/clusters",
           "apiVersion": "2023-08-15",
+          "location": "eastus2",
           "nameTemplate": "adx{rand8}",
           "nameRules": {
             "charset": "lowerAlnum",
@@ -5690,7 +5706,7 @@
       "cost": {
         "tier": "Free"
       },
-      "location": null,
+      "location": "swedencentral",
       "nameTemplate": "syn{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -5784,7 +5800,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.115
       },
-      "location": null,
+      "location": "{prereq.agentPoolCluster.location}",
       "nameTemplate": "{prereq.agentPoolCluster.name}/pool2",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -5803,6 +5819,7 @@
           "alias": "agentPoolCluster",
           "armType": "Microsoft.ContainerService/managedClusters",
           "apiVersion": "2024-05-01",
+          "location": "swedencentral",
           "nameTemplate": "aks{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -6194,7 +6211,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 1.51
       },
-      "location": null,
+      "location": "{prereq.sqlPoolWorkspace.location}",
       "nameTemplate": "{prereq.sqlPoolWorkspace.name}/sqlpool1",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -6248,6 +6265,7 @@
           "alias": "sqlPoolWorkspace",
           "armType": "Microsoft.Synapse/workspaces",
           "apiVersion": "2021-06-01",
+          "location": "swedencentral",
           "nameTemplate": "syn{rand8}",
           "nameRules": {
             "charset": "lowerAlnumDash",
@@ -6350,7 +6368,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.525148
       },
-      "location": null,
+      "location": "swedencentral",
       "nameTemplate": "pgc{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -6385,7 +6403,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.411
       },
-      "location": null,
+      "location": "swedencentral",
       "nameTemplate": "pview{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
