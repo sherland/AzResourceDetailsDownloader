@@ -3,7 +3,7 @@ using Microsoft.Playwright;
 
 namespace AzResourceDetailsDownloader.Capture;
 
-public sealed record PortalCaptureResult(byte[] Screenshot, IReadOnlyList<string> Notices);
+public sealed record PortalCaptureResult(byte[] Screenshot, IReadOnlyList<string> Notices, IReadOnlyList<PortalField> Fields);
 
 // Thread-safe: multiple units can call CaptureAsync concurrently (each running its own ARM provisioning
 // in parallel), but there is only one browser page/tab — reused deliberately across the whole batch to
@@ -96,13 +96,26 @@ public sealed class PortalCaptureService : IAsyncDisposable
         var bytes = await _page.ScreenshotAsync(new PageScreenshotOptions { FullPage = true });
         logger.LogInformation("    portal: screenshot captured ({Bytes} bytes)", bytes.Length);
 
+        // Diagnostic aid, kept permanently: dumps raw HTML around the Essentials panel so the
+        // EssentialsExtractor selector can be re-verified/adjusted against real markup if Azure
+        // Portal's DOM ever changes. No-op unless the env var is set — see AGENT.md.
+        var debugDir = Environment.GetEnvironmentVariable("ARDL_DEBUG_ESSENTIALS_DIR");
+        if (!string.IsNullOrEmpty(debugDir))
+        {
+            var safeName = string.Join("_", resourceName.Split(Path.GetInvalidFileNameChars()));
+            await EssentialsExtractor.DumpDebugHtmlAsync(_page, Path.Combine(debugDir, $"{safeName}.html"));
+        }
+
         var notices = await BannerExtractor.ExtractAsync(_page);
         if (notices.Count > 0)
         {
             logger.LogInformation("    portal: found {Count} banner notice(s) on the page", notices.Count);
         }
 
-        return new PortalCaptureResult(bytes, notices);
+        var fields = await EssentialsExtractor.ExtractAsync(_page);
+        logger.LogInformation("    portal: extracted {Count} Essentials field(s)", fields.Count);
+
+        return new PortalCaptureResult(bytes, notices, fields);
     }
 
     public async ValueTask DisposeAsync()

@@ -43,6 +43,37 @@ public class DeterministicNamingTests
     }
 
     [Fact]
+    public void CreateSeededRandom_WithPrefix_ProducesDifferentSequence_ThanUnprefixed()
+    {
+        // Guards against a naming collision like the one hit live: 'Microsoft.Storage/storageAccounts'
+        // colliding with a name already reserved somewhere in Azure, since the unprefixed seed is purely
+        // SHA256(armType) — a namePrefix must shift the whole sequence to dodge that.
+        var unprefixed = DeterministicNaming.CreateSeededRandom("Microsoft.Storage/storageAccounts");
+        var prefixed = DeterministicNaming.CreateSeededRandom("Microsoft.Storage/storageAccounts", "myteam");
+
+        Assert.NotEqual(unprefixed.Next(), prefixed.Next());
+    }
+
+    [Fact]
+    public void CreateSeededRandom_WithSamePrefix_IsStillDeterministic()
+    {
+        var first = DeterministicNaming.CreateSeededRandom("Microsoft.Storage/storageAccounts", "myteam");
+        var second = DeterministicNaming.CreateSeededRandom("Microsoft.Storage/storageAccounts", "myteam");
+
+        Assert.Equal(first.Next(), second.Next());
+        Assert.Equal(first.Next(), second.Next());
+    }
+
+    [Fact]
+    public void CreateSeededRandom_EmptyPrefix_MatchesNoPrefixOverload()
+    {
+        var noPrefixArg = DeterministicNaming.CreateSeededRandom("Microsoft.Storage/storageAccounts");
+        var emptyPrefix = DeterministicNaming.CreateSeededRandom("Microsoft.Storage/storageAccounts", "");
+
+        Assert.Equal(noPrefixArg.Next(), emptyPrefix.Next());
+    }
+
+    [Fact]
     public void CreateSeededRandom_IsGenuinelyRandom_ForKeyVault()
     {
         // Microsoft.KeyVault/vaults is exempt from deterministic naming — this tenant mandates

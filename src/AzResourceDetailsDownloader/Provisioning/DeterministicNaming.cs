@@ -27,8 +27,17 @@ public static class DeterministicNaming
         "Microsoft.KeyVault/managedHSMs"
     };
 
-    public static Random CreateSeededRandom(string armType) =>
-        ExemptFromDeterminism.Contains(armType) ? new Random() : new(SeedFor(armType));
+    // namePrefix shifts the whole deterministic sequence to a fresh, non-colliding name space without
+    // changing any nameTemplate's structure — critical because several entries bake in a tenant-mandated
+    // naming convention (e.g. Microsoft.Compute/virtualMachines' "swaz{rand9}01") or a strict length limit
+    // (Storage accounts: 24 chars) that a literally-prepended prefix would break. Only matters for armTypes
+    // with a *globally* unique name (Storage Accounts, Container Registries, Cosmos DB, ...) — a prior run
+    // of this tool anywhere (this subscription, a different one, even a different tenant) can permanently
+    // reserve the unprefixed deterministic name, since DeterministicNaming seeds purely from armType.
+    // Live-hit: 'Microsoft.Storage/storageAccounts' collided with StorageAccountAlreadyTaken against a name
+    // not present in the current subscription at all.
+    public static Random CreateSeededRandom(string armType, string namePrefix = "") =>
+        ExemptFromDeterminism.Contains(armType) ? new Random() : new(SeedFor(namePrefix, armType));
 
     // Exposed separately from CreateSeededRandom because a unit's shared Random is seeded from its *target's*
     // armType alone (see ResourceTypePipeline.RunAsync) — a prerequisite of a different, non-exempt armType
@@ -38,9 +47,12 @@ public static class DeterministicNaming
     // on a retry, and — being purge-protected — failed with VaultAlreadyExists instead of just recreating.
     public static bool IsExemptFromDeterminism(string armType) => ExemptFromDeterminism.Contains(armType);
 
-    private static int SeedFor(string armType)
+    private static int SeedFor(string namePrefix, string armType)
     {
-        var hash = SHA256.HashData(Encoding.UTF8.GetBytes(armType));
+        // Empty prefix reproduces the exact pre-existing seed (SHA256(armType) alone) so every already-
+        // committed output file stays diff-stable for the common case of no prefix configured.
+        var seedInput = string.IsNullOrEmpty(namePrefix) ? armType : $"{namePrefix}|{armType}";
+        var hash = SHA256.HashData(Encoding.UTF8.GetBytes(seedInput));
         return BitConverter.ToInt32(hash, 0);
     }
 

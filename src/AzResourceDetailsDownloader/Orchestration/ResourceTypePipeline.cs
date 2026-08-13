@@ -23,7 +23,8 @@ public sealed class ResourceTypePipeline(
     IReadOnlyDictionary<string, string> secrets,
     int defaultProvisioningTimeoutMinutes,
     int provisioningTimeoutHeadroomMinutes,
-    ILogger logger)
+    ILogger logger,
+    string namePrefix = "")
 {
     public async Task<RunResult> RunAsync(ResourceTypeDefinition def, CancellationToken ct = default)
     {
@@ -36,7 +37,7 @@ public sealed class ResourceTypePipeline(
         // Seeded deterministically from the target's armType — see DeterministicNaming — so the same
         // catalog entry produces the same resolved names every run, keeping committed output files
         // (data.json, bicep/tf, and the resource name visible in portal.png) diff-stable across re-runs.
-        var random = DeterministicNaming.CreateSeededRandom(def.ArmType);
+        var random = DeterministicNaming.CreateSeededRandom(def.ArmType, namePrefix);
         // Units run concurrently (see Program.cs's Parallel.ForEachAsync), so log lines from different units
         // interleave on the shared console — prefix every line from this unit with its ArmType to keep them
         // distinguishable, without needing to touch every LogInformation call site individually.
@@ -117,7 +118,7 @@ public sealed class ResourceTypePipeline(
             await OutputWriter.WriteAsync(
                 outputRoot, def.ArmType, category, rawJson, capture.Screenshot,
                 subscriptionId, secrets["tenantId"], rgName,
-                bicep, terraform, capture.Notices, ct);
+                bicep, terraform, capture.Notices, capture.Fields, ct);
 
             unitLogger.LogInformation("  captured '{ArmType}' successfully in {Elapsed}", def.ArmType, stopwatch.Elapsed);
             return new RunResult(def.ArmType, true, stopwatch.Elapsed, null);

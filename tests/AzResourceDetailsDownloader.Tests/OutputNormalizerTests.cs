@@ -1,3 +1,4 @@
+using AzResourceDetailsDownloader.Capture;
 using AzResourceDetailsDownloader.Output;
 
 namespace AzResourceDetailsDownloader.Tests;
@@ -46,5 +47,26 @@ public class OutputNormalizerTests
 
         var expectedPlaceholder = Provisioning.DeterministicNaming.PlaceholderResourceGroupName("Microsoft.Storage/storageAccounts");
         Assert.Contains(expectedPlaceholder, result);
+    }
+
+    [Fact]
+    public void NormalizePortalFields_RedactsDirectoryAndSubscriptionDisplayNames()
+    {
+        // Live-observed leak (2026-08-13): a real capture surfaced the actual AAD tenant name under
+        // "Directory Name" — the Essentials panel's own GUID fields (Subscription ID, Directory ID)
+        // are caught by Normalize()'s substring replacement, but these two display-name fields aren't
+        // the ID string, so they need their own label-targeted redaction.
+        var fields = new List<PortalField>
+        {
+            new("Directory Name", "faketenantname"),
+            new("Subscription", "My Real Company Subscription"),
+            new("Location", "Norway East"),
+        };
+
+        var result = OutputNormalizer.NormalizePortalFields(fields);
+
+        Assert.Equal(OutputNormalizer.PlaceholderDirectoryName, result.Single(f => f.Label == "Directory Name").Value);
+        Assert.Equal(OutputNormalizer.PlaceholderSubscriptionName, result.Single(f => f.Label == "Subscription").Value);
+        Assert.Equal("Norway East", result.Single(f => f.Label == "Location").Value);
     }
 }

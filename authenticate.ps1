@@ -12,19 +12,34 @@
     portal browser session, which does not share the CLI's login state.
 
 .PARAMETER TenantId
-    Azure AD tenant to log into. Defaults to this project's tenant.
+    Azure AD tenant to log into. Defaults to whatever tenant the current (possibly stale) `az`
+    session already points at — read before logging out, since logout discards that context.
+    Pass explicitly to switch tenants.
 #>
 param(
-    [string]$TenantId = "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
+    [string]$TenantId = ""
 )
 
 $ErrorActionPreference = "Stop"
 
+if (-not $TenantId) {
+    # Read the outgoing session's tenant before logout wipes it, so a plain re-run of this script
+    # re-authenticates against the same tenant by default instead of guessing. No hardcoded fallback
+    # here on purpose — this tool's own appsettings.json leaves Pipeline:TenantId null for the same
+    # reason (resolve live, never bake in a specific tenant/subscription).
+    $TenantId = az account show --query tenantId -o tsv 2>$null
+}
+
 Write-Host "== Step 1/3: az logout ==" -ForegroundColor Cyan
 az logout 2>$null | Out-Null
 
-Write-Host "== Step 2/3: az login (tenant $TenantId) ==" -ForegroundColor Cyan
-az login --tenant $TenantId --scope "https://management.azure.com//.default"
+if ($TenantId) {
+    Write-Host "== Step 2/3: az login (tenant $TenantId) ==" -ForegroundColor Cyan
+    az login --tenant $TenantId --scope "https://management.azure.com//.default"
+} else {
+    Write-Host "== Step 2/3: az login (no prior session found — pick tenant/account interactively) ==" -ForegroundColor Cyan
+    az login --scope "https://management.azure.com//.default"
+}
 if ($LASTEXITCODE -ne 0) {
     Write-Error "az login failed — aborting before touching the portal session."
     exit 1

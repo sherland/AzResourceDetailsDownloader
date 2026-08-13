@@ -7,7 +7,9 @@ public enum RunMode
     Run
 }
 
-public sealed record ParsedArgs(RunMode Mode, IReadOnlySet<string>? OnlyArmTypes, string? MaxCostTierOverride, int? MaxConcurrencyOverride)
+public sealed record ParsedArgs(
+    RunMode Mode, IReadOnlySet<string>? OnlyArmTypes, string? MaxCostTierOverride, int? MaxConcurrencyOverride,
+    string? NamePrefixOverride)
 {
     public static ParsedArgs Parse(string[] args)
     {
@@ -15,6 +17,7 @@ public sealed record ParsedArgs(RunMode Mode, IReadOnlySet<string>? OnlyArmTypes
         HashSet<string>? only = null;
         string? maxCostTier = null;
         int? maxConcurrency = null;
+        string? namePrefix = null;
 
         for (var i = 0; i < args.Length; i++)
         {
@@ -45,12 +48,15 @@ public sealed record ParsedArgs(RunMode Mode, IReadOnlySet<string>? OnlyArmTypes
                     }
                     maxConcurrency = parsed;
                     break;
+                case "--name-prefix":
+                    namePrefix = RequireValue(args, ref i, "--name-prefix");
+                    break;
                 default:
                     throw new ArgumentException($"Unrecognized argument '{args[i]}'.");
             }
         }
 
-        return new ParsedArgs(mode, only, maxCostTier, maxConcurrency);
+        return new ParsedArgs(mode, only, maxCostTier, maxConcurrency, namePrefix);
     }
 
     private static string RequireValue(string[] args, ref int index, string flag)

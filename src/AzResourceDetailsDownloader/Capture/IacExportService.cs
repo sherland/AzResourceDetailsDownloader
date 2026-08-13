@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using Azure.Core;
+using AzResourceDetailsDownloader.Provisioning;
 using Microsoft.Extensions.Logging;
 
 namespace AzResourceDetailsDownloader.Capture;
@@ -13,7 +14,7 @@ namespace AzResourceDetailsDownloader.Capture;
 // together with its target in one call, with cross-resource references resolved as proper symbolic
 // references (e.g. `azurerm_monitor_action_group.res-1.id`) rather than flat hardcoded IDs — verified live
 // against a real multi-resource group before wiring this in.
-public sealed partial class IacExportService(TokenCredential credential) : IDisposable
+public sealed partial class IacExportService(TokenCredential credential, RawArmClient rawArmClient) : IDisposable
 {
     private static readonly string[] Scopes = ["https://management.azure.com/.default"];
     private const string TerraformApiVersion = "2025-06-01-preview";
@@ -84,52 +85,74 @@ public sealed partial class IacExportService(TokenCredential credential) : IDisp
     {
         try
         {
-            var requestBody = JsonSerializer.Serialize(new
-            {
-                resourceGroupName,
-                targetProvider = "azurerm",
-                type = "ExportResourceGroup"
-            });
-
-            var token = await credential.GetTokenAsync(new TokenRequestContext(Scopes), ct);
-            using var request = new HttpRequestMessage(
-                HttpMethod.Post,
-                $"https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.AzureTerraform/exportTerraform?api-version={TerraformApiVersion}")
-            {
-                Content = new StringContent(requestBody, Encoding.UTF8, "application/json")
-            };
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Token);
-
-            using var response = await _httpClient.SendAsync(request, ct);
-            if (response.StatusCode != System.Net.HttpStatusCode.Accepted)
-            {
-                var body = await response.Content.ReadAsStringAsync(ct);
-                logger.LogWarning(
-                    "  terraform export for resource group '{RgName}' failed to start ({StatusCode}): {Body}",
-                    resourceGroupName, (int)response.StatusCode, body);
-                return null;
-            }
-
-            // The async-operation URL carries a signed query string that must be reused verbatim — it is not
-            // safe to reconstruct from just the operation id (confirmed live: a hand-built URL 404s).
-            var operationUrl = response.Headers.TryGetValues("Azure-AsyncOperation", out var values)
-                ? values.FirstOrDefault()
-                : null;
-            if (operationUrl is null)
-            {
-                logger.LogWarning(
-                    "  terraform export for resource group '{RgName}' returned 202 with no Azure-AsyncOperation header.",
-                    resourceGroupName);
-                return null;
-            }
-
-            return await PollTerraformOperationAsync(operationUrl, resourceGroupName, logger, ct);
+            return await TryExportTerraformCoreAsync(subscriptionId, resourceGroupName, logger, ct);
         }
         catch (Exception ex) when (ex is not OperationCanceledException)
         {
             logger.LogWarning(ex, "  terraform export for resource group '{RgName}' failed.", resourceGroupName);
             return null;
         }
+    }
+
+    private async Task<string?> TryExportTerraformCoreAsync(
+        string subscriptionId, string resourceGroupName, ILogger logger, CancellationToken ct,
+        bool retriedAfterRegistration = false)
+    {
+        var requestBody = JsonSerializer.Serialize(new
+        {
+            resourceGroupName,
+            targetProvider = "azurerm",
+            type = "ExportResourceGroup"
+        });
+
+        var token = await credential.GetTokenAsync(new TokenRequestContext(Scopes), ct);
+        using var request = new HttpRequestMessage(
+            HttpMethod.Post,
+            $"https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.AzureTerraform/exportTerraform?api-version={TerraformApiVersion}")
+        {
+            Content = new StringContent(requestBody, Encoding.UTF8, "application/json")
+        };
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Token);
+
+        using var response = await _httpClient.SendAsync(request, ct);
+        if (response.StatusCode != System.Net.HttpStatusCode.Accepted)
+        {
+            var body = await response.Content.ReadAsStringAsync(ct);
+
+            // Same one-time auto-fix ResourceTypePipeline already applies to the main ARM PUT flow —
+            // Microsoft.AzureTerraform just returns a differently-worded error for the same underlying
+            // "never used this provider before" condition. Only ever retried once (retriedAfterRegistration
+            // guards it) so a genuinely broken registration can't loop.
+            if (!retriedAfterRegistration
+                && ResourceProviderRegistrationErrorDetector.TryGetUnregisteredNamespace(body, out var ns))
+            {
+                logger.LogWarning(
+                    "  terraform export needs resource provider '{Namespace}', which isn't registered on this subscription yet — registering it now (one-time, no-cost) and retrying.",
+                    ns);
+                await rawArmClient.RegisterResourceProviderAsync(subscriptionId, ns, ct);
+                return await TryExportTerraformCoreAsync(subscriptionId, resourceGroupName, logger, ct, retriedAfterRegistration: true);
+            }
+
+            logger.LogWarning(
+                "  terraform export for resource group '{RgName}' failed to start ({StatusCode}): {Body}",
+                resourceGroupName, (int)response.StatusCode, body);
+            return null;
+        }
+
+        // The async-operation URL carries a signed query string that must be reused verbatim — it is not
+        // safe to reconstruct from just the operation id (confirmed live: a hand-built URL 404s).
+        var operationUrl = response.Headers.TryGetValues("Azure-AsyncOperation", out var values)
+            ? values.FirstOrDefault()
+            : null;
+        if (operationUrl is null)
+        {
+            logger.LogWarning(
+                "  terraform export for resource group '{RgName}' returned 202 with no Azure-AsyncOperation header.",
+                resourceGroupName);
+            return null;
+        }
+
+        return await PollTerraformOperationAsync(operationUrl, resourceGroupName, logger, ct);
     }
 
     private async Task<string?> PollTerraformOperationAsync(
