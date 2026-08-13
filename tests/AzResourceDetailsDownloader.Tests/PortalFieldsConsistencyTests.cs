@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using AzResourceDetailsDownloader.Options;
+using AzResourceDetailsDownloader.Output;
 
 namespace AzResourceDetailsDownloader.Tests;
 
@@ -24,11 +25,6 @@ public class PortalFieldsConsistencyTests
     // reflexively appending it.
     private static readonly HashSet<string> NonTraceableLabels = new(StringComparer.OrdinalIgnoreCase)
     {
-        // Tenant/subscription display identity — never part of a resource's own ARM body, and/or
-        // deliberately redacted to a fixed placeholder by OutputNormalizer (so by construction
-        // can never equal whatever the real captured data.json happens to contain).
-        "Subscription", "Directory Name", "Directory ID", "Microsoft Entra admin", "SQL Microsoft Entra admin",
-
         // "Maintenance schedule" looks like a timestamp label but isn't one — its value ("lør. 14:00
         // UTC (8h) / tir. 16:00 UTC (8h)") is a recurring weekly window description, not a single
         // instant, so it can't be date-parsed the way TimestampLabels below are. The other, genuine
@@ -72,6 +68,23 @@ public class PortalFieldsConsistencyTests
         "Connection string", "Logs workspace", "Metrics ingestion endpoint", "Origin response timeout",
         "Public key", "Ports", "Location",
     };
+
+    // Tenant/subscription display identity — never part of a resource's own ARM body; instead
+    // OutputNormalizer redacts it to a fixed placeholder (see OutputNormalizer.Normalize and
+    // .NormalizePortalFields). Rather than exempt these labels outright, assert the redaction
+    // actually happened — a label that's supposed to be scrubbed but isn't is exactly the kind of
+    // regression this test exists to catch. "Not configured" is a legitimate, non-identifying
+    // portal state (no Entra admin assigned) distinct from a redacted real one, so it's allowed
+    // alongside the placeholder rather than treated as a miss.
+    private static readonly Dictionary<string, string[]> TenantIdentityAllowedValues =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Subscription"] = [OutputNormalizer.PlaceholderSubscriptionName],
+            ["Directory Name"] = [OutputNormalizer.PlaceholderDirectoryName],
+            ["Directory ID"] = [OutputNormalizer.PlaceholderTenantId],
+            ["Microsoft Entra admin"] = [OutputNormalizer.PlaceholderEntraAdmin, "Not configured"],
+            ["SQL Microsoft Entra admin"] = [OutputNormalizer.PlaceholderEntraAdmin, "Not configured"],
+        };
 
     // Human-formatted timestamps — the portal renders a locale/timezone-formatted string
     // ("Thursday, August 13, 2026 at 14:50:31 GMT+2", "8/13/2026, 12:46 PM UTC",
@@ -131,17 +144,39 @@ public class PortalFieldsConsistencyTests
         var rawDataJson = File.ReadAllText(dataJsonPath);
         var normalizedDataJson = Normalize(rawDataJson);
 
-        var untraceable = fields
-            .Where(f => !NonTraceableLabels.Contains(f.Label))
-            .Where(f => !(TimestampLabels.Contains(f.Label) && TimestampIsTraceable(f.Value, rawDataJson)))
-            .Where(f => Normalize(f.Value).Length > 0)
-            .Where(f => !normalizedDataJson.Contains(Normalize(f.Value)))
-            .Select(f => $"{f.Label} = \"{f.Value}\"")
-            .ToList();
+        var problems = new List<string>();
 
-        Assert.True(untraceable.Count == 0,
+        foreach (var f in fields)
+        {
+            if (TenantIdentityAllowedValues.TryGetValue(f.Label, out var allowedValues))
+            {
+                if (!allowedValues.Contains(f.Value, StringComparer.Ordinal))
+                {
+                    problems.Add($"{f.Label} = \"{f.Value}\" (expected one of: {string.Join(" / ", allowedValues)})");
+                }
+                continue;
+            }
+
+            if (NonTraceableLabels.Contains(f.Label))
+            {
+                continue;
+            }
+
+            if (TimestampLabels.Contains(f.Label) && TimestampIsTraceable(f.Value, rawDataJson))
+            {
+                continue;
+            }
+
+            var normalizedValue = Normalize(f.Value);
+            if (normalizedValue.Length > 0 && !normalizedDataJson.Contains(normalizedValue))
+            {
+                problems.Add($"{f.Label} = \"{f.Value}\"");
+            }
+        }
+
+        Assert.True(problems.Count == 0,
             $"{portalFieldsPath}: field(s) not found anywhere in the sibling data.json " +
-            $"(compared case/punctuation-insensitively): {string.Join("; ", untraceable)}");
+            $"(compared case/punctuation-insensitively): {string.Join("; ", problems)}");
     }
 
     // Normalizes the portal's handful of known timestamp shapes down to something DateTimeOffset can
