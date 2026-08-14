@@ -1,4 +1,4 @@
-# diskul7-e4-0
+# disks7agb-jh
 
 | Property | Value |
 |---|---|
@@ -8,11 +8,11 @@
 | **Location** | Norway East |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Time created** | August 14, 2026 at 12:15:31 UTC |
+| **Time created** | August 14, 2026 at 21:08:52 UTC |
 | **Disk size** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> 4 GiB |
 | **Storage type** | Standard HDD LRS |
 | **Managed by** | <!-- TODO (Unresolved): properties.managedBy (a VM resource ID, last path segment shown) when set — genuinely composite (extracts + link-wraps a name from an ID, like the Resource Group shortcut does), correctly non-traceable as a plain value match (confirmed live on Compute/disks) --> - |
-| **Operating system** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
+| **Operating system** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. --> Linux |
 | **Max shares** | <!-- TODO (Unresolved): properties.maxShares, a real (usually-zero) number — direct passthrough, only renders as "0" because no captured disk has sharing enabled (confirmed live on Compute/disks) --> 0 |
 | **Availability zone** | <!-- TODO (Unresolved): the root-level `zones` array (NOT under properties.*, so not template-addressable even once traced), joined/sorted, with a "No infrastructure redundancy required" fallback when empty (confirmed live on Compute/disks) --> No infrastructure redundancy required |
 | **Security type** | Standard |

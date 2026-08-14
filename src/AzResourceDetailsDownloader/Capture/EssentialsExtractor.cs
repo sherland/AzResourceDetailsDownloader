@@ -116,6 +116,15 @@ public static class EssentialsExtractor
             // shape but not the other. Walking the subtree in document order and stopping at the
             // first <a>/<button> handles both, then a trailing dangling "(" (the open paren that
             // preceded the now-excluded link) is stripped as leftover wrapper punctuation.
+            //
+            // Live-observed again (2026-08-14, AppConfiguration Standard tier — never seen before
+            // because every earlier capture of this label was on the Free tier, which renders no
+            // tooltip icon at all): "Geo-replication" carries a `TooltipHost`-wrapped info icon
+            // instead of a plain `<a>`/`<button>` — a non-interactive tag (observed as a `<span>`
+            // via the portal's own dumped source, `FontIcon`) but with `role="button"` set, whose
+            // tooltip text ("Replicas allow for higher availability...") got folded straight into
+            // the label ("Geo-replicationReplicas allow for..."). Tag-name checking alone can't
+            // catch this — stop the walk on ARIA role="button" too, not just the two tag names.
             const labelTextOf = el => {
                 let text = '';
                 let stopped = false;
@@ -125,7 +134,8 @@ public static class EssentialsExtractor
                         if (child.nodeType === Node.TEXT_NODE) {
                             text += child.textContent;
                         } else if (child.nodeType === Node.ELEMENT_NODE) {
-                            if (child.tagName === 'A' || child.tagName === 'BUTTON') {
+                            if (child.tagName === 'A' || child.tagName === 'BUTTON'
+                                || child.getAttribute('role') === 'button') {
                                 stopped = true;
                                 return;
                             }
@@ -182,7 +192,8 @@ public static class EssentialsExtractor
                         if (child.nodeType === Node.TEXT_NODE) {
                             text += child.textContent;
                         } else if (child.nodeType === Node.ELEMENT_NODE) {
-                            if (child.tagName === 'A' || child.tagName === 'BUTTON') {
+                            if (child.tagName === 'A' || child.tagName === 'BUTTON'
+                                || child.getAttribute('role') === 'button') {
                                 stopped = true;
                                 return;
                             }
