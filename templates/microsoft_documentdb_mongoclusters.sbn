@@ -13,11 +13,11 @@
 | **Location** | {{ model.location | region_display_name }} |
 | **MongoDB version** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.33) — verify by hand before trusting. --> 7.0 |
 | **Admin username** | {{ model.props.administrator.username }} |
-| **Cluster tier** | <!-- TODO (Unresolved): properties.compute.tier, via an untraced friendly-name lookup (confirmed live on DocumentDB/mongoClusters) --> M10 tier, 1 vCores, 2 GiB RAM |
+| **Cluster tier** | {{ model.mongo_cluster_tier_label }} |
 | **Disk size** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> 32 GiB |
 | **Shard count** | {{ model.props.sharding.shardcount }} |
 | **High availability** | {{ model.props.highavailability.targetmode }} |
-| **Connectivity method** | <!-- TODO (Unresolved): properties.publicNetworkAccess ("Enabled"/"Disabled"), rendered as "Public access"/"Private access" (confirmed live on DocumentDB/mongoClusters) --> Public access |
-| **Authentication** | <!-- TODO (Unresolved): properties.authConfig.allowedModes (an array of enum strings), combined into one sentence (confirmed live on DocumentDB/mongoClusters) --> Native DocumentDB only |
-| **Storage encryption** | <!-- TODO (Unresolved): identity.type at the document root (NOT under properties.*, so not template-addressable even once traced) — "UserAssigned" means customer-managed key, anything else means service-managed (confirmed live on DocumentDB/mongoClusters) --> Service-managed key |
+| **Connectivity method** | {{ model.mongo_connectivity_method_label }} |
+| **Authentication** | {{ model.mongo_authentication_label }} |
+| **Storage encryption** | {{ model.mongo_storage_encryption_label }} |
 | **Read region** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Not enabled |

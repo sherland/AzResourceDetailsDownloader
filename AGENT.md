@@ -388,10 +388,43 @@ conclusion**: the fiber-walk-to-builder-source part still is what it was — a l
 technique, not something that runs inside an automated `--run` batch. But the *lookup-table* half of the
 problem (the actual blocker for the friendly-name-transform labels documented in the previous section)
 turned out to be a small, fixed amount of extra digging per label — two more file-fetch-and-grep passes,
-no extra Azure resources — not an open-ended "provision every SKU tier" project. Worth revisiting the
-remaining friendly-name-lookup labels (Cluster tier, Connectivity method, Authentication, Storage
-encryption on `Microsoft.DocumentDB/mongoClusters`; AKS's `Cluster operation status`/`Power state`/etc.)
-the same way before assuming they need more live provisioning.
+no extra Azure resources — not an open-ended "provision every SKU tier" project.
+
+**Follow-up, same day, third pass — the remaining labels actually got done**: `Microsoft.DocumentDB/
+mongoClusters`' Cluster tier/Connectivity method/Storage encryption, `Microsoft.Logic/workflows`'
+Definition/Integration Account/Workflow Type, `Microsoft.AppConfiguration/configurationStores`'
+Telemetry, and all five of AKS's Power state/Cluster operation status/API server address/Node pools/
+Network configuration — 12 more labels, all `ShortcutVerified` against the real committed corpus,
+using the identical two-pass file-search technique against one throwaway instance per type (a
+MongoDB vCore cluster, a Logic workflow, an AppConfig store, and an AKS cluster — the AKS `az aks
+create` needed two retries: this subscription only allows specific VM SKUs per region, `Standard_B2s`
+failed in `swedencentral`, the AKS default size failed in `norwayeast`, `Standard_B2s_v2` in
+`swedencentral` finally worked). One label (`Authentication`) came back correctly *unverified* rather
+than resolved — not a bug: the already-committed `Microsoft.DocumentDB/mongoClusters` capture's
+`data.json` has no `authConfig` property at all (a different/newer API-version field this tool's
+current GET call doesn't request), so the shortcut correctly detected it had nothing to compute from
+and returned a low-confidence "Shortcut" recipe instead of pretending to know. A few multi-hop
+lessons worth keeping for next time:
+- Different fields' builder functions and their helper functions don't reliably live in the same
+  chunk file — `Ve`/`Le` (Storage Accounts) did, but AKS's `he.W8`/`he.MF` were imported from a
+  *different* webpack module (`he=rr(5379)`) than the field-builder itself, requiring a second
+  "search every loaded script for a distinctive string this function's body must contain" pass
+  rather than assuming the first hit is right.
+- A short minified helper name (`Fe`, `Be`, `Pe`, `Qe` on Logic/workflows) can appear as a
+  *completely unrelated* function in a vendored utility chunk (lodash, in this case) bundled into the
+  same multi-megabyte file — the first "find `function <name>(`" match is not automatically the right
+  one. Fixed by finding the position of a distinctive resource-string reference the real builder
+  function is known to use (e.g. `Workflow_Properties.definition`), then picking whichever candidate
+  definition is *textually closest* to that anchor, not the first one in file order.
+- Several of the confirmed lookup tables (AKS's Power state, Cluster operation status) turned out to
+  be pure case-normalizing identity mappings once fully read (`"running"` → `"Running"`) — worth
+  actually reading the resource-string object before assuming a friendly-name transform must produce
+  meaningfully different text; sometimes the whole "problem" is just casing.
+
+Net tally across both passes today: 16 labels moved from a generic "composite/derived, no idea" note
+to a real, `ShortcutVerified`, live-source-backed `FieldRecipe` shortcut, with zero guessed text —
+every literal string here was read out of the portal's own already-downloaded JS, the same standard
+`config/azure-locations.json` was held to.
 
 ## The operator's real identity can leak into output/ — two distinct paths, both now fixed
 
