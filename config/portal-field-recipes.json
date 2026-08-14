@@ -53,10 +53,10 @@
   },
   {
     "Label": "Account kind",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.storage_account_kind_label",
+    "Notes": "Verified: kind -\u003E StorageAccount_Kind resource-string format, read from the live portal\u0027s own JS (2026-08-14) \u2014 matches the captured value exactly.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Storage/storageAccounts"
@@ -5047,10 +5047,10 @@
   },
   {
     "Label": "Replication",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "composite/derived \u2014 no single backing property (see NonTraceableLabels comments)",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.storage_replication_label",
+    "Notes": "Verified: sku.name -\u003E redundancy category -\u003E resource-string text, all read from the live portal\u0027s own JS (2026-08-14) \u2014 matches the captured value exactly.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Storage/storageAccounts"
@@ -5471,10 +5471,10 @@
   },
   {
     "Label": "Security type",
-    "Kind": "NotAddressable",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "Traceable via \u0027sku.tier\u0027 (exact value match), but that\u0027s outside properties.*/kind/name/id/location \u2014 not reachable from a template.",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.disk_security_type_label",
+    "Notes": "Verified: properties.securityProfile.securityType -\u003E security-type resource-string text, read from the live portal\u0027s own JS (2026-08-14) \u2014 matches the captured value exactly (including the no-securityProfile-at-all -\u003E \u0022Standard\u0022 fallback the portal\u0027s own code takes).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Compute/disks"
@@ -6467,10 +6467,10 @@
   },
   {
     "Label": "Storage type",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "sku.name, via an untraced SKU-to-friendly-name lookup (same shape as Storage Accounts\u0027 \u0022Replication\u0022/\u0022Account kind\u0022, confirmed live on Compute/disks)",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.disk_storage_type_label",
+    "Notes": "Verified: sku.name -\u003E disk-type resource-string text, read from the live portal\u0027s own JS (2026-08-14) \u2014 matches the captured value exactly.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Compute/disks",
