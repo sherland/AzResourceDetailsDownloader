@@ -116,4 +116,236 @@ public static class PortalFriendlyLabels
             ? text
             : "Standard";
     }
+
+    // DocumentDB/mongoClusters: `_t(properties.compute.tier)` — a per-tier {vCores, ramInGb} lookup
+    // table (`Ot` in the portal's cosmos bundle, 2026-08-14) formatted as "{tier} tier, {N} vCores,
+    // {M} GiB RAM", except the two known autoscale entries which drop the vCores/RAM numbers entirely
+    // ("{tier} tier" only) and "Free", which is a fixed literal. A tier not in this table returns
+    // null rather than guessing — the source's own fallback ("Unsupported cluster tier: {e}") isn't
+    // reproduced since a template shouldn't echo an error string as if it were data.
+    private static readonly Dictionary<string, (int VCores, int RamGb, bool Autoscale)> MongoClusterTierSpecs =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["M10"] = (1, 2, false), ["M20"] = (2, 4, false), ["M25"] = (2, 8, false), ["M30"] = (2, 8, false),
+            ["M40"] = (4, 16, false), ["M50"] = (8, 32, false), ["M60"] = (16, 64, false), ["M80"] = (32, 128, false),
+            ["M200"] = (64, 256, false), ["M200-Autoscale"] = (32, 256, true),
+            ["M300"] = (48, 384, false), ["M400"] = (64, 432, false),
+        };
+
+    public static string? MongoClusterTierLabel(JsonElement root)
+    {
+        var tier = JsonTree.GetString(root, "properties", "compute", "tier");
+        if (tier is null)
+        {
+            return null;
+        }
+        if (string.Equals(tier, "Free", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Free tier";
+        }
+        if (!MongoClusterTierSpecs.TryGetValue(tier, out var spec))
+        {
+            return null;
+        }
+        return spec.Autoscale ? $"{tier} tier" : $"{tier} tier, {spec.VCores} vCores, {spec.RamGb} GiB RAM";
+    }
+
+    // DocumentDB/mongoClusters: the `Enabled -> publicAccess / else -> privateAccessTabName` ternary
+    // in `customizeResourceFields`, both resource-string values read verbatim (2026-08-14).
+    public static string? MongoConnectivityMethodLabel(JsonElement root)
+    {
+        var publicNetworkAccess = JsonTree.GetString(root, "properties", "publicNetworkAccess");
+        if (publicNetworkAccess is null)
+        {
+            return null;
+        }
+        return string.Equals(publicNetworkAccess, "Enabled", StringComparison.OrdinalIgnoreCase)
+            ? "Public access"
+            : "Private access";
+    }
+
+    // DocumentDB/mongoClusters: `properties.authConfig.allowedModes` (an array of enum strings) run
+    // through a 3-way membership check. The source's own 4th branch (neither mode present) returns an
+    // unrendered glyph placeholder, not real text — reproduced here as null rather than guessed.
+    public static string? MongoAuthenticationLabel(JsonElement root)
+    {
+        var modes = JsonTree.Navigate(root, "properties", "authConfig", "allowedModes");
+        if (modes is not { ValueKind: JsonValueKind.Array } array)
+        {
+            return null;
+        }
+        var set = array.EnumerateArray()
+            .Select(e => e.ValueKind == JsonValueKind.String ? e.GetString() : null)
+            .Where(s => s is not null)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var hasEntra = set.Contains("MicrosoftEntraID");
+        var hasNative = set.Contains("NativeAuth");
+        return (hasEntra, hasNative) switch
+        {
+            (true, true) => "Native DocumentDB and Entra ID",
+            (false, true) => "Native DocumentDB only",
+            (true, false) => "Microsoft Entra ID only",
+            _ => null,
+        };
+    }
+
+    // DocumentDB/mongoClusters: `identity.type === "UserAssigned" ? cmkLabel : smkLabel` — root-level
+    // `identity`, not under properties.*, and unconditional (no identity block at all still resolves
+    // to the "Service-managed key" default, matching the source's own missing-value behavior).
+    public static string MongoStorageEncryptionLabel(JsonElement root)
+    {
+        var identityType = JsonTree.GetString(root, "identity", "type");
+        return string.Equals(identityType, "UserAssigned", StringComparison.OrdinalIgnoreCase)
+            ? "Customer-managed key"
+            : "Service-managed key";
+    }
+
+    // Logic/workflows: `Fe(t)` — counts `properties.definition.triggers`/`.actions` object keys,
+    // formats each count through a singular/plural resource string, joins with a fixed "{0}, {1}"
+    // template (all read 2026-08-14).
+    public static string? LogicWorkflowDefinitionLabel(JsonElement root)
+    {
+        var definition = JsonTree.Navigate(root, "properties", "definition");
+        if (definition is not { ValueKind: JsonValueKind.Object })
+        {
+            return null;
+        }
+        var triggers = JsonTree.Navigate(root, "properties", "definition", "triggers");
+        var actions = JsonTree.Navigate(root, "properties", "definition", "actions");
+        var triggerCount = triggers is { ValueKind: JsonValueKind.Object } t ? t.EnumerateObject().Count() : 0;
+        var actionCount = actions is { ValueKind: JsonValueKind.Object } a ? a.EnumerateObject().Count() : 0;
+        var triggerText = triggerCount == 1 ? "1 trigger" : $"{triggerCount} triggers";
+        var actionText = actionCount == 1 ? "1 action" : $"{actionCount} actions";
+        return $"{triggerText}, {actionText}";
+    }
+
+    // Logic/workflows: `Pe(t)` — `properties.integrationAccount.id` existence gates whether anything
+    // shows at all; when present, the rendered text is `.name`, not the id (read 2026-08-14).
+    public static string LogicIntegrationAccountLabel(JsonElement root)
+    {
+        var id = JsonTree.GetString(root, "properties", "integrationAccount", "id");
+        if (id is null)
+        {
+            return "--";
+        }
+        return JsonTree.GetString(root, "properties", "integrationAccount", "name") ?? "--";
+    }
+
+    // Logic/workflows: `Qe(t)` — only the common "no agent configured" default is reproduced here
+    // ("Stateful", read 2026-08-14); the Autonomous-agent/Conversational-agent branches call a further
+    // opaque helper (`De.YF`) not traced this session, so a workflow with `properties.definition.
+    // metadata.agentType` set returns null (unresolved) rather than a guess.
+    public static string? LogicWorkflowTypeLabel(JsonElement root)
+    {
+        var agentType = JsonTree.GetString(root, "properties", "definition", "metadata", "agentType");
+        return agentType is null ? "Stateful" : null;
+    }
+
+    // AppConfiguration/configurationStores: `Telemetry` — an existence check on
+    // `properties.telemetry.resourceId`, not a literal boolean property, so it doesn't fit
+    // PortalFieldKnowledge.BooleanBackedLabels' "compare a JSON true/false leaf" shape (read 2026-08-14).
+    public static string AppConfigTelemetryLabel(JsonElement root)
+    {
+        var resourceId = JsonTree.GetString(root, "properties", "telemetry", "resourceId");
+        return string.IsNullOrEmpty(resourceId) ? "Disabled" : "Enabled";
+    }
+
+    // ContainerService/ManagedClusters (AKS) — all five below come from the same portal helper
+    // module (webpack module 5379, function `W8`/`g`) and share its "-" empty-value fallback
+    // (`ContainerServiceResources.noContent`, read 2026-08-14).
+    private const string AksNoContent = "-";
+
+    // `w(properties.powerState.code)` — a case-insensitive compare against a small fixed enum, whose
+    // resource-string table happens to be a pure identity mapping (every value displays as its own
+    // canonical casing) for the values actually reachable at cluster level.
+    private static readonly HashSet<string> AksPowerStates =
+        new(StringComparer.OrdinalIgnoreCase) { "Running", "Stopped", "Starting", "Stopping", "Deallocated" };
+
+    public static string AksPowerStateLabel(JsonElement root)
+    {
+        var code = JsonTree.GetString(root, "properties", "powerState", "code");
+        return code is not null && AksPowerStates.Contains(code) ? Canonicalize(code, AksPowerStates) : AksNoContent;
+    }
+
+    // `he.MF(properties.provisioningState)` — same identity-mapping shape as powerState above; the
+    // source's own switch also covers two NodePool-only states (Scaling/UpgradingNodeImageVersion)
+    // that never appear in the cluster-level provisioningState this label actually reads, so they're
+    // not included here.
+    private static readonly HashSet<string> AksProvisioningStates = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "Canceled", "Creating", "Deleting", "Failed", "Starting", "Stopping", "Succeeded", "Updating", "Upgrading",
+    };
+
+    public static string AksClusterOperationStatusLabel(JsonElement root)
+    {
+        var state = JsonTree.GetString(root, "properties", "provisioningState");
+        return state is not null && AksProvisioningStates.Contains(state)
+            ? Canonicalize(state, AksProvisioningStates)
+            : AksNoContent;
+    }
+
+    private static string Canonicalize(string value, HashSet<string> canonicalForms) =>
+        canonicalForms.First(c => string.Equals(c, value, StringComparison.OrdinalIgnoreCase));
+
+    // `properties.fqdn || properties.privateFQDN`, direct passthrough.
+    public static string AksApiServerAddressLabel(JsonElement root) =>
+        JsonTree.GetString(root, "properties", "fqdn")
+        ?? JsonTree.GetString(root, "properties", "privateFQDN")
+        ?? AksNoContent;
+
+    // `C(properties.agentPoolProfiles)` — counts total pools and pools whose own
+    // `provisioningState === "Failed"`, picks one of four singular/plural/failed-suffixed templates.
+    public static string AksNodePoolsLabel(JsonElement root)
+    {
+        var pools = JsonTree.Navigate(root, "properties", "agentPoolProfiles");
+        if (pools is not { ValueKind: JsonValueKind.Array } array)
+        {
+            return AksNoContent;
+        }
+        var total = 0;
+        var failed = 0;
+        foreach (var pool in array.EnumerateArray())
+        {
+            total++;
+            if (JsonTree.GetString(pool, "provisioningState") == "Failed")
+            {
+                failed++;
+            }
+        }
+        if (failed > 0)
+        {
+            return total == 1 ? $"1 node pool - {failed} failed" : $"{total} node pools - {failed} failed";
+        }
+        return total == 1 ? "1 node pool" : $"{total} node pools";
+    }
+
+    // `h(e)` — `properties.networkProfile.networkPlugin`, and when it's "azure", a further check of
+    // `networkPluginMode` ("overlay") or any agent pool having a `podSubnetID` set. Reproduces the
+    // current (feature-flags-stable/GA) portal behavior observed live 2026-08-14, not the older
+    // pre-overlay fallback text the source falls back to when those flags are off.
+    public static string? AksNetworkConfigurationLabel(JsonElement root)
+    {
+        var plugin = JsonTree.GetString(root, "properties", "networkProfile", "networkPlugin");
+        if (plugin is null)
+        {
+            return null;
+        }
+        if (string.Equals(plugin, "kubenet", StringComparison.OrdinalIgnoreCase))
+        {
+            return "kubenet";
+        }
+        if (!string.Equals(plugin, "azure", StringComparison.OrdinalIgnoreCase))
+        {
+            return null;
+        }
+        var mode = JsonTree.GetString(root, "properties", "networkProfile", "networkPluginMode");
+        if (string.Equals(mode, "overlay", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Azure CNI Overlay";
+        }
+        var pools = JsonTree.Navigate(root, "properties", "agentPoolProfiles");
+        var hasPodSubnet = pools is { ValueKind: JsonValueKind.Array } array
+            && array.EnumerateArray().Any(p => JsonTree.GetString(p, "podSubnetID") is not null);
+        return hasPodSubnet ? "Azure CNI Pod Subnet" : null;
+    }
 }
