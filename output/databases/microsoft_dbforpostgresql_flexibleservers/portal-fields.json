@@ -13,7 +13,7 @@
   },
   {
     "Label": "Server name",
-    "Value": "pgfd6vwwi6"
+    "Value": "pgh-ko1-k2"
   },
   {
     "Label": "Location",
@@ -25,11 +25,11 @@
   },
   {
     "Label": "Created on",
-    "Value": "2026-08-13 13:14:05 (UTC)"
+    "Value": "2026-08-14 12:29:15 (UTC)"
   },
   {
     "Label": "Endpoint",
-    "Value": "pgfd6vwwi6.postgres.database.azure.com"
+    "Value": "pgh-ko1-k2.postgres.database.azure.com"
   },
   {
     "Label": "Virtual endpoint",
@@ -49,7 +49,7 @@
   },
   {
     "Label": "Availability zone",
-    "Value": "2"
+    "Value": "3"
   },
   {
     "Label": "High availability",

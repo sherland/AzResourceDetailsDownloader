@@ -1,7 +1,7 @@
-param workflows_logicrk9nht5e_name string
+param workflows_logicn_2_r_4y_name string
 
-resource workflows_logicrk9nht5e_name_resource 'Microsoft.Logic/workflows@2017-07-01' = {
-  name: workflows_logicrk9nht5e_name
+resource workflows_logicn_2_r_4y_name_resource 'Microsoft.Logic/workflows@2017-07-01' = {
+  name: workflows_logicn_2_r_4y_name
   location: 'norwayeast'
   properties: {
     state: 'Enabled'

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-a482ee03d0d47514"
   tags = {
     armType    = "Microsoft.Compute/virtualMachineScaleSets"
-    createdUtc = "2026-08-14T10:42:25.5466476Z"
+    createdUtc = "2026-08-14T12:21:23.3487048Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -36,7 +36,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "res-1" {
   instances                                         = 1
   location                                          = "swedencentral"
   max_bid_price                                     = -1
-  name                                              = "vmssqv06dj"
+  name                                              = "vmssrd5qq3"
   overprovision                                     = true
   platform_fault_domain_count                       = 5
   priority                                          = "Regular"
@@ -98,14 +98,14 @@ resource "azurerm_virtual_network" "res-3" {
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
   location                       = "swedencentral"
-  name                           = "vnet2zxyhq7j"
+  name                           = "vnetu-axjz1a"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name
   subnet = [{
     address_prefixes                              = ["10.46.0.0/24"]
     default_outbound_access_enabled               = false
     delegation                                    = []
-    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Network/virtualNetworks/vnet2zxyhq7j/subnets/default"
+    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Network/virtualNetworks/vnetu-axjz1a/subnets/default"
     name                                          = "default"
     private_endpoint_network_policies             = "Disabled"
     private_link_service_network_policies_enabled = true
@@ -126,7 +126,7 @@ resource "azurerm_subnet" "res-4" {
   service_endpoint_policy_ids                   = []
   service_endpoints                             = []
   sharing_scope                                 = ""
-  virtual_network_name                          = "vnet2zxyhq7j"
+  virtual_network_name                          = "vnetu-axjz1a"
   depends_on = [
     azurerm_virtual_network.res-3,
   ]
@@ -138,14 +138,14 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Compute/virtualMachineScaleSets/vmssqv06dj"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Compute/virtualMachineScaleSets/vmssrd5qq3"
   to = azurerm_linux_virtual_machine_scale_set.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Network/virtualNetworks/vnet2zxyhq7j"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Network/virtualNetworks/vnetu-axjz1a"
   to = azurerm_virtual_network.res-3
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Network/virtualNetworks/vnet2zxyhq7j/subnets/default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Network/virtualNetworks/vnetu-axjz1a/subnets/default"
   to = azurerm_subnet.res-4
 }

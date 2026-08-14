@@ -2,7 +2,7 @@
   "properties": {
     "defaultDataLakeStorage": {
       "createManagedPrivateEndpoint": false,
-      "accountUrl": "https://stuyb3hfcc.dfs.core.windows.net",
+      "accountUrl": "https://sthlzapzqb.dfs.core.windows.net",
       "filesystem": "synapsefs"
     },
     "encryption": {
@@ -10,15 +10,15 @@
     },
     "provisioningState": "Succeeded",
     "connectivityEndpoints": {
-      "web": "https://web.azuresynapse.net?workspace=%2fsubscriptions%2f00000000-0000-0000-0000-000000000000%2fresourceGroups%2frg-ardl-bb17cace9b9db143%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsynjhp9-iao",
-      "dev": "https://synjhp9-iao.dev.azuresynapse.net",
-      "sqlOnDemand": "synjhp9-iao-ondemand.sql.azuresynapse.net",
-      "sql": "synjhp9-iao.sql.azuresynapse.net"
+      "web": "https://web.azuresynapse.net?workspace=%2fsubscriptions%2f00000000-0000-0000-0000-000000000000%2fresourceGroups%2frg-ardl-bb17cace9b9db143%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsynbhgh-pfl",
+      "dev": "https://synbhgh-pfl.dev.azuresynapse.net",
+      "sqlOnDemand": "synbhgh-pfl-ondemand.sql.azuresynapse.net",
+      "sql": "synbhgh-pfl.sql.azuresynapse.net"
     },
-    "managedResourceGroupName": "synapseworkspace-managedrg-945c621f-d7b5-4575-8e8f-fbb85f62b017",
+    "managedResourceGroupName": "synapseworkspace-managedrg-2f9cb2bc-41a9-4b28-803d-f89d37ec7beb",
     "sqlAdministratorLogin": "azrddadmin",
     "privateEndpointConnections": [],
-    "workspaceUID": "e135c9a1-467c-4d50-a732-df9a910e758c",
+    "workspaceUID": "e097d593-03d5-49c1-9d47-8640cb5ebd12",
     "extraProperties": {
       "WorkspaceType": "Normal",
       "IsScopeEnabled": false
@@ -30,12 +30,12 @@
     "trustedServiceBypassEnabled": false
   },
   "type": "Microsoft.Synapse/workspaces",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synjhp9-iao",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synbhgh-pfl",
   "location": "swedencentral",
-  "name": "synjhp9-iao",
+  "name": "synbhgh-pfl",
   "identity": {
     "type": "SystemAssigned",
     "tenantId": "11111111-1111-1111-1111-111111111111",
-    "principalId": "237f098c-ec4f-4cd2-9d0b-2877ad36449f"
+    "principalId": "e8ad3ab8-145c-497d-b464-3e86c31c93dc"
   }
 }

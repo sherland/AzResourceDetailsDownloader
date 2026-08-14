@@ -11,4 +11,4 @@
 | **Public IPv4 address** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
 | **Tier** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Basic |
 | **Provisioning state** | *See the Azure Portal for current status.* |
-| **Availability zone** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> None |
+| **Availability zone** | <!-- TODO (Unresolved): the root-level `zones` array (NOT under properties.*, so not template-addressable even once traced), joined/sorted, with a "No infrastructure redundancy required" fallback when empty (confirmed live on Compute/disks) --> None |

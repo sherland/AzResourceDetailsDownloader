@@ -9,11 +9,11 @@
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Resource group** | {{ model.resource_group }} |
-| **Server name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> pgfd6vwwi6 |
+| **Server name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> pgh-ko1-k2 |
 | **Location** | {{ model.location | region_display_name }} |
 | **Status** | *See the Azure Portal for current status.* |
-| **Created on** | <!-- TODO (NotAddressable): Traceable via 'systemdata.createdat', but that's outside properties.* — not reachable as model.props.*. Would need the renderer to expose that section, or the label stays manual. --> 2026-08-13 13:14:05 (UTC) |
-| **Endpoint** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. --> pgfd6vwwi6.postgres.database.azure.com |
+| **Created on** | <!-- TODO (NotAddressable): Traceable via 'systemdata.createdat', but that's outside properties.* — not reachable as model.props.*. Would need the renderer to expose that section, or the label stays manual. --> 2026-08-14 12:29:15 (UTC) |
+| **Endpoint** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. --> pgh-ko1-k2.postgres.database.azure.com |
 | **Virtual endpoint** | {{ model.props.highavailability.mode }} |
 | **Administrator login** | {{ model.props.administratorlogin }} |
 | **Configuration** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Burstable, B1ms, 1 vCores, 2 GiB RAM, 32 GiB storage |

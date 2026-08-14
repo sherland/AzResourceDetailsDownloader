@@ -1,7 +1,7 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-7c2bfad159d510c2/providers/Microsoft.ContainerService/managedClusters/aksb4ef4-7r",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-7c2bfad159d510c2/providers/Microsoft.ContainerService/managedClusters/aksb-v9-xxa",
   "location": "swedencentral",
-  "name": "aksb4ef4-7r",
+  "name": "aksb-v9-xxa",
   "type": "Microsoft.ContainerService/ManagedClusters",
   "properties": {
     "provisioningState": "Succeeded",
@@ -10,9 +10,9 @@
     },
     "kubernetesVersion": "1.35",
     "currentKubernetesVersion": "1.35.6",
-    "dnsPrefix": "ardlaksdr835j",
-    "fqdn": "ardlaksdr835j-ipc8p00k.hcp.swedencentral.azmk8s.io",
-    "azurePortalFQDN": "ardlaksdr835j-ipc8p00k.portal.hcp.swedencentral.azmk8s.io",
+    "dnsPrefix": "ardlaksvj1i-p",
+    "fqdn": "ardlaksvj1i-p-sbjy59rq.hcp.swedencentral.azmk8s.io",
+    "azurePortalFQDN": "ardlaksvj1i-p-sbjy59rq.portal.hcp.swedencentral.azmk8s.io",
     "agentPoolProfiles": [
       {
         "name": "agentpool",
@@ -44,7 +44,7 @@
     "servicePrincipalProfile": {
       "clientId": "msi"
     },
-    "nodeResourceGroup": "MC_rg-ardl-7c2bfad159d510c2_aksb4ef4-7r_swedencentral",
+    "nodeResourceGroup": "MC_rg-ardl-7c2bfad159d510c2_aksb-v9-xxa_swedencentral",
     "enableRBAC": true,
     "supportPlan": "KubernetesOfficial",
     "networkProfile": {
@@ -59,7 +59,7 @@
         },
         "effectiveOutboundIPs": [
           {
-            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-7c2bfad159d510c2_aksb4ef4-7r_swedencentral/providers/Microsoft.Network/publicIPAddresses/47c47abb-39b7-47e9-b841-ae0f922f6dc6"
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-7c2bfad159d510c2_aksb-v9-xxa_swedencentral/providers/Microsoft.Network/publicIPAddresses/0b2fa6a0-33b2-416d-b93a-d5ade3120957"
           }
         ],
         "backendPoolType": "nodeIPConfiguration"
@@ -81,9 +81,9 @@
     "maxAgentPools": 100,
     "identityProfile": {
       "kubeletidentity": {
-        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/MC_rg-ardl-7c2bfad159d510c2_aksb4ef4-7r_swedencentral/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aksb4ef4-7r-agentpool",
-        "clientId": "a37aa05e-7d45-4a2a-bc03-a6bfc4e5171a",
-        "objectId": "3881ecbf-b46c-4a5b-a226-98e4fc5810de"
+        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/MC_rg-ardl-7c2bfad159d510c2_aksb-v9-xxa_swedencentral/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aksb-v9-xxa-agentpool",
+        "clientId": "ef5708e9-4c4e-45eb-bd38-56abdcbd1936",
+        "objectId": "a4aadeb4-56b1-4a4d-87be-b8f6bd950d02"
       }
     },
     "autoUpgradeProfile": {
@@ -103,10 +103,10 @@
     },
     "oidcIssuerProfile": {
       "enabled": true,
-      "issuerURL": "https://swedencentral.oic.prod-aks.azure.com/11111111-1111-1111-1111-111111111111/51092437-317b-43fe-a4d5-32c653547aed/"
+      "issuerURL": "https://swedencentral.oic.prod-aks.azure.com/11111111-1111-1111-1111-111111111111/947e9b7e-76b5-4470-a261-7eff7098f5aa/"
     },
     "workloadAutoScalerProfile": {},
-    "resourceUID": "6a7ef100e9d5a30001067ed5",
+    "resourceUID": "6a7f07b9e9d5a30001067efc",
     "metricsProfile": {
       "costAnalysis": {
         "enabled": false
@@ -115,7 +115,7 @@
   },
   "identity": {
     "type": "SystemAssigned",
-    "principalId": "c116a630-4b24-4767-8d00-bca59aa592bd",
+    "principalId": "d1610d66-241f-421e-8387-8f48c4939eb4",
     "tenantId": "11111111-1111-1111-1111-111111111111"
   },
   "sku": {

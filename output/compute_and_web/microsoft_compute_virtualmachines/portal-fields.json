@@ -33,7 +33,7 @@
   },
   {
     "Label": "Virtual network/subnet",
-    "Value": "vnetb5ylw2-a/default"
+    "Value": "vnetyu-i7-8l/default"
   },
   {
     "Label": "DNS name",
@@ -45,6 +45,6 @@
   },
   {
     "Label": "Time created",
-    "Value": "8/13/2026, 12:46 PM UTC"
+    "Value": "8/14/2026, 12:29 PM UTC"
   }
 ]

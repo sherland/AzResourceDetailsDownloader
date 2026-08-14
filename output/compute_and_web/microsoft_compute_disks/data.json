@@ -1,6 +1,6 @@
 {
-  "name": "disk4-94-a-6",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ab7325b8645ba734/providers/Microsoft.Compute/disks/disk4-94-a-6",
+  "name": "diskul7-e4-0",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ab7325b8645ba734/providers/Microsoft.Compute/disks/diskul7-e4-0",
   "type": "Microsoft.Compute/disks",
   "location": "norwayeast",
   "sku": {
@@ -19,10 +19,10 @@
     },
     "networkAccessPolicy": "AllowAll",
     "publicNetworkAccess": "Enabled",
-    "timeCreated": "2026-08-14T10:28:04.9192592\u002B00:00",
+    "timeCreated": "2026-08-14T12:15:31.6450769\u002B00:00",
     "provisioningState": "Succeeded",
     "diskState": "Unattached",
     "diskSizeBytes": 4294967296,
-    "uniqueId": "1d762c1f-bc3c-40df-9ce8-45e9574c1dcc"
+    "uniqueId": "5d8008cf-c213-46d4-8f16-aa878248e175"
   }
 }

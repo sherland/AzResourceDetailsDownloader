@@ -16,7 +16,7 @@ Text automatically extracted from info/warning boxes on the Overview blade at ca
 
 - Missed POSETTE: An Event for Postgres 2026? All 44 talks are now available. Learn about the latest features, performance tips, and real-world applications from Postgres experts. Watch now
 
-- This new Azure Database for PostgreSQL flexible server has been created as part of successful automatic migration of Azure Database for PostgreSQL Single Server pgfd6vwwi6
+- This new Azure Database for PostgreSQL flexible server has been created as part of successful automatic migration of Azure Database for PostgreSQL Single Server pgh-ko1-k2
 
 - Burstable compute tier is optimized for dev/test workloads. For production use, we recommend General Purpose or Memory Optimized tiers.
 

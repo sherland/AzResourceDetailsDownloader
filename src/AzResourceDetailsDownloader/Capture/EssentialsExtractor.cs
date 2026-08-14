@@ -341,6 +341,111 @@ public static class EssentialsExtractor
             .DistinctBy(f => f.Label, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
+    // Live-found (2026-08-14, React fiber investigation): the grid/PropertyField layouts' Essentials
+    // panel is always built by a shared framework component with a stable, non-minified
+    // `displayName` of "Essentials" — true regardless of resource type — one fiber level below which
+    // sits a per-extension-authored function taking the resource's raw ARM object as a prop and
+    // returning the resolved `{label, value}` field array. That function's minified-but-not-obfuscated
+    // source (`fiber.type.toString()`) still shows real `properties.*`/`sku.*`/`kind` member-access
+    // expressions feeding each field — genuine raw ARM paths, not guesses — even when a friendly-text
+    // transform wraps the value so it can never be found by value-matching against the raw JSON (e.g.
+    // Storage Accounts' "Replication" is `sku.name` run through an untraced redundancy-name lookup;
+    // FieldRecipeResolver's value-matcher structurally can't find that, no matter how it's tuned).
+    // Labels themselves are resource-string references in source, never literal text (same
+    // localization behavior as the Norwegian-timestamp finding below), so this dump can't replace the
+    // DOM-captured label — it's read alongside the already-known label/value pairs, by a human (or an
+    // LLM) turning a raw path into a verified FieldRecipe, the same manual-but-live-verified way every
+    // other shortcut in FieldRecipeResolver.cs was built. Only fires for the grid/PropertyField
+    // layouts (the ones with a per-type extension at all); the generic PropertiesForm fallback and
+    // legacy layouts don't have this component to find. No-op unless ARDL_DEBUG_ESSENTIALS_DIR is set
+    // — see PortalCaptureService and AGENT.md.
+    private const string FiberAnchorSelector =
+        "[class*=\"essentialsItem-\"], [id^=\"PropertyField\"][id$=\"-label\"], label.ms-Label[aria-label][id]";
+
+    public static async Task DumpFiberBuilderSourceAsync(IPage page, string outputPath)
+    {
+        const string js = """
+            () => {
+                const anchor = document.querySelector(
+                    '[class*="essentialsItem-"], [id^="PropertyField"][id$="-label"], label.ms-Label[aria-label][id]');
+                if (!anchor) {
+                    return JSON.stringify({ found: false, reason: 'no anchor element found in this frame' });
+                }
+                const fiberKey = Object.keys(anchor).find(k => k.startsWith('__reactFiber'));
+                if (!fiberKey) {
+                    return JSON.stringify({ found: false, reason: 'anchor element has no React fiber' });
+                }
+                let fiber = anchor[fiberKey];
+                let depth = 0;
+                while (fiber && depth < 80) {
+                    const displayName = typeof fiber.type === 'function'
+                        ? (fiber.type.displayName || fiber.type.name)
+                        : fiber.type;
+                    if (displayName === 'Essentials') {
+                        const builderFiber = fiber.return;
+                        // React.memo/forwardRef wrap the real function inside an object
+                        // ({ $$typeof, type/render: fn }) instead of exposing it as fiber.type
+                        // directly — unwrap one level before giving up. Live-observed on Redis
+                        // Enterprise (builderSource came back null despite fiber.return existing).
+                        let builderFn = builderFiber?.type;
+                        if (builderFn && typeof builderFn !== 'function') {
+                            builderFn = builderFn.type ?? builderFn.render ?? null;
+                        }
+                        const builderSource = typeof builderFn === 'function' ? builderFn.toString() : null;
+                        let fields = null;
+                        try {
+                            fields = (fiber.memoizedProps?.fields || []).map(f =>
+                                (f && typeof f === 'object')
+                                    ? { label: String(f.label ?? ''), value: typeof f.value === 'string' ? f.value : typeof f.value }
+                                    : String(f));
+                        } catch { /* best-effort */ }
+                        return JSON.stringify({ found: true, depthFromAnchor: depth, resolvedFields: fields, builderSource }, null, 1);
+                    }
+                    fiber = fiber.return;
+                    depth++;
+                }
+                return JSON.stringify({ found: false, reason: 'no Essentials-displayName fiber within 80 levels of the anchor' });
+            }
+            """;
+
+        // The real extractor waits (up to PrimaryAppearTimeout) for one of these same selectors
+        // before reading anything — this dump has to wait too, or it misses every slow-rendering
+        // blade type. First cut used PrimaryAppearTimeout/FallbackAppearTimeout directly (10s/5s)
+        // and still missed all 3 of the slowest types in the 2026-08-14 pilot batch (VMs, Postgres
+        // flexible servers, Synapse workspaces — all independently confirmed slow: each logged a
+        // "loading indicators still visible after 15s" warning from StableRenderWaiter). Given
+        // twice the budget here since, unlike the production extractor, this only ever runs one
+        // combo (no grid/PropertyField/PropertiesForm/legacy fallback chain to also fit inside
+        // HardCaptureTimeout) and is opt-in debug tooling, not on the hot path.
+        var dumpPrimaryTimeout = PrimaryAppearTimeout * 2;
+        var dumpFallbackTimeout = FallbackAppearTimeout * 2;
+
+        string json;
+        try
+        {
+            var sandboxFrame = page.FrameLocator(OverviewSandboxIframeSelector);
+            try
+            {
+                await sandboxFrame.Locator(FiberAnchorSelector).First
+                    .WaitForAsync(new LocatorWaitForOptions { Timeout = (float)dumpPrimaryTimeout.TotalMilliseconds });
+                json = await sandboxFrame.Locator("body").EvaluateAsync<string>(js);
+            }
+            catch (Exception frameEx) when (frameEx is TimeoutException or PlaywrightException)
+            {
+                await page.Locator(FiberAnchorSelector).First
+                    .WaitForAsync(new LocatorWaitForOptions { Timeout = (float)dumpFallbackTimeout.TotalMilliseconds });
+                json = await page.EvaluateAsync<string>(js);
+            }
+        }
+        catch (Exception ex)
+        {
+            json = $$"""{ "found": false, "reason": "extraction threw: {{ex.Message.Replace("\"", "'")}}" }""";
+        }
+
+        Directory.CreateDirectory(Path.GetDirectoryName(outputPath)!);
+        await File.WriteAllTextAsync(outputPath, json);
+    }
+
     // Kept permanently (not scaffolding to be deleted) — dumps the DOM region around the
     // "Essentials" landmark for inspecting the real markup when the extractor above needs
     // adjusting for a portal UI change or an unusual blade layout. No-op unless

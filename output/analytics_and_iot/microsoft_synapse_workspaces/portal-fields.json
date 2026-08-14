@@ -25,15 +25,15 @@
   },
   {
     "Label": "Managed Identity object ID",
-    "Value": "237f098c-ec4f-4cd2-9d0b-2877ad36449f"
+    "Value": "e8ad3ab8-145c-497d-b464-3e86c31c93dc"
   },
   {
     "Label": "Workspace web URL",
-    "Value": "https://web.azuresynapse.net?workspace=%2fsubscriptions%2f00000000-0000-0000-0000-000000000000%2fresourceGroups%2frg-ardl-bb17cace9b9db143%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsynjhp9-iao"
+    "Value": "https://web.azuresynapse.net?workspace=%2fsubscriptions%2f00000000-0000-0000-0000-000000000000%2fresourceGroups%2frg-ardl-bb17cace9b9db143%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsynbhgh-pfl"
   },
   {
     "Label": "Primary ADLS Gen2 account URL",
-    "Value": "https://stuyb3hfcc.dfs.core.windows.net"
+    "Value": "https://sthlzapzqb.dfs.core.windows.net"
   },
   {
     "Label": "Primary ADLS Gen2 file system",
@@ -49,14 +49,14 @@
   },
   {
     "Label": "Dedicated SQL endpoint",
-    "Value": "synjhp9-iao.sql.azuresynapse.net"
+    "Value": "synbhgh-pfl.sql.azuresynapse.net"
   },
   {
     "Label": "Serverless SQL endpoint",
-    "Value": "synjhp9-iao-ondemand.sql.azuresynapse.net"
+    "Value": "synbhgh-pfl-ondemand.sql.azuresynapse.net"
   },
   {
     "Label": "Development endpoint",
-    "Value": "https://synjhp9-iao.dev.azuresynapse.net"
+    "Value": "https://synbhgh-pfl.dev.azuresynapse.net"
   }
 ]
