@@ -26,8 +26,8 @@
     "disabledDataExfiltrationOptions": [],
     "semanticSearch": "disabled"
   },
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ea2c4413f84d4d7/providers/Microsoft.Search/searchServices/srch0v-3un-z",
-  "name": "srch0v-3un-z",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8ea2c4413f84d4d7/providers/Microsoft.Search/searchServices/srch1oszr6kr",
+  "name": "srch1oszr6kr",
   "type": "Microsoft.Search/searchServices",
   "sku": {
     "name": "free"

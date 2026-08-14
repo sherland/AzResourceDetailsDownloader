@@ -76,6 +76,19 @@ public static class FieldRecipeResolver
         "Endpoint", "URL", "Account URI", "Queue URL", "Topic URL", "Instrumentation key",
         "Connection string", "Logs workspace", "Metrics ingestion endpoint", "Origin response timeout",
         "Public key", "Ports",
+
+        // Confirmed by reading the live Azure Portal's own field-builder source via a React fiber
+        // walk (2026-08-14 pilot — see EssentialsExtractor.DumpFiberBuilderSourceAsync and AGENT.md),
+        // not by guessing: Compute/disks' "Operating system" is a direct, untransformed
+        // `properties.osType` passthrough (it only ever *looked* composite because this tool's own
+        // disk captures are always unattached data disks with osType null, rendering as "-"); "Disk
+        // size" is the same shape on both disks (`properties.diskSizeGB`) and Mongo vCore clusters
+        // (`properties.storage.sizeGb`) — a plain number plus a " GiB" unit suffix, not a real
+        // composite; Search Services' "Replicas" is `properties.replicaCount` wrapped in a
+        // count-formatter (adds "(No SLA)" only when the count is 1). Attempting these costs nothing
+        // where a type's value happens to be empty/placeholder (falls through to Unresolved exactly
+        // as before) and gets a real match where it isn't.
+        "Operating system", "Disk size", "Replicas",
     };
 
     public static FieldRecipe Resolve(string label, string value, JsonElement root)

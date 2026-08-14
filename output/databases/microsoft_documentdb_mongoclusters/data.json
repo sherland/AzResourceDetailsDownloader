@@ -1,14 +1,14 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74a9554cec74d742/providers/Microsoft.DocumentDB/mongoClusters/mcmfaoowj5",
-  "name": "mcmfaoowj5",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74a9554cec74d742/providers/Microsoft.DocumentDB/mongoClusters/mc9hbj8dh7",
+  "name": "mc9hbj8dh7",
   "type": "Microsoft.DocumentDB/mongoClusters",
   "tags": {},
   "location": "norwayeast",
   "systemData": {
-    "createdAt": "2026-08-14T10:41:27.2802398Z",
+    "createdAt": "2026-08-14T12:18:32.7316894Z",
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "lastModifiedAt": "2026-08-14T10:41:27.2802398Z",
+    "lastModifiedAt": "2026-08-14T12:18:32.7316894Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User"
   },
@@ -31,7 +31,7 @@
     "highAvailability": {
       "targetMode": "Disabled"
     },
-    "connectionString": "mongodb\u002Bsrv://\u003Cuser\u003E:\u003Cpassword\u003E@mcmfaoowj5.mongocluster.cosmos.azure.com/?tls=true\u0026authMechanism=SCRAM-SHA-256\u0026retrywrites=false\u0026maxIdleTimeMS=120000",
+    "connectionString": "mongodb\u002Bsrv://\u003Cuser\u003E:\u003Cpassword\u003E@mc9hbj8dh7.mongocluster.cosmos.azure.com/?tls=true\u0026authMechanism=SCRAM-SHA-256\u0026retrywrites=false\u0026maxIdleTimeMS=120000",
     "backup": {},
     "privateEndpointConnections": [],
     "publicNetworkAccess": "Enabled",

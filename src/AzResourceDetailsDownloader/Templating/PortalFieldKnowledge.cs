@@ -116,6 +116,75 @@ public static class PortalFieldKnowledge
         ["Auto-inflate throughput units"] = "composite of isAutoInflateEnabled + sku.tier",
         ["Non-TLS access"] = "single enum (clientProtocol), not a plain bool",
         ["Domain name label scope"] = "different API surface / portal-computed, not in this GET's body",
+
+        // The entries below are confirmed by reading the Azure Portal's own field-builder function
+        // source live, via a React fiber walk (2026-08-14 pilot batch across 13 resource types — see
+        // EssentialsExtractor.DumpFiberBuilderSourceAsync, opt-in via ARDL_DEBUG_ESSENTIALS_DIR, and
+        // AGENT.md). Unlike everything above this line, these aren't inferred from failing to find a
+        // value match — the raw property really is there; what defeats value-matching is a
+        // friendly-text lookup table between the raw value and the rendered string (so the rendered
+        // text never appears anywhere in data.json, no matter how the matcher is tuned). Encoding
+        // those lookup tables as real FieldRecipe shortcuts would need a verified reference source
+        // (the same "fetched, not guessed" bar as config/azure-locations.json) — only one enum value
+        // per field was actually observed live, not enough to hardcode the rest with confidence.
+        ["Storage type"] = "sku.name, via an untraced SKU-to-friendly-name lookup (same shape as " +
+            "Storage Accounts' \"Replication\"/\"Account kind\", confirmed live on Compute/disks)",
+        ["Cluster tier"] = "properties.compute.tier, via an untraced friendly-name lookup " +
+            "(confirmed live on DocumentDB/mongoClusters)",
+        ["Connectivity method"] = "properties.publicNetworkAccess (\"Enabled\"/\"Disabled\"), " +
+            "rendered as \"Public access\"/\"Private access\" (confirmed live on DocumentDB/mongoClusters)",
+        ["Authentication"] = "properties.authConfig.allowedModes (an array of enum strings), combined " +
+            "into one sentence (confirmed live on DocumentDB/mongoClusters)",
+        ["Storage encryption"] = "identity.type at the document root (NOT under properties.*, so not " +
+            "template-addressable even once traced) — \"UserAssigned\" means customer-managed key, " +
+            "anything else means service-managed (confirmed live on DocumentDB/mongoClusters)",
+        ["Purge protection"] = "properties.enablePurgeProtection, a real boolean — but only rendered " +
+            "at all on a SKU tier where the feature exists, so an unresolved capture may just mean " +
+            "the SKU didn't have the property to show (confirmed live on AppConfiguration/configurationStores)",
+        ["Telemetry"] = "properties.telemetry.resourceId, existence-checked (present = Enabled) rather " +
+            "than a literal boolean (confirmed live on AppConfiguration/configurationStores)",
+        ["Cluster operation status"] = "properties.provisioningState, friendly-cased, compared against " +
+            "a known list of in-progress states (Stopping/Starting/Upgrading/...) to decide whether to " +
+            "show a spinner/badge (confirmed live on ContainerService/ManagedClusters — AKS)",
+        ["Power state"] = "very likely properties.powerState.code (\"Running\"/\"Stopped\") — seen " +
+            "passed through an opaque helper function, not inlined, so the exact path isn't 100% " +
+            "confirmed the way the others here are",
+        ["API server address"] = "very likely properties.fqdn or properties.privateFQDN — same opaque-" +
+            "helper caveat as \"Power state\" above (confirmed live on ContainerService/ManagedClusters)",
+        ["Node pools"] = "very likely a count/summary derived from properties.agentPoolProfiles — opaque " +
+            "helper, exact shape not confirmed",
+        ["Network configuration"] = "very likely composed from properties.networkProfile.networkPlugin " +
+            "(+ networkPluginMode) — opaque helper, exact shape not confirmed",
+        ["Created time"] = "AKS clusters fetch this from a SEPARATE API call, not the resource GET body " +
+            "this tool captures at all — genuinely a different-API-surface case, not a parsing gap " +
+            "(confirmed live on ContainerService/ManagedClusters; unrelated to the AKS/Storage " +
+            "\"Date created\"/\"Created time\" cases already in NonTraceableLabels)",
+        ["Definition"] = "a composite trigger/action-count summary computed from the whole workflow " +
+            "resource, not a single property (confirmed live on Logic/workflows)",
+        ["Runs last 24 hours"] = "fetched live from Azure Monitor metrics (RunsSucceeded/RunsFailed), " +
+            "not present anywhere in the resource GET body — different-API-surface, not a parsing gap " +
+            "(confirmed live on Logic/workflows)",
+        ["Integration Account"] = "very likely properties.integrationAccount.id — opaque helper, exact " +
+            "shape not confirmed (Logic/workflows)",
+        ["Workflow Type"] = "opaque helper over the whole workflow resource — exact backing property " +
+            "not confirmed (Logic/workflows)",
+        ["Workflow URL"] = "fetched from a separate callback-URL API, not present in the resource GET " +
+            "body — different-API-surface, not a parsing gap (confirmed live on Logic/workflows)",
+        ["Max shares"] = "properties.maxShares, a real (usually-zero) number — direct passthrough, only " +
+            "renders as \"0\" because no captured disk has sharing enabled (confirmed live on Compute/disks)",
+        ["Managed by"] = "properties.managedBy (a VM resource ID, last path segment shown) when set — " +
+            "genuinely composite (extracts + link-wraps a name from an ID, like the Resource Group " +
+            "shortcut does), correctly non-traceable as a plain value match (confirmed live on Compute/disks)",
+        ["Last ownership update time"] = "properties.LastOwnershipUpdateTime (note the unusual capital " +
+            "L — a real quirk in this property's ARM casing, not a typo) — a genuine timestamp, just " +
+            "null on every disk this tool has captured so far (confirmed live on Compute/disks)",
+        ["Security type"] = "properties.securityProfile.securityType, via a friendly-casing transform " +
+            "(confirmed live on Compute/disks)",
+        ["Availability zone"] = "the root-level `zones` array (NOT under properties.*, so not template-" +
+            "addressable even once traced), joined/sorted, with a \"No infrastructure redundancy " +
+            "required\" fallback when empty (confirmed live on Compute/disks)",
+        ["Compute type"] = "properties.computeType, capitalized — a plain direct passthrough (confirmed " +
+            "live on Search/searchServices)",
     };
 
     // Tenant/subscription display identity — never part of a resource's own ARM body; instead

@@ -1,6 +1,6 @@
 {
-  "name": "swazfidx9hmdq01",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Compute/virtualMachines/swazfidx9hmdq01",
+  "name": "swazr9mxi1e6h01",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Compute/virtualMachines/swazr9mxi1e6h01",
   "type": "Microsoft.Compute/virtualMachines",
   "location": "swedencentral",
   "properties": {
@@ -8,7 +8,7 @@
       "vmSize": "Standard_D2s_v5"
     },
     "provisioningState": "Succeeded",
-    "vmId": "b319bc95-ac04-4013-b5ab-ad252502c4e5",
+    "vmId": "7f1060ee-2536-4aa3-b52a-6afc8ecca33b",
     "storageProfile": {
       "imageReference": {
         "publisher": "Canonical",
@@ -19,12 +19,12 @@
       },
       "osDisk": {
         "osType": "Linux",
-        "name": "swazfidx9hmdq01_OsDisk_1_d886fec04d724d309b627e1599e71143",
+        "name": "swazr9mxi1e6h01_disk1_f88651b2a00b48a6adeac2312d35ca70",
         "createOption": "FromImage",
         "caching": "ReadWrite",
         "managedDisk": {
           "storageAccountType": "StandardSSD_LRS",
-          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Compute/disks/swazfidx9hmdq01_OsDisk_1_d886fec04d724d309b627e1599e71143"
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Compute/disks/swazr9mxi1e6h01_disk1_f88651b2a00b48a6adeac2312d35ca70"
         },
         "deleteOption": "Detach",
         "diskSizeGB": 30
@@ -50,11 +50,11 @@
     "networkProfile": {
       "networkInterfaces": [
         {
-          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Network/networkInterfaces/nicdr-jirpw"
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ff83ff04b97211cf/providers/Microsoft.Network/networkInterfaces/nic9f-p4lme"
         }
       ]
     },
-    "timeCreated": "2026-08-13T12:46:42.3179019\u002B00:00"
+    "timeCreated": "2026-08-14T12:29:18.5882702\u002B00:00"
   },
   "etag": "\u00222\u0022"
 }

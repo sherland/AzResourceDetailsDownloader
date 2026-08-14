@@ -1,8 +1,8 @@
-param managedClusters_aksb4ef4_7r_name string
-param userAssignedIdentities_aksb4ef4_7r_agentpool_externalid string
+param managedClusters_aksb_v9_xxa_name string
+param userAssignedIdentities_aksb_v9_xxa_agentpool_externalid string
 
-resource managedClusters_aksb4ef4_7r_name_resource 'Microsoft.ContainerService/managedClusters@2026-04-02-preview' = {
-  name: managedClusters_aksb4ef4_7r_name
+resource managedClusters_aksb_v9_xxa_name_resource 'Microsoft.ContainerService/managedClusters@2026-04-02-preview' = {
+  name: managedClusters_aksb_v9_xxa_name
   location: 'swedencentral'
   sku: {
     name: 'Base'
@@ -14,7 +14,7 @@ resource managedClusters_aksb4ef4_7r_name_resource 'Microsoft.ContainerService/m
   }
   properties: {
     kubernetesVersion: '1.35'
-    dnsPrefix: 'ardlaksdr835j'
+    dnsPrefix: 'ardlaksvj1i-p'
     agentPoolProfiles: [
       {
         name: 'agentpool'
@@ -50,7 +50,7 @@ resource managedClusters_aksb4ef4_7r_name_resource 'Microsoft.ContainerService/m
     servicePrincipalProfile: {
       clientId: 'msi'
     }
-    nodeResourceGroup: 'MC_rg-ardl-7c2bfad159d510c2_${managedClusters_aksb4ef4_7r_name}_swedencentral'
+    nodeResourceGroup: 'MC_rg-ardl-7c2bfad159d510c2_${managedClusters_aksb_v9_xxa_name}_swedencentral'
     enableRBAC: true
     supportPlan: 'KubernetesOfficial'
     networkProfile: {
@@ -82,9 +82,9 @@ resource managedClusters_aksb4ef4_7r_name_resource 'Microsoft.ContainerService/m
     }
     identityProfile: {
       kubeletidentity: {
-        resourceId: userAssignedIdentities_aksb4ef4_7r_agentpool_externalid
-        clientId: 'a37aa05e-7d45-4a2a-bc03-a6bfc4e5171a'
-        objectId: '3881ecbf-b46c-4a5b-a226-98e4fc5810de'
+        resourceId: userAssignedIdentities_aksb_v9_xxa_agentpool_externalid
+        clientId: 'ef5708e9-4c4e-45eb-bd38-56abdcbd1936'
+        objectId: 'a4aadeb4-56b1-4a4d-87be-b8f6bd950d02'
       }
     }
     autoUpgradeProfile: {
@@ -131,8 +131,8 @@ resource managedClusters_aksb4ef4_7r_name_resource 'Microsoft.ContainerService/m
   }
 }
 
-resource managedClusters_aksb4ef4_7r_name_agentpool 'Microsoft.ContainerService/managedClusters/agentPools@2026-04-02-preview' = {
-  parent: managedClusters_aksb4ef4_7r_name_resource
+resource managedClusters_aksb_v9_xxa_name_agentpool 'Microsoft.ContainerService/managedClusters/agentPools@2026-04-02-preview' = {
+  parent: managedClusters_aksb_v9_xxa_name_resource
   name: 'agentpool'
   properties: {
     count: 1
@@ -165,14 +165,14 @@ resource managedClusters_aksb4ef4_7r_name_agentpool 'Microsoft.ContainerService/
   }
 }
 
-resource managedClusters_aksb4ef4_7r_name_agentpool_aks_agentpool_72296233_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
-  parent: managedClusters_aksb4ef4_7r_name_agentpool
-  name: 'aks-agentpool-72296233-vmss000000'
+resource managedClusters_aksb_v9_xxa_name_agentpool_aks_agentpool_35220837_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
+  parent: managedClusters_aksb_v9_xxa_name_agentpool
+  name: 'aks-agentpool-35220837-vmss000000'
   properties: {
     network: {}
   }
   dependsOn: [
-    managedClusters_aksb4ef4_7r_name_resource
+    managedClusters_aksb_v9_xxa_name_resource
   ]
 }
 

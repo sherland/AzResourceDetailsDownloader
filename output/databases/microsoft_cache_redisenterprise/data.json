@@ -1,7 +1,7 @@
 {
   "location": "Norway East",
-  "name": "redisentmb0uqeyd",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-17e0c65542ffc7e9/providers/Microsoft.Cache/redisEnterprise/redisentmb0uqeyd",
+  "name": "redisent85ced0gk",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-17e0c65542ffc7e9/providers/Microsoft.Cache/redisEnterprise/redisent85ced0gk",
   "type": "Microsoft.Cache/redisEnterprise",
   "kind": "v2",
   "tags": {},
@@ -10,7 +10,7 @@
   },
   "properties": {
     "minimumTlsVersion": "1.2",
-    "hostName": "redisentmb0uqeyd.norwayeast.redis.azure.net",
+    "hostName": "redisent85ced0gk.norwayeast.redis.azure.net",
     "provisioningState": "Succeeded",
     "resourceState": "Running",
     "privateEndpointConnections": [],

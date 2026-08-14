@@ -1,9 +1,9 @@
-param virtualNetworks_vnetb5ylw2_a_name string
-param networkInterfaces_nicdr_jirpw_name string
-param virtualMachines_swazfidx9hmdq01_name string
+param virtualNetworks_vnetyu_i7_8l_name string
+param networkInterfaces_nic9f_p4lme_name string
+param virtualMachines_swazr9mxi1e6h01_name string
 
-resource virtualNetworks_vnetb5ylw2_a_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
-  name: virtualNetworks_vnetb5ylw2_a_name
+resource virtualNetworks_vnetyu_i7_8l_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
+  name: virtualNetworks_vnetyu_i7_8l_name
   location: 'swedencentral'
   properties: {
     addressSpace: {
@@ -15,7 +15,7 @@ resource virtualNetworks_vnetb5ylw2_a_name_resource 'Microsoft.Network/virtualNe
     subnets: [
       {
         name: 'default'
-        id: virtualNetworks_vnetb5ylw2_a_name_default.id
+        id: virtualNetworks_vnetyu_i7_8l_name_default.id
         properties: {
           addressPrefix: '10.30.0.0/24'
           delegations: []
@@ -29,8 +29,8 @@ resource virtualNetworks_vnetb5ylw2_a_name_resource 'Microsoft.Network/virtualNe
   }
 }
 
-resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtualMachines@2025-11-01' = {
-  name: virtualMachines_swazfidx9hmdq01_name
+resource virtualMachines_swazr9mxi1e6h01_name_resource 'Microsoft.Compute/virtualMachines@2025-11-01' = {
+  name: virtualMachines_swazr9mxi1e6h01_name
   location: 'swedencentral'
   properties: {
     hardwareProfile: {
@@ -45,14 +45,14 @@ resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtua
       }
       osDisk: {
         osType: 'Linux'
-        name: '${virtualMachines_swazfidx9hmdq01_name}_OsDisk_1_d886fec04d724d309b627e1599e71143'
+        name: '${virtualMachines_swazr9mxi1e6h01_name}_disk1_f88651b2a00b48a6adeac2312d35ca70'
         createOption: 'FromImage'
         caching: 'ReadWrite'
         managedDisk: {
           storageAccountType: 'StandardSSD_LRS'
           id: resourceId(
             'Microsoft.Compute/disks',
-            '${virtualMachines_swazfidx9hmdq01_name}_OsDisk_1_d886fec04d724d309b627e1599e71143'
+            '${virtualMachines_swazr9mxi1e6h01_name}_disk1_f88651b2a00b48a6adeac2312d35ca70'
           )
         }
         deleteOption: 'Detach'
@@ -82,27 +82,27 @@ resource virtualMachines_swazfidx9hmdq01_name_resource 'Microsoft.Compute/virtua
     networkProfile: {
       networkInterfaces: [
         {
-          id: networkInterfaces_nicdr_jirpw_name_resource.id
+          id: networkInterfaces_nic9f_p4lme_name_resource.id
         }
       ]
     }
   }
 }
 
-resource networkInterfaces_nicdr_jirpw_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
-  name: networkInterfaces_nicdr_jirpw_name
+resource networkInterfaces_nic9f_p4lme_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
+  name: networkInterfaces_nic9f_p4lme_name
   location: 'swedencentral'
   kind: 'Regular'
   properties: {
     ipConfigurations: [
       {
         name: 'ipconfig1'
-        id: '${networkInterfaces_nicdr_jirpw_name_resource.id}/ipConfigurations/ipconfig1'
+        id: '${networkInterfaces_nic9f_p4lme_name_resource.id}/ipConfigurations/ipconfig1'
         properties: {
           privateIPAddress: '10.30.0.4'
           privateIPAllocationMethod: 'Dynamic'
           subnet: {
-            id: virtualNetworks_vnetb5ylw2_a_name_default.id
+            id: virtualNetworks_vnetyu_i7_8l_name_default.id
           }
           primary: true
           privateIPAddressVersion: 'IPv4'
@@ -121,8 +121,8 @@ resource networkInterfaces_nicdr_jirpw_name_resource 'Microsoft.Network/networkI
   }
 }
 
-resource virtualNetworks_vnetb5ylw2_a_name_default 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
-  name: '${virtualNetworks_vnetb5ylw2_a_name}/default'
+resource virtualNetworks_vnetyu_i7_8l_name_default 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
+  name: '${virtualNetworks_vnetyu_i7_8l_name}/default'
   properties: {
     addressPrefix: '10.30.0.0/24'
     delegations: []
@@ -130,7 +130,7 @@ resource virtualNetworks_vnetb5ylw2_a_name_default 'Microsoft.Network/virtualNet
     privateLinkServiceNetworkPolicies: 'Enabled'
   }
   dependsOn: [
-    virtualNetworks_vnetb5ylw2_a_name_resource
+    virtualNetworks_vnetyu_i7_8l_name_resource
   ]
 }
 

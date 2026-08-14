@@ -10,4 +10,4 @@
 | **Name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> ppga5vrkskv |
 | **Type** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Standard |
 | **Intent** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
-| **Availability zone** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
+| **Availability zone** | <!-- TODO (Unresolved): the root-level `zones` array (NOT under properties.*, so not template-addressable even once traced), joined/sorted, with a "No infrastructure redundancy required" fallback when empty (confirmed live on Compute/disks) --> - |
