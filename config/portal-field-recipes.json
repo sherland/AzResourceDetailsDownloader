@@ -196,10 +196,10 @@
   },
   {
     "Label": "API server address",
-    "Kind": "NeedsReview",
-    "Confidence": 0.2,
-    "Target": "model.props.fqdn",
-    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.aks_api_server_address_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerService/ManagedClusters"
@@ -367,10 +367,10 @@
   },
   {
     "Label": "Authentication",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "properties.authConfig.allowedModes (an array of enum strings), combined into one sentence (confirmed live on DocumentDB/mongoClusters)",
+    "Kind": "Shortcut",
+    "Confidence": 0.3,
+    "Target": "model.mongo_authentication_label",
+    "Notes": "properties.authConfig.allowedModes is empty/absent, or matches neither known auth mode. Unverified.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.DocumentDB/mongoClusters"
@@ -629,10 +629,10 @@
   },
   {
     "Label": "Cluster operation status",
-    "Kind": "NeedsReview",
-    "Confidence": 0.2,
-    "Target": "model.props.provisioningstate",
-    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting (2 addressable value-matching leaves, none strongly name-related to the label).",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.aks_cluster_operation_status_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerService/ManagedClusters"
@@ -655,10 +655,10 @@
   },
   {
     "Label": "Cluster tier",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "properties.compute.tier, via an untraced friendly-name lookup (confirmed live on DocumentDB/mongoClusters)",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.mongo_cluster_tier_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.DocumentDB/mongoClusters"
@@ -789,10 +789,10 @@
   },
   {
     "Label": "Connectivity method",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "properties.publicNetworkAccess (\u0022Enabled\u0022/\u0022Disabled\u0022), rendered as \u0022Public access\u0022/\u0022Private access\u0022 (confirmed live on DocumentDB/mongoClusters)",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.mongo_connectivity_method_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.DocumentDB/mongoClusters"
@@ -1184,10 +1184,10 @@
   },
   {
     "Label": "Definition",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "a composite trigger/action-count summary computed from the whole workflow resource, not a single property (confirmed live on Logic/workflows)",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.logic_workflow_definition_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Logic/workflows"
@@ -2078,10 +2078,10 @@
   },
   {
     "Label": "Integration Account",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "very likely properties.integrationAccount.id \u2014 opaque helper, exact shape not confirmed (Logic/workflows)",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.logic_integration_account_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Logic/workflows"
@@ -3843,10 +3843,10 @@
   },
   {
     "Label": "Network configuration",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "very likely composed from properties.networkProfile.networkPlugin (\u002B networkPluginMode) \u2014 opaque helper, exact shape not confirmed",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.aks_network_configuration_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerService/ManagedClusters"
@@ -3895,10 +3895,10 @@
   },
   {
     "Label": "Node pools",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "very likely a count/summary derived from properties.agentPoolProfiles \u2014 opaque helper, exact shape not confirmed",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.aks_node_pools_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerService/ManagedClusters"
@@ -4296,10 +4296,10 @@
   },
   {
     "Label": "Power state",
-    "Kind": "Ambiguous",
+    "Kind": "ShortcutVerified",
     "Confidence": 1,
-    "Target": "model.props.powerstate.code",
-    "Notes": "Tied with model.props.agentpoolprofiles[0].powerstate.code (similarity 1.00) \u2014 pick manually.",
+    "Target": "model.aks_power_state_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerService/ManagedClusters"
@@ -6454,10 +6454,10 @@
   },
   {
     "Label": "Storage encryption",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "identity.type at the document root (NOT under properties.*, so not template-addressable even once traced) \u2014 \u0022UserAssigned\u0022 means customer-managed key, anything else means service-managed (confirmed live on DocumentDB/mongoClusters)",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.mongo_storage_encryption_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.DocumentDB/mongoClusters"
@@ -6858,10 +6858,10 @@
   },
   {
     "Label": "Telemetry",
-    "Kind": "NeedsReview",
-    "Confidence": 0.2,
-    "Target": "model.props.disablelocalauth",
-    "Notes": "Value matches (boolean\u2192friendly-word) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting (3 addressable value-matching leaves, none strongly name-related to the label).",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.appconfig_telemetry_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.AppConfiguration/configurationStores"
@@ -7361,10 +7361,10 @@
   },
   {
     "Label": "Workflow Type",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "opaque helper over the whole workflow resource \u2014 exact backing property not confirmed (Logic/workflows)",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.logic_workflow_type_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Logic/workflows"

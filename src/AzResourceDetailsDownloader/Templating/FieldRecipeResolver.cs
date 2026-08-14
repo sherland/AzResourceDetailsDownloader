@@ -123,6 +123,76 @@ public static class FieldRecipeResolver
         {
             return ResolveDiskSecurityTypeShortcut(value, root);
         }
+        if (label.Equals("Cluster tier", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveShortcutOrUnverified(value, PortalFriendlyLabels.MongoClusterTierLabel(root),
+                "model.mongo_cluster_tier_label", "properties.compute.tier isn't in the known tier table");
+        }
+        if (label.Equals("Connectivity method", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveShortcutOrUnverified(value, PortalFriendlyLabels.MongoConnectivityMethodLabel(root),
+                "model.mongo_connectivity_method_label", "This capture has no properties.publicNetworkAccess");
+        }
+        if (label.Equals("Authentication", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveShortcutOrUnverified(value, PortalFriendlyLabels.MongoAuthenticationLabel(root),
+                "model.mongo_authentication_label",
+                "properties.authConfig.allowedModes is empty/absent, or matches neither known auth mode");
+        }
+        if (label.Equals("Storage encryption", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveVerifiedShortcut(value, PortalFriendlyLabels.MongoStorageEncryptionLabel(root),
+                "model.mongo_storage_encryption_label");
+        }
+        if (label.Equals("Definition", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveShortcutOrUnverified(value, PortalFriendlyLabels.LogicWorkflowDefinitionLabel(root),
+                "model.logic_workflow_definition_label", "This capture has no properties.definition object");
+        }
+        if (label.Equals("Integration Account", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveVerifiedShortcut(value, PortalFriendlyLabels.LogicIntegrationAccountLabel(root),
+                "model.logic_integration_account_label");
+        }
+        if (label.Equals("Workflow Type", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveShortcutOrUnverified(value, PortalFriendlyLabels.LogicWorkflowTypeLabel(root),
+                "model.logic_workflow_type_label",
+                "properties.definition.metadata.agentType is set — the Autonomous/Conversational-agent " +
+                "branches weren't traced this session, only the default \"Stateful\" case");
+        }
+        if (label.Equals("Telemetry", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveVerifiedShortcut(value, PortalFriendlyLabels.AppConfigTelemetryLabel(root),
+                "model.appconfig_telemetry_label");
+        }
+        if (label.Equals("Power state", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveVerifiedShortcut(value, PortalFriendlyLabels.AksPowerStateLabel(root),
+                "model.aks_power_state_label");
+        }
+        if (label.Equals("Cluster operation status", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveVerifiedShortcut(value, PortalFriendlyLabels.AksClusterOperationStatusLabel(root),
+                "model.aks_cluster_operation_status_label");
+        }
+        if (label.Equals("API server address", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveVerifiedShortcut(value, PortalFriendlyLabels.AksApiServerAddressLabel(root),
+                "model.aks_api_server_address_label");
+        }
+        if (label.Equals("Node pools", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveVerifiedShortcut(value, PortalFriendlyLabels.AksNodePoolsLabel(root),
+                "model.aks_node_pools_label");
+        }
+        if (label.Equals("Network configuration", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveShortcutOrUnverified(value, PortalFriendlyLabels.AksNetworkConfigurationLabel(root),
+                "model.aks_network_configuration_label",
+                "properties.networkProfile.networkPlugin is missing, or is \"azure\" without overlay mode or " +
+                "any pod-subnet-attached node pool (the older non-overlay/non-podsubnet Azure CNI text wasn't traced)");
+        }
 
         var (baseLabel, _) = StripParenthetical(label);
         if (SkuLikeTokens.Any(t => Tokenize(baseLabel).Contains(t)))
@@ -364,6 +434,38 @@ public static class FieldRecipeResolver
         return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.disk_security_type_label",
             $"Computed \"{computed}\" does NOT match portal \"{value}\" — investigate before trusting this " +
             "shortcut for this capture.");
+    }
+
+    // Second pass (same day, follow-up investigation across DocumentDB/mongoClusters,
+    // Logic/workflows, and AppConfiguration/configurationStores) over the same "friendly-name lookup
+    // defeats value-matching" problem — see PortalFriendlyLabels for each field's own provenance
+    // comment. These two helpers cover the two shapes that kept repeating: a lookup that's either
+    // fully known (a "Standard"-style unconditional default — Storage encryption, Integration
+    // Account, Telemetry) or can come back null for an input this session didn't trace (an unknown
+    // SKU/tier, an untraced agent-workflow branch — Cluster tier, Connectivity method, Authentication,
+    // Definition, Workflow Type), in which case the recipe stays a low-confidence, explicitly-labeled
+    // "Shortcut" rather than a false "Unresolved — no idea", and reports as ShortcutMismatch (not
+    // silently trusted) if what's computed for the KNOWN cases doesn't actually match this capture.
+    private static FieldRecipe ResolveVerifiedShortcut(string value, string computed, string target)
+    {
+        if (computed == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, target,
+                "Verified: matches the captured value exactly (2026-08-14 live portal source read — see " +
+                "PortalFriendlyLabels for this field's own provenance).");
+        }
+        return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, target,
+            $"Computed \"{computed}\" does NOT match portal \"{value}\" — investigate before trusting this " +
+            "shortcut for this capture.");
+    }
+
+    private static FieldRecipe ResolveShortcutOrUnverified(string value, string? computed, string target, string unknownReason)
+    {
+        if (computed is null)
+        {
+            return new FieldRecipe(FieldRecipeKind.Shortcut, 0.3, target, $"{unknownReason}. Unverified.");
+        }
+        return ResolveVerifiedShortcut(value, computed, target);
     }
 
     private static FieldRecipe ResolveTimestamp(string baseLabel, string value, JsonElement root)

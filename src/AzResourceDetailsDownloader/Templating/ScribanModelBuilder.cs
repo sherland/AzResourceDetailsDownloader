@@ -68,6 +68,19 @@ public static class ScribanModelBuilder
             ["storage_account_kind_label"] = PortalFriendlyLabels.StorageAccountKindLabel(root),
             ["disk_storage_type_label"] = PortalFriendlyLabels.DiskStorageTypeLabel(root),
             ["disk_security_type_label"] = PortalFriendlyLabels.DiskSecurityTypeLabel(root),
+            ["mongo_cluster_tier_label"] = PortalFriendlyLabels.MongoClusterTierLabel(root),
+            ["mongo_connectivity_method_label"] = PortalFriendlyLabels.MongoConnectivityMethodLabel(root),
+            ["mongo_authentication_label"] = PortalFriendlyLabels.MongoAuthenticationLabel(root),
+            ["mongo_storage_encryption_label"] = PortalFriendlyLabels.MongoStorageEncryptionLabel(root),
+            ["logic_workflow_definition_label"] = PortalFriendlyLabels.LogicWorkflowDefinitionLabel(root),
+            ["logic_integration_account_label"] = PortalFriendlyLabels.LogicIntegrationAccountLabel(root),
+            ["logic_workflow_type_label"] = PortalFriendlyLabels.LogicWorkflowTypeLabel(root),
+            ["appconfig_telemetry_label"] = PortalFriendlyLabels.AppConfigTelemetryLabel(root),
+            ["aks_power_state_label"] = PortalFriendlyLabels.AksPowerStateLabel(root),
+            ["aks_cluster_operation_status_label"] = PortalFriendlyLabels.AksClusterOperationStatusLabel(root),
+            ["aks_api_server_address_label"] = PortalFriendlyLabels.AksApiServerAddressLabel(root),
+            ["aks_node_pools_label"] = PortalFriendlyLabels.AksNodePoolsLabel(root),
+            ["aks_network_configuration_label"] = PortalFriendlyLabels.AksNetworkConfigurationLabel(root),
         };
         return m;
     }
