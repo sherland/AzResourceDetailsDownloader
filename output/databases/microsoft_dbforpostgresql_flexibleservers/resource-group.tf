@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-8dd0677652d313d5"
   tags = {
     armType    = "Microsoft.DBforPostgreSQL/flexibleServers"
-    createdUtc = "2026-08-13T13:12:36.2546288Z"
+    createdUtc = "2026-08-14T12:29:02.8239006Z"
     purpose    = "az-resource-details-downloader"
   }
 }

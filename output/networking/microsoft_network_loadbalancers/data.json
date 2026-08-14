@@ -1,23 +1,23 @@
 {
-  "name": "lbg0-euchu",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lbg0-euchu",
-  "etag": "W/\u002239296bd5-06f7-492e-8703-92918e1dc6d7\u0022",
+  "name": "lb7y7v6-8y",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lb7y7v6-8y",
+  "etag": "W/\u00228c478a47-e868-4d5f-a6fb-b93ae123a9ae\u0022",
   "type": "Microsoft.Network/loadBalancers",
   "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "cdbf4fbe-ade1-49c8-bf4e-0f9b3e91c761",
+    "resourceGuid": "eacd286d-cf96-42bc-b8da-314345b27dd9",
     "frontendIPConfigurations": [
       {
         "name": "feConfig",
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lbg0-euchu/frontendIPConfigurations/feConfig",
-        "etag": "W/\u002239296bd5-06f7-492e-8703-92918e1dc6d7\u0022",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/loadBalancers/lb7y7v6-8y/frontendIPConfigurations/feConfig",
+        "etag": "W/\u00228c478a47-e868-4d5f-a6fb-b93ae123a9ae\u0022",
         "type": "Microsoft.Network/loadBalancers/frontendIPConfigurations",
         "properties": {
           "provisioningState": "Succeeded",
           "privateIPAllocationMethod": "Dynamic",
           "publicIPAddress": {
-            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/publicIPAddresses/pip48sal3-5"
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a9a38ecf30bcae8b/providers/Microsoft.Network/publicIPAddresses/pipjc-fv-7p"
           }
         }
       }

@@ -240,13 +240,110 @@ composite fields (Resource group, Location, Subscription, Tags) are rendered by 
 semantic display names** baked into the still-partially-readable production bundle —
 `EssentialsResourceGroupFieldLabel`/`Value`, `EssentialsLocationFieldLabel`/`Value`, etc. — while plain
 fields (SKU, IP address, DNS name, ...) are just plain string props, same as what the DOM scrape already
-sees. This is a genuinely promising angle for identifying composite/derived fields by *component identity*
-instead of fuzzy value-matching, but wasn't pursued further this session — the props inspected were
-already-resolved display strings, not raw ARM binding paths, so realizing the full value would mean
-walking further up/across the fiber tree to find where each field's data-fetching actually happens, which
-is a real investigation, not a quick add-on. Caveat: this only works against a *live* portal page (needs a
-provisioned resource open in a browser), so it can't run during an automated `--run` batch capture as-is —
-useful for one-off recipe investigation, not (yet) for the extraction pipeline itself.
+sees.
+
+**Follow-up (2026-08-14), walking further up the fiber tree from an Essentials field to the framework
+boundary — this is the actual answer to "how does the portal bind fields to ARM data":**
+
+- Every resource's Essentials panel is built by a shared `Essentials` component taking exactly
+  `{ resourceId, fields, customizeResourceFields, hideTags? }`. The four composite fields (Resource
+  group, Location, Subscription, Subscription ID) are **not data-bound per type at all** — they're
+  injected via a `customizeResourceFields` callback that just prepends framework constants
+  (`ResourceField.ResourceGroup`, `.Location`, `.Subscription`, `.SubscriptionId`), resolved generically
+  by `Essentials` itself from `resourceId` alone. Confirmed live on Network Watcher, whose overview has
+  *zero* custom fields — its whole builder is one line:
+  `customizeResourceFields: () => [ResourceField.ResourceGroup, ResourceField.Location,
+  ResourceField.Subscription, ResourceField.SubscriptionId, ...fields], fields: []`. This is why the
+  existing `ResolveLocationShortcut`/`ResolveResourceGroupShortcut` generic-path approach already works
+  perfectly for these four — there's no type-specific binding to reverse-engineer, ever.
+- **Type-specific fields are different**: one fiber level further up from `Essentials` is a
+  per-extension-authored function that receives the *raw ARM resource object* as a prop (verified on
+  Storage Accounts: a `storageAccount` prop shaped exactly like this tool's own captured `data.json` —
+  `name`/`id`/`kind`/`sku`/`location`/`properties.*`) and returns the resolved `fields` array. Grabbing
+  `fiber.type.toString()` on that function returns real (minified but not obfuscated) source, e.g. for
+  Storage Accounts: `value: Ve(n?.sku?.name, ...)` for "Replication", `value: Le(n?.kind, n?.id)` for
+  "Account kind", `value: je(e?.provisioningState)` for "Provisioning state", `value:
+  e?.creationTime && new Date(e.creationTime).toLocaleString()` for "Created". Minifiers rename local
+  variables but never object property names, so `n?.sku?.name`/`e?.provisioningState`/`e?.creationTime`
+  read directly as `sku.name`/`properties.provisioningState`/`properties.creationTime` — genuine raw
+  ARM paths, not guesses.
+- This is a real, better-than-value-matching signal for exactly the cases where `FieldRecipeResolver`'s
+  value-matching heuristic structurally can't win: a friendly-text transform (`Ve`, `Le`, `je` above)
+  means the rendered value never appears verbatim anywhere in the raw JSON, so no amount of smarter
+  fuzzy matching finds it — only reading the source shows the raw field really is there. Concretely:
+  Storage Accounts' "Replication" and "Account kind" are currently in `NonTraceableLabels` (added this
+  session as "composite/no single backing field") — this technique now shows that's wrong, they ARE
+  single-property-backed (`sku.name`, `kind` respectively), just behind an untraced friendly-name
+  lookup table. **Not fixed this session**: turning that into an actual `FieldRecipe` shortcut would
+  mean hardcoding Azure's SKU→redundancy-name and kind→display-name tables, and per this repo's "never
+  guessed, always live-verified" rule that table would need to come from a fetched/verified reference
+  source (the same pattern as `config/azure-locations.json` via `fetch-azure-reference-data.ps1`), not
+  from training-data recall — only one data point (`Standard_LRS` → "Locally redundant storage (LRS)",
+  `StorageV2` → "StorageV2 (general purpose v2)") was actually live-verified this session, which isn't
+  enough to hardcode the other ~7 SKU tiers and ~4 other kinds with confidence.
+- **Labels themselves are resource-string references in source** (`ue.React_Overview_Essentials.replication`
+  etc.), never literal text — matches the localization behavior already documented above (Norwegian
+  timestamps). So this technique identifies the *value*'s raw property path, not the label; you still
+  need the already-known DOM-captured label text to know which resolved `fields[i]` entry a given source
+  fragment corresponds to (matched by reading the builder source's field order against the `fields` prop
+  dump, both retrieved from the same fiber walk).
+- **Net assessment on "extend the app to resolve field-mappings better automatically"**: partially yes,
+  but it's a *research aid*, not a drop-in pipeline replacement. Reaching the fields-builder fiber isn't
+  at a fixed depth (27 for Storage, 37 for Network Watcher — depends on that type's own component tree
+  shape) and its source ranges from one-line-trivial (Network Watcher) to a dozen local variables with
+  nested ternaries and helper calls (Storage) — reliably extracting `label→path` pairs from arbitrary
+  types' minified source is closer to a small JS static-analysis project than a regex, and still needs a
+  human (or an LLM reading the dumped source) to turn a raw path into a verified `FieldRecipe`, the same
+  manual-but-live-verified way every other shortcut in `FieldRecipeResolver.cs` was built. Worthwhile as
+  a **targeted debugging tool for specific stuck labels** (point it at one type, one field, read the
+  source, hand-encode the transform) — not worth building as an automated batch step across all ~155
+  types for this session's scope. Caveat unchanged: only works against a *live* portal page, so it can't
+  run during an automated `--run` batch capture as-is.
+
+## The fiber-source technique got productionized as an opt-in debug dump, then pilot-tested across 13 types
+
+Follow-up the same day: the "targeted debugging tool" idea above got built for real —
+`EssentialsExtractor.DumpFiberBuilderSourceAsync` fires alongside the existing `DumpDebugHtmlAsync` HTML
+dump, gated by the same `ARDL_DEBUG_ESSENTIALS_DIR` env var (zero new plumbing). It doesn't need a
+specific DOM ref handed to it: it queries for *any* already-known field anchor (same three selectors
+`ExtractAsync` already uses), walks that element's fiber up until it finds `displayName === 'Essentials'`
+(stable across every resource type, confirmed the same day), then reads one level further up
+(`fiber.return.type.toString()`) for the per-extension builder function's source, unwrapping one level of
+`React.memo`/`forwardRef` if needed (`{ type/render: fn }` instead of a bare function — live-caught on
+Redis Enterprise, whose builder came back `null` before this fix).
+
+Piloted against the 13 catalog types with the most Unresolved/NeedsReview/NotAddressable/Ambiguous
+labels (`Microsoft.DocumentDB/mongoClusters`, `Microsoft.Compute/disks`,
+`Microsoft.DBforPostgreSQL/flexibleServers`, `Microsoft.Network/networkInterfaces`,
+`Microsoft.Network/loadBalancers`, `Microsoft.Compute/virtualMachines`, `Microsoft.Cache/redisEnterprise`,
+`Microsoft.ContainerService/ManagedClusters`, `Microsoft.Search/searchServices`,
+`Microsoft.Logic/workflows`, `Microsoft.AppConfiguration/configurationStores`,
+`Microsoft.Synapse/workspaces`, `Microsoft.Compute/virtualMachineScaleSets` — `Microsoft.Network/
+azureFirewalls` was requested too but never matched the catalog's exact type string, silently skipped).
+11 of 13 dumped real builder source on the first pass; the 3 slowest-rendering types (VMs, Postgres
+flexible servers, Synapse workspaces — all independently confirmed slow via `StableRenderWaiter`'s own
+"loading indicators still visible after 15s" warning) needed their own selector-appear wait first (the
+dump originally ran with no wait at all, right after the screenshot, well before the panel had rendered —
+fixed by waiting on the same anchor selector the real extractor waits on, then doubled again to 20s/10s
+after even that still missed all 3 on retry).
+
+**What actually came out of reading 11 real builder functions**: confirmed, with an exact raw ARM
+path, real backing properties for ~25 labels previously sitting in `NonTraceableLabels` or classified
+`Unresolved`/`NeedsReview` with only a generic "composite/derived" placeholder note — now written up
+individually in `PortalFieldKnowledge.UnresolvedLabelHints` (e.g. Compute/disks' "Operating system" is a
+plain, untransformed `properties.osType` — it only ever looked composite because this tool's own disk
+captures are unattached data disks with `osType` null; DocumentDB/mongoClusters' "Cluster tier" is
+`properties.compute.tier` behind an untraced friendly-name lookup, same shape as Storage's already-known
+"Replication"/"Account kind"; AKS's "Created time" turned out to be fetched from a wholly separate API
+call, never the resource GET body this tool captures at all). Three labels
+(`Operating system`, `Disk size`, `Replicas`) were confirmed close enough to a plain passthrough that they
+moved from blanket-blocked into `FieldRecipeResolver.AttemptDespiteNonTraceableHint` — though in practice
+this didn't flip any classification in the current corpus, because even these "direct" fields still go
+through a light format transform (a " GiB"/" (No SLA)" suffix) that plain normalized-equality matching
+doesn't bridge; the real, delivered value of this pass is the hint text itself, not a classification-count
+change. **Deliberately not done**: turning any of the friendly-name-lookup cases into real `FieldRecipe`
+shortcuts — same reasoning as Storage's Replication/Account kind above, only one enum value per field was
+ever actually observed live, nowhere near enough to hardcode a full table without guessing.
 
 ## The operator's real identity can leak into output/ — two distinct paths, both now fixed
 

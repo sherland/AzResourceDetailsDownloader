@@ -1,11 +1,11 @@
 {
   "properties": {
     "provisioningState": "Succeeded",
-    "createdTime": "2026-08-14T10:41:47.0457051Z",
-    "changedTime": "2026-08-14T10:41:47.0404406Z",
+    "createdTime": "2026-08-14T12:18:38.018593Z",
+    "changedTime": "2026-08-14T12:18:38.007316Z",
     "state": "Enabled",
-    "version": "08584149027784791893",
-    "accessEndpoint": "https://prod-05.norwayeast.logic.azure.com:443/workflows/079edc7658d541f1a651f9a26330c020",
+    "version": "08584148969674939957",
+    "accessEndpoint": "https://prod-00.norwayeast.logic.azure.com:443/workflows/f03d553b313947e4bfc590b4bf825bf4",
     "definition": {
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
@@ -104,8 +104,8 @@
       }
     }
   },
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-872102314c593a7d/providers/Microsoft.Logic/workflows/logicrk9nht5e",
-  "name": "logicrk9nht5e",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-872102314c593a7d/providers/Microsoft.Logic/workflows/logicn-2-r-4y",
+  "name": "logicn-2-r-4y",
   "type": "Microsoft.Logic/workflows",
   "location": "norwayeast"
 }

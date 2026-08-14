@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-bb17cace9b9db143"
   tags = {
     armType    = "Microsoft.Synapse/workspaces"
-    createdUtc = "2026-08-13T14:24:43.7817308Z"
+    createdUtc = "2026-08-14T12:29:02.8239001Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -37,7 +37,7 @@ resource "azurerm_storage_account" "res-1" {
   local_user_enabled                = true
   location                          = "norwayeast"
   min_tls_version                   = "TLS1_2"
-  name                              = "stuyb3hfcc"
+  name                              = "sthlzapzqb"
   nfsv3_enabled                     = false
   provisioned_billing_model_version = ""
   public_network_access_enabled     = true
@@ -78,15 +78,15 @@ resource "azurerm_storage_container" "res-3" {
 resource "azurerm_synapse_workspace" "res-7" {
   azuread_authentication_only          = false
   location                             = "swedencentral"
-  managed_resource_group_name          = "synapseworkspace-managedrg-945c621f-d7b5-4575-8e8f-fbb85f62b017"
+  managed_resource_group_name          = "synapseworkspace-managedrg-2f9cb2bc-41a9-4b28-803d-f89d37ec7beb"
   managed_virtual_network_enabled      = false
-  name                                 = "synjhp9-iao"
+  name                                 = "synbhgh-pfl"
   public_network_access_enabled        = true
   resource_group_name                  = azurerm_resource_group.res-0.name
   sql_administrator_login              = "azrddadmin"
   sql_administrator_login_password     = "" # Masked sensitive attribute
   sql_identity_control_enabled         = false
-  storage_data_lake_gen2_filesystem_id = "https://stuyb3hfcc.dfs.core.windows.net/synapsefs"
+  storage_data_lake_gen2_filesystem_id = "https://sthlzapzqb.dfs.core.windows.net/synapsefs"
   tags                                 = {}
   identity {
     identity_ids = []
@@ -135,34 +135,34 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Storage/storageAccounts/stuyb3hfcc"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Storage/storageAccounts/sthlzapzqb"
   to = azurerm_storage_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Storage/storageAccounts/stuyb3hfcc/blobServices/default/containers/synapsefs"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Storage/storageAccounts/sthlzapzqb/blobServices/default/containers/synapsefs"
   to = azurerm_storage_container.res-3
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Storage/storageAccounts/stuyb3hfcc"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Storage/storageAccounts/sthlzapzqb"
   to = azurerm_storage_account_queue_properties.res-5
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synjhp9-iao"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synbhgh-pfl"
   to = azurerm_synapse_workspace.res-7
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synjhp9-iao/extendedAuditingSettings/Default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synbhgh-pfl/extendedAuditingSettings/Default"
   to = azurerm_synapse_workspace_extended_auditing_policy.res-11
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synjhp9-iao/integrationRuntimes/AutoResolveIntegrationRuntime"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synbhgh-pfl/integrationRuntimes/AutoResolveIntegrationRuntime"
   to = azurerm_synapse_integration_runtime_azure.res-12
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synjhp9-iao/securityAlertPolicies/Default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synbhgh-pfl/securityAlertPolicies/Default"
   to = azurerm_synapse_workspace_security_alert_policy.res-13
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synjhp9-iao/vulnerabilityAssessments/Default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-bb17cace9b9db143/providers/Microsoft.Synapse/workspaces/synbhgh-pfl/vulnerabilityAssessments/Default"
   to = azurerm_synapse_workspace_vulnerability_assessment.res-14
 }

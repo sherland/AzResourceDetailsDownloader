@@ -104,6 +104,7 @@ public sealed class PortalCaptureService : IAsyncDisposable
         {
             var safeName = string.Join("_", resourceName.Split(Path.GetInvalidFileNameChars()));
             await EssentialsExtractor.DumpDebugHtmlAsync(_page, Path.Combine(debugDir, $"{safeName}.html"));
+            await EssentialsExtractor.DumpFiberBuilderSourceAsync(_page, Path.Combine(debugDir, $"{safeName}.essentials-source.json"));
         }
 
         var notices = await BannerExtractor.ExtractAsync(_page);
