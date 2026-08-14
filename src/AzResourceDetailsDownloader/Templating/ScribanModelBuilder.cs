@@ -64,6 +64,10 @@ public static class ScribanModelBuilder
             ["props"] = propsElement is { } p ? JsonToScriban(p) : new ScriptObject(),
             ["sku_label"] = SkuAndVersion.SkuLabel(root),
             ["version"] = propsElement is { } p2 ? SkuAndVersion.ExtractVersion(armType, p2) : null,
+            ["storage_replication_label"] = PortalFriendlyLabels.StorageReplicationLabel(root),
+            ["storage_account_kind_label"] = PortalFriendlyLabels.StorageAccountKindLabel(root),
+            ["disk_storage_type_label"] = PortalFriendlyLabels.DiskStorageTypeLabel(root),
+            ["disk_security_type_label"] = PortalFriendlyLabels.DiskSecurityTypeLabel(root),
         };
         return m;
     }

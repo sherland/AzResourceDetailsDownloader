@@ -341,9 +341,57 @@ moved from blanket-blocked into `FieldRecipeResolver.AttemptDespiteNonTraceableH
 this didn't flip any classification in the current corpus, because even these "direct" fields still go
 through a light format transform (a " GiB"/" (No SLA)" suffix) that plain normalized-equality matching
 doesn't bridge; the real, delivered value of this pass is the hint text itself, not a classification-count
-change. **Deliberately not done**: turning any of the friendly-name-lookup cases into real `FieldRecipe`
-shortcuts — same reasoning as Storage's Replication/Account kind above, only one enum value per field was
-ever actually observed live, nowhere near enough to hardcode a full table without guessing.
+change. (Superseded a few hours later, same day — see the next section: the "only one enum value ever
+observed live" limit turned out to be solvable without provisioning more resources at all.)
+
+## The full friendly-name lookup tables were sitting in already-loaded portal JS the whole time
+
+Follow-up the same day: the "one enum value per field, not enough to hardcode a table" limit above assumed
+getting more data points meant provisioning more resources at more SKU tiers — one HTTP request per value,
+same cost model as everything else in this tool. That assumption was wrong. The portal doesn't compute
+`Ve(sku.name)`/`Hs(sku.name)`/etc. from a server call per value — it's a **plain enum switch statement,
+already sitting fully-formed in the same JS bundle** that renders the page, covering every possible input
+value at once, not just the one the currently-open resource happens to have.
+
+**The technique**: from a field-builder function already found via the fiber walk (see above),
+`performance.getEntriesByType('resource')` lists every script URL the frame has loaded; `fetch()` each one
+and search for a substring of the builder function's own already-known source (guaranteed present in
+exactly one chunk) to identify which loaded file it lives in; then regex-search *that whole file* — not
+just the one function — for `function <helperName>(` (a plain function *declaration* doesn't match a
+`name=` assignment pattern; the first attempt used only that and got zero hits until the pattern was
+widened). This finds the enum switch (e.g. `Hs`: `sku.name -> DiskType` case-by-case), but the switch
+itself returns a resource-string *key* (`H.ManagedDisks.DiskType.Standard.LRS.label`), not literal text —
+localized strings live in a *separate* bundle. Same search technique again, this time grepping every
+loaded script for the resource-string-object's own distinctive key names (`SecurityTypeControl`,
+`ManagedDisks`), finds that second file, which contains the actual flat `{key: "Literal Display Text"}`
+object. Two file-search passes, zero guessing, both entirely offline reads of code the browser already
+downloaded to render the page — no new API calls, no new resources beyond the one already open.
+
+Live-verified end to end this way, then shipped as real `FieldRecipeResolver` shortcuts (not just
+documentation this time): Storage Accounts' **Replication** (`sku.name` → 7-way redundancy category →
+literal text, via `Ve()` + `CreateStorageAccount_Basics_Replication_Options`) and **Account kind**
+(`kind` → `StorageAccount_Kind` format string, via `Le()`), Compute/disks' (and snapshots') **Storage
+type** (`sku.name` → 8-way disk-type text, via `Hs()` + `ManagedDisks.DiskType`) and **Security type**
+(`properties.securityProfile.securityType` → text, via `st()` + `SecurityTypeControl_*`, including the
+"no securityProfile at all → Standard" fallback the portal's own code takes). All four came back
+`ShortcutVerified`/confidence 1.0 against the real committed corpus on the first regeneration — the
+computed text matched the live-captured portal value exactly, not just in theory.
+
+The four lookup tables live in a new shared file, `PortalFriendlyLabels.cs`, not duplicated inside
+`FieldRecipeResolver.cs` — the same reason `SkuAndVersion` is its own file: `ScribanModelBuilder` (which
+actually renders `model.storage_replication_label` etc. into a preview) and `FieldRecipeResolver` (which
+only verifies where a value comes from) must compute the exact same thing, or a rendered preview and the
+recipe catalog's own confidence claim could quietly disagree.
+
+**What this changes about the earlier "not worth automating, treat it as a per-label debugging tool"
+conclusion**: the fiber-walk-to-builder-source part still is what it was — a live, one-type-at-a-time
+technique, not something that runs inside an automated `--run` batch. But the *lookup-table* half of the
+problem (the actual blocker for the friendly-name-transform labels documented in the previous section)
+turned out to be a small, fixed amount of extra digging per label — two more file-fetch-and-grep passes,
+no extra Azure resources — not an open-ended "provision every SKU tier" project. Worth revisiting the
+remaining friendly-name-lookup labels (Cluster tier, Connectivity method, Authentication, Storage
+encryption on `Microsoft.DocumentDB/mongoClusters`; AKS's `Cluster operation status`/`Power state`/etc.)
+the same way before assuming they need more live provisioning.
 
 ## The operator's real identity can leak into output/ — two distinct paths, both now fixed
 
