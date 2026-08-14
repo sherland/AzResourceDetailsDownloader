@@ -7,7 +7,7 @@
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Disk state** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. --> Available |
-| **Performance** | <!-- TODO (NotAddressable): Traceable via 'sku.tier' (exact value match), but that's outside properties.*/kind/name/id/location — not reachable from a template. --> Standard |
+| **Performance** | Standard |
 | **Replication** | Locally redundant storage (LRS) |
 | **Account kind** | StorageV2 (general purpose v2) |
 | **Provisioning state** | Succeeded <sub>(as of last sync)</sub> |

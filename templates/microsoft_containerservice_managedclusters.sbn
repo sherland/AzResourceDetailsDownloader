@@ -14,8 +14,8 @@
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Kubernetes version** | {{ model.props.currentkubernetesversion }} |
 | **API server address** | {{ model.aks_api_server_address_label }} |
-| **SKU** | <!-- TODO (ShortcutMismatch): Computed "Free (Base)" does NOT match portal "Base" for this type — do not trust this shortcut here. --> Base |
-| **Pricing tier** | <!-- TODO (ShortcutMismatch): Computed "Free (Base)" does NOT match portal "Free" for this type — do not trust this shortcut here. --> Free |
+| **SKU** | {{ model.sku_name }} |
+| **Pricing tier** | {{ model.sku_tier }} |
 | **Network configuration** | {{ model.aks_network_configuration_label }} |
 | **Node pools** | {{ model.aks_node_pools_label }} |
 | **Created time** | <!-- TODO (Unresolved): AKS clusters fetch this from a SEPARATE API call, not the resource GET body this tool captures at all — genuinely a different-API-surface case, not a parsing gap (confirmed live on ContainerService/ManagedClusters; unrelated to the AKS/Storage "Date created"/"Created time" cases already in NonTraceableLabels) --> 14. august 2026 kl. 14:18 |

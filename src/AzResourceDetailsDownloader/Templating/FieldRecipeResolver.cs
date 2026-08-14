@@ -91,14 +91,31 @@ public static class FieldRecipeResolver
         "Operating system", "Disk size", "Replicas",
     };
 
-    public static FieldRecipe Resolve(string label, string value, JsonElement root)
+    public static FieldRecipe Resolve(string label, string value, JsonElement root) =>
+        Resolve(label, value, root, armType: "");
+
+    // armType-aware overload — needed only for the small number of labels (currently just "Pricing
+    // tier" on AppConfiguration/configurationStores) that are shared, with genuinely different
+    // meanings/formats, across enough other resource types that a global label-based dispatch (the
+    // pattern every other shortcut in this file uses) would be wrong for all of them. Defaults to ""
+    // via the overload above so every existing caller/test that doesn't need type-scoping is
+    // unaffected — "" never matches a real armType, so type-scoped branches just fall through to the
+    // ordinary label-based resolution.
+    public static FieldRecipe Resolve(string label, string value, JsonElement root, string armType)
     {
-        var recipe = ResolveCore(label, value, root);
+        var recipe = ResolveCore(label, value, root, armType);
         return recipe with { IsLiveState = PortalFieldKnowledge.LiveStateLabels.Contains(label) };
     }
 
-    private static FieldRecipe ResolveCore(string label, string value, JsonElement root)
+    private static FieldRecipe ResolveCore(string label, string value, JsonElement root, string armType)
     {
+        if (label.Equals("Pricing tier", StringComparison.OrdinalIgnoreCase)
+            && armType.Equals("Microsoft.AppConfiguration/configurationStores", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveShortcutOrUnverified(value, PortalFriendlyLabels.AppConfigPricingTierLabel(root),
+                "model.appconfig_pricing_tier_label",
+                "sku.name isn't in the known free/standard/developer/premium table");
+        }
         if (label.Equals("Location", StringComparison.OrdinalIgnoreCase))
         {
             return ResolveLocationShortcut(value, root);
@@ -114,6 +131,12 @@ public static class FieldRecipeResolver
         if (label.Equals("Account kind", StringComparison.OrdinalIgnoreCase))
         {
             return ResolveStorageAccountKindShortcut(value, root);
+        }
+        if (label.Equals("Performance", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveShortcutOrUnverified(value, PortalFriendlyLabels.StoragePerformanceLabel(root),
+                "model.storage_performance_label",
+                "This capture has no sku.tier, or kind is \"FileStorage\" (the Media Tier text wasn't traced)");
         }
         if (label.Equals("Storage type", StringComparison.OrdinalIgnoreCase))
         {
@@ -261,6 +284,24 @@ public static class FieldRecipeResolver
             return new FieldRecipe(FieldRecipeKind.ShortcutCasingMismatch, 0.7, "model.sku_label",
                 $"Computed \"{computed}\" vs portal \"{value}\" — same value, different casing/formatting. " +
                 "Usable, but the renderer needs its own text fixup to match the portal exactly.");
+        }
+
+        // The combined "Tier (Name)" shape doesn't always win — some types render sku.tier and
+        // sku.name as two separate direct-passthrough Essentials fields instead of ever combining
+        // them (AKS confirmed live 2026-08-14: "Sku" = bare sku.name, "Pricing tier" = bare sku.tier).
+        // Try both bare forms before giving up, each pointing at its own bare model field (NOT
+        // model.sku_label, which would still render the combined form and be wrong here).
+        if (SkuAndVersion.SkuTier(root) is { } tier && tier == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.sku_tier",
+                "Verified: matches the bare sku.tier value exactly — this type renders tier/name as " +
+                "separate fields rather than SkuLabel's combined \"Tier (Name)\" shape.");
+        }
+        if (SkuAndVersion.SkuName(root) is { } name && name == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.sku_name",
+                "Verified: matches the bare sku.name value exactly — this type renders tier/name as " +
+                "separate fields rather than SkuLabel's combined \"Tier (Name)\" shape.");
         }
         return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.sku_label",
             $"Computed \"{computed}\" does NOT match portal \"{value}\" for this type — do not trust this shortcut here.");
