@@ -107,6 +107,22 @@ public static class FieldRecipeResolver
         {
             return ResolveResourceGroupShortcut(value, root);
         }
+        if (label.Equals("Replication", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveStorageReplicationShortcut(value, root);
+        }
+        if (label.Equals("Account kind", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveStorageAccountKindShortcut(value, root);
+        }
+        if (label.Equals("Storage type", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveDiskStorageTypeShortcut(value, root);
+        }
+        if (label.Equals("Security type", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveDiskSecurityTypeShortcut(value, root);
+        }
 
         var (baseLabel, _) = StripParenthetical(label);
         if (SkuLikeTokens.Any(t => Tokenize(baseLabel).Contains(t)))
@@ -259,6 +275,95 @@ public static class FieldRecipeResolver
         }
         return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.resource_group",
             $"Extracted \"{extracted}\" from 'id' but the portal showed \"{value}\" — investigate.");
+    }
+
+    // The four shortcuts below (Replication/Account kind on Storage Accounts, Storage type/Security
+    // type on Compute/disks) were previously in PortalFieldKnowledge.NonTraceableLabels as
+    // "composite/derived, no single backing property" — wrong, just incomplete: each is a plain enum
+    // property run through a friendly-name lookup table that defeats plain value-matching (the
+    // rendered text never appears anywhere in the raw JSON). Unlike a guessed table, every entry in
+    // PortalFriendlyLabels was read directly out of the live Azure Portal's own already-loaded,
+    // unminified-enough JS (2026-08-14 — see EssentialsExtractor.DumpFiberBuilderSourceAsync's class
+    // comment and AGENT.md for the two-step technique: find the field-builder function via the fiber
+    // walk, then find the *other* already-loaded chunk containing that function's own enum-switch and
+    // resource-string table, by fetching every script the frame loaded via
+    // `performance.getEntriesByType('resource')` and searching each for a snippet unique to the
+    // already-known call site). Same "live-verified, never guessed" bar as config/azure-locations.json,
+    // just sourced from portal JS instead of a fetched docs page. The lookup tables themselves live in
+    // PortalFriendlyLabels, shared with ScribanModelBuilder so a rendered preview and this resolver's
+    // verification can never quietly disagree (same reasoning as SkuAndVersion below).
+    private static FieldRecipe ResolveStorageReplicationShortcut(string value, JsonElement root)
+    {
+        var computed = PortalFriendlyLabels.StorageReplicationLabel(root);
+        if (computed is null)
+        {
+            return new FieldRecipe(FieldRecipeKind.Shortcut, 0.3, "model.storage_replication_label",
+                "sku.name isn't in the known redundancy-category table (2026-08-14 portal source dump) — " +
+                "either a new SKU or this capture has no sku.name at all. Unverified.");
+        }
+        if (computed == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.storage_replication_label",
+                "Verified: sku.name -> redundancy category -> resource-string text, all read from the live " +
+                "portal's own JS (2026-08-14) — matches the captured value exactly.");
+        }
+        return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.storage_replication_label",
+            $"Computed \"{computed}\" does NOT match portal \"{value}\" — investigate before trusting this " +
+            "shortcut for this capture.");
+    }
+
+    private static FieldRecipe ResolveStorageAccountKindShortcut(string value, JsonElement root)
+    {
+        var computed = PortalFriendlyLabels.StorageAccountKindLabel(root);
+        if (computed is null)
+        {
+            return new FieldRecipe(FieldRecipeKind.Unresolved, 0.0, null, "This capture has no root 'kind' field.");
+        }
+        if (computed == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.storage_account_kind_label",
+                "Verified: kind -> StorageAccount_Kind resource-string format, read from the live portal's " +
+                "own JS (2026-08-14) — matches the captured value exactly.");
+        }
+        return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.storage_account_kind_label",
+            $"Computed \"{computed}\" does NOT match portal \"{value}\" — this capture's 'id' may look like a " +
+            "classic-era resource ID (a case this shortcut doesn't replicate), or the kind is a value this " +
+            "table doesn't cover yet — investigate before trusting.");
+    }
+
+    private static FieldRecipe ResolveDiskStorageTypeShortcut(string value, JsonElement root)
+    {
+        var computed = PortalFriendlyLabels.DiskStorageTypeLabel(root);
+        if (computed is null)
+        {
+            return new FieldRecipe(FieldRecipeKind.Shortcut, 0.3, "model.disk_storage_type_label",
+                "sku.name isn't in the known disk-type table (2026-08-14 portal source dump) — either a new " +
+                "SKU or this capture has no sku.name at all. Unverified.");
+        }
+        if (computed == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.disk_storage_type_label",
+                "Verified: sku.name -> disk-type resource-string text, read from the live portal's own JS " +
+                "(2026-08-14) — matches the captured value exactly.");
+        }
+        return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.disk_storage_type_label",
+            $"Computed \"{computed}\" does NOT match portal \"{value}\" — investigate before trusting this " +
+            "shortcut for this capture.");
+    }
+
+    private static FieldRecipe ResolveDiskSecurityTypeShortcut(string value, JsonElement root)
+    {
+        var computed = PortalFriendlyLabels.DiskSecurityTypeLabel(root);
+        if (computed == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.disk_security_type_label",
+                "Verified: properties.securityProfile.securityType -> security-type resource-string text, " +
+                "read from the live portal's own JS (2026-08-14) — matches the captured value exactly " +
+                "(including the no-securityProfile-at-all -> \"Standard\" fallback the portal's own code takes).");
+        }
+        return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.disk_security_type_label",
+            $"Computed \"{computed}\" does NOT match portal \"{value}\" — investigate before trusting this " +
+            "shortcut for this capture.");
     }
 
     private static FieldRecipe ResolveTimestamp(string baseLabel, string value, JsonElement root)
