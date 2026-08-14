@@ -14,5 +14,5 @@
 | **Service endpoint** | {{ model.props.serviceoperationshostname }} |
 | **Global device endpoint** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.33) — verify by hand before trusting. --> global.azure-devices-provisioning.net |
 | **ID Scope** | {{ model.props.idscope }} |
-| **Pricing and scale tier** | <!-- TODO (ShortcutMismatch): Computed "Standard (S1)" does NOT match portal "S1" for this type — do not trust this shortcut here. --> S1 |
+| **Pricing and scale tier** | {{ model.sku_name }} |
 | **Automatic failover enabled** | <!-- TODO (Unresolved): no backing property found in prior corpus inspection --> Yes |

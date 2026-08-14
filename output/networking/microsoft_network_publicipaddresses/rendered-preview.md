@@ -6,7 +6,7 @@
 | **Location** | Norway East |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **SKU** | <!-- TODO (ShortcutMismatch): Computed "Regional (Standard)" does NOT match portal "Standard" for this type — do not trust this shortcut here. --> Standard |
+| **SKU** | Standard |
 | **Tier** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Regional |
 | **IP address** | 20.251.117.123 |
 | **DNS name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> - |

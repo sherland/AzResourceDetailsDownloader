@@ -38,6 +38,20 @@ public static class SkuAndVersion
         return $"{tier} ({name})";
     }
 
+    // Bare `sku.name`/`sku.tier`, same root/properties.sku lookup as SkuLabel above — some types
+    // (AKS confirmed live 2026-08-14: "Sku" = sku.name = "Base", "Pricing tier" = sku.tier = "Free",
+    // two separate Essentials fields) render these as plain direct passthroughs instead of ever
+    // combining them into SkuLabel's "Tier (Name)" shape, so a caller needs both forms available to
+    // match whichever one a given type actually uses.
+    private static JsonElement? SkuObject(JsonElement root) =>
+        JsonTree.Navigate(root, "sku") ?? JsonTree.Navigate(root, "properties", "sku");
+
+    public static string? SkuName(JsonElement root) =>
+        SkuObject(root) is { } sku ? JsonTree.GetString(sku, "name") : null;
+
+    public static string? SkuTier(JsonElement root) =>
+        SkuObject(root) is { } sku ? JsonTree.GetString(sku, "tier") : null;
+
     public static string? ExtractVersion(string armType, JsonElement properties)
     {
         string? Prop(params string[] path) => JsonTree.GetString(properties, path);
