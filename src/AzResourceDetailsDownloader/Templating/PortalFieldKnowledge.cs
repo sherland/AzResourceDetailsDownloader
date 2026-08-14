@@ -85,6 +85,7 @@ public static class PortalFieldKnowledge
         "Node pools", "DNS servers", "Subnets", "MQTT broker", "DNS Name", "MCP Endpoint",
         "SF Explorer", "Publisher :: Offer :: SKU", "Scope (In-tenant)", "Scope (Cross-tenant)",
         "Replication", "Account kind", "Definition", "Runs last 24 hours", "Workflow Type",
+        "Geo-replication",
 
         // Look timestamp-shaped but aren't traceable — confirmed by grepping the sibling data.json
         // for any creation-adjacent field on each resource type and finding none; a portal-computed
@@ -138,6 +139,10 @@ public static class PortalFieldKnowledge
         ["Storage encryption"] = "identity.type at the document root (NOT under properties.*, so not " +
             "template-addressable even once traced) — \"UserAssigned\" means customer-managed key, " +
             "anything else means service-managed (confirmed live on DocumentDB/mongoClusters)",
+        ["Geo-replication"] = "AppConfiguration/configurationStores: the replica count comes from a " +
+            "separate replicas-list API call (e.replicas?.length in the portal's own source), not this " +
+            "type's resource GET body at all — genuinely a different-API-surface case, confirmed live " +
+            "2026-08-14 on a Standard-tier store (the first time this tool ever captured one).",
         ["Purge protection"] = "properties.enablePurgeProtection, a real boolean — but only rendered " +
             "at all on a SKU tier where the feature exists, so an unresolved capture may just mean " +
             "the SKU didn't have the property to show (confirmed live on AppConfiguration/configurationStores)",

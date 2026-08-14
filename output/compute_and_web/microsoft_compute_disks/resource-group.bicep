@@ -1,13 +1,14 @@
-param disks_diskul7_e4_0_name string
+param disks_disks7agb_jh_name string
 
-resource disks_diskul7_e4_0_name_resource 'Microsoft.Compute/disks@2025-01-02' = {
-  name: disks_diskul7_e4_0_name
+resource disks_disks7agb_jh_name_resource 'Microsoft.Compute/disks@2025-01-02' = {
+  name: disks_disks7agb_jh_name
   location: 'norwayeast'
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'
   }
   properties: {
+    osType: 'Linux'
     creationData: {
       createOption: 'Empty'
     }

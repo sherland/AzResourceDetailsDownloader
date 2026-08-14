@@ -21,23 +21,23 @@
   },
   {
     "Label": "Endpoint",
-    "Value": "https://appcskiph6ald.azconfig.io"
+    "Value": "https://appcs1w6r-t-z.azconfig.io"
   },
   {
     "Label": "Pricing tier",
-    "Value": "Free (Click to upgrade)"
+    "Value": "Standard (Click to upgrade)"
   },
   {
     "Label": "Soft-delete",
-    "Value": "N/A"
+    "Value": "Enabled"
   },
   {
     "Label": "Purge protection",
-    "Value": "N/A"
+    "Value": "Disabled"
   },
   {
     "Label": "Geo-replication",
-    "Value": "N/A"
+    "Value": "0 replica(s)"
   },
   {
     "Label": "Telemetry",

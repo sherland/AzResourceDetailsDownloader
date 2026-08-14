@@ -462,6 +462,58 @@ similarity artifacts, not data problems), and four leftovers actually worth fini
 All four verified `ShortcutVerified` against the real committed corpus, 225 tests still green, no
 guessed text anywhere in any of it.
 
+## Fifth pass, same day — recapturing with richer examples, and a real extraction bug it uncovered
+
+Asked "any fields not fully resolved?" a second time, three buckets remained: different-API-surface
+(unchanged, needs a bigger pipeline feature), `NeedsReview` naming-similarity artifacts (already
+correct, just low-confidence — left alone, a shared-heuristic change with corpus-wide risk), and
+genuinely-non-traceable-in-*this*-capture-only fields, where the resolver logic was already correct
+but the committed example resource had nothing real to show (an unattached blank data disk, a
+Free-tier AppConfig store). That third bucket is fixable with zero code changes — just recapture with
+a resource actually configured to exercise the field — but it's a real decision, not a free action:
+it changes the *committed reference example* for that type, and (for AppConfig) means temporarily
+provisioning at a paid tier.
+
+- **Compute/disks — permanent, low-risk config change**: added `"osType": "Linux"` to both the disk
+  type's own `requestBody.properties` and the `Microsoft.Compute/snapshots` prerequisite disk's (same
+  SKU/size, so no cost-tier impact) in `config/resource-types.json`. Recaptured both types —
+  "Operating system" now resolves to `properties.ostype` = "Linux" (`NeedsReview` confidence, same
+  low-name-similarity story as elsewhere, but a real match now instead of 0 candidates against a null
+  value).
+- **AppConfiguration — temporary switch, not a permanent default change**: this one's `cost.tier` in
+  `resource-types.json` is "Free" specifically because Standard-tier pricing would need the sourced
+  pricing-fetch script re-run to stay accurate (a separate, bigger task) — not something to casually
+  invalidate just to enrich one capture. Temporarily flipped `requestBody.sku.name` to `"standard"`,
+  ran one real capture, reverted the config back to `"free"` immediately after. The richer capture is
+  **durable** (it's the committed `output/` files, independent of the config that produced them) but
+  the config itself is **not** — a future full recapture of this type reverts to Free tier and these
+  fields go back to genuinely-N/A, which is correct, not a regression.
+  - "Purge protection" now resolves `Direct`, confidence 1.0, via the ordinary generic matcher — no
+    new shortcut code needed, it was always capable of this, just never had a non-N/A value to match
+    against before.
+  - "Soft-delete" and "Geo-replication" turned out to still be genuinely non-traceable even at
+    Standard tier (Soft-delete is a pure SKU-tier feature flag with no backing property at all;
+    Geo-replication's count comes from a separate replicas-list API, not this type's GET body) — now
+    correctly documented instead of guessed.
+  - **Live-caught regression, worth internalizing**: naively adding "Soft-delete" to the blanket
+    `NonTraceableLabels` set broke a real, previously-passing test
+    (`TemplateGeneratorTests.Generate_BooleanField_UsesEnabledDisabledTransform_WhenCapturedValueIsEnabled`)
+    — KeyVault uses the exact same label for a real `properties.enableSoftDelete` passthrough, and a
+    blanket label-keyed set can't distinguish the two types. Fixed by giving `PortalFieldsConsistencyTests`
+    the same kind of `armType`-scoped exception `FieldRecipeResolver` already had for "Pricing tier",
+    rather than broadening `NonTraceableLabels` — the general lesson being that *any* new
+    label-classification entry needs an explicit "does another type use this same label for something
+    real?" check before it goes in a type-blind table, not just "does it fix the case in front of me."
+  - **Also live-caught, purely as a side effect of finally seeing Standard tier for the first time**:
+    a genuine `EssentialsExtractor` label-extraction bug, unrelated to field resolution — "Geo-replication"
+    carries a `TooltipHost`-wrapped info icon (a `role="button"` element that isn't a literal `<a>`/
+    `<button>` tag) whose tooltip text leaked straight into the label
+    (`"Geo-replicationReplicas allow for higher availability..."`). The label-walker's stop condition
+    was tag-name-only; fixed by also stopping at `role="button"`, in both the grid and PropertyField
+    variants. A reminder that a "richer" capture doesn't just resolve fields — Free-tier-only capture
+    of this type had never exercised this DOM shape at all, so this bug had been latent, uncaught,
+    since whenever the tooltip icon was added.
+
 ## The operator's real identity can leak into output/ — two distinct paths, both now fixed
 
 Live-found (2026-08-13) across 34+ already-committed `data.json` files: ARM auto-stamps the
