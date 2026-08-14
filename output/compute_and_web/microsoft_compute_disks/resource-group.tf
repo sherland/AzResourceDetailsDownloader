@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-ab7325b8645ba734"
   tags = {
     armType    = "Microsoft.Compute/disks"
-    createdUtc = "2026-08-14T12:15:25.4670653Z"
+    createdUtc = "2026-08-14T21:08:46.5668748Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -34,11 +34,11 @@ resource "azurerm_managed_disk" "res-1" {
   image_reference_id                = ""
   location                          = "norwayeast"
   max_shares                        = 0
-  name                              = "diskul7-e4-0"
+  name                              = "disks7agb-jh"
   network_access_policy             = "AllowAll"
   on_demand_bursting_enabled        = false
   optimized_frequent_attach_enabled = false
-  os_type                           = ""
+  os_type                           = "Linux"
   performance_plus_enabled          = false
   public_network_access_enabled     = true
   resource_group_name               = azurerm_resource_group.res-0.name
@@ -61,6 +61,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ab7325b8645ba734/providers/Microsoft.Compute/disks/diskul7-e4-0"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-ab7325b8645ba734/providers/Microsoft.Compute/disks/disks7agb-jh"
   to = azurerm_managed_disk.res-1
 }

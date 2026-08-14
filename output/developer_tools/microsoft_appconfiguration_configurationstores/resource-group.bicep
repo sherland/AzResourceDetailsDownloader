@@ -1,16 +1,16 @@
-param configurationStores_appcskiph6ald_name string
+param configurationStores_appcs1w6r_t_z_name string
 
-resource configurationStores_appcskiph6ald_name_resource 'Microsoft.AppConfiguration/configurationStores@2025-06-01-preview' = {
-  name: configurationStores_appcskiph6ald_name
+resource configurationStores_appcs1w6r_t_z_name_resource 'Microsoft.AppConfiguration/configurationStores@2025-06-01-preview' = {
+  name: configurationStores_appcs1w6r_t_z_name
   location: 'norwayeast'
   sku: {
-    name: 'free'
+    name: 'standard'
   }
   properties: {
     encryption: {}
     disableLocalAuth: false
-    softDeleteRetentionInDays: 0
-    defaultKeyValueRevisionRetentionPeriodInSeconds: 604800
+    softDeleteRetentionInDays: 7
+    defaultKeyValueRevisionRetentionPeriodInSeconds: 2592000
     enablePurgeProtection: false
     dataPlaneProxy: {
       authenticationMode: 'Local'

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-e1235e71e818a48b"
   tags = {
     armType    = "Microsoft.Compute/snapshots"
-    createdUtc = "2026-08-14T10:32:48.5646698Z"
+    createdUtc = "2026-08-14T21:08:46.5668751Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -34,11 +34,11 @@ resource "azurerm_managed_disk" "res-1" {
   image_reference_id                = ""
   location                          = "norwayeast"
   max_shares                        = 0
-  name                              = "diskflr4a67c"
+  name                              = "diskmrvds8oj"
   network_access_policy             = "AllowAll"
   on_demand_bursting_enabled        = false
   optimized_frequent_attach_enabled = false
-  os_type                           = ""
+  os_type                           = "Linux"
   performance_plus_enabled          = false
   public_network_access_enabled     = true
   resource_group_name               = azurerm_resource_group.res-0.name
@@ -60,7 +60,7 @@ resource "azurerm_snapshot" "res-2" {
   disk_size_gb                  = 4
   incremental_enabled           = false
   location                      = "norwayeast"
-  name                          = "snapshnmog8v"
+  name                          = "snap48glwc3z"
   network_access_policy         = "AllowAll"
   public_network_access_enabled = true
   resource_group_name           = azurerm_resource_group.res-0.name
@@ -74,10 +74,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/disks/diskflr4a67c"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/disks/diskmrvds8oj"
   to = azurerm_managed_disk.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/snapshots/snapshnmog8v"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/snapshots/snap48glwc3z"
   to = azurerm_snapshot.res-2
 }

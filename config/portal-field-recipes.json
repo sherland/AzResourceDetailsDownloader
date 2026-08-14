@@ -1753,12 +1753,12 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "Notes": "AppConfiguration/configurationStores: the replica count comes from a separate replicas-list API call (e.replicas?.length in the portal\u0027s own source), not this type\u0027s resource GET body at all \u2014 genuinely a different-API-surface case, confirmed live 2026-08-14 on a Standard-tier store (the first time this tool ever captured one).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.AppConfiguration/configurationStores"
     ],
-    "SampleValue": "N/A",
+    "SampleValue": "0 replica(s)",
     "Conflicts": null
   },
   {
@@ -3948,10 +3948,10 @@
   },
   {
     "Label": "Operating system",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "Kind": "NeedsReview",
+    "Confidence": 0.2,
+    "Target": "model.props.ostype",
+    "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Compute/disks",
@@ -3959,13 +3959,13 @@
       "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.Web/serverfarms"
     ],
-    "SampleValue": "-",
+    "SampleValue": "Linux",
     "Conflicts": {
       "Microsoft.Compute/disks": {
-        "Kind": "Unresolved",
-        "Confidence": 0,
-        "Target": null,
-        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "Kind": "NeedsReview",
+        "Confidence": 0.2,
+        "Target": "model.props.ostype",
+        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
         "IsLiveState": false
       },
       "Microsoft.Compute/virtualMachines": {
@@ -4913,32 +4913,17 @@
   },
   {
     "Label": "Purge protection",
-    "Kind": "Unresolved",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "properties.enablePurgeProtection, a real boolean \u2014 but only rendered at all on a SKU tier where the feature exists, so an unresolved capture may just mean the SKU didn\u0027t have the property to show (confirmed live on AppConfiguration/configurationStores)",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.enablepurgeprotection",
+    "Notes": "boolean\u2192friendly-word",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.KeyVault/vaults"
     ],
-    "SampleValue": "N/A",
-    "Conflicts": {
-      "Microsoft.AppConfiguration/configurationStores": {
-        "Kind": "Unresolved",
-        "Confidence": 0,
-        "Target": null,
-        "Notes": "properties.enablePurgeProtection, a real boolean \u2014 but only rendered at all on a SKU tier where the feature exists, so an unresolved capture may just mean the SKU didn\u0027t have the property to show (confirmed live on AppConfiguration/configurationStores)",
-        "IsLiveState": false
-      },
-      "Microsoft.KeyVault/vaults": {
-        "Kind": "Direct",
-        "Confidence": 1,
-        "Target": "model.props.enablepurgeprotection",
-        "Notes": "boolean\u2192friendly-word",
-        "IsLiveState": false
-      }
-    }
+    "SampleValue": "Disabled",
+    "Conflicts": null
   },
   {
     "Label": "Query endpoint",
@@ -5844,19 +5829,19 @@
     "Kind": "Unresolved",
     "Confidence": 0,
     "Target": null,
-    "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+    "Notes": "Purely a SKU-tier feature-availability flag on this type (Standard tier always shows Enabled, Free tier always shows N/A) \u2014 no backing property at all, confirmed live 2026-08-14. Distinct from KeyVault\u0027s same-named label, which really is a direct properties.enableSoftDelete passthrough.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.KeyVault/vaults"
     ],
-    "SampleValue": "N/A",
+    "SampleValue": "Enabled",
     "Conflicts": {
       "Microsoft.AppConfiguration/configurationStores": {
         "Kind": "Unresolved",
         "Confidence": 0,
         "Target": null,
-        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "Notes": "Purely a SKU-tier feature-availability flag on this type (Standard tier always shows Enabled, Free tier always shows N/A) \u2014 no backing property at all, confirmed live 2026-08-14. Distinct from KeyVault\u0027s same-named label, which really is a direct properties.enableSoftDelete passthrough.",
         "IsLiveState": false
       },
       "Microsoft.KeyVault/vaults": {
@@ -6913,7 +6898,7 @@
       "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.Network/networkManagers"
     ],
-    "SampleValue": "8/14/2026, 2:15:31 PM",
+    "SampleValue": "8/14/2026, 11:08:52 PM",
     "Conflicts": {
       "Microsoft.Compute/disks": {
         "Kind": "Timestamp",

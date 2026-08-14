@@ -51,6 +51,7 @@ public class PortalFieldsConsistencyTests
         var rawDataJson = File.ReadAllText(dataJsonPath);
         using var dataDoc = JsonDocument.Parse(rawDataJson);
         var normalizedDataJson = PortalFieldKnowledge.Normalize(rawDataJson);
+        var armType = dataDoc.RootElement.TryGetProperty("type", out var t) ? t.GetString() ?? "" : "";
 
         var problems = new List<string>();
 
@@ -62,6 +63,19 @@ public class PortalFieldsConsistencyTests
                 {
                     problems.Add($"{f.Label} = \"{f.Value}\" (expected one of: {string.Join(" / ", allowedValues)})");
                 }
+                continue;
+            }
+
+            // Type-scoped exceptions live here, not in the (type-blind) NonTraceableLabels set below,
+            // for the same reason FieldRecipeResolver has a dedicated armType-aware dispatch for
+            // these: the label is shared with another type where it genuinely IS traceable, so a
+            // blanket skip would silently stop checking that other type too (caught live 2026-08-14 —
+            // adding "Soft-delete" to NonTraceableLabels to cover AppConfiguration's SKU-tier-gated,
+            // no-backing-property case broke this test's KeyVault coverage, where the same label is a
+            // real properties.enableSoftDelete passthrough).
+            if (f.Label.Equals("Soft-delete", StringComparison.OrdinalIgnoreCase)
+                && armType.Equals("Microsoft.AppConfiguration/configurationStores", StringComparison.OrdinalIgnoreCase))
+            {
                 continue;
             }
 

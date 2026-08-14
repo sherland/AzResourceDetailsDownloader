@@ -116,6 +116,23 @@ public static class FieldRecipeResolver
                 "model.appconfig_pricing_tier_label",
                 "sku.name isn't in the known free/standard/developer/premium table");
         }
+        // AppConfiguration's "Soft-delete" is a pure SKU-tier feature-availability flag — Standard
+        // tier always shows Enabled, Free tier always shows N/A — with no backing property at all
+        // (confirmed live 2026-08-14, the first time this tool ever captured AppConfig at Standard
+        // tier). Must be scoped to this one armType: KeyVault uses the exact same label for a real,
+        // directly-traceable properties.enableSoftDelete boolean, and already resolves correctly
+        // through the ordinary generic/boolean paths below — a blanket NonTraceableLabels entry for
+        // "Soft-delete" would have silently broken that (caught by
+        // TemplateGeneratorTests.Generate_BooleanField_UsesEnabledDisabledTransform_WhenCapturedValueIsEnabled).
+        if (label.Equals("Soft-delete", StringComparison.OrdinalIgnoreCase)
+            && armType.Equals("Microsoft.AppConfiguration/configurationStores", StringComparison.OrdinalIgnoreCase))
+        {
+            return new FieldRecipe(FieldRecipeKind.Unresolved, 0.0, null,
+                "Purely a SKU-tier feature-availability flag on this type (Standard tier always shows " +
+                "Enabled, Free tier always shows N/A) — no backing property at all, confirmed live " +
+                "2026-08-14. Distinct from KeyVault's same-named label, which really is a direct " +
+                "properties.enableSoftDelete passthrough.");
+        }
         if (label.Equals("Location", StringComparison.OrdinalIgnoreCase))
         {
             return ResolveLocationShortcut(value, root);

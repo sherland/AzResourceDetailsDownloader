@@ -1,25 +1,13 @@
 {
-  "generatedUtc": "2026-08-14T12:34:07.5763330Z",
-  "total": 3,
-  "succeeded": 3,
+  "generatedUtc": "2026-08-14T21:27:26.2304323Z",
+  "total": 1,
+  "succeeded": 1,
   "failed": 0,
   "results": [
     {
-      "armType": "Microsoft.DBforPostgreSQL/flexibleServers",
+      "armType": "Microsoft.AppConfiguration/configurationStores",
       "success": true,
-      "elapsedSeconds": 127.1,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Compute/virtualMachines",
-      "success": true,
-      "elapsedSeconds": 205.6,
-      "error": null
-    },
-    {
-      "armType": "Microsoft.Synapse/workspaces",
-      "success": true,
-      "elapsedSeconds": 304.4,
+      "elapsedSeconds": 46.1,
       "error": null
     }
   ]
