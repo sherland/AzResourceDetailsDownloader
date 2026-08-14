@@ -4152,10 +4152,10 @@
   },
   {
     "Label": "Performance",
-    "Kind": "NotAddressable",
-    "Confidence": 0,
-    "Target": null,
-    "Notes": "Traceable via \u0027sku.tier\u0027 (exact value match), but that\u0027s outside properties.*/kind/name/id/location \u2014 not reachable from a template.",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.storage_performance_label",
+    "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Storage/storageAccounts"
@@ -4309,10 +4309,10 @@
   },
   {
     "Label": "Pricing and scale tier",
-    "Kind": "ShortcutMismatch",
-    "Confidence": 0,
-    "Target": "model.sku_label",
-    "Notes": "Computed \u0022Standard (S1)\u0022 does NOT match portal \u0022S1\u0022 for this type \u2014 do not trust this shortcut here.",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.sku_name",
+    "Notes": "Verified: matches the bare sku.name value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.Devices/provisioningServices"
@@ -4322,10 +4322,10 @@
   },
   {
     "Label": "Pricing plan",
-    "Kind": "ShortcutMismatch",
-    "Confidence": 0,
-    "Target": "model.sku_label",
-    "Notes": "Computed \u0022Basic (B1)\u0022 does NOT match portal \u0022B1\u0022 for this type \u2014 do not trust this shortcut here.",
+    "Kind": "ShortcutVerified",
+    "Confidence": 1,
+    "Target": "model.sku_name",
+    "Notes": "Verified: matches the bare sku.name value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerRegistry/registries",
@@ -4335,10 +4335,10 @@
     "SampleValue": "B1",
     "Conflicts": {
       "Microsoft.Web/serverfarms": {
-        "Kind": "ShortcutMismatch",
-        "Confidence": 0,
-        "Target": "model.sku_label",
-        "Notes": "Computed \u0022Basic (B1)\u0022 does NOT match portal \u0022B1\u0022 for this type \u2014 do not trust this shortcut here.",
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_name",
+        "Notes": "Verified: matches the bare sku.name value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
         "IsLiveState": false
       },
       "Microsoft.ContainerRegistry/registries": {
@@ -4440,10 +4440,10 @@
         "IsLiveState": false
       },
       "Microsoft.ContainerService/ManagedClusters": {
-        "Kind": "ShortcutMismatch",
-        "Confidence": 0,
-        "Target": "model.sku_label",
-        "Notes": "Computed \u0022Free (Base)\u0022 does NOT match portal \u0022Free\u0022 for this type \u2014 do not trust this shortcut here.",
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_tier",
+        "Notes": "Verified: matches the bare sku.tier value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
         "IsLiveState": false
       },
       "Microsoft.Sql/servers/databases": {
@@ -4468,10 +4468,10 @@
         "IsLiveState": false
       },
       "Microsoft.AppConfiguration/configurationStores": {
-        "Kind": "ShortcutMismatch",
-        "Confidence": 0,
-        "Target": "model.sku_label",
-        "Notes": "Computed \u0022free\u0022 does NOT match portal \u0022Free (Click to upgrade)\u0022 for this type \u2014 do not trust this shortcut here.",
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.appconfig_pricing_tier_label",
+        "Notes": "Verified: matches the captured value exactly (2026-08-14 live portal source read \u2014 see PortalFriendlyLabels for this field\u0027s own provenance).",
         "IsLiveState": false
       },
       "Microsoft.ServiceBus/Namespaces": {
@@ -5703,10 +5703,10 @@
         "IsLiveState": false
       },
       "Microsoft.ContainerService/ManagedClusters": {
-        "Kind": "ShortcutMismatch",
-        "Confidence": 0,
-        "Target": "model.sku_label",
-        "Notes": "Computed \u0022Free (Base)\u0022 does NOT match portal \u0022Base\u0022 for this type \u2014 do not trust this shortcut here.",
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_name",
+        "Notes": "Verified: matches the bare sku.name value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
         "IsLiveState": false
       },
       "Microsoft.ServiceFabric/managedclusters": {
@@ -5717,17 +5717,17 @@
         "IsLiveState": false
       },
       "Microsoft.SignalRService/SignalR": {
-        "Kind": "ShortcutMismatch",
-        "Confidence": 0,
-        "Target": "model.sku_label",
-        "Notes": "Computed \u0022Free (Free_F1)\u0022 does NOT match portal \u0022Free_F1\u0022 for this type \u2014 do not trust this shortcut here.",
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_name",
+        "Notes": "Verified: matches the bare sku.name value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
         "IsLiveState": false
       },
       "Microsoft.SignalRService/WebPubSub": {
-        "Kind": "ShortcutMismatch",
-        "Confidence": 0,
-        "Target": "model.sku_label",
-        "Notes": "Computed \u0022Free (Free_F1)\u0022 does NOT match portal \u0022Free_F1\u0022 for this type \u2014 do not trust this shortcut here.",
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_name",
+        "Notes": "Verified: matches the bare sku.name value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
         "IsLiveState": false
       },
       "Microsoft.DataMigration/services": {
@@ -5745,24 +5745,24 @@
         "IsLiveState": false
       },
       "Microsoft.Network/loadBalancers": {
-        "Kind": "ShortcutMismatch",
-        "Confidence": 0,
-        "Target": "model.sku_label",
-        "Notes": "Computed \u0022Regional (Standard)\u0022 does NOT match portal \u0022Standard\u0022 for this type \u2014 do not trust this shortcut here.",
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_name",
+        "Notes": "Verified: matches the bare sku.name value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
         "IsLiveState": false
       },
       "Microsoft.Network/natGateways": {
-        "Kind": "ShortcutMismatch",
-        "Confidence": 0,
-        "Target": "model.sku_label",
-        "Notes": "Computed \u0022Regional (Standard)\u0022 does NOT match portal \u0022Standard\u0022 for this type \u2014 do not trust this shortcut here.",
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_name",
+        "Notes": "Verified: matches the bare sku.name value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
         "IsLiveState": false
       },
       "Microsoft.Network/publicIPAddresses": {
-        "Kind": "ShortcutMismatch",
-        "Confidence": 0,
-        "Target": "model.sku_label",
-        "Notes": "Computed \u0022Regional (Standard)\u0022 does NOT match portal \u0022Standard\u0022 for this type \u2014 do not trust this shortcut here.",
+        "Kind": "ShortcutVerified",
+        "Confidence": 1,
+        "Target": "model.sku_name",
+        "Notes": "Verified: matches the bare sku.name value exactly \u2014 this type renders tier/name as separate fields rather than SkuLabel\u0027s combined \u0022Tier (Name)\u0022 shape.",
         "IsLiveState": false
       },
       "Microsoft.Network/virtualNetworkGateways": {

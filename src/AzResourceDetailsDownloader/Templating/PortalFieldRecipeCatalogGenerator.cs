@@ -51,7 +51,7 @@ public static class PortalFieldRecipeCatalogGenerator
             var fields = JsonSerializer.Deserialize<List<PortalFieldRecord>>(File.ReadAllText(portalFieldsPath)) ?? [];
             foreach (var field in fields)
             {
-                var recipe = FieldRecipeResolver.Resolve(field.Label, field.Value, dataDoc.RootElement);
+                var recipe = FieldRecipeResolver.Resolve(field.Label, field.Value, dataDoc.RootElement, armType);
                 if (!byLabel.TryGetValue(field.Label, out var observations))
                 {
                     observations = [];

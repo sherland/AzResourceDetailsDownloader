@@ -76,6 +76,27 @@ public static class PortalFriendlyLabels
         return StorageAccountKindFormat.TryGetValue(kind, out var format) ? string.Format(format, kind) : kind;
     }
 
+    // Storage Accounts: `De(sku.tier, kind === "FileStorage")` — `sku.tier` (root-level, sibling to
+    // `sku.name`, not the same field the Replication shortcut reads), Premium/Standard mapping to
+    // literal "Premium"/"Standard" confirmed identical across every candidate resource-string object
+    // found (2026-08-14; the label "Performance" itself was ambiguous across several near-duplicate
+    // objects, but all of them agreed on this exact mapping). The FileStorage-kind branch renders a
+    // different label ("Media Tier") with SSD/HDD text that wasn't confirmed this session — reproduced
+    // here as null (unverified) rather than guessed.
+    public static string? StoragePerformanceLabel(JsonElement root)
+    {
+        var tier = JsonTree.GetString(root, "sku", "tier");
+        if (tier is null)
+        {
+            return null;
+        }
+        if (string.Equals(JsonTree.GetString(root, "kind"), "FileStorage", StringComparison.OrdinalIgnoreCase))
+        {
+            return null;
+        }
+        return string.Equals(tier, "Premium", StringComparison.OrdinalIgnoreCase) ? "Premium" : "Standard";
+    }
+
     private static readonly Dictionary<string, string> DiskStorageTypeText =
         new(StringComparer.OrdinalIgnoreCase)
         {
@@ -239,6 +260,34 @@ public static class PortalFriendlyLabels
     {
         var agentType = JsonTree.GetString(root, "properties", "definition", "metadata", "agentType");
         return agentType is null ? "Stateful" : null;
+    }
+
+    // AppConfiguration/configurationStores: "Pricing tier" is NOT the generic combined SkuLabel
+    // shape — it's `n!==Premium ? format("{0} (Click to upgrade)", Jp(n)) : premiumSku`, `n` = raw
+    // sku.name, `Jp` a friendly-casing lookup (`freeSku`/`standardSku`/`developerSku`/`premiumSku`
+    // resource strings, all read 2026-08-14). Only reached via FieldRecipeResolver's dedicated
+    // AppConfig-scoped dispatch — "Pricing tier" is shared by a dozen other resource types with
+    // completely different formats, so this can't be a global label-based shortcut the way
+    // Replication/Account kind etc. are.
+    private static readonly Dictionary<string, string> AppConfigSkuNameText = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["free"] = "Free",
+        ["standard"] = "Standard",
+        ["developer"] = "Developer",
+    };
+
+    public static string? AppConfigPricingTierLabel(JsonElement root)
+    {
+        var skuName = SkuAndVersion.SkuName(root);
+        if (skuName is null)
+        {
+            return null;
+        }
+        if (string.Equals(skuName, "premium", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Premium";
+        }
+        return AppConfigSkuNameText.TryGetValue(skuName, out var text) ? $"{text} (Click to upgrade)" : null;
     }
 
     // AppConfiguration/configurationStores: `Telemetry` — an existence check on

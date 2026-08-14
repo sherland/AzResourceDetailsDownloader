@@ -426,6 +426,42 @@ to a real, `ShortcutVerified`, live-source-backed `FieldRecipe` shortcut, with z
 every literal string here was read out of the portal's own already-downloaded JS, the same standard
 `config/azure-locations.json` was held to.
 
+## Fourth pass, same day — the remaining leftovers, and `FieldRecipeResolver` gained real type-scoping
+
+Asked directly "any fields not fully resolved?" after the third pass, the honest accounting split
+into: genuinely can't be fixed this way (separate API calls — unchanged), genuinely non-traceable in
+*this* capture only (an unattached data disk's `osType`, a Free-tier AppConfig's soft-delete — would
+resolve fine on a differently-configured resource), low-confidence-but-not-wrong (`NeedsReview` name-
+similarity artifacts, not data problems), and four leftovers actually worth finishing:
+
+- **Storage Accounts' "Performance"** — the cheap one; `De(sku.tier, kind==="FileStorage")` had
+  already been read during the very first Storage Account dump this session, just never wired up.
+  `sku.tier` (root-level — a *different* field than Replication's `sku.name`) maps Premium/Standard to
+  literal "Premium"/"Standard", confirmed identical across every candidate resource-string object
+  found. The FileStorage-kind branch (a different label, "Media Tier", with SSD/HDD text) wasn't
+  traced — returns unresolved rather than guessed.
+- **AKS's "Sku"/"Pricing tier" `ShortcutMismatch`** — turned out not to be AKS-specific at all: this
+  type simply renders `sku.tier` and `sku.name` as two separate direct-passthrough fields instead of
+  ever combining them into the generic `SkuAndVersion.SkuLabel`'s "Tier (Name)" shape. Fixed generically
+  in `ResolveSkuShortcut` itself — try the bare `sku.tier`/`sku.name` (now exposed as `model.sku_tier`/
+  `model.sku_name`, alongside the existing combined `model.sku_label`) before giving up — which,
+  as a bonus, also fixed the pre-existing "Sku" mismatch on SignalR, WebPubSub, Load Balancers, NAT
+  Gateways, and Public IP Addresses for free, not just AKS.
+- **AppConfiguration's "Pricing tier" `ShortcutMismatch`** — genuinely AppConfig-specific
+  (`n!==Premium ? format("{0} (Click to upgrade)", Jp(n)) : premiumSku`, freeSku/standardSku/
+  developerSku/premiumSku resource strings, all read live 2026-08-14 off one more throwaway Free-tier
+  store). "Pricing tier" is shared by a dozen-plus other types with their own unrelated formats
+  (confirmed still-`ShortcutMismatch` for Cognitive Services, Databricks, SQL elastic pools/job
+  agents, CDN — all pre-existing, out of scope, correctly left alone), so this couldn't be a global
+  label dispatch the way every other shortcut in this file is. This is the one genuine architecture
+  change of the day: `FieldRecipeResolver.Resolve` gained an `armType`-aware overload (the original
+  3-arg signature still exists, defaults `armType` to `""`, so no caller or test needed to change)
+  purely so a label can be scoped to one specific type when — and only when — that's the only safe
+  way to add a real fix without risking every other type sharing that label.
+
+All four verified `ShortcutVerified` against the real committed corpus, 225 tests still green, no
+guessed text anywhere in any of it.
+
 ## The operator's real identity can leak into output/ — two distinct paths, both now fixed
 
 Live-found (2026-08-13) across 34+ already-committed `data.json` files: ARM auto-stamps the

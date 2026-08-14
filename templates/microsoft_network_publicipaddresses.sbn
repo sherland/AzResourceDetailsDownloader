@@ -10,7 +10,7 @@
 | **Location** | {{ model.location | region_display_name }} |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **SKU** | <!-- TODO (ShortcutMismatch): Computed "Regional (Standard)" does NOT match portal "Standard" for this type — do not trust this shortcut here. --> Standard |
+| **SKU** | {{ model.sku_name }} |
 | **Tier** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Regional |
 | **IP address** | {{ model.props.ipaddress }} |
 | **DNS name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> - |

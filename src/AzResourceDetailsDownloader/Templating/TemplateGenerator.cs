@@ -34,7 +34,7 @@ public static class TemplateGenerator
 
         foreach (var (label, value) in fields)
         {
-            var recipe = FieldRecipeResolver.Resolve(label, value, root);
+            var recipe = FieldRecipeResolver.Resolve(label, value, root, armType);
             var row = BuildRow(label, value, recipe, root);
             if (row is not null)
             {

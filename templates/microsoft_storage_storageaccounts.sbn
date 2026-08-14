@@ -11,7 +11,7 @@
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Disk state** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. --> Available |
-| **Performance** | <!-- TODO (NotAddressable): Traceable via 'sku.tier' (exact value match), but that's outside properties.*/kind/name/id/location — not reachable from a template. --> Standard |
+| **Performance** | {{ model.storage_performance_label }} |
 | **Replication** | {{ model.storage_replication_label }} |
 | **Account kind** | {{ model.storage_account_kind_label }} |
 | **Provisioning state** | {{ model.props.provisioningstate }} <sub>(as of last sync)</sub> |
