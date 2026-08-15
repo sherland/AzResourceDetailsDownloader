@@ -514,6 +514,136 @@ provisioning at a paid tier.
     of this type had never exercised this DOM shape at all, so this bug had been latent, uncaught,
     since whenever the tooltip icon was added.
 
+## The second-hop module-chasing technique is now a real, checked-in tool, not a manual routine
+
+Everything in the four sections above that reads "confirmed live" for a friendly-name lookup table
+was found by hand: open `playwright-cli`, type a fresh JS blob, work around cmd.exe's quoting, repeat
+per helper function. Asked directly whether this was properly reproducible for a future session —
+human or AI — the honest answer was no: the *first* hop (DOM → React fiber → field-builder source)
+had already been productionized as `EssentialsExtractor.DumpFiberBuilderSourceAsync`, but the
+*second* hop (chasing a helper function into whichever other loaded script defines it, then chasing
+its resource-string table) only ever existed as hand-typed one-offs and a prose description here.
+
+**What exists now**: `FieldBindingInvestigator.ChaseHelpersAsync`, wired into the same capture path
+as the existing debug dumps, gated by a new env var, `ARDL_CHASE_HELPER_NAMES` (comma-separated
+helper names — only takes effect when `ARDL_DEBUG_ESSENTIALS_DIR` is also set):
+
+```
+ARDL_DEBUG_ESSENTIALS_DIR=<scratch-dir> ARDL_CHASE_HELPER_NAMES=Hs,st \
+  dotnet run --project src/AzResourceDetailsDownloader -- --run --only Microsoft.Compute/disks
+```
+
+This writes `<resourceName>.helper-chase.json` alongside the existing `.essentials-source.json`/
+`.html` dumps. Read the `.essentials-source.json` first — its `candidateHelperNames` field (computed
+by `EssentialsExtractor.ExtractCandidateHelperNames`, pure C# regex over the already-dumped
+`builderSource`, zero extra cost) is a heuristic starting point for what to pass to
+`ARDL_CHASE_HELPER_NAMES` on the next run.
+
+**The algorithm** (see `FieldBindingInvestigator`'s own class-level comment for the fullest version):
+1. Re-walk the same fiber path `DumpFiberBuilderSourceAsync` uses (shared JS fragment, not a second
+   copy — `EssentialsExtractor.FindBuilderFunctionJsFragment`) to get the builder function's source.
+2. Fetch every script the frame has loaded (`performance.getEntriesByType('resource')`), find the one
+   containing a tail snippet of the builder source — that's the "host file."
+3. For each helper name: if it's dotted (`he.W8` — an AKS-style import through a namespace object,
+   not a bare call), resolve it in two steps — find the binding (`he=rr(5379)`, giving a module ID),
+   then that module's own webpack export map *starting from the module's own position specifically*
+   (`5379:function(...){...W8:function(){return g}...}`) — giving both the real local name (`g`) and
+   the module's own start position to anchor the next step with. Then search the host file for a
+   declaration of that name: ranked *strictly forward from the module's own start* when one was
+   resolved (not plain nearest-either-direction — see bug #4 below for why that distinction matters),
+   or nearest-either-direction from the builder's own position for an ordinary bare helper name. If
+   nothing matches in the host file, search every other loaded file too (`crossChunk: true`).
+4. Extract `Namespace.Key`-shaped references from the found declaration's own source, then search
+   every loaded file again for whichever one defines `Namespace:{...}` — the literal display text.
+
+**Robustness properties, each tied to something that actually broke during development**:
+- **Iframe-aware, many-fields-safe**: reuses the exact same anchor-selection logic as the production
+  extractor and `DumpFiberBuilderSourceAsync` — including the "prefer an element whose text contains
+  'Resource group'" fix (see the section above) for the exact case that inspired this instruction:
+  Compute/disks' secondary "Properties" side-tab shares the same CSS selectors as the real Essentials
+  panel, and a blind first-DOM-match anchor can land in the wrong one.
+- **Collision-safe for bare (non-aliased) helpers**: distance-from-anchor ranking, not "first match
+  wins" — Logic Apps' field-builder chunk also contains an unrelated, ~500KB-away `Fe`/`Be`/`Pe`/`Qe`
+  from a bundled lodash; picking the nearest declaration to the builder's own position resolves the
+  real one.
+- **Collision-safe for alias-resolved helpers, differently**: an alias-resolved local name is very
+  often a single letter (`g`, `k`) — far more collision-prone than a 2-char bare name like `Fe` — so
+  plain nearest-distance ranking isn't precise enough even after correctly resolving the alias (see
+  bug #4). Ranked forward-from-module-start instead, once a module boundary is known.
+- **Cross-chunk-safe**: AKS's `he.W8`/`he.MF` are imported from a different webpack module than the
+  field-builder itself (`he=rr(5379)`) — handled by both the fallback full-corpus search (step 3
+  above) and genuine alias resolution for the dotted-namespace-import shape itself
+  (`ExtractCandidateHelperNames` deliberately does NOT suggest `W8`/`MF` as candidates — they're never
+  called bare — so a human/AI has to notice the `he.W8(...)`/`he.MF(...)` shape in the raw
+  `builderSource` by eye and pass the dotted form to `ARDL_CHASE_HELPER_NAMES` directly; the chase
+  logic then resolves it).
+
+**Four real bugs found building and testing this, in order — the debugging trail is worth keeping**:
+1. First cut anchored the JS-running wait on the same selector's default (*visible*) Playwright wait
+   state. Reproduced 3 times in a row: `DumpFiberBuilderSourceAsync` succeeded, then
+   `ChaseHelpersAsync` — same selector, same page, seconds later — timed out. Suspected cause: Compute/
+   disks' hidden "Properties" duplicate attaching to the DOM slightly after page load. Fix applied
+   (`WaitForSelectorState.Attached` instead of the default): **did not fix it.**
+2. Root cause turned out to be unrelated to the DOM entirely — the sandbox-frame attempt's real
+   exception was being silently discarded by the try/catch's fallback-retry logic, always replaced by
+   the fallback's own (correct on its own terms, but misleading about the actual cause) timeout
+   against the top-level page, which never has these elements at all. Once surfaced: `TypeError:
+   helperNames is not iterable` — Playwright's C# `EvaluateAsync(js, arg)` did not reliably hand an
+   `IReadOnlyList<string>` to the JS side as something `for...of`-iterable.
+3. Switched to passing a comma-joined string instead — same failure mode, new message:
+   `TypeError: helperNamesCsv.split is not a function`. The `arg` parameter itself was unreliable for
+   both shapes tried. Fixed by abandoning `EvaluateAsync`'s `arg` mechanism entirely: the helper names
+   are now JSON-serialized and embedded as a literal directly in the generated JS source (`BuildChaseJs`
+   builds a fresh zero-argument function per call instead of reusing a fixed `const` with an `arg`).
+4. AKS's `he.W8` → `g` resolved to the *wrong* declaration on the first live AKS run: an unrelated
+   enum-init idiom, `(g||(g={}))`, sitting 424 chars *before* module 5379's own start, outscored the
+   real `g=e=>{...powerState...}` declaration 631 chars *after* it — plain absolute distance-from-
+   module-start doesn't know "before" and "after" aren't equally likely once a module boundary is
+   known; a webpack module's own local variables are declared inside its own function body, i.e.
+   strictly *after* its own start, never before. Fixed by ranking module-scoped candidates strictly
+   forward-of-boundary first (falling back to "before" only if nothing matches after) — offline-
+   verified by downloading the exact bundle file and replaying the ranking logic in Python before
+   spending another live AKS provision on it, then confirmed for real against a fresh cluster (see
+   `he.W8 -> module 5379 @116054 -> g` in a live-captured `helper-chase.json`, resolving to the actual
+   `powerState`-computing function, not the enum-init decoy).
+
+The general lesson, consistent with #1 vs #2 above: when a sandbox/fallback retry pattern exists,
+make sure the *first* attempt's real exception is never silently swallowed just because a plausible-
+sounding DOM-timing story is available — the fallback's own exception will almost always look like a
+clean, simple timeout regardless of what actually went wrong upstream, and that's exactly what makes
+it a convincing but wrong explanation. And separately, bug #4 is its own lesson: a ranking heuristic
+that's "distance from a known-good anchor" needs to ask *distance in which direction*, once the anchor
+is actually a structural boundary (a module's own start) rather than an arbitrary point in the file —
+nearest-either-direction and nearest-forward-preferred are not the same heuristic, and only one of
+them is correct once you know declarations can only occur on one side of that specific anchor.
+
+**Extended validation round (2026-08-15), specifically to stress-test the two properties above against
+resource types with a genuinely different Essentials shape, not just different field content** — three
+more live runs, all correct with no further fixes needed:
+- **Cosmos DB** (`Microsoft.DocumentDB/databaseAccounts`): the builder itself is structurally different
+  from Storage/Disk/AKS — a nested IIFE returning `fields`/`customizeResourceFields`/`moreFields`
+  separately, not one flat array. Its three candidate helpers (`c`, `g`, `h`) are all single-letter bare
+  names — a harder collision case than the 2-letter names tested before (20/5/4 competing same-name
+  declarations respectively) — and all three resolved to the semantically correct function (a
+  provisioning-state text mapper, a backup-policy text mapper, and a backup-policy type coercion,
+  matching how each is actually called in the builder source).
+- **SQL Database** (`Microsoft.Sql/servers/databases`): a third distinct shape — the builder passes
+  `fields: []` (literally empty) and builds every field *inside* `customizeResourceFields` as a
+  function body instead, so `DumpFiberBuilderSourceAsync`'s `builderFields` (read from
+  `fiber.memoizedProps.fields`) legitimately comes back `[]` even though the production extractor still
+  found all 9 fields via its own DOM path — a real example of "the memoizedProps-fields dump is
+  best-effort and empty doesn't mean broken," worth knowing before treating an empty `resolvedFields`
+  as a bug report. Its one candidate helper (`Tn`) turned out to be a `TimeContext`-object builder for
+  a metrics chart deep-link, not a friendly-text mapper at all — zero collisions, and the tool correctly
+  returned an empty `resourceStringTableSnippets` rather than fabricating a match, since no
+  `Namespace:{` table exists for a helper that was never producing display text in the first place.
+- **App Service** (`Microsoft.Web/sites`) was attempted too but hit an unrelated Azure subscription-level
+  429 (`App Service Plan Create operation is throttled`) during prerequisite provisioning — nothing to
+  do with this tool. Worth retrying in a future session once the throttle clears; not blocking, since
+  Cosmos DB and SQL Database already exercised the two properties (single-letter bare-name collision,
+  and an empty-`builderFields`-is-not-a-bug edge case) that made App Service worth adding in the first
+  place.
+
 ## The operator's real identity can leak into output/ — two distinct paths, both now fixed
 
 Live-found (2026-08-13) across 34+ already-committed `data.json` files: ARM auto-stamps the
@@ -647,3 +777,87 @@ Portal screenshot capture is serialized behind one shared browser session, and s
 find output -maxdepth 3 -newermt "10 minutes ago"
 ```
 and confirm the `dotnet`/`AzResourceDetailsDownloader.exe`/Playwright/`chrome-headless-shell` processes are still alive.
+
+## The Essentials panel has a THIRD, collapsed field group — `moreFields` — and fixing it nearly shipped a worse bug
+
+Live-found (2026-08-15, Cosmos DB): the shared `Essentials` framework component takes `fields`,
+`customizeResourceFields`, *and* `moreFields` — a third group rendered behind a collapsed "See more"
+toggle that isn't expanded by default. Its fields (Cosmos DB's "Backup policy" confirmed) never reached
+the DOM at all and were silently missing from every capture to date, independent of any selector/layout
+issue documented elsewhere in this file. Confirmed by grepping a raw debug HTML dump for the literal
+button text (`<button class="ms-Link essentialsNoWrap-212">See more</button>`), not by guessing from the
+builder source alone — `moreFields` being non-empty doesn't by itself prove a field is unreachable; the
+collapsed button is what proves it.
+
+**First fix attempt was actively dangerous, not just incomplete.** It matched *any* `<button>` anywhere
+whose trimmed text was "more"-shaped, and fell back to searching the *top-level page* when the
+frame-scoped search found nothing. That fallback was the real bug: the top-level page is Azure Portal's
+own chrome, present on every blade regardless of resource type, and it has its own "more"-shaped controls
+(command-bar/breadcrumb overflow, etc.) with nothing to do with Essentials. Clicking one silently
+disrupted page state, and because `EssentialsExtractor.ExtractAsync`'s outer `catch` treats any resulting
+failure as "no fields found" rather than surfacing it, this wasn't a loud crash — it was a silent
+regression to zero extracted fields. **33 of 157 types in a full-catalog run lost previously-good,
+committed `portal-fields.json` data this way**, because `OutputWriter.WriteAsync` deletes the field file
+when a "successful" capture returns zero fields (its own comment explains why: distinguishing "this type
+now genuinely has no visible panel" from "the extractor just regressed" isn't possible from inside that
+function). Caught only by `dotnet test`'s total test count silently dropping (`PortalFieldsConsistencyTests`
+is data-driven off however many `portal-fields.json` files exist) — not by the capture run itself
+reporting anything wrong — and only because `git status`/`dotnet test` were checked *before* committing,
+per this project's established discipline. Fixed by (1) dropping the top-level-page fallback entirely —
+there's no legitimate reason to look for an Essentials-specific toggle outside the sandbox frame that
+renders Essentials — and (2) requiring the button's own `essentialsNoWrap-` class substring in addition to
+the text match, so even a same-shaped button genuinely inside the sandbox frame (a Recommendations widget
+sharing the iframe, say) can't be clicked by mistake.
+
+**The general lesson**: any change to `EssentialsExtractor.ExtractAsync` — not just this one — can silently
+delete good, already-committed field data for types it doesn't even touch, because success-with-zero-fields
+and failure look identical to `OutputWriter`. Before trusting a full-catalog run's output after touching
+this file, always check `dotnet test`'s total test count and `git diff --numstat -- '**/portal-fields.json'`
+for suspicious *deletions* (a file going from N lines to 0), not just look at the run's own `[OK]`/`[FAIL]`
+summary — a `[OK]` with zero fields extracted looks identical to a healthy one in that summary alone.
+
+**Update, same day — the real second bug, found after a long detour through wrong theories.**
+Re-verifying the corrected fix above surfaced what looked like a *different*, unrelated problem: a
+stable, highly reproducible set of ~30 resource types (`Microsoft.Network/networkSecurityGroups`,
+`Microsoft.Sql/servers`, `Microsoft.OperationalInsights/workspaces`, `Microsoft.DataFactory/factories`,
+and more) kept returning 0 Essentials fields across multiple independent full-catalog runs — identical
+lists each time, reproducing even in fresh, isolated single-type runs with zero concurrency. That
+consistency ruled out several theories in turn, each with real evidence behind it before being ruled
+out: a genuine concurrency race in `PortalCaptureService.CaptureAsync` (real bug, fixed, but proven not
+the cause here — the same failures reproduced with `--max-concurrency 1`), and Azure Portal rendering
+degradation for the account/session after a heavy day of automated traffic (plausible given the debug
+dump showed the Overview blade's content iframe never attaching, but never actually confirmed — see
+below for why).
+
+The *actual* cause: `TryExpandMoreFieldsAsync` (the "See more" fix's own click-detection call) used
+`EvaluateAsync` on a `FrameLocator`-scoped body with no explicit timeout — which falls back to
+Playwright's *default* timeout (30s), completely independent of this file's own
+`PrimaryAppearTimeout`/`FallbackAppearTimeout` constants (confirmed live: quadrupling
+`PrimaryAppearTimeout` from 10s to 40s changed nothing about the observed ~30s delay before a broken
+capture — the real clue that pointed here). Worse, that timeout throws `System.TimeoutException`, a
+*different* type from `PlaywrightException` — every other frame-existence check in this file (see
+`DumpFiberBuilderSourceAsync`/`ChaseHelpersAsync`) already knew to catch both together; this one, first
+written the same day as the original "See more" bug, only caught `PlaywrightException`. On any resource
+type whose sandbox frame doesn't resolve near-instantly, the uncaught `TimeoutException` propagated out
+of this method and was swallowed by `ExtractAsync`'s outer catch-all — silently skipping *every* real
+extraction attempt below it, no error logged, just an empty field list ~30 seconds later. Confirmed by
+directly diagnosing a `Microsoft.Network/networkSecurityGroups` capture and finding the actual delay
+was 30s *no matter what the file's own timeout constants said* — a strong signal the delay was coming
+from somewhere else in the code entirely, not from any documented timeout. Fixed two ways: an explicit
+short timeout (3s) on that `EvaluateAsync` call so a not-yet-resolved frame fails fast instead of eating
+30s doing nothing useful, and catching `TimeoutException` alongside `PlaywrightException` so a timeout
+here can never again skip the real extraction attempts that follow. Verified against all 4 previously-
+consistently-broken types in one run (`networkSecurityGroups`, `DataFactory/factories`,
+`OperationalInsights/workspaces`, `Sql/servers`) — every one now extracts real fields (6, 6, 10, 8
+respectively).
+
+**The lesson, worth remembering specifically**: an uncaught-exception-type mismatch inside one small
+helper function masqueraded as concurrency flakiness, then as external Azure Portal degradation, because
+`ExtractAsync`'s outer `catch { return []; }` makes *every* failure mode inside it look identical —
+empty fields, no error. The debugging path that actually worked wasn't more live testing at bigger
+scale; it was noticing that a targeted *timeout knob change had zero effect on the observed delay*, which
+is the tell that the real timeout is coming from somewhere the code doesn't explicitly control. Any
+future "some types mysteriously return 0 fields, and it's consistent across runs" investigation should
+check for exactly this shape of bug — an unbounded/default-timeout call somewhere in the call path,
+whose exception type isn't in whatever catch clause is nearest to it — before reaching for concurrency
+or "the portal is having a bad day" as the explanation.

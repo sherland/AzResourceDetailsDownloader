@@ -53,6 +53,15 @@ public sealed class PortalCaptureService : IAsyncDisposable
 
     private static readonly TimeSpan HardCaptureTimeout = TimeSpan.FromSeconds(90);
 
+    // Extra time given to an already-timed-out capture before the lock is released to the next queued
+    // unit — see the race-condition comment inside CaptureAsync for why this exists at all. Deliberately
+    // NOT "wait as long as it takes": that would silently reintroduce the exact whole-batch-stall risk
+    // HardCaptureTimeout exists to bound. 60s is a compromise, not a guarantee — a capture that's
+    // merely somewhat slower than 90s gets a real chance to finish cleanly before the next unit touches
+    // the shared page; a genuinely stuck one still only costs the batch HardCaptureTimeout + this, not
+    // forever.
+    private static readonly TimeSpan OrphanedCaptureGracePeriod = TimeSpan.FromSeconds(60);
+
     public async Task<PortalCaptureResult> CaptureAsync(string resourceId, string resourceName, ILogger logger, CancellationToken ct = default)
     {
         // Queueing for the lock is unbounded on purpose — it just means another unit's screenshot is in
@@ -63,14 +72,32 @@ public sealed class PortalCaptureService : IAsyncDisposable
         {
             // Belt-and-suspenders: StableRenderWaiter already bounds its own waits, but this hard ceiling
             // guarantees one stuck capture can never stall the whole batch, whatever the root cause turns
-            // out to be. Navigating the shared page to the next resource's URL implicitly abandons whatever
-            // this call left in flight.
+            // out to be.
             var captureTask = CaptureCoreAsync(resourceId, resourceName, logger, ct);
             var timeoutTask = Task.Delay(HardCaptureTimeout, ct);
 
             var winner = await Task.WhenAny(captureTask, timeoutTask);
             if (winner == timeoutTask)
             {
+                // Live-found (2026-08-15): `captureTask` is NOT actually cancelled here — Playwright's
+                // async page/frame APIs don't accept a token that aborts an in-flight operation, so it
+                // keeps running against `_page` in the background regardless of what this method does
+                // next. The comment this replaced said "navigating the shared page to the next
+                // resource's URL implicitly abandons whatever this call left in flight" — that's true
+                // for what THIS unit sees, but wrong about what happens to the page: releasing the lock
+                // immediately here lets the NEXT queued unit start its own `_page.GotoAsync(...)` while
+                // this orphaned task might still be mid-navigation or mid-EssentialsExtractor.ExtractAsync
+                // on the exact same page object — two units genuinely racing on shared browser state.
+                // Reproduced across two independent full-catalog runs: a consistent ~30-type set kept
+                // extracting 0 Essentials fields (not a clean timeout failure, a silently-wrong empty
+                // result) identical whether or not an unrelated same-day EssentialsExtractor fix was
+                // present, ruling that fix out as the cause and pointing at something structural instead.
+                // Waiting here (bounded, see OrphanedCaptureGracePeriod) before releasing the lock doesn't
+                // fully solve the underlying problem — Playwright still can't truly cancel the orphaned
+                // task — but it meaningfully shrinks the window in which two units can touch `_page` at
+                // once, for the common case where the orphaned task was only somewhat slower than 90s
+                // rather than genuinely stuck.
+                await Task.WhenAny(captureTask, Task.Delay(OrphanedCaptureGracePeriod, ct));
                 throw new TimeoutException(
                     $"Portal capture for '{resourceId}' ('{resourceName}') did not complete within {HardCaptureTimeout.TotalSeconds}s.");
             }
@@ -105,6 +132,23 @@ public sealed class PortalCaptureService : IAsyncDisposable
             var safeName = string.Join("_", resourceName.Split(Path.GetInvalidFileNameChars()));
             await EssentialsExtractor.DumpDebugHtmlAsync(_page, Path.Combine(debugDir, $"{safeName}.html"));
             await EssentialsExtractor.DumpFiberBuilderSourceAsync(_page, Path.Combine(debugDir, $"{safeName}.essentials-source.json"));
+
+            // Opt-in second hop (see FieldBindingInvestigator's class comment for the full
+            // technique and its robustness/limitation notes): chases each named helper function
+            // referenced by the field-builder source dumped just above into whichever other loaded
+            // script actually defines it, plus the resource-string table backing its display text.
+            // Only runs when both env vars are set — ARDL_DEBUG_ESSENTIALS_DIR alone still gets you
+            // just the builder-source dump (including its own heuristic candidateHelperNames list,
+            // a starting point for deciding what to pass here) at zero extra cost.
+            var chaseHelperNames = Environment.GetEnvironmentVariable("ARDL_CHASE_HELPER_NAMES");
+            if (!string.IsNullOrEmpty(chaseHelperNames))
+            {
+                var names = chaseHelperNames.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                logger.LogInformation("    portal: chasing {Count} helper name(s) across loaded scripts: {Names}",
+                    names.Length, string.Join(", ", names));
+                var chaseJson = await FieldBindingInvestigator.ChaseHelpersAsync(_page, names);
+                await File.WriteAllTextAsync(Path.Combine(debugDir, $"{safeName}.helper-chase.json"), chaseJson);
+            }
         }
 
         var notices = await BannerExtractor.ExtractAsync(_page);
