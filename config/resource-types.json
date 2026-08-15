@@ -2665,7 +2665,8 @@
           "perHour": 0.018
         }
       ],
-      "notes": "Autoscale requires a Standard+ tier App Service Plan (Basic doesn't support scale-out), hence S1 here rather than B1. In this tenant, a policy restricts App Service Plan SKUs to F1/B1/B2/B3/Y1/FC1/Consumption only — none of which support autoscale — so this entry cannot succeed here. Not a bug in this tool; a tenant without that SKU restriction should succeed with this body as-is."
+      "notes": "Autoscale requires a Standard+ tier App Service Plan (Basic doesn't support scale-out), hence S1 here rather than B1. In this tenant, a policy restricts App Service Plan SKUs to F1/B1/B2/B3/Y1/FC1/Consumption only — none of which support autoscale — so this entry cannot succeed here. Not a bug in this tool; a tenant without that SKU restriction should succeed with this body as-is. Update 2026-08-16: this SKU restriction is apparently no longer enforced (or wasn't for this run) — provisioning now succeeds, but the portal capture step returned 0 Essentials fields, consistently exhausting its full extraction timeout budget without finding anything — live-evidenced pattern for a genuinely slow-rendering Overview blade (see captureTimeoutMultiplier).",
+      "captureTimeoutMultiplier": 3.0
     },
     {
       "armType": "Microsoft.Insights/workbooks",
@@ -4136,8 +4137,8 @@
           }
         }
       ],
-      "notes": "Overview blade consistently slow to render (not slow to provision) — live-evidenced across multiple full-catalog runs 2026-08-15/16 as the single most frequent offender: its portal capture step alone exceeded the default 90s HardCaptureTimeout in 4 of 4 observed occurrences, even though the resource itself provisions in seconds.",
-      "captureTimeoutMultiplier": 3.0
+      "notes": "Overview blade consistently slow to render (not slow to provision) — live-evidenced across multiple full-catalog runs 2026-08-15/16 as the single most frequent offender: its portal capture step alone exceeded the default 90s HardCaptureTimeout in 4 of 4 observed occurrences, even though the resource itself provisions in seconds. Update 2026-08-16: 3x wasn't always enough — a later run stayed under the (now-270s) hard timeout but still returned 0 fields, with StableRenderWaiter logging a failed reload retry and a lingering spinner, suggesting real Azure-side variance in how long this specific blade takes rather than a fixed ceiling. Bumped to 5x.",
+      "captureTimeoutMultiplier": 5.0
     },
     {
       "armType": "Microsoft.Maps/accounts",
@@ -4752,7 +4753,8 @@
         }
       },
       "prerequisites": [],
-      "notes": "Newer alternative to Microsoft.RecoveryServices/vaults above — an empty vault (no backup instances) has no meaningful cost."
+      "notes": "Newer alternative to Microsoft.RecoveryServices/vaults above — an empty vault (no backup instances) has no meaningful cost. Live-evidenced 2026-08-16: 0 Essentials fields extracted, consistently exhausting the full extraction timeout budget — same slow-rendering pattern as its RecoveryServices/vaults sibling (see captureTimeoutMultiplier); worth re-checking for the same legacy-layout shape if the multiplier alone doesn't resolve it.",
+      "captureTimeoutMultiplier": 3.0
     },
     {
       "armType": "Microsoft.DataProtection/backupVaults/backupPolicies",
