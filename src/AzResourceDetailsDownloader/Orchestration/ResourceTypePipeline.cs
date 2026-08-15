@@ -103,7 +103,8 @@ public sealed class ResourceTypePipeline(
             using var rawJson = await rawArmClient.GetRawAsync(targetRef.Id, def.ApiVersion, ct);
 
             unitLogger.LogInformation("  capturing portal screenshot for '{Name}'", targetName);
-            var capture = await portalCapture.CaptureAsync(targetRef.Id, targetName, unitLogger, ct);
+            var capture = await portalCapture.CaptureAsync(
+                targetRef.Id, targetName, unitLogger, def.CaptureTimeoutMultiplier ?? 1.0, ct);
 
             // Exported at resource-group scope (not per-resource) so the target and its prerequisites — all
             // provisioned into this one ephemeral group — come back together with cross-references resolved,

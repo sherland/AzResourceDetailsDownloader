@@ -346,29 +346,37 @@ public static class EssentialsExtractor
         }
     }
 
-    public static async Task<IReadOnlyList<PortalField>> ExtractAsync(IPage page)
+    public static async Task<IReadOnlyList<PortalField>> ExtractAsync(IPage page, double captureTimeoutMultiplier = 1.0)
     {
         try
         {
+            // Scaled by captureTimeoutMultiplier (config's captureTimeoutMultiplier, see
+            // ResourceTypeDefinition) for types with a known-slow Overview blade — see PortalCaptureService
+            // .CaptureAsync's own comment for the live evidence behind this. Applied to every fallback
+            // combo's own budget below, not just the first, since a slow type isn't slow at only one
+            // specific selector combo.
+            var primaryAppearTimeout = PrimaryAppearTimeout * captureTimeoutMultiplier;
+            var fallbackAppearTimeout = FallbackAppearTimeout * captureTimeoutMultiplier;
+
             var sandboxFrame = page.FrameLocator(OverviewSandboxIframeSelector);
             await TryExpandMoreFieldsAsync(sandboxFrame);
 
             var fields = await TryExtractFromLocatorAsync(
-                sandboxFrame.Locator(CurrentItemSelector), CurrentExtractItemsJs, PrimaryAppearTimeout);
+                sandboxFrame.Locator(CurrentItemSelector), CurrentExtractItemsJs, primaryAppearTimeout);
             if (fields.Count > 0)
             {
                 return Finalize(fields);
             }
 
             fields = await TryExtractFromLocatorAsync(
-                sandboxFrame.Locator(PropertyFieldLabelSelector), PropertyFieldExtractItemsJs, PrimaryAppearTimeout);
+                sandboxFrame.Locator(PropertyFieldLabelSelector), PropertyFieldExtractItemsJs, primaryAppearTimeout);
             if (fields.Count > 0)
             {
                 return Finalize(fields);
             }
 
             fields = await TryExtractFromLocatorAsync(
-                sandboxFrame.Locator(PropertiesFormLabelSelector), PropertiesFormExtractItemsJs, PrimaryAppearTimeout);
+                sandboxFrame.Locator(PropertiesFormLabelSelector), PropertiesFormExtractItemsJs, primaryAppearTimeout);
             if (fields.Count > 0)
             {
                 return Finalize(fields);
@@ -380,19 +388,19 @@ public static class EssentialsExtractor
             // (the original, pre-2026-08-14 path). None of these has ever been observed to be the
             // right combo once the two primaries above miss, so each gets only a short confirmatory
             // wait rather than repeating the full budget.
-            fields = await TryExtractFromLocatorAsync(page.Locator(CurrentItemSelector), CurrentExtractItemsJs, FallbackAppearTimeout);
+            fields = await TryExtractFromLocatorAsync(page.Locator(CurrentItemSelector), CurrentExtractItemsJs, fallbackAppearTimeout);
             if (fields.Count > 0)
             {
                 return Finalize(fields);
             }
 
-            fields = await TryExtractFromLocatorAsync(sandboxFrame.Locator(LegacyItemSelector), LegacyExtractItemsJs, FallbackAppearTimeout);
+            fields = await TryExtractFromLocatorAsync(sandboxFrame.Locator(LegacyItemSelector), LegacyExtractItemsJs, fallbackAppearTimeout);
             if (fields.Count > 0)
             {
                 return Finalize(fields);
             }
 
-            fields = await TryExtractFromLocatorAsync(page.Locator(LegacyItemSelector), LegacyExtractItemsJs, FallbackAppearTimeout);
+            fields = await TryExtractFromLocatorAsync(page.Locator(LegacyItemSelector), LegacyExtractItemsJs, fallbackAppearTimeout);
             return Finalize(fields);
         }
         catch
