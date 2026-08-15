@@ -415,7 +415,24 @@ public static class EssentialsExtractor
     {
         try
         {
-            await items.First.WaitForAsync(new LocatorWaitForOptions { Timeout = (float)timeout.TotalMilliseconds });
+            // Attached, not Playwright's default Visible — this codebase already hit and fixed this
+            // exact class of bug once (see FiberAnchorSelector's own wait, and DumpFiberBuilderSourceAsync's
+            // comment on why), but this call site was never updated to match. Live-caught again
+            // (2026-08-16, Microsoft.RecoveryServices/vaults): a genuinely legacy-layout blade whose
+            // `.fxc-essentials-item` elements were confirmed present (via a raw HTML dump) with none of
+            // the `fxs-display-none`/hidden markers seen elsewhere in this file, yet every extraction
+            // attempt still returned 0 fields even after the timeout multiplier gave it 3x the normal
+            // budget — a *visibility*-state wait, not a presence-state one, doesn't reliably resolve for
+            // every blade's own render/animation timing. Safe to relax: the extraction JS below reads
+            // `innerText` (already chosen specifically because it respects visibility, unlike
+            // `textContent`), so a genuinely-still-hidden element just yields empty text and gets
+            // filtered out downstream exactly like a real timeout would — this can only ever recover
+            // fields that were falsely being missed, never fabricate data that wasn't really rendered.
+            await items.First.WaitForAsync(new LocatorWaitForOptions
+            {
+                State = WaitForSelectorState.Attached,
+                Timeout = (float)timeout.TotalMilliseconds,
+            });
         }
         catch (TimeoutException)
         {
