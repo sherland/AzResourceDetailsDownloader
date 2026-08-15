@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.Playwright;
 
 namespace AzResourceDetailsDownloader.Capture;
@@ -81,7 +82,7 @@ public static class EssentialsExtractor
     // React content frame carries `fxs-reactview-frame-active` regardless of resource type, while
     // the sibling extension/side-panel frame (`fxs-extension-frame`) never does — confirmed by
     // dumping the live iframe list for a failing capture (Public IP) rather than guessing.
-    private const string OverviewSandboxIframeSelector = "iframe.fxs-reactview-frame-active";
+    internal const string OverviewSandboxIframeSelector = "iframe.fxs-reactview-frame-active";
 
     private const string CurrentItemSelector = "[class*=\"essentialsItem-\"]";
     private const string LegacyItemSelector = ".fxc-essentials-item";
@@ -260,14 +261,97 @@ public static class EssentialsExtractor
     // moderate timeout rather than the original single-combo 15s, so the worst case (a blade type
     // matching none of them) doesn't approach PortalCaptureService's 90s HardCaptureTimeout once
     // screenshot + banner capture time is added on top.
-    private static readonly TimeSpan PrimaryAppearTimeout = TimeSpan.FromSeconds(10);
-    private static readonly TimeSpan FallbackAppearTimeout = TimeSpan.FromSeconds(5);
+    internal static readonly TimeSpan PrimaryAppearTimeout = TimeSpan.FromSeconds(10);
+    internal static readonly TimeSpan FallbackAppearTimeout = TimeSpan.FromSeconds(5);
+
+    // Live-found (2026-08-15, Cosmos DB): the Essentials framework component supports a THIRD field
+    // group beyond `fields`/`customizeResourceFields` — `moreFields` — rendered behind a collapsed
+    // "See more" toggle that isn't expanded by default, so its fields (Cosmos DB's "Backup policy"
+    // confirmed; likely used by other types too) never reach the DOM at all and were silently
+    // missing from every capture to date, independent of any selector/layout issue above. Confirmed
+    // by grepping a raw debug HTML dump for the literal button text rather than guessing from the
+    // builder source alone (`moreFields` being non-empty doesn't by itself prove the field is
+    // unreachable — the collapsed button is what proves it).
+    //
+    // Live-found AGAIN (2026-08-15, same day — a 157-type full-catalog run): a first cut matched
+    // *any* `<button>` anywhere whose trimmed text was "more"-shaped, and — critically — fell back to
+    // searching the *top-level page* (not just the sandbox frame) when the frame-scoped search found
+    // nothing. That fallback was the bug: the top-level page is Azure Portal's own chrome, present on
+    // every single blade regardless of resource type, and it has its own "more"-shaped controls
+    // (breadcrumb/command-bar overflow, notifications, etc.) that have nothing to do with Essentials.
+    // Clicking one silently disrupted page state for whatever it actually was — and because
+    // `ExtractAsync`'s outer try/catch treats any resulting failure as "no fields found" rather than
+    // surfacing it, this wasn't a loud crash, it was a silent regression to zero extracted fields.
+    // 33 of 157 types in that run lost previously-good, committed `portal-fields.json` data this way
+    // (`OutputWriter` deletes the file when a "successful" capture returns zero fields, since it
+    // can't distinguish a genuine now-empty panel from this) — caught only by noticing the test count
+    // drop in `dotnet test` (`PortalFieldsConsistencyTests` is data-driven off however many
+    // `portal-fields.json` files exist) before committing, not by the capture run itself reporting
+    // anything wrong. Fixed by (1) dropping the top-level-page fallback entirely — there is no
+    // legitimate reason to look for an Essentials-specific toggle outside the sandbox frame that
+    // renders Essentials — and (2) requiring the `essentialsNoWrap-` class substring (the real
+    // button's own class, confirmed via the same HTML dump used to find it in the first place) in
+    // addition to the text match, so even a genuinely unrelated same-shaped button *inside* the
+    // sandbox frame (e.g. a Recommendations widget rendered in the same iframe) can't be clicked by
+    // mistake. `essentialsNoWrap-NNN` carries the same unstable per-build numeric suffix as
+    // `essentialsItem-NNN` elsewhere in this file, hence substring matching, not an exact class.
+    private const string MoreFieldsButtonJs = """
+        () => {
+            const btn = Array.from(document.querySelectorAll('button[class*="essentialsNoWrap-"]')).find(b =>
+                /^(see |show )?\d*\s*more$/i.test((b.innerText || b.textContent || '').trim()));
+            if (btn) { btn.click(); return true; }
+            return false;
+        }
+        """;
+
+    // Live-found (2026-08-15, same day as the fix above — the actual explanation for a much bigger
+    // regression than the top-level-click bug alone): `EvaluateAsync` on a `FrameLocator`-scoped body
+    // has to resolve the frame first, and that resolution uses Playwright's *default* timeout (30s)
+    // when no explicit one is given — completely independent of this file's own PrimaryAppearTimeout/
+    // FallbackAppearTimeout constants (confirmed live: quadrupling PrimaryAppearTimeout from 10s to
+    // 40s changed nothing about the ~30s delay observed before a broken capture). Worse, the timeout
+    // it throws is `TimeoutException`, a *different* type from `PlaywrightException` — every other
+    // frame-existence check in this codebase (see DumpFiberBuilderSourceAsync/ChaseHelpersAsync) knows
+    // to catch both together; this one, when first written, only caught `PlaywrightException`. On a
+    // resource type whose sandbox frame isn't immediately present (for whatever reason — could be
+    // genuine slow loading), the uncaught `TimeoutException` propagated out of this method, was caught
+    // by `ExtractAsync`'s outer catch-all, and skipped *every* real extraction attempt below it
+    // entirely — silently, with no error logged, just an empty field list after ~30s. This is very
+    // likely the true explanation for a ~30-type capture regression that survived the top-level-click
+    // fix unchanged: that fix addressed a real but different bug in the same feature; this one was the
+    // one actually zeroing out unrelated types' field extraction. Fixed two ways: an explicit short
+    // timeout so a missing frame fails fast instead of eating 30s doing nothing useful, and catching
+    // `TimeoutException` alongside `PlaywrightException` so even a timeout here can never again skip
+    // the extraction attempts that follow.
+    private static async Task TryExpandMoreFieldsAsync(IFrameLocator sandboxFrame)
+    {
+        bool expanded;
+        try
+        {
+            expanded = await sandboxFrame.Locator("body")
+                .EvaluateAsync<bool>(MoreFieldsButtonJs, null, new LocatorEvaluateOptions { Timeout = 3000 });
+        }
+        catch (Exception ex) when (ex is TimeoutException or PlaywrightException)
+        {
+            expanded = false;
+        }
+
+        if (expanded)
+        {
+            // The click triggers a React state update, not a navigation — no loading indicator or
+            // network activity to wait on, just a brief re-render. A fixed short delay is simpler
+            // and just as reliable as a more elaborate wait here (unlike page-load timing elsewhere
+            // in this file, there's no evidence this specific re-render is ever slow).
+            await Task.Delay(500);
+        }
+    }
 
     public static async Task<IReadOnlyList<PortalField>> ExtractAsync(IPage page)
     {
         try
         {
             var sandboxFrame = page.FrameLocator(OverviewSandboxIframeSelector);
+            await TryExpandMoreFieldsAsync(sandboxFrame);
 
             var fields = await TryExtractFromLocatorAsync(
                 sandboxFrame.Locator(CurrentItemSelector), CurrentExtractItemsJs, PrimaryAppearTimeout);
@@ -370,22 +454,63 @@ public static class EssentialsExtractor
     // layouts (the ones with a per-type extension at all); the generic PropertiesForm fallback and
     // legacy layouts don't have this component to find. No-op unless ARDL_DEBUG_ESSENTIALS_DIR is set
     // — see PortalCaptureService and AGENT.md.
-    private const string FiberAnchorSelector =
+    internal const string FiberAnchorSelector =
         "[class*=\"essentialsItem-\"], [id^=\"PropertyField\"][id$=\"-label\"], label.ms-Label[aria-label][id]";
 
-    public static async Task DumpFiberBuilderSourceAsync(IPage page, string outputPath)
-    {
-        const string js = """
-            () => {
-                const anchor = document.querySelector(
-                    '[class*="essentialsItem-"], [id^="PropertyField"][id$="-label"], label.ms-Label[aria-label][id]');
-                if (!anchor) {
-                    return JSON.stringify({ found: false, reason: 'no anchor element found in this frame' });
-                }
-                const fiberKey = Object.keys(anchor).find(k => k.startsWith('__reactFiber'));
-                if (!fiberKey) {
-                    return JSON.stringify({ found: false, reason: 'anchor element has no React fiber' });
-                }
+    // Shared with FieldBindingInvestigator (see that file's class comment for the full second-hop
+    // module-chasing technique this anchors) — kept as one JS fragment, not two copies, so a future
+    // portal DOM change only needs fixing in one place. Not a standalone function: pasted into the
+    // body of a `() => { ... }` (or `(helperNames) => { ... }`) by each caller, leaving three
+    // locals in scope afterward — `builderFn` (the field-builder function, or null),
+    // `builderAnchorReason` (set only when builderFn is null, explaining why), and `builderFields`
+    // (the Essentials component's already-resolved {label, value} array, best-effort).
+    //
+    // Live-found (2026-08-14, React fiber investigation): the grid/PropertyField layouts' Essentials
+    // panel is always built by a shared framework component with a stable, non-minified
+    // `displayName` of "Essentials" — true regardless of resource type — one fiber level below which
+    // sits a per-extension-authored function taking the resource's raw ARM object as a prop and
+    // returning the resolved `{label, value}` field array. That function's minified-but-not-obfuscated
+    // source (`fiber.type.toString()`) still shows real `properties.*`/`sku.*`/`kind` member-access
+    // expressions feeding each field — genuine raw ARM paths, not guesses — even when a friendly-text
+    // transform wraps the value so it can never be found by value-matching against the raw JSON (e.g.
+    // Storage Accounts' "Replication" is `sku.name` run through an untraced redundancy-name lookup;
+    // FieldRecipeResolver's value-matcher structurally can't find that, no matter how it's tuned).
+    // Labels themselves are resource-string references in source, never literal text (same
+    // localization behavior as the Norwegian-timestamp finding below), so this dump can't replace the
+    // DOM-captured label — it's read alongside the already-known label/value pairs, by a human (or an
+    // LLM) turning a raw path into a verified FieldRecipe, the same manual-but-live-verified way every
+    // other shortcut in FieldRecipeResolver.cs was built. Only fires for the grid/PropertyField
+    // layouts (the ones with a per-type extension at all); the generic PropertiesForm fallback and
+    // legacy layouts don't have this component to find.
+    //
+    // Live-found again (2026-08-15): picking `document.querySelector(...)`'s first DOM-order match
+    // as the anchor is unreliable on types with a second, unrelated region using the *same* CSS
+    // shapes — caught live on Compute/disks, whose secondary "Properties" side-tab (Size/IOPS/
+    // Throughput config, a completely different feature) matched the PropertyField-label selector
+    // just as validly as the real Essentials panel, and won because it happened to render first.
+    // Fixed by preferring whichever candidate's own text contains "Resource group" — one of the four
+    // composite fields the shared Essentials framework unconditionally injects via
+    // `customizeResourceFields` (confirmed by reading every field-builder source this project has
+    // dumped: `ResourceField.ResourceGroup` is never type-specific, never conditional) — falling back
+    // to "Location" (the other near-universal one; a few global-scope types omit Resource Group
+    // entirely) and only then to the first raw match, so this still degrades gracefully instead of
+    // failing outright on a type where neither text is found.
+    internal const string FindBuilderFunctionJsFragment = """
+        let builderFn = null, builderAnchorReason = null, builderFields = null;
+        const candidates = Array.from(document.querySelectorAll(
+            '[class*="essentialsItem-"], [id^="PropertyField"][id$="-label"], label.ms-Label[aria-label][id]'));
+        const textOfCandidate = el => el.innerText || el.textContent || '';
+        const anchor = candidates.find(el => textOfCandidate(el).includes('Resource group'))
+            || candidates.find(el => textOfCandidate(el).includes('Location'))
+            || candidates[0]
+            || null;
+        if (!anchor) {
+            builderAnchorReason = 'no anchor element found in this frame';
+        } else {
+            const fiberKey = Object.keys(anchor).find(k => k.startsWith('__reactFiber'));
+            if (!fiberKey) {
+                builderAnchorReason = 'anchor element has no React fiber';
+            } else {
                 let fiber = anchor[fiberKey];
                 let depth = 0;
                 while (fiber && depth < 80) {
@@ -398,24 +523,72 @@ public static class EssentialsExtractor
                         // ({ $$typeof, type/render: fn }) instead of exposing it as fiber.type
                         // directly — unwrap one level before giving up. Live-observed on Redis
                         // Enterprise (builderSource came back null despite fiber.return existing).
-                        let builderFn = builderFiber?.type;
-                        if (builderFn && typeof builderFn !== 'function') {
-                            builderFn = builderFn.type ?? builderFn.render ?? null;
+                        let fn = builderFiber?.type;
+                        if (fn && typeof fn !== 'function') {
+                            fn = fn.type ?? fn.render ?? null;
                         }
-                        const builderSource = typeof builderFn === 'function' ? builderFn.toString() : null;
-                        let fields = null;
+                        builderFn = typeof fn === 'function' ? fn : null;
                         try {
-                            fields = (fiber.memoizedProps?.fields || []).map(f =>
+                            builderFields = (fiber.memoizedProps?.fields || []).map(f =>
                                 (f && typeof f === 'object')
                                     ? { label: String(f.label ?? ''), value: typeof f.value === 'string' ? f.value : typeof f.value }
                                     : String(f));
                         } catch { /* best-effort */ }
-                        return JSON.stringify({ found: true, depthFromAnchor: depth, resolvedFields: fields, builderSource }, null, 1);
+                        break;
                     }
                     fiber = fiber.return;
                     depth++;
                 }
-                return JSON.stringify({ found: false, reason: 'no Essentials-displayName fiber within 80 levels of the anchor' });
+                if (!builderFn && !builderAnchorReason) {
+                    builderAnchorReason = 'no Essentials-displayName fiber within 80 levels of the anchor';
+                }
+            }
+        }
+        """;
+
+    // Heuristic, not exhaustive: every real friendly-text-transform helper call this project has
+    // ever found by hand (Storage's Ve/Le/je, Compute/disks' Hs/st, MongoDB's _t, AKS's `w`/`k` via
+    // `he.W8`, Logic's Be/Pe/Qe/Fe, ...) is called *bare* — `Ve(...)`, not `something.Ve(...)` —
+    // because it's a local function/const in the same module, not an imported hook or utility.
+    // React hooks and imported utilities in this same minified code are consistently called with a
+    // dot prefix instead (`l.useCallback(...)`, `(0,o.isFeatureEnabled)(...)`), even though the
+    // identifier right before the dot is *also* short and minified — so "not immediately preceded
+    // by `.`" turned out to be a far more reliable discriminator than the first cut's "immediately
+    // follows `value:`" (which missed real calls sitting behind a ternary, e.g. Compute/disks'
+    // `value:e.disk?.sku?.name?Hs(e.disk.sku.name):...` — live-caught by
+    // EssentialsExtractorTests.ExtractCandidateHelperNames_FindsRealHelperCallsFromDiskBuilder).
+    // Residual false positives: a handful of bare JS globals (String(...), Number(...), ...) are
+    // explicitly excluded below; a locally-scoped callback invoked inline would still slip through
+    // uncaught. This is a starting point for a human or LLM to chase via FieldBindingInvestigator,
+    // not a guarantee — and a helper that's never called bare (only assigned to a variable first)
+    // would be missed entirely.
+    private static readonly Regex BareCallPattern = new(
+        @"(?<![.\w$])([A-Za-z_$][A-Za-z0-9_$]{0,6})\(", RegexOptions.Compiled);
+
+    private static readonly HashSet<string> KnownNonHelperBareCalls = new(StringComparer.Ordinal)
+    {
+        "String", "Number", "Boolean", "Array", "Object", "Date", "RegExp", "Map", "Set", "Promise",
+        "Symbol", "Error", "JSON", "Math", "parseInt", "parseFloat", "isNaN", "isFinite",
+        "encodeURIComponent", "decodeURIComponent", "if", "for", "while", "switch", "catch", "function",
+        "return",
+    };
+
+    public static IReadOnlyList<string> ExtractCandidateHelperNames(string builderSource) =>
+        BareCallPattern.Matches(builderSource)
+            .Select(m => m.Groups[1].Value)
+            .Where(name => !KnownNonHelperBareCalls.Contains(name))
+            .Distinct(StringComparer.Ordinal)
+            .OrderBy(n => n, StringComparer.Ordinal)
+            .ToList();
+
+    public static async Task DumpFiberBuilderSourceAsync(IPage page, string outputPath)
+    {
+        const string js = "() => {\n" + FindBuilderFunctionJsFragment + """
+                const builderSource = builderFn ? builderFn.toString() : null;
+                if (!builderFn) {
+                    return JSON.stringify({ found: false, reason: builderAnchorReason });
+                }
+                return JSON.stringify({ found: true, resolvedFields: builderFields, builderSource }, null, 1);
             }
             """;
 
@@ -431,26 +604,75 @@ public static class EssentialsExtractor
         var dumpPrimaryTimeout = PrimaryAppearTimeout * 2;
         var dumpFallbackTimeout = FallbackAppearTimeout * 2;
 
+        // Live-found (2026-08-15): waiting for `.First` to become *visible* (Playwright's default
+        // wait state) is unreliable on a type with a second, DOM-attached-but-hidden region using
+        // the same selectors — Compute/disks' secondary "Properties" side-tab content (same class
+        // shapes as the real Essentials panel, see FindBuilderFunctionJsFragment's own comment)
+        // isn't present in the DOM at page-load, but attaches a couple of seconds later; once it
+        // does, `.First` can start resolving to that hidden duplicate instead of the real, already-
+        // visible Essentials panel, and a *visible*-state wait for that specific match then times
+        // out outright — reproduced twice in a row calling FieldBindingInvestigator.ChaseHelpersAsync
+        // moments after this same dump had just succeeded. Waiting for merely *attached* instead
+        // fixes it and is the actually-correct requirement here: this reads React fiber internals
+        // off the DOM node, which works identically whether the element is visible or not — unlike
+        // EssentialsExtractor.ExtractAsync's own waits (kept at the Playwright default), which
+        // legitimately need rendered, visible text.
         string json;
         try
         {
             var sandboxFrame = page.FrameLocator(OverviewSandboxIframeSelector);
             try
             {
-                await sandboxFrame.Locator(FiberAnchorSelector).First
-                    .WaitForAsync(new LocatorWaitForOptions { Timeout = (float)dumpPrimaryTimeout.TotalMilliseconds });
+                await sandboxFrame.Locator(FiberAnchorSelector).First.WaitForAsync(new LocatorWaitForOptions
+                {
+                    State = WaitForSelectorState.Attached,
+                    Timeout = (float)dumpPrimaryTimeout.TotalMilliseconds,
+                });
                 json = await sandboxFrame.Locator("body").EvaluateAsync<string>(js);
             }
             catch (Exception frameEx) when (frameEx is TimeoutException or PlaywrightException)
             {
-                await page.Locator(FiberAnchorSelector).First
-                    .WaitForAsync(new LocatorWaitForOptions { Timeout = (float)dumpFallbackTimeout.TotalMilliseconds });
+                await page.Locator(FiberAnchorSelector).First.WaitForAsync(new LocatorWaitForOptions
+                {
+                    State = WaitForSelectorState.Attached,
+                    Timeout = (float)dumpFallbackTimeout.TotalMilliseconds,
+                });
                 json = await page.EvaluateAsync<string>(js);
             }
         }
         catch (Exception ex)
         {
             json = $$"""{ "found": false, "reason": "extraction threw: {{ex.Message.Replace("\"", "'")}}" }""";
+        }
+
+        // Candidate helper names are added here, in C#, after the JS round-trip — cheap (pure regex
+        // over a string already in hand) and keeps ExtractCandidateHelperNames unit-testable without
+        // a browser. Only when a builder was actually found; a `found: false` dump has no source to
+        // scan.
+        try
+        {
+            using var doc = System.Text.Json.JsonDocument.Parse(json);
+            if (doc.RootElement.TryGetProperty("found", out var foundEl) && foundEl.GetBoolean()
+                && doc.RootElement.TryGetProperty("builderSource", out var srcEl)
+                && srcEl.ValueKind == System.Text.Json.JsonValueKind.String)
+            {
+                var candidates = ExtractCandidateHelperNames(srcEl.GetString()!);
+                var withCandidates = new Dictionary<string, object?>
+                {
+                    ["found"] = true,
+                    ["resolvedFields"] = doc.RootElement.TryGetProperty("resolvedFields", out var f) ? f : (object?)null,
+                    ["builderSource"] = srcEl.GetString(),
+                    ["candidateHelperNames"] = candidates,
+                };
+                json = System.Text.Json.JsonSerializer.Serialize(
+                    withCandidates, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            }
+        }
+        catch (System.Text.Json.JsonException)
+        {
+            // json wasn't valid JSON at all (shouldn't happen — every branch above produces valid
+            // JSON.stringify output or a hand-written fallback) — write it through unmodified rather
+            // than lose the diagnostic.
         }
 
         Directory.CreateDirectory(Path.GetDirectoryName(outputPath)!);
