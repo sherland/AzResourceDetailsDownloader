@@ -2708,7 +2708,8 @@
           }
         }
       ],
-      "notes": ""
+      "notes": "Overview blade consistently slow to render (not slow to provision) — live-evidenced across multiple full-catalog runs 2026-08-15/16: its portal capture step alone regularly exceeds the default 90s HardCaptureTimeout even though the resource itself provisions in seconds.",
+      "captureTimeoutMultiplier": 3.0
     },
     {
       "armType": "Microsoft.Insights/webtests",
@@ -2931,7 +2932,8 @@
         }
       },
       "prerequisites": [],
-      "notes": "An empty vault (no backup policy/items attached) has no meaningful cost."
+      "notes": "An empty vault (no backup policy/items attached) has no meaningful cost. Overview blade consistently slow to render (not slow to provision) — live-evidenced across multiple full-catalog runs 2026-08-15/16: its portal capture step alone regularly exceeds the default 90s HardCaptureTimeout even though the resource itself provisions quickly.",
+      "captureTimeoutMultiplier": 3.0
     },
     {
       "armType": "Microsoft.DocumentDB/mongoClusters",
@@ -4134,7 +4136,8 @@
           }
         }
       ],
-      "notes": ""
+      "notes": "Overview blade consistently slow to render (not slow to provision) — live-evidenced across multiple full-catalog runs 2026-08-15/16 as the single most frequent offender: its portal capture step alone exceeded the default 90s HardCaptureTimeout in 4 of 4 observed occurrences, even though the resource itself provisions in seconds.",
+      "captureTimeoutMultiplier": 3.0
     },
     {
       "armType": "Microsoft.Maps/accounts",

@@ -62,7 +62,8 @@ public sealed class PortalCaptureService : IAsyncDisposable
     // forever.
     private static readonly TimeSpan OrphanedCaptureGracePeriod = TimeSpan.FromSeconds(60);
 
-    public async Task<PortalCaptureResult> CaptureAsync(string resourceId, string resourceName, ILogger logger, CancellationToken ct = default)
+    public async Task<PortalCaptureResult> CaptureAsync(
+        string resourceId, string resourceName, ILogger logger, double captureTimeoutMultiplier = 1.0, CancellationToken ct = default)
     {
         // Queueing for the lock is unbounded on purpose — it just means another unit's screenshot is in
         // progress, not that anything is stuck. The hard timeout below only starts counting once this
@@ -72,9 +73,13 @@ public sealed class PortalCaptureService : IAsyncDisposable
         {
             // Belt-and-suspenders: StableRenderWaiter already bounds its own waits, but this hard ceiling
             // guarantees one stuck capture can never stall the whole batch, whatever the root cause turns
-            // out to be.
-            var captureTask = CaptureCoreAsync(resourceId, resourceName, logger, ct);
-            var timeoutTask = Task.Delay(HardCaptureTimeout, ct);
+            // out to be. Scaled by captureTimeoutMultiplier (config's captureTimeoutMultiplier, see
+            // ResourceTypeDefinition) for types with a known-slow Overview blade — evidenced live
+            // (2026-08-15/16) by a 0.984 cross-run correlation in per-type capture duration, i.e. slowness
+            // here is a stable property of the type, not noise worth a blanket global increase instead.
+            var hardCaptureTimeout = HardCaptureTimeout * captureTimeoutMultiplier;
+            var captureTask = CaptureCoreAsync(resourceId, resourceName, logger, captureTimeoutMultiplier, ct);
+            var timeoutTask = Task.Delay(hardCaptureTimeout, ct);
 
             var winner = await Task.WhenAny(captureTask, timeoutTask);
             if (winner == timeoutTask)
@@ -97,9 +102,9 @@ public sealed class PortalCaptureService : IAsyncDisposable
                 // task — but it meaningfully shrinks the window in which two units can touch `_page` at
                 // once, for the common case where the orphaned task was only somewhat slower than 90s
                 // rather than genuinely stuck.
-                await Task.WhenAny(captureTask, Task.Delay(OrphanedCaptureGracePeriod, ct));
+                await Task.WhenAny(captureTask, Task.Delay(OrphanedCaptureGracePeriod * captureTimeoutMultiplier, ct));
                 throw new TimeoutException(
-                    $"Portal capture for '{resourceId}' ('{resourceName}') did not complete within {HardCaptureTimeout.TotalSeconds}s.");
+                    $"Portal capture for '{resourceId}' ('{resourceName}') did not complete within {hardCaptureTimeout.TotalSeconds}s.");
             }
 
             return await captureTask;
@@ -110,7 +115,8 @@ public sealed class PortalCaptureService : IAsyncDisposable
         }
     }
 
-    private async Task<PortalCaptureResult> CaptureCoreAsync(string resourceId, string resourceName, ILogger logger, CancellationToken ct)
+    private async Task<PortalCaptureResult> CaptureCoreAsync(
+        string resourceId, string resourceName, ILogger logger, double captureTimeoutMultiplier, CancellationToken ct)
     {
         var url = PortalUrlBuilder.BuildOverviewUrl(_portalBaseUrl, _tenantId, resourceId);
         logger.LogInformation("    portal: navigating to {Url}", url);
@@ -157,7 +163,7 @@ public sealed class PortalCaptureService : IAsyncDisposable
             logger.LogInformation("    portal: found {Count} banner notice(s) on the page", notices.Count);
         }
 
-        var fields = await EssentialsExtractor.ExtractAsync(_page);
+        var fields = await EssentialsExtractor.ExtractAsync(_page, captureTimeoutMultiplier);
         logger.LogInformation("    portal: extracted {Count} Essentials field(s)", fields.Count);
 
         return new PortalCaptureResult(bytes, notices, fields);
