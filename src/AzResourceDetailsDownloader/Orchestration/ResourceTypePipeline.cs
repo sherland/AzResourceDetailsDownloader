@@ -102,6 +102,17 @@ public sealed class ResourceTypePipeline(
 
             using var rawJson = await rawArmClient.GetRawAsync(targetRef.Id, def.ApiVersion, ct);
 
+            if (def.PostProvisioningDelaySeconds is { } delaySeconds)
+            {
+                // See ResourceTypeDefinition.PostProvisioningDelaySeconds's own comment for why this
+                // exists as a separate knob from CaptureTimeoutMultiplier — an ARM-to-Portal
+                // propagation lag needs time to pass *before* the first navigation, not a longer
+                // budget within it.
+                unitLogger.LogInformation(
+                    "  waiting {DelaySeconds}s for ARM-to-portal propagation before first navigation", delaySeconds);
+                await Task.Delay(TimeSpan.FromSeconds(delaySeconds), ct);
+            }
+
             unitLogger.LogInformation("  capturing portal screenshot for '{Name}'", targetName);
             var capture = await portalCapture.CaptureAsync(
                 targetRef.Id, targetName, unitLogger, def.CaptureTimeoutMultiplier ?? 1.0, ct);
