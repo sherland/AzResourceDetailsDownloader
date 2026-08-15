@@ -861,3 +861,50 @@ future "some types mysteriously return 0 fields, and it's consistent across runs
 check for exactly this shape of bug — an unbounded/default-timeout call somewhere in the call path,
 whose exception type isn't in whatever catch clause is nearest to it — before reaching for concurrency
 or "the portal is having a bad day" as the explanation.
+
+## Per-type capture slowness is a stable property of the resource type, not random flakiness
+
+Live-measured (2026-08-15/16): per-type portal-capture duration correlates 0.984 (Pearson) between two
+independent full-catalog runs — the same ~20 types occupy the same slow tail every time, with durations
+within a few percent of each other run to run (`Microsoft.Network/virtualNetworkGateways` ≈1290s in
+both; `Microsoft.Network/azureFirewalls` ≈553s in both; etc.). The dominant driver is genuine ARM
+provisioning time for well-known-slow Azure resource types (VPN Gateways, Firewalls, Redis Enterprise,
+Synapse SQL Pools, Databricks, AKS — all already covered by the pre-existing `estimatedProvisionMinutes`
+config field) — the logged per-unit duration includes provisioning, not just the portal capture step.
+
+A smaller, separate set is slow specifically at the *portal capture* step (navigate → render → extract),
+independent of provisioning time — `Microsoft.Insights/workbooks`, `Microsoft.RecoveryServices/vaults`,
+and `Microsoft.EventGrid/domains/topics` consistently exceeded the default 90s `HardCaptureTimeout`
+across today's runs (8/8 for the EventGrid one — initially misattributed to its parent
+`Microsoft.EventGrid/domains` due to a regex that mis-parsed the nested resource path in the error log;
+caught and corrected before committing). Added `captureTimeoutMultiplier` (per-type, in
+`config/resource-types.json`, mirroring `estimatedProvisionMinutes`'s existing pattern but as a
+multiplier rather than an absolute value, since the capture phase has several layered timeouts —
+`HardCaptureTimeout`, `PrimaryAppearTimeout`, `FallbackAppearTimeout` — that all need to scale together,
+not just one) to give these three headroom without loosening the global ceiling for the other ~155
+types. Verified live: `Insights/workbooks` went from a hard timeout with zero fields to completing with
+9 real fields; `EventGrid/domains/topics` likewise stopped hitting the ceiling.
+
+`RecoveryServices/vaults`, however, kept returning 0 fields even after the multiplier removed the hard
+timeout — a *second*, unrelated bug, not fixed by more time. Its debug HTML dump showed a genuinely
+different (older/"legacy") Essentials layout: `<div class="fxc-essentials-item" aria-labelledby="...">`
+containing a `<label class="fxc-essentials-label" ...>`, which the codebase's own
+`LegacyItemSelector`/`LegacyExtractItemsJs` combo is supposed to handle — the elements were confirmed
+present via the raw HTML dump, not hidden behind any `fxs-display-none` marker, yet the extractor never
+found them. Root cause: `TryExtractFromLocatorAsync`'s `.First.WaitForAsync(...)` used Playwright's
+*default* wait state (`Visible`), not `Attached` — the exact same class of bug this codebase already
+diagnosed and fixed once before, for `DumpFiberBuilderSourceAsync`'s own anchor wait (see that section
+above), but never applied to the actual production extraction path. Fixed by switching to `Attached`
+there too. Safe by construction, not just by luck: the extraction JS reads `innerText` specifically
+because (unlike `textContent`) it respects visibility, so a genuinely-still-hidden element yields empty
+text and gets filtered out downstream exactly like a real timeout would have — relaxing the wait state
+can only recover fields that were being missed, never fabricate data that wasn't actually rendered.
+Verified live against `RecoveryServices/vaults` (0 → 4 fields, exactly matching the pre-regression
+committed baseline) and against three known-good types (Disk, NSG, Cosmos DB) to confirm no regression
+from relaxing the wait state.
+
+**Pattern worth remembering**: this is the *second* time in one session that "wait for Visible" turned
+out to be the wrong condition where "wait for Attached" was actually correct, in two unrelated parts of
+this same file. If a future capture mysteriously returns fewer fields than a raw HTML/DOM dump shows are
+genuinely present (not hidden, not `display:none`), check every `WaitForAsync` in the path for an
+unstated default wait state before assuming the selector itself is wrong.
