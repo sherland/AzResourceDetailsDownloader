@@ -23,6 +23,25 @@ public sealed class RawArmClient(TokenCredential credential) : IDisposable
         await SendAsync(HttpMethod.Get, resourceId, apiVersion, body: null, ct)
             ?? throw new InvalidOperationException($"ARM GET '{resourceId}' (api {apiVersion}) returned an empty body.");
 
+    // ARM never echoes an access key back from a resource's own GET body (write-only, same
+    // convention as a VM admin password) — the only way to obtain one is this POST .../listKeys
+    // action. Deliberately narrow to Storage Accounts' own response shape
+    // ({"keys":[{"keyName":...,"value":...,"permissions":...}]}) rather than generalized: several
+    // other resource types expose the same *action name* (Cosmos DB, Redis, Cognitive Services, ...)
+    // but return genuinely different response shapes that would need their own parsing — not
+    // guessed ahead of an actual second consumer.
+    public async Task<string> ListStorageAccountPrimaryKeyAsync(
+        string storageAccountResourceId, string apiVersion, CancellationToken ct = default)
+    {
+        using var doc = await SendAsync(HttpMethod.Post, $"{storageAccountResourceId}/listKeys", apiVersion, body: null, ct)
+            ?? throw new InvalidOperationException(
+                $"ARM POST '{storageAccountResourceId}/listKeys' (api {apiVersion}) returned an empty body.");
+
+        var key = doc.RootElement.GetProperty("keys")[0].GetProperty("value").GetString();
+        return key ?? throw new InvalidOperationException(
+            $"Storage account '{storageAccountResourceId}' listKeys response had no key value.");
+    }
+
     // Registration itself is asynchronous (state moves Registering -> Registered), so this both kicks it off
     // and polls until it actually completes — live-observed taking anywhere from under a minute to ~5 minutes
     // depending on the namespace.
