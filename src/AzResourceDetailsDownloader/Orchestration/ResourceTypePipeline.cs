@@ -82,6 +82,17 @@ public sealed class ResourceTypePipeline(
                     prereqRandom, prereqLocation, prereq.LocationFallbacks, body,
                     ProvisioningTimeoutFor(prereq.EstimatedProvisionMinutes), $"prerequisite '{prereq.Alias}'", unitLogger, ct);
 
+                // Only fetched when something downstream actually needs it (see
+                // TemplateTokenResolver.ReferencesPrereqKey) — listKeys is an extra ARM call this
+                // codebase only knows how to parse for Storage Accounts, not worth attempting for
+                // every prerequisite regardless of type or use.
+                if (string.Equals(prereq.ArmType, "Microsoft.Storage/storageAccounts", StringComparison.OrdinalIgnoreCase)
+                    && RequiresResolvedKey(prereq.Alias, def))
+                {
+                    var key = await rawArmClient.ListStorageAccountPrimaryKeyAsync(reference.Id, prereq.ApiVersion, ct);
+                    reference = reference with { Key = key };
+                }
+
                 resolvedPrereqs[prereq.Alias] = reference;
             }
 
@@ -127,11 +138,17 @@ public sealed class ResourceTypePipeline(
             var terraform = await iacExport.TryExportTerraformAsync(subscriptionId, rgName, unitLogger, ct);
 
             var category = categoryResolver.ResolveCategory(def.ArmType);
+            // Any prerequisite key resolved above (see RawArmClient.ListStorageAccountPrimaryKeyAsync)
+            // is a real Azure credential — redact it out of committed output the same way
+            // subscription/tenant/UPN/adminPrincipalId already are, on the same "never guess whether
+            // a secret could leak, always redact" discipline as OutputNormalizer's other cases.
+            var resolvedPrereqKeys = resolvedPrereqs.Values.Select(r => r.Key).OfType<string>().ToList();
             await OutputWriter.WriteAsync(
                 outputRoot, def.ArmType, category, rawJson, capture.Screenshot,
                 subscriptionId, secrets["tenantId"], rgName,
                 bicep, terraform, capture.Notices, capture.Fields,
-                secrets.GetValueOrDefault("userPrincipalName"), secrets.GetValueOrDefault("adminPrincipalId"), ct);
+                secrets.GetValueOrDefault("userPrincipalName"), secrets.GetValueOrDefault("adminPrincipalId"),
+                resolvedPrereqKeys, ct);
 
             unitLogger.LogInformation("  captured '{ArmType}' successfully in {Elapsed}", def.ArmType, stopwatch.Elapsed);
             return new RunResult(def.ArmType, true, stopwatch.Elapsed, null);
@@ -220,6 +237,17 @@ public sealed class ResourceTypePipeline(
         // propagate uncaught (the `when` guard is false on the last iteration).
         throw new UnreachableException();
     }
+
+    // Prerequisites can only be referenced by something declared *after* them (validated at catalog-load
+    // time — see ResourceTypeCatalogLoader), so checking every prerequisite's body plus the target's body
+    // for a {prereq.<alias>.key} reference is safe regardless of this prerequisite's own position in the
+    // list: any match found must come from something legitimately downstream of it.
+    private static bool RequiresResolvedKey(string alias, ResourceTypeDefinition def) =>
+        def.Prerequisites.Any(p =>
+            TemplateTokenResolver.ReferencesPrereqKey(p.NameTemplate, alias)
+            || TemplateTokenResolver.ReferencesPrereqKey(p.RequestBody.GetRawText(), alias))
+        || TemplateTokenResolver.ReferencesPrereqKey(def.NameTemplate, alias)
+        || TemplateTokenResolver.ReferencesPrereqKey(def.RequestBody.GetRawText(), alias);
 
     // Give slow-provisioning types (per config's estimatedProvisionMinutes) enough headroom beyond their
     // estimate — Redis Cache, for example, is documented at ~15-25 min but can occasionally run longer.

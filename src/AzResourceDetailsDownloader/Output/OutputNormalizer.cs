@@ -54,9 +54,18 @@ public static class OutputNormalizer
     // kind of redacted value it was is still obvious at a glance in committed files.
     public const string PlaceholderAdminPrincipalId = "22222222-2222-2222-2222-222222222222";
 
+    // A real Azure access credential (e.g. a Storage Account key fetched via RawArmClient.
+    // ListStorageAccountPrimaryKeyAsync so a downstream {prereq.*.key} token can resolve — see
+    // ResourceTypePipeline) rather than an identity value. One shared placeholder rather than a
+    // distinct constant per source, since the set of resource types that ever resolve a prerequisite
+    // key this way is open-ended (currently just HDInsight's storage prerequisite) and a future one
+    // shouldn't need a new named placeholder just to stay redacted.
+    public const string PlaceholderResolvedSecret = "REDACTED-KEY";
+
     public static string Normalize(
         string text, string subscriptionId, string tenantId, string actualRgName, string armType,
-        string? userPrincipalName = null, string? adminPrincipalId = null)
+        string? userPrincipalName = null, string? adminPrincipalId = null,
+        IReadOnlyList<string>? resolvedSecretValues = null)
     {
         var placeholderRgName = DeterministicNaming.PlaceholderResourceGroupName(armType);
 
@@ -70,6 +79,16 @@ public static class OutputNormalizer
         if (!string.IsNullOrEmpty(adminPrincipalId))
         {
             text = ReplaceCaseInsensitive(text, adminPrincipalId, PlaceholderAdminPrincipalId);
+        }
+        if (resolvedSecretValues is not null)
+        {
+            foreach (var secretValue in resolvedSecretValues)
+            {
+                if (!string.IsNullOrEmpty(secretValue))
+                {
+                    text = ReplaceCaseInsensitive(text, secretValue, PlaceholderResolvedSecret);
+                }
+            }
         }
         return text;
     }
