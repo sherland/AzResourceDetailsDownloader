@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using AzResourceDetailsDownloader.Capture;
 using AzResourceDetailsDownloader.Cli;
 using AzResourceDetailsDownloader.Config;
@@ -21,7 +22,7 @@ catch (ArgumentException ex)
 {
     Console.Error.WriteLine(ex.Message);
     Console.Error.WriteLine(
-        "Usage: [--dry-run | --login | --run | --generate-field-recipes | --generate-templates] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High|VeryHigh] [--max-concurrency <n>]");
+        "Usage: [--dry-run | --login | --run | --generate-field-recipes | --generate-templates] [--only <armType>[,<armType>...]] [--max-cost-tier Free|Low|Medium|High|VeryHigh] [--max-concurrency <n>] [--live-ui]");
     return 1;
 }
 
@@ -152,26 +153,80 @@ if (namePrefix.Length > 0)
 }
 
 var outputRoot = RepoPaths.Resolve(repoRoot, options.OutputRoot);
+
+// --live-ui hands the terminal to a Spectre.Console Live display for the two loops below — every
+// unit's own log lines (ResourceTypePipeline logs profusely: provisioning, capturing, exporting)
+// would otherwise raw-write to the same console region Live is repainting and corrupt it. So the
+// pipeline gets a different ILogger for this run: one that captures formatted lines into a ring
+// buffer instead, which LiveWorkerUi renders into its own "Recent activity" panel — same debugging
+// signal, just relocated for the duration of the live display. Auto-disabled when stdout isn't a
+// real interactive terminal (e.g. piped to a file/CI), since Live's repainting assumes one.
+var useLiveUi = parsedArgs.LiveUi && !Console.IsOutputRedirected;
+var logRingBuffer = useLiveUi ? new LogRingBuffer() : null;
+var pipelineLogger = useLiveUi
+    ? new RingBufferLoggerProvider(logRingBuffer!).CreateLogger("AzResourceDetailsDownloader")
+    : logger;
+
 var pipeline = new ResourceTypePipeline(
     armClient, rawArmClient, subscriptionId, options.DefaultLocation, outputRoot, portalCapture, iacExport,
     categoryResolver, secrets, options.DefaultProvisioningTimeoutMinutes, options.ProvisioningTimeoutHeadroomMinutes,
-    logger, namePrefix);
+    pipelineLogger, namePrefix);
 
 var maxConcurrency = parsedArgs.MaxConcurrencyOverride ?? options.MaxConcurrentUnits;
 logger.LogInformation("Running with max concurrency {MaxConcurrency}", maxConcurrency);
+
+// Wraps one pipeline.RunAsync call, optionally claiming a "worker slot" from a small fixed-size pool
+// purely for the live UI's benefit — Parallel.ForEachAsync itself exposes no stable worker identity,
+// so this is how LiveWorkerUi gets one. Slot claim/release never changes the unit's own behavior,
+// timing, or cancellation — a no-op when slotPool/board are null (--live-ui off).
+async Task RunUnitAsync(
+    ResourceTypeDefinition def, ConcurrentQueue<int>? slotPool, WorkerStatusBoard? board,
+    Action<RunResult> record, CancellationToken ct)
+{
+    var slot = -1;
+    if (slotPool is not null && board is not null && slotPool.TryDequeue(out var claimed))
+    {
+        slot = claimed;
+        board.SetRunning(slot, def.ArmType);
+    }
+
+    try
+    {
+        var result = await pipeline.RunAsync(def, ct);
+        record(result);
+        if (slot >= 0)
+        {
+            board!.SetFinished(slot, result.Success);
+        }
+    }
+    finally
+    {
+        if (slot >= 0)
+        {
+            slotPool!.Enqueue(slot);
+        }
+    }
+}
 
 // Units run concurrently — each does its own ARM provisioning/polling independently, while portal screenshot
 // capture is serialized inside PortalCaptureService (one shared browser page/tab, kept single deliberately
 // to avoid re-triggering MFA). RunSummary.Add is lock-guarded for concurrent writers.
 var summary = new RunSummary();
-await Parallel.ForEachAsync(
+var mainBoard = useLiveUi ? new WorkerStatusBoard(maxConcurrency, filtered.Count) : null;
+var mainSlotPool = useLiveUi ? new ConcurrentQueue<int>(Enumerable.Range(0, maxConcurrency)) : null;
+Func<Task> runMainPass = () => Parallel.ForEachAsync(
     filtered,
     new ParallelOptions { MaxDegreeOfParallelism = maxConcurrency },
-    async (def, ct) =>
-    {
-        var result = await pipeline.RunAsync(def, ct);
-        summary.Add(result);
-    });
+    (def, ct) => new ValueTask(RunUnitAsync(def, mainSlotPool, mainBoard, summary.Add, ct)));
+
+if (useLiveUi)
+{
+    await LiveWorkerUi.RunAsync(mainBoard!, logRingBuffer!, "Main run", runMainPass);
+}
+else
+{
+    await runMainPass();
+}
 
 // Quota exhaustion (see QuotaErrorDetector) is usually a symptom of running too many compute-heavy units
 // at once, not a real per-unit failure — a quieter retry pass at lower concurrency often succeeds where the
@@ -188,14 +243,21 @@ if (quotaFailedDefs.Count > 0)
         "{Count} unit(s) failed with a subscription-quota error; retrying at concurrency {RetryConcurrency}: {ArmTypes}",
         quotaFailedDefs.Count, quotaRetryConcurrency, string.Join(", ", quotaFailedDefs.Select(d => d.ArmType)));
 
-    await Parallel.ForEachAsync(
+    var retryBoard = useLiveUi ? new WorkerStatusBoard(quotaRetryConcurrency, quotaFailedDefs.Count) : null;
+    var retrySlotPool = useLiveUi ? new ConcurrentQueue<int>(Enumerable.Range(0, quotaRetryConcurrency)) : null;
+    Func<Task> runRetryPass = () => Parallel.ForEachAsync(
         quotaFailedDefs,
         new ParallelOptions { MaxDegreeOfParallelism = quotaRetryConcurrency },
-        async (def, ct) =>
-        {
-            var result = await pipeline.RunAsync(def, ct);
-            summary.ReplaceOrAdd(result);
-        });
+        (def, ct) => new ValueTask(RunUnitAsync(def, retrySlotPool, retryBoard, summary.ReplaceOrAdd, ct)));
+
+    if (useLiveUi)
+    {
+        await LiveWorkerUi.RunAsync(retryBoard!, logRingBuffer!, "Quota retry pass", runRetryPass);
+    }
+    else
+    {
+        await runRetryPass();
+    }
 }
 
 await summary.WriteAsync(outputRoot);
