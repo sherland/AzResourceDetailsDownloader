@@ -15,14 +15,14 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-c264a49334b4408f"
   tags = {
     armType    = "Microsoft.StorageSync/storageSyncServices"
-    createdUtc = "2026-08-14T10:50:04.6301946Z"
+    createdUtc = "2026-08-16T14:36:50.0323112Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_storage_sync" "res-1" {
   incoming_traffic_policy = "AllowAllTraffic"
   location                = "norwayeast"
-  name                    = "sss02jpnzm1"
+  name                    = "sssir56p9bl"
   resource_group_name     = azurerm_resource_group.res-0.name
   tags                    = {}
 }
@@ -33,6 +33,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c264a49334b4408f/providers/Microsoft.StorageSync/storageSyncServices/sss02jpnzm1"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c264a49334b4408f/providers/Microsoft.StorageSync/storageSyncServices/sssir56p9bl"
   to = azurerm_storage_sync.res-1
 }

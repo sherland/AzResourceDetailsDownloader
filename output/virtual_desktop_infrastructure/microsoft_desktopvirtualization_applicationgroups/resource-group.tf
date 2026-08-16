@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-0b1b89abf1e402c6"
   tags = {
     armType    = "Microsoft.DesktopVirtualization/applicationGroups"
-    createdUtc = "2026-08-13T14:14:25.9135798Z"
+    createdUtc = "2026-08-16T13:45:28.8327980Z"
     purpose    = "az-resource-details-downloader"
   }
 }

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-e58bdfd29b0c6f5a"
   tags = {
     armType    = "Microsoft.Logic/integrationAccounts"
-    createdUtc = "2026-08-13T13:21:52.5231846Z"
+    createdUtc = "2026-08-16T14:22:06.5539222Z"
     purpose    = "az-resource-details-downloader"
   }
 }

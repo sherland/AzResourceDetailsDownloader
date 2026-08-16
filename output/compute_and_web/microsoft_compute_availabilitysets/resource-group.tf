@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-27116b321f34dc32"
   tags = {
     armType    = "Microsoft.Compute/availabilitySets"
-    createdUtc = "2026-08-13T12:48:28.9017673Z"
+    createdUtc = "2026-08-16T13:31:55.2615934Z"
     purpose    = "az-resource-details-downloader"
   }
 }

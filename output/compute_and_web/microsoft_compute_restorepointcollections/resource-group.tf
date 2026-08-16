@@ -15,13 +15,13 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-2356f0b7928705d0"
   tags = {
     armType    = "Microsoft.Compute/restorePointCollections"
-    createdUtc = "2026-08-14T10:48:13.1317887Z"
+    createdUtc = "2026-08-16T14:32:19.7623692Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_virtual_machine_restore_point_collection" "res-1" {
   location                  = "swedencentral"
-  name                      = "rpcfzx-zcdq"
+  name                      = "rpc0q-1q-i1"
   resource_group_name       = azurerm_resource_group.res-0.name
   source_virtual_machine_id = azurerm_linux_virtual_machine.res-2.id
   tags                      = {}
@@ -46,9 +46,9 @@ resource "azurerm_linux_virtual_machine" "res-2" {
   license_type                                           = ""
   location                                               = "swedencentral"
   max_bid_price                                          = -1
-  name                                                   = "swazx8jrlti5t02"
+  name                                                   = "swaz1fxf9i19802"
   network_interface_ids                                  = [azurerm_network_interface.res-3.id]
-  os_managed_disk_id                                     = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/disks/swazx8jrlti5t02_disk1_a3e223fa84a94a9a86331551421d70a7"
+  os_managed_disk_id                                     = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/disks/swaz1fxf9i19802_OsDisk_1_f3d36c45e5de47f59a18720442ec198f"
   patch_assessment_mode                                  = "ImageDefault"
   patch_mode                                             = "ImageDefault"
   platform_fault_domain                                  = -1
@@ -70,7 +70,7 @@ resource "azurerm_linux_virtual_machine" "res-2" {
     caching                          = "ReadWrite"
     disk_encryption_set_id           = ""
     disk_size_gb                     = 30
-    name                             = "swazx8jrlti5t02_disk1_a3e223fa84a94a9a86331551421d70a7"
+    name                             = "swaz1fxf9i19802_OsDisk_1_f3d36c45e5de47f59a18720442ec198f"
     secure_vm_disk_encryption_set_id = ""
     security_encryption_type         = ""
     storage_account_type             = "StandardSSD_LRS"
@@ -92,7 +92,7 @@ resource "azurerm_network_interface" "res-3" {
   internal_dns_name_label        = ""
   ip_forwarding_enabled          = false
   location                       = "swedencentral"
-  name                           = "nicu7u-tk0w"
+  name                           = "nic7a-5-uqh"
   resource_group_name            = azurerm_resource_group.res-0.name
   tags                           = {}
   ip_configuration {
@@ -113,14 +113,14 @@ resource "azurerm_virtual_network" "res-4" {
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
   location                       = "swedencentral"
-  name                           = "vnetgb8-lmu3"
+  name                           = "vnet4it9jcor"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name
   subnet = [{
     address_prefixes                              = ["10.70.0.0/24"]
     default_outbound_access_enabled               = false
     delegation                                    = []
-    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Network/virtualNetworks/vnetgb8-lmu3/subnets/default"
+    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Network/virtualNetworks/vnet4it9jcor/subnets/default"
     name                                          = "default"
     private_endpoint_network_policies             = "Disabled"
     private_link_service_network_policies_enabled = true
@@ -141,7 +141,7 @@ resource "azurerm_subnet" "res-5" {
   service_endpoint_policy_ids                   = []
   service_endpoints                             = []
   sharing_scope                                 = ""
-  virtual_network_name                          = "vnetgb8-lmu3"
+  virtual_network_name                          = "vnet4it9jcor"
   depends_on = [
     azurerm_virtual_network.res-4,
   ]
@@ -153,22 +153,22 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/restorePointCollections/rpcfzx-zcdq"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/restorePointCollections/rpc0q-1q-i1"
   to = azurerm_virtual_machine_restore_point_collection.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/virtualMachines/swazx8jrlti5t02"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Compute/virtualMachines/swaz1fxf9i19802"
   to = azurerm_linux_virtual_machine.res-2
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Network/networkInterfaces/nicu7u-tk0w"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Network/networkInterfaces/nic7a-5-uqh"
   to = azurerm_network_interface.res-3
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Network/virtualNetworks/vnetgb8-lmu3"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Network/virtualNetworks/vnet4it9jcor"
   to = azurerm_virtual_network.res-4
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Network/virtualNetworks/vnetgb8-lmu3/subnets/default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2356f0b7928705d0/providers/Microsoft.Network/virtualNetworks/vnet4it9jcor/subnets/default"
   to = azurerm_subnet.res-5
 }

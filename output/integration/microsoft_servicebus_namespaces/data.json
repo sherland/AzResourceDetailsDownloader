@@ -1,6 +1,6 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e325f80fb473f771/providers/Microsoft.ServiceBus/namespaces/sb9r-ffj1z",
-  "name": "sb9r-ffj1z",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e325f80fb473f771/providers/Microsoft.ServiceBus/namespaces/sb4hb2w-dr",
+  "name": "sb4hb2w-dr",
   "type": "Microsoft.ServiceBus/Namespaces",
   "location": "norwayeast",
   "tags": {},
@@ -12,10 +12,10 @@
     "zoneRedundant": true,
     "provisioningState": "Succeeded",
     "status": "Active",
-    "createdAt": "2026-08-14T10:32:02.1981723Z",
-    "updatedAt": "2026-08-14T10:32:02.1981723Z",
-    "metricId": "00000000-0000-0000-0000-000000000000:sb9r-ffj1z",
-    "serviceBusEndpoint": "https://sb9r-ffj1z.servicebus.windows.net:443/"
+    "createdAt": "2026-08-16T13:25:46.4497633Z",
+    "updatedAt": "2026-08-16T13:25:46.4497633Z",
+    "metricId": "00000000-0000-0000-0000-000000000000:sb4hb2w-dr",
+    "serviceBusEndpoint": "https://sb4hb2w-dr.servicebus.windows.net:443/"
   },
   "sku": {
     "name": "Basic",

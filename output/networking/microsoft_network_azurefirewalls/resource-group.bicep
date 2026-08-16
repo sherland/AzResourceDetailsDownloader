@@ -1,17 +1,17 @@
-param azureFirewalls_afwvzgvaw_name string
-param virtualNetworks_vnetfdgcru_j_name string
-param publicIPAddresses_pip7ia9_tq4_name string
-param publicIPAddresses_piptlxkj0_6_name string
+param azureFirewalls_afwd5edfm_name string
+param virtualNetworks_vnetw4qxan_j_name string
+param publicIPAddresses_piph5_e48_s_name string
+param publicIPAddresses_pipunesj_jt_name string
 
-resource publicIPAddresses_pip7ia9_tq4_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
-  name: publicIPAddresses_pip7ia9_tq4_name
+resource publicIPAddresses_piph5_e48_s_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
+  name: publicIPAddresses_piph5_e48_s_name
   location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '51.120.77.94'
+    ipAddress: '20.100.170.132'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -22,15 +22,15 @@ resource publicIPAddresses_pip7ia9_tq4_name_resource 'Microsoft.Network/publicIP
   }
 }
 
-resource publicIPAddresses_piptlxkj0_6_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
-  name: publicIPAddresses_piptlxkj0_6_name
+resource publicIPAddresses_pipunesj_jt_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
+  name: publicIPAddresses_pipunesj_jt_name
   location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '20.100.168.149'
+    ipAddress: '20.100.185.252'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -41,8 +41,8 @@ resource publicIPAddresses_piptlxkj0_6_name_resource 'Microsoft.Network/publicIP
   }
 }
 
-resource virtualNetworks_vnetfdgcru_j_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
-  name: virtualNetworks_vnetfdgcru_j_name
+resource virtualNetworks_vnetw4qxan_j_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
+  name: virtualNetworks_vnetw4qxan_j_name
   location: 'norwayeast'
   properties: {
     addressSpace: {
@@ -54,7 +54,7 @@ resource virtualNetworks_vnetfdgcru_j_name_resource 'Microsoft.Network/virtualNe
     subnets: [
       {
         name: 'AzureFirewallSubnet'
-        id: virtualNetworks_vnetfdgcru_j_name_AzureFirewallSubnet.id
+        id: virtualNetworks_vnetw4qxan_j_name_AzureFirewallSubnet.id
         properties: {
           addressPrefix: '10.45.255.0/26'
           delegations: []
@@ -64,7 +64,7 @@ resource virtualNetworks_vnetfdgcru_j_name_resource 'Microsoft.Network/virtualNe
       }
       {
         name: 'AzureFirewallManagementSubnet'
-        id: virtualNetworks_vnetfdgcru_j_name_AzureFirewallManagementSubnet.id
+        id: virtualNetworks_vnetw4qxan_j_name_AzureFirewallManagementSubnet.id
         properties: {
           addressPrefix: '10.45.254.0/26'
           delegations: []
@@ -78,8 +78,8 @@ resource virtualNetworks_vnetfdgcru_j_name_resource 'Microsoft.Network/virtualNe
   }
 }
 
-resource virtualNetworks_vnetfdgcru_j_name_AzureFirewallManagementSubnet 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
-  name: '${virtualNetworks_vnetfdgcru_j_name}/AzureFirewallManagementSubnet'
+resource virtualNetworks_vnetw4qxan_j_name_AzureFirewallManagementSubnet 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
+  name: '${virtualNetworks_vnetw4qxan_j_name}/AzureFirewallManagementSubnet'
   properties: {
     addressPrefix: '10.45.254.0/26'
     delegations: []
@@ -87,12 +87,12 @@ resource virtualNetworks_vnetfdgcru_j_name_AzureFirewallManagementSubnet 'Micros
     privateLinkServiceNetworkPolicies: 'Enabled'
   }
   dependsOn: [
-    virtualNetworks_vnetfdgcru_j_name_resource
+    virtualNetworks_vnetw4qxan_j_name_resource
   ]
 }
 
-resource virtualNetworks_vnetfdgcru_j_name_AzureFirewallSubnet 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
-  name: '${virtualNetworks_vnetfdgcru_j_name}/AzureFirewallSubnet'
+resource virtualNetworks_vnetw4qxan_j_name_AzureFirewallSubnet 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
+  name: '${virtualNetworks_vnetw4qxan_j_name}/AzureFirewallSubnet'
   properties: {
     addressPrefix: '10.45.255.0/26'
     delegations: []
@@ -100,12 +100,12 @@ resource virtualNetworks_vnetfdgcru_j_name_AzureFirewallSubnet 'Microsoft.Networ
     privateLinkServiceNetworkPolicies: 'Enabled'
   }
   dependsOn: [
-    virtualNetworks_vnetfdgcru_j_name_resource
+    virtualNetworks_vnetw4qxan_j_name_resource
   ]
 }
 
-resource azureFirewalls_afwvzgvaw_name_resource 'Microsoft.Network/azureFirewalls@2025-07-01' = {
-  name: azureFirewalls_afwvzgvaw_name
+resource azureFirewalls_afwd5edfm_name_resource 'Microsoft.Network/azureFirewalls@2025-07-01' = {
+  name: azureFirewalls_afwd5edfm_name
   location: 'norwayeast'
   properties: {
     sku: {
@@ -116,26 +116,26 @@ resource azureFirewalls_afwvzgvaw_name_resource 'Microsoft.Network/azureFirewall
     additionalProperties: {}
     managementIpConfiguration: {
       name: 'afwMgmtIpConfig'
-      id: '${azureFirewalls_afwvzgvaw_name_resource.id}/azureFirewallIpConfigurations/afwMgmtIpConfig'
+      id: '${azureFirewalls_afwd5edfm_name_resource.id}/azureFirewallIpConfigurations/afwMgmtIpConfig'
       properties: {
         publicIPAddress: {
-          id: publicIPAddresses_piptlxkj0_6_name_resource.id
+          id: publicIPAddresses_pipunesj_jt_name_resource.id
         }
         subnet: {
-          id: virtualNetworks_vnetfdgcru_j_name_AzureFirewallManagementSubnet.id
+          id: virtualNetworks_vnetw4qxan_j_name_AzureFirewallManagementSubnet.id
         }
       }
     }
     ipConfigurations: [
       {
         name: 'afwIpConfig'
-        id: '${azureFirewalls_afwvzgvaw_name_resource.id}/azureFirewallIpConfigurations/afwIpConfig'
+        id: '${azureFirewalls_afwd5edfm_name_resource.id}/azureFirewallIpConfigurations/afwIpConfig'
         properties: {
           publicIPAddress: {
-            id: publicIPAddresses_pip7ia9_tq4_name_resource.id
+            id: publicIPAddresses_piph5_e48_s_name_resource.id
           }
           subnet: {
-            id: virtualNetworks_vnetfdgcru_j_name_AzureFirewallSubnet.id
+            id: virtualNetworks_vnetw4qxan_j_name_AzureFirewallSubnet.id
           }
         }
       }

@@ -1,12 +1,12 @@
 {
   "location": "norwayeast",
   "tags": {},
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-dbfce973e1674818/providers/Microsoft.ManagedIdentity/userAssignedIdentities/idntomdsx0",
-  "name": "idntomdsx0",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-dbfce973e1674818/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id9smfdnx8",
+  "name": "id9smfdnx8",
   "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
   "properties": {
     "tenantId": "11111111-1111-1111-1111-111111111111",
-    "principalId": "27e89a65-5fd6-4263-8029-74a51a7e7ea7",
-    "clientId": "6926d1e7-8e58-4dc4-b001-0be07215215d"
+    "principalId": "fe6734ee-5b33-4dca-9150-3dc99b4f169b",
+    "clientId": "05259457-3d17-4cf4-8cd1-a59f6ef5b945"
   }
 }

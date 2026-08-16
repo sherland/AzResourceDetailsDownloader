@@ -1,8 +1,8 @@
-param managedClusters_aksb_v9_xxa_name string
-param userAssignedIdentities_aksb_v9_xxa_agentpool_externalid string
+param managedClusters_akshrjtt6wn_name string
+param userAssignedIdentities_akshrjtt6wn_agentpool_externalid string
 
-resource managedClusters_aksb_v9_xxa_name_resource 'Microsoft.ContainerService/managedClusters@2026-04-02-preview' = {
-  name: managedClusters_aksb_v9_xxa_name
+resource managedClusters_akshrjtt6wn_name_resource 'Microsoft.ContainerService/managedClusters@2026-04-02-preview' = {
+  name: managedClusters_akshrjtt6wn_name
   location: 'swedencentral'
   sku: {
     name: 'Base'
@@ -14,7 +14,7 @@ resource managedClusters_aksb_v9_xxa_name_resource 'Microsoft.ContainerService/m
   }
   properties: {
     kubernetesVersion: '1.35'
-    dnsPrefix: 'ardlaksvj1i-p'
+    dnsPrefix: 'ardlaksz2p-af'
     agentPoolProfiles: [
       {
         name: 'agentpool'
@@ -34,7 +34,7 @@ resource managedClusters_aksb_v9_xxa_name_resource 'Microsoft.ContainerService/m
         mode: 'System'
         osType: 'Linux'
         osSKU: 'Ubuntu'
-        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
+        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202608.06.1'
         upgradeSettings: {
           maxSurge: '10%'
           maxUnavailable: '0'
@@ -50,7 +50,7 @@ resource managedClusters_aksb_v9_xxa_name_resource 'Microsoft.ContainerService/m
     servicePrincipalProfile: {
       clientId: 'msi'
     }
-    nodeResourceGroup: 'MC_rg-ardl-7c2bfad159d510c2_${managedClusters_aksb_v9_xxa_name}_swedencentral'
+    nodeResourceGroup: 'MC_rg-ardl-7c2bfad159d510c2_${managedClusters_akshrjtt6wn_name}_swedencentral'
     enableRBAC: true
     supportPlan: 'KubernetesOfficial'
     networkProfile: {
@@ -82,9 +82,9 @@ resource managedClusters_aksb_v9_xxa_name_resource 'Microsoft.ContainerService/m
     }
     identityProfile: {
       kubeletidentity: {
-        resourceId: userAssignedIdentities_aksb_v9_xxa_agentpool_externalid
-        clientId: 'ef5708e9-4c4e-45eb-bd38-56abdcbd1936'
-        objectId: 'a4aadeb4-56b1-4a4d-87be-b8f6bd950d02'
+        resourceId: userAssignedIdentities_akshrjtt6wn_agentpool_externalid
+        clientId: '40407d90-2d14-4123-94c4-f0b3a265084f'
+        objectId: '8045fd07-5e04-41c8-9797-5070bf84842c'
       }
     }
     autoUpgradeProfile: {
@@ -131,8 +131,8 @@ resource managedClusters_aksb_v9_xxa_name_resource 'Microsoft.ContainerService/m
   }
 }
 
-resource managedClusters_aksb_v9_xxa_name_agentpool 'Microsoft.ContainerService/managedClusters/agentPools@2026-04-02-preview' = {
-  parent: managedClusters_aksb_v9_xxa_name_resource
+resource managedClusters_akshrjtt6wn_name_agentpool 'Microsoft.ContainerService/managedClusters/agentPools@2026-04-02-preview' = {
+  parent: managedClusters_akshrjtt6wn_name_resource
   name: 'agentpool'
   properties: {
     count: 1
@@ -151,7 +151,7 @@ resource managedClusters_aksb_v9_xxa_name_agentpool 'Microsoft.ContainerService/
     mode: 'System'
     osType: 'Linux'
     osSKU: 'Ubuntu'
-    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
+    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202608.06.1'
     upgradeSettings: {
       maxSurge: '10%'
       maxUnavailable: '0'
@@ -165,14 +165,14 @@ resource managedClusters_aksb_v9_xxa_name_agentpool 'Microsoft.ContainerService/
   }
 }
 
-resource managedClusters_aksb_v9_xxa_name_agentpool_aks_agentpool_35220837_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
-  parent: managedClusters_aksb_v9_xxa_name_agentpool
-  name: 'aks-agentpool-35220837-vmss000000'
+resource managedClusters_akshrjtt6wn_name_agentpool_aks_agentpool_18319960_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
+  parent: managedClusters_akshrjtt6wn_name_agentpool
+  name: 'aks-agentpool-18319960-vmss000000'
   properties: {
     network: {}
   }
   dependsOn: [
-    managedClusters_aksb_v9_xxa_name_resource
+    managedClusters_akshrjtt6wn_name_resource
   ]
 }
 

@@ -1,7 +1,7 @@
-param flexibleServers_pgh_ko1_k2_name string
+param flexibleServers_pgfd6vwwi6_name string
 
-resource flexibleServers_pgh_ko1_k2_name_resource 'Microsoft.DBforPostgreSQL/flexibleServers@2026-04-01-preview' = {
-  name: flexibleServers_pgh_ko1_k2_name
+resource flexibleServers_pgfd6vwwi6_name_resource 'Microsoft.DBforPostgreSQL/flexibleServers@2026-04-01-preview' = {
+  name: flexibleServers_pgfd6vwwi6_name
   location: 'Norway East'
   sku: {
     name: 'Standard_B1ms'
@@ -30,7 +30,7 @@ resource flexibleServers_pgh_ko1_k2_name_resource 'Microsoft.DBforPostgreSQL/fle
     }
     version: '16'
     administratorLogin: 'azrddadmin'
-    availabilityZone: '3'
+    availabilityZone: '1'
     backup: {
       backupRetentionDays: 7
       geoRedundantBackup: 'Disabled'
@@ -48,8 +48,8 @@ resource flexibleServers_pgh_ko1_k2_name_resource 'Microsoft.DBforPostgreSQL/fle
   }
 }
 
-resource flexibleServers_pgh_ko1_k2_name_Default 'Microsoft.DBforPostgreSQL/flexibleServers/advancedThreatProtectionSettings@2026-04-01-preview' = {
-  parent: flexibleServers_pgh_ko1_k2_name_resource
+resource flexibleServers_pgfd6vwwi6_name_Default 'Microsoft.DBforPostgreSQL/flexibleServers/advancedThreatProtectionSettings@2026-04-01-preview' = {
+  parent: flexibleServers_pgfd6vwwi6_name_resource
   name: 'Default'
   properties: {
     state: 'Disabled'

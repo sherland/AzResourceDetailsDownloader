@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-76e93665472ab9d8"
   tags = {
     armType    = "Microsoft.Migrate/assessmentProjects"
-    createdUtc = "2026-08-13T13:27:50.0240261Z"
+    createdUtc = "2026-08-16T14:40:23.3065510Z"
     purpose    = "az-resource-details-downloader"
   }
 }

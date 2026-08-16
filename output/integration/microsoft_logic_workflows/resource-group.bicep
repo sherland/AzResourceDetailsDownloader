@@ -1,7 +1,7 @@
-param workflows_logicn_2_r_4y_name string
+param workflows_logicylsb_d_i_name string
 
-resource workflows_logicn_2_r_4y_name_resource 'Microsoft.Logic/workflows@2017-07-01' = {
-  name: workflows_logicn_2_r_4y_name
+resource workflows_logicylsb_d_i_name_resource 'Microsoft.Logic/workflows@2017-07-01' = {
+  name: workflows_logicylsb_d_i_name
   location: 'norwayeast'
   properties: {
     state: 'Enabled'

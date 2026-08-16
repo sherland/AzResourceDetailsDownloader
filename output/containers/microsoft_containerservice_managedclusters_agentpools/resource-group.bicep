@@ -34,7 +34,7 @@ resource managedClusters_aks5fhg_mju_name_resource 'Microsoft.ContainerService/m
         mode: 'System'
         osType: 'Linux'
         osSKU: 'Ubuntu'
-        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
+        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202608.06.1'
         upgradeSettings: {
           maxSurge: '10%'
           maxUnavailable: '0'
@@ -65,7 +65,7 @@ resource managedClusters_aks5fhg_mju_name_resource 'Microsoft.ContainerService/m
         mode: 'User'
         osType: 'Linux'
         osSKU: 'Ubuntu'
-        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
+        nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202608.06.1'
         upgradeSettings: {
           maxSurge: '10%'
           maxUnavailable: '0'
@@ -114,8 +114,8 @@ resource managedClusters_aks5fhg_mju_name_resource 'Microsoft.ContainerService/m
     identityProfile: {
       kubeletidentity: {
         resourceId: userAssignedIdentities_aks5fhg_mju_agentpool_externalid
-        clientId: '22d8c048-cb39-49d1-a7c4-bf7dde220a9a'
-        objectId: 'd9df8793-c5c8-4d29-9075-e1b2f95a754a'
+        clientId: '6052eb61-e885-468f-bd57-ac2bc9a04bc4'
+        objectId: '716b6e29-f47d-4a4d-a189-522c66d7c3d9'
       }
     }
     autoUpgradeProfile: {
@@ -182,7 +182,7 @@ resource managedClusters_aks5fhg_mju_name_agentpool 'Microsoft.ContainerService/
     mode: 'System'
     osType: 'Linux'
     osSKU: 'Ubuntu'
-    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
+    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202608.06.1'
     upgradeSettings: {
       maxSurge: '10%'
       maxUnavailable: '0'
@@ -217,7 +217,7 @@ resource managedClusters_aks5fhg_mju_name_pool2 'Microsoft.ContainerService/mana
     mode: 'User'
     osType: 'Linux'
     osSKU: 'Ubuntu'
-    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202607.29.0'
+    nodeImageVersion: 'AKSUbuntu-2404gen2containerd-202608.06.1'
     upgradeSettings: {
       maxSurge: '10%'
       maxUnavailable: '0'
@@ -231,9 +231,9 @@ resource managedClusters_aks5fhg_mju_name_pool2 'Microsoft.ContainerService/mana
   }
 }
 
-resource managedClusters_aks5fhg_mju_name_agentpool_aks_agentpool_17141523_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
+resource managedClusters_aks5fhg_mju_name_agentpool_aks_agentpool_13491695_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
   parent: managedClusters_aks5fhg_mju_name_agentpool
-  name: 'aks-agentpool-17141523-vmss000000'
+  name: 'aks-agentpool-13491695-vmss000000'
   properties: {
     network: {}
   }
@@ -242,9 +242,9 @@ resource managedClusters_aks5fhg_mju_name_agentpool_aks_agentpool_17141523_vmss0
   ]
 }
 
-resource managedClusters_aks5fhg_mju_name_pool2_aks_pool2_37335048_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
+resource managedClusters_aks5fhg_mju_name_pool2_aks_pool2_30318943_vmss000000 'Microsoft.ContainerService/managedClusters/agentPools/machines@2026-04-02-preview' = {
   parent: managedClusters_aks5fhg_mju_name_pool2
-  name: 'aks-pool2-37335048-vmss000000'
+  name: 'aks-pool2-30318943-vmss000000'
   properties: {
     network: {}
   }

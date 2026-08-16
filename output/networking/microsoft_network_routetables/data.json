@@ -1,12 +1,12 @@
 {
   "name": "rt3nepn-8s",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a5f552c7b14230d8/providers/Microsoft.Network/routeTables/rt3nepn-8s",
-  "etag": "W/\u00220964a79e-982c-4163-bfcd-5ff74fdea81a\u0022",
+  "etag": "W/\u00222488c306-a4e2-4f15-b982-90f202e60a04\u0022",
   "type": "Microsoft.Network/routeTables",
   "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "69888d10-8615-4e21-9a87-ea481b4ab6f8",
+    "resourceGuid": "80921746-6590-4f76-acb9-f481d19349b2",
     "disableBgpRoutePropagation": false,
     "routes": []
   }

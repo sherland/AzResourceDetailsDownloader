@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-b0d3d468c211b31a"
   tags = {
     armType    = "Microsoft.Batch/batchAccounts"
-    createdUtc = "2026-08-13T13:24:28.2957146Z"
+    createdUtc = "2026-08-16T14:31:02.4755075Z"
     purpose    = "az-resource-details-downloader"
   }
 }

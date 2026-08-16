@@ -22,7 +22,7 @@
     "mode": "User",
     "osType": "Linux",
     "osSKU": "Ubuntu",
-    "nodeImageVersion": "AKSUbuntu-2404gen2containerd-202607.29.0",
+    "nodeImageVersion": "AKSUbuntu-2404gen2containerd-202608.06.1",
     "upgradeSettings": {
       "maxSurge": "10%"
     },

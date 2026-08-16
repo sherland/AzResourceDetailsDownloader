@@ -5,17 +5,17 @@
     },
     "dnsResolverState": "Connected",
     "provisioningState": "Succeeded",
-    "resourceGuid": "2ca76959-c41c-4d48-b920-13367ab79872"
+    "resourceGuid": "02cb439d-477d-4f32-ad77-307678767570"
   },
-  "etag": "\u0022390124e8-0000-3c00-0000-6a7dc7620000\u0022",
+  "etag": "\u00220a004b3c-0000-3c00-0000-6a81cd6a0000\u0022",
   "location": "norwayeast",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-cfd84dd43feb6f85/providers/Microsoft.Network/dnsResolvers/dnsr1f3k6j-x",
   "name": "dnsr1f3k6j-x",
   "type": "Microsoft.Network/dnsResolvers",
   "systemData": {
-    "createdAt": "2026-08-13T13:32:14.1093724Z",
+    "createdAt": "2026-08-16T14:46:59.0211236Z",
     "createdByType": "User",
-    "lastModifiedAt": "2026-08-13T13:32:14.1093724Z",
+    "lastModifiedAt": "2026-08-16T14:46:59.0211236Z",
     "lastModifiedByType": "User"
   }
 }

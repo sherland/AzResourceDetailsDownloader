@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-dced82a8791f5059"
   tags = {
     armType    = "Microsoft.EventHub/namespaces"
-    createdUtc = "2026-08-13T12:49:12.4501570Z"
+    createdUtc = "2026-08-16T13:33:25.6011584Z"
     purpose    = "az-resource-details-downloader"
   }
 }

@@ -1,7 +1,7 @@
-param activityLogAlerts_alaxw_t7_6c_name string
+param activityLogAlerts_ala5t_j_5_o_name string
 
-resource activityLogAlerts_alaxw_t7_6c_name_resource 'Microsoft.Insights/activityLogAlerts@2026-01-01' = {
-  name: activityLogAlerts_alaxw_t7_6c_name
+resource activityLogAlerts_ala5t_j_5_o_name_resource 'Microsoft.Insights/activityLogAlerts@2026-01-01' = {
+  name: activityLogAlerts_ala5t_j_5_o_name
   location: 'global'
   properties: {
     scopes: [

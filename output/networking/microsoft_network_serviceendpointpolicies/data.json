@@ -1,12 +1,12 @@
 {
   "name": "sepaibfiwep",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d94a1e445813b7b4/providers/Microsoft.Network/serviceEndpointPolicies/sepaibfiwep",
-  "etag": "W/\u0022a52c355f-4e98-4f6c-afbd-0f7bf9d9b2e2\u0022",
+  "etag": "W/\u00221dae3144-3cbc-4f7f-9df0-5e1a8e6e4c5b\u0022",
   "type": "Microsoft.Network/serviceEndpointPolicies",
   "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "560ba866-92f9-4619-8ab5-ee4f633176ad",
+    "resourceGuid": "c10c9cb9-1997-445b-bc42-2ed521ea5457",
     "serviceEndpointPolicyDefinitions": []
   }
 }

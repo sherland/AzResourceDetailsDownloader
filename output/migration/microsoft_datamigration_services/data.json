@@ -1,10 +1,10 @@
 {
   "properties": {
     "provisioningState": "Succeeded",
-    "virtualNicId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-862cc1ebaeeac2bb/providers/Microsoft.Network/networkInterfaces/NIC-mw26pdspyx8wiq2rqgk75a57",
+    "virtualNicId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-862cc1ebaeeac2bb/providers/Microsoft.Network/networkInterfaces/NIC-vznhg9v47dgbhh7vcjxyjmrf",
     "virtualSubnetId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-862cc1ebaeeac2bb/providers/Microsoft.Network/virtualNetworks/vnet46-vasrl/subnets/default"
   },
-  "etag": "AW7vaKowUIpw3bFxI4GbRS/Ecy9n81Ym4VgUXE/9Uok=",
+  "etag": "Y38fWMzdpN7hkJlJrYc\u002BfD35BPknDX5lfGxoC1ol7io=",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-862cc1ebaeeac2bb/providers/Microsoft.DataMigration/services/dmsc4-b4-nf",
   "kind": "Cloud",
   "location": "norwayeast",

@@ -1,7 +1,7 @@
-param storageSyncServices_sss02jpnzm1_name string
+param storageSyncServices_sssir56p9bl_name string
 
-resource storageSyncServices_sss02jpnzm1_name_resource 'Microsoft.StorageSync/storageSyncServices@2022-09-01' = {
-  name: storageSyncServices_sss02jpnzm1_name
+resource storageSyncServices_sssir56p9bl_name_resource 'Microsoft.StorageSync/storageSyncServices@2022-09-01' = {
+  name: storageSyncServices_sssir56p9bl_name
   location: 'norwayeast'
   properties: {
     incomingTrafficPolicy: 'AllowAllTraffic'

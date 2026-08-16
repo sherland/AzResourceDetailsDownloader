@@ -1,10 +1,10 @@
 {
   "properties": {
-    "customerId": "ccecbe1a-769a-4684-b99a-97f5b1a2f23e",
+    "customerId": "798dc64e-bd49-4000-8c21-f7320c3e186e",
     "provisioningState": "Succeeded",
     "sku": {
       "name": "PerGB2018",
-      "lastSkuUpdate": "2026-08-13T12:43:19.6406895Z"
+      "lastSkuUpdate": "2026-08-16T13:20:23.9135981Z"
     },
     "retentionInDays": 30,
     "features": {
@@ -14,17 +14,17 @@
     },
     "workspaceCapping": {
       "dailyQuotaGb": -1.0,
-      "quotaNextResetTime": "2026-08-13T20:00:00Z",
+      "quotaNextResetTime": "2026-08-17T13:00:00Z",
       "dataIngestionStatus": "RespectQuota"
     },
     "publicNetworkAccessForIngestion": "Enabled",
     "publicNetworkAccessForQuery": "Enabled",
-    "createdDate": "2026-08-13T12:43:19.6406895Z",
-    "modifiedDate": "2026-08-13T12:43:35.2088675Z"
+    "createdDate": "2026-08-16T13:20:23.9135981Z",
+    "modifiedDate": "2026-08-16T13:20:37.4196924Z"
   },
   "location": "norwayeast",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-b34010ba6e4d8d8d/providers/Microsoft.OperationalInsights/workspaces/law8-is7-6g",
   "name": "law8-is7-6g",
   "type": "Microsoft.OperationalInsights/workspaces",
-  "etag": "\u002235004beb-0000-3c00-0000-6a7dbbf70000\u0022"
+  "etag": "\u002215003f1d-0000-3c00-0000-6a81b9250000\u0022"
 }

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-4bfc2889e6ff55e5"
   tags = {
     armType    = "Microsoft.EventGrid/domains/topics"
-    createdUtc = "2026-08-13T13:21:23.2896237Z"
+    createdUtc = "2026-08-16T14:20:16.7960525Z"
     purpose    = "az-resource-details-downloader"
   }
 }

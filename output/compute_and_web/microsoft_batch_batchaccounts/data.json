@@ -5,7 +5,7 @@
   "location": "norwayeast",
   "properties": {
     "accountEndpoint": "batchp09vx5pt.norwayeast.batch.azure.com",
-    "nodeManagementEndpoint": "af84ea63-9cde-497d-b88d-3d341c9ac9cf.norwayeast.service.batch.azure.com",
+    "nodeManagementEndpoint": "15c3c880-5f64-4855-9bc7-a59f30e4bd93.norwayeast.service.batch.azure.com",
     "provisioningState": "Succeeded",
     "dedicatedCoreQuota": 4,
     "dedicatedCoreQuotaPerVMFamily": [

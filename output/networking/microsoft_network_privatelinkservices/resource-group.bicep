@@ -1,7 +1,7 @@
 param loadBalancers_lbv3r8rnuu_name string
 param virtualNetworks_vnet3rh8yq8u_name string
 param privateLinkServices_plsd0_7_olm_name string
-param networkInterfaces_plsd0_7_olm_nic_0205b279_489a_4890_a5fb_20d791c10428_name string
+param networkInterfaces_plsd0_7_olm_nic_14af038b_c51c_45d4_8d88_379c95678db3_name string
 
 resource virtualNetworks_vnet3rh8yq8u_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnet3rh8yq8u_name
@@ -74,15 +74,15 @@ resource virtualNetworks_vnet3rh8yq8u_name_default 'Microsoft.Network/virtualNet
   ]
 }
 
-resource networkInterfaces_plsd0_7_olm_nic_0205b279_489a_4890_a5fb_20d791c10428_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
-  name: networkInterfaces_plsd0_7_olm_nic_0205b279_489a_4890_a5fb_20d791c10428_name
+resource networkInterfaces_plsd0_7_olm_nic_14af038b_c51c_45d4_8d88_379c95678db3_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
+  name: networkInterfaces_plsd0_7_olm_nic_14af038b_c51c_45d4_8d88_379c95678db3_name
   location: 'norwayeast'
   kind: 'Regular'
   properties: {
     ipConfigurations: [
       {
         name: 'plsipconfig'
-        id: '${networkInterfaces_plsd0_7_olm_nic_0205b279_489a_4890_a5fb_20d791c10428_name_resource.id}/ipConfigurations/plsipconfig'
+        id: '${networkInterfaces_plsd0_7_olm_nic_14af038b_c51c_45d4_8d88_379c95678db3_name_resource.id}/ipConfigurations/plsipconfig'
         properties: {
           privateIPAddress: '10.64.0.5'
           privateIPAllocationMethod: 'Dynamic'

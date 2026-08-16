@@ -15,13 +15,13 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-1fe5141e0d0dffeb"
   tags = {
     armType    = "Microsoft.OperationalInsights/querypacks"
-    createdUtc = "2026-08-14T10:33:35.0446354Z"
+    createdUtc = "2026-08-16T13:38:22.6929589Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_log_analytics_query_pack" "res-1" {
   location            = "norwayeast"
-  name                = "qppn7a8q-h"
+  name                = "qpdn2pzyb4"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}
 }
@@ -32,6 +32,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1fe5141e0d0dffeb/providers/Microsoft.OperationalInsights/queryPacks/qppn7a8q-h"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1fe5141e0d0dffeb/providers/Microsoft.OperationalInsights/queryPacks/qpdn2pzyb4"
   to = azurerm_log_analytics_query_pack.res-1
 }

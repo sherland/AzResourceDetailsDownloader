@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-20c884988ac25a0c"
   tags = {
     armType    = "Microsoft.ResourceGraph/queries"
-    createdUtc = "2026-08-14T10:36:01.4440837Z"
+    createdUtc = "2026-08-16T13:47:37.3813121Z"
     purpose    = "az-resource-details-downloader"
   }
 }

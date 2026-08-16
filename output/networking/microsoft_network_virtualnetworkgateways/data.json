@@ -1,12 +1,12 @@
 {
   "name": "vgwhk9b25pp",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d410a1d9804bdd65/providers/Microsoft.Network/virtualNetworkGateways/vgwhk9b25pp",
-  "etag": "W/\u0022502c6f52-9420-4c3a-a3ab-906bb56841f0\u0022",
+  "etag": "W/\u0022d7f02069-1cee-4360-a3da-a211ae3a60b5\u0022",
   "type": "Microsoft.Network/virtualNetworkGateways",
   "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "dccf8fb4-f042-496f-80aa-140cffcb519b",
+    "resourceGuid": "0afe7e22-3fee-4699-bb69-715af51b2267",
     "packetCaptureDiagnosticState": "None",
     "enablePrivateIpAddress": false,
     "isMigrateToCSES": false,
@@ -19,7 +19,7 @@
       {
         "name": "vnetGatewayConfig",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d410a1d9804bdd65/providers/Microsoft.Network/virtualNetworkGateways/vgwhk9b25pp/ipConfigurations/vnetGatewayConfig",
-        "etag": "W/\u0022502c6f52-9420-4c3a-a3ab-906bb56841f0\u0022",
+        "etag": "W/\u0022d7f02069-1cee-4360-a3da-a211ae3a60b5\u0022",
         "type": "Microsoft.Network/virtualNetworkGateways/ipConfigurations",
         "properties": {
           "provisioningState": "Succeeded",
@@ -58,7 +58,7 @@
           ],
           "customBgpIpAddresses": [],
           "tunnelIpAddresses": [
-            "20.100.45.73"
+            "20.100.234.145"
           ]
         }
       ]

@@ -1,30 +1,30 @@
-param dnszones_ardlidy1l4kn_contoso_com_name string
+param dnszones_ardllnkmwt9n_contoso_com_name string
 
-resource dnszones_ardlidy1l4kn_contoso_com_name_resource 'Microsoft.Network/dnszones@2023-07-01-preview' = {
-  name: dnszones_ardlidy1l4kn_contoso_com_name
+resource dnszones_ardllnkmwt9n_contoso_com_name_resource 'Microsoft.Network/dnszones@2023-07-01-preview' = {
+  name: dnszones_ardllnkmwt9n_contoso_com_name
   location: 'global'
   properties: {
     zoneType: 'Public'
   }
 }
 
-resource Microsoft_Network_dnszones_NS_dnszones_ardlidy1l4kn_contoso_com_name 'Microsoft.Network/dnszones/NS@2023-07-01-preview' = {
-  parent: dnszones_ardlidy1l4kn_contoso_com_name_resource
+resource Microsoft_Network_dnszones_NS_dnszones_ardllnkmwt9n_contoso_com_name 'Microsoft.Network/dnszones/NS@2023-07-01-preview' = {
+  parent: dnszones_ardllnkmwt9n_contoso_com_name_resource
   name: '@'
   properties: {
     TTL: 172800
     NSRecords: [
       {
-        nsdname: 'ns1-05.azure-dns.com.'
+        nsdname: 'ns1-07.azure-dns.com.'
       }
       {
-        nsdname: 'ns2-05.azure-dns.net.'
+        nsdname: 'ns2-07.azure-dns.net.'
       }
       {
-        nsdname: 'ns3-05.azure-dns.org.'
+        nsdname: 'ns3-07.azure-dns.org.'
       }
       {
-        nsdname: 'ns4-05.azure-dns.info.'
+        nsdname: 'ns4-07.azure-dns.info.'
       }
     ]
     targetResource: {}
@@ -32,15 +32,15 @@ resource Microsoft_Network_dnszones_NS_dnszones_ardlidy1l4kn_contoso_com_name 'M
   }
 }
 
-resource Microsoft_Network_dnszones_SOA_dnszones_ardlidy1l4kn_contoso_com_name 'Microsoft.Network/dnszones/SOA@2023-07-01-preview' = {
-  parent: dnszones_ardlidy1l4kn_contoso_com_name_resource
+resource Microsoft_Network_dnszones_SOA_dnszones_ardllnkmwt9n_contoso_com_name 'Microsoft.Network/dnszones/SOA@2023-07-01-preview' = {
+  parent: dnszones_ardllnkmwt9n_contoso_com_name_resource
   name: '@'
   properties: {
     TTL: 3600
     SOARecord: {
       email: 'azuredns-hostmaster.microsoft.com'
       expireTime: 2419200
-      host: 'ns1-05.azure-dns.com.'
+      host: 'ns1-07.azure-dns.com.'
       minimumTTL: 300
       refreshTime: 3600
       retryTime: 300

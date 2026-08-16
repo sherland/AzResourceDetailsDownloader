@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-3c9ca4169b7ea45b"
   tags = {
     armType    = "Microsoft.Synapse/workspaces/sqlPools"
-    createdUtc = "2026-08-13T14:17:37.4130410Z"
+    createdUtc = "2026-08-16T14:54:36.0110080Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -78,7 +78,7 @@ resource "azurerm_storage_container" "res-3" {
 resource "azurerm_synapse_workspace" "res-7" {
   azuread_authentication_only          = false
   location                             = "swedencentral"
-  managed_resource_group_name          = "synapseworkspace-managedrg-5b1d1320-e3f2-4d4e-aef5-fffdec6783fa"
+  managed_resource_group_name          = "synapseworkspace-managedrg-5100b7fe-1476-4087-9aca-39c95c115b49"
   managed_virtual_network_enabled      = false
   name                                 = "synd92txe0r"
   public_network_access_enabled        = true

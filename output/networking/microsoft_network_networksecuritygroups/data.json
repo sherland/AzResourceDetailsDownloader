@@ -1,18 +1,18 @@
 {
   "name": "nsgrk86fdry",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6220405c5e8fea29/providers/Microsoft.Network/networkSecurityGroups/nsgrk86fdry",
-  "etag": "W/\u00220b63e95b-6ad5-4b1b-8175-5350b3c25192\u0022",
+  "etag": "W/\u00223e8b7eba-7c6a-4325-ab23-e04aadfebfbc\u0022",
   "type": "Microsoft.Network/networkSecurityGroups",
   "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "554087c3-2957-4b47-9c2c-2c2951a9ebb6",
+    "resourceGuid": "471df334-ed74-4a57-9262-e37c47b81ed3",
     "securityRules": [],
     "defaultSecurityRules": [
       {
         "name": "AllowVnetInBound",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6220405c5e8fea29/providers/Microsoft.Network/networkSecurityGroups/nsgrk86fdry/defaultSecurityRules/AllowVnetInBound",
-        "etag": "W/\u00220b63e95b-6ad5-4b1b-8175-5350b3c25192\u0022",
+        "etag": "W/\u00223e8b7eba-7c6a-4325-ab23-e04aadfebfbc\u0022",
         "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules",
         "properties": {
           "provisioningState": "Succeeded",
@@ -34,7 +34,7 @@
       {
         "name": "AllowAzureLoadBalancerInBound",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6220405c5e8fea29/providers/Microsoft.Network/networkSecurityGroups/nsgrk86fdry/defaultSecurityRules/AllowAzureLoadBalancerInBound",
-        "etag": "W/\u00220b63e95b-6ad5-4b1b-8175-5350b3c25192\u0022",
+        "etag": "W/\u00223e8b7eba-7c6a-4325-ab23-e04aadfebfbc\u0022",
         "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules",
         "properties": {
           "provisioningState": "Succeeded",
@@ -56,7 +56,7 @@
       {
         "name": "DenyAllInBound",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6220405c5e8fea29/providers/Microsoft.Network/networkSecurityGroups/nsgrk86fdry/defaultSecurityRules/DenyAllInBound",
-        "etag": "W/\u00220b63e95b-6ad5-4b1b-8175-5350b3c25192\u0022",
+        "etag": "W/\u00223e8b7eba-7c6a-4325-ab23-e04aadfebfbc\u0022",
         "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules",
         "properties": {
           "provisioningState": "Succeeded",
@@ -78,7 +78,7 @@
       {
         "name": "AllowVnetOutBound",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6220405c5e8fea29/providers/Microsoft.Network/networkSecurityGroups/nsgrk86fdry/defaultSecurityRules/AllowVnetOutBound",
-        "etag": "W/\u00220b63e95b-6ad5-4b1b-8175-5350b3c25192\u0022",
+        "etag": "W/\u00223e8b7eba-7c6a-4325-ab23-e04aadfebfbc\u0022",
         "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules",
         "properties": {
           "provisioningState": "Succeeded",
@@ -100,7 +100,7 @@
       {
         "name": "AllowInternetOutBound",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6220405c5e8fea29/providers/Microsoft.Network/networkSecurityGroups/nsgrk86fdry/defaultSecurityRules/AllowInternetOutBound",
-        "etag": "W/\u00220b63e95b-6ad5-4b1b-8175-5350b3c25192\u0022",
+        "etag": "W/\u00223e8b7eba-7c6a-4325-ab23-e04aadfebfbc\u0022",
         "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules",
         "properties": {
           "provisioningState": "Succeeded",
@@ -122,7 +122,7 @@
       {
         "name": "DenyAllOutBound",
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6220405c5e8fea29/providers/Microsoft.Network/networkSecurityGroups/nsgrk86fdry/defaultSecurityRules/DenyAllOutBound",
-        "etag": "W/\u00220b63e95b-6ad5-4b1b-8175-5350b3c25192\u0022",
+        "etag": "W/\u00223e8b7eba-7c6a-4325-ab23-e04aadfebfbc\u0022",
         "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules",
         "properties": {
           "provisioningState": "Succeeded",

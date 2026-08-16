@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-862cc1ebaeeac2bb"
   tags = {
     armType    = "Microsoft.DataMigration/services"
-    createdUtc = "2026-08-13T13:39:36.7613218Z"
+    createdUtc = "2026-08-16T14:56:43.4205242Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -36,7 +36,7 @@ resource "azurerm_network_interface" "res-2" {
   internal_dns_name_label        = ""
   ip_forwarding_enabled          = false
   location                       = "norwayeast"
-  name                           = "NIC-mw26pdspyx8wiq2rqgk75a57"
+  name                           = "NIC-vznhg9v47dgbhh7vcjxyjmrf"
   resource_group_name            = azurerm_resource_group.res-0.name
   tags = {
     ServiceResourceId = azurerm_database_migration_service.res-1.id
@@ -103,7 +103,7 @@ import {
   to = azurerm_database_migration_service.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-862cc1ebaeeac2bb/providers/Microsoft.Network/networkInterfaces/NIC-mw26pdspyx8wiq2rqgk75a57"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-862cc1ebaeeac2bb/providers/Microsoft.Network/networkInterfaces/NIC-vznhg9v47dgbhh7vcjxyjmrf"
   to = azurerm_network_interface.res-2
 }
 import {

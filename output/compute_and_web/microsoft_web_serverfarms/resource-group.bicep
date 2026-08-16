@@ -1,7 +1,7 @@
-param serverfarms_planm4ir_vcl_name string
+param serverfarms_planvwrvnc_q_name string
 
-resource serverfarms_planm4ir_vcl_name_resource 'Microsoft.Web/serverfarms@2024-11-01' = {
-  name: serverfarms_planm4ir_vcl_name
+resource serverfarms_planvwrvnc_q_name_resource 'Microsoft.Web/serverfarms@2024-11-01' = {
+  name: serverfarms_planvwrvnc_q_name
   location: 'Sweden Central'
   sku: {
     name: 'B1'
@@ -16,7 +16,7 @@ resource serverfarms_planm4ir_vcl_name_resource 'Microsoft.Web/serverfarms@2024-
     elasticScaleEnabled: false
     maximumElasticWorkerCount: 1
     isSpot: false
-    freeOfferExpirationTime: '2026-09-12T14:53:24.92'
+    freeOfferExpirationTime: '2026-09-15T13:23:16.1033333'
     reserved: true
     isXenon: false
     hyperV: false

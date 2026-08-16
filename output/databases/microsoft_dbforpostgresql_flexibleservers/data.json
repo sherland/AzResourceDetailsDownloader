@@ -4,7 +4,7 @@
     "tier": "Burstable"
   },
   "systemData": {
-    "createdAt": "2026-08-14T12:29:15.8199826Z"
+    "createdAt": "2026-08-16T14:07:21.5724401Z"
   },
   "properties": {
     "replica": {
@@ -29,11 +29,11 @@
       "activeDirectoryAuth": "Disabled",
       "passwordAuth": "Enabled"
     },
-    "fullyQualifiedDomainName": "pgh-ko1-k2.postgres.database.azure.com",
+    "fullyQualifiedDomainName": "pgfd6vwwi6.postgres.database.azure.com",
     "version": "16",
     "administratorLogin": "azrddadmin",
     "state": "Provisioning",
-    "availabilityZone": "3",
+    "availabilityZone": "1",
     "backup": {
       "backupRetentionDays": 7,
       "geoRedundantBackup": "Disabled"
@@ -52,7 +52,7 @@
     "replicaCapacity": 5
   },
   "location": "Norway East",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8dd0677652d313d5/providers/Microsoft.DBforPostgreSQL/flexibleServers/pgh-ko1-k2",
-  "name": "pgh-ko1-k2",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-8dd0677652d313d5/providers/Microsoft.DBforPostgreSQL/flexibleServers/pgfd6vwwi6",
+  "name": "pgfd6vwwi6",
   "type": "Microsoft.DBforPostgreSQL/flexibleServers"
 }

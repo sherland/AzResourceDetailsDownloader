@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-dc7f048c78a5aec9"
   tags = {
     armType    = "Microsoft.Purview/accounts"
-    createdUtc = "2026-08-13T14:17:41.9413461Z"
+    createdUtc = "2026-08-16T14:59:18.4790453Z"
     purpose    = "az-resource-details-downloader"
   }
 }

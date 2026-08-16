@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-72e8c58f3ece7542"
   tags = {
     armType    = "Microsoft.ContainerService/managedClusters/agentPools"
-    createdUtc = "2026-08-13T13:36:01.5181628Z"
+    createdUtc = "2026-08-16T14:53:03.6148917Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -95,8 +95,8 @@ resource "azurerm_kubernetes_cluster" "res-1" {
     type         = "SystemAssigned"
   }
   kubelet_identity {
-    client_id                 = "22d8c048-cb39-49d1-a7c4-bf7dde220a9a"
-    object_id                 = "d9df8793-c5c8-4d29-9075-e1b2f95a754a"
+    client_id                 = "6052eb61-e885-468f-bd57-ac2bc9a04bc4"
+    object_id                 = "716b6e29-f47d-4a4d-a189-522c66d7c3d9"
     user_assigned_identity_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MC_rg-ardl-72e8c58f3ece7542_aks5fhg-mju_swedencentral/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aks5fhg-mju-agentpool"
   }
   network_profile {

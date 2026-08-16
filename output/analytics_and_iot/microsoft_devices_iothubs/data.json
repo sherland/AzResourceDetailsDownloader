@@ -30,7 +30,7 @@
           "0",
           "1"
         ],
-        "path": "iothub-ehub-iot19ncaw4-55994178-6eef9b1415",
+        "path": "iothub-ehub-iot19ncaw4-55994498-bd7c9f2bd2",
         "endpoint": "sb://ihsuprodnorwayeastres003dednamespace.servicebus.windows.net/"
       }
     },
@@ -90,6 +90,6 @@
     "type": "None"
   },
   "systemData": {
-    "createdAt": "2026-08-13T13:18:05.46Z"
+    "createdAt": "2026-08-16T14:10:14.8366667Z"
   }
 }

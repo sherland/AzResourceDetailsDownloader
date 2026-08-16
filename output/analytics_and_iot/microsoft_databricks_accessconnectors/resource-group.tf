@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-8cbf4e82338a582d"
   tags = {
     armType    = "Microsoft.Databricks/accessConnectors"
-    createdUtc = "2026-08-13T13:29:36.5953257Z"
+    createdUtc = "2026-08-16T14:41:37.5616922Z"
     purpose    = "az-resource-details-downloader"
   }
 }

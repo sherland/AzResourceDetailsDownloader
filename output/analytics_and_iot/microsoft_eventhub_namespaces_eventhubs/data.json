@@ -11,8 +11,8 @@
     "messageRetentionInDays": 1,
     "partitionCount": 1,
     "status": "Active",
-    "createdAt": "2026-08-13T13:17:03.147",
-    "updatedAt": "2026-08-13T13:17:03.353",
+    "createdAt": "2026-08-16T14:10:58.823",
+    "updatedAt": "2026-08-16T14:10:59.057",
     "partitionIds": [
       "0"
     ]

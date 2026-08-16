@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-d924d0c6078bf7ed"
   tags = {
     armType    = "Microsoft.Network/routeFilters"
-    createdUtc = "2026-08-13T13:31:08.6692622Z"
+    createdUtc = "2026-08-16T14:43:57.6865977Z"
     purpose    = "az-resource-details-downloader"
   }
 }

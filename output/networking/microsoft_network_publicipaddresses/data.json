@@ -1,12 +1,12 @@
 {
-  "name": "pipq-rd2p08",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-81fcf0828790336e/providers/Microsoft.Network/publicIPAddresses/pipq-rd2p08",
-  "etag": "W/\u0022caf0031b-f9a2-4164-8240-849a91012a04\u0022",
+  "name": "pip208b-5n5",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-81fcf0828790336e/providers/Microsoft.Network/publicIPAddresses/pip208b-5n5",
+  "etag": "W/\u0022ea73b23c-375e-435b-87a1-dd236833d2b6\u0022",
   "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "47887ece-155e-43c7-b807-4ac71f2dc9f0",
-    "ipAddress": "20.251.117.123",
+    "resourceGuid": "1822b5cf-3490-4a49-a13a-4806abc0dba4",
+    "ipAddress": "20.100.172.247",
     "publicIPAddressVersion": "IPv4",
     "publicIPAllocationMethod": "Static",
     "idleTimeoutInMinutes": 4,

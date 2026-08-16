@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-86a49318bbcdb3bd"
   tags = {
     armType    = "Microsoft.ContainerRegistry/registries/webhooks"
-    createdUtc = "2026-08-13T12:55:15.3290434Z"
+    createdUtc = "2026-08-16T13:41:10.8992298Z"
     purpose    = "az-resource-details-downloader"
   }
 }

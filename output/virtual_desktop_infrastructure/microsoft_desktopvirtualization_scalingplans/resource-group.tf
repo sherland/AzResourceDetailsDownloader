@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-ec59d008cf062ae8"
   tags = {
     armType    = "Microsoft.DesktopVirtualization/scalingPlans"
-    createdUtc = "2026-08-13T14:16:49.1082194Z"
+    createdUtc = "2026-08-16T14:37:47.8623776Z"
     purpose    = "az-resource-details-downloader"
   }
 }

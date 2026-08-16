@@ -1,7 +1,7 @@
 [
   {
     "Label": "Name",
-    "Value": "qppn7a8q-h"
+    "Value": "qpdn2pzyb4"
   },
   {
     "Label": "Resource type",
@@ -17,7 +17,7 @@
   },
   {
     "Label": "Resource ID",
-    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1fe5141e0d0dffeb/providers/Microsoft.OperationalInsights/querypacks/qppn7a8q-h"
+    "Value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1fe5141e0d0dffeb/providers/Microsoft.OperationalInsights/querypacks/qpdn2pzyb4"
   },
   {
     "Label": "Resource group",

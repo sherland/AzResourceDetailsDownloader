@@ -1,7 +1,7 @@
 {
   "name": "wafiorgu-xh",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-582b196a4c103d52/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/wafiorgu-xh",
-  "etag": "W/\u0022cb4b89a3-7ded-4050-aa83-17267b151a59\u0022",
+  "etag": "W/\u0022c1a6c71b-dc3c-4d81-860f-3e74a6880136\u0022",
   "type": "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies",
   "location": "norwayeast",
   "properties": {

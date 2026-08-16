@@ -1,16 +1,16 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-08aa11195db40102/providers/Microsoft.KeyVault/vaults/kv68u-db-c",
-  "name": "kv68u-db-c",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-08aa11195db40102/providers/Microsoft.KeyVault/vaults/kvp6zp7-1q",
+  "name": "kvp6zp7-1q",
   "type": "Microsoft.KeyVault/vaults",
   "location": "norwayeast",
   "tags": {},
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-14T07:39:04.166Z",
+    "createdAt": "2026-08-16T13:18:54.47Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-14T07:39:04.166Z"
+    "lastModifiedAt": "2026-08-16T13:18:54.47Z"
   },
   "properties": {
     "sku": {
@@ -24,7 +24,7 @@
     "softDeleteRetentionInDays": 90,
     "enableRbacAuthorization": true,
     "enablePurgeProtection": true,
-    "vaultUri": "https://kv68u-db-c.vault.azure.net/",
+    "vaultUri": "https://kvp6zp7-1q.vault.azure.net/",
     "provisioningState": "Succeeded",
     "publicNetworkAccess": "Enabled"
   }

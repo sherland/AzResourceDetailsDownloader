@@ -1,7 +1,7 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-376bac41699b1ff1/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/fdwaf35amo4nv",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-ardl-376bac41699b1ff1/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/fdwafkpcnurup",
   "type": "Microsoft.Network/frontdoorwebapplicationfirewallpolicies",
-  "name": "fdwaf35amo4nv",
+  "name": "fdwafkpcnurup",
   "location": "Global",
   "tags": {},
   "sku": {

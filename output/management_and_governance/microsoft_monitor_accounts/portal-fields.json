@@ -17,7 +17,7 @@
   },
   {
     "Label": "Query endpoint",
-    "Value": "https://amona-g-1-e5-dmegf7e4bre8c4f3.norwayeast.prometheus.monitor.azure.com"
+    "Value": "https://amona-g-1-e5-dzdsfsb4cugqcbfj.norwayeast.prometheus.monitor.azure.com"
   },
   {
     "Label": "Data collection endpoint",
@@ -29,6 +29,6 @@
   },
   {
     "Label": "Metrics ingestion endpoint",
-    "Value": "https://amona-g-1-e5-pr0u.norwayeast-1.metrics.ingest.monitor.azure.com/dataCollectionRules/dcr-c968c0d4ccab4fb085e15b606b09389f/streams/Microsoft-PrometheusMetrics/api/v1/write?api-version=2023-04-24"
+    "Value": "https://amona-g-1-e5-3wqm.norwayeast-1.metrics.ingest.monitor.azure.com/dataCollectionRules/dcr-e08af19864d7421b95ade5c361bd2a7a/streams/Microsoft-PrometheusMetrics/api/v1/write?api-version=2023-04-24"
   }
 ]

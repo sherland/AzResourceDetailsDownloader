@@ -54,7 +54,7 @@ resource workspaces_synd92txe0r_name_resource 'Microsoft.Synapse/workspaces@2021
       filesystem: 'synapsefs'
     }
     encryption: {}
-    managedResourceGroupName: 'synapseworkspace-managedrg-5b1d1320-e3f2-4d4e-aef5-fffdec6783fa'
+    managedResourceGroupName: 'synapseworkspace-managedrg-5100b7fe-1476-4087-9aca-39c95c115b49'
     sqlAdministratorLogin: 'azrddadmin'
     privateEndpointConnections: []
     publicNetworkAccess: 'Enabled'
