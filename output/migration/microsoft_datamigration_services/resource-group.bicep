@@ -1,6 +1,6 @@
 param services_dmsc4_b4_nf_name string
 param virtualNetworks_vnet46_vasrl_name string
-param networkInterfaces_NIC_mw26pdspyx8wiq2rqgk75a57_name string
+param networkInterfaces_NIC_vznhg9v47dgbhh7vcjxyjmrf_name string
 
 resource virtualNetworks_vnet46_vasrl_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   name: virtualNetworks_vnet46_vasrl_name
@@ -29,8 +29,8 @@ resource virtualNetworks_vnet46_vasrl_name_resource 'Microsoft.Network/virtualNe
   }
 }
 
-resource networkInterfaces_NIC_mw26pdspyx8wiq2rqgk75a57_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
-  name: networkInterfaces_NIC_mw26pdspyx8wiq2rqgk75a57_name
+resource networkInterfaces_NIC_vznhg9v47dgbhh7vcjxyjmrf_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
+  name: networkInterfaces_NIC_vznhg9v47dgbhh7vcjxyjmrf_name
   location: 'norwayeast'
   tags: {
     ServiceResourceId: '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-862cc1ebaeeac2bb/providers/Microsoft.DataMigration/services/dmsc4-b4-nf'
@@ -40,7 +40,7 @@ resource networkInterfaces_NIC_mw26pdspyx8wiq2rqgk75a57_name_resource 'Microsoft
     ipConfigurations: [
       {
         name: 'ipconfig'
-        id: '${networkInterfaces_NIC_mw26pdspyx8wiq2rqgk75a57_name_resource.id}/ipConfigurations/ipconfig'
+        id: '${networkInterfaces_NIC_vznhg9v47dgbhh7vcjxyjmrf_name_resource.id}/ipConfigurations/ipconfig'
         properties: {
           privateIPAddress: '10.81.0.4'
           privateIPAllocationMethod: 'Dynamic'
@@ -87,7 +87,7 @@ resource services_dmsc4_b4_nf_name_resource 'Microsoft.DataMigration/services@20
   }
   kind: 'Cloud'
   properties: {
-    virtualNicId: networkInterfaces_NIC_mw26pdspyx8wiq2rqgk75a57_name_resource.id
+    virtualNicId: networkInterfaces_NIC_vznhg9v47dgbhh7vcjxyjmrf_name_resource.id
     virtualSubnetId: virtualNetworks_vnet46_vasrl_name_default.id
   }
 }

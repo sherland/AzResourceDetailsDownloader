@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-5579991495fbf667"
   tags = {
     armType    = "Microsoft.DocumentDB/databaseAccounts/sqlDatabases"
-    createdUtc = "2026-08-13T14:46:48.7284063Z"
+    createdUtc = "2026-08-16T14:14:10.8660111Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -35,7 +35,7 @@ resource "azurerm_cosmosdb_account" "res-1" {
   location                              = "swedencentral"
   minimal_tls_version                   = "Tls12"
   multiple_write_locations_enabled      = false
-  name                                  = "cosmoskhz1chh1"
+  name                                  = "cosmosn-fqah24"
   network_acl_bypass_for_azure_services = false
   network_acl_bypass_ids                = []
   offer_type                            = "Standard"
@@ -68,7 +68,7 @@ resource "azurerm_cosmosdb_account" "res-1" {
   }
 }
 resource "azurerm_cosmosdb_sql_database" "res-2" {
-  account_name        = "cosmoskhz1chh1"
+  account_name        = "cosmosn-fqah24"
   name                = "sqldb"
   resource_group_name = azurerm_resource_group.res-0.name
   depends_on = [
@@ -76,7 +76,7 @@ resource "azurerm_cosmosdb_sql_database" "res-2" {
   ]
 }
 resource "azurerm_cosmosdb_sql_role_definition" "res-9" {
-  account_name        = "cosmoskhz1chh1"
+  account_name        = "cosmosn-fqah24"
   assignable_scopes   = [azurerm_cosmosdb_account.res-1.id]
   name                = "Cosmos DB Built-in Data Reader"
   resource_group_name = azurerm_resource_group.res-0.name
@@ -87,7 +87,7 @@ resource "azurerm_cosmosdb_sql_role_definition" "res-9" {
   }
 }
 resource "azurerm_cosmosdb_sql_role_definition" "res-10" {
-  account_name        = "cosmoskhz1chh1"
+  account_name        = "cosmosn-fqah24"
   assignable_scopes   = [azurerm_cosmosdb_account.res-1.id]
   name                = "Cosmos DB Built-in Data Contributor"
   resource_group_name = azurerm_resource_group.res-0.name
@@ -104,18 +104,18 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmoskhz1chh1"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmosn-fqah24"
   to = azurerm_cosmosdb_account.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmoskhz1chh1/sqlDatabases/sqldb"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmosn-fqah24/sqlDatabases/sqldb"
   to = azurerm_cosmosdb_sql_database.res-2
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmoskhz1chh1/sqlRoleDefinitions/00000000-0000-0000-0000-000000000001"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmosn-fqah24/sqlRoleDefinitions/00000000-0000-0000-0000-000000000001"
   to = azurerm_cosmosdb_sql_role_definition.res-9
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmoskhz1chh1/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-5579991495fbf667/providers/Microsoft.DocumentDB/databaseAccounts/cosmosn-fqah24/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002"
   to = azurerm_cosmosdb_sql_role_definition.res-10
 }

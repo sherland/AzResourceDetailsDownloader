@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-9f7012d5f41c8fa4"
   tags = {
     armType    = "Microsoft.DataFactory/factories"
-    createdUtc = "2026-08-13T13:23:12.9684314Z"
+    createdUtc = "2026-08-16T14:26:53.3086325Z"
     purpose    = "az-resource-details-downloader"
   }
 }

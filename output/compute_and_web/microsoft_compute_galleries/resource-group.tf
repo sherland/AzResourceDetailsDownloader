@@ -15,14 +15,14 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-17ad0172a1b3435d"
   tags = {
     armType    = "Microsoft.Compute/galleries"
-    createdUtc = "2026-08-14T10:34:27.7156465Z"
+    createdUtc = "2026-08-16T13:40:15.0606470Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_shared_image_gallery" "res-1" {
   description         = ""
   location            = "norwayeast"
-  name                = "gald6qdfcq7"
+  name                = "galm6i0e2dh"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}
 }
@@ -33,6 +33,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-17ad0172a1b3435d/providers/Microsoft.Compute/galleries/gald6qdfcq7"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-17ad0172a1b3435d/providers/Microsoft.Compute/galleries/galm6i0e2dh"
   to = azurerm_shared_image_gallery.res-1
 }

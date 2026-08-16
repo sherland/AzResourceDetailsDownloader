@@ -1,14 +1,14 @@
-param publicIPAddresses_pipq_rd2p08_name string
+param publicIPAddresses_pip208b_5n5_name string
 
-resource publicIPAddresses_pipq_rd2p08_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
-  name: publicIPAddresses_pipq_rd2p08_name
+resource publicIPAddresses_pip208b_5n5_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
+  name: publicIPAddresses_pip208b_5n5_name
   location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '20.251.117.123'
+    ipAddress: '20.100.172.247'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

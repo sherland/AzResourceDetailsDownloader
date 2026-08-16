@@ -4,20 +4,20 @@
     "incomingTrafficPolicy": "AllowAllTraffic",
     "privateEndpointConnections": [],
     "provisioningState": "Succeeded",
-    "lastWorkflowId": "storageSyncServices/sss02jpnzm1/workflows/10c2e308-a2df-4594-87b2-7115b0c53912",
+    "lastWorkflowId": "storageSyncServices/sssir56p9bl/workflows/41a95a6c-721c-4999-be09-29eb819d73e8",
     "lastOperationName": "ICreateStorageSyncServiceWorkflow2"
   },
   "location": "norwayeast",
   "tags": {},
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c264a49334b4408f/providers/Microsoft.StorageSync/storageSyncServices/sss02jpnzm1",
-  "name": "sss02jpnzm1",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c264a49334b4408f/providers/Microsoft.StorageSync/storageSyncServices/sssir56p9bl",
+  "name": "sssir56p9bl",
   "type": "Microsoft.StorageSync/storageSyncServices",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-14T10:50:07.4760488Z",
+    "createdAt": "2026-08-16T14:36:52.6082413Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-14T10:50:07.4760488Z"
+    "lastModifiedAt": "2026-08-16T14:36:52.6082413Z"
   }
 }

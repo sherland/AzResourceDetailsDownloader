@@ -1,7 +1,7 @@
-param queries_rgq0ww670ks_name string
+param queries_rgqnhli_a7r_name string
 
-resource queries_rgq0ww670ks_name_resource 'microsoft.resourcegraph/queries@2024-04-01' = {
-  name: queries_rgq0ww670ks_name
+resource queries_rgqnhli_a7r_name_resource 'microsoft.resourcegraph/queries@2024-04-01' = {
+  name: queries_rgqnhli_a7r_name
   location: 'global'
   properties: {
     query: 'Resources | take 1'

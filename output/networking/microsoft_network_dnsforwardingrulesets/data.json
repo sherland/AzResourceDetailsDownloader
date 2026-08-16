@@ -6,17 +6,17 @@
       }
     ],
     "provisioningState": "Succeeded",
-    "resourceGuid": "9a72d3ea-4e68-493a-9d61-54045057e420"
+    "resourceGuid": "e9b81bc9-b735-4266-98ae-9b727ab03679"
   },
-  "etag": "\u002211006bf6-0000-3c00-0000-6a7dc79b0000\u0022",
+  "etag": "\u00220e000093-0000-3c00-0000-6a81cdbb0000\u0022",
   "location": "norwayeast",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-77c0bcdddf92bb37/providers/Microsoft.Network/dnsForwardingRulesets/dfrsd-86-jjd",
   "name": "dfrsd-86-jjd",
   "type": "Microsoft.Network/dnsForwardingRulesets",
   "systemData": {
-    "createdAt": "2026-08-13T13:33:10.4593532Z",
+    "createdAt": "2026-08-16T14:48:24.7877379Z",
     "createdByType": "User",
-    "lastModifiedAt": "2026-08-13T13:33:10.4593532Z",
+    "lastModifiedAt": "2026-08-16T14:48:24.7877379Z",
     "lastModifiedByType": "User"
   }
 }

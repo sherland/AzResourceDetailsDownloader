@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-77c0bcdddf92bb37"
   tags = {
     armType    = "Microsoft.Network/dnsForwardingRulesets"
-    createdUtc = "2026-08-13T13:31:33.9304671Z"
+    createdUtc = "2026-08-16T14:45:45.3415919Z"
     purpose    = "az-resource-details-downloader"
   }
 }

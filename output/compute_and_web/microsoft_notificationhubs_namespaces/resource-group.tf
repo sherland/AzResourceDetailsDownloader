@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-523affa83da0c585"
   tags = {
     armType    = "Microsoft.NotificationHubs/namespaces"
-    createdUtc = "2026-08-13T12:59:21.1682390Z"
+    createdUtc = "2026-08-16T13:49:32.5270293Z"
     purpose    = "az-resource-details-downloader"
   }
 }

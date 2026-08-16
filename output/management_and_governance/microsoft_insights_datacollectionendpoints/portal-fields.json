@@ -21,10 +21,10 @@
   },
   {
     "Label": "Configuration Access",
-    "Value": "https://dcemegmb-xy-hzyo.norwayeast-1.handler.control.monitor.azure.com"
+    "Value": "https://dcemegmb-xy-kcu6.norwayeast-1.handler.control.monitor.azure.com"
   },
   {
     "Label": "Logs Ingestion",
-    "Value": "https://dcemegmb-xy-hzyo.norwayeast-1.ingest.monitor.azure.com"
+    "Value": "https://dcemegmb-xy-kcu6.norwayeast-1.ingest.monitor.azure.com"
   }
 ]

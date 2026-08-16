@@ -1,22 +1,22 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/jobs/cajpdrfpe-y",
-  "name": "cajpdrfpe-y",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/jobs/cajouo-dwv4",
+  "name": "cajouo-dwv4",
   "type": "Microsoft.App/jobs",
   "location": "Norway East",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-14T10:49:14.9580054",
+    "createdAt": "2026-08-16T14:34:00.7998825",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-14T10:49:14.9580054"
+    "lastModifiedAt": "2026-08-16T14:34:00.7998825"
   },
   "properties": {
     "provisioningState": "Succeeded",
-    "environmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/managedEnvironments/caek-fw2h3i",
+    "environmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/managedEnvironments/caepmpb42xg",
     "workloadProfileName": null,
     "outboundIpAddresses": [
-      "20.100.249.133"
+      "20.100.45.52"
     ],
     "configuration": {
       "secrets": null,
@@ -47,7 +47,7 @@
       "initContainers": null,
       "volumes": null
     },
-    "eventStreamEndpoint": "https://norwayeast.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/containerApps/cajpdrfpe-y/eventstream"
+    "eventStreamEndpoint": "https://norwayeast.azurecontainerapps.dev/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/containerApps/cajouo-dwv4/eventstream"
   },
   "identity": {
     "type": "None"

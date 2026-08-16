@@ -15,14 +15,14 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-4ac8e1aaea384b1b"
   tags = {
     armType    = "Microsoft.App/jobs"
-    createdUtc = "2026-08-14T10:48:27.2172712Z"
+    createdUtc = "2026-08-16T14:33:19.1992948Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_container_app_job" "res-1" {
   container_app_environment_id = azurerm_container_app_environment.res-2.id
   location                     = "norwayeast"
-  name                         = "cajpdrfpe-y"
+  name                         = "cajouo-dwv4"
   replica_retry_limit          = 0
   replica_timeout_in_seconds   = 300
   resource_group_name          = azurerm_resource_group.res-0.name
@@ -52,7 +52,7 @@ resource "azurerm_container_app_environment" "res-2" {
   log_analytics_workspace_id                  = ""
   logs_destination                            = ""
   mutual_tls_enabled                          = false
-  name                                        = "caek-fw2h3i"
+  name                                        = "caepmpb42xg"
   public_network_access                       = "Enabled"
   resource_group_name                         = azurerm_resource_group.res-0.name
   tags                                        = {}
@@ -65,10 +65,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/jobs/cajpdrfpe-y"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/jobs/cajouo-dwv4"
   to = azurerm_container_app_job.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/managedEnvironments/caek-fw2h3i"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4ac8e1aaea384b1b/providers/Microsoft.App/managedEnvironments/caepmpb42xg"
   to = azurerm_container_app_environment.res-2
 }

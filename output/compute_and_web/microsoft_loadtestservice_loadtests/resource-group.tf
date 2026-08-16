@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-6ac66ccaa8351863"
   tags = {
     armType    = "Microsoft.LoadTestService/loadTests"
-    createdUtc = "2026-08-13T14:16:20.4532579Z"
+    createdUtc = "2026-08-16T14:34:18.8675457Z"
     purpose    = "az-resource-details-downloader"
   }
 }

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-6220405c5e8fea29"
   tags = {
     armType    = "Microsoft.Network/networkSecurityGroups"
-    createdUtc = "2026-08-13T12:30:00.8522264Z"
+    createdUtc = "2026-08-16T13:13:13.7042712Z"
     purpose    = "az-resource-details-downloader"
   }
 }

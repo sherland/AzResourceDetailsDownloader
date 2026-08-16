@@ -1,15 +1,15 @@
-param loadBalancers_lb7y7v6_8y_name string
-param publicIPAddresses_pipjc_fv_7p_name string
+param loadBalancers_lbi1py_djf_name string
+param publicIPAddresses_pip4esx_wt9_name string
 
-resource publicIPAddresses_pipjc_fv_7p_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
-  name: publicIPAddresses_pipjc_fv_7p_name
+resource publicIPAddresses_pip4esx_wt9_name_resource 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
+  name: publicIPAddresses_pip4esx_wt9_name
   location: 'norwayeast'
   sku: {
     name: 'Standard'
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '4.235.102.66'
+    ipAddress: '20.100.188.235'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -20,8 +20,8 @@ resource publicIPAddresses_pipjc_fv_7p_name_resource 'Microsoft.Network/publicIP
   }
 }
 
-resource loadBalancers_lb7y7v6_8y_name_resource 'Microsoft.Network/loadBalancers@2025-07-01' = {
-  name: loadBalancers_lb7y7v6_8y_name
+resource loadBalancers_lbi1py_djf_name_resource 'Microsoft.Network/loadBalancers@2025-07-01' = {
+  name: loadBalancers_lbi1py_djf_name
   location: 'norwayeast'
   sku: {
     name: 'Standard'
@@ -31,11 +31,11 @@ resource loadBalancers_lb7y7v6_8y_name_resource 'Microsoft.Network/loadBalancers
     frontendIPConfigurations: [
       {
         name: 'feConfig'
-        id: '${loadBalancers_lb7y7v6_8y_name_resource.id}/frontendIPConfigurations/feConfig'
+        id: '${loadBalancers_lbi1py_djf_name_resource.id}/frontendIPConfigurations/feConfig'
         properties: {
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
-            id: publicIPAddresses_pipjc_fv_7p_name_resource.id
+            id: publicIPAddresses_pip4esx_wt9_name_resource.id
           }
         }
       }

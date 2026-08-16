@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-1bbbd6c0728e9e29"
   tags = {
     armType    = "Microsoft.ContainerRegistry/registries"
-    createdUtc = "2026-08-14T07:39:00.4463485Z"
+    createdUtc = "2026-08-16T13:24:49.8129287Z"
     purpose    = "az-resource-details-downloader"
   }
 }

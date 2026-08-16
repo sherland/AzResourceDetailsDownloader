@@ -1,6 +1,6 @@
 {
   "properties": {
-    "immutableId": "dcr-9db38fb6d20c4fc3ba908e792a6c3fa7",
+    "immutableId": "dcr-cd7b55f99a97457cb5fa4924ebb9cfde",
     "dataSources": {
       "performanceCounters": [
         {
@@ -18,8 +18,8 @@
     "destinations": {
       "logAnalytics": [
         {
-          "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/laws1-sf5et",
-          "workspaceId": "e3c7edc7-7d52-48eb-9f4b-1439e67376d0",
+          "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.OperationalInsights/workspaces/law3v6oa-0p",
+          "workspaceId": "c9ea91b3-8e96-456d-a662-8faede769eac",
           "name": "destination-log"
         }
       ]
@@ -37,16 +37,16 @@
     "provisioningState": "Succeeded"
   },
   "location": "norwayeast",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.Insights/dataCollectionRules/dcrnabr7xkd",
-  "name": "dcrnabr7xkd",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1c6da0a56560fd63/providers/Microsoft.Insights/dataCollectionRules/dcrgitooyah",
+  "name": "dcrgitooyah",
   "type": "Microsoft.Insights/dataCollectionRules",
-  "etag": "\u00220500c3e1-0000-3c00-0000-6a7ef01f0000\u0022",
+  "etag": "\u002201007572-0000-3c00-0000-6a81c14d0000\u0022",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-14T10:38:21.3583395Z",
+    "createdAt": "2026-08-16T13:55:22.9024953Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-14T10:38:21.3583395Z"
+    "lastModifiedAt": "2026-08-16T13:55:22.9024953Z"
   }
 }

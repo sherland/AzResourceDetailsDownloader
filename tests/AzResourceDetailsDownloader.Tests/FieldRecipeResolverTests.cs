@@ -293,8 +293,12 @@ public class FieldRecipeResolverTests
     public void Resolve_InstrumentationKey_ResolvesDirectly_ForApplicationInsights()
     {
         var root = LoadCapturedResource("management_and_governance", "microsoft_insights_components");
+        // Read live rather than hardcode: Application Insights generates a fresh random GUID on
+        // every capture, so a hardcoded value here breaks on every recapture of this type even
+        // though the resolver logic under test hasn't changed — live-caught 2026-08-16.
+        var instrumentationKey = root.GetProperty("properties").GetProperty("InstrumentationKey").GetString()!;
 
-        var recipe = FieldRecipeResolver.Resolve("Instrumentation key", "db2e6507-5e0d-41c2-a540-660d418669a6", root);
+        var recipe = FieldRecipeResolver.Resolve("Instrumentation key", instrumentationKey, root);
 
         Assert.Equal(FieldRecipeKind.Direct, recipe.Kind);
         Assert.Equal("model.props.instrumentationkey", recipe.Target);

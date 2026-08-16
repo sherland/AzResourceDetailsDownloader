@@ -8,10 +8,10 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-13T14:13:54.56Z",
+    "createdAt": "2026-08-16T13:43:38.01Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T14:13:54.56Z"
+    "lastModifiedAt": "2026-08-16T13:43:38.01Z"
   },
   "properties": {
     "privateEndpointConnections": [],
@@ -20,6 +20,6 @@
     "friendlyName": null,
     "applicationGroupReferences": [],
     "cloudPcResource": false,
-    "objectId": "1c264b95-56e5-4955-b949-3f0885f67fae"
+    "objectId": "6ca4779c-cdba-4f1e-b7fc-0b7baa4cf9fb"
   }
 }

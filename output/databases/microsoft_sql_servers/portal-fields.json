@@ -25,7 +25,7 @@
   },
   {
     "Label": "Microsoft Entra admin",
-    "Value": "Not configured"
+    "Value": "admin@example.com"
   },
   {
     "Label": "Server name",

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-9ba774595fc4a14a"
   tags = {
     armType    = "Microsoft.Network/dnsResolvers/outboundEndpoints"
-    createdUtc = "2026-08-13T13:33:04.9706970Z"
+    createdUtc = "2026-08-16T14:48:10.8328251Z"
     purpose    = "az-resource-details-downloader"
   }
 }

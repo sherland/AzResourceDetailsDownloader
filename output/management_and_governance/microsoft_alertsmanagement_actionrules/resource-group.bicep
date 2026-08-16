@@ -1,7 +1,7 @@
-param actionRules_apr9zvqwc2v_name string
+param actionRules_apryflw03_r_name string
 
-resource actionRules_apr9zvqwc2v_name_resource 'Microsoft.AlertsManagement/actionRules@2021-08-08' = {
-  name: actionRules_apr9zvqwc2v_name
+resource actionRules_apryflw03_r_name_resource 'Microsoft.AlertsManagement/actionRules@2021-08-08' = {
+  name: actionRules_apryflw03_r_name
   location: 'global'
   properties: {
     scopes: [

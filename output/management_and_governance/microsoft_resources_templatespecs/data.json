@@ -6,10 +6,10 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-13T12:57:19.3246896Z",
+    "createdAt": "2026-08-16T13:46:27.9450275Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T12:57:19.3246896Z"
+    "lastModifiedAt": "2026-08-16T13:46:27.9450275Z"
   },
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fdb1d833d4fb0cbd/providers/Microsoft.Resources/templateSpecs/tsd8-2we9q",
   "type": "Microsoft.Resources/templateSpecs",

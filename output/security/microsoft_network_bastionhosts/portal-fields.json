@@ -21,10 +21,14 @@
   },
   {
     "Label": "Public DNS name",
-    "Value": "bst-b5214c8f-f95e-40b0-b7cf-78658ba194d9.bastion.azure.com"
+    "Value": "bst-1e46d2fd-b019-4035-aff2-9a268884d90f.bastion.azure.com"
   },
   {
     "Label": "Public IPv4 address",
+    "Value": "-"
+  },
+  {
+    "Label": "Public IPv6 address",
     "Value": "-"
   },
   {

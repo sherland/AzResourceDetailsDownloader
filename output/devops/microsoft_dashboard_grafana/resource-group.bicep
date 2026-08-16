@@ -1,7 +1,7 @@
-param grafana_grfobls6_wo_name string
+param grafana_grfvkgyyrfx_name string
 
-resource grafana_grfobls6_wo_name_resource 'Microsoft.Dashboard/grafana@2025-09-01-preview' = {
-  name: grafana_grfobls6_wo_name
+resource grafana_grfvkgyyrfx_name_resource 'Microsoft.Dashboard/grafana@2025-09-01-preview' = {
+  name: grafana_grfvkgyyrfx_name
   location: 'norwayeast'
   sku: {
     name: 'Standard'

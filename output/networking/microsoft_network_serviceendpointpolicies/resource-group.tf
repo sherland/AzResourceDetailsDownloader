@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-d94a1e445813b7b4"
   tags = {
     armType    = "Microsoft.Network/serviceEndPointPolicies"
-    createdUtc = "2026-08-13T13:34:04.9093125Z"
+    createdUtc = "2026-08-16T14:50:06.4830935Z"
     purpose    = "az-resource-details-downloader"
   }
 }

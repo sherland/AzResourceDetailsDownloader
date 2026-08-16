@@ -268,6 +268,10 @@ public static class PortalFieldKnowledge
             ["Enable No Public IP"] = "enableNoPublicIp",
             ["High availability"] = "highAvailability",
             ["Virtual endpoint"] = "highAvailability",
+            // Log Analytics workspace-only, only ever surfaced once this type's Overview extraction
+            // actually started returning fields (2026-08-16) — a genuinely new gap, not a regression,
+            // caught by PortalFieldsConsistencyTests as soon as this field became reachable at all.
+            ["Access control mode"] = "enableLogAccessUsingOnlyResourcePermissions",
         };
 
     public static readonly Dictionary<string, bool> FriendlyBoolWords =
@@ -278,6 +282,12 @@ public static class PortalFieldKnowledge
             ["Enabled"] = true,
             ["Disabled"] = false,
             ["Not enabled"] = false,
+            // Log Analytics' own wording for the "Access control mode" boolean above — only
+            // live-observed as `true` so far; the `false` case's own portal wording ("Require
+            // workspace permissions", per Microsoft's docs) hasn't been live-verified against this
+            // codebase's own "never guessed, always verified" standard, so it's deliberately NOT
+            // added here yet.
+            ["Use resource or workspace permissions"] = true,
         };
 
     // Lowercase + keep only letters/digits, so display formatting differences between the portal

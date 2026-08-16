@@ -1,20 +1,20 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-03b31e1fc10f5155/providers/Microsoft.Communication/communicationServices/acs5mq89eka",
-  "name": "acs5mq89eka",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-03b31e1fc10f5155/providers/Microsoft.Communication/communicationServices/acso-awg-qq",
+  "name": "acso-awg-qq",
   "type": "microsoft.communication/communicationservices",
   "location": "global",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-14T10:36:35.5193042Z",
+    "createdAt": "2026-08-16T13:52:05.1170141Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-14T10:36:35.5193042Z"
+    "lastModifiedAt": "2026-08-16T13:52:05.1170141Z"
   },
   "properties": {
     "provisioningState": "Succeeded",
-    "hostName": "acs5mq89eka.europe.communication.azure.com",
-    "immutableResourceId": "1213c9da-c933-4801-84b3-e88df9667a29",
+    "hostName": "acso-awg-qq.europe.communication.azure.com",
+    "immutableResourceId": "46e6339a-f55a-4261-9295-53a4c810b4d1",
     "dataLocation": "Europe"
   }
 }

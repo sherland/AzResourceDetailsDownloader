@@ -10,17 +10,17 @@
       }
     ],
     "provisioningState": "Succeeded",
-    "resourceGuid": "d3169913-7d39-49c2-aef9-c347d5db724f"
+    "resourceGuid": "804b983a-233b-4eb5-9964-d6108f18b156"
   },
-  "etag": "\u002202003761-0000-3c00-0000-6a7dc7f60000\u0022",
+  "etag": "\u002200004f7f-0000-3c00-0000-6a81ce050000\u0022",
   "location": "norwayeast",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-c4b711f9f1eb7a59/providers/Microsoft.Network/dnsResolvers/dnsrb-031p-1/inboundEndpoints/inbound61hwdf",
   "name": "inbound61hwdf",
   "type": "Microsoft.Network/dnsResolvers/inboundEndpoints",
   "systemData": {
-    "createdAt": "2026-08-13T13:32:57.4819319Z",
+    "createdAt": "2026-08-16T14:47:22.0359198Z",
     "createdByType": "User",
-    "lastModifiedAt": "2026-08-13T13:32:57.4819319Z",
+    "lastModifiedAt": "2026-08-16T14:47:22.0359198Z",
     "lastModifiedByType": "User"
   }
 }

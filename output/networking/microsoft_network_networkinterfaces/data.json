@@ -1,22 +1,22 @@
 {
-  "name": "nice-8dapyb",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nice-8dapyb",
-  "etag": "W/\u00227825e550-5a50-4c0a-8338-c2a2f6a03833\u0022",
+  "name": "nicoq4tq3cl",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nicoq4tq3cl",
+  "etag": "W/\u002298a641c2-c6cd-450c-ade3-12faecd2145b\u0022",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "6bc93616-8689-48e5-944b-cd1f39dfd67a",
+    "resourceGuid": "deb63a28-3925-49e7-9508-d9de9ed1b7b8",
     "ipConfigurations": [
       {
         "name": "ipconfig1",
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nice-8dapyb/ipConfigurations/ipconfig1",
-        "etag": "W/\u00227825e550-5a50-4c0a-8338-c2a2f6a03833\u0022",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/networkInterfaces/nicoq4tq3cl/ipConfigurations/ipconfig1",
+        "etag": "W/\u002298a641c2-c6cd-450c-ade3-12faecd2145b\u0022",
         "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
         "properties": {
           "provisioningState": "Succeeded",
           "privateIPAddress": "10.41.0.4",
           "privateIPAllocationMethod": "Dynamic",
           "subnet": {
-            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/virtualNetworks/vnetycbtha5o/subnets/default"
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-360f36f10d21782f/providers/Microsoft.Network/virtualNetworks/vnetu-a-at4d/subnets/default"
           },
           "primary": true,
           "privateIPAddressVersion": "IPv4"
@@ -26,7 +26,7 @@
     "dnsSettings": {
       "dnsServers": [],
       "appliedDnsServers": [],
-      "internalDomainNameSuffix": "hmuatpnuhlpuda5lc5ruq4s4pe.oslx.internal.cloudapp.net"
+      "internalDomainNameSuffix": "me1qf31deywuhgzr10px1hiizb.oslx.internal.cloudapp.net"
     },
     "enableAcceleratedNetworking": false,
     "vnetEncryptionSupported": false,

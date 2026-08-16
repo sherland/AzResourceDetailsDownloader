@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-b34010ba6e4d8d8d"
   tags = {
     armType    = "Microsoft.OperationalInsights/workspaces"
-    createdUtc = "2026-08-13T12:42:00.9304913Z"
+    createdUtc = "2026-08-16T13:20:20.8852116Z"
     purpose    = "az-resource-details-downloader"
   }
 }

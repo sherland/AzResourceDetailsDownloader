@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-fba1943833ef0847"
   tags = {
     armType    = "Microsoft.Databricks/workspaces"
-    createdUtc = "2026-08-13T13:35:56.6684556Z"
+    createdUtc = "2026-08-16T14:52:22.7806139Z"
     purpose    = "az-resource-details-downloader"
   }
 }

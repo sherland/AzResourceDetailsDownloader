@@ -1,5 +1,5 @@
 {
-  "etag": "AAAAAC6pLsQ=",
+  "etag": "AAAAAC64Hfc=",
   "name": "dpsu79-smow",
   "location": "northeurope",
   "properties": {
@@ -9,7 +9,7 @@
     "allocationPolicy": "Hashed",
     "serviceOperationsHostName": "dpsu79-smow.azure-devices-provisioning.net",
     "deviceProvisioningHostName": "global.azure-devices-provisioning.net",
-    "idScope": "0ne012830F8"
+    "idScope": "0ne012887B5"
   },
   "resourcegroup": "rg-ardl-ea290fed5655d3db",
   "type": "Microsoft.Devices/provisioningServices",

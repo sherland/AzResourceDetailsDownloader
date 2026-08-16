@@ -6,19 +6,19 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-13T14:17:31.0451673Z",
+    "createdAt": "2026-08-16T14:34:22.7250898Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T14:17:31.0451673Z"
+    "lastModifiedAt": "2026-08-16T14:34:22.7250898Z"
   },
   "identity": {
-    "principalId": "3b86e7a3-f10f-4268-abfd-1d8576d99dee",
+    "principalId": "d106a6d9-e4c5-470a-aa5b-c74ec340c559",
     "tenantId": "11111111-1111-1111-1111-111111111111",
     "type": "SystemAssigned"
   },
   "properties": {
     "description": "ARDL load test resource",
-    "dataPlaneURI": "13c7f07b-7604-4de9-9a60-42202ac1d65a.swedencentral.cnt-prod.loadtesting.azure.com",
+    "dataPlaneURI": "c7303fbc-b6df-4097-995d-66684da975d0.swedencentral.cnt-prod.loadtesting.azure.com",
     "provisioningState": "Succeeded"
   }
 }

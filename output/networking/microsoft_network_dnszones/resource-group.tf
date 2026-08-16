@@ -15,12 +15,12 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-fc5ae4a395470e0a"
   tags = {
     armType    = "Microsoft.Network/dnsZones"
-    createdUtc = "2026-08-14T10:40:25.8356230Z"
+    createdUtc = "2026-08-16T14:01:35.2208467Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_dns_zone" "res-1" {
-  name                = "ardlidy1l4kn.contoso.com"
+  name                = "ardllnkmwt9n.contoso.com"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}
   soa_record {
@@ -36,11 +36,11 @@ resource "azurerm_dns_zone" "res-1" {
 }
 resource "azurerm_dns_ns_record" "res-2" {
   name                = "@"
-  records             = ["ns1-05.azure-dns.com.", "ns2-05.azure-dns.net.", "ns3-05.azure-dns.org.", "ns4-05.azure-dns.info."]
+  records             = ["ns1-07.azure-dns.com.", "ns2-07.azure-dns.net.", "ns3-07.azure-dns.org.", "ns4-07.azure-dns.info."]
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}
   ttl                 = 172800
-  zone_name           = "ardlidy1l4kn.contoso.com"
+  zone_name           = "ardllnkmwt9n.contoso.com"
   depends_on = [
     azurerm_dns_zone.res-1,
   ]
@@ -52,10 +52,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fc5ae4a395470e0a/providers/Microsoft.Network/dnsZones/ardlidy1l4kn.contoso.com"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fc5ae4a395470e0a/providers/Microsoft.Network/dnsZones/ardllnkmwt9n.contoso.com"
   to = azurerm_dns_zone.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fc5ae4a395470e0a/providers/Microsoft.Network/dnsZones/ardlidy1l4kn.contoso.com/NS/@"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fc5ae4a395470e0a/providers/Microsoft.Network/dnsZones/ardllnkmwt9n.contoso.com/NS/@"
   to = azurerm_dns_ns_record.res-2
 }

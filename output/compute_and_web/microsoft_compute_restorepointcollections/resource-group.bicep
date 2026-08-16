@@ -1,10 +1,10 @@
-param virtualNetworks_vnetgb8_lmu3_name string
-param networkInterfaces_nicu7u_tk0w_name string
-param virtualMachines_swazx8jrlti5t02_name string
-param restorePointCollections_rpcfzx_zcdq_name string
+param virtualNetworks_vnet4it9jcor_name string
+param networkInterfaces_nic7a_5_uqh_name string
+param virtualMachines_swaz1fxf9i19802_name string
+param restorePointCollections_rpc0q_1q_i1_name string
 
-resource virtualNetworks_vnetgb8_lmu3_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
-  name: virtualNetworks_vnetgb8_lmu3_name
+resource virtualNetworks_vnet4it9jcor_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
+  name: virtualNetworks_vnet4it9jcor_name
   location: 'swedencentral'
   properties: {
     addressSpace: {
@@ -16,7 +16,7 @@ resource virtualNetworks_vnetgb8_lmu3_name_resource 'Microsoft.Network/virtualNe
     subnets: [
       {
         name: 'default'
-        id: virtualNetworks_vnetgb8_lmu3_name_default.id
+        id: virtualNetworks_vnet4it9jcor_name_default.id
         properties: {
           addressPrefix: '10.70.0.0/24'
           delegations: []
@@ -30,18 +30,18 @@ resource virtualNetworks_vnetgb8_lmu3_name_resource 'Microsoft.Network/virtualNe
   }
 }
 
-resource restorePointCollections_rpcfzx_zcdq_name_resource 'Microsoft.Compute/restorePointCollections@2025-11-01' = {
-  name: restorePointCollections_rpcfzx_zcdq_name
+resource restorePointCollections_rpc0q_1q_i1_name_resource 'Microsoft.Compute/restorePointCollections@2025-11-01' = {
+  name: restorePointCollections_rpc0q_1q_i1_name
   location: 'swedencentral'
   properties: {
     source: {
-      id: virtualMachines_swazx8jrlti5t02_name_resource.id
+      id: virtualMachines_swaz1fxf9i19802_name_resource.id
     }
   }
 }
 
-resource virtualMachines_swazx8jrlti5t02_name_resource 'Microsoft.Compute/virtualMachines@2025-11-01' = {
-  name: virtualMachines_swazx8jrlti5t02_name
+resource virtualMachines_swaz1fxf9i19802_name_resource 'Microsoft.Compute/virtualMachines@2025-11-01' = {
+  name: virtualMachines_swaz1fxf9i19802_name
   location: 'swedencentral'
   properties: {
     hardwareProfile: {
@@ -56,14 +56,14 @@ resource virtualMachines_swazx8jrlti5t02_name_resource 'Microsoft.Compute/virtua
       }
       osDisk: {
         osType: 'Linux'
-        name: '${virtualMachines_swazx8jrlti5t02_name}_disk1_a3e223fa84a94a9a86331551421d70a7'
+        name: '${virtualMachines_swaz1fxf9i19802_name}_OsDisk_1_f3d36c45e5de47f59a18720442ec198f'
         createOption: 'FromImage'
         caching: 'ReadWrite'
         managedDisk: {
           storageAccountType: 'StandardSSD_LRS'
           id: resourceId(
             'Microsoft.Compute/disks',
-            '${virtualMachines_swazx8jrlti5t02_name}_disk1_a3e223fa84a94a9a86331551421d70a7'
+            '${virtualMachines_swaz1fxf9i19802_name}_OsDisk_1_f3d36c45e5de47f59a18720442ec198f'
           )
         }
         deleteOption: 'Detach'
@@ -93,27 +93,27 @@ resource virtualMachines_swazx8jrlti5t02_name_resource 'Microsoft.Compute/virtua
     networkProfile: {
       networkInterfaces: [
         {
-          id: networkInterfaces_nicu7u_tk0w_name_resource.id
+          id: networkInterfaces_nic7a_5_uqh_name_resource.id
         }
       ]
     }
   }
 }
 
-resource networkInterfaces_nicu7u_tk0w_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
-  name: networkInterfaces_nicu7u_tk0w_name
+resource networkInterfaces_nic7a_5_uqh_name_resource 'Microsoft.Network/networkInterfaces@2025-07-01' = {
+  name: networkInterfaces_nic7a_5_uqh_name
   location: 'swedencentral'
   kind: 'Regular'
   properties: {
     ipConfigurations: [
       {
         name: 'ipconfig1'
-        id: '${networkInterfaces_nicu7u_tk0w_name_resource.id}/ipConfigurations/ipconfig1'
+        id: '${networkInterfaces_nic7a_5_uqh_name_resource.id}/ipConfigurations/ipconfig1'
         properties: {
           privateIPAddress: '10.70.0.4'
           privateIPAllocationMethod: 'Dynamic'
           subnet: {
-            id: virtualNetworks_vnetgb8_lmu3_name_default.id
+            id: virtualNetworks_vnet4it9jcor_name_default.id
           }
           primary: true
           privateIPAddressVersion: 'IPv4'
@@ -132,8 +132,8 @@ resource networkInterfaces_nicu7u_tk0w_name_resource 'Microsoft.Network/networkI
   }
 }
 
-resource virtualNetworks_vnetgb8_lmu3_name_default 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
-  name: '${virtualNetworks_vnetgb8_lmu3_name}/default'
+resource virtualNetworks_vnet4it9jcor_name_default 'Microsoft.Network/virtualNetworks/subnets@2025-07-01' = {
+  name: '${virtualNetworks_vnet4it9jcor_name}/default'
   properties: {
     addressPrefix: '10.70.0.0/24'
     delegations: []
@@ -141,7 +141,7 @@ resource virtualNetworks_vnetgb8_lmu3_name_default 'Microsoft.Network/virtualNet
     privateLinkServiceNetworkPolicies: 'Enabled'
   }
   dependsOn: [
-    virtualNetworks_vnetgb8_lmu3_name_resource
+    virtualNetworks_vnet4it9jcor_name_resource
   ]
 }
 

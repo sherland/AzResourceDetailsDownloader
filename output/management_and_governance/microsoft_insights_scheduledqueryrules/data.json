@@ -1,16 +1,16 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a4f15f69c700674b/providers/microsoft.insights/scheduledqueryrules/sqrtwg7pxiz",
-  "name": "sqrtwg7pxiz",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a4f15f69c700674b/providers/microsoft.insights/scheduledqueryrules/sqrst2-ds-v",
+  "name": "sqrst2-ds-v",
   "type": "Microsoft.Insights/scheduledQueryRules",
   "location": "norwayeast",
   "kind": "LogAlert",
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-14T10:37:58.6404988Z",
+    "createdAt": "2026-08-16T13:55:12.496864Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-14T10:37:58.6404988Z"
+    "lastModifiedAt": "2026-08-16T13:55:12.496864Z"
   },
   "properties": {
     "createdWithApiVersion": "2023-03-15-preview",
@@ -19,7 +19,7 @@
     "enabled": true,
     "evaluationFrequency": "PT15M",
     "scopes": [
-      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a4f15f69c700674b/providers/Microsoft.OperationalInsights/workspaces/lawydm4-8te"
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a4f15f69c700674b/providers/Microsoft.OperationalInsights/workspaces/law502o85tb"
     ],
     "windowSize": "PT15M",
     "criteria": {

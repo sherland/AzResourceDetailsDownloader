@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-582b196a4c103d52"
   tags = {
     armType    = "Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies"
-    createdUtc = "2026-08-13T12:50:44.6610055Z"
+    createdUtc = "2026-08-16T13:35:52.8904817Z"
     purpose    = "az-resource-details-downloader"
   }
 }

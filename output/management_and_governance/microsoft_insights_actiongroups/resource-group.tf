@@ -15,14 +15,14 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-a5c3f65f8513ba7b"
   tags = {
     armType    = "Microsoft.Insights/actionGroups"
-    createdUtc = "2026-08-14T10:31:05.0911246Z"
+    createdUtc = "2026-08-16T13:22:20.1139932Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_monitor_action_group" "res-1" {
   enabled             = true
   location            = "global"
-  name                = "aginbojpd1"
+  name                = "agnmvk1q9b"
   resource_group_name = azurerm_resource_group.res-0.name
   short_name          = "ardlag"
   tags                = {}
@@ -34,6 +34,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a5c3f65f8513ba7b/providers/Microsoft.Insights/actionGroups/aginbojpd1"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a5c3f65f8513ba7b/providers/Microsoft.Insights/actionGroups/agnmvk1q9b"
   to = azurerm_monitor_action_group.res-1
 }

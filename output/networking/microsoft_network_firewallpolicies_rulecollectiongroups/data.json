@@ -8,6 +8,6 @@
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-1411ef2d4c4edba8/providers/Microsoft.Network/firewallPolicies/afwpd0fjxhjx/ruleCollectionGroups/rulecollz2xglx",
   "name": "rulecollz2xglx",
   "type": "Microsoft.Network/FirewallPolicies/RuleCollectionGroups",
-  "etag": "50fddcd4-8368-4b16-a546-dac14b91a940",
+  "etag": "54b51fa1-6e7a-42e7-8690-f0e7155915c0",
   "location": "norwayeast"
 }

@@ -1,14 +1,14 @@
-param virtualNetworks_vnet0643rlhc_name string
-param privateDnsZones_ardlaksrdys9_private_contoso_com_name string
+param virtualNetworks_vnetqj_7mjap_name string
+param privateDnsZones_ardltawm47lo_private_contoso_com_name string
 
-resource privateDnsZones_ardlaksrdys9_private_contoso_com_name_resource 'Microsoft.Network/privateDnsZones@2024-06-01' = {
-  name: privateDnsZones_ardlaksrdys9_private_contoso_com_name
+resource privateDnsZones_ardltawm47lo_private_contoso_com_name_resource 'Microsoft.Network/privateDnsZones@2024-06-01' = {
+  name: privateDnsZones_ardltawm47lo_private_contoso_com_name
   location: 'global'
   properties: {}
 }
 
-resource virtualNetworks_vnet0643rlhc_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
-  name: virtualNetworks_vnet0643rlhc_name
+resource virtualNetworks_vnetqj_7mjap_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
+  name: virtualNetworks_vnetqj_7mjap_name
   location: 'norwayeast'
   properties: {
     addressSpace: {
@@ -23,8 +23,8 @@ resource virtualNetworks_vnet0643rlhc_name_resource 'Microsoft.Network/virtualNe
   }
 }
 
-resource Microsoft_Network_privateDnsZones_SOA_privateDnsZones_ardlaksrdys9_private_contoso_com_name 'Microsoft.Network/privateDnsZones/SOA@2024-06-01' = {
-  parent: privateDnsZones_ardlaksrdys9_private_contoso_com_name_resource
+resource Microsoft_Network_privateDnsZones_SOA_privateDnsZones_ardltawm47lo_private_contoso_com_name 'Microsoft.Network/privateDnsZones/SOA@2024-06-01' = {
+  parent: privateDnsZones_ardltawm47lo_private_contoso_com_name_resource
   name: '@'
   properties: {
     ttl: 3600
@@ -40,14 +40,14 @@ resource Microsoft_Network_privateDnsZones_SOA_privateDnsZones_ardlaksrdys9_priv
   }
 }
 
-resource privateDnsZones_ardlaksrdys9_private_contoso_com_name_linkwq5sky 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2024-06-01' = {
-  parent: privateDnsZones_ardlaksrdys9_private_contoso_com_name_resource
-  name: 'linkwq5sky'
+resource privateDnsZones_ardltawm47lo_private_contoso_com_name_linkjqxt8p 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2024-06-01' = {
+  parent: privateDnsZones_ardltawm47lo_private_contoso_com_name_resource
+  name: 'linkjqxt8p'
   location: 'global'
   properties: {
     registrationEnabled: false
     virtualNetwork: {
-      id: virtualNetworks_vnet0643rlhc_name_resource.id
+      id: virtualNetworks_vnetqj_7mjap_name_resource.id
     }
   }
 }

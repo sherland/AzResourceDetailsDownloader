@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-50afc5ec1d1fef44"
   tags = {
     armType    = "Microsoft.Web/staticSites"
-    createdUtc = "2026-08-14T10:31:55.4712020Z"
+    createdUtc = "2026-08-16T13:23:59.1883645Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,7 +23,7 @@ resource "azurerm_static_web_app" "res-1" {
   app_settings                       = {}
   configuration_file_changes_enabled = true
   location                           = "eastus2"
-  name                               = "stappalhj-kmz"
+  name                               = "stapp9n53-4-v"
   preview_environments_enabled       = true
   public_network_access_enabled      = true
   repository_branch                  = ""
@@ -41,6 +41,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-50afc5ec1d1fef44/providers/Microsoft.Web/staticSites/stappalhj-kmz"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-50afc5ec1d1fef44/providers/Microsoft.Web/staticSites/stapp9n53-4-v"
   to = azurerm_static_web_app.res-1
 }

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-dd78496389a3f338"
   tags = {
     armType    = "Microsoft.Maintenance/maintenanceConfigurations"
-    createdUtc = "2026-08-13T12:53:36.5575681Z"
+    createdUtc = "2026-08-16T13:40:32.2977628Z"
     purpose    = "az-resource-details-downloader"
   }
 }

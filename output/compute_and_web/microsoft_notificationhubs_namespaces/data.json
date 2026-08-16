@@ -10,7 +10,7 @@
     "critical": false,
     "subscriptionId": "00000000-0000-0000-0000-000000000000",
     "createdAt": "2026-08-13T13:00:43.207\u002B00:00",
-    "updatedAt": "2026-08-13T13:00:43.233\u002B00:00",
+    "updatedAt": "2026-08-16T13:49:45.107\u002B00:00",
     "namespaceType": "NotificationHub",
     "zoneRedundancy": "Enabled",
     "networkAcls": {},

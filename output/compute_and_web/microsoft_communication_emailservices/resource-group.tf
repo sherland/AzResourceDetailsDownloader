@@ -15,13 +15,13 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-74933ead8c5e44f6"
   tags = {
     armType    = "Microsoft.Communication/emailServices"
-    createdUtc = "2026-08-14T10:36:49.3008018Z"
+    createdUtc = "2026-08-16T13:52:41.9822402Z"
     purpose    = "az-resource-details-downloader"
   }
 }
 resource "azurerm_email_communication_service" "res-1" {
   data_location       = "Europe"
-  name                = "acsemailo-zy-g-n"
+  name                = "acsemailgkz-9e-3"
   resource_group_name = azurerm_resource_group.res-0.name
   tags                = {}
 }
@@ -32,6 +32,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74933ead8c5e44f6/providers/Microsoft.Communication/emailServices/acsemailo-zy-g-n"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74933ead8c5e44f6/providers/Microsoft.Communication/emailServices/acsemailgkz-9e-3"
   to = azurerm_email_communication_service.res-1
 }

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-3255b6ea5eb259ce"
   tags = {
     armType    = "Microsoft.Monitor/accounts"
-    createdUtc = "2026-08-13T12:55:22.1772708Z"
+    createdUtc = "2026-08-16T13:42:02.0429872Z"
     purpose    = "az-resource-details-downloader"
   }
 }

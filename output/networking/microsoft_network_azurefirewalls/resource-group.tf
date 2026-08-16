@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-286cff30700da727"
   tags = {
     armType    = "Microsoft.Network/azureFirewalls"
-    createdUtc = "2026-08-13T14:36:32.0480987Z"
+    createdUtc = "2026-08-16T14:08:50.3718162Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -24,7 +24,7 @@ resource "azurerm_firewall" "res-1" {
   dns_servers         = []
   firewall_policy_id  = ""
   location            = "norwayeast"
-  name                = "afwvzgvaw"
+  name                = "afwd5edfm"
   private_ip_ranges   = []
   resource_group_name = azurerm_resource_group.res-0.name
   sku_name            = "AZFW_VNet"
@@ -53,7 +53,7 @@ resource "azurerm_public_ip" "res-2" {
   ip_tags                 = {}
   ip_version              = "IPv4"
   location                = "norwayeast"
-  name                    = "pip7ia9-tq4"
+  name                    = "piph5-e48-s"
   resource_group_name     = azurerm_resource_group.res-0.name
   reverse_fqdn            = ""
   sku                     = "Standard"
@@ -71,7 +71,7 @@ resource "azurerm_public_ip" "res-3" {
   ip_tags                 = {}
   ip_version              = "IPv4"
   location                = "norwayeast"
-  name                    = "piptlxkj0-6"
+  name                    = "pipunesj-jt"
   resource_group_name     = azurerm_resource_group.res-0.name
   reverse_fqdn            = ""
   sku                     = "Standard"
@@ -86,14 +86,14 @@ resource "azurerm_virtual_network" "res-4" {
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
   location                       = "norwayeast"
-  name                           = "vnetfdgcru-j"
+  name                           = "vnetw4qxan-j"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name
   subnet = [{
     address_prefixes                              = ["10.45.254.0/26"]
     default_outbound_access_enabled               = false
     delegation                                    = []
-    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetfdgcru-j/subnets/AzureFirewallManagementSubnet"
+    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetw4qxan-j/subnets/AzureFirewallManagementSubnet"
     name                                          = "AzureFirewallManagementSubnet"
     private_endpoint_network_policies             = "Disabled"
     private_link_service_network_policies_enabled = true
@@ -105,7 +105,7 @@ resource "azurerm_virtual_network" "res-4" {
     address_prefixes                              = ["10.45.255.0/26"]
     default_outbound_access_enabled               = false
     delegation                                    = []
-    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetfdgcru-j/subnets/AzureFirewallSubnet"
+    id                                            = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetw4qxan-j/subnets/AzureFirewallSubnet"
     name                                          = "AzureFirewallSubnet"
     private_endpoint_network_policies             = "Disabled"
     private_link_service_network_policies_enabled = true
@@ -126,7 +126,7 @@ resource "azurerm_subnet" "res-5" {
   service_endpoint_policy_ids                   = []
   service_endpoints                             = []
   sharing_scope                                 = ""
-  virtual_network_name                          = "vnetfdgcru-j"
+  virtual_network_name                          = "vnetw4qxan-j"
   depends_on = [
     azurerm_virtual_network.res-4,
   ]
@@ -141,7 +141,7 @@ resource "azurerm_subnet" "res-6" {
   service_endpoint_policy_ids                   = []
   service_endpoints                             = []
   sharing_scope                                 = ""
-  virtual_network_name                          = "vnetfdgcru-j"
+  virtual_network_name                          = "vnetw4qxan-j"
   depends_on = [
     azurerm_virtual_network.res-4,
   ]
@@ -153,26 +153,26 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwvzgvaw"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/azureFirewalls/afwd5edfm"
   to = azurerm_firewall.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/pip7ia9-tq4"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/piph5-e48-s"
   to = azurerm_public_ip.res-2
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/piptlxkj0-6"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/publicIPAddresses/pipunesj-jt"
   to = azurerm_public_ip.res-3
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetfdgcru-j"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetw4qxan-j"
   to = azurerm_virtual_network.res-4
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetfdgcru-j/subnets/AzureFirewallManagementSubnet"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetw4qxan-j/subnets/AzureFirewallManagementSubnet"
   to = azurerm_subnet.res-5
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetfdgcru-j/subnets/AzureFirewallSubnet"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-286cff30700da727/providers/Microsoft.Network/virtualNetworks/vnetw4qxan-j/subnets/AzureFirewallSubnet"
   to = azurerm_subnet.res-6
 }
