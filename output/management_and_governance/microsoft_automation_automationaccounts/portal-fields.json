@@ -1,0 +1,26 @@
+[
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-7ab2ffe44d702d19"
+  },
+  {
+    "Label": "Location",
+    "Value": "Southeast Asia"
+  },
+  {
+    "Label": "Subscription",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Last modified",
+    "Value": "8/16/2026, 19:12:51"
+  }
+]
