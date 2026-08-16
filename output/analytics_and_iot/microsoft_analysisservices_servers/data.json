@@ -1,0 +1,25 @@
+{
+  "properties": {
+    "provisioningState": "Succeeded",
+    "state": "Succeeded",
+    "serverFullName": "asazure://northeurope.asazure.windows.net/asrivqjljz",
+    "managedMode": 1,
+    "asAdministrators": {
+      "members": [
+        "22222222-2222-2222-2222-222222222222"
+      ]
+    },
+    "querypoolConnectionMode": "All",
+    "serverMonitorMode": 1
+  },
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fbd354f185c6fa29/providers/Microsoft.AnalysisServices/servers/asrivqjljz",
+  "name": "asrivqjljz",
+  "type": "Microsoft.AnalysisServices/servers",
+  "location": "North Europe",
+  "sku": {
+    "name": "D1",
+    "tier": "Development",
+    "capacity": 1
+  },
+  "tags": {}
+}

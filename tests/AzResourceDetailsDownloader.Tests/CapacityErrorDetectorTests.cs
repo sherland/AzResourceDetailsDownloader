@@ -26,6 +26,20 @@ public class CapacityErrorDetectorTests
         Assert.True(CapacityErrorDetector.IsCapacityError(message));
     }
 
+    // Live-hit repeatedly (2026-08-16) — a real error text seen when creating
+    // Microsoft.Automation/automationAccounts in a region this tool had just finished tearing down
+    // (its ephemeral resource groups delete on every capture, which is exactly what re-triggers this
+    // for whichever region was used last). Plain "code":"BadRequest" from a direct ARM PUT, no
+    // nested "error" wrapper — the distinctive phrase itself is what's matched.
+    [Fact]
+    public void IsCapacityError_TrueForAutomationAccountOnePerRegion()
+    {
+        const string message =
+            """{"code":"BadRequest","message":"Only one account is allowed for your subscription per Region. If Deleted recently, please restore the same account"}""";
+
+        Assert.True(CapacityErrorDetector.IsCapacityError(message));
+    }
+
     [Fact]
     public void IsCapacityError_FalseForUnrelatedError()
     {

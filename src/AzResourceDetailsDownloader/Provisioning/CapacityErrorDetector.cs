@@ -23,7 +23,20 @@ public static class CapacityErrorDetector
         // this specific error code was missing from this list — confirmed live: a retry-at-lower-
         // concurrency pass (the *other* fallback mechanism, for QuotaErrorDetector-shaped errors)
         // doesn't help this one at all, since it isn't a concurrency-collision problem.
-        "MaxNumberOfRegionalEnvironmentsInSubExceeded"
+        "MaxNumberOfRegionalEnvironmentsInSubExceeded",
+        // Live-hit repeatedly (2026-08-16), Microsoft.Automation/automationAccounts: "Only one
+        // account is allowed for your subscription per Region. If Deleted recently, please restore
+        // the same account" (plain "code":"BadRequest" — the distinctive phrase itself is matched,
+        // not the generic code, since "BadRequest" alone would false-positive on unrelated 400s).
+        // Same shape as the Container Apps case above: a region that this tool itself provisioned
+        // and then deleted (ephemeral resource groups are torn down after every capture) stays
+        // counted against this per-region cap for some live-confirmed-but-unquantified async
+        // soft-delete grace window — confirmed by a standalone az deployment group create test
+        // (bypassing this tool) reproducing the identical error on a region emptied less than two
+        // minutes earlier, while a genuinely untouched region succeeded immediately. A different
+        // region genuinely sidesteps it, same as above, so this belongs in this detector rather than
+        // QuotaErrorDetector.
+        "Only one account is allowed for your subscription per Region"
     ];
 
     public static bool IsCapacityError(string? message) =>

@@ -131,7 +131,7 @@ public sealed class ResourceTypePipeline(
                 outputRoot, def.ArmType, category, rawJson, capture.Screenshot,
                 subscriptionId, secrets["tenantId"], rgName,
                 bicep, terraform, capture.Notices, capture.Fields,
-                secrets.GetValueOrDefault("userPrincipalName"), ct);
+                secrets.GetValueOrDefault("userPrincipalName"), secrets.GetValueOrDefault("adminPrincipalId"), ct);
 
             unitLogger.LogInformation("  captured '{ArmType}' successfully in {Elapsed}", def.ArmType, stopwatch.Elapsed);
             return new RunResult(def.ArmType, true, stopwatch.Elapsed, null);
