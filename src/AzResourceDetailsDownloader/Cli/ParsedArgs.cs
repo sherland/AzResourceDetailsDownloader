@@ -11,7 +11,7 @@ public enum RunMode
 
 public sealed record ParsedArgs(
     RunMode Mode, IReadOnlySet<string>? OnlyArmTypes, string? MaxCostTierOverride, int? MaxConcurrencyOverride,
-    string? NamePrefixOverride)
+    string? NamePrefixOverride, bool LiveUi = false)
 {
     public static ParsedArgs Parse(string[] args)
     {
@@ -20,6 +20,7 @@ public sealed record ParsedArgs(
         string? maxCostTier = null;
         int? maxConcurrency = null;
         string? namePrefix = null;
+        var liveUi = false;
 
         for (var i = 0; i < args.Length; i++)
         {
@@ -59,12 +60,15 @@ public sealed record ParsedArgs(
                 case "--name-prefix":
                     namePrefix = RequireValue(args, ref i, "--name-prefix");
                     break;
+                case "--live-ui":
+                    liveUi = true;
+                    break;
                 default:
                     throw new ArgumentException($"Unrecognized argument '{args[i]}'.");
             }
         }
 
-        return new ParsedArgs(mode, only, maxCostTier, maxConcurrency, namePrefix);
+        return new ParsedArgs(mode, only, maxCostTier, maxConcurrency, namePrefix, liveUi);
     }
 
     private static string RequireValue(string[] args, ref int index, string flag)
