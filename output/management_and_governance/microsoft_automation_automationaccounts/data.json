@@ -1,12 +1,12 @@
 {
-  "name": "aaa33xfw-e",
+  "name": "aa0hedgn-p",
   "systemData": {
-    "createdAt": "2026-08-13T14:35:15.73\u002B00:00",
-    "lastModifiedAt": "2026-08-13T14:35:15.73\u002B00:00"
+    "createdAt": "2026-08-16T17:12:51.07\u002B00:00",
+    "lastModifiedAt": "2026-08-16T17:12:51.07\u002B00:00"
   },
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7ab2ffe44d702d19/providers/Microsoft.Automation/automationAccounts/aaa33xfw-e",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-7ab2ffe44d702d19/providers/Microsoft.Automation/automationAccounts/aa0hedgn-p",
   "type": "Microsoft.Automation/AutomationAccounts",
-  "location": "northeurope",
+  "location": "southeastasia",
   "tags": {},
   "etag": null,
   "properties": {
@@ -17,7 +17,7 @@
       "capacity": null
     },
     "state": "Ok",
-    "RegistrationUrl": "https://14f473e2-47cd-4136-9b65-5bba4a8c8c68.agentsvc.ne.azure-automation.net/accounts/14f473e2-47cd-4136-9b65-5bba4a8c8c68",
+    "RegistrationUrl": "https://555a51a5-a6ba-4b4b-a10e-1bd449368cdb.agentsvc.sea.azure-automation.net/accounts/555a51a5-a6ba-4b4b-a10e-1bd449368cdb",
     "encryption": {
       "keySource": "Microsoft.Automation",
       "identity": {
@@ -25,7 +25,7 @@
       }
     },
     "privateEndpointConnections": [],
-    "automationHybridServiceUrl": "https://14f473e2-47cd-4136-9b65-5bba4a8c8c68.jrds.ne.azure-automation.net/automationAccounts/14f473e2-47cd-4136-9b65-5bba4a8c8c68",
+    "automationHybridServiceUrl": "https://555a51a5-a6ba-4b4b-a10e-1bd449368cdb.jrds.sea.azure-automation.net/automationAccounts/555a51a5-a6ba-4b4b-a10e-1bd449368cdb",
     "RuntimeConfiguration": {
       "powershell": {
         "builtinModules": {
@@ -43,8 +43,8 @@
         }
       }
     },
-    "creationTime": "2026-08-13T14:35:15.73\u002B00:00",
+    "creationTime": "2026-08-16T17:12:51.07\u002B00:00",
     "lastModifiedBy": null,
-    "lastModifiedTime": "2026-08-13T14:35:15.73\u002B00:00"
+    "lastModifiedTime": "2026-08-16T17:12:51.07\u002B00:00"
   }
 }
