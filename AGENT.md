@@ -932,3 +932,36 @@ out to be the wrong condition where "wait for Attached" was actually correct, in
 this same file. If a future capture mysteriously returns fewer fields than a raw HTML/DOM dump shows are
 genuinely present (not hidden, not `display:none`), check every `WaitForAsync` in the path for an
 unstated default wait state before assuming the selector itself is wrong.
+
+## Two remaining gaps, now conclusively diagnosed as external Azure Portal bugs, not fixable here
+
+`Microsoft.DataProtection/backupVaults` and `Microsoft.EventGrid/domains/topics` both kept returning 0
+Essentials fields after every fix above, including `captureTimeoutMultiplier` (tried at 3x and 5x) and
+`PostProvisioningDelaySeconds` (tried at 45s) — neither helped even slightly.
+
+**Conclusively root-caused 2026-08-16** by provisioning one standalone resource of each type directly
+via `az` (bypassing this tool entirely, per the "cheap iteration" workflow noted in the `playwright-cli`
+section above) and inspecting real network traffic with `playwright-cli requests` /
+`playwright-cli response-body <n>`:
+- The ARM batch API call for each resource's own data (`POST management.azure.com/batch`) **succeeds**
+  — HTTP 200, with a complete, correct, well-formed response body (`provisioningState: "Succeeded"`,
+  full `properties`/`id`/`name`/`type`, everything a healthy Essentials render would need).
+- The page's own state (spinner element count, rendered body text length) then stays **completely
+  static** for 70-110+ seconds of continuous polling — not slowly progressing, not eventually resolving,
+  just frozen — with zero relevant console errors (`playwright-cli console error` showed only the same
+  benign Copilot-metadata 404s already seen on working types like NSG).
+
+Data successfully fetched, but never rendered, with no error anywhere in the pipeline that would explain
+why: this is a genuine bug in the *extension's own React code* (`Microsoft_Azure_DataProtection` for the
+first, whichever extension owns EventGrid topic Overview blades for the second) — something in their own
+state management or render logic silently fails to process a successful response. It's categorically
+different from every earlier gap in this file: not a selector mismatch (nothing to select — the DOM
+genuinely never updates), not a timing issue (waiting longer changes nothing, because nothing is
+progressing), not a propagation lag (the data was already there on the very first check). No timeout,
+delay, or wait-state change in this codebase could ever fix this, and none should be attempted again
+without new evidence — the diagnostic here isn't "we didn't wait the right way," it's "Microsoft's own
+extension has a rendering bug for this blade, independent of anything we control." Left as a known,
+permanent-until-Microsoft-fixes-it limitation. If this resurfaces as worth re-investigating: check
+whether the extension version (`pageVersion=...` in the extension's own bundle request URL, visible via
+`playwright-cli requests --filter <extensionName>`) has changed since 2026-08-16 before assuming
+anything on our side needs to change.
