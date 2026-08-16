@@ -14,7 +14,16 @@ public static class CapacityErrorDetector
         "AllocationFailed",
         "ZonalAllocationFailed",
         "OverconstrainedAllocationRequest",
-        "SkuNotAvailable"
+        "SkuNotAvailable",
+        // Live-hit repeatedly (2026-08-16), Microsoft.App/managedEnvironments in norwayeast: "cannot
+        // have more than 1 Container App Environments in Norway East" — a per-*region* cap, which is
+        // exactly the shape this detector exists to catch (a different region genuinely sidesteps it,
+        // unlike a real validation/policy error). This entry's own locationFallbacks list
+        // (francecentral/swedencentral/eastus) already existed but never actually triggered, because
+        // this specific error code was missing from this list — confirmed live: a retry-at-lower-
+        // concurrency pass (the *other* fallback mechanism, for QuotaErrorDetector-shaped errors)
+        // doesn't help this one at all, since it isn't a concurrency-collision problem.
+        "MaxNumberOfRegionalEnvironmentsInSubExceeded"
     ];
 
     public static bool IsCapacityError(string? message) =>
