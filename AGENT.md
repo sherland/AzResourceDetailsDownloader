@@ -232,6 +232,30 @@ in a CSS attribute selector (`[id^="..."]`) gets mangled by cmd.exe's own escape
 inside quotes — use `[id*="..."]` (contains) instead of `^=` (starts-with) when passing selectors through
 this CLI from a bash/PowerShell wrapper.
 
+**More commands used successfully in later sessions (2026-08-15/16), worth knowing about up front rather
+than rediscovering**:
+- `console [min-level]` — dumps the browser's own console log (errors/warnings/info) for whatever's
+  currently loaded. The single cheapest way to check "did the page itself hit a JS error" — no new C#
+  debug tooling needed for that question, just `playwright-cli console error` after navigating.
+- `run-code --filename <path>` (or inline) — runs an arbitrary async JS snippet against `page`, i.e. a
+  full mini-script (multiple navigations, timed polling loops, `page.screenshot()`, custom waits), not
+  just a one-shot `eval`. Used to faithfully replay the exact navigation/wait sequence
+  `PortalCaptureService`/`EssentialsExtractor` use in C#, to check whether a failure reproduces outside
+  the full pipeline. Caveat live-learned the hard way: navigating to the *identical* URL twice in a row
+  can be a no-op in a hash-routed SPA (nothing re-renders) — always navigate through a genuinely
+  *different* intermediate URL first if the goal is to replay "coming from another resource's page."
+- `resize <w> <h>` — match the production capture's exact `1920x1080` viewport when trying to reproduce
+  a viewport-dependent layout difference (`open` defaults to `1280x720`).
+- `close` — closes the browser; do this when done, especially before provisioning fresh diagnostic
+  resources for a *different* investigation, to avoid confusing which browser session is "current."
+- A workflow that's paid off repeatedly: provision one cheap, standalone resource directly via `az`
+  (bypassing the whole C# pipeline entirely — no `dotnet run`, no ephemeral-resource-group scope, just
+  `az group create`/`az <service> create`), then drive `playwright-cli` against it directly. Far cheaper
+  and faster per iteration than a full pipeline run when the question is "does this reproduce at the
+  browser level at all" rather than "does the pipeline's own code handle it right" — remember to `az
+  group delete --name <rg> --yes --no-wait` the scratch resource group when done, since it isn't tracked
+  by `EphemeralResourceGroupScope`.
+
 **React fiber internals are inspectable and can reveal a field's real component identity** (per-request
 investigation, not wired into the pipeline) — every DOM node React manages carries a non-enumerable
 `__reactFiber$<key>` property; walking `fiber.return` and reading `fiber.memoizedProps` shows the props
