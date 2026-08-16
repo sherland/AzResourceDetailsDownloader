@@ -610,7 +610,14 @@
       "cost": {
         "tier": "Free"
       },
-      "location": "northeurope",
+      "location": "eastus",
+      "locationFallbacks": [
+        "eastus2",
+        "westus",
+        "southeastasia",
+        "northeurope",
+        "japanwest"
+      ],
       "nameTemplate": "aa{rand8}",
       "nameRules": {
         "charset": "lowerAlnumDash",
@@ -624,7 +631,7 @@
         }
       },
       "prerequisites": [],
-      "notes": ""
+      "notes": "Live-verified 2026-08-16: northeurope was rejected with \"Only one account is allowed for your subscription per Region. If Deleted recently, please restore the same account\" (BadRequest). Not a permanent per-region restriction — confirmed by testing eastus and westus directly via a standalone az deployment group create (bypassing this tool), both of which also failed minutes after this tool's own diagnostic test in each had already been created and torn down. This is the same self-inflicted async soft-delete grace-window pattern already found for Microsoft.App/managedEnvironments (see CapacityErrorDetector's MaxNumberOfRegionalEnvironmentsInSubExceeded comment): every capture provisions in an ephemeral resource group that gets deleted afterward, and this service keeps counting a just-deleted account against its one-per-region-per-subscription cap for some live-confirmed-but-unquantified window. CapacityErrorDetector now recognizes this error text, so ProvisionWithLocationFallbackAsync will automatically walk locationFallbacks (all confirmed-allowed regions for this Free Trial/Student subscription tier, per the automationAccounts region-restriction error) until it finds one that isn't currently in that window, rather than failing outright."
     },
     {
       "armType": "Microsoft.Web/serverfarms",
@@ -5573,7 +5580,7 @@
         "armRegionName": "westeurope",
         "perHourAccumulated": 0.132
       },
-      "location": null,
+      "location": "northeurope",
       "nameTemplate": "as{rand8}",
       "nameRules": {
         "charset": "lowerAlnum",
@@ -5593,7 +5600,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "Development tier (~$0.75+/hr) — tagged High for cost, not omitted. asAdministrators requires at least one real AAD principal (user/service principal object ID); this catalog has no way to fabricate one, so it's sourced from a new {secret.adminPrincipalId} value (same mechanism as {secret.sqlAdminPassword}) that must be supplied before live-testing this entry.",
+      "notes": "Development tier (~$0.75+/hr) — tagged High for cost, not omitted. asAdministrators requires at least one real AAD principal (user/service principal object ID); this catalog has no way to fabricate one, so it's sourced from a new {secret.adminPrincipalId} value (same mechanism as {secret.sqlAdminPassword}) that must be supplied before live-testing this entry. Live-verified 2026-08-16: the default location (norwayeast) isn't in this resource type's supported region list at all (LocationNotAvailableForResourceType) — first pinned to westeurope (supported by this resource type and this entry's own pricing region), but that failed too: \"The selected region is currently not accepting new customers\" (RequestDisallowedByAzure) — this Free Trial/Student subscription tier rejects westeurope outright, the same restriction hit for Microsoft.Automation/automationAccounts. Re-pinned to northeurope, which is both in this resource type's supported-region list and already confirmed acceptable for this subscription tier.",
       "estimatedProvisionMinutes": 10,
       "slowProvisioning": true
     },
@@ -5705,7 +5712,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "Smallest SKU (F2, ~$0.36/hr) — tagged High for cost. Like Analysis Services above, administration.members needs a real AAD principal, sourced from {secret.adminPrincipalId}."
+      "notes": "Smallest SKU (F2, ~$0.36/hr) — tagged High for cost. Like Analysis Services above, administration.members needs a real AAD principal, sourced from {secret.adminPrincipalId}. Live-verified 2026-08-16, secret correctly resolved and the ARM PUT itself was accepted, but Microsoft Fabric rejected it with \"Tenant ... wasn't recognized by Microsoft Fabric. Sign up for Microsoft Fabric and try again.\" — a genuine tenant-level onboarding requirement (someone with tenant-admin rights has to sign the whole tenant up for Fabric first, a manual step outside ARM/this tool entirely). Not fixable via any request-body or config change here — expect this entry to keep failing in this tenant until that's done."
     },
     {
       "armType": "Microsoft.Synapse/workspaces",
@@ -6201,7 +6208,7 @@
         }
       },
       "prerequisites": [],
-      "notes": "$1.0081/hour for the A1 SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/power-bi-embedded/, verified). Confirmed genuine per-second proration despite hourly-rate framing — quoted verbatim: \"Actual usage is computed to the second and billed hourly. For example, if an instance exists for 12 hours and 15 minutes in a month, your bill will show usage of 12.25 hours. If your instance is only active for 6 minutes, your bill will show usage of 0.1 hour.\" So a brief few-minute test genuinely costs a small fraction of $1.0081, not a full hour. Already named in this README's 'deliberately skipped' list before this catalog expansion; re-added here at VeryHigh instead of omitted, for full architectural coverage. administration.members needs a real AAD principal, sourced from {secret.adminPrincipalId} (same as Analysis Services/Fabric). Not live-tested."
+      "notes": "$1.0081/hour for the A1 SKU (source: Azure Retail Prices API and https://azure.microsoft.com/en-us/pricing/details/power-bi-embedded/, verified). Confirmed genuine per-second proration despite hourly-rate framing — quoted verbatim: \"Actual usage is computed to the second and billed hourly. For example, if an instance exists for 12 hours and 15 minutes in a month, your bill will show usage of 12.25 hours. If your instance is only active for 6 minutes, your bill will show usage of 0.1 hour.\" So a brief few-minute test genuinely costs a small fraction of $1.0081, not a full hour. Already named in this README's 'deliberately skipped' list before this catalog expansion; re-added here at VeryHigh instead of omitted, for full architectural coverage. administration.members needs a real AAD principal, sourced from {secret.adminPrincipalId} (same as Analysis Services/Fabric). Live-verified 2026-08-16: secret resolved correctly, ARM PUT accepted, but rejected downstream with the exact same \"Tenant ... wasn't recognized by Microsoft Fabric. Sign up for Microsoft Fabric and try again\" error as Microsoft.Fabric/capacities above — Power BI's backend has been consolidated onto Fabric infrastructure, so this entry inherits the same tenant-level onboarding blocker. Not fixable via any request-body or config change here."
     },
     {
       "armType": "Microsoft.Synapse/workspaces/sqlPools",

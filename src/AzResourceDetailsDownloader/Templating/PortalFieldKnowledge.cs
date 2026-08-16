@@ -47,6 +47,11 @@ public static class PortalFieldKnowledge
         "Pricing tier", "Pricing Tier (SKU)", "SKU", "Public IP address", "Virtual network/subnet",
         "NAT subnet", "NAT IPs", "Virtual network & IP Address", "Maintenance scope",
         "Server name", "Elastic databases", "Elastic database settings", "Custom security rules",
+        // Live-observed (2026-08-16, Microsoft.AnalysisServices/servers): properties.serverFullName
+        // with a literal ":rw" (read-write endpoint) suffix appended — same underlying value as
+        // "Server name" elsewhere in the same panel, just with portal-added punctuation data.json
+        // doesn't carry.
+        "Management Server Name",
         "Associated with", "Associations", "Communities filtered", "Circuits associated",
         "Throughput Units", "Daily message limit", "VUH usage (current month)", "Platform size",
         "Deployment Scope", "Colocation status", "Maintenance events", "Reboot setting",
@@ -203,6 +208,10 @@ public static class PortalFieldKnowledge
         new(StringComparer.OrdinalIgnoreCase)
         {
             ["Subscription"] = [OutputNormalizer.PlaceholderSubscriptionName],
+            // Same display-name value as "Subscription" above, under the label the
+            // "asx-overview-essentials__*" custom layout uses instead (live-observed 2026-08-16,
+            // Microsoft.AnalysisServices/servers — see OutputNormalizer.NormalizePortalFields).
+            ["Subscription name"] = [OutputNormalizer.PlaceholderSubscriptionName],
             // Never explicitly classified before this file existed — it only ever passed the old
             // consistency test by accident, since the placeholder GUID also appears verbatim inside
             // every capture's "id" field, so a whole-file substring search always found *something*.

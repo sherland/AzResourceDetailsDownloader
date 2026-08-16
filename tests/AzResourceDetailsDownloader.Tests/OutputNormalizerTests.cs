@@ -76,6 +76,24 @@ public class OutputNormalizerTests
     }
 
     [Fact]
+    public void Normalize_RedactsAdminPrincipalId_WhenProvided()
+    {
+        // Live-observed leak (2026-08-16, Microsoft.AnalysisServices/servers): the {secret.
+        // adminPrincipalId} catalog token resolves to the operator's own real AAD object ID and
+        // several catalog entries embed it verbatim in asAdministrators/administration.members —
+        // uncaught because nothing upstream of this method knew to redact it, same blind spot as
+        // the UPN case above.
+        const string adminPrincipalId = "e580c62a-96a8-430f-96a9-33d936178197";
+        var text = "{\"properties\": {\"asAdministrators\": {\"members\": [\"" + adminPrincipalId + "\"]}}}";
+
+        var result = OutputNormalizer.Normalize(
+            text, "sub", "tenant", "rg", "Microsoft.AnalysisServices/servers", adminPrincipalId: adminPrincipalId);
+
+        Assert.DoesNotContain(adminPrincipalId, result);
+        Assert.Contains(OutputNormalizer.PlaceholderAdminPrincipalId, result);
+    }
+
+    [Fact]
     public void NormalizePortalFields_RedactsEntraAdminFields_RegardlessOfExactLabel()
     {
         // Live-observed leak (2026-08-13, Microsoft.Synapse/workspaces): "SQL Microsoft Entra admin"
@@ -112,5 +130,19 @@ public class OutputNormalizerTests
         Assert.Equal(OutputNormalizer.PlaceholderDirectoryName, result.Single(f => f.Label == "Directory Name").Value);
         Assert.Equal(OutputNormalizer.PlaceholderSubscriptionName, result.Single(f => f.Label == "Subscription").Value);
         Assert.Equal("Norway East", result.Single(f => f.Label == "Location").Value);
+    }
+
+    [Fact]
+    public void NormalizePortalFields_RedactsSubscriptionNameLabelVariant()
+    {
+        // Live-observed leak (2026-08-16, Microsoft.AnalysisServices/servers — the "asx-overview-
+        // essentials__*" custom layout): this blade type labels the same subscription display-name
+        // field "Subscription name", not the "Subscription" label every other captured type used,
+        // so the exact-match switch let "Azure subscription 1" through uncaught.
+        var fields = new List<PortalField> { new("Subscription name", "Azure subscription 1") };
+
+        var result = OutputNormalizer.NormalizePortalFields(fields);
+
+        Assert.Equal(OutputNormalizer.PlaceholderSubscriptionName, result.Single().Value);
     }
 }

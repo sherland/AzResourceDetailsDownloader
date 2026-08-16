@@ -1,0 +1,34 @@
+[
+  {
+    "Label": "Subscription name",
+    "Value": "Example Subscription"
+  },
+  {
+    "Label": "Resource group",
+    "Value": "rg-ardl-fbd354f185c6fa29"
+  },
+  {
+    "Label": "Status",
+    "Value": "Active"
+  },
+  {
+    "Label": "Location",
+    "Value": "North Europe"
+  },
+  {
+    "Label": "Subscription ID",
+    "Value": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Label": "Server name",
+    "Value": "asazure://northeurope.asazure.windows.net/asrivqjljz"
+  },
+  {
+    "Label": "Management Server Name",
+    "Value": "asazure://northeurope.asazure.windows.net/asrivqjljz:rw"
+  },
+  {
+    "Label": "Pricing tier",
+    "Value": "D1"
+  }
+]
