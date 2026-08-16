@@ -163,8 +163,15 @@ public sealed class PortalCaptureService : IAsyncDisposable
             logger.LogInformation("    portal: found {Count} banner notice(s) on the page", notices.Count);
         }
 
-        var fields = await EssentialsExtractor.ExtractAsync(_page, captureTimeoutMultiplier);
-        logger.LogInformation("    portal: extracted {Count} Essentials field(s)", fields.Count);
+        var fields = await EssentialsExtractor.ExtractAsync(_page, logger, captureTimeoutMultiplier);
+        if (fields.Count == 0)
+        {
+            logger.LogWarning("    portal: extracted 0 Essentials field(s) for '{ResourceName}'", resourceName);
+        }
+        else
+        {
+            logger.LogInformation("    portal: extracted {Count} Essentials field(s)", fields.Count);
+        }
 
         return new PortalCaptureResult(bytes, notices, fields);
     }
