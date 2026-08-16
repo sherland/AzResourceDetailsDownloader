@@ -1,12 +1,12 @@
 {
   "name": "lngrd5p5kd4",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2b885a3134f70ff5/providers/Microsoft.Network/localNetworkGateways/lngrd5p5kd4",
-  "etag": "W/\u0022597ad5a1-e928-4a99-ab12-a35dce0f0732\u0022",
+  "etag": "W/\u0022a99380db-8a53-4aa8-ae9f-4342d951a9d6\u0022",
   "type": "Microsoft.Network/localNetworkGateways",
   "location": "norwayeast",
   "properties": {
     "provisioningState": "Succeeded",
-    "resourceGuid": "19321e72-8aab-4d1c-9124-18130456a3bd",
+    "resourceGuid": "ae2056ca-7e81-4b2f-8948-277faf6b5930",
     "localNetworkAddressSpace": {
       "addressPrefixes": [
         "192.168.100.0/24"

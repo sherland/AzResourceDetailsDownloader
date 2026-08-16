@@ -25,18 +25,18 @@
   },
   {
     "Label": "Name server 1",
-    "Value": "ns1-05.azure-dns.com."
+    "Value": "ns1-07.azure-dns.com."
   },
   {
     "Label": "Name server 2",
-    "Value": "ns2-05.azure-dns.net."
+    "Value": "ns2-07.azure-dns.net."
   },
   {
     "Label": "Name server 3",
-    "Value": "ns3-05.azure-dns.org."
+    "Value": "ns3-07.azure-dns.org."
   },
   {
     "Label": "Name server 4",
-    "Value": "ns4-05.azure-dns.info."
+    "Value": "ns4-07.azure-dns.info."
   }
 ]

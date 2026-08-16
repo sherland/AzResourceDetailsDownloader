@@ -1,13 +1,949 @@
 {
-  "generatedUtc": "2026-08-14T21:27:26.2304323Z",
-  "total": 1,
-  "succeeded": 1,
-  "failed": 0,
+  "generatedUtc": "2026-08-16T15:05:06.5959929Z",
+  "total": 157,
+  "succeeded": 125,
+  "failed": 32,
   "results": [
+    {
+      "armType": "Microsoft.Storage/storageAccounts",
+      "success": false,
+      "elapsedSeconds": 10.2,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-9449f3f8c9004057/providers/Microsoft.Storage/storageAccounts/sti13arhgp\u0027 (api 2023-05-01) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022StorageAccountAlreadyTaken\u0022,\u0022message\u0022:\u0022The storage account named sti13arhgp is already taken.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Compute/disks",
+      "success": true,
+      "elapsedSeconds": 44.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/virtualNetworks",
+      "success": true,
+      "elapsedSeconds": 80.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/virtualNetworks/subnets",
+      "success": true,
+      "elapsedSeconds": 141.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/networkSecurityGroups",
+      "success": true,
+      "elapsedSeconds": 188.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/publicIPAddresses",
+      "success": true,
+      "elapsedSeconds": 182.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/loadBalancers",
+      "success": true,
+      "elapsedSeconds": 162.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/privateDnsZones",
+      "success": true,
+      "elapsedSeconds": 117.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Cache/redis",
+      "success": false,
+      "elapsedSeconds": 3.5,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-8d10b0b381904577/providers/Microsoft.Cache/redis/redisziu0dj94\u0027 (api 2024-03-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022BadRequest\u0022,\u0022message\u0022:\u0022Azure Cache for Redis is retiring, create Azure Managed Redis instance instead. Learn more: https://aka.ms/AzureCacheForRedisRetirement \\r\\nRequestID=608b9398-c4e7-476e-8e80-6119fee281eb\u0022,\u0022target\u0022:null}}"
+    },
+    {
+      "armType": "Microsoft.Sql/servers",
+      "success": true,
+      "elapsedSeconds": 148.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DocumentDB/databaseAccounts",
+      "success": true,
+      "elapsedSeconds": 103.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Sql/servers/databases",
+      "success": true,
+      "elapsedSeconds": 168.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.KeyVault/vaults",
+      "success": true,
+      "elapsedSeconds": 88.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "success": true,
+      "elapsedSeconds": 54.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.OperationalInsights/workspaces",
+      "success": true,
+      "elapsedSeconds": 118.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/actionGroups",
+      "success": true,
+      "elapsedSeconds": 46.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Automation/automationAccounts",
+      "success": false,
+      "elapsedSeconds": 4.9,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-a6a5eb68e48f4b05/providers/Microsoft.Automation/automationAccounts/aa8ln-7a5l\u0027 (api 2023-11-01) failed with 400: {\u0022code\u0022:\u0022BadRequest\u0022,\u0022message\u0022:\u0022Only one account is allowed for your subscription per Region. If Deleted recently, please restore the same account\u0022}"
+    },
+    {
+      "armType": "Microsoft.Insights/components",
+      "success": true,
+      "elapsedSeconds": 193.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Web/sites",
+      "success": false,
+      "elapsedSeconds": 9.5,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-fb93ba49d12f46cf/providers/Microsoft.Web/sites/appr4jqbf1k\u0027 (api 2023-12-01) failed with 409: {\u0022Code\u0022:\u0022Conflict\u0022,\u0022Message\u0022:\u0022Website with given name appr4jqbf1k already exists.\u0022,\u0022Target\u0022:null,\u0022Details\u0022:[{\u0022Message\u0022:\u0022Website with given name appr4jqbf1k already exists.\u0022},{\u0022Code\u0022:\u0022Conflict\u0022},{\u0022ErrorEntity\u0022:{\u0022ExtendedCode\u0022:\u002254001\u0022,\u0022MessageTemplate\u0022:\u0022Website with given name {0} already exists.\u0022,\u0022Parameters\u0022:[\u0022appr4jqbf1k\u0022],\u0022Code\u0022:\u0022Conflict\u0022,\u0022Message\u0022:\u0022Website with given name appr4jqbf1k already exists.\u0022}}],\u0022Innererror\u0022:null}"
+    },
+    {
+      "armType": "Microsoft.Web/serverfarms",
+      "success": true,
+      "elapsedSeconds": 97.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Cache/redisEnterprise",
+      "success": true,
+      "elapsedSeconds": 459.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Web/staticSites",
+      "success": true,
+      "elapsedSeconds": 102.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Cache/redisEnterprise/databases",
+      "success": true,
+      "elapsedSeconds": 444.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ContainerRegistry/registries",
+      "success": true,
+      "elapsedSeconds": 146.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ContainerInstance/containerGroups",
+      "success": true,
+      "elapsedSeconds": 186.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ServiceBus/namespaces",
+      "success": true,
+      "elapsedSeconds": 165.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ServiceBus/namespaces/queues",
+      "success": true,
+      "elapsedSeconds": 189,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.EventGrid/topics",
+      "success": true,
+      "elapsedSeconds": 182.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/virtualMachines",
+      "success": true,
+      "elapsedSeconds": 190.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/snapshots",
+      "success": true,
+      "elapsedSeconds": 90.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/privateEndpoints",
+      "success": false,
+      "elapsedSeconds": 15.5,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-a4af84c0471a40f2/providers/Microsoft.Storage/storageAccounts/st9crnw0b9\u0027 (api 2023-05-01) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022StorageAccountAlreadyTaken\u0022,\u0022message\u0022:\u0022The storage account named st9crnw0b9 is already taken.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Network/networkInterfaces",
+      "success": true,
+      "elapsedSeconds": 149.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/routeTables",
+      "success": true,
+      "elapsedSeconds": 95.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/sshPublicKeys",
+      "success": true,
+      "elapsedSeconds": 127.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/availabilitySets",
+      "success": true,
+      "elapsedSeconds": 180.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.EventHub/namespaces",
+      "success": true,
+      "elapsedSeconds": 147,
+      "error": null
+    },
     {
       "armType": "Microsoft.AppConfiguration/configurationStores",
       "success": true,
-      "elapsedSeconds": 46.1,
+      "elapsedSeconds": 127.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/localNetworkGateways",
+      "success": true,
+      "elapsedSeconds": 148.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies",
+      "success": true,
+      "elapsedSeconds": 149.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/natGateways",
+      "success": true,
+      "elapsedSeconds": 189.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Cdn/profiles",
+      "success": false,
+      "elapsedSeconds": 35,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-3d6b7e5c646c45d2/providers/Microsoft.Cdn/profiles/cdncz-d9z3m\u0027 (api 2024-02-01) failed with 400: {\n  \u0022error\u0022: {\n    \u0022code\u0022: \u0022BadRequest\u0022,\n    \u0022message\u0022: \u0022Free Trial and Student account is forbidden for Azure Frontdoor resources.\u0022\n  }\n}"
+    },
+    {
+      "armType": "Microsoft.Network/firewallPolicies",
+      "success": true,
+      "elapsedSeconds": 168.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Cdn/profiles/afdEndpoints",
+      "success": false,
+      "elapsedSeconds": 22.7,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-bcd40bbb8eda4c2c/providers/Microsoft.Cdn/profiles/cdnm8-y-pfd\u0027 (api 2024-02-01) failed with 400: {\n  \u0022error\u0022: {\n    \u0022code\u0022: \u0022BadRequest\u0022,\n    \u0022message\u0022: \u0022Free Trial and Student account is forbidden for Azure Frontdoor resources.\u0022\n  }\n}"
+    },
+    {
+      "armType": "Microsoft.OperationalInsights/querypacks",
+      "success": true,
+      "elapsedSeconds": 129,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/galleries",
+      "success": true,
+      "elapsedSeconds": 36.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/galleries/images",
+      "success": true,
+      "elapsedSeconds": 50.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.App/containerApps",
+      "success": false,
+      "elapsedSeconds": 3,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-d79678ce1d9f4c37/providers/Microsoft.App/managedEnvironments/caedj4q0www\u0027 (api 2024-03-01) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022MaxNumberOfRegionalEnvironmentsInSubExceeded\u0022,\u0022message\u0022:\u0022The subscription \u0027deafd2fb-c3d6-47f5-9645-cc34d54d4317\u0027 cannot have more than 1 Container App Environments in Norway East. For more information, visit: https://go.microsoft.com/fwlink/?linkid=2208872\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Maintenance/maintenanceConfigurations",
+      "success": true,
+      "elapsedSeconds": 89.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ContainerRegistry/registries/webhooks",
+      "success": true,
+      "elapsedSeconds": 128.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.SignalRService/signalR",
+      "success": false,
+      "elapsedSeconds": 4.7,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-4dbb49b7f6ea44f4/providers/Microsoft.SignalRService/signalR/sigrx1nr-0wu\u0027 (api 2024-03-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022BadArgument\u0022,\u0022message\u0022:\u0022Leaf domain sigrx1nr-0wu is reserved. Please use a different resource name.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.App/managedEnvironments",
+      "success": true,
+      "elapsedSeconds": 162.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Monitor/accounts",
+      "success": true,
+      "elapsedSeconds": 149.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DesktopVirtualization/workspaces",
+      "success": true,
+      "elapsedSeconds": 113.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DesktopVirtualization/hostPools",
+      "success": true,
+      "elapsedSeconds": 112.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DesktopVirtualization/applicationGroups",
+      "success": true,
+      "elapsedSeconds": 111.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Dashboard/grafana",
+      "success": true,
+      "elapsedSeconds": 252.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/virtualNetworkGateways",
+      "success": true,
+      "elapsedSeconds": 1243,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Search/searchServices",
+      "success": false,
+      "elapsedSeconds": 5.5,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-915e0ca48b4f4f40/providers/Microsoft.Search/searchServices/srchqyqp-wtf\u0027 (api 2024-06-01-preview) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022Unknown\u0022,\u0022message\u0022:\u0022An internal error has occurred. Please try again later. RequestId: 71f95852-3e8e-4621-badb-7d3565813850\u0022,\u0022target\u0022:null,\u0022details\u0022:null}}"
+    },
+    {
+      "armType": "Microsoft.Resources/templateSpecs",
+      "success": true,
+      "elapsedSeconds": 186.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Resources/templateSpecs/versions",
+      "success": true,
+      "elapsedSeconds": 188.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ResourceGraph/queries",
+      "success": true,
+      "elapsedSeconds": 186,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/virtualWans",
+      "success": true,
+      "elapsedSeconds": 180.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.NotificationHubs/namespaces",
+      "success": true,
+      "elapsedSeconds": 189.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "success": true,
+      "elapsedSeconds": 186.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Communication/communicationServices",
+      "success": true,
+      "elapsedSeconds": 163.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.EventGrid/systemTopics",
+      "success": false,
+      "elapsedSeconds": 6.1,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-468d93ec2a5243b7/providers/Microsoft.Storage/storageAccounts/sthhoywda2\u0027 (api 2023-05-01) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022StorageAccountAlreadyTaken\u0022,\u0022message\u0022:\u0022The storage account named sthhoywda2 is already taken.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Sql/servers/elasticPools",
+      "success": true,
+      "elapsedSeconds": 248.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/metricAlerts",
+      "success": false,
+      "elapsedSeconds": 6.3,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-eac31712aaf146cf/providers/Microsoft.Storage/storageAccounts/stagf5ppwn\u0027 (api 2023-05-01) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022StorageAccountAlreadyTaken\u0022,\u0022message\u0022:\u0022The storage account named stagf5ppwn is already taken.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Communication/emailServices",
+      "success": true,
+      "elapsedSeconds": 141.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.CognitiveServices/accounts",
+      "success": true,
+      "elapsedSeconds": 144.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/dataCollectionEndpoints",
+      "success": true,
+      "elapsedSeconds": 114,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/autoscalesettings",
+      "success": false,
+      "elapsedSeconds": 28.9,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-5e7cfa7a609d448a/providers/Microsoft.Web/serverfarms/planp1o-hz-0\u0027 (api 2023-12-01) failed with 429: {\u0022Code\u0022:\u0022429\u0022,\u0022Message\u0022:\u0022App Service Plan Create operation is throttled for subscription deafd2fb-c3d6-47f5-9645-cc34d54d4317. Please contact support if issue persists.\u0022,\u0022Target\u0022:null,\u0022Details\u0022:[{\u0022Message\u0022:\u0022App Service Plan Create operation is throttled for subscription deafd2fb-c3d6-47f5-9645-cc34d54d4317. Please contact support if issue persists.\u0022},{\u0022Code\u0022:\u0022429\u0022},{\u0022ErrorEntity\u0022:{\u0022ExtendedCode\u0022:\u002251025\u0022,\u0022MessageTemplate\u0022:\u0022App Service Plan {0} operation is throttled for subscription {1}. Please contact support if issue persists.\u0022,\u0022Parameters\u0022:[\u0022Create\u0022,\u0022deafd2fb-c3d6-47f5-9645-cc34d54d4317\u0022],\u0022Code\u0022:\u0022429\u0022,\u0022Message\u0022:\u0022App Service Plan Create operation is throttled for subscription deafd2fb-c3d6-47f5-9645-cc34d54d4317. Please contact support if issue persists.\u0022}}],\u0022Innererror\u0022:null}"
+    },
+    {
+      "armType": "Microsoft.Insights/activityLogAlerts",
+      "success": true,
+      "elapsedSeconds": 119.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/scheduledQueryRules",
+      "success": true,
+      "elapsedSeconds": 207,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Automation/automationAccounts/runbooks",
+      "success": false,
+      "elapsedSeconds": 3.7,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-0a1647799b9f4c84/providers/Microsoft.Automation/automationAccounts/aazp8c4y3k\u0027 (api 2023-11-01) failed with 400: {\u0022code\u0022:\u0022BadRequest\u0022,\u0022message\u0022:\u0022Only one account is allowed for your subscription per Region. If Deleted recently, please restore the same account\u0022}"
+    },
+    {
+      "armType": "Microsoft.Insights/dataCollectionRules",
+      "success": true,
+      "elapsedSeconds": 221.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/webtests",
+      "success": true,
+      "elapsedSeconds": 213.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Insights/workbooks",
+      "success": true,
+      "elapsedSeconds": 247.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Portal/dashboards",
+      "success": true,
+      "elapsedSeconds": 225.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "success": true,
+      "elapsedSeconds": 265.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/dnsZones",
+      "success": true,
+      "elapsedSeconds": 110.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.RecoveryServices/vaults",
+      "success": true,
+      "elapsedSeconds": 226.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ApiManagement/service",
+      "success": false,
+      "elapsedSeconds": 5,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-2edd33e4a68e4c67/providers/Microsoft.ApiManagement/service/apimqboznhhd\u0027 (api 2023-09-01-preview) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022ServiceAlreadyExists\u0022,\u0022subCode\u0022:null,\u0022message\u0022:\u0022Api service already exists: apimqboznhhd\u0022,\u0022details\u0022:null,\u0022innerError\u0022:null}}"
+    },
+    {
+      "armType": "Microsoft.Logic/workflows",
+      "success": true,
+      "elapsedSeconds": 195.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.OperationsManagement/solutions",
+      "success": true,
+      "elapsedSeconds": 243.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DocumentDB/mongoClusters",
+      "success": true,
+      "elapsedSeconds": 400,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DBforPostgreSQL/flexibleServers",
+      "success": true,
+      "elapsedSeconds": 115.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ContainerService/managedClusters",
+      "success": true,
+      "elapsedSeconds": 256.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/virtualMachineScaleSets",
+      "success": true,
+      "elapsedSeconds": 86.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.EventHub/namespaces/eventHubs",
+      "success": true,
+      "elapsedSeconds": 97.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Devices/IotHubs",
+      "success": true,
+      "elapsedSeconds": 208.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ServiceBus/namespaces/topics",
+      "success": true,
+      "elapsedSeconds": 120.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+      "success": true,
+      "elapsedSeconds": 113.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/bastionHosts",
+      "success": true,
+      "elapsedSeconds": 580.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/azureFirewalls",
+      "success": true,
+      "elapsedSeconds": 509.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/networkSecurityGroups/securityRules",
+      "success": true,
+      "elapsedSeconds": 190.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/loadBalancers/inboundNatRules",
+      "success": false,
+      "elapsedSeconds": 3.2,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-c32b185599ca4f0f/providers/Microsoft.Network/publicIPAddresses/pipw5v3-j40\u0027 (api 2023-09-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022PublicIPCountLimitReached\u0022,\u0022message\u0022:\u0022Cannot create more than 3 public IP addresses for this subscription in this region.\u0022,\u0022details\u0022:[]}}"
+    },
+    {
+      "armType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "success": true,
+      "elapsedSeconds": 282.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "success": false,
+      "elapsedSeconds": 6.7,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-1b5fc2e482aa4d25/providers/Microsoft.Storage/storageAccounts/sttp0smln8\u0027 (api 2023-05-01) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022StorageAccountAlreadyTaken\u0022,\u0022message\u0022:\u0022The storage account named sttp0smln8 is already taken.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Network/routeTables/routes",
+      "success": true,
+      "elapsedSeconds": 231,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.CognitiveServices/accounts/projects",
+      "success": false,
+      "elapsedSeconds": 75.9,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-4dfe4de4088d4f98/providers/Microsoft.CognitiveServices/accounts/aifafo-d-ss/projects/projb-c-ks\u0027 (api 2025-04-01-preview) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022BadRequest\u0022,\u0022message\u0022:\u0022Unsupported configuration. To create projects, you must enable a managed identity on your resource.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
+      "success": true,
+      "elapsedSeconds": 224.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+      "success": true,
+      "elapsedSeconds": 220.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.SignalRService/webPubSub",
+      "success": false,
+      "elapsedSeconds": 4.7,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-08af5f70ee6f45d3/providers/Microsoft.SignalRService/webPubSub/wpswbqd8-py\u0027 (api 2024-03-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022BadArgument\u0022,\u0022message\u0022:\u0022Leaf domain wpswbqd8-py is reserved. Please use a different resource name.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.EventGrid/domains/topics",
+      "success": true,
+      "elapsedSeconds": 396.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Maps/accounts",
+      "success": true,
+      "elapsedSeconds": 402.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Sql/servers/jobAgents",
+      "success": true,
+      "elapsedSeconds": 490.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.VideoIndexer/accounts",
+      "success": false,
+      "elapsedSeconds": 6.2,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-90d61302ce364e94/providers/Microsoft.Storage/storageAccounts/st32wnmsmg\u0027 (api 2023-05-01) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022StorageAccountAlreadyTaken\u0022,\u0022message\u0022:\u0022The storage account named st32wnmsmg is already taken.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.MachineLearningServices/workspaces",
+      "success": false,
+      "elapsedSeconds": 6.4,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-6a44eb96e3eb4167/providers/Microsoft.Storage/storageAccounts/st8g41vyg3\u0027 (api 2023-05-01) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022StorageAccountAlreadyTaken\u0022,\u0022message\u0022:\u0022The storage account named st8g41vyg3 is already taken.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Logic/integrationAccounts",
+      "success": true,
+      "elapsedSeconds": 417.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DataFactory/factories",
+      "success": true,
+      "elapsedSeconds": 191.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DigitalTwins/digitalTwinsInstances",
+      "success": true,
+      "elapsedSeconds": 194.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.EventGrid/domains",
+      "success": true,
+      "elapsedSeconds": 204.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.EventGrid/namespaces",
+      "success": true,
+      "elapsedSeconds": 195.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Devices/provisioningServices",
+      "success": true,
+      "elapsedSeconds": 193.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Batch/batchAccounts",
+      "success": true,
+      "elapsedSeconds": 196.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/proximityPlacementGroups",
+      "success": true,
+      "elapsedSeconds": 196.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.App/jobs",
+      "success": true,
+      "elapsedSeconds": 153.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Compute/restorePointCollections",
+      "success": true,
+      "elapsedSeconds": 213.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.LoadTestService/loadTests",
+      "success": true,
+      "elapsedSeconds": 150.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DataProtection/resourceGuards",
+      "success": true,
+      "elapsedSeconds": 147.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DataProtection/backupVaults",
+      "success": true,
+      "elapsedSeconds": 269.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DataProtection/backupVaults/backupPolicies",
+      "success": true,
+      "elapsedSeconds": 328.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.StorageSync/storageSyncServices",
+      "success": true,
+      "elapsedSeconds": 287.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DesktopVirtualization/scalingPlans",
+      "success": true,
+      "elapsedSeconds": 290,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Migrate/assessmentProjects",
+      "success": true,
+      "elapsedSeconds": 207.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.AlertsManagement/actionRules",
+      "success": true,
+      "elapsedSeconds": 151.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/publicIPPrefixes",
+      "success": false,
+      "elapsedSeconds": 2.9,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-1b3d511756e24522/providers/Microsoft.Network/publicIPPrefixes/pippfxwtr6ge\u0027 (api 2023-09-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022IPv4StandardSkuPublicIpCountLimitReached\u0022,\u0022message\u0022:\u0022Cannot create more than 3 IPv4 Standard SKU public IP addresses for this subscription in this region.\u0022,\u0022details\u0022:[]}}"
+    },
+    {
+      "armType": "Microsoft.Databricks/accessConnectors",
+      "success": true,
+      "elapsedSeconds": 194.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/trafficManagerProfiles",
+      "success": false,
+      "elapsedSeconds": 3.7,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-4c368e6bc2e642be/providers/Microsoft.Network/trafficManagerProfiles/tm5okdvd37\u0027 (api 2022-04-01) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022BadRequest\u0022,\u0022message\u0022:\u0022Label \u0027ardltm65c6rbk1\u0027 is not available in \u0027ardltm65c6rbk1.trafficmanager.net\u0027. Please choose a different label and retry the operation.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Network/applicationSecurityGroups",
+      "success": true,
+      "elapsedSeconds": 172.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/ipGroups",
+      "success": true,
+      "elapsedSeconds": 114.3,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/routeFilters",
+      "success": true,
+      "elapsedSeconds": 171.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/networkSecurityPerimeters",
+      "success": true,
+      "elapsedSeconds": 127.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/networkManagers",
+      "success": true,
+      "elapsedSeconds": 159.6,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/dnsResolvers",
+      "success": true,
+      "elapsedSeconds": 135.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/dnsForwardingRulesets",
+      "success": true,
+      "elapsedSeconds": 260.7,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/privateLinkServices",
+      "success": true,
+      "elapsedSeconds": 118,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/dnsResolvers/inboundEndpoints",
+      "success": true,
+      "elapsedSeconds": 298,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.AnalysisServices/servers",
+      "success": false,
+      "elapsedSeconds": 2.3,
+      "error": "Unresolved secret \u0027adminPrincipalId\u0027. Set it via configuration key \u0027Secrets:adminPrincipalId\u0027 (e.g. environment variable ARDL_Secrets__adminPrincipalId)."
+    },
+    {
+      "armType": "Microsoft.Kusto/clusters",
+      "success": false,
+      "elapsedSeconds": 4.9,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-81c00debe7b2421b/providers/Microsoft.Kusto/clusters/adxc0g93850\u0027 (api 2023-08-15) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022InvalidClusterName\u0022,\u0022message\u0022:\u0022Name \u0027adxc0g93850\u0027 with type Engine is already taken. Please specify a different name\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Kusto/clusters/databases",
+      "success": false,
+      "elapsedSeconds": 5.3,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-3322ff17051f423e/providers/Microsoft.Kusto/clusters/adx5mdfdubi\u0027 (api 2023-08-15) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022InvalidClusterName\u0022,\u0022message\u0022:\u0022Name \u0027adx5mdfdubi\u0027 with type Engine is already taken. Please specify a different name\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Fabric/capacities",
+      "success": false,
+      "elapsedSeconds": 2.3,
+      "error": "Unresolved secret \u0027adminPrincipalId\u0027. Set it via configuration key \u0027Secrets:adminPrincipalId\u0027 (e.g. environment variable ARDL_Secrets__adminPrincipalId)."
+    },
+    {
+      "armType": "Microsoft.Synapse/workspaces",
+      "success": false,
+      "elapsedSeconds": 5.6,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-cc75c126f2594f8a/providers/Microsoft.Storage/storageAccounts/stvef3j9lw\u0027 (api 2023-05-01) failed with 409: {\u0022error\u0022:{\u0022code\u0022:\u0022StorageAccountAlreadyTaken\u0022,\u0022message\u0022:\u0022The storage account named stvef3j9lw is already taken.\u0022}}"
+    },
+    {
+      "armType": "Microsoft.Network/serviceEndPointPolicies",
+      "success": true,
+      "elapsedSeconds": 176.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/dnsResolvers/outboundEndpoints",
+      "success": true,
+      "elapsedSeconds": 352.4,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Network/frontdoorWebApplicationFirewallPolicies",
+      "success": true,
+      "elapsedSeconds": 195.5,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ServiceFabric/clusters",
+      "success": false,
+      "elapsedSeconds": 5,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-b271e5cade53452d/providers/Microsoft.ServiceFabric/clusters/sfi0d-0qiq\u0027 (api 2021-06-01) failed with 400: {\r\n  \u0022error\u0022: {\r\n    \u0022code\u0022: \u0022CreationOfUnsecureClustersNotAllowed\u0022,\r\n    \u0022message\u0022: \u0022Creation of unsecure clusters is not allowed.\u0022,\r\n    \u0022details\u0022: []\r\n  }\r\n}"
+    },
+    {
+      "armType": "Microsoft.HDInsight/clusters",
+      "success": false,
+      "elapsedSeconds": 31.4,
+      "error": "Unresolved secret \u0027hdiStorageKeyPlaceholder\u0027. Set it via configuration key \u0027Secrets:hdiStorageKeyPlaceholder\u0027 (e.g. environment variable ARDL_Secrets__hdiStorageKeyPlaceholder)."
+    },
+    {
+      "armType": "Microsoft.PowerBIDedicated/capacities",
+      "success": false,
+      "elapsedSeconds": 1.2,
+      "error": "Unresolved secret \u0027adminPrincipalId\u0027. Set it via configuration key \u0027Secrets:adminPrincipalId\u0027 (e.g. environment variable ARDL_Secrets__adminPrincipalId)."
+    },
+    {
+      "armType": "Microsoft.Databricks/workspaces",
+      "success": true,
+      "elapsedSeconds": 259.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.ServiceFabric/managedClusters",
+      "success": true,
+      "elapsedSeconds": 289.8,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DBforPostgreSQL/serverGroupsv2",
+      "success": false,
+      "elapsedSeconds": 3.2,
+      "error": "ARM PUT \u0027/subscriptions/deafd2fb-c3d6-47f5-9645-cc34d54d4317/resourceGroups/rg-ardl-12758f7635104294/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/pgc7c-ia-nz\u0027 (api 2023-03-02-preview) failed with 400: {\u0022error\u0022:{\u0022code\u0022:\u0022bad_request\u0022,\u0022message\u0022:\u0022Provisioning new Azure Cosmos DB for PostgreSQL clusters is no longer supported as part of service retirement. Point-in-time restore and read replica operations remain available for existing clusters. For migration guidance and retirement details, see https://azure.microsoft.com/en-us/updates?id=556085\u0022}}"
+    },
+    {
+      "armType": "Microsoft.ContainerService/managedClusters/agentPools",
+      "success": true,
+      "elapsedSeconds": 438.9,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Synapse/workspaces/sqlPools",
+      "success": true,
+      "elapsedSeconds": 437.2,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.Purview/accounts",
+      "success": true,
+      "elapsedSeconds": 205.1,
+      "error": null
+    },
+    {
+      "armType": "Microsoft.DataMigration/services",
+      "success": true,
+      "elapsedSeconds": 502.9,
       "error": null
     }
   ]

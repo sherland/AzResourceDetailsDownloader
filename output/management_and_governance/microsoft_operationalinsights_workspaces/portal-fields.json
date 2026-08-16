@@ -20,6 +20,22 @@
     "Value": "00000000-0000-0000-0000-000000000000"
   },
   {
+    "Label": "Workspace Name",
+    "Value": "law8-is7-6g"
+  },
+  {
+    "Label": "Workspace ID",
+    "Value": "798dc64e-bd49-4000-8c21-f7320c3e186e"
+  },
+  {
+    "Label": "Pricing tier",
+    "Value": "Pay-as-you-go"
+  },
+  {
+    "Label": "Access control mode",
+    "Value": "Use resource or workspace permissions"
+  },
+  {
     "Label": "Operational issues",
     "Value": "OK"
   }

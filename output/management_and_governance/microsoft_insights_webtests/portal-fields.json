@@ -17,11 +17,11 @@
   },
   {
     "Label": "Instrumentation key",
-    "Value": "0dd8c1d6-26aa-4f4e-a492-bea3413c7026"
+    "Value": "4efd2052-4797-46a9-88ce-068dd0e8dadb"
   },
   {
     "Label": "Connection string",
-    "Value": "InstrumentationKey=0dd8c1d6-26aa-4f4e-a492-bea3413c7026;IngestionEndpoint=https://norwayeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://norwayeast.livediagnostics.monitor.azure.com/;ApplicationId=2b291e4c-a1e7-477c-99ec-35a5f9966760"
+    "Value": "InstrumentationKey=4efd2052-4797-46a9-88ce-068dd0e8dadb;IngestionEndpoint=https://norwayeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://norwayeast.livediagnostics.monitor.azure.com/;ApplicationId=9a85e192-55dc-4d75-a467-380d7877f8ea"
   },
   {
     "Label": "Logs workspace",

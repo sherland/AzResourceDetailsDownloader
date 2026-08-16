@@ -19,22 +19,22 @@
             "restartCount": 0,
             "currentState": {
               "state": "Running",
-              "startTime": "2026-08-13T12:45:54.91Z",
+              "startTime": "2026-08-16T13:25:23.144Z",
               "detailStatus": ""
             },
             "events": [
               {
                 "count": 1,
-                "firstTimestamp": "2026-08-13T12:45:41Z",
-                "lastTimestamp": "2026-08-13T12:45:41Z",
+                "firstTimestamp": "2026-08-16T13:25:13Z",
+                "lastTimestamp": "2026-08-16T13:25:13Z",
                 "name": "Pulled",
                 "message": "Successfully pulled image \u0022mcr.microsoft.com/azuredocs/aci-helloworld@sha256:b9cec4d6b50c6bf25e3f7f93bdc1628e5dca972cf132d38ed8f5bc955bb179c3\u0022",
                 "type": "Normal"
               },
               {
                 "count": 1,
-                "firstTimestamp": "2026-08-13T12:45:41Z",
-                "lastTimestamp": "2026-08-13T12:45:41Z",
+                "firstTimestamp": "2026-08-16T13:25:13Z",
+                "lastTimestamp": "2026-08-16T13:25:13Z",
                 "name": "Pulling",
                 "message": "pulling image \u0022mcr.microsoft.com/azuredocs/aci-helloworld@sha256:b9cec4d6b50c6bf25e3f7f93bdc1628e5dca972cf132d38ed8f5bc955bb179c3\u0022",
                 "type": "Normal"

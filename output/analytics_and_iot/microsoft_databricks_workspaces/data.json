@@ -53,9 +53,9 @@
       "puid": "0003BFFD82F6CC9C",
       "applicationId": "04b07795-8ddb-461a-bbee-02f9e1bf7b46"
     },
-    "workspaceId": "7405608718544820",
-    "workspaceUrl": "adb-7405608718544820.0.azuredatabricks.net",
-    "createdDateTime": "2026-08-13T13:35:59.0700678Z"
+    "workspaceId": "7405616215055839",
+    "workspaceUrl": "adb-7405616215055839.19.azuredatabricks.net",
+    "createdDateTime": "2026-08-16T14:52:25.8782812Z"
   },
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-fba1943833ef0847/providers/Microsoft.Databricks/workspaces/dbx21a20-w4",
   "name": "dbx21a20-w4",
@@ -67,9 +67,9 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-13T13:35:58.9180517\u002B00:00",
+    "createdAt": "2026-08-16T14:52:25.8163187\u002B00:00",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T13:35:58.9180517\u002B00:00"
+    "lastModifiedAt": "2026-08-16T14:52:25.8163187\u002B00:00"
   }
 }

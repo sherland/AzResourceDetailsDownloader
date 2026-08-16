@@ -1,6 +1,6 @@
 {
-  "name": "vmssrd5qq3",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Compute/virtualMachineScaleSets/vmssrd5qq3",
+  "name": "vmsswdgknl",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Compute/virtualMachineScaleSets/vmsswdgknl",
   "type": "Microsoft.Compute/virtualMachineScaleSets",
   "location": "swedencentral",
   "sku": {
@@ -61,7 +61,7 @@
                   "name": "ipconfig1",
                   "properties": {
                     "subnet": {
-                      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Network/virtualNetworks/vnetu-axjz1a/subnets/default"
+                      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a482ee03d0d47514/providers/Microsoft.Network/virtualNetworks/vnetd7-ts-wt/subnets/default"
                     },
                     "privateIPAddressVersion": "IPv4"
                   }
@@ -71,13 +71,13 @@
           }
         ]
       },
-      "timeCreated": "2026-08-14T12:21:36.2646931\u002B00:00"
+      "timeCreated": "2026-08-16T14:09:17.4245021\u002B00:00"
     },
     "provisioningState": "Succeeded",
     "overprovision": true,
     "doNotRunExtensionsOnOverprovisionedVMs": false,
-    "uniqueId": "066164af-6a61-4e1c-9a06-4c35a1e7f632",
+    "uniqueId": "82c88956-bd88-4860-951a-2597817958f4",
     "platformFaultDomainCount": 5,
-    "timeCreated": "2026-08-14T12:21:36.2646931\u002B00:00"
+    "timeCreated": "2026-08-16T14:09:17.4245021\u002B00:00"
   }
 }

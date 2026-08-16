@@ -1,17 +1,17 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmosd5q1iefd",
-  "name": "cosmosd5q1iefd",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-657bd609e27aba5f/providers/Microsoft.DocumentDB/databaseAccounts/cosmoscibdp-jn",
+  "name": "cosmoscibdp-jn",
   "location": "Sweden Central",
   "type": "Microsoft.DocumentDB/databaseAccounts",
   "kind": "GlobalDocumentDB",
   "tags": {},
   "systemData": {
-    "createdAt": "2026-08-14T10:30:36.945429Z"
+    "createdAt": "2026-08-16T13:18:04.4779599Z"
   },
   "properties": {
     "provisioningState": "Succeeded",
-    "documentEndpoint": "https://cosmosd5q1iefd.documents.azure.com:443/",
-    "sqlEndpoint": "https://cosmosd5q1iefd.documents.azure.com:443/",
+    "documentEndpoint": "https://cosmoscibdp-jn.documents.azure.com:443/",
+    "sqlEndpoint": "https://cosmoscibdp-jn.documents.azure.com:443/",
     "publicNetworkAccess": "Enabled",
     "enableAutomaticFailover": true,
     "enableMultipleWriteLocations": false,
@@ -25,7 +25,7 @@
     "analyticalStorageConfiguration": {
       "schemaType": "WellDefined"
     },
-    "instanceId": "e0216ba6-9c63-4e1a-843f-0a51f8287152",
+    "instanceId": "9011a654-f976-456a-b9da-b36af2f86ddb",
     "databaseAccountOfferType": "Standard",
     "defaultIdentity": "FirstPartyIdentity",
     "networkAclBypass": "None",
@@ -41,9 +41,9 @@
     "configurationOverrides": {},
     "writeLocations": [
       {
-        "id": "cosmosd5q1iefd-swedencentral",
+        "id": "cosmoscibdp-jn-swedencentral",
         "locationName": "Sweden Central",
-        "documentEndpoint": "https://cosmosd5q1iefd-swedencentral.documents.azure.com:443/",
+        "documentEndpoint": "https://cosmoscibdp-jn-swedencentral.documents.azure.com:443/",
         "provisioningState": "Succeeded",
         "failoverPriority": 0,
         "isZoneRedundant": false
@@ -51,9 +51,9 @@
     ],
     "readLocations": [
       {
-        "id": "cosmosd5q1iefd-swedencentral",
+        "id": "cosmoscibdp-jn-swedencentral",
         "locationName": "Sweden Central",
-        "documentEndpoint": "https://cosmosd5q1iefd-swedencentral.documents.azure.com:443/",
+        "documentEndpoint": "https://cosmoscibdp-jn-swedencentral.documents.azure.com:443/",
         "provisioningState": "Succeeded",
         "failoverPriority": 0,
         "isZoneRedundant": false
@@ -61,9 +61,9 @@
     ],
     "locations": [
       {
-        "id": "cosmosd5q1iefd-swedencentral",
+        "id": "cosmoscibdp-jn-swedencentral",
         "locationName": "Sweden Central",
-        "documentEndpoint": "https://cosmosd5q1iefd-swedencentral.documents.azure.com:443/",
+        "documentEndpoint": "https://cosmoscibdp-jn-swedencentral.documents.azure.com:443/",
         "provisioningState": "Succeeded",
         "failoverPriority": 0,
         "isZoneRedundant": false
@@ -71,7 +71,7 @@
     ],
     "failoverPolicies": [
       {
-        "id": "cosmosd5q1iefd-swedencentral",
+        "id": "cosmoscibdp-jn-swedencentral",
         "locationName": "Sweden Central",
         "failoverPriority": 0
       }
@@ -94,16 +94,16 @@
     "networkAclBypassResourceIds": [],
     "keysMetadata": {
       "primaryMasterKey": {
-        "generationTime": "2026-08-14T10:30:36.945429Z"
+        "generationTime": "2026-08-16T13:18:04.4779599Z"
       },
       "secondaryMasterKey": {
-        "generationTime": "2026-08-14T10:30:36.945429Z"
+        "generationTime": "2026-08-16T13:18:04.4779599Z"
       },
       "primaryReadonlyMasterKey": {
-        "generationTime": "2026-08-14T10:30:36.945429Z"
+        "generationTime": "2026-08-16T13:18:04.4779599Z"
       },
       "secondaryReadonlyMasterKey": {
-        "generationTime": "2026-08-14T10:30:36.945429Z"
+        "generationTime": "2026-08-16T13:18:04.4779599Z"
       }
     }
   },

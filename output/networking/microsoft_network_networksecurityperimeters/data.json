@@ -1,20 +1,20 @@
 {
-  "name": "nspz4yz-ypr",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0657a2f739507890/providers/Microsoft.Network/networkSecurityPerimeters/nspz4yz-ypr",
+  "name": "nspoe-0-nxe",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-0657a2f739507890/providers/Microsoft.Network/networkSecurityPerimeters/nspoe-0-nxe",
   "location": "norwayeast",
   "type": "Microsoft.Network/networkSecurityPerimeters",
   "tags": {},
   "etag": "",
   "properties": {
-    "perimeterGuid": "2bc9d648-bbaf-497a-bd08-b681b92c9916",
+    "perimeterGuid": "95606527-93ec-4796-978f-cdacf5d56a69",
     "provisioningState": "Succeeded"
   },
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-14T10:51:13.8566700Z",
+    "createdAt": "2026-08-16T14:44:58.4919066Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-14T10:51:13.8566700Z"
+    "lastModifiedAt": "2026-08-16T14:44:58.4919066Z"
   }
 }

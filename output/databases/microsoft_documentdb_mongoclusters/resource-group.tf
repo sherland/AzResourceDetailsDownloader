@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-74a9554cec74d742"
   tags = {
     armType    = "Microsoft.DocumentDB/mongoClusters"
-    createdUtc = "2026-08-14T12:18:29.8763312Z"
+    createdUtc = "2026-08-16T14:02:10.0691514Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -28,7 +28,7 @@ resource "azurerm_mongo_cluster" "res-1" {
   data_api_mode_enabled  = false
   high_availability_mode = "Disabled"
   location               = "norwayeast"
-  name                   = "mc9hbj8dh7"
+  name                   = "mc7id9mtlp"
   preview_features       = []
   public_network_access  = "Enabled"
   resource_group_name    = azurerm_resource_group.res-0.name
@@ -53,10 +53,10 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74a9554cec74d742/providers/Microsoft.DocumentDB/mongoClusters/mc9hbj8dh7"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74a9554cec74d742/providers/Microsoft.DocumentDB/mongoClusters/mc7id9mtlp"
   to = azurerm_mongo_cluster.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74a9554cec74d742/providers/Microsoft.DocumentDB/mongoClusters/mc9hbj8dh7/users/azrddadmin"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-74a9554cec74d742/providers/Microsoft.DocumentDB/mongoClusters/mc7id9mtlp/users/azrddadmin"
   to = azurerm_mongo_cluster_user.res-2
 }

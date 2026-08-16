@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-c2f89a44d5a009de"
   tags = {
     armType    = "Microsoft.DataProtection/backupVaults/backupPolicies"
-    createdUtc = "2026-08-13T13:27:15.8931718Z"
+    createdUtc = "2026-08-16T14:35:53.7598130Z"
     purpose    = "az-resource-details-downloader"
   }
 }

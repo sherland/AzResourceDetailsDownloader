@@ -5,7 +5,7 @@
   },
   {
     "Label": "Status",
-    "Value": "1 out of 1 succeeded"
+    "Value": "0 out of 1 succeeded"
   },
   {
     "Label": "Subscription",
@@ -37,7 +37,7 @@
   },
   {
     "Label": "Virtual network/subnet",
-    "Value": "vnetu-axjz1a/default"
+    "Value": "vnetd7-ts-wt/default"
   },
   {
     "Label": "Orchestration mode",
@@ -45,6 +45,6 @@
   },
   {
     "Label": "Time created",
-    "Value": "14.8.2026, 12:21:36 UTC"
+    "Value": "16.8.2026, 14:09:17 UTC"
   }
 ]

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-a3262f4eeb66a89e"
   tags = {
     armType    = "Microsoft.Network/privateLinkServices"
-    createdUtc = "2026-08-13T13:33:16.4652928Z"
+    createdUtc = "2026-08-16T14:49:05.5484614Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -48,7 +48,7 @@ resource "azurerm_network_interface" "res-2" {
   internal_dns_name_label        = ""
   ip_forwarding_enabled          = false
   location                       = "norwayeast"
-  name                           = "plsd0-7-olm.nic.0205b279-489a-4890-a5fb-20d791c10428"
+  name                           = "plsd0-7-olm.nic.14af038b-c51c-45d4-8d88-379c95678db3"
   resource_group_name            = azurerm_resource_group.res-0.name
   tags                           = {}
   ip_configuration {
@@ -133,7 +133,7 @@ import {
   to = azurerm_lb.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a3262f4eeb66a89e/providers/Microsoft.Network/networkInterfaces/plsd0-7-olm.nic.0205b279-489a-4890-a5fb-20d791c10428"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a3262f4eeb66a89e/providers/Microsoft.Network/networkInterfaces/plsd0-7-olm.nic.14af038b-c51c-45d4-8d88-379c95678db3"
   to = azurerm_network_interface.res-2
 }
 import {

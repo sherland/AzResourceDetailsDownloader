@@ -1,7 +1,7 @@
 {
   "name": "rulebbsk-0",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-2bfb77d8be121449/providers/Microsoft.Network/networkSecurityGroups/nsgzd-p-0so/securityRules/rulebbsk-0",
-  "etag": "W/\u0022931e3168-3be3-4132-8be5-43b2450e606b\u0022",
+  "etag": "W/\u00229f3f235a-a0c7-4b01-869a-3070fdbc5be7\u0022",
   "type": "Microsoft.Network/networkSecurityGroups/securityRules",
   "properties": {
     "provisioningState": "Succeeded",

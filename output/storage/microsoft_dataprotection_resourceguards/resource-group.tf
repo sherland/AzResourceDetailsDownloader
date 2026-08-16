@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-3786f3c2c1905852"
   tags = {
     armType    = "Microsoft.DataProtection/resourceGuards"
-    createdUtc = "2026-08-13T13:26:39.6169247Z"
+    createdUtc = "2026-08-16T14:35:19.6759974Z"
     purpose    = "az-resource-details-downloader"
   }
 }

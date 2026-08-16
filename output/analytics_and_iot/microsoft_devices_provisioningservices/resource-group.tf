@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-ea290fed5655d3db"
   tags = {
     armType    = "Microsoft.Devices/provisioningServices"
-    createdUtc = "2026-08-13T14:15:54.5681806Z"
+    createdUtc = "2026-08-16T14:30:05.4951505Z"
     purpose    = "az-resource-details-downloader"
   }
 }

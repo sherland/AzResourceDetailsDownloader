@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-8d621c7a6b0df561"
   tags = {
     armType    = "Microsoft.Maps/accounts"
-    createdUtc = "2026-08-13T13:21:32.4512601Z"
+    createdUtc = "2026-08-16T14:21:05.1592080Z"
     purpose    = "az-resource-details-downloader"
   }
 }

@@ -1,7 +1,7 @@
-param databaseAccounts_cosmoskhz1chh1_name string
+param databaseAccounts_cosmosn_fqah24_name string
 
-resource databaseAccounts_cosmoskhz1chh1_name_resource 'Microsoft.DocumentDB/databaseAccounts@2026-04-01-preview' = {
-  name: databaseAccounts_cosmoskhz1chh1_name
+resource databaseAccounts_cosmosn_fqah24_name_resource 'Microsoft.DocumentDB/databaseAccounts@2026-04-01-preview' = {
+  name: databaseAccounts_cosmosn_fqah24_name
   location: 'Sweden Central'
   kind: 'GlobalDocumentDB'
   identity: {
@@ -67,14 +67,14 @@ resource databaseAccounts_cosmoskhz1chh1_name_resource 'Microsoft.DocumentDB/dat
   }
 }
 
-resource databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000003 'Microsoft.DocumentDB/databaseAccounts/cassandraRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000003 'Microsoft.DocumentDB/databaseAccounts/cassandraRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000003'
   properties: {
     roleName: 'Cosmos DB Cassandra Built-in Data Reader'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {
@@ -91,14 +91,14 @@ resource databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_0000000000
   }
 }
 
-resource databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000004 'Microsoft.DocumentDB/databaseAccounts/cassandraRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000004 'Microsoft.DocumentDB/databaseAccounts/cassandraRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000004'
   properties: {
     roleName: 'Cosmos DB Cassandra Built-in Data Contributor'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {
@@ -118,14 +118,14 @@ resource databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_0000000000
   }
 }
 
-resource Microsoft_DocumentDB_databaseAccounts_gremlinRoleDefinitions_databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000003 'Microsoft.DocumentDB/databaseAccounts/gremlinRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource Microsoft_DocumentDB_databaseAccounts_gremlinRoleDefinitions_databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000003 'Microsoft.DocumentDB/databaseAccounts/gremlinRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000003'
   properties: {
     roleName: 'Cosmos DB Gremlin Built-in Data Reader'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {
@@ -142,14 +142,14 @@ resource Microsoft_DocumentDB_databaseAccounts_gremlinRoleDefinitions_databaseAc
   }
 }
 
-resource Microsoft_DocumentDB_databaseAccounts_gremlinRoleDefinitions_databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000004 'Microsoft.DocumentDB/databaseAccounts/gremlinRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource Microsoft_DocumentDB_databaseAccounts_gremlinRoleDefinitions_databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000004 'Microsoft.DocumentDB/databaseAccounts/gremlinRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000004'
   properties: {
     roleName: 'Cosmos DB Gremlin Built-in Data Contributor'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {
@@ -169,14 +169,14 @@ resource Microsoft_DocumentDB_databaseAccounts_gremlinRoleDefinitions_databaseAc
   }
 }
 
-resource Microsoft_DocumentDB_databaseAccounts_mongoMIRoleDefinitions_databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000003 'Microsoft.DocumentDB/databaseAccounts/mongoMIRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource Microsoft_DocumentDB_databaseAccounts_mongoMIRoleDefinitions_databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000003 'Microsoft.DocumentDB/databaseAccounts/mongoMIRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000003'
   properties: {
     roleName: 'Cosmos DB Mongo Built-in Data Reader'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {
@@ -193,14 +193,14 @@ resource Microsoft_DocumentDB_databaseAccounts_mongoMIRoleDefinitions_databaseAc
   }
 }
 
-resource Microsoft_DocumentDB_databaseAccounts_mongoMIRoleDefinitions_databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000004 'Microsoft.DocumentDB/databaseAccounts/mongoMIRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource Microsoft_DocumentDB_databaseAccounts_mongoMIRoleDefinitions_databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000004 'Microsoft.DocumentDB/databaseAccounts/mongoMIRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000004'
   properties: {
     roleName: 'Cosmos DB Mongo Built-in Data Contributor'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {
@@ -220,8 +220,8 @@ resource Microsoft_DocumentDB_databaseAccounts_mongoMIRoleDefinitions_databaseAc
   }
 }
 
-resource databaseAccounts_cosmoskhz1chh1_name_sqldb 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource databaseAccounts_cosmosn_fqah24_name_sqldb 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: 'sqldb'
   properties: {
     resource: {
@@ -230,14 +230,14 @@ resource databaseAccounts_cosmoskhz1chh1_name_sqldb 'Microsoft.DocumentDB/databa
   }
 }
 
-resource databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000001 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000001 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000001'
   properties: {
     roleName: 'Cosmos DB Built-in Data Reader'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {
@@ -253,14 +253,14 @@ resource databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_0000000000
   }
 }
 
-resource databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000002 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000002 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000002'
   properties: {
     roleName: 'Cosmos DB Built-in Data Contributor'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {
@@ -275,14 +275,14 @@ resource databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_0000000000
   }
 }
 
-resource Microsoft_DocumentDB_databaseAccounts_tableRoleDefinitions_databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000001 'Microsoft.DocumentDB/databaseAccounts/tableRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource Microsoft_DocumentDB_databaseAccounts_tableRoleDefinitions_databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000001 'Microsoft.DocumentDB/databaseAccounts/tableRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000001'
   properties: {
     roleName: 'Cosmos DB Built-in Data Reader'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {
@@ -298,14 +298,14 @@ resource Microsoft_DocumentDB_databaseAccounts_tableRoleDefinitions_databaseAcco
   }
 }
 
-resource Microsoft_DocumentDB_databaseAccounts_tableRoleDefinitions_databaseAccounts_cosmoskhz1chh1_name_00000000_0000_0000_0000_000000000002 'Microsoft.DocumentDB/databaseAccounts/tableRoleDefinitions@2026-04-01-preview' = {
-  parent: databaseAccounts_cosmoskhz1chh1_name_resource
+resource Microsoft_DocumentDB_databaseAccounts_tableRoleDefinitions_databaseAccounts_cosmosn_fqah24_name_00000000_0000_0000_0000_000000000002 'Microsoft.DocumentDB/databaseAccounts/tableRoleDefinitions@2026-04-01-preview' = {
+  parent: databaseAccounts_cosmosn_fqah24_name_resource
   name: '00000000-0000-0000-0000-000000000002'
   properties: {
     roleName: 'Cosmos DB Built-in Data Contributor'
     type: 'BuiltInRole'
     assignableScopes: [
-      databaseAccounts_cosmoskhz1chh1_name_resource.id
+      databaseAccounts_cosmosn_fqah24_name_resource.id
     ]
     permissions: [
       {

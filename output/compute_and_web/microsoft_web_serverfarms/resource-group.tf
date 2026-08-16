@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-6c73a914c7d661b1"
   tags = {
     armType    = "Microsoft.Web/serverfarms"
-    createdUtc = "2026-08-13T14:53:21.1286260Z"
+    createdUtc = "2026-08-16T13:23:12.2180442Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -23,7 +23,7 @@ resource "azurerm_service_plan" "res-1" {
   app_service_environment_id      = ""
   location                        = "swedencentral"
   maximum_elastic_worker_count    = 1
-  name                            = "planm4ir-vcl"
+  name                            = "planvwrvnc-q"
   os_type                         = "Linux"
   per_site_scaling_enabled        = false
   premium_plan_auto_scale_enabled = false
@@ -40,6 +40,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6c73a914c7d661b1/providers/Microsoft.Web/serverFarms/planm4ir-vcl"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-6c73a914c7d661b1/providers/Microsoft.Web/serverFarms/planvwrvnc-q"
   to = azurerm_service_plan.res-1
 }

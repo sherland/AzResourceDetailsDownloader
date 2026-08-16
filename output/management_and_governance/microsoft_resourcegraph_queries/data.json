@@ -1,14 +1,14 @@
 {
   "properties": {
     "resultKind": "UnKnown",
-    "timeModified": "2026-08-14T10:36:04.2179496Z",
+    "timeModified": "2026-08-16T13:47:40.3540246Z",
     "query": "Resources | take 1"
   },
   "type": "microsoft.resourcegraph/queries",
   "location": "global",
   "subscriptionId": "00000000-0000-0000-0000-000000000000",
   "resourceGroup": "rg-ardl-20c884988ac25a0c",
-  "name": "rgq0ww670ks",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-20c884988ac25a0c/providers/microsoft.resourcegraph/queries/rgq0ww670ks",
-  "etag": "\u00222403e74c-0000-0d00-0000-6a7eef940000\u0022"
+  "name": "rgqnhli-a7r",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-20c884988ac25a0c/providers/microsoft.resourcegraph/queries/rgqnhli-a7r",
+  "etag": "\u0022bd05e656-0000-0d00-0000-6a81bf7c0000\u0022"
 }

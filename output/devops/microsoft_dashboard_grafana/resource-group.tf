@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-9c207da75b61d6f9"
   tags = {
     armType    = "Microsoft.Dashboard/grafana"
-    createdUtc = "2026-08-14T10:35:34.4788171Z"
+    createdUtc = "2026-08-16T13:43:24.4683463Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -25,7 +25,7 @@ resource "azurerm_dashboard_grafana" "res-1" {
   deterministic_outbound_ip_enabled      = false
   grafana_major_version                  = "12"
   location                               = "norwayeast"
-  name                                   = "grfobls6-wo"
+  name                                   = "grfvkgyyrfx"
   public_network_access_enabled          = true
   resource_group_name                    = azurerm_resource_group.res-0.name
   sku                                    = "Standard"
@@ -40,6 +40,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9c207da75b61d6f9/providers/Microsoft.Dashboard/grafana/grfobls6-wo"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9c207da75b61d6f9/providers/Microsoft.Dashboard/grafana/grfvkgyyrfx"
   to = azurerm_dashboard_grafana.res-1
 }

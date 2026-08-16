@@ -29,7 +29,7 @@ resource publicIPAddresses_pipx9_c_rky_name_resource 'Microsoft.Network/publicIP
     natGateway: {
       id: natGateways_natatj1p_oe_name_resource.id
     }
-    ipAddress: '51.120.81.178'
+    ipAddress: '51.120.76.82'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

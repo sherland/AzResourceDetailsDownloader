@@ -29,7 +29,7 @@
   },
   {
     "Label": "URI",
-    "Value": "https://cosmosd5q1iefd.documents.azure.com:443/"
+    "Value": "https://cosmoscibdp-jn.documents.azure.com:443/"
   },
   {
     "Label": "Free Tier Discount",
@@ -38,5 +38,9 @@
   {
     "Label": "Capacity mode",
     "Value": "Serverless"
+  },
+  {
+    "Label": "Backup policy",
+    "Value": "Periodic"
   }
 ]

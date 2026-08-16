@@ -8,8 +8,8 @@
   "properties": {
     "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f7c118d11c094db/providers/Microsoft.OperationalInsights/workspaces/lawnh-iule2",
     "provisioningState": "Succeeded",
-    "creationTime": "Thu, 13 Aug 2026 13:11:11 GMT",
-    "lastModifiedTime": "Thu, 13 Aug 2026 13:11:11 GMT",
+    "creationTime": "Sun, 16 Aug 2026 14:03:25 GMT",
+    "lastModifiedTime": "Sun, 16 Aug 2026 14:03:25 GMT",
     "containedResources": [
       "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4f7c118d11c094db/providers/Microsoft.OperationalInsights/workspaces/lawnh-iule2/views/AzureActivity(lawnh-iule2)"
     ],

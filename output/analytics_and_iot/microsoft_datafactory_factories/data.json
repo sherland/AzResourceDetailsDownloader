@@ -4,7 +4,7 @@
   "type": "Microsoft.DataFactory/factories",
   "properties": {
     "provisioningState": "Succeeded",
-    "createTime": "2026-08-13T13:24:27.8826086Z",
+    "createTime": "2026-08-16T14:26:58.3442179Z",
     "version": "2018-06-01",
     "factoryStatistics": {
       "totalResourceCount": 0,
@@ -17,7 +17,7 @@
       "editable": true
     }
   },
-  "eTag": "\u002203003847-0000-3c00-0000-6a7dc58c0000\u0022",
+  "eTag": "\u002214008388-0000-3c00-0000-6a81c8b20000\u0022",
   "location": "norwayeast",
   "tags": {}
 }

@@ -4,7 +4,7 @@
     "minimumTlsVersionAllowed": "1.0",
     "endpoint": "https://egduzo-u3om.norwayeast-1.eventgrid.azure.net/api/events",
     "inputSchema": "EventGridSchema",
-    "metricResourceId": "cccc648e-b720-402b-bfcd-f8abc63ecea4",
+    "metricResourceId": "af3ff15e-4434-4e48-894b-e39cd5310051",
     "publicNetworkAccess": "Enabled",
     "dataResidencyBoundary": "WithinGeopair"
   },

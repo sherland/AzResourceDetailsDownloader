@@ -1,11 +1,11 @@
 [
   {
     "Label": "Endpoint",
-    "Value": "https://grfobls6-wo-byceegbubtaybvc2.eno.grafana.azure.com"
+    "Value": "https://grfvkgyyrfx-bud2c4fsgygfgtd3.eno.grafana.azure.com"
   },
   {
     "Label": "MCP Endpoint",
-    "Value": "https://grfobls6-wo-byceegbubtaybvc2.eno.grafana.azure.com/api/azure-mcp"
+    "Value": "https://grfvkgyyrfx-bud2c4fsgygfgtd3.eno.grafana.azure.com/api/azure-mcp"
   },
   {
     "Label": "Grafana Version",

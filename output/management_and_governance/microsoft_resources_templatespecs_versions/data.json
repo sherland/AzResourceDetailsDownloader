@@ -10,10 +10,10 @@
   "systemData": {
     "createdBy": "admin@example.com",
     "createdByType": "User",
-    "createdAt": "2026-08-13T12:57:25.6586999Z",
+    "createdAt": "2026-08-16T13:47:26.2098259Z",
     "lastModifiedBy": "admin@example.com",
     "lastModifiedByType": "User",
-    "lastModifiedAt": "2026-08-13T12:57:25.6586999Z"
+    "lastModifiedAt": "2026-08-16T13:47:26.2098259Z"
   },
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-4965fec5d0d82612/providers/Microsoft.Resources/templateSpecs/ts3l4-yx-a/versions/v1",
   "type": "Microsoft.Resources/templateSpecs/versions",

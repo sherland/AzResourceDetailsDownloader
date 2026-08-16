@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-b1d8ed6affe79ba7"
   tags = {
     armType    = "Microsoft.CognitiveServices/accounts"
-    createdUtc = "2026-08-13T13:02:21.7842160Z"
+    createdUtc = "2026-08-16T13:53:37.1556291Z"
     purpose    = "az-resource-details-downloader"
   }
 }

@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-faf37f47d84dab3a"
   tags = {
     armType    = "Microsoft.Compute/proximityPlacementGroups"
-    createdUtc = "2026-08-13T13:24:54.2753456Z"
+    createdUtc = "2026-08-16T14:32:02.9065221Z"
     purpose    = "az-resource-details-downloader"
   }
 }

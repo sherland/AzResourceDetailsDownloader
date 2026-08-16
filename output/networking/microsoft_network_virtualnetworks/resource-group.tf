@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-d9119f4e0aa21cf8"
   tags = {
     armType    = "Microsoft.Network/virtualNetworks"
-    createdUtc = "2026-08-14T10:28:00.7544367Z"
+    createdUtc = "2026-08-16T13:13:03.4942327Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -26,7 +26,7 @@ resource "azurerm_virtual_network" "res-1" {
   edge_zone                      = ""
   flow_timeout_in_minutes        = 0
   location                       = "norwayeast"
-  name                           = "vnetrco-4lfv"
+  name                           = "vnetazg63ied"
   private_endpoint_vnet_policies = "Disabled"
   resource_group_name            = azurerm_resource_group.res-0.name
   subnet                         = []
@@ -39,6 +39,6 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d9119f4e0aa21cf8/providers/Microsoft.Network/virtualNetworks/vnetrco-4lfv"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-d9119f4e0aa21cf8/providers/Microsoft.Network/virtualNetworks/vnetazg63ied"
   to = azurerm_virtual_network.res-1
 }

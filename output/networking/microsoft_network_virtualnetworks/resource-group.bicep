@@ -1,7 +1,7 @@
-param virtualNetworks_vnetrco_4lfv_name string
+param virtualNetworks_vnetazg63ied_name string
 
-resource virtualNetworks_vnetrco_4lfv_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
-  name: virtualNetworks_vnetrco_4lfv_name
+resource virtualNetworks_vnetazg63ied_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
+  name: virtualNetworks_vnetazg63ied_name
   location: 'norwayeast'
   properties: {
     addressSpace: {

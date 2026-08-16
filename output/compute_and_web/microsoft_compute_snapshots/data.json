@@ -1,6 +1,6 @@
 {
-  "name": "snap48glwc3z",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/snapshots/snap48glwc3z",
+  "name": "snapw3td1qq0",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/snapshots/snapw3td1qq0",
   "type": "Microsoft.Compute/snapshots",
   "location": "norwayeast",
   "sku": {
@@ -11,8 +11,8 @@
     "osType": "Linux",
     "creationData": {
       "createOption": "Copy",
-      "sourceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/disks/diskmrvds8oj",
-      "sourceUniqueId": "439eb706-caa2-407b-9c4a-5b7ac9b2b675"
+      "sourceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-e1235e71e818a48b/providers/Microsoft.Compute/disks/diskgxpe04sm",
+      "sourceUniqueId": "c9e19e34-29ce-4f9a-a76f-9740319e4f04"
     },
     "diskSizeGB": 4,
     "encryption": {
@@ -21,10 +21,10 @@
     "incremental": false,
     "networkAccessPolicy": "AllowAll",
     "publicNetworkAccess": "Enabled",
-    "timeCreated": "2026-08-14T21:08:55.0878061\u002B00:00",
+    "timeCreated": "2026-08-16T13:30:25.2423998\u002B00:00",
     "provisioningState": "Succeeded",
     "diskState": "Unattached",
     "diskSizeBytes": 4294967296,
-    "uniqueId": "e034fc7b-4eb7-4186-8076-106bca1a97ad"
+    "uniqueId": "c59cf4df-3980-46bd-a422-02eca6889554"
   }
 }

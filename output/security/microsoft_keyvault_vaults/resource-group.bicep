@@ -1,7 +1,7 @@
-param vaults_kv68u_db_c_name string
+param vaults_kvp6zp7_1q_name string
 
-resource vaults_kv68u_db_c_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-preview' = {
-  name: vaults_kv68u_db_c_name
+resource vaults_kvp6zp7_1q_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-preview' = {
+  name: vaults_kvp6zp7_1q_name
   location: 'norwayeast'
   properties: {
     sku: {
@@ -15,7 +15,7 @@ resource vaults_kv68u_db_c_name_resource 'Microsoft.KeyVault/vaults@2026-03-01-p
     softDeleteRetentionInDays: 90
     enableRbacAuthorization: true
     enablePurgeProtection: true
-    vaultUri: 'https://${vaults_kv68u_db_c_name}.vault.azure.net/'
+    vaultUri: 'https://${vaults_kvp6zp7_1q_name}.vault.azure.net/'
     provisioningState: 'Succeeded'
     publicNetworkAccess: 'Enabled'
   }

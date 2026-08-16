@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "res-0" {
   name       = "rg-ardl-75150be80ffb7a66"
   tags = {
     armType    = "Microsoft.Sql/servers/jobAgents"
-    createdUtc = "2026-08-14T10:42:29.5141205Z"
+    createdUtc = "2026-08-16T14:20:14.1289530Z"
     purpose    = "az-resource-details-downloader"
   }
 }
@@ -28,7 +28,7 @@ resource "azurerm_mssql_server" "res-1" {
   express_vulnerability_assessment_enabled     = false
   location                                     = "swedencentral"
   minimum_tls_version                          = "1.2"
-  name                                         = "sqltcfi-k-s"
+  name                                         = "sql5su-m5-f"
   outbound_network_restriction_enabled         = false
   primary_user_assigned_identity_id            = ""
   public_network_access_enabled                = true
@@ -92,7 +92,7 @@ resource "azurerm_mssql_database_extended_auditing_policy" "res-22" {
   storage_endpoint                        = ""
 }
 resource "azurerm_mssql_database_extended_auditing_policy" "res-31" {
-  database_id                             = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/databases/master"
+  database_id                             = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/databases/master"
   enabled                                 = false
   log_monitoring_enabled                  = false
   retention_in_days                       = 0
@@ -129,7 +129,7 @@ resource "azurerm_mssql_server_extended_auditing_policy" "res-39" {
 resource "azurerm_mssql_job_agent" "res-40" {
   database_id = azurerm_mssql_database.res-11.id
   location    = "swedencentral"
-  name        = "jobagentfwj1t3"
+  name        = "jobagentipkpzo"
   sku         = "JA100"
   tags        = {}
 }
@@ -139,7 +139,7 @@ resource "azurerm_mssql_server_security_alert_policy" "res-42" {
   email_addresses            = []
   resource_group_name        = azurerm_resource_group.res-0.name
   retention_days             = 0
-  server_name                = "sqltcfi-k-s"
+  server_name                = "sql5su-m5-f"
   state                      = "Disabled"
   storage_account_access_key = "" # Masked sensitive attribute
   storage_endpoint           = ""
@@ -165,42 +165,42 @@ import {
   to = azurerm_resource_group.res-0
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f"
   to = azurerm_mssql_server.res-1
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/databases/jobagentdb"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/databases/jobagentdb"
   to = azurerm_mssql_database.res-11
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/databases/jobagentdb/extendedAuditingSettings/Default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/databases/jobagentdb/extendedAuditingSettings/Default"
   to = azurerm_mssql_database_extended_auditing_policy.res-22
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/databases/master/extendedAuditingSettings/Default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/databases/master/extendedAuditingSettings/Default"
   to = azurerm_mssql_database_extended_auditing_policy.res-31
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/devOpsAuditingSettings/Default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/devOpsAuditingSettings/Default"
   to = azurerm_mssql_server_microsoft_support_auditing_policy.res-37
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/encryptionProtector/current"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/encryptionProtector/current"
   to = azurerm_mssql_server_transparent_data_encryption.res-38
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/extendedAuditingSettings/Default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/extendedAuditingSettings/Default"
   to = azurerm_mssql_server_extended_auditing_policy.res-39
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/jobAgents/jobagentfwj1t3"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/jobAgents/jobagentipkpzo"
   to = azurerm_mssql_job_agent.res-40
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/securityAlertPolicies/Default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/securityAlertPolicies/Default"
   to = azurerm_mssql_server_security_alert_policy.res-42
 }
 import {
-  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/vulnerabilityAssessments/Default"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/vulnerabilityAssessments/Default"
   to = azurerm_mssql_server_vulnerability_assessment.res-44
 }

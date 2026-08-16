@@ -1,11 +1,11 @@
 {
   "sku": {},
   "properties": {
-    "databaseId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/databases/jobagentdb",
+    "databaseId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/databases/jobagentdb",
     "state": "Creating"
   },
   "location": "swedencentral",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sqltcfi-k-s/jobAgents/jobagentfwj1t3",
-  "name": "jobagentfwj1t3",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-75150be80ffb7a66/providers/Microsoft.Sql/servers/sql5su-m5-f/jobAgents/jobagentipkpzo",
+  "name": "jobagentipkpzo",
   "type": "Microsoft.Sql/servers/jobAgents"
 }

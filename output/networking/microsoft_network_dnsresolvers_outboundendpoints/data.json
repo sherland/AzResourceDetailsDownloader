@@ -4,17 +4,17 @@
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9ba774595fc4a14a/providers/Microsoft.Network/virtualNetworks/vnet5jlfehrw/subnets/outbound"
     },
     "provisioningState": "Succeeded",
-    "resourceGuid": "043e0db5-1046-4d05-80fd-dda32056737e"
+    "resourceGuid": "da432736-2069-4a55-aed6-081c30b7464b"
   },
-  "etag": "\u002202007b61-0000-3c00-0000-6a7dc8280000\u0022",
+  "etag": "\u00220000557f-0000-3c00-0000-6a81ce410000\u0022",
   "location": "norwayeast",
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-9ba774595fc4a14a/providers/Microsoft.Network/dnsResolvers/dnsrqragsytf/outboundEndpoints/outboundngye8c",
   "name": "outboundngye8c",
   "type": "Microsoft.Network/dnsResolvers/outboundEndpoints",
   "systemData": {
-    "createdAt": "2026-08-13T13:33:27.2065837Z",
+    "createdAt": "2026-08-16T14:48:29.5067118Z",
     "createdByType": "User",
-    "lastModifiedAt": "2026-08-13T13:33:27.2065837Z",
+    "lastModifiedAt": "2026-08-16T14:48:29.5067118Z",
     "lastModifiedByType": "User"
   }
 }

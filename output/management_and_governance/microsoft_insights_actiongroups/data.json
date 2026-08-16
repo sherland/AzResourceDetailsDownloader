@@ -1,7 +1,7 @@
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a5c3f65f8513ba7b/providers/microsoft.insights/actionGroups/aginbojpd1",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-ardl-a5c3f65f8513ba7b/providers/microsoft.insights/actionGroups/agnmvk1q9b",
   "type": "Microsoft.Insights/ActionGroups",
-  "name": "aginbojpd1",
+  "name": "agnmvk1q9b",
   "location": "Global",
   "kind": null,
   "tags": null,
