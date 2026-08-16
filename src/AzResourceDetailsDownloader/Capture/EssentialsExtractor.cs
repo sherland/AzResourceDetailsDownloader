@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Logging;
 using Microsoft.Playwright;
 
 namespace AzResourceDetailsDownloader.Capture;
@@ -364,7 +365,7 @@ public static class EssentialsExtractor
         }
     }
 
-    public static async Task<IReadOnlyList<PortalField>> ExtractAsync(IPage page, double captureTimeoutMultiplier = 1.0)
+    public static async Task<IReadOnlyList<PortalField>> ExtractAsync(IPage page, ILogger logger, double captureTimeoutMultiplier = 1.0)
     {
         try
         {
@@ -428,10 +429,16 @@ public static class EssentialsExtractor
             fields = await TryExtractFromLocatorAsync(page.Locator(LegacyItemSelector), LegacyExtractItemsJs, fallbackAppearTimeout);
             return Finalize(fields);
         }
-        catch
+        catch (Exception ex)
         {
             // Best-effort: a missing/changed Essentials panel shouldn't fail the whole capture —
-            // the screenshot and raw ARM JSON remain the authoritative artifacts either way.
+            // the screenshot and raw ARM JSON remain the authoritative artifacts either way. But
+            // silently swallowing here once already caused a real incident (see AGENT.md, the
+            // TimeoutException-swallowing bug: a genuine bug elsewhere in this try block hid behind
+            // an indistinguishable "0 Essentials field(s)" log line for ~30 types, caught only by
+            // noticing the test count drop before committing) — log a warning so a *future* case of
+            // "extraction threw" is distinguishable from "the panel genuinely had nothing to show".
+            logger.LogWarning(ex, "Essentials extraction failed; capturing with 0 fields.");
             return [];
         }
     }
