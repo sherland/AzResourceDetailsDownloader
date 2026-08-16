@@ -1,4 +1,4 @@
-# dbikse00
+# dbz6i9eq
 
 | Property | Value |
 |---|---|
@@ -7,7 +7,7 @@
 | **Location** | Sweden Central |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Server name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> sql1ifqz7nd.database.windows.net |
+| **Server name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> sqly-x0m6x3.database.windows.net |
 | **Elastic pool** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> No elastic pool |
 | **Pricing tier** | Basic |
 | **Earliest restore point** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> No restore point available |
