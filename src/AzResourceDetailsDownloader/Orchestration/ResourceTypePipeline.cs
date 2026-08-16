@@ -151,7 +151,7 @@ public sealed class ResourceTypePipeline(
                 resolvedPrereqKeys, ct);
 
             unitLogger.LogInformation("  captured '{ArmType}' successfully in {Elapsed}", def.ArmType, stopwatch.Elapsed);
-            return new RunResult(def.ArmType, true, stopwatch.Elapsed, null);
+            return new RunResult(def.ArmType, true, stopwatch.Elapsed, null, capture.Fields.Count);
         }
         catch (Exception ex)
         {
