@@ -1,4 +1,4 @@
-# vmssrd5qq3
+# vmsswdgknl
 
 | Property | Value |
 |---|---|
@@ -11,6 +11,6 @@
 | **Size** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Standard_D2s_v5 (1 instance) |
 | **Public IP address** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> - |
 | **Public IP address (IPv6)** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
-| **Virtual network/subnet** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> vnetu-axjz1a/default |
+| **Virtual network/subnet** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> vnetd7-ts-wt/default |
 | **Orchestration mode** | Uniform |
-| **Time created** | August 14, 2026 at 12:21:36 UTC |
+| **Time created** | August 16, 2026 at 14:09:17 UTC |

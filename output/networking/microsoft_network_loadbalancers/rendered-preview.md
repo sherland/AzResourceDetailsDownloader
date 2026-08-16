@@ -1,4 +1,4 @@
-# lb7y7v6-8y
+# lbi1py-djf
 
 | Property | Value |
 |---|---|
@@ -13,4 +13,4 @@
 | **Health probe** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
 | **Inbound NAT rules** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
 | **Outbound rules** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
-| **Frontend IP address** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> 4.235.102.66 (pipjc-fv-7p) |
+| **Frontend IP address** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> 20.100.188.235 (pip4esx-wt9) |
