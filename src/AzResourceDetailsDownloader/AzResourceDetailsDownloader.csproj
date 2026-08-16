@@ -17,6 +17,7 @@
          anything AzToMd-related, just a plain templating library for AzResourceDetailsDownloader's
          own template generation/rendering. -->
     <PackageReference Include="Scriban" Version="7.2.6" />
+    <PackageReference Include="Spectre.Console" Version="0.57.2" />
   </ItemGroup>
 
   <ItemGroup>
