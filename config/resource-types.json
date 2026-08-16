@@ -1611,7 +1611,7 @@
         "properties": {}
       },
       "prerequisites": [],
-      "notes": "Standard_AzureFrontDoor SKU chosen so the afdEndpoints entry below can attach to it."
+      "notes": "Standard_AzureFrontDoor SKU chosen so the afdEndpoints entry below can attach to it. Live-verified 2026-08-16: ARM PUT rejected outright with \"Free Trial and Student account is forbidden for Azure Frontdoor resources\" (BadRequest) — an explicit, permanent account-type restriction on this subscription tier, not a region/SKU/capacity issue with any workaround (unlike the AnalysisServices/Automation region restrictions elsewhere in this catalog). Not fixable without a different (non-Free-Trial/Student) subscription."
     },
     {
       "armType": "Microsoft.Cdn/profiles/afdEndpoints",
@@ -1651,7 +1651,7 @@
           "perHour": 0.047945
         }
       ],
-      "notes": "Child of a Front Door (Standard_AzureFrontDoor) CDN profile."
+      "notes": "Child of a Front Door (Standard_AzureFrontDoor) CDN profile. Blocked by the same account-type restriction as its cdnProfile prerequisite — see Microsoft.Cdn/profiles' notes above (\"Free Trial and Student account is forbidden for Azure Frontdoor resources\", live-verified 2026-08-16). Not fixable without a different subscription."
     },
     {
       "armType": "Microsoft.Compute/galleries",
