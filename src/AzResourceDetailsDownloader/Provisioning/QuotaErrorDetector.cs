@@ -15,5 +15,14 @@ public static class QuotaErrorDetector
         message is not null
         && (message.Contains("QuotaExceeded", StringComparison.Ordinal)
             || (message.Contains("OperationNotAllowed", StringComparison.Ordinal)
-                && message.Contains("quota", StringComparison.OrdinalIgnoreCase)));
+                && message.Contains("quota", StringComparison.OrdinalIgnoreCase))
+            // Live-hit repeatedly (2026-08-15/16, 0-6 occurrences per full-catalog run): "App Service
+            // Plan Create operation is throttled for subscription ... Please contact support if issue
+            // persists" — HTTP 429, ExtendedCode 51025. A genuinely different shape from the two above
+            // (no "QuotaExceeded", no "OperationNotAllowed"), so it silently bypassed the retry-at-
+            // lower-concurrency pass entirely until now. The inconsistent per-run count (0 in one run,
+            // 6 in another) is itself evidence this is a real, transient, concurrency-sensitive rate
+            // limit — exactly what the quieter retry pass below already exists to smooth over for
+            // every *other* quota shape; this one just needed to be recognized in the first place.
+            || message.Contains("operation is throttled", StringComparison.OrdinalIgnoreCase));
 }
