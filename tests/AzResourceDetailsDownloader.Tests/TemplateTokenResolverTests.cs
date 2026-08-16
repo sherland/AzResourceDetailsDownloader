@@ -56,6 +56,43 @@ public class TemplateTokenResolverTests
     }
 
     [Fact]
+    public void ResolvePrereqTokens_SubstitutesKey_WhenResolved()
+    {
+        var resolved = new Dictionary<string, ProvisionedResourceRef>
+        {
+            ["hdiStorage"] = new ProvisionedResourceRef("/subscriptions/x/.../st1", "st1", "eastus2", "the-real-storage-key")
+        };
+
+        var result = TemplateTokenResolver.ResolvePrereqTokens("{prereq.hdiStorage.key}", resolved);
+
+        Assert.Equal("the-real-storage-key", result);
+    }
+
+    [Fact]
+    public void ResolvePrereqTokens_Throws_WhenKeyReferencedButNotResolved()
+    {
+        // Live-observed design constraint: {prereq.*.key} is only resolved for Storage Account
+        // prerequisites (see ResourceTypePipeline) — referencing it on anything else, or before
+        // ResourceTypePipeline's listKeys fetch has run, must fail loudly rather than silently
+        // substitute an empty/null string into a request body.
+        var resolved = new Dictionary<string, ProvisionedResourceRef>
+        {
+            ["hdiStorage"] = new ProvisionedResourceRef("/subscriptions/x/.../st1", "st1", "eastus2")
+        };
+
+        Assert.Throws<InvalidOperationException>(() =>
+            TemplateTokenResolver.ResolvePrereqTokens("{prereq.hdiStorage.key}", resolved));
+    }
+
+    [Fact]
+    public void ReferencesPrereqKey_TrueOnlyForMatchingAliasAndKeyField()
+    {
+        Assert.True(TemplateTokenResolver.ReferencesPrereqKey("\"key\": \"{prereq.hdiStorage.key}\"", "hdiStorage"));
+        Assert.False(TemplateTokenResolver.ReferencesPrereqKey("\"key\": \"{prereq.hdiStorage.name}\"", "hdiStorage"));
+        Assert.False(TemplateTokenResolver.ReferencesPrereqKey("\"key\": \"{prereq.otherAlias.key}\"", "hdiStorage"));
+    }
+
+    [Fact]
     public void ResolveRandomTokens_ProducesRequestedLength_AndRespectsCharset()
     {
         var random = new Random(42);

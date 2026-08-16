@@ -12,20 +12,22 @@ public static class OutputWriter
         string subscriptionId, string tenantId, string actualRgName,
         string? bicep = null, string? terraform = null, IReadOnlyList<string>? bannerNotices = null,
         IReadOnlyList<PortalField>? portalFields = null, string? userPrincipalName = null,
-        string? adminPrincipalId = null, CancellationToken ct = default)
+        string? adminPrincipalId = null, IReadOnlyList<string>? resolvedSecretValues = null,
+        CancellationToken ct = default)
     {
         var dir = Path.Combine(outputRoot, CategoryKey.From(category), ArmTypeKey.From(armType));
         Directory.CreateDirectory(dir);
 
         // Subscription ID, tenant ID, the (randomly-generated, real) resource group name, the
         // signed-in user's UPN (ARM auto-stamps this into every resource's systemData.createdBy/
-        // lastModifiedBy), and the {secret.adminPrincipalId} value some catalog entries embed
-        // verbatim in asAdministrators/administration.members all vary per run and per whoever runs
-        // the tool — normalized to fixed placeholders here so the committed text files diff-stably
-        // regardless and don't leak the operator's identity. The screenshot can't be normalized this
-        // way (it's a rendered image).
+        // lastModifiedBy), the {secret.adminPrincipalId} value some catalog entries embed verbatim
+        // in asAdministrators/administration.members, and any prerequisite access key resolved via
+        // {prereq.*.key} (e.g. HDInsight's storage account key) all vary per run and per whoever
+        // runs the tool — normalized to fixed placeholders here so the committed text files
+        // diff-stably regardless and don't leak the operator's identity or real credentials. The
+        // screenshot can't be normalized this way (it's a rendered image).
         var prettyJson = JsonSerializer.Serialize(rawJson.RootElement, PrettyPrint);
-        prettyJson = OutputNormalizer.Normalize(prettyJson, subscriptionId, tenantId, actualRgName, armType, userPrincipalName, adminPrincipalId);
+        prettyJson = OutputNormalizer.Normalize(prettyJson, subscriptionId, tenantId, actualRgName, armType, userPrincipalName, adminPrincipalId, resolvedSecretValues);
         await File.WriteAllTextAsync(Path.Combine(dir, "data.json"), prettyJson, ct);
 
         if (screenshot is not null)
@@ -35,13 +37,13 @@ public static class OutputWriter
 
         if (bicep is not null)
         {
-            bicep = OutputNormalizer.Normalize(bicep, subscriptionId, tenantId, actualRgName, armType, userPrincipalName, adminPrincipalId);
+            bicep = OutputNormalizer.Normalize(bicep, subscriptionId, tenantId, actualRgName, armType, userPrincipalName, adminPrincipalId, resolvedSecretValues);
             await File.WriteAllTextAsync(Path.Combine(dir, "resource-group.bicep"), bicep, ct);
         }
 
         if (terraform is not null)
         {
-            terraform = OutputNormalizer.Normalize(terraform, subscriptionId, tenantId, actualRgName, armType, userPrincipalName, adminPrincipalId);
+            terraform = OutputNormalizer.Normalize(terraform, subscriptionId, tenantId, actualRgName, armType, userPrincipalName, adminPrincipalId, resolvedSecretValues);
             await File.WriteAllTextAsync(Path.Combine(dir, "resource-group.tf"), terraform, ct);
         }
 
@@ -73,7 +75,7 @@ public static class OutputWriter
             // separate label-targeted redaction since they're not the ID string being replaced.
             var redactedFields = OutputNormalizer.NormalizePortalFields(portalFields);
             var fieldsJson = JsonSerializer.Serialize(redactedFields, PrettyPrint);
-            fieldsJson = OutputNormalizer.Normalize(fieldsJson, subscriptionId, tenantId, actualRgName, armType, userPrincipalName, adminPrincipalId);
+            fieldsJson = OutputNormalizer.Normalize(fieldsJson, subscriptionId, tenantId, actualRgName, armType, userPrincipalName, adminPrincipalId, resolvedSecretValues);
             await File.WriteAllTextAsync(fieldsPath, fieldsJson, ct);
         }
         else if (File.Exists(fieldsPath))

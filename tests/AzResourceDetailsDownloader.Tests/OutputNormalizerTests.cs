@@ -94,6 +94,24 @@ public class OutputNormalizerTests
     }
 
     [Fact]
+    public void Normalize_RedactsResolvedSecretValues_WhenProvided()
+    {
+        // A real Storage Account key resolved via {prereq.*.key} (see ResourceTypePipeline/
+        // RawArmClient.ListStorageAccountPrimaryKeyAsync, added 2026-08-16 for HDInsight/clusters)
+        // must never land in committed output — same discipline as every other credential/identity
+        // value this class redacts, just for an open-ended set of future prerequisite-key sources
+        // rather than one named field.
+        const string storageKey = "abcd1234RealStorageKeyValue==";
+        var text = "{\"properties\": {\"storageaccounts\": [{\"key\": \"" + storageKey + "\"}]}}";
+
+        var result = OutputNormalizer.Normalize(
+            text, "sub", "tenant", "rg", "Microsoft.HDInsight/clusters", resolvedSecretValues: [storageKey]);
+
+        Assert.DoesNotContain(storageKey, result);
+        Assert.Contains(OutputNormalizer.PlaceholderResolvedSecret, result);
+    }
+
+    [Fact]
     public void NormalizePortalFields_RedactsEntraAdminFields_RegardlessOfExactLabel()
     {
         // Live-observed leak (2026-08-13, Microsoft.Synapse/workspaces): "SQL Microsoft Entra admin"

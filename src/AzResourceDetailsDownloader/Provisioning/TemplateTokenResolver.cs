@@ -3,12 +3,15 @@ using System.Text.RegularExpressions;
 
 namespace AzResourceDetailsDownloader.Provisioning;
 
-public sealed record ProvisionedResourceRef(string Id, string Name, string Location);
+// Key is populated only for prerequisites that both support it (currently just Storage Accounts —
+// see RawArmClient.ListStorageAccountPrimaryKeyAsync) and are actually referenced via
+// {prereq.<alias>.key} downstream (see ResourceTypePipeline) — most prerequisites never resolve it.
+public sealed record ProvisionedResourceRef(string Id, string Name, string Location, string? Key = null);
 
 public static class TemplateTokenResolver
 {
     private static readonly Regex PrereqTokenRegex = new(
-        @"\{prereq\.(?<alias>[A-Za-z0-9_]+)\.(?<field>id|name|location)\}", RegexOptions.Compiled);
+        @"\{prereq\.(?<alias>[A-Za-z0-9_]+)\.(?<field>id|name|location|key)\}", RegexOptions.Compiled);
 
     private static readonly Regex RandTokenRegex = new(
         @"\{rand(?<len>\d+)\}", RegexOptions.Compiled);
@@ -20,6 +23,15 @@ public static class TemplateTokenResolver
         PrereqTokenRegex.Matches(text)
             .Select(m => m.Groups["alias"].Value)
             .Distinct(StringComparer.OrdinalIgnoreCase);
+
+    // Used by ResourceTypePipeline to decide whether a just-provisioned prerequisite needs its
+    // access key fetched via an extra listKeys call — checked across every downstream text (later
+    // prerequisites' bodies, the target's own body) rather than eagerly fetching for every
+    // prerequisite, since listKeys is only implemented for Storage Accounts and would fail loudly
+    // (correctly) if attempted against a type that doesn't support it.
+    public static bool ReferencesPrereqKey(string text, string alias) =>
+        PrereqTokenRegex.Matches(text).Any(m =>
+            m.Groups["field"].Value == "key" && string.Equals(m.Groups["alias"].Value, alias, StringComparison.OrdinalIgnoreCase));
 
     public static string ResolvePrereqTokens(string text, IReadOnlyDictionary<string, ProvisionedResourceRef> resolved) =>
         PrereqTokenRegex.Replace(text, m =>
@@ -34,6 +46,9 @@ public static class TemplateTokenResolver
             {
                 "id" => reference.Id,
                 "name" => reference.Name,
+                "key" => reference.Key ?? throw new InvalidOperationException(
+                    $"Prerequisite '{alias}' has no resolved key — {{prereq.*.key}} is currently only " +
+                    "supported for Microsoft.Storage/storageAccounts prerequisites."),
                 _ => reference.Location
             };
         });
