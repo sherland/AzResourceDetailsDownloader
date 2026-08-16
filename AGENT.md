@@ -694,6 +694,24 @@ If you're auditing a checkout of this repo for the same class of leak, `git log 
 fixing `OutputNormalizer` only prevents *future* captures from leaking, it does nothing for
 already-committed files or already-existing commits.
 
+**Two more leaks found the same way, later (2026-08-16), same root cause each time: a new
+identity/secret surface that reached `portal-fields.json`/`data.json` without anyone updating
+`OutputNormalizer` for it.** `Microsoft.AnalysisServices/servers` uses a genuinely new Essentials
+layout (`asx-overview-essentials__*`, see the section below) whose subscription-display-name field
+is labeled **"Subscription name"**, not the "Subscription" label every previously-captured type
+happened to use — `NormalizePortalFields`'s exact-match switch let the real value ("Azure
+subscription 1") straight through uncaught. Separately, `{secret.adminPrincipalId}` (the signed-in
+operator's own real AAD object ID, used by `asAdministrators`/`administration.members` on
+AnalysisServices/Fabric/PowerBIDedicated) landed unredacted in `data.json` — nothing had ever
+threaded a *resolved secret value* through to `OutputNormalizer.Normalize` before, only the fixed
+identity values it already knew about (subscription/tenant/UPN). Fixed the same way both times:
+add the new label/value to the relevant redaction path, in `OutputNormalizer.cs`. **The general
+lesson, worth repeating**: any time `EssentialsExtractor` starts surfacing a new label (a new
+layout, a newly-fixed extraction bug, a newly-live-tested type) or the catalog starts resolving a
+new `{secret.*}`/`{prereq.*.key}` value, check whether it's identity/credential-shaped before
+committing — don't assume the existing redaction coverage is exhaustive just because it's been
+extended twice already.
+
 ## `portal-fields.inferred.json` — the one deliberate exception to "never guessed, always live-verified"
 
 For a handful of entries this tool could never live-capture on this subscription (retired
@@ -711,6 +729,25 @@ inferred version alongside a real one.
 
 Confirmed via two independent, explicit ARM error messages (not inferred from behavior): `Microsoft.Automation/automationAccounts` — *"Free Trial and Student subscriptions cannot create accounts in this location. Please select from the allowed regions: [eastus, eastus2, westus, northeurope, southeastasia, japanwest]"* — and `Microsoft.Cdn/profiles` — *"Free Trial and Student account is forbidden for Azure Frontdoor resources"* (permanent, no region fixes it). This single fact explains a disproportionate share of this catalog's regional and quota failures: a narrow region allowlist for some services, `Microsoft.Cdn/profiles`/`.../afdEndpoints` being permanently uncreatable, and unusually low per-region quotas (3 Standard-SKU public IPs, 1 `Microsoft.App/managedEnvironments`, 1 `Microsoft.Automation/automationAccounts` — the last with what looks like a grace period after deletion, since a same-region retry moments after teardown can still fail). If you hit a new, unexplained region/quota error on this subscription, check whether it's this class of restriction before assuming it's a bug in this tool or a generic Azure limitation — a paid subscription likely won't reproduce any of it.
 
+**Two more data points (2026-08-16):**
+- `Microsoft.AnalysisServices/servers` rejected **both** its originally-pinned region (`norwayeast` —
+  `LocationNotAvailableForResourceType`, this resource type just doesn't support it at all) **and**
+  the next region tried, `westeurope` — *"The selected region is currently not accepting new
+  customers"* (`RequestDisallowedByAzure`), the same account-type restriction as Frontdoor above, just
+  worded differently. `northeurope` finally worked. Lesson: when a type's first region fails, don't
+  assume the *second* region you try is automatically safe just because it's not westeurope/Frontdoor
+  — check whether it's in this subscription's already-known-good set (`eastus`, `eastus2`, `westus`,
+  `northeurope`, `southeastasia`, `japanwest`, from the Automation error message above) before spending
+  a live test on it.
+- This subscription's **"Total Regional vCPUs" quota is a hard 4**, confirmed identical in every region
+  checked (`norwayeast`, `eastus`) via `az vm list-usage --location <region> --query "[?contains(localName,
+  'Total Regional vCPUs')]"`. Anything needing more than 4 vCPUs total across all its VMs at once —
+  `Microsoft.HDInsight/clusters`' minimum-viable 6-node HA cluster needs 12 — cannot be live-captured on
+  this subscription at all, regardless of region, SKU choice, or retry logic. Check this quota *before*
+  assuming a "not enough cores" error is self-inflicted (see the async soft-delete grace-window section
+  below) — a hard ceiling and a temporary one produce similar-looking error text but need completely
+  different responses.
+
 ## Diagnosing a region/quota/naming failure — the pattern used to fix ~36 entries in one session
 
 Don't guess a fix; get real evidence, then apply it precisely. In order of what to check:
@@ -721,6 +758,7 @@ Don't guess a fix; get real evidence, then apply it precisely. In order of what 
 4. **When pinning a region on an entry with prerequisites**: pin the *first* resource in the dependency chain that's actually region-constrained (usually the first VNet, or the resource with the SKU/type restriction), then chain every *downstream* resource to it via `{prereq.<alias>.location}` rather than pinning each one independently — see the `Standard_D2s_v5` section below for why independent pins silently produce region-mismatched resources.
 5. **Check for a region hardcoded inside `requestBody` itself**, not just the entry's own `location`/`locationFallbacks` — some resource types (Cosmos DB's `properties.locations[].locationName`) have a *separate* region field inside the request body that the `location`/`locationFallbacks` mechanism doesn't touch at all. A `provisioningState: "Failed"` with no obviously wrong top-level field is a strong hint to grep the whole `requestBody` for a suspicious literal region string.
 6. **Build and dry-run (`--dry-run --only <type>`) before spending real provisioning time** — it validates the JSON and shows exactly how prerequisite `location` chains resolve, catching an unresolved `{prereq.X.location}` typo or a missing chain link for free.
+7. **For a "not enough quota/cores/capacity" error, check the real current-vs-limit numbers before assuming it's self-inflicted (or permanent)** — `az vm list-usage --location <region> -o table` (vCPU families + "Total Regional vCPUs") and `az network list-usages --location <region> -o table` (public IPs, etc.) show the subscription's actual ceiling and current consumption. A limit of 0 available *right now* with a nonzero total limit is very likely the async soft-delete grace window (see that section below) and will clear on its own; a limit whose *ceiling itself* is smaller than what the resource needs (e.g. this subscription's hard 4 "Total Regional vCPUs" — see above) never will, in any region, no matter how long you wait.
 
 ## `Standard_D2s_v5` is permanently blocked on this subscription in most regions — pinned to `swedencentral`
 
@@ -965,3 +1003,144 @@ permanent-until-Microsoft-fixes-it limitation. If this resurfaces as worth re-in
 whether the extension version (`pageVersion=...` in the extension's own bundle request URL, visible via
 `playwright-cli requests --filter <extensionName>`) has changed since 2026-08-16 before assuming
 anything on our side needs to change.
+
+## A fifth Essentials-panel layout — `asx-overview-essentials__*`, no shared framework component at all
+
+Live-found (2026-08-16, `Microsoft.AnalysisServices/servers`): `EssentialsExtractor` returned 0 fields
+despite the screenshot clearly showing a fully-rendered, populated Essentials panel — and, unlike every
+earlier "0 fields" gap in this file, `DumpFiberBuilderSourceAsync` came back `{"found": false, "reason":
+"no anchor element found in this frame"}` for *all three* of the grid/PropertyField/Properties-form
+anchor selectors. That's the actual tell, worth remembering for the next unrecognized layout: if the
+fiber-walk debug dump can't even find an anchor element, the type isn't using any of the already-known
+selectors at all, not just failing to match one under some new class-name variant.
+
+A raw HTML dump confirmed a **fifth**, structurally distinct layout: literal (not per-render-suffixed)
+class names — `asx-overview-essentials__row` (item container), `asx-overview-essentials__label`,
+`asx-overview-essentials__value` (or `asx-overview-essentials__status` specifically for the "Status"
+field) — built by what looks like a custom, per-extension Overview pane rather than the shared
+`Essentials` framework component every other layout in this file routes through. That also explains the
+"no anchor found" result: there's no shared `displayName === 'Essentials'` fiber to walk up to for this
+type at all, so the whole fiber-walk/module-chasing toolchain documented earlier in this file doesn't
+apply here — a real, structural limit of that technique, not a bug in it.
+
+Added as a fourth *primary* combo in `EssentialsExtractor.ExtractAsync` (`AsxItemSelector`/
+`AsxExtractItemsJs`, reusing the same `BuildExtractItemsJs` label/value extraction logic as the other
+three, just with different selectors), tried after PropertyField/Properties-form and before the
+top-level/legacy fallbacks. Verified live: 8/8 fields recovered (Subscription name, Resource group,
+Status, Location, Subscription ID, Server name, Management Server Name, Pricing tier). If a *sixth*
+layout ever turns up, check for a "no anchor found" fiber-dump result first — it's the fastest signal
+that this is a genuinely new DOM shape, not a variant of one of the first four.
+
+## The async soft-delete grace-window pattern — one root cause behind several "only one X per region" errors
+
+First diagnosed for `Microsoft.App/managedEnvironments` (Container Apps), then independently rediscovered
+for `Microsoft.Automation/automationAccounts` a few hours later (2026-08-16) — worth recognizing as one
+pattern, not two separate bugs, if it turns up a third time. **The shape**: this tool's own
+`EphemeralResourceGroupScope` deletes every unit's resource group right after capture, every run. Some
+Azure services keep counting a resource against a per-region (or per-subscription) uniqueness/count cap
+for some live-confirmed-but-unquantified window *after* it's deleted — "If Deleted recently, please
+restore the same account" is Automation's own error text naming this explicitly. During any session doing
+repeated testing of the *same* catalog entry (exactly this project's own normal workflow), this is
+self-inflicted: the tool's previous run is still the reason the current one fails, not a new problem.
+
+**Confirmed, not assumed**, both times: for Automation specifically, a standalone `az deployment group
+create` test (bypassing this tool) reproduced the identical "only one account per region" error against a
+region that had been emptied less than two minutes earlier, while a genuinely never-touched region
+succeeded immediately — and *that* freshly-touched region then failed the same way on the very next
+attempt minutes later. Don't assume switching to *a* different region permanently fixes this kind of
+error — any region this tool (or you, diagnosing it) has recently used is temporarily "hot" the same way.
+
+**The fix, in both cases**: teach `CapacityErrorDetector.IsCapacityError` to recognize the specific error
+text (a distinctive phrase, not a generic HTTP code — "BadRequest" alone would false-positive on unrelated
+400s), and give the catalog entry a `locationFallbacks` list covering every region actually available to
+this subscription (see the Free Trial/Student-tier section above for that list). This turns a self-
+inflicted collision into something `ResourceTypePipeline.ProvisionWithLocationFallbackAsync` auto-recovers
+from — live-verified on Automation walking through 3 still-hot regions (`eastus`, `eastus2`, `westus`,
+all touched minutes earlier by this session's own diagnostics) before succeeding on the 4th
+(`southeastasia`). **Retrying at lower concurrency (the `QuotaErrorDetector` mechanism) does not help
+this class of error at all** — it's not a concurrency collision, so a quieter retry pass just hits the
+identical wall. If a new type's error message says something like "only one X per region/subscription" or
+mentions restoring a recently-deleted resource, this is the pattern to reach for first, not a fresh
+investigation.
+
+## `{prereq.*.key}` — resolving a prerequisite's real access key, not just id/name/location
+
+Added 2026-08-16 for `Microsoft.HDInsight/clusters`, whose `storageaccounts[].key` needed a real Storage
+Account access key that this tool's prerequisite system had no way to produce — `{prereq.*}` tokens only
+ever exposed `id`/`name`/`location` (`TemplateTokenResolver.ProvisionedResourceRef`), all known at
+name-generation time with no extra Azure call. A key is different: ARM never echoes an access key back
+from a resource's own GET body (write-only, same convention as a VM admin password) — the only way to get
+one is a separate `POST .../listKeys` action call, *after* the prerequisite has actually finished
+provisioning.
+
+**Deliberately narrow, not generalized to "any resource with a listKeys action"**: several other services
+(Cosmos DB, Redis, Cognitive Services, ...) expose access keys via the same `/listKeys` action *name*, but
+each returns a genuinely different response shape (`{"keys":[{...}]}` for Storage vs. e.g. a flat
+`{"primaryMasterKey":...}` for Cosmos DB) — `RawArmClient.ListStorageAccountPrimaryKeyAsync` only knows
+how to parse Storage's own shape. Extend to a second resource type only once there's a second real
+consumer, not speculatively.
+
+**Only fetched when actually needed**: `ResourceTypePipeline` checks
+`TemplateTokenResolver.ReferencesPrereqKey` (does anything downstream — a later prerequisite or the
+target itself — actually reference `{prereq.<alias>.key}`) before spending the extra ARM call, and only
+for `Microsoft.Storage/storageAccounts` prerequisites specifically. Referencing `.key` on any other
+prerequisite type, or before it's been resolved, throws immediately from `TemplateTokenResolver
+.ResolvePrereqTokens` rather than silently substituting an empty string into a request body.
+
+**Carries its own redaction obligation** — a resolved key is a real Azure credential, so it's threaded
+through to `OutputWriter.WriteAsync`/`OutputNormalizer.Normalize` as `resolvedSecretValues` (redacted to
+the shared `PlaceholderResolvedSecret` constant) the same way `adminPrincipalId` already was. **If a
+future `{prereq.*.key}` consumer is added for a different resource type, this redaction wiring already
+covers it automatically** (any value in `resolvedPrereqs.Values.Select(r => r.Key)` gets redacted,
+regardless of which prerequisite it came from) — no per-type redaction code needed, just the new
+`ListXxxKeyAsync` parsing method and the `armType` check in `ResourceTypePipeline`.
+
+Live-verified end to end 2026-08-16: the storage prerequisite provisions, its key resolves, and the
+HDInsight cluster PUT is accepted as a well-formed request — the fix itself works. The live capture then
+separately failed on this subscription's hard 4-vCPU cap (see the Free Trial/Student-tier section above)
+— a different, unrelated blocker the code fix was never going to solve, documented as such in
+`config/resource-types.json`'s notes for this entry rather than left looking like the fix didn't work.
+
+## A sibling repo, `AzToMarkdown` (aka "AzToMd"), is the actual consumer these templates are built for
+
+`templates/*.sbn` (this repo) and the `AzToMd` references sprinkled through this file and
+`ScribanModelBuilder`/`TemplateGenerator`/`TemplateRenderer`'s own comments aren't referring to something
+hypothetical — it's a real, separately-maintained sibling repo, checked out locally at
+`C:\Source\github\sherland\AzToMd` (`AzToMarkdown.slnx`), that queries Azure Resource Graph across a
+subscription/tenant and writes one `.md` file per resource into an Obsidian-compatible vault (lossless
+YAML front-matter + a Scriban-rendered body). If a future task involves "turn these templates into an
+actual vault" or "render real subscription resources," **look there first** rather than building a
+renderer from scratch in this repo — most of the infrastructure (ARG enumeration, relationship-graph
+extraction, lossless vault serialization, offline replay, a working `--subscription <id>` CLI flag) is
+already built and tested there. `AzToMd/AGENTS.md`/`docs/ARCHITECTURE.md` are the equivalent of this file
+for that repo.
+
+**Confirmed template compatibility (2026-08-16), don't re-derive this by hand next time**: `AzToMd`'s
+`VaultTemplateEngine.BuildScriptObject` exposes the same base `model` surface this repo's
+`ScribanModelBuilder.BuildModel` does — `model.props` (lowercased-key JSON tree), `model.name`,
+`model.location`, `model.resource_group`, `model.tags`, `model.sku_label`, `model.version` all match
+field-for-field. Of this repo's 141 generated templates, **127 (90%) use only those shared fields** and
+would render fully correctly if copied as-is into `AzToMd`'s `Rendering/Templates/` folder (which has
+only ~23 per-type templates today, falling back to a generic template otherwise). **14 templates
+reference fields `AzToMd` doesn't compute** and would silently render blank for those specific rows
+(Scriban swallows a missing field rather than erroring) until ported over: 7 use one of this repo's
+bespoke `PortalFriendlyLabels.cs` derivations (`storage_replication_label`, `aks_power_state_label`,
+`mongo_cluster_tier_label`, etc. — reverse-engineered from the Portal's own minified JS, see the fiber-
+walk sections above), and 8 use `model.sku_name`/`model.sku_tier` individually (`AzToMd` only exposes the
+combined `model.sku_label`). One type (`managedClusters`) is in both lists, so 14 total, not 15 — find
+them again with:
+```
+grep -lE "model\.(storage_replication_label|storage_account_kind_label|storage_performance_label|disk_storage_type_label|disk_security_type_label|mongo_cluster_tier_label|mongo_connectivity_method_label|mongo_authentication_label|mongo_storage_encryption_label|logic_workflow_definition_label|logic_integration_account_label|logic_workflow_type_label|appconfig_telemetry_label|appconfig_pricing_tier_label|aks_power_state_label|aks_cluster_operation_status_label|aks_api_server_address_label|aks_node_pools_label|aks_network_configuration_label|sku_name|sku_tier)" templates/*.sbn
+```
+
+`AzToMd` also has richer, hand-authored templates for its existing ~23 types (relationship-graph traversal
+via `model.outbound`/`filter_by_label`/`.wiki`, features this repo's model doesn't produce at all) — those
+are better than what this repo would provide for the same type and shouldn't be overwritten; the value of
+this repo's templates is filling the other ~118 types `AzToMd` currently falls back to `_generic.sbn` for.
+
+`AzToMd` does not currently support scoping a vault to a single resource group (only `--subscription
+<id>`/whole-tenant) — the three ARG KQL queries in `TenantEnumerator` would need an optional `| where
+resourceGroup =~ '{rg}'` clause (resource-group scoping isn't a native `az graph` CLI flag the way
+`--subscriptions` is); `RelationshipExtractor`/`VaultWriter` need no changes, since they already operate
+on whatever node list they're handed and already degrade cross-scope links to plain (non-broken) text
+references when the target isn't in the current graph (`VaultWriter.BuildWikiLink`).
