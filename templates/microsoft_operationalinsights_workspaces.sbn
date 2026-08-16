@@ -11,4 +11,8 @@
 | **Location** | {{ model.location | region_display_name }} |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
+| **Workspace Name** | {{ model.name }} |
+| **Workspace ID** | {{ model.props.customerid }} |
+| **Pricing tier** | <!-- TODO (ShortcutMismatch): Computed "PerGB2018" does NOT match portal "Pay-as-you-go" for this type — do not trust this shortcut here. --> Pay-as-you-go |
+| **Access control mode** | {{ model.props.features.enablelogaccessusingonlyresourcepermissions | portal_bool_enabled }} |
 | **Operational issues** | *See the Azure Portal for current status.* |

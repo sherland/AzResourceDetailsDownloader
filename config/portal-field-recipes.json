@@ -13,6 +13,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Access control mode",
+    "Kind": "Boolean",
+    "Confidence": 0.95,
+    "Target": "model.props.features.enablelogaccessusingonlyresourcepermissions",
+    "Notes": "transform: portal_bool (known-verified label\u2192property mapping)",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.OperationalInsights/workspaces"
+    ],
+    "SampleValue": "Use resource or workspace permissions",
+    "Conflicts": null
+  },
+  {
     "Label": "Account",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -178,7 +191,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/privateLinkServices"
     ],
-    "SampleValue": "plsd0-7-olm.1b2f6781-906d-4f11-b080-000638de69db.norwayeast.azure.privatelinkservice",
+    "SampleValue": "plsd0-7-olm.0d704ed1-94ac-406e-982b-a300e147bc9f.norwayeast.azure.privatelinkservice",
     "Conflicts": null
   },
   {
@@ -204,7 +217,7 @@
     "ObservedArmTypes": [
       "Microsoft.ContainerService/ManagedClusters"
     ],
-    "SampleValue": "ardlaksvj1i-p-sbjy59rq.hcp.swedencentral.azmk8s.io",
+    "SampleValue": "ardlaksz2p-af-pag3v1g5.hcp.swedencentral.azmk8s.io",
     "Conflicts": null
   },
   {
@@ -517,7 +530,7 @@
     "ObservedArmTypes": [
       "Microsoft.Compute/galleries/images"
     ],
-    "SampleValue": "gals0yvwobz",
+    "SampleValue": "galor6b8wuj",
     "Conflicts": null
   },
   {
@@ -544,6 +557,19 @@
       "Microsoft.Network/loadBalancers"
     ],
     "SampleValue": "-",
+    "Conflicts": null
+  },
+  {
+    "Label": "Backup policy",
+    "Kind": "Direct",
+    "Confidence": 1,
+    "Target": "model.props.backuppolicy.type",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.DocumentDB/databaseAccounts"
+    ],
+    "SampleValue": "Periodic",
     "Conflicts": null
   },
   {
@@ -609,7 +635,7 @@
       "Microsoft.ManagedIdentity/userAssignedIdentities",
       "Microsoft.Maps/accounts"
     ],
-    "SampleValue": "6b19f5c1-b79e-4341-9327-cfd4703273db",
+    "SampleValue": "6d22ced4-dd09-40dd-9a9a-32187984c7ab",
     "Conflicts": {
       "Microsoft.Maps/accounts": {
         "Kind": "Direct",
@@ -729,7 +755,7 @@
     "ObservedArmTypes": [
       "Microsoft.Insights/dataCollectionEndpoints"
     ],
-    "SampleValue": "https://dcemegmb-xy-hzyo.norwayeast-1.handler.control.monitor.azure.com",
+    "SampleValue": "https://dcemegmb-xy-kcu6.norwayeast-1.handler.control.monitor.azure.com",
     "Conflicts": null
   },
   {
@@ -769,7 +795,7 @@
       "microsoft.insights/components",
       "microsoft.insights/webtests"
     ],
-    "SampleValue": "InstrumentationKey=db2e6507-5e0d-41c2-a540-660d418669a6;IngestionEndpoint=https://norwayeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://norwayeast.livediagnostics.monitor.azure.com/;ApplicationId=60b03760-f374-44af-b64c-2e046b896757",
+    "SampleValue": "InstrumentationKey=ca295b20-b8ec-4eb7-9600-9ba5bcf3076a;IngestionEndpoint=https://norwayeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://norwayeast.livediagnostics.monitor.azure.com/;ApplicationId=7b59aed5-d5a5-429d-b3c4-afbf5fcc9e2c",
     "Conflicts": {
       "microsoft.insights/components": {
         "Kind": "Direct",
@@ -810,7 +836,7 @@
     "ObservedArmTypes": [
       "Microsoft.App/jobs"
     ],
-    "SampleValue": "caek-fw2h3i",
+    "SampleValue": "---",
     "Conflicts": null
   },
   {
@@ -856,7 +882,7 @@
       "Microsoft.ServiceBus/namespaces/topics/subscriptions",
       "Microsoft.Storage/storageAccounts"
     ],
-    "SampleValue": "Thursday, August 13, 2026 at 14:50:31 GMT\u002B2",
+    "SampleValue": "Sunday, August 16, 2026 at 15:33:30 GMT\u002B2",
     "Conflicts": {
       "Microsoft.EventHub/Namespaces": {
         "Kind": "Timestamp",
@@ -926,7 +952,7 @@
     "ObservedArmTypes": [
       "Microsoft.DBforPostgreSQL/flexibleServers"
     ],
-    "SampleValue": "2026-08-14 12:29:15 (UTC)",
+    "SampleValue": "2026-08-16 14:07:21 (UTC)",
     "Conflicts": null
   },
   {
@@ -939,7 +965,7 @@
     "ObservedArmTypes": [
       "Microsoft.ContainerService/ManagedClusters"
     ],
-    "SampleValue": "14. august 2026 kl. 14:18",
+    "SampleValue": "16. august 2026 kl. 16:05",
     "Conflicts": null
   },
   {
@@ -947,12 +973,12 @@
     "Kind": "Timestamp",
     "Confidence": 0.9,
     "Target": "model.props.creationdate",
-    "Notes": "transform: portal_timestamp \u2014 3 candidate instants matched, picked by label/property-name similarity",
+    "Notes": "transform: portal_timestamp",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.ContainerRegistry/registries"
     ],
-    "SampleValue": "8/14/2026, 9:39 AM GMT\u002B2",
+    "SampleValue": "8/16/2026, 3:24 PM GMT\u002B2",
     "Conflicts": null
   },
   {
@@ -965,7 +991,7 @@
     "ObservedArmTypes": [
       "Microsoft.Resources/templateSpecs"
     ],
-    "SampleValue": "8/13/2026, 2:57 PM",
+    "SampleValue": "8/16/2026, 3:46 PM",
     "Conflicts": null
   },
   {
@@ -1719,7 +1745,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/loadBalancers"
     ],
-    "SampleValue": "4.235.102.66 (pipjc-fv-7p)",
+    "SampleValue": "20.100.188.235 (pip4esx-wt9)",
     "Conflicts": null
   },
   {
@@ -1758,7 +1784,7 @@
     "ObservedArmTypes": [
       "Microsoft.AppConfiguration/configurationStores"
     ],
-    "SampleValue": "0 replica(s)",
+    "SampleValue": "N/A",
     "Conflicts": null
   },
   {
@@ -1953,7 +1979,7 @@
     "ObservedArmTypes": [
       "Microsoft.EventGrid/namespaces"
     ],
-    "SampleValue": "egns9co-cfa8.norwayeast-1.eventgrid.azure.net",
+    "SampleValue": "egns153-8-ez.norwayeast-1.eventgrid.azure.net",
     "Conflicts": null
   },
   {
@@ -1966,7 +1992,7 @@
     "ObservedArmTypes": [
       "Microsoft.Devices/provisioningServices"
     ],
-    "SampleValue": "0ne012830F8",
+    "SampleValue": "0ne012887B5",
     "Conflicts": null
   },
   {
@@ -2005,7 +2031,7 @@
     "ObservedArmTypes": [
       "Microsoft.Insights/dataCollectionRules"
     ],
-    "SampleValue": "dcr-9db38fb6d20c4fc3ba908e792a6c3fa7",
+    "SampleValue": "dcr-cd7b55f99a97457cb5fa4924ebb9cfde",
     "Conflicts": null
   },
   {
@@ -2058,7 +2084,7 @@
       "microsoft.insights/components",
       "microsoft.insights/webtests"
     ],
-    "SampleValue": "db2e6507-5e0d-41c2-a540-660d418669a6",
+    "SampleValue": "ca295b20-b8ec-4eb7-9600-9ba5bcf3076a",
     "Conflicts": {
       "microsoft.insights/components": {
         "Kind": "Direct",
@@ -2252,12 +2278,12 @@
     "Kind": "Timestamp",
     "Confidence": 0.9,
     "Target": "model.props.updatedat",
-    "Notes": "transform: portal_timestamp \u2014 2 candidate instants matched, picked by label/property-name similarity",
+    "Notes": "transform: portal_timestamp",
     "IsLiveState": true,
     "ObservedArmTypes": [
       "Microsoft.NotificationHubs/namespaces"
     ],
-    "SampleValue": "2026-08-13T13:00:43.233\u002B00:00",
+    "SampleValue": "2026-08-16T13:49:45.107\u002B00:00",
     "Conflicts": null
   },
   {
@@ -3395,7 +3421,7 @@
     "ObservedArmTypes": [
       "Microsoft.Insights/dataCollectionEndpoints"
     ],
-    "SampleValue": "https://dcemegmb-xy-hzyo.norwayeast-1.ingest.monitor.azure.com",
+    "SampleValue": "https://dcemegmb-xy-kcu6.norwayeast-1.ingest.monitor.azure.com",
     "Conflicts": null
   },
   {
@@ -3435,7 +3461,7 @@
     "ObservedArmTypes": [
       "Microsoft.Synapse/workspaces/sqlPools"
     ],
-    "SampleValue": "l\u00F8r. 14:00 UTC (8h) / tir. 16:00 UTC (8h)",
+    "SampleValue": "s\u00F8n. 14:00 UTC (8h) / tir. 16:00 UTC (8h)",
     "Conflicts": null
   },
   {
@@ -3539,7 +3565,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/azureFirewalls"
     ],
-    "SampleValue": "piptlxkj0-6",
+    "SampleValue": "pipunesj-jt",
     "Conflicts": null
   },
   {
@@ -3591,7 +3617,7 @@
     "ObservedArmTypes": [
       "microsoft.dashboard/grafana"
     ],
-    "SampleValue": "https://grfobls6-wo-byceegbubtaybvc2.eno.grafana.azure.com/api/azure-mcp",
+    "SampleValue": "https://grfvkgyyrfx-bud2c4fsgygfgtd3.eno.grafana.azure.com/api/azure-mcp",
     "Conflicts": null
   },
   {
@@ -3604,7 +3630,7 @@
     "ObservedArmTypes": [
       "Microsoft.Monitor/accounts"
     ],
-    "SampleValue": "https://amona-g-1-e5-pr0u.norwayeast-1.metrics.ingest.monitor.azure.com/dataCollectionRules/dcr-c968c0d4ccab4fb085e15b606b09389f/streams/Microsoft-PrometheusMetrics/api/v1/write?api-version=2023-04-24",
+    "SampleValue": "https://amona-g-1-e5-3wqm.norwayeast-1.metrics.ingest.monitor.azure.com/dataCollectionRules/dcr-e08af19864d7421b95ade5c361bd2a7a/streams/Microsoft-PrometheusMetrics/api/v1/write?api-version=2023-04-24",
     "Conflicts": null
   },
   {
@@ -3617,7 +3643,7 @@
     "ObservedArmTypes": [
       "Microsoft.Sql/servers"
     ],
-    "SampleValue": "Not configured",
+    "SampleValue": "admin@example.com",
     "Conflicts": null
   },
   {
@@ -3656,7 +3682,7 @@
     "ObservedArmTypes": [
       "Microsoft.Resources/templateSpecs"
     ],
-    "SampleValue": "8/13/2026, 2:57 PM",
+    "SampleValue": "8/16/2026, 3:46 PM",
     "Conflicts": null
   },
   {
@@ -3743,7 +3769,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/dnszones"
     ],
-    "SampleValue": "ns1-05.azure-dns.com.",
+    "SampleValue": "ns1-07.azure-dns.com.",
     "Conflicts": null
   },
   {
@@ -3756,7 +3782,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/dnszones"
     ],
-    "SampleValue": "ns2-05.azure-dns.net.",
+    "SampleValue": "ns2-07.azure-dns.net.",
     "Conflicts": null
   },
   {
@@ -3769,7 +3795,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/dnszones"
     ],
-    "SampleValue": "ns3-05.azure-dns.org.",
+    "SampleValue": "ns3-07.azure-dns.org.",
     "Conflicts": null
   },
   {
@@ -3782,7 +3808,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/dnszones"
     ],
-    "SampleValue": "ns4-05.azure-dns.info.",
+    "SampleValue": "ns4-07.azure-dns.info.",
     "Conflicts": null
   },
   {
@@ -3890,7 +3916,7 @@
     "ObservedArmTypes": [
       "Microsoft.Batch/batchAccounts"
     ],
-    "SampleValue": "af84ea63-9cde-497d-b88d-3d341c9ac9cf.norwayeast.service.batch.azure.com",
+    "SampleValue": "15c3c880-5f64-4855-9bc7-a59f30e4bd93.norwayeast.service.batch.azure.com",
     "Conflicts": null
   },
   {
@@ -3943,7 +3969,7 @@
     "ObservedArmTypes": [
       "Microsoft.ManagedIdentity/userAssignedIdentities"
     ],
-    "SampleValue": "27e89a65-5fd6-4263-8029-74a51a7e7ea7",
+    "SampleValue": "fe6734ee-5b33-4dca-9150-3dc99b4f169b",
     "Conflicts": null
   },
   {
@@ -4375,6 +4401,7 @@
       "Microsoft.EventHub/Namespaces",
       "Microsoft.NotificationHubs/namespaces",
       "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "Microsoft.OperationalInsights/workspaces",
       "Microsoft.Search/searchServices",
       "Microsoft.ServiceBus/Namespaces",
       "Microsoft.Sql/servers/databases",
@@ -4479,6 +4506,13 @@
         "Confidence": 1,
         "Target": "model.sku_label",
         "Notes": "Verified: computed sku_label matches the captured portal value exactly.",
+        "IsLiveState": false
+      },
+      "Microsoft.OperationalInsights/workspaces": {
+        "Kind": "ShortcutMismatch",
+        "Confidence": 0,
+        "Target": "model.sku_label",
+        "Notes": "Computed \u0022PerGB2018\u0022 does NOT match portal \u0022Pay-as-you-go\u0022 for this type \u2014 do not trust this shortcut here.",
         "IsLiveState": false
       },
       "Microsoft.Cdn/profiles": {
@@ -4776,7 +4810,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/bastionHosts"
     ],
-    "SampleValue": "bst-b5214c8f-f95e-40b0-b7cf-78658ba194d9.bastion.azure.com",
+    "SampleValue": "bst-1e46d2fd-b019-4035-aff2-9a268884d90f.bastion.azure.com",
     "Conflicts": null
   },
   {
@@ -4789,7 +4823,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/azureFirewalls"
     ],
-    "SampleValue": "pip7ia9-tq4",
+    "SampleValue": "piph5-e48-s",
     "Conflicts": null
   },
   {
@@ -4867,6 +4901,7 @@
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.Network/bastionHosts",
       "Microsoft.Network/networkInterfaces"
     ],
     "SampleValue": "-",
@@ -4913,17 +4948,32 @@
   },
   {
     "Label": "Purge protection",
-    "Kind": "Direct",
-    "Confidence": 1,
-    "Target": "model.props.enablepurgeprotection",
-    "Notes": "boolean\u2192friendly-word",
+    "Kind": "Unresolved",
+    "Confidence": 0,
+    "Target": null,
+    "Notes": "properties.enablePurgeProtection, a real boolean \u2014 but only rendered at all on a SKU tier where the feature exists, so an unresolved capture may just mean the SKU didn\u0027t have the property to show (confirmed live on AppConfiguration/configurationStores)",
     "IsLiveState": false,
     "ObservedArmTypes": [
       "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.KeyVault/vaults"
     ],
-    "SampleValue": "Disabled",
-    "Conflicts": null
+    "SampleValue": "N/A",
+    "Conflicts": {
+      "Microsoft.AppConfiguration/configurationStores": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "properties.enablePurgeProtection, a real boolean \u2014 but only rendered at all on a SKU tier where the feature exists, so an unresolved capture may just mean the SKU didn\u0027t have the property to show (confirmed live on AppConfiguration/configurationStores)",
+        "IsLiveState": false
+      },
+      "Microsoft.KeyVault/vaults": {
+        "Kind": "Direct",
+        "Confidence": 1,
+        "Target": "model.props.enablepurgeprotection",
+        "Notes": "boolean\u2192friendly-word",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Query endpoint",
@@ -4935,7 +4985,7 @@
     "ObservedArmTypes": [
       "Microsoft.Monitor/accounts"
     ],
-    "SampleValue": "https://amona-g-1-e5-dmegf7e4bre8c4f3.norwayeast.prometheus.monitor.azure.com",
+    "SampleValue": "https://amona-g-1-e5-dzdsfsb4cugqcbfj.norwayeast.prometheus.monitor.azure.com",
     "Conflicts": null
   },
   {
@@ -4948,7 +4998,7 @@
     "ObservedArmTypes": [
       "microsoft.resourcegraph/queries"
     ],
-    "SampleValue": "rgq0ww670ks",
+    "SampleValue": "rgqnhli-a7r",
     "Conflicts": null
   },
   {
@@ -5835,7 +5885,7 @@
       "Microsoft.AppConfiguration/configurationStores",
       "Microsoft.KeyVault/vaults"
     ],
-    "SampleValue": "Enabled",
+    "SampleValue": "N/A",
     "Conflicts": {
       "Microsoft.AppConfiguration/configurationStores": {
         "Kind": "Unresolved",
@@ -5955,7 +6005,7 @@
     "ObservedArmTypes": [
       "Microsoft.App/managedEnvironments"
     ],
-    "SampleValue": "20.100.251.10",
+    "SampleValue": "20.251.94.202",
     "Conflicts": null
   },
   {
@@ -6270,10 +6320,10 @@
         "IsLiveState": true
       },
       "Microsoft.Sql/servers/elasticPools": {
-        "Kind": "NeedsReview",
-        "Confidence": 0.2,
-        "Target": "model.props.state",
-        "Notes": "Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) \u2014 verify by hand before trusting.",
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "vocabulary \u2014 per-armType status text via a portal-side lookup, not a fixed mapping",
         "IsLiveState": true
       },
       "Microsoft.Sql/servers/jobAgents": {
@@ -6898,7 +6948,7 @@
       "Microsoft.Compute/virtualMachineScaleSets",
       "Microsoft.Network/networkManagers"
     ],
-    "SampleValue": "8/14/2026, 11:08:52 PM",
+    "SampleValue": "8/16/2026, 3:13:09 PM",
     "Conflicts": {
       "Microsoft.Compute/disks": {
         "Kind": "Timestamp",
@@ -7096,7 +7146,7 @@
       "Microsoft.ServiceBus/namespaces/topics",
       "Microsoft.ServiceBus/namespaces/topics/subscriptions"
     ],
-    "SampleValue": "Thursday, August 13, 2026 at 14:50:31 GMT\u002B2",
+    "SampleValue": "Sunday, August 16, 2026 at 15:33:30 GMT\u002B2",
     "Conflicts": null
   },
   {
@@ -7109,7 +7159,7 @@
     "ObservedArmTypes": [
       "Microsoft.DocumentDB/databaseAccounts"
     ],
-    "SampleValue": "https://cosmosd5q1iefd.documents.azure.com:443/",
+    "SampleValue": "https://cosmoscibdp-jn.documents.azure.com:443/",
     "Conflicts": null
   },
   {
@@ -7150,7 +7200,7 @@
     "ObservedArmTypes": [
       "Microsoft.KeyVault/vaults"
     ],
-    "SampleValue": "https://kv68u-db-c.vault.azure.net/",
+    "SampleValue": "https://kvp6zp7-1q.vault.azure.net/",
     "Conflicts": null
   },
   {
@@ -7190,7 +7240,7 @@
       "Microsoft.Compute/restorePointCollections",
       "Microsoft.Network/publicIPAddresses"
     ],
-    "SampleValue": "swazx8jrlti5t02",
+    "SampleValue": "swaz1fxf9i19802",
     "Conflicts": null
   },
   {
@@ -7246,7 +7296,7 @@
     "ObservedArmTypes": [
       "Microsoft.Network/virtualNetworks"
     ],
-    "SampleValue": "a588faeb-cac5-4125-9d54-ef4d24c4102d",
+    "SampleValue": "e51be5f3-48fb-41e4-b709-4f3e56d0fed8",
     "Conflicts": null
   },
   {
@@ -7289,7 +7339,7 @@
       "Microsoft.Network/networkInterfaces",
       "Microsoft.Network/privateEndpoints"
     ],
-    "SampleValue": "vnetyu-i7-8l/default",
+    "SampleValue": "vnetb5ylw2-a/default",
     "Conflicts": null
   },
   {
@@ -7384,6 +7434,19 @@
     "Conflicts": null
   },
   {
+    "Label": "Workspace ID",
+    "Kind": "Direct",
+    "Confidence": 0.5,
+    "Target": "model.props.customerid",
+    "Notes": "exact value match",
+    "IsLiveState": false,
+    "ObservedArmTypes": [
+      "Microsoft.OperationalInsights/workspaces"
+    ],
+    "SampleValue": "798dc64e-bd49-4000-8c21-f7320c3e186e",
+    "Conflicts": null
+  },
+  {
     "Label": "Workspace name",
     "Kind": "Unresolved",
     "Confidence": 0,
@@ -7391,11 +7454,34 @@
     "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
     "IsLiveState": false,
     "ObservedArmTypes": [
+      "Microsoft.OperationalInsights/workspaces",
       "Microsoft.OperationsManagement/solutions",
       "Microsoft.Synapse/workspaces/sqlPools"
     ],
     "SampleValue": "synd92txe0r",
-    "Conflicts": null
+    "Conflicts": {
+      "Microsoft.Synapse/workspaces/sqlPools": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      },
+      "Microsoft.OperationalInsights/workspaces": {
+        "Kind": "Direct",
+        "Confidence": 0.5,
+        "Target": "model.name",
+        "Notes": "exact value match",
+        "IsLiveState": false
+      },
+      "Microsoft.OperationsManagement/solutions": {
+        "Kind": "Unresolved",
+        "Confidence": 0,
+        "Target": null,
+        "Notes": "No value match found anywhere in this capture \u2014 investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like \u0022---\u0022, or a new different-API-surface/composite case).",
+        "IsLiveState": false
+      }
+    }
   },
   {
     "Label": "Workspace type",
