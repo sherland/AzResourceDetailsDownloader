@@ -17,11 +17,16 @@ public static class OutputNormalizer
     public const string PlaceholderTenantId = "11111111-1111-1111-1111-111111111111";
 
     // The Overview blade's Essentials panel shows human-readable names alongside the GUIDs above —
-    // "Directory Name" (the AAD tenant's display name) and "Subscription" (its display name) are
-    // identifying text that the GUID-based replacement above can't catch (they're not the tenant/sub
-    // ID string). Live-observed leak: a real capture surfaced "Directory Name": "<the tenant owner's
-    // actual AAD tenant name>" uncaught by Normalize() below, since portal-fields.json is the only
-    // artifact that ever contains these display names — data.json/bicep/tf don't.
+    // "Directory Name" (the AAD tenant's display name) and "Subscription"/"Subscription name" (its
+    // display name — same value, two different labels depending on which Essentials layout a blade
+    // type uses) are identifying text that the GUID-based replacement above can't catch (they're not
+    // the tenant/sub ID string). Live-observed leak: a real capture surfaced "Directory Name": "<the
+    // tenant owner's actual AAD tenant name>" uncaught by Normalize() below, since portal-fields.json
+    // is the only artifact that ever contains these display names — data.json/bicep/tf don't.
+    // Live-observed again (2026-08-16, Microsoft.AnalysisServices/servers — the same "asx-overview-
+    // essentials__*" custom layout documented in EssentialsExtractor): this blade type's own label is
+    // "Subscription name", not the "Subscription" label every other captured type happened to use —
+    // the exact-match switch below let the real value ("Azure subscription 1") straight through.
     public const string PlaceholderDirectoryName = "example-tenant";
     public const string PlaceholderSubscriptionName = "Example Subscription";
     // Live-observed leak (2026-08-13, Microsoft.Synapse/workspaces): "SQL Microsoft Entra admin"
@@ -39,9 +44,19 @@ public static class OutputNormalizer
     // of redacted value.
     public const string PlaceholderUserPrincipalName = PlaceholderEntraAdmin;
 
+    // Live-observed leak (2026-08-16, Microsoft.AnalysisServices/servers): the {secret.
+    // adminPrincipalId} catalog token resolves to the actual signed-in operator's real AAD object
+    // ID (see ResourceTypePipeline/Secrets:adminPrincipalId), which several catalog entries
+    // (AnalysisServices/servers, Fabric/capacities, PowerBIDedicated/capacities) embed verbatim in
+    // their request body's asAdministrators/administration.members — landing straight in data.json
+    // exactly like the UPN leak above, just via a config-driven secret value instead of an
+    // ARM-auto-stamped one. Deliberately distinct (not zeros/ones/the Entra-admin email) so which
+    // kind of redacted value it was is still obvious at a glance in committed files.
+    public const string PlaceholderAdminPrincipalId = "22222222-2222-2222-2222-222222222222";
+
     public static string Normalize(
         string text, string subscriptionId, string tenantId, string actualRgName, string armType,
-        string? userPrincipalName = null)
+        string? userPrincipalName = null, string? adminPrincipalId = null)
     {
         var placeholderRgName = DeterministicNaming.PlaceholderResourceGroupName(armType);
 
@@ -51,6 +66,10 @@ public static class OutputNormalizer
         if (!string.IsNullOrEmpty(userPrincipalName))
         {
             text = ReplaceCaseInsensitive(text, userPrincipalName, PlaceholderUserPrincipalName);
+        }
+        if (!string.IsNullOrEmpty(adminPrincipalId))
+        {
+            text = ReplaceCaseInsensitive(text, adminPrincipalId, PlaceholderAdminPrincipalId);
         }
         return text;
     }
@@ -62,7 +81,7 @@ public static class OutputNormalizer
         fields.Select(f => f.Label switch
         {
             "Directory Name" => f with { Value = PlaceholderDirectoryName },
-            "Subscription" => f with { Value = PlaceholderSubscriptionName },
+            "Subscription" or "Subscription name" => f with { Value = PlaceholderSubscriptionName },
             var label when label.Contains("Entra admin", StringComparison.OrdinalIgnoreCase)
                 => f with { Value = PlaceholderEntraAdmin },
             _ => f,

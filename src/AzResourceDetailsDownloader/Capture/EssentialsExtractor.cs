@@ -87,6 +87,21 @@ public static class EssentialsExtractor
     private const string CurrentItemSelector = "[class*=\"essentialsItem-\"]";
     private const string LegacyItemSelector = ".fxc-essentials-item";
 
+    // Live-found (2026-08-16, Microsoft.AnalysisServices/servers — a debug fiber dump via
+    // DumpFiberBuilderSourceAsync came back "no anchor element found in this frame" for all three
+    // combos above, confirming this type's Overview pane isn't routed through the shared
+    // "Essentials" framework component at all): a fourth, distinct layout, apparently a
+    // custom-built extension pane rather than framework-provided — literal (not per-render-suffixed)
+    // class names `asx-overview-essentials__row` (item), `asx-overview-essentials__label` (label),
+    // and either `asx-overview-essentials__value` or `asx-overview-essentials__status` (value; the
+    // "Status" field alone uses the latter, e.g. `asx-overview-essentials__status--success`).
+    // Confirmed via a raw HTML dump: 7 fields (Subscription name, Resource group, Status, Location,
+    // Subscription ID, Server name, Management Server Name, Pricing tier) all fully rendered under
+    // these classes from the very first snapshot, no render-lag involved. Substring-matched
+    // (`[class*=...]`) since the value classes carry extra modifier suffixes
+    // (`--interactive`, `--mono`, `--break`, `--success`) alongside the base name.
+    private const string AsxItemSelector = ".asx-overview-essentials__row";
+
     // `title` is tried first (Fluent UI can pad/truncate visible text for layout while `title` holds
     // the untruncated string), then `innerText` — deliberately NOT `textContent`: the value wrapper
     // contains a second, hidden, ARIA/tooltip copy of the same link (`hidden` attribute, off-screen),
@@ -162,6 +177,9 @@ public static class EssentialsExtractor
         BuildExtractItemsJs("[class*=\"essentialsLabel-\"]", "[class*=\"essentialsValue-\"]");
     private static readonly string LegacyExtractItemsJs =
         BuildExtractItemsJs(".fxc-essentials-label", ".fxc-essentials-value");
+    private static readonly string AsxExtractItemsJs = BuildExtractItemsJs(
+        "[class*=\"asx-overview-essentials__label\"]",
+        "[class*=\"asx-overview-essentials__value\"], [class*=\"asx-overview-essentials__status\"]");
 
     // The Fluent UI `PropertyField*-label` id suffix (`fui-rf`, `fui-rg`, ...) is a React `useId()`
     // value, unstable across renders just like the `essentialsItem-NNN` suffix — matched as a prefix/
@@ -377,6 +395,13 @@ public static class EssentialsExtractor
 
             fields = await TryExtractFromLocatorAsync(
                 sandboxFrame.Locator(PropertiesFormLabelSelector), PropertiesFormExtractItemsJs, primaryAppearTimeout);
+            if (fields.Count > 0)
+            {
+                return Finalize(fields);
+            }
+
+            fields = await TryExtractFromLocatorAsync(
+                sandboxFrame.Locator(AsxItemSelector), AsxExtractItemsJs, primaryAppearTimeout);
             if (fields.Count > 0)
             {
                 return Finalize(fields);
