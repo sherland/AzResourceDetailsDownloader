@@ -1,4 +1,4 @@
-# jobagentfwj1t3
+# jobagentipkpzo
 
 | Property | Value |
 |---|---|
@@ -7,6 +7,6 @@
 | **Location** | Sweden Central |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Server name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> sqltcfi-k-s |
+| **Server name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> sql5su-m5-f |
 | **Database name** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> jobagentdb |
 | **Pricing tier** | <!-- TODO (ShortcutMismatch): portal shows "JA100" but no sku object found at root or properties.sku --> JA100 |

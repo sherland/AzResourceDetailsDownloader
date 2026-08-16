@@ -1,9 +1,9 @@
-# grfobls6-wo
+# grfvkgyyrfx
 
 | Property | Value |
 |---|---|
-| **Endpoint** | https://grfobls6-wo-byceegbubtaybvc2.eno.grafana.azure.com |
-| **MCP Endpoint** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> https://grfobls6-wo-byceegbubtaybvc2.eno.grafana.azure.com/api/azure-mcp |
+| **Endpoint** | https://grfvkgyyrfx-bud2c4fsgygfgtd3.eno.grafana.azure.com |
+| **MCP Endpoint** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> https://grfvkgyyrfx-bud2c4fsgygfgtd3.eno.grafana.azure.com/api/azure-mcp |
 | **Grafana Version** | 12.4.6 |
 | **Pricing Plan** | Standard |
 | **Size** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> X1 |

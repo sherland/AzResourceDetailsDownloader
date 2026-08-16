@@ -1,4 +1,4 @@
-# disks7agb-jh
+# diskbpe8-oy2
 
 | Property | Value |
 |---|---|
@@ -8,7 +8,7 @@
 | **Location** | Norway East |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Time created** | August 14, 2026 at 21:08:52 UTC |
+| **Time created** | August 16, 2026 at 13:13:09 UTC |
 | **Disk size** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> 4 GiB |
 | **Storage type** | Standard HDD LRS |
 | **Managed by** | <!-- TODO (Unresolved): properties.managedBy (a VM resource ID, last path segment shown) when set — genuinely composite (extracts + link-wraps a name from an ID, like the Resource Group shortcut does), correctly non-traceable as a plain value match (confirmed live on Compute/disks) --> - |

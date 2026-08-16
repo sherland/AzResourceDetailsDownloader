@@ -8,7 +8,7 @@
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Soft delete (Preview)** | Disabled |
 | **Login server** | acrp0etmvv1.azurecr.io |
-| **Creation date** | August 14, 2026 at 07:39:04 UTC |
+| **Creation date** | August 16, 2026 at 13:24:52 UTC |
 | **Provisioning state** | Succeeded <sub>(as of last sync)</sub> |
 | **Pricing plan** | Basic |
 | **Domain name label scope** | <!-- TODO (Unresolved): different API surface / portal-computed, not in this GET's body --> Unsecure |

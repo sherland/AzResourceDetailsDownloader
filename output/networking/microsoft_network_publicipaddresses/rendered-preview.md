@@ -1,4 +1,4 @@
-# pipq-rd2p08
+# pip208b-5n5
 
 | Property | Value |
 |---|---|
@@ -8,7 +8,7 @@
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **SKU** | Standard |
 | **Tier** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Regional |
-| **IP address** | 20.251.117.123 |
+| **IP address** | 20.100.172.247 |
 | **DNS name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> - |
 | **Associated to** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
 | **Virtual machine** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> - |
