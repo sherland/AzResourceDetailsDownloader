@@ -1144,3 +1144,25 @@ resourceGroup =~ '{rg}'` clause (resource-group scoping isn't a native `az graph
 `--subscriptions` is); `RelationshipExtractor`/`VaultWriter` need no changes, since they already operate
 on whatever node list they're handed and already degrade cross-scope links to plain (non-broken) text
 references when the target isn't in the current graph (`VaultWriter.BuildWikiLink`).
+
+## A Microsoft.Playwright NuGet bump can silently break a local dev machine even when CI is green
+
+Live-found (2026-08-17): Dependabot's first grouped NuGet PR bumped `Microsoft.Playwright` 1.61.0 ->
+1.62.0. CI passed cleanly — but that's because `ci.yml` runs `playwright.ps1 install --with-deps
+chromium` fresh on every single run, so it always ends up with whatever browser build the *current*
+package version expects, regardless of what changed. Checking the same PR out locally and running the
+real browser-launching tests (`EssentialsExtractorReplayTests`, `StableRenderWaiterReplayTests`)
+against this machine's own, already-populated Playwright cache failed immediately: 12 of 26 tests threw
+`PlaywrightException: Executable doesn't exist at ...chromium_headless_shell-1234\...` — the new package
+version expects browser build `1234`, and the cache only had `1217`/`1228` from earlier sessions.
+
+**The lesson, generalized**: a green CI run for a Dependabot PR touching `Microsoft.Playwright`
+specifically does NOT prove the bump is safe to use locally without further action — CI's fresh-install
+step masks exactly the failure mode a persistent environment (a dev machine, a long-lived CI cache, a
+container image built once and reused) would actually hit. After merging any `Microsoft.Playwright`
+version bump, re-run the install step once:
+```
+pwsh tests/AzResourceDetailsDownloader.Infrastructure.Tests/bin/<Debug|Release>/net10.0/playwright.ps1 install chromium
+```
+Confirmed fixed this way live: reinstalling pulled Chrome for Testing 151.0.7922.34 (build 1234), and
+all 26 Infrastructure tests then passed with a genuinely freshly-launched browser, not a stale one.
