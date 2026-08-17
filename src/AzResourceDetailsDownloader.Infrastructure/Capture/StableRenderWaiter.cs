@@ -28,18 +28,25 @@ public static class StableRenderWaiter
     private static readonly TimeSpan[] NotFoundRetryDelays =
         [TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(6), TimeSpan.FromSeconds(12)];
 
-    public static async Task WaitForStableRenderAsync(IPage page, string resourceName, ILogger logger, CancellationToken ct = default)
+    // Scales every wait/timeout below proportionally — same pattern as EssentialsExtractor's
+    // captureTimeoutMultiplier (see PortalCaptureService), added here for the same reason: without
+    // it, exercising the fallback/timeout paths (heading not found, indicators never clear) in a
+    // test means genuinely waiting out the real 20s/15s/etc. constants, since none of them were
+    // otherwise adjustable. Defaults to 1.0 — zero change to today's production timing unless a
+    // caller opts in, and PortalCaptureService doesn't (yet) pass anything else.
+    public static async Task WaitForStableRenderAsync(
+        IPage page, string resourceName, ILogger logger, CancellationToken ct = default, double timeoutMultiplier = 1.0)
     {
         ThrowIfLoginRedirect(page.Url);
 
-        var found = await TryWaitForContentAsync(page, resourceName);
+        var found = await TryWaitForContentAsync(page, resourceName, timeoutMultiplier);
         if (!found)
         {
             logger.LogWarning("Stable-render signal not found on first attempt for '{ResourceName}'; reloading once.", resourceName);
             await page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded });
             ThrowIfLoginRedirect(page.Url);
 
-            found = await TryWaitForContentAsync(page, resourceName);
+            found = await TryWaitForContentAsync(page, resourceName, timeoutMultiplier);
             if (!found)
             {
                 logger.LogWarning(
@@ -52,9 +59,9 @@ public static class StableRenderWaiter
         // Belt-and-suspenders on top of the content-marker check above: even once the heading/Essentials is
         // found, give any still-visible shimmer/spinner/progressbar a bounded window to clear before we
         // settle and screenshot, since these can outlive the initial content marker on some blades.
-        await WaitForLoadingIndicatorsToClearAsync(page, resourceName, logger);
+        await WaitForLoadingIndicatorsToClearAsync(page, resourceName, logger, timeoutMultiplier);
 
-        await Task.Delay(TimeSpan.FromMilliseconds(1200), ct);
+        await Task.Delay(TimeSpan.FromMilliseconds(1200 * timeoutMultiplier), ct);
 
         // Must run LAST, immediately before the caller takes the screenshot — not before the loading-indicator
         // wait above. The "not found" 404 is itself the page's *settled* state (it replaces the loading
@@ -63,10 +70,11 @@ public static class StableRenderWaiter
         // Microsoft.Insights/activityLogAlerts logged no "not found" warning (the earlier-positioned check
         // passed) yet the saved screenshot still showed "The resource was not found" — the page transitioned
         // into that state during/after the indicator wait, after the once-only check had already passed.
-        await EnsureNotResourceNotFoundAsync(page, resourceName, logger, ct);
+        await EnsureNotResourceNotFoundAsync(page, resourceName, logger, ct, timeoutMultiplier);
     }
 
-    private static async Task EnsureNotResourceNotFoundAsync(IPage page, string resourceName, ILogger logger, CancellationToken ct)
+    private static async Task EnsureNotResourceNotFoundAsync(
+        IPage page, string resourceName, ILogger logger, CancellationToken ct, double timeoutMultiplier)
     {
         for (var attempt = 0; attempt <= NotFoundRetryDelays.Length; attempt++)
         {
@@ -86,18 +94,18 @@ public static class StableRenderWaiter
             logger.LogWarning(
                 "  portal shows '{NotFoundText}' for '{ResourceName}' (ARM-to-portal propagation lag?); retrying in {Delay}s.",
                 NotFoundText, resourceName, NotFoundRetryDelays[attempt].TotalSeconds);
-            await Task.Delay(NotFoundRetryDelays[attempt], ct);
+            await Task.Delay(NotFoundRetryDelays[attempt] * timeoutMultiplier, ct);
             await page.ReloadAsync(new PageReloadOptions { WaitUntil = WaitUntilState.DOMContentLoaded });
             ThrowIfLoginRedirect(page.Url);
-            await TryWaitForContentAsync(page, resourceName);
+            await TryWaitForContentAsync(page, resourceName, timeoutMultiplier);
             // Reloading re-triggers the loading spinner, so give it the same chance to settle before the
             // next "not found" check at the top of this loop — otherwise this retry inherits the exact
             // check-too-early bug this method exists to fix.
-            await WaitForLoadingIndicatorsToClearAsync(page, resourceName, logger);
+            await WaitForLoadingIndicatorsToClearAsync(page, resourceName, logger, timeoutMultiplier);
         }
     }
 
-    private static async Task<bool> TryWaitForContentAsync(IPage page, string resourceName)
+    private static async Task<bool> TryWaitForContentAsync(IPage page, string resourceName, double timeoutMultiplier)
     {
         // The resource-name heading is checked FIRST and is the stronger signal: the whole batch reuses one
         // page/tab across every resource (by design, to avoid re-triggering MFA) and only the URL's hash
@@ -109,7 +117,7 @@ public static class StableRenderWaiter
         {
             await page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = resourceName, Exact = false })
                 .First
-                .WaitForAsync(new LocatorWaitForOptions { Timeout = 20000 });
+                .WaitForAsync(new LocatorWaitForOptions { Timeout = (float)(20000 * timeoutMultiplier) });
             return true;
         }
         catch (TimeoutException)
@@ -118,7 +126,7 @@ public static class StableRenderWaiter
             {
                 await page.GetByText("Essentials", new PageGetByTextOptions { Exact = false })
                     .First
-                    .WaitForAsync(new LocatorWaitForOptions { Timeout = 10000 });
+                    .WaitForAsync(new LocatorWaitForOptions { Timeout = (float)(10000 * timeoutMultiplier) });
                 return true;
             }
             catch (TimeoutException)
@@ -128,9 +136,11 @@ public static class StableRenderWaiter
         }
     }
 
-    private static async Task WaitForLoadingIndicatorsToClearAsync(IPage page, string resourceName, ILogger logger)
+    private static async Task WaitForLoadingIndicatorsToClearAsync(
+        IPage page, string resourceName, ILogger logger, double timeoutMultiplier)
     {
-        var deadline = DateTime.UtcNow + LoadingIndicatorClearTimeout;
+        var scaledClearTimeout = LoadingIndicatorClearTimeout * timeoutMultiplier;
+        var deadline = DateTime.UtcNow + scaledClearTimeout;
         while (DateTime.UtcNow < deadline)
         {
             int count;
@@ -148,12 +158,12 @@ public static class StableRenderWaiter
                 return;
             }
 
-            await Task.Delay(LoadingIndicatorPollInterval);
+            await Task.Delay(LoadingIndicatorPollInterval * timeoutMultiplier);
         }
 
         logger.LogWarning(
             "  loading indicators (progressbar/status/shimmer/skeleton/spinner) still visible for '{ResourceName}' after {Timeout}s; capturing anyway.",
-            resourceName, LoadingIndicatorClearTimeout.TotalSeconds);
+            resourceName, scaledClearTimeout.TotalSeconds);
     }
 
     // Diagnostic for the rare case where even the content-marker retry is exhausted — helps root-cause any
