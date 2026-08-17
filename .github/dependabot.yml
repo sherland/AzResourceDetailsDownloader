@@ -1,0 +1,27 @@
+version: 2
+updates:
+  # Directory "/" — this repo has 5 .csproj files (Core, Infrastructure, the exe, and their two
+  # test projects) spread across src/ and tests/, all reachable from the repo root; Dependabot's
+  # NuGet updater discovers them all from there rather than needing one entry per project.
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      # One PR for every NuGet update in a given run, not one PR per package — reviewing/merging a
+      # single grouped PR is far less overhead than a dozen individual ones for a repo this size.
+      nuget-dependencies:
+        patterns:
+          - "*"
+
+  # ci.yml's own actions (actions/checkout, actions/setup-dotnet, actions/upload-artifact) — added
+  # alongside NuGet since CI already logged a live "Node.js 20 is deprecated" warning on these,
+  # concrete evidence they're worth keeping current, not just a hypothetical.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      github-actions-dependencies:
+        patterns:
+          - "*"
