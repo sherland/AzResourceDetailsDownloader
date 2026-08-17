@@ -23,5 +23,19 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Release
 
-      - name: Test
-        run: dotnet test --no-build --configuration Release
+      # -p: (not /p:) deliberately — matches local dev usage: a leading `/p:` gets silently
+      # mangled by MSYS/Git Bash on Windows (stripped to a bare `p:...`, which MSBuild then
+      # rejects as an extra "project" argument), so `-p:` is what actually works identically on a
+      # contributor's Windows dev machine and here on the ubuntu-latest runner.
+      - name: Test with coverage
+        run: >
+          dotnet test --no-build --configuration Release
+          -p:CollectCoverage=true
+          -p:CoverletOutputFormat=cobertura
+          -p:CoverletOutput=./coverage/
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: tests/AzResourceDetailsDownloader.Tests/coverage/coverage.cobertura.xml

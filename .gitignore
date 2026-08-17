@@ -5,3 +5,7 @@ appsettings.Development.json
 *.user
 .vs/
 .playwright-cli/
+# Anchored, not a bare "coverage/" — this repo's .gitignore has bitten itself once already with an
+# unanchored pattern matching case-insensitively against an unrelated source folder (see AGENT.md's
+# ".gitignore matches case-insensitively" section); anchoring costs nothing and rules that out here.
+/tests/AzResourceDetailsDownloader.Tests/coverage/
