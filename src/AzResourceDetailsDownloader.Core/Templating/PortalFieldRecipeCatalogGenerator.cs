@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -5,6 +6,9 @@ namespace AzResourceDetailsDownloader.Templating;
 
 public sealed record PortalFieldRecord(string Label, string Value);
 
+// Plain data, no behavior — see NameRules.cs for why this is excluded rather than tested. (The
+// generator logic that PRODUCES these entries is exercised via the corpus-driven tests instead.)
+[ExcludeFromCodeCoverage]
 public sealed record RecipeCatalogEntry(
     string Label,
     FieldRecipeKind Kind,
