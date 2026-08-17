@@ -78,7 +78,10 @@ public static class FieldBindingInvestigator
     // embedded directly as a literal in the JS source, and the function takes zero parameters.
     // Composed from EssentialsExtractor's shared anchor/fiber-walk fragment (see that class for why
     // it's shared, not duplicated) plus the two-hop file chase.
-    private static string BuildChaseJs(IReadOnlyList<string> helperNames)
+    // Public for the same reason EssentialsExtractor.ExtractCandidateHelperNames is: pure
+    // string-in/string-out generation with no Playwright dependency, worth testing directly (see
+    // FieldBindingInvestigatorTests) rather than only indirectly through a live investigation run.
+    public static string BuildChaseJs(IReadOnlyList<string> helperNames)
     {
         var helperNamesJsonLiteral = JsonSerializer.Serialize(helperNames);
         return "async () => {\n" +

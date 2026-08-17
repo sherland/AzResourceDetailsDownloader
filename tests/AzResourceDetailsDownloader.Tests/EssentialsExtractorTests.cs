@@ -73,4 +73,64 @@ public class EssentialsExtractorTests
 
         Assert.Equal(["w"], names);
     }
+
+    [Fact]
+    public void Finalize_DropsChromeLabels()
+    {
+        // "Getting started"/"Manage keys" are real ChromeLabels entries — navigation/action links,
+        // never resource data — that render inside an essentials item just like real fields.
+        var fields = new List<PortalField>
+        {
+            new("Getting started", "https://aka.ms/asrs/faq"),
+            new("Manage keys", "Click here to manage keys"),
+            new("Resource group", "rg-example"),
+        };
+
+        var result = EssentialsExtractor.Finalize(fields);
+
+        Assert.Equal([new PortalField("Resource group", "rg-example")], result);
+    }
+
+    [Fact]
+    public void Finalize_DropsChromeValues_ButKeepsTheLabelWhenItHasRealData()
+    {
+        // Unlike ChromeLabels, "Tags"/"Add tags" is a legitimate field whose *value* is empty-state
+        // portal chrome only on a freshly-provisioned resource — filtered by value, not by label, so
+        // a differently-populated capture of the same label still comes through.
+        var freshResource = new List<PortalField> { new("Tags", "Add tags") };
+        var populatedResource = new List<PortalField> { new("Tags", "env:prod") };
+
+        Assert.Empty(EssentialsExtractor.Finalize(freshResource));
+        Assert.Equal(populatedResource, EssentialsExtractor.Finalize(populatedResource));
+    }
+
+    [Fact]
+    public void Finalize_DedupesByLabel_KeepsFirstOccurrenceCaseInsensitively()
+    {
+        // The portal can render an item twice during certain transitions (e.g. move-target pickers).
+        var fields = new List<PortalField>
+        {
+            new("Location", "norwayeast"),
+            new("LOCATION", "duplicate-should-be-dropped"),
+        };
+
+        var result = EssentialsExtractor.Finalize(fields);
+
+        Assert.Equal([new PortalField("Location", "norwayeast")], result);
+    }
+
+    [Fact]
+    public void Finalize_OrdinaryFields_PassThroughUnchanged()
+    {
+        var fields = new List<PortalField>
+        {
+            new("Resource group", "rg-example"),
+            new("Location", "norwayeast"),
+            new("Subscription", "Contoso Subscription"),
+        };
+
+        var result = EssentialsExtractor.Finalize(fields);
+
+        Assert.Equal(fields, result);
+    }
 }
