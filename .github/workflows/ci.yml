@@ -46,8 +46,10 @@ jobs:
       # artifact), just not gated.
       #
       # Threshold is a ratchet, not an arbitrary target: set a couple of points below the actual
-      # measured baseline the commit that added this was verified against (67.87% line / 53.95%
-      # branch / 61.81% method for Core alone — see that commit's message), specifically so today's
+      # measured baseline the commit that added this was verified against (77.45% line / 66.77%
+      # branch / 80.08% method for Core alone, after closing the ParsedArgs/OutputWriter/RunSummary/
+      # NameGenerator/SkuAndVersion/RepoPaths/TemplateFunctions/PortalUrlBuilder/PrefixedLogger gaps
+      # — see that commit's message; raised from the original 67/53/61), specifically so today's
       # coverage level can never silently regress, while leaving enough headroom that the tiny
       # run-to-run rounding a coverage tool can produce doesn't turn into a flaky build. Raise these
       # numbers deliberately as real coverage improves — don't leave them stale once they're several
@@ -64,7 +66,7 @@ jobs:
           -p:CoverletOutputFormat=cobertura
           -p:CoverletOutput=./coverage/
           "-p:ThresholdType=line%2cbranch%2cmethod"
-          "-p:Threshold=67%2c53%2c61"
+          "-p:Threshold=77%2c66%2c80"
           -p:ThresholdStat=total
 
       # -p:Include scopes coverage to the Infrastructure assembly itself — without it, coverlet also
