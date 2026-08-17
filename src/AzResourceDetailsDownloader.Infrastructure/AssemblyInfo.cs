@@ -4,4 +4,4 @@ using System.Runtime.CompilerServices;
 // FindBuilderFunctionJsFragment, deliberately internal — not public — because it's an
 // assembly-internal sharing mechanism with FieldBindingInvestigator, not a pure function meant for
 // public consumption) without widening those members' visibility just to make them testable.
-[assembly: InternalsVisibleTo("AzResourceDetailsDownloader.Tests")]
+[assembly: InternalsVisibleTo("AzResourceDetailsDownloader.Infrastructure.Tests")]

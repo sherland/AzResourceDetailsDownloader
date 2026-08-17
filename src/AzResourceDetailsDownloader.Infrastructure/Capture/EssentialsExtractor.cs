@@ -4,8 +4,6 @@ using Microsoft.Playwright;
 
 namespace AzResourceDetailsDownloader.Capture;
 
-public sealed record PortalField(string Label, string Value);
-
 // Extracts the Azure Portal Overview blade's "Essentials" panel — the label/value grid Azure
 // itself chooses to summarize a resource with (Resource group, Location, SKU, and type-specific
 // fields like "Vault URI" or "Login server"). This is Azure's own answer to "which fields matter

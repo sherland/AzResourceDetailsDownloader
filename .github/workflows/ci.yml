@@ -29,37 +29,59 @@ jobs:
       # packages Chromium needs on a bare ubuntu-latest runner (fonts, libraries), not just the
       # browser binary itself.
       - name: Install Playwright browser (Chromium)
-        run: pwsh tests/AzResourceDetailsDownloader.Tests/bin/Release/net10.0/playwright.ps1 install --with-deps chromium
+        run: pwsh tests/AzResourceDetailsDownloader.Infrastructure.Tests/bin/Release/net10.0/playwright.ps1 install --with-deps chromium
 
       # -p: (not /p:) deliberately — matches local dev usage: a leading `/p:` gets silently
       # mangled by MSYS/Git Bash on Windows (stripped to a bare `p:...`, which MSBuild then
       # rejects as an extra "project" argument), so `-p:` is what actually works identically on a
       # contributor's Windows dev machine and here on the ubuntu-latest runner.
       #
+      # Two separate test steps, not one — see the Core/Infrastructure project split (feature/
+      # core-infrastructure-split): Core is deterministic logic with zero Azure/Playwright/terminal
+      # dependency and is genuinely expected to be well-tested, so it gets a real ratcheted coverage
+      # gate. Infrastructure is the opposite — real ARM calls and real browser automation that can't
+      # be unit-tested without live credentials/cost — so a numeric threshold there would either be
+      # trivially low (meaningless) or would perversely incentivize padding it with low-value tests
+      # just to hit a number. It's still measured and reported (coverage-report-infrastructure
+      # artifact), just not gated.
+      #
       # Threshold is a ratchet, not an arbitrary target: set a couple of points below the actual
-      # measured baseline the commit that added this was verified against (48.36% line / 36.51%
-      # branch / 45.93% method — see that commit's message), specifically so today's coverage
-      # level can never silently regress, while leaving enough headroom that the tiny run-to-run
-      # rounding a coverage tool can produce doesn't turn into a flaky build. Raise these numbers
-      # deliberately as real coverage improves — don't leave them stale once they're several
+      # measured baseline the commit that added this was verified against (67.87% line / 53.95%
+      # branch / 61.81% method for Core alone — see that commit's message), specifically so today's
+      # coverage level can never silently regress, while leaving enough headroom that the tiny
+      # run-to-run rounding a coverage tool can produce doesn't turn into a flaky build. Raise these
+      # numbers deliberately as real coverage improves — don't leave them stale once they're several
       # points below actual.
       #
       # %2c, not a literal comma, in the multi-value ThresholdType/Threshold properties — verified
       # live: a bare comma in a -p: property value is parsed by MSBuild as another property
       # separator (fails with "error MSB1006: Property is not valid"), not as part of the value;
       # %2c is MSBuild's own documented escape for this.
-      - name: Test with coverage
+      - name: Test Core (with coverage gate)
         run: >
-          dotnet test --no-build --configuration Release
+          dotnet test tests/AzResourceDetailsDownloader.Core.Tests --no-build --configuration Release
           -p:CollectCoverage=true
           -p:CoverletOutputFormat=cobertura
           -p:CoverletOutput=./coverage/
           "-p:ThresholdType=line%2cbranch%2cmethod"
-          "-p:Threshold=48%2c36%2c45"
+          "-p:Threshold=67%2c53%2c61"
           -p:ThresholdStat=total
 
-      - name: Upload coverage report
+      # -p:Include scopes coverage to the Infrastructure assembly itself — without it, coverlet also
+      # instruments Core (reachable transitively via the ProjectReference), which drags this number
+      # down with a module it isn't actually testing and produces a misleading combined %.
+      - name: Test Infrastructure (coverage reported, not gated)
+        run: >
+          dotnet test tests/AzResourceDetailsDownloader.Infrastructure.Tests --no-build --configuration Release
+          -p:CollectCoverage=true
+          -p:CoverletOutputFormat=cobertura
+          -p:CoverletOutput=./coverage/
+          "-p:Include=[AzResourceDetailsDownloader.Infrastructure]*"
+
+      - name: Upload coverage reports
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
-          path: tests/AzResourceDetailsDownloader.Tests/coverage/coverage.cobertura.xml
+          name: coverage-reports
+          path: |
+            tests/AzResourceDetailsDownloader.Core.Tests/coverage/coverage.cobertura.xml
+            tests/AzResourceDetailsDownloader.Infrastructure.Tests/coverage/coverage.cobertura.xml
