@@ -7,17 +7,22 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <!--
+    The composition root: wires Core (deterministic logic) and Infrastructure (real Azure/Playwright/
+    terminal) together. Directly references Azure.Identity/Azure.ResourceManager itself (constructs
+    ArmClient/AzureCliCredential here) — normal for a composition root, not a boundary violation the
+    way it would be from inside Core.
+  -->
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.21.0" />
     <PackageReference Include="Azure.ResourceManager" Version="1.14.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.9" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.9" />
-    <PackageReference Include="Microsoft.Playwright" Version="1.61.0" />
-    <!-- 7.2.6 — earlier 5.x releases have several published high/critical advisories; not used for
-         anything AzToMd-related, just a plain templating library for AzResourceDetailsDownloader's
-         own template generation/rendering. -->
-    <PackageReference Include="Scriban" Version="7.2.6" />
-    <PackageReference Include="Spectre.Console" Version="0.57.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzResourceDetailsDownloader.Core\AzResourceDetailsDownloader.Core.csproj" />
+    <ProjectReference Include="..\AzResourceDetailsDownloader.Infrastructure\AzResourceDetailsDownloader.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
