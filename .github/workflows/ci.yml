@@ -23,6 +23,14 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Release
 
+      # Needed starting with EssentialsExtractorReplayTests — real-browser regression tests for
+      # EssentialsExtractor's DOM-scraping logic (see that file's own header comment). The
+      # playwright.ps1 install script is generated at build time; --with-deps also installs the OS
+      # packages Chromium needs on a bare ubuntu-latest runner (fonts, libraries), not just the
+      # browser binary itself.
+      - name: Install Playwright browser (Chromium)
+        run: pwsh tests/AzResourceDetailsDownloader.Tests/bin/Release/net10.0/playwright.ps1 install --with-deps chromium
+
       # -p: (not /p:) deliberately — matches local dev usage: a leading `/p:` gets silently
       # mangled by MSYS/Git Bash on Windows (stripped to a bare `p:...`, which MSBuild then
       # rejects as an extra "project" argument), so `-p:` is what actually works identically on a
