@@ -17,8 +17,8 @@
     Azure.ResourceManager.
   -->
   <ItemGroup>
-    <PackageReference Include="Azure.Core" Version="1.53.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.9" />
+    <PackageReference Include="Azure.Core" Version="1.61.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.11" />
     <!-- 7.2.6 — earlier 5.x releases have several published high/critical advisories; not used for
          anything AzToMd-related, just a plain templating library for AzResourceDetailsDownloader's
          own template generation/rendering. -->
