@@ -39,6 +39,19 @@ public class SkuAndVersionTests
         Assert.Equal("Standard_LRS", SkuAndVersion.SkuLabel(root));
     }
 
+    // Symmetric with the "no tier" case above — a sku object with only a tier and no name must not
+    // fall through to the combined "Tier (Name)" format and produce "Standard ()". Live-caught: the
+    // original code had no branch for this, and string-interpolating a null `name` silently renders
+    // as empty rather than throwing, so the bug produced plausible-looking-but-wrong text instead of
+    // an obvious crash.
+    [Fact]
+    public void SkuLabel_NoName_ReturnsJustTheTier()
+    {
+        var root = Parse("""{"sku":{"tier":"Standard"}}""");
+
+        Assert.Equal("Standard", SkuAndVersion.SkuLabel(root));
+    }
+
     [Fact]
     public void SkuLabel_NoSkuObjectAtAll_ReturnsNull()
     {

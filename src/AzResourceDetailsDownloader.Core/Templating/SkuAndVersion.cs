@@ -31,6 +31,14 @@ public static class SkuAndVersion
         {
             return null;
         }
+        // Symmetric with the "tier is null" branch below — a sku object with only a tier and no
+        // name shouldn't fall through to the combined format and produce "Tier ()" (found live
+        // testing SkuAndVersionTests: string interpolation of a null `name` silently renders as
+        // empty rather than throwing, so this went unnoticed until a test asserted the actual text).
+        if (name is null)
+        {
+            return tier;
+        }
         if (name == tier || tier is null)
         {
             return name;
