@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!--
+    Deliberately does NOT reference Microsoft.Playwright, Azure.ResourceManager, Azure.Identity, or
+    Spectre.Console — that's the whole point of this project existing. Everything here is
+    deterministic logic with no live external dependency, so it can be held to a real coverage
+    threshold in CI; AzResourceDetailsDownloader.Infrastructure is where anything touching a real
+    browser or a real Azure API call lives instead. Azure.Core (below) is the one exception worth
+    explaining: it's the SDK's shared *type* library (ResourceIdentifier, ETag, ...), not a client
+    that makes calls — using it here is like using System.Text.Json, not like using
+    Azure.ResourceManager.
+  -->
+  <ItemGroup>
+    <PackageReference Include="Azure.Core" Version="1.53.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.9" />
+    <!-- 7.2.6 — earlier 5.x releases have several published high/critical advisories; not used for
+         anything AzToMd-related, just a plain templating library for AzResourceDetailsDownloader's
+         own template generation/rendering. -->
+    <PackageReference Include="Scriban" Version="7.2.6" />
+  </ItemGroup>
+
+</Project>

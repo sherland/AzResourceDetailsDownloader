@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!--
+    Everything that needs a real Azure API call, a real browser, or a real terminal lives here —
+    the outer layer AzResourceDetailsDownloader.Core deliberately excludes. Not unit-testable in the
+    normal sense (no Azure credentials/cost, no headless browser === most of it stays at 0% line
+    coverage — see EssentialsExtractorReplayTests for the one place this project's tests do launch a
+    real Chromium against a static fixture instead of mocking anything).
+  -->
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.21.0" />
+    <PackageReference Include="Azure.ResourceManager" Version="1.14.0" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.61.0" />
+    <PackageReference Include="Spectre.Console" Version="0.57.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzResourceDetailsDownloader.Core\AzResourceDetailsDownloader.Core.csproj" />
+  </ItemGroup>
+
+</Project>
