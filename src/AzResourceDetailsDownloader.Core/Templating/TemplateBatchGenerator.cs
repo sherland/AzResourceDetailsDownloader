@@ -1,7 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace AzResourceDetailsDownloader.Templating;
 
+// Plain data, no behavior — see NameRules.cs for why this is excluded rather than tested.
+[ExcludeFromCodeCoverage]
 public sealed record TemplateBatchResult(string ArmType, string TemplatePath, string RenderedPath, int TodoRowCount);
 
 // Drives TemplateGenerator + TemplateRenderer across every real capture in output/ — deliberately
