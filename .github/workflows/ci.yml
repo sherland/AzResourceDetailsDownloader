@@ -27,12 +27,28 @@ jobs:
       # mangled by MSYS/Git Bash on Windows (stripped to a bare `p:...`, which MSBuild then
       # rejects as an extra "project" argument), so `-p:` is what actually works identically on a
       # contributor's Windows dev machine and here on the ubuntu-latest runner.
+      #
+      # Threshold is a ratchet, not an arbitrary target: set a couple of points below the actual
+      # measured baseline the commit that added this was verified against (48.36% line / 36.51%
+      # branch / 45.93% method — see that commit's message), specifically so today's coverage
+      # level can never silently regress, while leaving enough headroom that the tiny run-to-run
+      # rounding a coverage tool can produce doesn't turn into a flaky build. Raise these numbers
+      # deliberately as real coverage improves — don't leave them stale once they're several
+      # points below actual.
+      #
+      # %2c, not a literal comma, in the multi-value ThresholdType/Threshold properties — verified
+      # live: a bare comma in a -p: property value is parsed by MSBuild as another property
+      # separator (fails with "error MSB1006: Property is not valid"), not as part of the value;
+      # %2c is MSBuild's own documented escape for this.
       - name: Test with coverage
         run: >
           dotnet test --no-build --configuration Release
           -p:CollectCoverage=true
           -p:CoverletOutputFormat=cobertura
           -p:CoverletOutput=./coverage/
+          "-p:ThresholdType=line%2cbranch%2cmethod"
+          "-p:Threshold=48%2c36%2c45"
+          -p:ThresholdStat=total
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
