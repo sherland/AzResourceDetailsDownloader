@@ -477,7 +477,10 @@ public static class EssentialsExtractor
             .ToList();
     }
 
-    private static List<PortalField> Finalize(List<PortalField> fields) =>
+    // Public for the same reason ExtractCandidateHelperNames is: pure list-in/list-out logic with no
+    // Playwright dependency, worth testing directly rather than only indirectly through a live
+    // capture (see EssentialsExtractorTests).
+    public static List<PortalField> Finalize(List<PortalField> fields) =>
         fields
             .Where(f => !ChromeLabels.Contains(f.Label))
             .Where(f => !ChromeValues.Contains(f.Value))
