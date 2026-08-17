@@ -1,5 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace AzResourceDetailsDownloader.Options;
 
+// Plain config data, no behavior — see NameRules.cs for why this is excluded rather than tested.
+[ExcludeFromCodeCoverage]
 public sealed class PipelineOptions
 {
     public string? TenantId { get; set; }
