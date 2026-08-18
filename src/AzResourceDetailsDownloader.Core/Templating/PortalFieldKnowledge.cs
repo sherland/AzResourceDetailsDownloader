@@ -97,12 +97,6 @@ public static class PortalFieldKnowledge
         // or separate-API-surface value (same bucket as "Endpoint"/"URL" above), not a parsing gap.
         "Date created", "Created time",
 
-        // "Name" is deliberately generic — accepted here because Portal/dashboards renders it as
-        // "{resourceName} ({friendly title})", a composite no data.json field contains verbatim. A
-        // resource type that ever needs "Name" to be a directly-traceable single value would
-        // silently stop being checked too; worth revisiting if that turns out to matter more than
-        // this one composite case.
-        "Name",
     };
 
     // A short, human reason per NonTraceableLabels entry — not needed by the consistency test

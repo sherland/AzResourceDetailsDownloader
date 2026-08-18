@@ -79,6 +79,17 @@ public class PortalFieldsConsistencyTests
                 continue;
             }
 
+            // Same shape of type-scoped exception: "Name" is a plain, exact passthrough of the
+            // root "name" field on every other captured type (see FieldRecipeResolver's
+            // ResolveNameShortcut) — genuinely traceable, so removed from the blanket
+            // NonTraceableLabels skip below. Portal/dashboards is the one real exception, rendering
+            // "{name} ({friendly title})" with no data.json field containing that composite text.
+            if (f.Label.Equals("Name", StringComparison.OrdinalIgnoreCase)
+                && armType.Equals("Microsoft.Portal/dashboards", StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
             if (PortalFieldKnowledge.NonTraceableLabels.Contains(f.Label))
             {
                 continue;

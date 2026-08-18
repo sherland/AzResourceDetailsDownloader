@@ -200,6 +200,21 @@ public class TemplateGeneratorTests
         Assert.Contains(expectedUtc.ToString("HH:mm:ss"), rendered);
     }
 
+    // Live-run regression: a Direct match against a raw JSON number whose portal text carries a
+    // trailing unit word ("30 Seconds" for originResponseTimeoutSeconds:30) must still reproduce
+    // that unit in the rendered row — not just the bare number — or the template would silently
+    // disagree with the portal for every future resource of this type.
+    [Fact]
+    public void Generate_DirectNumericMatch_WithUnitSuffix_AppendsSuffixAsLiteralText()
+    {
+        var root = LoadCapturedResource("networking", "microsoft_cdn_profiles");
+        var fields = new (string, string)[] { ("Origin response timeout", "30 Seconds") };
+
+        var template = TemplateGenerator.Generate("Microsoft.Cdn/profiles", fields, root);
+
+        Assert.Contains("| **Origin response timeout** | {{ model.props.originresponsetimeoutseconds }} Seconds |", template);
+    }
+
     private static List<(string Label, string Value)> LoadPortalFields(string dir)
     {
         var path = Path.Combine(dir, "portal-fields.json");
