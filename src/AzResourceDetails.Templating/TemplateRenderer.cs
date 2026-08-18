@@ -9,7 +9,17 @@ namespace AzResourceDetails.Templating;
 // Registers the same TemplateFunctions every generated template's header comment documents needing.
 public static class TemplateRenderer
 {
-    public static string Render(string templateText, JsonElement root, string armType)
+    public static string Render(string templateText, JsonElement root, string armType) =>
+        Render(templateText, ScribanModelBuilder.BuildModel(root, armType), armType);
+
+    /// <summary>
+    /// Same rendering behavior as the JsonElement overload, from a caller's own decomposed
+    /// <see cref="TemplateResource"/> instead of a full ARM document.
+    /// </summary>
+    public static string Render(string templateText, TemplateResource resource) =>
+        Render(templateText, ScribanModelBuilder.BuildModel(resource), resource.ArmType);
+
+    private static string Render(string templateText, ScriptObject model, string armType)
     {
         var parsed = Template.Parse(templateText, "generated.sbn");
         if (parsed.HasErrors)
@@ -18,7 +28,6 @@ public static class TemplateRenderer
             throw new InvalidOperationException($"Template for '{armType}' failed to parse: {errors}");
         }
 
-        var model = ScribanModelBuilder.BuildModel(root, armType);
         var globals = new ScriptObject { ["model"] = model };
         TemplateFunctions.ImportInto(globals);
 

@@ -7,6 +7,12 @@ namespace AzResourceDetails.Templating;
 // shortcut rather than a raw property path — written fresh from ARM's own documented shapes, not
 // copied from or dependent on any other tool's source. Only covers the resource types ARDL's own
 // corpus currently needs; extend ExtractVersion's switch as more types are added.
+//
+// Each public method comes in two overloads — JsonElement root (a full ARM document) and
+// TemplateResource (a caller's own decomposed data) — both delegating to the same private *Core
+// method so the two can never quietly disagree. The JsonElement overload resolves "which sku" via
+// ResolveSku below; a TemplateResource's Sku is expected to already reflect that same resolution
+// (see TemplateResource's own doc comment).
 public static class SkuAndVersion
 {
     // "Tier (Name)" or just "Name" — prefers a root-level "sku" (the shape a raw ARM GET response
@@ -17,16 +23,19 @@ public static class SkuAndVersion
     // Key Vault's sku.name is literally "standard", lowercase) — the portal title-cases it
     // ("Standard"). A caller that wants exact portal-text fidelity needs to title-case the result
     // itself; this function intentionally doesn't guess at a general-purpose title-casing rule.
-    public static string? SkuLabel(JsonElement root)
+    public static string? SkuLabel(JsonElement root) => SkuLabelCore(ResolveSku(root));
+
+    public static string? SkuLabel(TemplateResource resource) => SkuLabelCore(resource.Sku);
+
+    private static string? SkuLabelCore(JsonElement sku)
     {
-        var sku = JsonTree.Navigate(root, "sku") ?? JsonTree.Navigate(root, "properties", "sku");
-        if (sku is not { ValueKind: JsonValueKind.Object } skuObj)
+        if (sku.ValueKind is not JsonValueKind.Object)
         {
             return null;
         }
 
-        var name = JsonTree.GetString(skuObj, "name");
-        var tier = JsonTree.GetString(skuObj, "tier");
+        var name = JsonTree.GetString(sku, "name");
+        var tier = JsonTree.GetString(sku, "tier");
         if (name is null && tier is null)
         {
             return null;
@@ -51,23 +60,38 @@ public static class SkuAndVersion
     // two separate Essentials fields) render these as plain direct passthroughs instead of ever
     // combining them into SkuLabel's "Tier (Name)" shape, so a caller needs both forms available to
     // match whichever one a given type actually uses.
-    private static JsonElement? SkuObject(JsonElement root) =>
-        JsonTree.Navigate(root, "sku") ?? JsonTree.Navigate(root, "properties", "sku");
+    //
+    // Public (not the old private "SkuObject") so a caller building its own TemplateResource from a
+    // full ARM document can resolve Sku the exact same way ScribanModelBuilder does internally —
+    // see TemplateResource's doc comment. Returns default(JsonElement) (ValueKind Undefined, not
+    // null) when neither location has a sku object, matching JsonTree's own "absent" convention.
+    public static JsonElement ResolveSku(JsonElement root) =>
+        JsonTree.Navigate(root, "sku") ?? JsonTree.Navigate(root, "properties", "sku") ?? default(JsonElement);
 
-    public static string? SkuName(JsonElement root) =>
-        SkuObject(root) is { } sku ? JsonTree.GetString(sku, "name") : null;
+    public static string? SkuName(JsonElement root) => SkuNameCore(ResolveSku(root));
 
-    public static string? SkuTier(JsonElement root) =>
-        SkuObject(root) is { } sku ? JsonTree.GetString(sku, "tier") : null;
+    public static string? SkuName(TemplateResource resource) => SkuNameCore(resource.Sku);
+
+    private static string? SkuNameCore(JsonElement sku) => JsonTree.GetString(sku, "name");
+
+    public static string? SkuTier(JsonElement root) => SkuTierCore(ResolveSku(root));
+
+    public static string? SkuTier(TemplateResource resource) => SkuTierCore(resource.Sku);
+
+    private static string? SkuTierCore(JsonElement sku) => JsonTree.GetString(sku, "tier");
 
     // sku.capacity — a plain number (throughput/replica/processing-unit count), not a string, so it
     // needs its own accessor rather than SkuName/SkuTier's GetString. Confirmed live: SignalR and
     // Web PubSub's "Unit" field, EventHub's "Throughput Units", Purview's "Platform size" all trace
     // to this same property, just with different portal-side unit-word suffixes appended to it.
-    public static long? SkuCapacity(JsonElement root) =>
-        SkuObject(root) is { } sku && JsonTree.Navigate(sku, "capacity") is { ValueKind: JsonValueKind.Number } n
-            ? n.GetInt64()
-            : null;
+    public static long? SkuCapacity(JsonElement root) => SkuCapacityCore(ResolveSku(root));
+
+    public static long? SkuCapacity(TemplateResource resource) => SkuCapacityCore(resource.Sku);
+
+    private static long? SkuCapacityCore(JsonElement sku) =>
+        JsonTree.Navigate(sku, "capacity") is { ValueKind: JsonValueKind.Number } n ? n.GetInt64() : null;
+
+    public static string? ExtractVersion(TemplateResource resource) => ExtractVersion(resource.ArmType, resource.Properties);
 
     public static string? ExtractVersion(string armType, JsonElement properties)
     {

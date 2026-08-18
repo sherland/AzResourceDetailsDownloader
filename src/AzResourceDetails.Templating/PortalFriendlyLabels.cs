@@ -13,6 +13,17 @@ namespace AzResourceDetails.Templating;
 // ScribanModelBuilder (which needs to actually compute it for a rendered preview) for the same
 // reason SkuAndVersion is: a rendered preview and the recipe catalog's verification must never
 // quietly disagree about what model.storage_replication_label etc. actually contain.
+//
+// Each public method comes in two overloads — JsonElement root (a full ARM document) and
+// TemplateResource (a caller's own decomposed data) — both delegating to the same private *Core
+// method, so a consumer building its own TemplateResource gets byte-identical results to one
+// passing a full ARM document. A handful of these (the Storage/Disk-specific ones) used to read
+// sku.name/sku.tier at the document ROOT ONLY, with no properties.sku fallback — unlike
+// SkuAndVersion, which already falls back. Unified onto SkuAndVersion.ResolveSku's fallback here so
+// there's exactly one definition of "which sku wins" for a TemplateResource's single Sku field to
+// mean the same thing everywhere; verified this changes nothing in practice by regenerating the
+// full template catalog (every currently-captured Storage Account/Compute disk has a root-level
+// sku, so the fallback never actually triggers for them — see AGENT.md for this session's notes).
 public static class PortalFriendlyLabels
 {
     private static readonly Dictionary<string, string> StorageReplicationCategoryBySkuName =
@@ -41,16 +52,21 @@ public static class PortalFriendlyLabels
 
     // Storage Accounts: `Ve(sku.name, kind === "Storage")`. Returns null when sku.name isn't in the
     // known table (a new/unseen SKU, or no sku.name at all) — callers decide how to treat that.
-    public static string? StorageReplicationLabel(JsonElement root)
+    public static string? StorageReplicationLabel(JsonElement root) =>
+        StorageReplicationLabelCore(SkuAndVersion.ResolveSku(root), JsonTree.GetString(root, "kind"));
+
+    public static string? StorageReplicationLabel(TemplateResource resource) =>
+        StorageReplicationLabelCore(resource.Sku, resource.Kind);
+
+    private static string? StorageReplicationLabelCore(JsonElement sku, string? kind)
     {
-        var skuName = JsonTree.GetString(root, "sku", "name");
+        var skuName = JsonTree.GetString(sku, "name");
         if (skuName is null || !StorageReplicationCategoryBySkuName.TryGetValue(skuName, out var category))
         {
             return null;
         }
         if (category == "zrs*")
         {
-            var kind = JsonTree.GetString(root, "kind");
             category = string.Equals(kind, "Storage", StringComparison.OrdinalIgnoreCase) ? "zrsClassic" : "zrs";
         }
         return StorageReplicationText[category];
@@ -66,9 +82,14 @@ public static class PortalFriendlyLabels
     // Storage Accounts: `Le(kind, id)`. Doesn't replicate the classic-storage-account-ID branch
     // (always renders "{kind} (classic)" for a pre-ARM ID shape) — no capture this tool takes ever
     // has one, so it's not worth the complexity of reproducing.
-    public static string? StorageAccountKindLabel(JsonElement root)
+    public static string? StorageAccountKindLabel(JsonElement root) =>
+        StorageAccountKindLabelCore(JsonTree.GetString(root, "kind"));
+
+    public static string? StorageAccountKindLabel(TemplateResource resource) =>
+        StorageAccountKindLabelCore(resource.Kind);
+
+    private static string? StorageAccountKindLabelCore(string? kind)
     {
-        var kind = JsonTree.GetString(root, "kind");
         if (kind is null)
         {
             return null;
@@ -83,14 +104,20 @@ public static class PortalFriendlyLabels
     // objects, but all of them agreed on this exact mapping). The FileStorage-kind branch renders a
     // different label ("Media Tier") with SSD/HDD text that wasn't confirmed this session — reproduced
     // here as null (unverified) rather than guessed.
-    public static string? StoragePerformanceLabel(JsonElement root)
+    public static string? StoragePerformanceLabel(JsonElement root) =>
+        StoragePerformanceLabelCore(SkuAndVersion.ResolveSku(root), JsonTree.GetString(root, "kind"));
+
+    public static string? StoragePerformanceLabel(TemplateResource resource) =>
+        StoragePerformanceLabelCore(resource.Sku, resource.Kind);
+
+    private static string? StoragePerformanceLabelCore(JsonElement sku, string? kind)
     {
-        var tier = JsonTree.GetString(root, "sku", "tier");
+        var tier = JsonTree.GetString(sku, "tier");
         if (tier is null)
         {
             return null;
         }
-        if (string.Equals(JsonTree.GetString(root, "kind"), "FileStorage", StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(kind, "FileStorage", StringComparison.OrdinalIgnoreCase))
         {
             return null;
         }
@@ -111,9 +138,13 @@ public static class PortalFriendlyLabels
         };
 
     // Compute/disks (and snapshots, same shape): `Hs(sku.name)`.
-    public static string? DiskStorageTypeLabel(JsonElement root)
+    public static string? DiskStorageTypeLabel(JsonElement root) => DiskStorageTypeLabelCore(SkuAndVersion.ResolveSku(root));
+
+    public static string? DiskStorageTypeLabel(TemplateResource resource) => DiskStorageTypeLabelCore(resource.Sku);
+
+    private static string? DiskStorageTypeLabelCore(JsonElement sku)
     {
-        var skuName = JsonTree.GetString(root, "sku", "name");
+        var skuName = JsonTree.GetString(sku, "name");
         return skuName is not null && DiskStorageTypeText.TryGetValue(skuName, out var text) ? text : null;
     }
 
@@ -130,9 +161,14 @@ public static class PortalFriendlyLabels
 
     // Compute/disks: `st(properties.securityProfile.securityType)` — a disk with no securityProfile
     // at all falls back to "Standard" in the portal's own code, reproduced here rather than null.
-    public static string DiskSecurityTypeLabel(JsonElement root)
+    public static string DiskSecurityTypeLabel(JsonElement root) =>
+        DiskSecurityTypeLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string DiskSecurityTypeLabel(TemplateResource resource) => DiskSecurityTypeLabelCore(resource.Properties);
+
+    private static string DiskSecurityTypeLabelCore(JsonElement properties)
     {
-        var securityType = JsonTree.GetString(root, "properties", "securityProfile", "securityType");
+        var securityType = JsonTree.GetString(properties, "securityProfile", "securityType");
         return securityType is not null && DiskSecurityTypeText.TryGetValue(securityType, out var text)
             ? text
             : "Standard";
@@ -153,9 +189,14 @@ public static class PortalFriendlyLabels
             ["M300"] = (48, 384, false), ["M400"] = (64, 432, false),
         };
 
-    public static string? MongoClusterTierLabel(JsonElement root)
+    public static string? MongoClusterTierLabel(JsonElement root) =>
+        MongoClusterTierLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string? MongoClusterTierLabel(TemplateResource resource) => MongoClusterTierLabelCore(resource.Properties);
+
+    private static string? MongoClusterTierLabelCore(JsonElement properties)
     {
-        var tier = JsonTree.GetString(root, "properties", "compute", "tier");
+        var tier = JsonTree.GetString(properties, "compute", "tier");
         if (tier is null)
         {
             return null;
@@ -173,9 +214,15 @@ public static class PortalFriendlyLabels
 
     // DocumentDB/mongoClusters: the `Enabled -> publicAccess / else -> privateAccessTabName` ternary
     // in `customizeResourceFields`, both resource-string values read verbatim (2026-08-14).
-    public static string? MongoConnectivityMethodLabel(JsonElement root)
+    public static string? MongoConnectivityMethodLabel(JsonElement root) =>
+        MongoConnectivityMethodLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string? MongoConnectivityMethodLabel(TemplateResource resource) =>
+        MongoConnectivityMethodLabelCore(resource.Properties);
+
+    private static string? MongoConnectivityMethodLabelCore(JsonElement properties)
     {
-        var publicNetworkAccess = JsonTree.GetString(root, "properties", "publicNetworkAccess");
+        var publicNetworkAccess = JsonTree.GetString(properties, "publicNetworkAccess");
         if (publicNetworkAccess is null)
         {
             return null;
@@ -188,9 +235,14 @@ public static class PortalFriendlyLabels
     // DocumentDB/mongoClusters: `properties.authConfig.allowedModes` (an array of enum strings) run
     // through a 3-way membership check. The source's own 4th branch (neither mode present) returns an
     // unrendered glyph placeholder, not real text — reproduced here as null rather than guessed.
-    public static string? MongoAuthenticationLabel(JsonElement root)
+    public static string? MongoAuthenticationLabel(JsonElement root) =>
+        MongoAuthenticationLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string? MongoAuthenticationLabel(TemplateResource resource) => MongoAuthenticationLabelCore(resource.Properties);
+
+    private static string? MongoAuthenticationLabelCore(JsonElement properties)
     {
-        var modes = JsonTree.Navigate(root, "properties", "authConfig", "allowedModes");
+        var modes = JsonTree.Navigate(properties, "authConfig", "allowedModes");
         if (modes is not { ValueKind: JsonValueKind.Array } array)
         {
             return null;
@@ -213,26 +265,35 @@ public static class PortalFriendlyLabels
     // DocumentDB/mongoClusters: `identity.type === "UserAssigned" ? cmkLabel : smkLabel` — root-level
     // `identity`, not under properties.*, and unconditional (no identity block at all still resolves
     // to the "Service-managed key" default, matching the source's own missing-value behavior).
-    public static string MongoStorageEncryptionLabel(JsonElement root)
-    {
-        var identityType = JsonTree.GetString(root, "identity", "type");
-        return string.Equals(identityType, "UserAssigned", StringComparison.OrdinalIgnoreCase)
+    public static string MongoStorageEncryptionLabel(JsonElement root) =>
+        MongoStorageEncryptionLabelCore(JsonTree.GetString(root, "identity", "type"));
+
+    public static string MongoStorageEncryptionLabel(TemplateResource resource) =>
+        MongoStorageEncryptionLabelCore(resource.IdentityType);
+
+    private static string MongoStorageEncryptionLabelCore(string? identityType) =>
+        string.Equals(identityType, "UserAssigned", StringComparison.OrdinalIgnoreCase)
             ? "Customer-managed key"
             : "Service-managed key";
-    }
 
     // Logic/workflows: `Fe(t)` — counts `properties.definition.triggers`/`.actions` object keys,
     // formats each count through a singular/plural resource string, joins with a fixed "{0}, {1}"
     // template (all read 2026-08-14).
-    public static string? LogicWorkflowDefinitionLabel(JsonElement root)
+    public static string? LogicWorkflowDefinitionLabel(JsonElement root) =>
+        LogicWorkflowDefinitionLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string? LogicWorkflowDefinitionLabel(TemplateResource resource) =>
+        LogicWorkflowDefinitionLabelCore(resource.Properties);
+
+    private static string? LogicWorkflowDefinitionLabelCore(JsonElement properties)
     {
-        var definition = JsonTree.Navigate(root, "properties", "definition");
+        var definition = JsonTree.Navigate(properties, "definition");
         if (definition is not { ValueKind: JsonValueKind.Object })
         {
             return null;
         }
-        var triggers = JsonTree.Navigate(root, "properties", "definition", "triggers");
-        var actions = JsonTree.Navigate(root, "properties", "definition", "actions");
+        var triggers = JsonTree.Navigate(properties, "definition", "triggers");
+        var actions = JsonTree.Navigate(properties, "definition", "actions");
         var triggerCount = triggers is { ValueKind: JsonValueKind.Object } t ? t.EnumerateObject().Count() : 0;
         var actionCount = actions is { ValueKind: JsonValueKind.Object } a ? a.EnumerateObject().Count() : 0;
         var triggerText = triggerCount == 1 ? "1 trigger" : $"{triggerCount} triggers";
@@ -242,23 +303,34 @@ public static class PortalFriendlyLabels
 
     // Logic/workflows: `Pe(t)` — `properties.integrationAccount.id` existence gates whether anything
     // shows at all; when present, the rendered text is `.name`, not the id (read 2026-08-14).
-    public static string LogicIntegrationAccountLabel(JsonElement root)
+    public static string LogicIntegrationAccountLabel(JsonElement root) =>
+        LogicIntegrationAccountLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string LogicIntegrationAccountLabel(TemplateResource resource) =>
+        LogicIntegrationAccountLabelCore(resource.Properties);
+
+    private static string LogicIntegrationAccountLabelCore(JsonElement properties)
     {
-        var id = JsonTree.GetString(root, "properties", "integrationAccount", "id");
+        var id = JsonTree.GetString(properties, "integrationAccount", "id");
         if (id is null)
         {
             return "--";
         }
-        return JsonTree.GetString(root, "properties", "integrationAccount", "name") ?? "--";
+        return JsonTree.GetString(properties, "integrationAccount", "name") ?? "--";
     }
 
     // Logic/workflows: `Qe(t)` — only the common "no agent configured" default is reproduced here
     // ("Stateful", read 2026-08-14); the Autonomous-agent/Conversational-agent branches call a further
     // opaque helper (`De.YF`) not traced this session, so a workflow with `properties.definition.
     // metadata.agentType` set returns null (unresolved) rather than a guess.
-    public static string? LogicWorkflowTypeLabel(JsonElement root)
+    public static string? LogicWorkflowTypeLabel(JsonElement root) =>
+        LogicWorkflowTypeLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string? LogicWorkflowTypeLabel(TemplateResource resource) => LogicWorkflowTypeLabelCore(resource.Properties);
+
+    private static string? LogicWorkflowTypeLabelCore(JsonElement properties)
     {
-        var agentType = JsonTree.GetString(root, "properties", "definition", "metadata", "agentType");
+        var agentType = JsonTree.GetString(properties, "definition", "metadata", "agentType");
         return agentType is null ? "Stateful" : null;
     }
 
@@ -276,9 +348,13 @@ public static class PortalFriendlyLabels
         ["developer"] = "Developer",
     };
 
-    public static string? AppConfigPricingTierLabel(JsonElement root)
+    public static string? AppConfigPricingTierLabel(JsonElement root) => AppConfigPricingTierLabelCore(SkuAndVersion.ResolveSku(root));
+
+    public static string? AppConfigPricingTierLabel(TemplateResource resource) => AppConfigPricingTierLabelCore(resource.Sku);
+
+    private static string? AppConfigPricingTierLabelCore(JsonElement sku)
     {
-        var skuName = SkuAndVersion.SkuName(root);
+        var skuName = JsonTree.GetString(sku, "name");
         if (skuName is null)
         {
             return null;
@@ -293,9 +369,14 @@ public static class PortalFriendlyLabels
     // AppConfiguration/configurationStores: `Telemetry` — an existence check on
     // `properties.telemetry.resourceId`, not a literal boolean property, so it doesn't fit
     // PortalFieldKnowledge.BooleanBackedLabels' "compare a JSON true/false leaf" shape (read 2026-08-14).
-    public static string AppConfigTelemetryLabel(JsonElement root)
+    public static string AppConfigTelemetryLabel(JsonElement root) =>
+        AppConfigTelemetryLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string AppConfigTelemetryLabel(TemplateResource resource) => AppConfigTelemetryLabelCore(resource.Properties);
+
+    private static string AppConfigTelemetryLabelCore(JsonElement properties)
     {
-        var resourceId = JsonTree.GetString(root, "properties", "telemetry", "resourceId");
+        var resourceId = JsonTree.GetString(properties, "telemetry", "resourceId");
         return string.IsNullOrEmpty(resourceId) ? "Disabled" : "Enabled";
     }
 
@@ -310,9 +391,14 @@ public static class PortalFriendlyLabels
     private static readonly HashSet<string> AksPowerStates =
         new(StringComparer.OrdinalIgnoreCase) { "Running", "Stopped", "Starting", "Stopping", "Deallocated" };
 
-    public static string AksPowerStateLabel(JsonElement root)
+    public static string AksPowerStateLabel(JsonElement root) =>
+        AksPowerStateLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string AksPowerStateLabel(TemplateResource resource) => AksPowerStateLabelCore(resource.Properties);
+
+    private static string AksPowerStateLabelCore(JsonElement properties)
     {
-        var code = JsonTree.GetString(root, "properties", "powerState", "code");
+        var code = JsonTree.GetString(properties, "powerState", "code");
         return code is not null && AksPowerStates.Contains(code) ? Canonicalize(code, AksPowerStates) : AksNoContent;
     }
 
@@ -325,9 +411,15 @@ public static class PortalFriendlyLabels
         "Canceled", "Creating", "Deleting", "Failed", "Starting", "Stopping", "Succeeded", "Updating", "Upgrading",
     };
 
-    public static string AksClusterOperationStatusLabel(JsonElement root)
+    public static string AksClusterOperationStatusLabel(JsonElement root) =>
+        AksClusterOperationStatusLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string AksClusterOperationStatusLabel(TemplateResource resource) =>
+        AksClusterOperationStatusLabelCore(resource.Properties);
+
+    private static string AksClusterOperationStatusLabelCore(JsonElement properties)
     {
-        var state = JsonTree.GetString(root, "properties", "provisioningState");
+        var state = JsonTree.GetString(properties, "provisioningState");
         return state is not null && AksProvisioningStates.Contains(state)
             ? Canonicalize(state, AksProvisioningStates)
             : AksNoContent;
@@ -338,15 +430,25 @@ public static class PortalFriendlyLabels
 
     // `properties.fqdn || properties.privateFQDN`, direct passthrough.
     public static string AksApiServerAddressLabel(JsonElement root) =>
-        JsonTree.GetString(root, "properties", "fqdn")
-        ?? JsonTree.GetString(root, "properties", "privateFQDN")
+        AksApiServerAddressLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string AksApiServerAddressLabel(TemplateResource resource) => AksApiServerAddressLabelCore(resource.Properties);
+
+    private static string AksApiServerAddressLabelCore(JsonElement properties) =>
+        JsonTree.GetString(properties, "fqdn")
+        ?? JsonTree.GetString(properties, "privateFQDN")
         ?? AksNoContent;
 
     // `C(properties.agentPoolProfiles)` — counts total pools and pools whose own
     // `provisioningState === "Failed"`, picks one of four singular/plural/failed-suffixed templates.
-    public static string AksNodePoolsLabel(JsonElement root)
+    public static string AksNodePoolsLabel(JsonElement root) =>
+        AksNodePoolsLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string AksNodePoolsLabel(TemplateResource resource) => AksNodePoolsLabelCore(resource.Properties);
+
+    private static string AksNodePoolsLabelCore(JsonElement properties)
     {
-        var pools = JsonTree.Navigate(root, "properties", "agentPoolProfiles");
+        var pools = JsonTree.Navigate(properties, "agentPoolProfiles");
         if (pools is not { ValueKind: JsonValueKind.Array } array)
         {
             return AksNoContent;
@@ -372,9 +474,15 @@ public static class PortalFriendlyLabels
     // `networkPluginMode` ("overlay") or any agent pool having a `podSubnetID` set. Reproduces the
     // current (feature-flags-stable/GA) portal behavior observed live 2026-08-14, not the older
     // pre-overlay fallback text the source falls back to when those flags are off.
-    public static string? AksNetworkConfigurationLabel(JsonElement root)
+    public static string? AksNetworkConfigurationLabel(JsonElement root) =>
+        AksNetworkConfigurationLabelCore(JsonTree.Navigate(root, "properties") ?? default(JsonElement));
+
+    public static string? AksNetworkConfigurationLabel(TemplateResource resource) =>
+        AksNetworkConfigurationLabelCore(resource.Properties);
+
+    private static string? AksNetworkConfigurationLabelCore(JsonElement properties)
     {
-        var plugin = JsonTree.GetString(root, "properties", "networkProfile", "networkPlugin");
+        var plugin = JsonTree.GetString(properties, "networkProfile", "networkPlugin");
         if (plugin is null)
         {
             return null;
@@ -387,12 +495,12 @@ public static class PortalFriendlyLabels
         {
             return null;
         }
-        var mode = JsonTree.GetString(root, "properties", "networkProfile", "networkPluginMode");
+        var mode = JsonTree.GetString(properties, "networkProfile", "networkPluginMode");
         if (string.Equals(mode, "overlay", StringComparison.OrdinalIgnoreCase))
         {
             return "Azure CNI Overlay";
         }
-        var pools = JsonTree.Navigate(root, "properties", "agentPoolProfiles");
+        var pools = JsonTree.Navigate(properties, "agentPoolProfiles");
         var hasPodSubnet = pools is { ValueKind: JsonValueKind.Array } array
             && array.EnumerateArray().Any(p => JsonTree.GetString(p, "podSubnetID") is not null);
         return hasPodSubnet ? "Azure CNI Pod Subnet" : null;
