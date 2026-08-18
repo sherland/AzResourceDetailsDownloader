@@ -65,6 +65,7 @@ public static class ScribanModelBuilder
             ["sku_label"] = SkuAndVersion.SkuLabel(root),
             ["sku_name"] = SkuAndVersion.SkuName(root),
             ["sku_tier"] = SkuAndVersion.SkuTier(root),
+            ["sku_capacity"] = SkuAndVersion.SkuCapacity(root),
             ["version"] = propsElement is { } p2 ? SkuAndVersion.ExtractVersion(armType, p2) : null,
             ["storage_replication_label"] = PortalFriendlyLabels.StorageReplicationLabel(root),
             ["storage_account_kind_label"] = PortalFriendlyLabels.StorageAccountKindLabel(root),

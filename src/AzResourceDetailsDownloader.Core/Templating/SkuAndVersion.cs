@@ -60,6 +60,15 @@ public static class SkuAndVersion
     public static string? SkuTier(JsonElement root) =>
         SkuObject(root) is { } sku ? JsonTree.GetString(sku, "tier") : null;
 
+    // sku.capacity — a plain number (throughput/replica/processing-unit count), not a string, so it
+    // needs its own accessor rather than SkuName/SkuTier's GetString. Confirmed live: SignalR and
+    // Web PubSub's "Unit" field, EventHub's "Throughput Units", Purview's "Platform size" all trace
+    // to this same property, just with different portal-side unit-word suffixes appended to it.
+    public static long? SkuCapacity(JsonElement root) =>
+        SkuObject(root) is { } sku && JsonTree.Navigate(sku, "capacity") is { ValueKind: JsonValueKind.Number } n
+            ? n.GetInt64()
+            : null;
+
     public static string? ExtractVersion(string armType, JsonElement properties)
     {
         string? Prop(params string[] path) => JsonTree.GetString(properties, path);
