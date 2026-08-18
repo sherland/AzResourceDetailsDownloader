@@ -63,6 +63,16 @@ jobs:
       # numbers deliberately as real coverage improves — don't leave them stale once they're several
       # points below actual.
       #
+      # Recalibrated (AzResourceDetails.Templating extraction): SkuAndVersion, TemplateFunctions,
+      # PortalFriendlyLabels, RegionDisplayNames, JsonTree, ScribanModelBuilder, and TemplateRenderer
+      # moved to their own project/test project — several of them (SkuAndVersion, TemplateFunctions)
+      # had strong direct coverage that was pulling Core's own average up, so Core's real remaining
+      # baseline dropped slightly even though nothing in Core itself got less tested: 76.87% line /
+      # 72.55% branch / 76.09% method, measured with the -p:Include filter below (added now that
+      # Core.Tests transitively pulls in AzResourceDetails.Templating too — without it, coverlet
+      # blends both assemblies into one misleading number, the same reason Infrastructure's own step
+      # already scopes itself below).
+      #
       # %2c, not a literal comma, in the multi-value ThresholdType/Threshold properties — verified
       # live: a bare comma in a -p: property value is parsed by MSBuild as another property
       # separator (fails with "error MSB1006: Property is not valid"), not as part of the value;
@@ -73,9 +83,28 @@ jobs:
           -p:CollectCoverage=true
           -p:CoverletOutputFormat=cobertura
           -p:CoverletOutput=./coverage/
+          "-p:Include=[AzResourceDetailsDownloader.Core]*"
           "-p:ThresholdType=line%2cbranch%2cmethod"
-          "-p:Threshold=77%2c66%2c80"
+          "-p:Threshold=76%2c72%2c76"
           -p:ThresholdStat=total
+
+      # AzResourceDetails.Templating's real effective coverage is split across two test projects —
+      # its own direct tests here, plus substantial indirect exercise via Core.Tests'
+      # FieldRecipeResolverTests/PortalFieldsConsistencyTests/TemplateRuntimeContractTests (which
+      # call through PortalFriendlyLabels/ScribanModelBuilder/TemplateRenderer as a side effect of
+      # testing Core's own resolver and the generated template corpus). A threshold gated on just
+      # this project's own number (measured standalone: 69.53% line / 53.81% branch / 91.66% method)
+      # would understate real coverage and risk becoming a number chased for its own sake rather
+      # than a meaningful ratchet — same reasoning Infrastructure's step below already documents, so
+      # this stays reported-not-gated until there's a combined-report tool in the pipeline that can
+      # measure the true total across both test projects.
+      - name: Test AzResourceDetails.Templating (coverage reported, not gated)
+        run: >
+          dotnet test tests/AzResourceDetails.Templating.Tests --no-build --configuration Release
+          -p:CollectCoverage=true
+          -p:CoverletOutputFormat=cobertura
+          -p:CoverletOutput=./coverage/
+          "-p:Include=[AzResourceDetails.Templating]*"
 
       # -p:Include scopes coverage to the Infrastructure assembly itself — without it, coverlet also
       # instruments Core (reachable transitively via the ProjectReference), which drags this number
@@ -94,4 +123,5 @@ jobs:
           name: coverage-reports
           path: |
             tests/AzResourceDetailsDownloader.Core.Tests/coverage/coverage.cobertura.xml
+            tests/AzResourceDetails.Templating.Tests/coverage/coverage.cobertura.xml
             tests/AzResourceDetailsDownloader.Infrastructure.Tests/coverage/coverage.cobertura.xml
