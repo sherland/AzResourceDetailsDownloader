@@ -28,7 +28,11 @@ public enum FieldRecipeKind
 // captured-at caveat, or — when Kind is Unresolved/NotAddressable, meaning there's no captured
 // value to show at all (VM power state isn't in the capture body) — render an explicit
 // "see the Azure Portal for current status" placeholder instead of silently omitting the row.
-public sealed record FieldRecipe(FieldRecipeKind Kind, double Confidence, string? Target, string Notes, bool IsLiveState = false);
+// LiteralSuffix carries trailing unit text the portal appends to a raw JSON number that the
+// resolved target itself doesn't include (e.g. " GiB", " Seconds") — see ResolveGeneric's
+// numeric-unit-suffix matching. Only ever set on a Direct recipe; TemplateGenerator appends it
+// after the Scriban expression so the rendered row still reproduces the portal's exact text.
+public sealed record FieldRecipe(FieldRecipeKind Kind, double Confidence, string? Target, string Notes, bool IsLiveState = false, string? LiteralSuffix = null);
 
 // Resolves a captured portal Essentials label/value pair down to a "recipe" describing how a
 // future template generator could reproduce it: a direct model.props.* path, a known transform
@@ -89,6 +93,17 @@ public static class FieldRecipeResolver
         // where a type's value happens to be empty/placeholder (falls through to Unresolved exactly
         // as before) and gets a real match where it isn't.
         "Operating system", "Disk size", "Replicas",
+
+        // Live-found (2026-08-18), once the numeric-unit-suffix and sku.capacity gaps above were
+        // fixed generically in ResolveGeneric/AddressableTarget: Compute/snapshots' "Size" is the
+        // exact same diskSizeGB-plus-"GiB" shape as disks' "Disk size" (VM/VMSS's own "Size" values
+        // are genuinely composite friendly SKU text and correctly stay Unresolved — the blanket
+        // attempt costs them nothing); EventHub's "Throughput Units" and Purview's "Platform size"
+        // both trace to sku.capacity, same as SignalR/WebPubSub's "Unit" already did before this
+        // list needed touching for them. All four were previously misclassified with the flatly
+        // wrong "composite/derived — no single backing property" hint despite a real backing
+        // property existing — attempting now at worst downgrades that to an honest NeedsReview.
+        "Size", "Throughput Units", "Platform size",
     };
 
     public static FieldRecipe Resolve(string label, string value, JsonElement root) =>
@@ -132,6 +147,10 @@ public static class FieldRecipeResolver
                 "Enabled, Free tier always shows N/A) — no backing property at all, confirmed live " +
                 "2026-08-14. Distinct from KeyVault's same-named label, which really is a direct " +
                 "properties.enableSoftDelete passthrough.");
+        }
+        if (label.Equals("Name", StringComparison.OrdinalIgnoreCase))
+        {
+            return ResolveNameShortcut(value, root);
         }
         if (label.Equals("Location", StringComparison.OrdinalIgnoreCase))
         {
@@ -322,6 +341,45 @@ public static class FieldRecipeResolver
         }
         return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.sku_label",
             $"Computed \"{computed}\" does NOT match portal \"{value}\" for this type — do not trust this shortcut here.");
+    }
+
+    // Live-found (2026-08-18): "Name" was blanket-classified NonTraceableLabels on the strength of a
+    // single observed case (Portal/dashboards renders "{resourceName} ({friendly title})") — but
+    // checking all 10 captured types that actually show a "Name" Essentials row found 9 of them are
+    // a plain, exact passthrough of the resource's own root "name" field; dashboards is the one
+    // genuine composite. Dedicated shortcut (verify-or-fall-back, same shape as
+    // ResolveLocationShortcut/ResolveResourceGroupShortcut below) so the 9 plain cases resolve
+    // confidently instead of every type paying for the one composite exception.
+    private static FieldRecipe ResolveNameShortcut(string value, JsonElement root)
+    {
+        var rawName = JsonTree.GetString(root, "name");
+        if (rawName is null)
+        {
+            return new FieldRecipe(FieldRecipeKind.Unresolved, 0.0, null, "This capture has no root 'name' field.");
+        }
+        if (rawName == value)
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutVerified, 1.0, "model.name",
+                "Verified: matches the resource's own 'name' field exactly.");
+        }
+        if (string.Equals(rawName, value, StringComparison.OrdinalIgnoreCase))
+        {
+            return new FieldRecipe(FieldRecipeKind.ShortcutCasingMismatch, 0.7, "model.name",
+                $"Raw \"{rawName}\" vs portal \"{value}\" — same value, different casing.");
+        }
+        if (value.StartsWith(rawName, StringComparison.Ordinal))
+        {
+            // The dashboards case: "{name} ({friendly title})" — model.name is genuinely the right
+            // lead, just missing a trailing composite this capture has no traceable source for, so
+            // NeedsReview (still points at the right target) rather than a flat ShortcutMismatch
+            // (which would wrongly suggest model.name itself is the wrong answer here).
+            return new FieldRecipe(FieldRecipeKind.NeedsReview, 0.5, "model.name",
+                $"Portal value \"{value}\" starts with the resource's own name (\"{rawName}\") but carries " +
+                "extra trailing text this capture can't trace (e.g. a friendly display title) — verify by hand.");
+        }
+        return new FieldRecipe(FieldRecipeKind.ShortcutMismatch, 0.0, "model.name",
+            $"Resource's own name is \"{rawName}\" but the portal showed \"{value}\" — investigate before " +
+            "trusting this shortcut here.");
     }
 
     // "norwayeast" -> "Norway East" via config/azure-locations.json (fetch-azure-reference-data.ps1)
@@ -585,16 +643,16 @@ public static class FieldRecipeResolver
     private static FieldRecipe ResolveGeneric(string baseLabel, string value, JsonElement root)
     {
         var nVal = PortalFieldKnowledge.Normalize(value);
-        var candidates = new List<(string ScribanPath, string OriginalPath, double Similarity, string Reason)>();
+        var candidates = new List<(string ScribanPath, string OriginalPath, double Similarity, string Reason, string? Suffix)>();
 
         foreach (var leaf in JsonTree.Flatten(root))
         {
-            var (matched, reason) = TryMatchLeafValue(leaf.Value, nVal);
+            var (matched, reason, suffix) = TryMatchLeafValue(leaf.Value, nVal, value);
             if (!matched)
             {
                 continue;
             }
-            candidates.Add((leaf.ScribanPath, leaf.OriginalPath, NameSimilarity(baseLabel, leaf.OriginalPath), reason));
+            candidates.Add((leaf.ScribanPath, leaf.OriginalPath, NameSimilarity(baseLabel, leaf.OriginalPath), reason, suffix));
         }
 
         if (candidates.Count == 0)
@@ -608,7 +666,7 @@ public static class FieldRecipeResolver
         candidates = candidates.OrderByDescending(c => c.Similarity).ToList();
         var bestOverall = candidates[0];
         var addressable = candidates
-            .Select(c => (c.ScribanPath, c.Similarity, c.Reason, Target: AddressableTarget(c.OriginalPath, c.ScribanPath)))
+            .Select(c => (c.ScribanPath, c.Similarity, c.Reason, c.Suffix, Target: AddressableTarget(c.OriginalPath, c.ScribanPath)))
             .Where(c => c.Target is not null)
             .OrderByDescending(c => c.Similarity)
             .ToList();
@@ -650,7 +708,7 @@ public static class FieldRecipeResolver
                 $"(similarity {runnerUp.Similarity.ToString("0.00", CultureInfo.InvariantCulture)}) — pick manually.");
         }
 
-        return new FieldRecipe(FieldRecipeKind.Direct, best.Similarity, best.Target, best.Reason);
+        return new FieldRecipe(FieldRecipeKind.Direct, best.Similarity, best.Target, best.Reason, LiteralSuffix: best.Suffix);
     }
 
     // The handful of places outside properties.* that a template can still reach: properties.* maps
@@ -662,6 +720,17 @@ public static class FieldRecipeResolver
     // today.
     private static string? AddressableTarget(string originalPath, string scribanPath)
     {
+        // sku.capacity (root-level, or properties-nested on the handful of types that nest their
+        // whole sku object — same dual lookup as SkuAndVersion.SkuObject) needs its own first-class
+        // model field rather than falling through to the generic "properties.* -> model.props.*"
+        // rule below, since a root-level "sku.capacity" isn't under properties.* at all and would
+        // otherwise be reported NotAddressable even after a genuine value match (live-caught:
+        // SignalR/WebPubSub's "Unit" both traced to sku.capacity but couldn't be referenced).
+        if (originalPath.Equals("sku.capacity", StringComparison.OrdinalIgnoreCase)
+            || originalPath.Equals("properties.sku.capacity", StringComparison.OrdinalIgnoreCase))
+        {
+            return "model.sku_capacity";
+        }
         if (originalPath.StartsWith("properties.", StringComparison.OrdinalIgnoreCase))
         {
             return $"model.props.{StripPropertiesPrefix(scribanPath)}";
@@ -677,15 +746,16 @@ public static class FieldRecipeResolver
         };
     }
 
-    private static (bool Matched, string Reason) TryMatchLeafValue(JsonElement leaf, string normalizedPortalValue)
+    private static (bool Matched, string Reason, string? Suffix) TryMatchLeafValue(
+        JsonElement leaf, string normalizedPortalValue, string rawPortalValue)
     {
         if (leaf.ValueKind is JsonValueKind.True or JsonValueKind.False)
         {
             var isTrue = leaf.ValueKind is JsonValueKind.True;
             string[] words = isTrue ? ["Enabled", "Yes", "On"] : ["Disabled", "No", "Off", "Not enabled"];
             return words.Any(w => PortalFieldKnowledge.Normalize(w) == normalizedPortalValue)
-                ? (true, "boolean→friendly-word")
-                : (false, "");
+                ? (true, "boolean→friendly-word", null)
+                : (false, "", null);
         }
 
         var leafText = leaf.ValueKind switch
@@ -698,10 +768,39 @@ public static class FieldRecipeResolver
             && normalizedPortalValue.Length > 0
             && PortalFieldKnowledge.Normalize(leafText) == normalizedPortalValue)
         {
-            return (true, "exact value match");
+            return (true, "exact value match", null);
         }
 
-        return (false, "");
+        // Live-found (2026-08-18): the portal often renders a raw JSON number with a trailing unit
+        // word the property itself never carries — "30 Seconds" for originResponseTimeoutSeconds:30,
+        // "4 GiB" for diskSizeGB:4, "1 unit"/"1 capacity units" for sku.capacity:1 — so plain
+        // normalized-string equality (which strips spaces/punctuation but not whole words) can never
+        // bridge it; "30seconds" != "30". Only trusted for a genuine JSON number leaf whose value
+        // equals the label's LEADING number, AND only when the trailing text is plain unit-word(s)
+        // (letters/spaces only) — live-caught the case this guard exists for: Search Services'
+        // "Replicas" = "1 (No SLA)" would otherwise bake "(No SLA)" in as a literal suffix on every
+        // future render regardless of the actual replica count, since that parenthetical is a
+        // conditional annotation the portal only adds when the count is exactly 1, not a constant
+        // unit of measurement — a single captured example can't tell those two shapes apart, so
+        // anything other than bare words after the number is left unmatched (Unresolved) rather
+        // than risk confidently rendering a suffix that's only sometimes true.
+        if (leaf.ValueKind == JsonValueKind.Number)
+        {
+            var leadingNumber = Regex.Match(rawPortalValue.TrimStart(), @"^-?\d+(\.\d+)?");
+            if (leadingNumber.Success
+                && double.TryParse(leadingNumber.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out var portalNumber)
+                && leaf.TryGetDouble(out var leafNumber)
+                && portalNumber == leafNumber)
+            {
+                var suffix = rawPortalValue[leadingNumber.Length..];
+                if (Regex.IsMatch(suffix, @"^\s+[A-Za-z]+(\s+[A-Za-z]+)*$"))
+                {
+                    return (true, "numeric value match (unit suffix stripped)", suffix);
+                }
+            }
+        }
+
+        return (false, "", null);
     }
 
     private static string StripPropertiesPrefix(string scribanPath) =>
@@ -709,10 +808,19 @@ public static class FieldRecipeResolver
             ? scribanPath["properties.".Length..]
             : scribanPath;
 
+    // Live-found (2026-08-18): NameSimilarity alone is recall-only — "how much of the LABEL's
+    // tokens appear in the path" — so "properties.creationTime" and
+    // "properties.keyCreationTime.key1" score identically against "Created" (both fully contain
+    // its one token, post-stemming), even though the latter carries an extra "key" token the label
+    // says nothing about. Token count as a tie-break prefers the more direct property over a
+    // deeper/more-qualified one carrying unexplained extra tokens — narrowly scoped to this one
+    // ranking function (used only by ResolveTimestamp, not the broader generic resolver), not a
+    // change to NameSimilarity's own scoring used everywhere else in this file.
     private static string RankByNameSimilarity(string baseLabel, IReadOnlyList<string> scribanPaths) =>
         scribanPaths
-            .Select(p => (Path: p, Score: NameSimilarity(baseLabel, p)))
+            .Select(p => (Path: p, Score: NameSimilarity(baseLabel, p), TokenCount: Tokenize(p).Count))
             .OrderByDescending(p => p.Score)
+            .ThenBy(p => p.TokenCount)
             .First()
             .Path;
 
@@ -749,7 +857,35 @@ public static class FieldRecipeResolver
         var hits = labelTokens.Count(lt => pathTokens.Any(pt =>
             pt.Equals(lt, StringComparison.OrdinalIgnoreCase)
             || pt.StartsWith(lt, StringComparison.OrdinalIgnoreCase)
-            || lt.StartsWith(pt, StringComparison.OrdinalIgnoreCase)));
+            || lt.StartsWith(pt, StringComparison.OrdinalIgnoreCase)
+            || Stem(pt).Equals(Stem(lt), StringComparison.OrdinalIgnoreCase)));
         return (double)hits / labelTokens.Count;
+    }
+
+    // Live-found (2026-08-18): "Created" (tokenizes to "created") scored 0 similarity against
+    // "creationTime" (tokenizes to "creation"/"time") — neither is a StartsWith-prefix of the
+    // other ("created"/"creation" diverge at their 6th letter, e/i) despite sharing the same root.
+    // This let Storage Accounts' "Created" tie-break arbitrarily against "keyCreationTime.key1" (a
+    // property that happens to hold nearly the same instant, since the account and its access key
+    // are created together) instead of clearly preferring the actual creation-time property — a
+    // generic gap in the resolver's semantic-agreement check, not a Storage-Account-specific one,
+    // so any label/property pair with this same -ed/-ion (or similar) suffix mismatch was at risk
+    // of the same silent tie-break. Fixed with a small, deliberately narrow suffix list — common
+    // English inflections only, not a general-purpose stemmer — to keep the false-positive risk low
+    // (e.g. "creature" stems to "creatur", not "creat", so it doesn't collide with "created").
+    private static readonly string[] CommonSuffixes = ["ing", "ion", "ed", "es", "s", "e"];
+
+    private static string Stem(string token)
+    {
+        foreach (var suffix in CommonSuffixes)
+        {
+            // Require at least 3 characters left after stripping, so short tokens ("id", "as")
+            // can't be hollowed out into a near-empty, over-eager-matching stem.
+            if (token.Length >= suffix.Length + 3 && token.EndsWith(suffix, StringComparison.OrdinalIgnoreCase))
+            {
+                return token[..^suffix.Length];
+            }
+        }
+        return token;
     }
 }

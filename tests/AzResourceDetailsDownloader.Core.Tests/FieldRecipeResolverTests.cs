@@ -304,6 +304,137 @@ public class FieldRecipeResolverTests
         Assert.Equal("model.props.instrumentationkey", recipe.Target);
     }
 
+    // Live-run regression: Storage Accounts' "Created" previously tied between properties.creationTime
+    // and properties.keyCreationTime.key1 (the account and its access key are created within
+    // milliseconds of each other, so both match the same displayed second) and picked the WRONG one
+    // arbitrarily — "created" scored 0 name-similarity against both "creationTime" and
+    // "keyCreationTime" under the old StartsWith-only matching, since "created"/"creation" diverge at
+    // their 6th letter despite sharing a root. Must now clearly prefer the actual creation-time
+    // property, not the access key's.
+    [Fact]
+    public void Resolve_Created_PrefersCreationTimeOverKeyCreationTime_ForStorageAccount()
+    {
+        var root = LoadCapturedResource("storage", "microsoft_storage_storageaccounts");
+
+        var recipe = FieldRecipeResolver.Resolve("Created", "14.8.2026, 12:28:04", root);
+
+        Assert.Equal(FieldRecipeKind.Timestamp, recipe.Kind);
+        Assert.Equal("model.props.creationtime", recipe.Target);
+    }
+
+    // Live-run regression: CDN profiles' "Origin response timeout" = "30 Seconds" previously stayed
+    // Unresolved even though properties.originResponseTimeoutSeconds = 30 backs it exactly — plain
+    // normalized-string equality can't bridge a JSON number against a value with a trailing unit
+    // word. Must now resolve Direct, with the unit text carried as a LiteralSuffix rather than lost.
+    [Fact]
+    public void Resolve_OriginResponseTimeout_MatchesNumberDespiteUnitSuffix_ForCdnProfile()
+    {
+        var root = LoadCapturedResource("networking", "microsoft_cdn_profiles");
+
+        var recipe = FieldRecipeResolver.Resolve("Origin response timeout", "30 Seconds", root);
+
+        Assert.Equal(FieldRecipeKind.Direct, recipe.Kind);
+        Assert.Equal("model.props.originresponsetimeoutseconds", recipe.Target);
+        Assert.Equal(" Seconds", recipe.LiteralSuffix);
+    }
+
+    // Same unit-suffix gap, different unit word ("GiB" instead of "Seconds") — confirms the fix
+    // isn't accidentally specific to one literal suffix string.
+    [Fact]
+    public void Resolve_DiskSize_MatchesNumberDespiteGiBSuffix_ForComputeDisk()
+    {
+        var root = LoadCapturedResource("compute_and_web", "microsoft_compute_disks");
+
+        var recipe = FieldRecipeResolver.Resolve("Disk size", "4 GiB", root);
+
+        Assert.Equal(FieldRecipeKind.Direct, recipe.Kind);
+        Assert.Equal("model.props.disksizegb", recipe.Target);
+        Assert.Equal(" GiB", recipe.LiteralSuffix);
+    }
+
+    // A JSON number leaf whose value merely starts with the same digits as an unrelated portal
+    // string must NOT be treated as a unit-suffix match — the leading-number comparison requires
+    // the whole numeric prefix to parse to an equal value, not just a shared first character.
+    [Fact]
+    public void Resolve_NumericUnitSuffixMatch_RequiresExactLeadingNumber_NotJustAPrefixDigit()
+    {
+        using var doc = JsonDocument.Parse("""
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.Test/things/thing1",
+              "name": "thing1",
+              "type": "Microsoft.Test/things",
+              "location": "norwayeast",
+              "properties": { "widgetCount": 3 }
+            }
+            """);
+
+        var recipe = FieldRecipeResolver.Resolve("Widget count", "30 Seconds", doc.RootElement);
+
+        Assert.Equal(FieldRecipeKind.Unresolved, recipe.Kind);
+    }
+
+    // Live-run regression: Search Services' "Replicas" = "1 (No SLA)" traces to replicaCount:1, but
+    // "(No SLA)" is a CONDITIONAL annotation the portal only shows when the count is exactly 1 (see
+    // AttemptDespiteNonTraceableHint's comment) — not a constant unit like " GiB"/" Seconds". The
+    // numeric-unit-suffix match must reject this trailing text rather than bake it in as if it were
+    // always true, which would render "(No SLA)" even for a resource with 3 replicas.
+    [Fact]
+    public void Resolve_NumericUnitSuffixMatch_RejectsConditionalParentheticalAnnotation_NotAConstantUnit()
+    {
+        var root = LoadCapturedResource("ai_machine_learning", "microsoft_search_searchservices");
+
+        var recipe = FieldRecipeResolver.Resolve("Replicas", "1 (No SLA)", root);
+
+        Assert.NotEqual(FieldRecipeKind.Direct, recipe.Kind);
+    }
+
+    // Live-run regression: SignalR/Web PubSub's "Unit" and EventHub's "Throughput Units" all trace
+    // to sku.capacity, which previously had no first-class model field and so was reported
+    // NotAddressable even after a genuine value match — sku.capacity must now be reachable as
+    // model.sku_capacity.
+    [Fact]
+    public void Resolve_SkuCapacity_IsAddressable_ForSignalR()
+    {
+        var root = LoadCapturedResource("developer_tools", "microsoft_signalrservice_signalr");
+        var capacity = root.GetProperty("sku").GetProperty("capacity").GetRawText();
+
+        var recipe = FieldRecipeResolver.Resolve("Unit", capacity, root);
+
+        Assert.NotEqual(FieldRecipeKind.NotAddressable, recipe.Kind);
+    }
+
+    // Live-run regression: "Name" was blanket-classified as composite/unresolved on the strength of
+    // a single observed exception (Portal/dashboards' "{name} (friendly title)"), even though it's
+    // a plain, exact passthrough of the resource's own root "name" field on every other captured
+    // type — confirmed here on a child/nested resource type (AFD endpoints), where "Name" is a
+    // genuine Essentials row distinct from the H1 title.
+    [Fact]
+    public void Resolve_Name_ResolvesDirectlyToModelName_ForAfdEndpoint()
+    {
+        var root = LoadCapturedResource("networking", "microsoft_cdn_profiles_afdendpoints");
+        var name = root.GetProperty("name").GetString()!;
+
+        var recipe = FieldRecipeResolver.Resolve("Name", name, root);
+
+        Assert.Equal(FieldRecipeKind.ShortcutVerified, recipe.Kind);
+        Assert.Equal("model.name", recipe.Target);
+    }
+
+    // The one genuine exception found: Portal/dashboards renders "{name} ({friendly title})" — a
+    // real composite this capture has no traceable source for. Must stay NeedsReview (still
+    // pointing at model.name as the right lead), never a confidently-trusted exact match.
+    [Fact]
+    public void Resolve_Name_IsNeedsReview_WhenPortalAppendsAFriendlyTitle_ForDashboards()
+    {
+        var root = LoadCapturedResource("management_and_governance", "microsoft_portal_dashboards");
+        var rawName = root.GetProperty("name").GetString()!;
+
+        var recipe = FieldRecipeResolver.Resolve("Name", $"{rawName} (ARDL Dashboard)", root);
+
+        Assert.Equal(FieldRecipeKind.NeedsReview, recipe.Kind);
+        Assert.Equal("model.name", recipe.Target);
+    }
+
     private static JsonElement LoadCapturedResource(string category, string armTypeFolder)
     {
         var repoRoot = RepoPaths.ResolveRepoRoot();

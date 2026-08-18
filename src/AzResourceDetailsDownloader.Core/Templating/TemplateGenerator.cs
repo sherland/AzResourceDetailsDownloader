@@ -140,26 +140,37 @@ public static class TemplateGenerator
 
             case FieldRecipeKind.Direct:
             {
+                string expression;
+
                 // The generic resolver also matches plain booleans under "Direct" (see
                 // FieldRecipeResolver.TryMatchLeafValue's "boolean→friendly-word" reason) — same
                 // transform decision as the Boolean case above, just reached through a different path.
                 if (recipe.Notes.Contains("boolean", StringComparison.OrdinalIgnoreCase)
                     && IsRealJsonBoolean(root, recipe.Target))
                 {
-                    return $"{{{{ {recipe.Target} | {ChooseBoolTransform(value)} }}}}";
+                    expression = $"{{{{ {recipe.Target} | {ChooseBoolTransform(value)} }}}}";
+                }
+                else
+                {
+                    // Matching is case-insensitive (see FieldRecipeResolver's Normalize-based
+                    // comparison), so a "Direct" match can still differ from the portal's exact text
+                    // by casing alone — live-observed: Container Registry's raw policy status is
+                    // "disabled", the portal shows "Disabled". Only worth fixing the common
+                    // single-word enum case; a genuinely different value would never have
+                    // Normalize-matched at all.
+                    var rawText = TryGetRawLeafText(root, recipe.Target);
+                    expression = rawText is not null && rawText != value && !rawText.Contains(' ')
+                        ? $"{{{{ {recipe.Target} | string.capitalize }}}}"
+                        : $"{{{{ {recipe.Target} }}}}";
                 }
 
-                // Matching is case-insensitive (see FieldRecipeResolver's Normalize-based
-                // comparison), so a "Direct" match can still differ from the portal's exact text by
-                // casing alone — live-observed: Container Registry's raw policy status is
-                // "disabled", the portal shows "Disabled". Only worth fixing the common single-word
-                // enum case; a genuinely different value would never have Normalize-matched at all.
-                var rawText = TryGetRawLeafText(root, recipe.Target);
-                if (rawText is not null && rawText != value && !rawText.Contains(' '))
-                {
-                    return $"{{{{ {recipe.Target} | string.capitalize }}}}";
-                }
-                return $"{{{{ {recipe.Target} }}}}";
+                // A raw number matched with a trailing unit word the property itself doesn't carry
+                // (see FieldRecipeResolver's numeric-unit-suffix matching) — append it as literal
+                // text so the row still reproduces the portal's exact display, e.g. "4 GiB", not
+                // just "4".
+                return recipe.LiteralSuffix is { Length: > 0 } suffix
+                    ? expression + EscapeForTable(suffix)
+                    : expression;
             }
 
             default:
