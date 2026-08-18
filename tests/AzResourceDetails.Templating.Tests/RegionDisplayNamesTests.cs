@@ -1,9 +1,11 @@
 namespace AzResourceDetails.Templating.Tests;
 
-// RegionDisplayNames has no filesystem/repo-layout knowledge of its own (see its class comment) —
-// a host configures it explicitly. These tests exercise that seam directly, independent of any
-// particular host's wiring (contrast AzResourceDetailsDownloader.Core's RegionDisplayNamesBootstrap,
-// which is the real host-side loader for config/azure-locations.json).
+// RegionDisplayNames ships an embedded default (baked from AzResourceDetailsDownloader's own
+// config/azure-locations.json — see the csproj's EmbeddedResource item and this class' own comment)
+// so a host gets correct behavior without calling Configure at all; Configure/ResetToEmbeddedDefault
+// are the explicit override/revert seam. Every test here calls one or the other at its own start
+// rather than relying on execution order, since RegionDisplayNames' backing table is shared mutable
+// static state across the whole assembly (see AssemblyInfo.cs' DisableTestParallelization).
 public class RegionDisplayNamesTests
 {
     [Fact]
@@ -34,18 +36,46 @@ public class RegionDisplayNamesTests
         Assert.Equal("", displayName);
     }
 
-    // Before any host calls Configure, every lookup should just miss — the same graceful
-    // degradation a missing/malformed reference-data file produced when this class loaded it
-    // itself, not an exception.
+    // A code that genuinely isn't a real Azure region should just miss gracefully, never throw —
+    // true of the embedded default just as it always was of an empty/unconfigured table.
     [Fact]
-    public void TryGetDisplayName_BeforeConfigure_MissesGracefullyRatherThanThrowing()
+    public void TryGetDisplayName_UnknownCode_AgainstEmbeddedDefault_MissesGracefullyRatherThanThrowing()
     {
-        RegionDisplayNames.Configure(new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase));
+        RegionDisplayNames.ResetToEmbeddedDefault();
 
-        var found = RegionDisplayNames.TryGetDisplayName("norwayeast", out var displayName);
+        var found = RegionDisplayNames.TryGetDisplayName("not-a-real-region", out var displayName);
 
         Assert.False(found);
         Assert.Equal("", displayName);
+    }
+
+    // The whole point of embedding a default: a consumer that never calls Configure at all still
+    // gets correct, portal-matching region names. "norwayeast" is a real, stable entry in
+    // config/azure-locations.json (fetched from the ARM Locations API, not guessed).
+    [Fact]
+    public void TryGetDisplayName_KnownCode_AgainstEmbeddedDefault_ResolvesWithoutAnyConfigureCall()
+    {
+        RegionDisplayNames.ResetToEmbeddedDefault();
+
+        var found = RegionDisplayNames.TryGetDisplayName("norwayeast", out var displayName);
+
+        Assert.True(found);
+        Assert.Equal("Norway East", displayName);
+    }
+
+    [Fact]
+    public void ResetToEmbeddedDefault_UndoesAPreviousConfigureCall()
+    {
+        RegionDisplayNames.Configure(new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["westeurope"] = "West Europe",
+        });
+        Assert.False(RegionDisplayNames.TryGetDisplayName("norwayeast", out _));
+
+        RegionDisplayNames.ResetToEmbeddedDefault();
+
+        Assert.True(RegionDisplayNames.TryGetDisplayName("norwayeast", out var displayName));
+        Assert.Equal("Norway East", displayName);
     }
 
     [Fact]
