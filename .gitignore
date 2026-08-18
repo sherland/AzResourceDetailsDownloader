@@ -10,3 +10,5 @@ appsettings.Development.json
 # ".gitignore matches case-insensitively" section); anchoring costs nothing and rules that out here.
 /tests/AzResourceDetailsDownloader.Core.Tests/coverage/
 /tests/AzResourceDetailsDownloader.Infrastructure.Tests/coverage/
+# CodeGraph's local index (23MB+ codegraph.db) — a generated cache, same category as bin/obj.
+/.codegraph/
