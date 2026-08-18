@@ -28,7 +28,15 @@ jobs:
       # playwright.ps1 install script is generated at build time; --with-deps also installs the OS
       # packages Chromium needs on a bare ubuntu-latest runner (fonts, libraries), not just the
       # browser binary itself.
+      #
+      # timeout-minutes: without one, a step defaults to the job's own timeout (GitHub's default:
+      # 360 minutes) — live-caught 2026-08-18: this step hung for 13+ minutes on a transient
+      # runner/network issue unrelated to any code change (confirmed by cancelling and retrying —
+      # the immediate rerun succeeded in under 2 minutes, its normal range being 28s-1m53s across
+      # recent runs). 3 minutes is comfortably above that observed range but short enough that a
+      # real hang fails fast instead of silently burning CI minutes for hours.
       - name: Install Playwright browser (Chromium)
+        timeout-minutes: 3
         run: pwsh tests/AzResourceDetailsDownloader.Infrastructure.Tests/bin/Release/net10.0/playwright.ps1 install --with-deps chromium
 
       # -p: (not /p:) deliberately — matches local dev usage: a leading `/p:` gets silently
