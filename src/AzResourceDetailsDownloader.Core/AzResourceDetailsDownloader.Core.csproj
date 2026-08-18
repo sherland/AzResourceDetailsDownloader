@@ -15,14 +15,19 @@
     explaining: it's the SDK's shared *type* library (ResourceIdentifier, ETag, ...), not a client
     that makes calls — using it here is like using System.Text.Json, not like using
     Azure.ResourceManager.
+
+    Does NOT reference Scriban directly (moved to AzResourceDetails.Templating along with every
+    class that actually builds/renders a Scriban model) — FieldRecipeResolver and TemplateGenerator
+    only ever produce plain strings describing what a template *should* contain, never a Scriban
+    object itself.
   -->
   <ItemGroup>
     <PackageReference Include="Azure.Core" Version="1.61.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.11" />
-    <!-- 7.2.6 — earlier 5.x releases have several published high/critical advisories; not used for
-         anything AzToMd-related, just a plain templating library for AzResourceDetailsDownloader's
-         own template generation/rendering. -->
-    <PackageReference Include="Scriban" Version="7.2.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzResourceDetails.Templating\AzResourceDetails.Templating.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
+using AzResourceDetails.Templating;
 
 namespace AzResourceDetailsDownloader.Templating;
 

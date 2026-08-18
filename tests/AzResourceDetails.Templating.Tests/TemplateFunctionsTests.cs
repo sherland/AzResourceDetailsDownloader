@@ -1,10 +1,19 @@
-using AzResourceDetailsDownloader.Templating;
 using Scriban.Runtime;
 
-namespace AzResourceDetailsDownloader.Tests;
+namespace AzResourceDetails.Templating.Tests;
 
 public class TemplateFunctionsTests
 {
+    // This library has no filesystem/repo-layout knowledge of its own — RegionDisplayNames.
+    // Configure is the seam a host normally wires up at startup (see
+    // AzResourceDetailsDownloader.Core's RegionDisplayNamesBootstrap for the real one); tests
+    // configure a small synthetic table instead of reaching for any real repo file.
+    static TemplateFunctionsTests() =>
+        RegionDisplayNames.Configure(new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["norwayeast"] = "Norway East",
+        });
+
     [Theory]
     [InlineData(true, "Enabled")]
     [InlineData(false, "Disabled")]
@@ -48,8 +57,9 @@ public class TemplateFunctionsTests
     [Fact]
     public void RegionDisplayName_KnownCode_ReturnsThePortalDisplayName()
     {
-        // norwayeast is a real entry in config/azure-locations.json (fetched from the ARM Locations
-        // API, not guessed) — see RegionDisplayNamesTests/fetch-azure-reference-data.ps1.
+        // "norwayeast" is this file's static-constructor-configured synthetic table, not a real
+        // repo file — see RegionDisplayNamesTests for the real one (fetched from the ARM Locations
+        // API via fetch-azure-reference-data.ps1 in AzResourceDetailsDownloader, not guessed).
         Assert.Equal("Norway East", TemplateFunctions.RegionDisplayName("norwayeast"));
     }
 

@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using AzResourceDetails.Templating;
 
 namespace AzResourceDetailsDownloader.Templating;
 

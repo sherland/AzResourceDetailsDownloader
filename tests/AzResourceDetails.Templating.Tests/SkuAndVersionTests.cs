@@ -1,7 +1,7 @@
 using System.Text.Json;
-using AzResourceDetailsDownloader.Templating;
+using AzResourceDetails.Templating;
 
-namespace AzResourceDetailsDownloader.Tests;
+namespace AzResourceDetails.Templating.Tests;
 
 public class SkuAndVersionTests
 {
