@@ -94,4 +94,69 @@ public class RegionDisplayNamesTests
         Assert.True(RegionDisplayNames.TryGetDisplayName("westeurope", out var displayName));
         Assert.Equal("West Europe", displayName);
     }
+
+    [Fact]
+    public void Configure_NullTable_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => RegionDisplayNames.Configure(null!));
+    }
+
+    // Locks in the concurrency guarantee documented on Configure: reassigning the backing table is
+    // atomic, so a reader on another thread always sees one complete table or the other, never an
+    // exception and never a value that doesn't belong to either. Runs many concurrent readers
+    // against a thread that keeps swapping between two distinguishable tables; any exception, or
+    // any (found=true) result whose display name doesn't match ITS OWN table, fails the test.
+    [Fact]
+    public async Task Configure_And_TryGetDisplayName_AreSafeUnderConcurrentAccess()
+    {
+        var tableA = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) { ["regiona"] = "Region A Display" };
+        var tableB = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) { ["regionb"] = "Region B Display" };
+        using var stop = new CancellationTokenSource();
+        var exceptions = new System.Collections.Concurrent.ConcurrentBag<Exception>();
+
+        var writer = Task.Run(() =>
+        {
+            var useA = true;
+            while (!stop.IsCancellationRequested)
+            {
+                try
+                {
+                    RegionDisplayNames.Configure(useA ? tableA : tableB);
+                    useA = !useA;
+                }
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
+            }
+        });
+
+        var readers = Enumerable.Range(0, 4).Select(_ => Task.Run(() =>
+        {
+            while (!stop.IsCancellationRequested)
+            {
+                try
+                {
+                    if (RegionDisplayNames.TryGetDisplayName("regiona", out var a) && a != "Region A Display")
+                    {
+                        throw new InvalidOperationException($"Corrupted read for 'regiona': got \"{a}\"");
+                    }
+                    if (RegionDisplayNames.TryGetDisplayName("regionb", out var b) && b != "Region B Display")
+                    {
+                        throw new InvalidOperationException($"Corrupted read for 'regionb': got \"{b}\"");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
+            }
+        })).ToArray();
+
+        await Task.Delay(500);
+        stop.Cancel();
+        await Task.WhenAll([writer, .. readers]);
+
+        Assert.Empty(exceptions);
+    }
 }

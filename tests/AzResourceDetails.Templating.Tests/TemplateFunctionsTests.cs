@@ -92,4 +92,71 @@ public class TemplateFunctionsTests
         Assert.True(globals.ContainsKey("portal_timestamp"));
         Assert.True(globals.ContainsKey("region_display_name"));
     }
+
+    // The symmetric, derived version of the test above — compares what ImportInto ACTUALLY
+    // registers against what TemplateRuntimeContract.SupportedFunctions DECLARES, rather than a
+    // hardcoded list on each side that could drift apart silently if someone adds a function to one
+    // without updating the other.
+    [Fact]
+    public void ImportInto_RegistersExactlyTheFunctionsTheRuntimeContractDeclares()
+    {
+        var globals = new ScriptObject();
+
+        TemplateFunctions.ImportInto(globals);
+
+        var registered = globals.Keys.ToHashSet();
+        var declared = TemplateRuntimeContract.SupportedFunctions.ToHashSet();
+        Assert.Equal(declared, registered);
+    }
+
+    [Fact]
+    public void ImportInto_LeavesUnrelatedHostRegisteredFunctionsUntouched()
+    {
+        var globals = new ScriptObject();
+        globals.Import("host_only_function", new Func<string>(() => "host-value"));
+
+        TemplateFunctions.ImportInto(globals);
+
+        Assert.True(globals.ContainsKey("host_only_function"));
+    }
+
+    // Collision behavior, verified empirically against Scriban 7.2.6 (see ImportInto's own remarks)
+    // and locked in here: ScriptObject.Import is first-registration-wins, not last-write-wins. A
+    // host that registers its OWN function under one of the four shared names BEFORE calling
+    // ImportInto keeps its own version — ImportInto's attempt is silently a no-op for that name.
+    [Fact]
+    public void ImportInto_HostFunctionRegisteredFirst_HostFunctionWinsOverTheSharedOne()
+    {
+        var globals = new ScriptObject();
+        globals.Import("region_display_name", new Func<string?, string>(_ => "HOST-OVERRIDE"));
+
+        TemplateFunctions.ImportInto(globals);
+
+        var context = new Scriban.TemplateContext();
+        context.PushGlobal(globals);
+        var rendered = Scriban.Template.Parse("{{ region_display_name \"norwayeast\" }}").Render(context);
+        Assert.Equal("HOST-OVERRIDE", rendered);
+    }
+
+    // The reverse order — ImportInto called first, so its function is what's actually in effect;
+    // a host that wants to override one of the four names must register its own BEFORE calling
+    // ImportInto (see the test above), not after.
+    [Fact]
+    public void ImportInto_CalledFirst_ThenHostRegistersSameName_ImportIntoFunctionStaysInEffect()
+    {
+        var globals = new ScriptObject();
+        TemplateFunctions.ImportInto(globals);
+        globals.Import("region_display_name", new Func<string?, string>(_ => "HOST-TOO-LATE"));
+
+        var context = new Scriban.TemplateContext();
+        context.PushGlobal(globals);
+        var rendered = Scriban.Template.Parse("{{ region_display_name \"norwayeast\" }}").Render(context);
+        Assert.Equal("Norway East", rendered);
+    }
+
+    [Fact]
+    public void ImportInto_NullGlobals_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => TemplateFunctions.ImportInto(null!));
+    }
 }

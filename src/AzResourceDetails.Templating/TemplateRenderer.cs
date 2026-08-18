@@ -21,6 +21,8 @@ public static class TemplateRenderer
 
     private static string Render(string templateText, ScriptObject model, string armType)
     {
+        ArgumentNullException.ThrowIfNull(templateText);
+
         var parsed = Template.Parse(templateText, "generated.sbn");
         if (parsed.HasErrors)
         {

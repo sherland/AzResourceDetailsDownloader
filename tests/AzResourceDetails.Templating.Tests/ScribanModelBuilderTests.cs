@@ -147,18 +147,135 @@ public class ScribanModelBuilderTests
 
     // PopulateSharedFields must never clobber fields the host already added — this is the whole
     // point of exposing it separately from BuildModel, so a host can populate its own vault-specific
-    // fields into the same ScriptObject before/after calling this.
+    // fields into the same ScriptObject before/after calling this. Covers the specific field names
+    // AzToMd's own vault renderer actually owns, not just one representative example.
     [Fact]
-    public void PopulateSharedFields_LeavesPreExistingHostOwnedKeysUntouched()
+    public void PopulateSharedFields_LeavesEveryHostOwnedKeyUntouched()
     {
-        var target = new Scriban.Runtime.ScriptObject { ["wiki_links"] = "some-host-specific-value" };
-        var resource = new TemplateResource(
-            Id: null, Name: "thing1", ArmType: "Microsoft.Test/things", Location: null, ResourceGroup: null,
-            Kind: null, IdentityType: null, Properties: default, Sku: default);
+        var target = new Scriban.Runtime.ScriptObject
+        {
+            ["relationships"] = "host-relationships-value",
+            ["tags"] = "host-tags-value",
+            ["role_assignments"] = "host-role-assignments-value",
+            ["wiki_links"] = "host-wiki-links-value",
+        };
+        var resource = MinimalResource();
 
         ScribanModelBuilder.PopulateSharedFields(target, resource);
 
-        Assert.Equal("some-host-specific-value", target["wiki_links"]);
+        Assert.Equal("host-relationships-value", target["relationships"]);
+        Assert.Equal("host-tags-value", target["tags"]);
+        Assert.Equal("host-role-assignments-value", target["role_assignments"]);
+        Assert.Equal("host-wiki-links-value", target["wiki_links"]);
         Assert.Equal("thing1", target["name"]);
     }
+
+    // The other half of the overwrite/preserve contract: shared fields ARE unconditionally
+    // refreshed to the current resource's values, not merged with whatever was there before — this
+    // is a refresh for the fields this library owns, not a "populate once" or "fill gaps only".
+    [Fact]
+    public void PopulateSharedFields_CalledTwiceWithDifferentResources_SecondCallsSharedValuesWin()
+    {
+        var target = new Scriban.Runtime.ScriptObject();
+        ScribanModelBuilder.PopulateSharedFields(target, MinimalResource() with { Name = "first-name" });
+
+        ScribanModelBuilder.PopulateSharedFields(target, MinimalResource() with { Name = "second-name" });
+
+        Assert.Equal("second-name", target["name"]);
+    }
+
+    // Derived, symmetric version of the "shared fields populated" guarantee — compares the actual
+    // set of keys PopulateSharedFields writes against what TemplateRuntimeContract declares, in
+    // both directions, rather than eyeballing two separately-maintained lists.
+    [Fact]
+    public void PopulateSharedFields_PopulatesExactlyTheContractDeclaredFields_PlusProps()
+    {
+        var target = new Scriban.Runtime.ScriptObject();
+
+        ScribanModelBuilder.PopulateSharedFields(target, MinimalResource());
+
+        var expected = TemplateRuntimeContract.SupportedModelFields.Append("props").ToHashSet();
+        Assert.Equal(expected, target.Keys.ToHashSet());
+    }
+
+    [Fact]
+    public void PopulateSharedFields_NullTarget_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => ScribanModelBuilder.PopulateSharedFields(null!, MinimalResource()));
+    }
+
+    [Fact]
+    public void PopulateSharedFields_NullResource_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => ScribanModelBuilder.PopulateSharedFields(new Scriban.Runtime.ScriptObject(), null!));
+    }
+
+    [Fact]
+    public void BuildModel_TemplateResourceOverload_NullResource_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => ScribanModelBuilder.BuildModel((TemplateResource)null!));
+    }
+
+    // ArgumentException.ThrowIfNullOrEmpty throws ArgumentNullException specifically for null (a
+    // subtype of ArgumentException) and plain ArgumentException for empty — ThrowsAny accepts
+    // either, since both are the same class of "invalid caller argument" this test is about.
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    public void BuildModel_JsonElementOverload_NullOrEmptyArmType_ThrowsArgumentException(string? armType)
+    {
+        var root = Parse("""{ "name": "thing1" }""");
+
+        Assert.ThrowsAny<ArgumentException>(() => ScribanModelBuilder.BuildModel(root, armType!));
+    }
+
+    // Missing/absent source data (as opposed to an invalid caller argument, covered above) must
+    // never throw — Undefined Properties/Sku, no identity, empty strings are all ordinary,
+    // expected shapes for a resource this library knows nothing else about.
+    [Fact]
+    public void PopulateSharedFields_UndefinedPropertiesAndSku_DoesNotThrow_AndYieldsNullOrEmptyFields()
+    {
+        var target = new Scriban.Runtime.ScriptObject();
+        var resource = MinimalResource();
+
+        ScribanModelBuilder.PopulateSharedFields(target, resource);
+
+        Assert.IsType<Scriban.Runtime.ScriptObject>(target["props"]);
+        Assert.Empty((Scriban.Runtime.ScriptObject)target["props"]!);
+        Assert.Null(target["sku_label"]);
+        Assert.Null(target["version"]);
+    }
+
+    [Fact]
+    public void PopulateSharedFields_EmptyStringFields_DoesNotThrow()
+    {
+        var target = new Scriban.Runtime.ScriptObject();
+        var resource = MinimalResource() with { Id = "", Name = "", Location = "", ResourceGroup = "", Kind = "" };
+
+        var ex = Record.Exception(() => ScribanModelBuilder.PopulateSharedFields(target, resource));
+
+        Assert.Null(ex);
+        Assert.Equal("", target["name"]);
+    }
+
+    // A malformed shape (Properties given as a JSON string instead of an object) is still not a
+    // throwing condition — JsonToScriban converts whatever ValueKind it's actually handed rather
+    // than assuming Object, so model.props just becomes a Scriban string instead of a ScriptObject
+    // for a resource shaped like this, not an exception.
+    [Fact]
+    public void PopulateSharedFields_PropertiesShapedAsAStringNotAnObject_DoesNotThrow()
+    {
+        using var malformed = JsonDocument.Parse(""" "not-an-object" """);
+        var target = new Scriban.Runtime.ScriptObject();
+        var resource = MinimalResource() with { Properties = malformed.RootElement };
+
+        var ex = Record.Exception(() => ScribanModelBuilder.PopulateSharedFields(target, resource));
+
+        Assert.Null(ex);
+        Assert.Equal("not-an-object", target["props"]);
+    }
+
+    private static TemplateResource MinimalResource() => new(
+        Id: null, Name: "thing1", ArmType: "Microsoft.Test/things", Location: null, ResourceGroup: null,
+        Kind: null, IdentityType: null, Properties: default, Sku: default);
 }
