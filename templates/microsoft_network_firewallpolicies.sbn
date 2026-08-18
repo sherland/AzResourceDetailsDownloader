@@ -13,5 +13,5 @@
 | **Provisioning state** | {{ model.props.provisioningstate }} <sub>(as of last sync)</sub> |
 | **Policy name** | {{ model.name }} |
 | **Policy tier** | {{ model.props.sku.tier }} |
-| **TLS inspection (Premium)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Not supported with standard policy |
-| **IDPS mode (Premium)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Not supported with standard policy |
+| **TLS inspection (Premium)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Not supported with standard policy" --> *Not available from captured ARM metadata.* |
+| **IDPS mode (Premium)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Not supported with standard policy" --> *Not available from captured ARM metadata.* |

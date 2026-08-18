@@ -7,4 +7,4 @@
 | **Location** | Norway East |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Type** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Data factory (V2) |
+| **Type** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Data factory (V2)" --> *Not available from captured ARM metadata.* |

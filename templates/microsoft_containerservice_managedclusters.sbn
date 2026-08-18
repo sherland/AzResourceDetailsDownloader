@@ -18,4 +18,4 @@
 | **Pricing tier** | {{ model.sku_tier }} |
 | **Network configuration** | {{ model.aks_network_configuration_label }} |
 | **Node pools** | {{ model.aks_node_pools_label }} |
-| **Created time** | <!-- TODO (Unresolved): AKS clusters fetch this from a SEPARATE API call, not the resource GET body this tool captures at all — genuinely a different-API-surface case, not a parsing gap (confirmed live on ContainerService/ManagedClusters; unrelated to the AKS/Storage "Date created"/"Created time" cases already in NonTraceableLabels) --> 16. august 2026 kl. 16:05 |
+| **Created time** | <!-- TODO (Unresolved): AKS clusters fetch this from a SEPARATE API call, not the resource GET body this tool captures at all — genuinely a different-API-surface case, not a parsing gap (confirmed live on ContainerService/ManagedClusters; unrelated to the AKS/Storage "Date created"/"Created time" cases already in NonTraceableLabels) Captured example: "16. august 2026 kl. 16:05" --> *Not available from captured ARM metadata.* |

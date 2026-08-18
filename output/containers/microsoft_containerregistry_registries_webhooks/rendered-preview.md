@@ -7,6 +7,6 @@
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Actions** | push |
-| **Scope** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> - |
+| **Scope** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "-" --> *Not available from captured ARM metadata.* |
 | **Status** | *See the Azure Portal for current status.* |
 | **Provisioning state** | Succeeded <sub>(as of last sync)</sub> |

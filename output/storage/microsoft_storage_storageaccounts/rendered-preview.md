@@ -6,7 +6,7 @@
 | **Location** | Norway East |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Disk state** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. --> Available |
+| **Disk state** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. Captured example: "Available" --> *Not available from captured ARM metadata.* |
 | **Performance** | Standard |
 | **Replication** | Locally redundant storage (LRS) |
 | **Account kind** | StorageV2 (general purpose v2) |

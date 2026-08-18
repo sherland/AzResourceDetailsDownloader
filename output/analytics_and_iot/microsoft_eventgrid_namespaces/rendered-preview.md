@@ -9,4 +9,4 @@
 | **Provisioning state** | Succeeded <sub>(as of last sync)</sub> |
 | **HTTP hostname** | egns153-8-ez.norwayeast-1.eventgrid.azure.net |
 | **Availability zones** | Enabled |
-| **MQTT broker** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Disabled |
+| **MQTT broker** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Disabled" --> *Not available from captured ARM metadata.* |

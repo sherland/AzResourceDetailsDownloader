@@ -6,8 +6,8 @@
 | **Location** | Norway East |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Type** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Microsoft.ManagedIdentity/userAssignedIdentities |
+| **Type** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Microsoft.ManagedIdentity/userAssignedIdentities" --> *Not available from captured ARM metadata.* |
 | **Client ID** | 05259457-3d17-4cf4-8cd1-a59f6ef5b945 |
 | **Object (principal) ID** | fe6734ee-5b33-4dca-9150-3dc99b4f169b |
-| **Isolation Scope** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> None |
-| **Resource (Preview)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> None |
+| **Isolation Scope** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "None" --> *Not available from captured ARM metadata.* |
+| **Resource (Preview)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "None" --> *Not available from captured ARM metadata.* |

@@ -7,5 +7,5 @@
 | **Location** | Norway East |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Communities filtered** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> 0 communities |
-| **Circuits associated** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> 0 circuits |
+| **Communities filtered** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "0 communities" --> *Not available from captured ARM metadata.* |
+| **Circuits associated** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "0 circuits" --> *Not available from captured ARM metadata.* |

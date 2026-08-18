@@ -13,4 +13,4 @@
 | **Provisioning state** | {{ model.props.provisioningstate }} <sub>(as of last sync)</sub> |
 | **HTTP hostname** | {{ model.props.topicsconfiguration.hostname }} |
 | **Availability zones** | {{ model.props.iszoneredundant | portal_bool_enabled }} |
-| **MQTT broker** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Disabled |
+| **MQTT broker** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Disabled" --> *Not available from captured ARM metadata.* |

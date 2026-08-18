@@ -11,4 +11,4 @@
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Status** | *See the Azure Portal for current status.* |
-| **Soft delete** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Disabled |
+| **Soft delete** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Disabled" --> *Not available from captured ARM metadata.* |

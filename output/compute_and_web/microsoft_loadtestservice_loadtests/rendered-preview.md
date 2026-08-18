@@ -7,4 +7,4 @@
 | **Location** | Sweden Central |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **VUH usage (current month)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> 0 / No limit |
+| **VUH usage (current month)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "0 / No limit" --> *Not available from captured ARM metadata.* |
