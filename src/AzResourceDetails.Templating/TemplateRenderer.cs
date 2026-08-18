@@ -2,7 +2,7 @@ using System.Text.Json;
 using Scriban;
 using Scriban.Runtime;
 
-namespace AzResourceDetailsDownloader.Templating;
+namespace AzResourceDetails.Templating;
 
 // Renders a generated .sbn template against a real captured resource — ARDL's own self-validation
 // pass, not a claim that this is how any other renderer (AzToMd or otherwise) would execute it.

@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace AzResourceDetailsDownloader.Templating;
+namespace AzResourceDetails.Templating;
 
 public sealed record JsonLeaf(string OriginalPath, string ScribanPath, JsonElement Value);
 

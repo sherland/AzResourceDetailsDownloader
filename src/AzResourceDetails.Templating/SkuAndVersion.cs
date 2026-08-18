@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace AzResourceDetailsDownloader.Templating;
+namespace AzResourceDetails.Templating;
 
 // Independent reimplementation of the two composite-field conventions ("SKU label" and "version")
 // that a downstream Obsidian/Scriban-style renderer would compute once and expose as a first-class

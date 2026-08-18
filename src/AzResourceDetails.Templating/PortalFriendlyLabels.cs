@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace AzResourceDetailsDownloader.Templating;
+namespace AzResourceDetails.Templating;
 
 // Friendly-text lookup tables for the handful of fields where the Azure Portal runs a raw ARM enum
 // through a translation table before displaying it — every entry here was read directly out of the

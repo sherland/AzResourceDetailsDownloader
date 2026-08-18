@@ -1,7 +1,7 @@
 using System.Text.Json;
 using Scriban.Runtime;
 
-namespace AzResourceDetailsDownloader.Templating;
+namespace AzResourceDetails.Templating;
 
 // Builds the Scriban `model` object a generated template renders against — reusing JsonTree's
 // navigation and SkuAndVersion's sku_label/version derivation (both dependency-free), adding only

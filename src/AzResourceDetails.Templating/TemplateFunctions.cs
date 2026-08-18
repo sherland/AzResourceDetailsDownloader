@@ -1,7 +1,7 @@
 using System.Globalization;
 using Scriban.Runtime;
 
-namespace AzResourceDetailsDownloader.Templating;
+namespace AzResourceDetails.Templating;
 
 // Custom Scriban functions a generated template calls to reproduce the portal's friendly-text
 // transforms (see PortalFieldKnowledge's FriendlyBoolWords / timestamp parsing / RegionDisplayNames
