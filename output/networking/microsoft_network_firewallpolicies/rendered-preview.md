@@ -9,5 +9,5 @@
 | **Provisioning state** | Succeeded <sub>(as of last sync)</sub> |
 | **Policy name** | afwpgkb-kyp1 |
 | **Policy tier** | Standard |
-| **TLS inspection (Premium)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Not supported with standard policy |
-| **IDPS mode (Premium)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Not supported with standard policy |
+| **TLS inspection (Premium)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Not supported with standard policy" --> *Not available from captured ARM metadata.* |
+| **IDPS mode (Premium)** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Not supported with standard policy" --> *Not available from captured ARM metadata.* |

@@ -7,10 +7,10 @@
 | Property | Value |
 |---|---|
 | **Endpoint** | {{ model.props.endpoint }} |
-| **MCP Endpoint** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> https://grfvkgyyrfx-bud2c4fsgygfgtd3.eno.grafana.azure.com/api/azure-mcp |
+| **MCP Endpoint** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "https://grfvkgyyrfx-bud2c4fsgygfgtd3.eno.grafana.azure.com/api/azure-mcp" --> *Not available from captured ARM metadata.* |
 | **Grafana Version** | {{ model.props.grafanaversion }} |
 | **Pricing Plan** | {{ model.sku_label }} |
-| **Size** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> X1 |
+| **Size** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "X1" --> *Not available from captured ARM metadata.* |
 | **Resource group** | {{ model.resource_group }} |
 | **Location** | {{ model.location | region_display_name }} |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->

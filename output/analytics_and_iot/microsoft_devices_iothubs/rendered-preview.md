@@ -5,9 +5,9 @@
 | **Resource group** | rg-ardl-9453358d1e4e04fe |
 | **Status** | *See the Azure Portal for current status.* |
 | **Location** | Norway East |
-| **Service region** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting (2 addressable value-matching leaves, none strongly name-related to the label). --> Norway East |
+| **Service region** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting (2 addressable value-matching leaves, none strongly name-related to the label). Captured example: "Norway East" --> *Not available from captured ARM metadata.* |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 | **Hostname** | iot19ncaw4p.azure-devices.net |
-| **Tier** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> Free |
-| **Daily message limit** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> 8 000 |
+| **Tier** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "Free" --> *Not available from captured ARM metadata.* |
+| **Daily message limit** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "8 000" --> *Not available from captured ARM metadata.* |
 | **Minimum TLS Version** | 1.2 |

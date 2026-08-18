@@ -11,4 +11,4 @@
 | **Creation date** | August 16, 2026 at 13:24:52 UTC |
 | **Provisioning state** | Succeeded <sub>(as of last sync)</sub> |
 | **Pricing plan** | Basic |
-| **Domain name label scope** | <!-- TODO (Unresolved): different API surface / portal-computed, not in this GET's body --> Unsecure |
+| **Domain name label scope** | <!-- TODO (Unresolved): different API surface / portal-computed, not in this GET's body Captured example: "Unsecure" --> *Not available from captured ARM metadata.* |

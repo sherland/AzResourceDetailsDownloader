@@ -11,6 +11,6 @@
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Actions** | {{ model.props.actions[0] }} |
-| **Scope** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) --> - |
+| **Scope** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "-" --> *Not available from captured ARM metadata.* |
 | **Status** | *See the Azure Portal for current status.* |
 | **Provisioning state** | {{ model.props.provisioningstate }} <sub>(as of last sync)</sub> |

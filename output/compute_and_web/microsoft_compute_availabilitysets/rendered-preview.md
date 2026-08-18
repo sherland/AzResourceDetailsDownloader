@@ -8,6 +8,6 @@
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Fault domains** | 2 |
 | **Update domains** | 2 |
-| **Virtual machines** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). --> 0 |
-| **Managed** | <!-- TODO (Unresolved): single enum (e.g. sku.name), not a plain bool — needs a bespoke 1-value mapping --> Yes |
+| **Virtual machines** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). Captured example: "0" --> *Not available from captured ARM metadata.* |
+| **Managed** | <!-- TODO (Unresolved): single enum (e.g. sku.name), not a plain bool — needs a bespoke 1-value mapping Captured example: "Yes" --> *Not available from captured ARM metadata.* |
 | **Colocation status** | *See the Azure Portal for current status.* |

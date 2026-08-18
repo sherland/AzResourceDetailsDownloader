@@ -15,4 +15,4 @@
 | **Creation date** | {{ model.props.creationdate | portal_timestamp }} |
 | **Provisioning state** | {{ model.props.provisioningstate }} <sub>(as of last sync)</sub> |
 | **Pricing plan** | {{ model.sku_label }} |
-| **Domain name label scope** | <!-- TODO (Unresolved): different API surface / portal-computed, not in this GET's body --> Unsecure |
+| **Domain name label scope** | <!-- TODO (Unresolved): different API surface / portal-computed, not in this GET's body Captured example: "Unsecure" --> *Not available from captured ARM metadata.* |

@@ -9,6 +9,6 @@
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
 | **Workspace Name** | law8-is7-6g |
 | **Workspace ID** | 798dc64e-bd49-4000-8c21-f7320c3e186e |
-| **Pricing tier** | <!-- TODO (ShortcutMismatch): Computed "PerGB2018" does NOT match portal "Pay-as-you-go" for this type — do not trust this shortcut here. --> Pay-as-you-go |
+| **Pricing tier** | <!-- TODO (ShortcutMismatch): Computed "PerGB2018" does NOT match portal "Pay-as-you-go" for this type — do not trust this shortcut here. Captured example: "Pay-as-you-go" --> *Not available from captured ARM metadata.* |
 | **Access control mode** | Enabled |
 | **Operational issues** | *See the Azure Portal for current status.* |

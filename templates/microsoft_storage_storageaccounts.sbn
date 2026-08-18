@@ -10,7 +10,7 @@
 | **Location** | {{ model.location | region_display_name }} |
 <!-- "Subscription" omitted: tenant/subscription identity, already in frontmatter -->
 <!-- "Subscription ID" omitted: tenant/subscription identity, already in frontmatter -->
-| **Disk state** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. --> Available |
+| **Disk state** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. Captured example: "Available" --> *Not available from captured ARM metadata.* |
 | **Performance** | {{ model.storage_performance_label }} |
 | **Replication** | {{ model.storage_replication_label }} |
 | **Account kind** | {{ model.storage_account_kind_label }} |

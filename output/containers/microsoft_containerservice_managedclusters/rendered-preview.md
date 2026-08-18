@@ -14,4 +14,4 @@
 | **Pricing tier** | Free |
 | **Network configuration** | Azure CNI Overlay |
 | **Node pools** | 1 node pool |
-| **Created time** | <!-- TODO (Unresolved): AKS clusters fetch this from a SEPARATE API call, not the resource GET body this tool captures at all — genuinely a different-API-surface case, not a parsing gap (confirmed live on ContainerService/ManagedClusters; unrelated to the AKS/Storage "Date created"/"Created time" cases already in NonTraceableLabels) --> 16. august 2026 kl. 16:05 |
+| **Created time** | <!-- TODO (Unresolved): AKS clusters fetch this from a SEPARATE API call, not the resource GET body this tool captures at all — genuinely a different-API-surface case, not a parsing gap (confirmed live on ContainerService/ManagedClusters; unrelated to the AKS/Storage "Date created"/"Created time" cases already in NonTraceableLabels) Captured example: "16. august 2026 kl. 16:05" --> *Not available from captured ARM metadata.* |
