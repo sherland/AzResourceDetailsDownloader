@@ -76,11 +76,17 @@ public static class TemplateGenerator
 
             // Unresolved / NeedsReview / Ambiguous / NotAddressable / ShortcutMismatch / etc. — keep
             // the row so the table's shape still matches the portal's, but don't pretend to have a
-            // real source: show a TODO plus the one example value actually captured, as a hint for
-            // whoever finishes this by hand.
-            var hint = EscapeForTable(recipe.Notes);
-            var exampleValue = EscapeForTable(value);
-            return $"| **{escapedLabel}** | <!-- TODO ({recipe.Kind}): {hint} --> {exampleValue} |";
+            // real source. The captured example lives ONLY inside the HTML comment, as a hint for
+            // whoever finishes this by hand — never as the cell's visible content. Markdown renders
+            // whatever sits after a comment as ordinary text, so the original format (example value
+            // placed right after "-->") read as if it belonged to whichever resource the template
+            // was later rendered against, not the one it was actually captured from — live-caught:
+            // "| **Virtual network** | <!-- TODO ... --> vnetw4qxan-j |" rendered "vnetw4qxan-j" as
+            // a plain, indistinguishable-from-real table cell.
+            var hint = EscapeForComment(recipe.Notes);
+            var exampleValue = EscapeForComment(value);
+            return $"| **{escapedLabel}** | <!-- TODO ({recipe.Kind}): {hint} Captured example: \"{exampleValue}\" --> " +
+                "*Not available from captured ARM metadata.* |";
         }
 
         if (recipe.IsLiveState)
@@ -194,4 +200,12 @@ public static class TemplateGenerator
     }
 
     private static string EscapeForTable(string s) => s.Replace("|", "\\|").Replace("\n", " ").Replace("\r", "");
+
+    // Anything placed inside a generated HTML comment (the TODO hint, the captured example) needs
+    // the same table-safety as visible content, plus one more guard: a captured value that happens
+    // to literally contain "-->" would otherwise close the comment early and leak the rest of the
+    // comment's own text as visible content — no live-caught example of this yet, but it's the
+    // exact same class of bug this whole change exists to close, so worth guarding pre-emptively
+    // rather than waiting for a real capture to trigger it.
+    private static string EscapeForComment(string s) => EscapeForTable(s).Replace("-->", "--&gt;");
 }

@@ -19,7 +19,7 @@ public class TemplateGeneratorTests
     }
 
     [Fact]
-    public void Generate_UnresolvedField_KeepsRowAsTodoWithCapturedExample()
+    public void Generate_UnresolvedField_KeepsRowAsTodoWithCapturedExampleInsideTheComment()
     {
         var root = LoadCapturedResource("security", "microsoft_keyvault_vaults");
         var fields = new (string, string)[] { ("Operating system", "Linux") };
@@ -28,7 +28,45 @@ public class TemplateGeneratorTests
 
         Assert.Contains("| **Operating system** |", template);
         Assert.Contains("TODO (Unresolved)", template);
-        Assert.Contains("Linux", template);
+        Assert.Contains("Linux", template); // present as the hint's captured-example, inside the comment
+    }
+
+    // The actual bug this format exists to prevent, live-caught in a real generated template
+    // ("| **Virtual network** | <!-- TODO ... --> vnetw4qxan-j |" rendered "vnetw4qxan-j" as a
+    // plain visible table cell — indistinguishable from real data for whichever resource the
+    // template was later rendered against). Everything after the comment's closing "-->" is what
+    // actually renders as Markdown; the captured example must never appear there.
+    [Fact]
+    public void Generate_UnresolvedField_NeverRendersTheCapturedExampleAsVisibleCellContent()
+    {
+        var root = LoadCapturedResource("security", "microsoft_keyvault_vaults");
+        var fields = new (string, string)[] { ("Operating system", "a-genuinely-unique-example-marker") };
+
+        var template = TemplateGenerator.Generate("Microsoft.KeyVault/vaults", fields, root);
+
+        var row = template.Split('\n').Single(l => l.Contains("Operating system"));
+        var visibleCellContent = row[(row.IndexOf("-->", StringComparison.Ordinal) + 3)..];
+        Assert.DoesNotContain("a-genuinely-unique-example-marker", visibleCellContent);
+        Assert.Contains("*Not available from captured ARM metadata.*", visibleCellContent);
+    }
+
+    // A captured value containing a literal "-->" must not be able to close the HTML comment
+    // early — that would leak the rest of the comment's own text (the hint, the "Captured
+    // example:" label) as visible rendered content, the exact same class of bug as above.
+    [Fact]
+    public void Generate_UnresolvedField_CapturedExampleContainingCommentCloser_CannotBreakOutOfTheComment()
+    {
+        var root = LoadCapturedResource("security", "microsoft_keyvault_vaults");
+        var fields = new (string, string)[] { ("Operating system", "malicious--> escape attempt") };
+
+        var template = TemplateGenerator.Generate("Microsoft.KeyVault/vaults", fields, root);
+
+        var row = template.Split('\n').Single(l => l.Contains("Operating system"));
+        // Exactly one real comment-closer: the generator's own, not one smuggled in from the value.
+        Assert.Equal(1, row.Split("-->", StringSplitOptions.None).Length - 1);
+        var visibleCellContent = row[(row.IndexOf("-->", StringComparison.Ordinal) + 3)..];
+        Assert.Contains("*Not available from captured ARM metadata.*", visibleCellContent);
+        Assert.DoesNotContain("escape attempt", visibleCellContent);
     }
 
     // The actual point of this session's discussion: a genuinely live/transient field that
