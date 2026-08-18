@@ -14,7 +14,7 @@
 | **MongoDB version** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.33) — verify by hand before trusting. Captured example: "7.0" --> *Not available from captured ARM metadata.* |
 | **Admin username** | {{ model.props.administrator.username }} |
 | **Cluster tier** | {{ model.mongo_cluster_tier_label }} |
-| **Disk size** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). Captured example: "32 GiB" --> *Not available from captured ARM metadata.* |
+| **Disk size** | {{ model.props.storage.sizegb }} GiB |
 | **Shard count** | {{ model.props.sharding.shardcount }} |
 | **High availability** | {{ model.props.highavailability.targetmode }} |
 | **Connectivity method** | {{ model.mongo_connectivity_method_label }} |

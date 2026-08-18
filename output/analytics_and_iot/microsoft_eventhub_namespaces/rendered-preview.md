@@ -12,6 +12,6 @@
 | **Updated** | August 16, 2026 at 13:33:30 UTC <sub>(as of last sync)</sub> |
 | **Zone Redundancy** | Enabled |
 | **Pricing tier** | Basic |
-| **Throughput Units** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "1 unit" --> *Not available from captured ARM metadata.* |
+| **Throughput Units** | <!-- TODO (NeedsReview): Value matches (numeric value match (unit suffix stripped)) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting. Captured example: "1 unit" --> *Not available from captured ARM metadata.* |
 | **Auto-inflate throughput units** | <!-- TODO (Unresolved): composite of isAutoInflateEnabled + sku.tier Captured example: "Not Supported" --> *Not available from captured ARM metadata.* |
 | **Local Authentication** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.00) — verify by hand before trusting (3 addressable value-matching leaves, none strongly name-related to the label). Captured example: "Enabled" --> *Not available from captured ARM metadata.* |

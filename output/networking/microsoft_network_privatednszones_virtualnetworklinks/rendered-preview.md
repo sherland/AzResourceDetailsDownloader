@@ -2,7 +2,7 @@
 
 | Property | Value |
 |---|---|
-| **Name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "linkjqxt8p" --> *Not available from captured ARM metadata.* |
+| **Name** | linkjqxt8p |
 | **Resource type** | Microsoft.Network/privateDnsZones/virtualNetworkLinks |
 | **Location** | global |
 | **Location ID** | global |

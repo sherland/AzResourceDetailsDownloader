@@ -10,7 +10,7 @@
 | **MongoDB version** | <!-- TODO (NeedsReview): Value matches (exact value match) but the property name is only weakly related to the label (similarity 0.33) — verify by hand before trusting. Captured example: "7.0" --> *Not available from captured ARM metadata.* |
 | **Admin username** | azrddadmin |
 | **Cluster tier** | M10 tier, 1 vCores, 2 GiB RAM |
-| **Disk size** | <!-- TODO (Unresolved): No value match found anywhere in this capture — investigate before adding to any known table (could be a genuine EssentialsExtractor/redaction bug, a portal empty-state placeholder like "---", or a new different-API-surface/composite case). Captured example: "32 GiB" --> *Not available from captured ARM metadata.* |
+| **Disk size** | 32 GiB |
 | **Shard count** | 1 |
 | **High availability** | Disabled |
 | **Connectivity method** | Public access |

@@ -2,7 +2,7 @@
 
 | Property | Value |
 |---|---|
-| **Name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "afdepl-85k0" --> *Not available from captured ARM metadata.* |
+| **Name** | afdepl-85k0 |
 | **Resource type** | Microsoft.Cdn/profiles/afdendpoints |
 | **Location** | Global |
 | **Location ID** | Global |
