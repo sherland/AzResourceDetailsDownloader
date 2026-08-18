@@ -53,10 +53,21 @@ entry, not restructuring the file. Consumed by `RegionDisplayNames`/`TemplateFun
 
 ## Generating Scriban templates from the recipe catalog (`--generate-field-recipes`, `--generate-templates`)
 
-`AzResourceDetailsDownloader.Templating` turns captured `portal-fields.json`/`data.json` pairs into
-reusable Obsidian/Scriban templates — a from-scratch reimplementation of the JSON→template-model
-conventions AzToMd uses (`model.props`, `model.location`, `model.sku_label`, ...), not a reference to or
-dependency on that repo's code.
+This pipeline is now split across two projects (see "AzResourceDetails.Templating was extracted..."
+below for the full story, 2026-08-18):
+
+- `AzResourceDetailsDownloader.Templating` (in Core) — everything that's specific to THIS repo's own
+  discovery/generation process: `FieldRecipeResolver`, `PortalFieldKnowledge`, `TemplateGenerator`,
+  `TemplateBatchGenerator`. None of this ships to another consumer; it exists to decide *what* a
+  template should say and to write the `.sbn` files.
+- `AzResourceDetails.Templating` (standalone project, `src/AzResourceDetails.Templating`) — the
+  reusable *rendering* runtime: `ScribanModelBuilder`, `TemplateFunctions`, `TemplateRenderer`,
+  `PortalFriendlyLabels`, `SkuAndVersion`, `JsonTree`, `RegionDisplayNames`, `TemplateResource`,
+  `TemplateRuntimeContract`. Zero dependency on Core, Infrastructure, Azure SDK, Playwright, or any
+  repo-relative file path — this is the half AzToMd (or any other Scriban-based renderer) actually
+  consumes. Originally a from-scratch reimplementation of AzToMd's JSON→template-model conventions;
+  now formally extracted so it's the SAME code both repos would run, not two independently-maintained
+  copies that could drift.
 
 - `FieldRecipeResolver.Resolve(label, value, root)` — per (label, value) pair, decides how a template
   should reproduce it: a direct `model.props.*` path, a known transform (timestamp/boolean/region/SKU),
@@ -70,12 +81,12 @@ dependency on that repo's code.
   label (most labels mean the same thing on every armType that shows them — see `NameSimilarity`), and
   writes `config/portal-field-recipes.json`. A label that resolves *differently* across types is recorded
   as an explicit per-armType `Conflicts` entry, never silently picked.
-- `--generate-templates` runs `TemplateGenerator` + `TemplateRenderer` (a real `Scriban` dependency —
-  plain public library, unrelated to the "no AzToMd reference" boundary above) across every real capture,
-  writing `templates/{armType_key}.sbn` (AzToMd's exact `TypeToKey` naming convention, so a generated file
-  is drop-in-named if it's ever handed to a renderer using that convention) and, colocated with each
-  capture, `output/{category}/{armType}/rendered-preview.md` — the template rendered against the very
-  resource it was generated from, as a self-check.
+- `--generate-templates` runs `TemplateGenerator` (Core) + `TemplateRenderer` (the standalone
+  `AzResourceDetails.Templating` project) across every real capture, writing `templates/{armType_key}.sbn`
+  (AzToMd's exact `TypeToKey` naming convention, so a generated file is drop-in-named if it's ever handed
+  to a renderer using that convention) and, colocated with each capture,
+  `output/{category}/{armType}/rendered-preview.md` — the template rendered against the very resource it
+  was generated from, as a self-check.
 - A field the resolver can't resolve still gets a table row (dropping it would silently break the
   portal's layout) — filled with an HTML-comment `TODO` plus the captured example value as a hint, never
   hardcoded as if it were universally true for the type.
@@ -1115,23 +1126,22 @@ extraction, lossless vault serialization, offline replay, a working `--subscript
 already built and tested there. `AzToMd/AGENTS.md`/`docs/ARCHITECTURE.md` are the equivalent of this file
 for that repo.
 
-**Confirmed template compatibility (2026-08-16), don't re-derive this by hand next time**: `AzToMd`'s
-`VaultTemplateEngine.BuildScriptObject` exposes the same base `model` surface this repo's
-`ScribanModelBuilder.BuildModel` does — `model.props` (lowercased-key JSON tree), `model.name`,
-`model.location`, `model.resource_group`, `model.tags`, `model.sku_label`, `model.version` all match
-field-for-field. Of this repo's 141 generated templates, **127 (90%) use only those shared fields** and
-would render fully correctly if copied as-is into `AzToMd`'s `Rendering/Templates/` folder (which has
-only ~23 per-type templates today, falling back to a generic template otherwise). **14 templates
-reference fields `AzToMd` doesn't compute** and would silently render blank for those specific rows
-(Scriban swallows a missing field rather than erroring) until ported over: 7 use one of this repo's
-bespoke `PortalFriendlyLabels.cs` derivations (`storage_replication_label`, `aks_power_state_label`,
-`mongo_cluster_tier_label`, etc. — reverse-engineered from the Portal's own minified JS, see the fiber-
-walk sections above), and 8 use `model.sku_name`/`model.sku_tier` individually (`AzToMd` only exposes the
-combined `model.sku_label`). One type (`managedClusters`) is in both lists, so 14 total, not 15 — find
-them again with:
-```
-grep -lE "model\.(storage_replication_label|storage_account_kind_label|storage_performance_label|disk_storage_type_label|disk_security_type_label|mongo_cluster_tier_label|mongo_connectivity_method_label|mongo_authentication_label|mongo_storage_encryption_label|logic_workflow_definition_label|logic_integration_account_label|logic_workflow_type_label|appconfig_telemetry_label|appconfig_pricing_tier_label|aks_power_state_label|aks_cluster_operation_status_label|aks_api_server_address_label|aks_node_pools_label|aks_network_configuration_label|sku_name|sku_tier)" templates/*.sbn
-```
+**SUPERSEDED as of 2026-08-18 — see "AzResourceDetails.Templating was extracted..." below.** The
+paragraph that used to be here (2026-08-16) measured field-compatibility between this repo's
+`ScribanModelBuilder` and `AzToMd`'s own, separately-maintained `VaultTemplateEngine.BuildScriptObject`
+reimplementation: 127 of 141 templates (90%) used only the handful of fields both happened to compute
+the same way, and 14 referenced this repo's `PortalFriendlyLabels`/bare-`sku_name`/`sku_tier` fields that
+`AzToMd`'s own reimplementation didn't have, and would've silently rendered blank for those rows.
+
+That whole comparison is the wrong question now. `ScribanModelBuilder`/`PortalFriendlyLabels`/
+`SkuAndVersion`/`TemplateFunctions`/`RegionDisplayNames` no longer live only in this repo for `AzToMd` to
+independently reimplement a subset of — they're a real, standalone, dependency-free class library
+(`AzResourceDetails.Templating`, see below) `AzToMd` can reference directly. Once it does, ALL of
+`TemplateRuntimeContract.SupportedModelFields` (every field above, no exceptions) are available for free,
+not just the ~90% that happened to overlap with a separate reimplementation — there's no "14 templates
+need porting" gap left to close, because there's no second implementation left to keep in sync. The
+`AttemptDespiteNonTraceableHint`-shaped fields (`sku_name`/`sku_tier`) and every `PortalFriendlyLabels`
+derivation are part of the shared contract now, not this-repo-only extras.
 
 `AzToMd` also has richer, hand-authored templates for its existing ~23 types (relationship-graph traversal
 via `model.outbound`/`filter_by_label`/`.wiki`, features this repo's model doesn't produce at all) — those
@@ -1166,3 +1176,159 @@ pwsh tests/AzResourceDetailsDownloader.Infrastructure.Tests/bin/<Debug|Release>/
 ```
 Confirmed fixed this way live: reinstalling pulled Chrome for Testing 151.0.7922.34 (build 1234), and
 all 26 Infrastructure tests then passed with a genuinely freshly-launched browser, not a stale one.
+
+## Generic field-recipe fixes found via a cross-check with `AzToMd`'s own agent (2026-08-18)
+
+`AzToMd`'s own agent read this repo and generated a compatibility-improvement prompt (~20 claimed
+field-level bugs across many armTypes). Most of the specific claims turned out to be stale — ACR/AKS
+fields it flagged were already resolving correctly, likely fixed by earlier sessions after that prompt's
+own analysis was done. **Lesson**: verify a cross-repo agent's claims against this repo's own current
+code/captures before acting on them, the same "never guess, always live-verify" bar this file already
+holds itself to for portal behavior — a claim about *this* repo's state is exactly as checkable as a
+claim about the portal's.
+
+What *was* real, fixed generically (never per-type) in `FieldRecipeResolver`/`PortalFriendlyLabels`/
+`ScribanModelBuilder`, verified by regenerating the full template catalog and diffing before/after each
+time:
+- **Timestamp tie-breaking**: `NameSimilarity` was `StartsWith`-only, so "created" scored 0 similarity
+  against "creationTime" (they diverge at the 6th letter) — Storage Accounts' "Created" arbitrarily tied
+  against `keyCreationTime.key1` (created within milliseconds of the account itself) instead of clearly
+  preferring `creationTime`. Fixed with a narrow, deliberately non-general suffix-stemmer (`Stem()`, a
+  fixed list: `ing/ion/ed/es/s/e`) plus a token-count tie-break in `RankByNameSimilarity` (prefer the less-
+  qualified property path on a genuine tie) — scoped to `ResolveTimestamp` only, confirmed via `Grep` to
+  be its only caller, not a change to `NameSimilarity` itself.
+- **Numeric value + unit suffix**: `"30 Seconds"` vs. raw JSON `30`, `"4 GiB"` vs. raw `4` never matched
+  under plain normalized-string equality (which strips punctuation/spacing but not whole words). Fixed in
+  `TryMatchLeafValue`: a JSON number leaf now matches a portal value whose *leading* number is equal,
+  with the trailing text carried back as a `FieldRecipe.LiteralSuffix` the generator appends as literal
+  text after the Scriban expression — never silently dropping the unit. Deliberately guarded to accept
+  only plain letter/space suffixes (regex `^\s+[A-Za-z]+(\s+[A-Za-z]+)*$`): live-caught that Search
+  Services' "Replicas" = `"1 (No SLA)"` would otherwise bake in `"(No SLA)"` as a permanent literal even
+  for a future resource with 3 replicas — that parenthetical is conditional on the count being exactly 1,
+  not a constant unit, and one captured example can't prove it's always shown.
+- **`model.sku_capacity`**: `sku.capacity` (a plain number — throughput/replica/processing-unit count) had
+  no first-class model field, so it was reported `NotAddressable` even after a genuine value match. Added
+  alongside `sku_name`/`sku_tier` in `SkuAndVersion`/`ScribanModelBuilder`; `AddressableTarget` special-
+  cases `sku.capacity`/`properties.sku.capacity` to `model.sku_capacity` before falling through to the
+  generic `properties.* -> model.props.*` rule. Fixes SignalR/Web PubSub's "Unit", EventHub's "Throughput
+  Units", Purview's "Platform size" — though most still land on `NeedsReview`, not a confident `Direct`
+  match, since the label text ("Throughput Units") doesn't textually resemble `sku.capacity` — an honest
+  improvement over the previous flatly-wrong "no single backing property" hint, not a full resolution.
+- **`"Name"`**: was blanket-classified `NonTraceableLabels` on the strength of one real exception (Portal
+  Dashboards renders `"{name} ({friendly title})"`). Checked all 10 captured types that actually show a
+  `"Name"` Essentials row before generalizing — 9 are an exact passthrough of the resource's own root
+  `name` — and added a dedicated verify-or-fallback shortcut (`ResolveNameShortcut`) instead of the
+  blanket skip, matching the existing `ResolveLocationShortcut`/`ResolveResourceGroupShortcut` shape.
+- **Confirmed correctly left alone, NOT bugs**: DNS zone name servers already resolve per-index; VNet/NSG
+  count-style labels (`"0 subnets"`, `"0 inbound, 0 outbound"`) need a genuinely new capability
+  (`JsonTree.Flatten` has no concept of "this label is a whole array's size", and some are compound —
+  two sub-filtered counts in one label) that no currently-captured example (all show count 0) could
+  verify a pluralization/filter rule against anyway; Load Balancer's "Frontend IP address" is a real
+  cross-resource reference with no fix possible from same-resource data alone.
+
+## `AzResourceDetails.Templating` was extracted as a standalone, dependency-free class library (2026-08-18)
+
+Per an explicit ask to make the reusable Scriban-rendering half of this repo consumable by `AzToMd`
+directly (a real shared package, not two independently-maintained near-copies), pulled
+`ScribanModelBuilder`, `TemplateFunctions`, `TemplateRenderer`, `PortalFriendlyLabels`, `SkuAndVersion`,
+`JsonTree`, and `RegionDisplayNames` out of `AzResourceDetailsDownloader.Core` into
+`src/AzResourceDetails.Templating` — namespace `AzResourceDetails.Templating`, referencing only Scriban
+and `System.Text.Json`. `FieldRecipeResolver`/`PortalFieldKnowledge`/`TemplateGenerator`/
+`TemplateBatchGenerator` — discovery/generation logic specific to this repo's own capture pipeline — stay
+in Core, which now references the new project instead of depending on Scriban itself.
+
+**The one real extraction blocker, found by checking before assuming the obvious candidate list was
+extractable as-is**: `RegionDisplayNames` used to resolve `config/azure-locations.json` itself via
+`RepoPaths` (in Core) — moving it unchanged would have created a circular project reference (Core needs
+the new library for rendering; the new library would need Core for its own config path). Fixed with an
+explicit `Configure(IReadOnlyDictionary<string,string>)` seam; Core's new `RegionDisplayNamesBootstrap`
+loads the file and calls it via a `[ModuleInitializer]` (deliberately suppressing CA2255's "not meant for
+library code" warning — this Core project functionally *is* the application root for its own repo-
+relative config), so every existing Core call site kept working with zero changes.
+
+**Later hardened with a `TemplateResource` decomposed-input overload**, after `AzToMd`'s own review
+pointed out it doesn't retain one complete ARM JSON document (its `TenantNode` already splits a resource
+into separate `Id`/`Name`/`Properties`/`Sku`/... fields) — reconstructing synthetic JSON just to call
+`BuildModel(JsonElement, string)` would have been wasteful and brittle. `TemplateResource` (a record:
+`Id`, `Name`, `ArmType`, `Location`, `ResourceGroup`, `Kind`, `IdentityType`, `Properties`, `Sku`) is the
+neutral input shape; every `PortalFriendlyLabels`/`SkuAndVersion` method now has both a `JsonElement` and
+a `TemplateResource` overload delegating to one shared private `*Core` implementation, so the two can
+never quietly disagree — locked in with an equivalence test. The proposed record shape (from `AzToMd`'s
+side) was missing a field found only by actually grepping every root-level (non-`properties`) access
+across the moved classes rather than trusting the proposal: `MongoStorageEncryptionLabel` reads root-level
+`identity.type`, not covered by `Id`/`Name`/`Location`/`ResourceGroup`/`Kind`/`Properties`/`Sku` alone —
+added `IdentityType`. Also found and fixed a latent inconsistency while unifying the two overloads: three
+Storage/Disk-specific label methods used to read `sku` at the document root ONLY (no `properties.sku`
+fallback), while `SkuAndVersion` always had that fallback — unified everything onto
+`SkuAndVersion.ResolveSku`'s fallback (root `sku` if present, else `properties.sku`) so a
+`TemplateResource`'s single `Sku` field means the same thing everywhere. Verified this changes nothing in
+the real corpus (every currently-captured Storage Account/Compute disk has a root-level sku anyway) by
+regenerating all 144 templates and diffing byte-identical.
+
+`ScribanModelBuilder.PopulateSharedFields(ScriptObject target, TemplateResource resource)` — added
+alongside `BuildModel` (now a thin wrapper around it) so a host can populate this library's fields into a
+`ScriptObject` it's already building its own vault-specific fields into (relationships, wiki links, role
+assignments, ...), rather than being handed a whole new object to somehow merge in. Overwrites only the
+keys `TemplateRuntimeContract.SupportedModelFields` declares (a refresh, not a merge, for those specific
+keys); never reads, writes, or clears anything else already on the target. `model.tags` was deliberately
+dropped from the shared field set entirely (bumped the contract to 1.1.0) once grepping confirmed zero
+generated templates reference it — the two known consumers want incompatible shapes for it anyway (a
+plain object here, a sorted `{key,value}` array for `AzToMd`'s footer), so a field neither side needs from
+the shared layer wasn't worth picking a shape for.
+
+`RegionDisplayNames` now ships a *default* table embedded at build time (`<EmbeddedResource>` with an
+explicit `LogicalName`, pointed straight at this repo's own `config/azure-locations.json` — not a
+duplicated copy, so refreshing that one file and rebuilding is the entire update process) rather than
+starting empty until `Configure` is called. Region display names are effectively permanent once a region
+exists (no renames), so a stale embed can only ever miss a brand-new region, never show a wrong answer for
+an existing one — closer to shipping a country-code table than live config. `Configure`/
+`ResetToEmbeddedDefault` remain for a host that wants to override or revert it.
+
+**`TemplateRuntimeContract`** — a new class listing exactly which `model.*` fields (`SupportedModelFields`)
+and custom functions (`SupportedFunctions`) this library guarantees, plus a `Version` bumped when either
+list changes meaningfully. A new Core-side test (`TemplateRuntimeContractTests`, since it needs this
+repo's own `templates/` folder) scans every generated `.sbn` file and fails if one references a `model.*`
+field or pipe-function outside this contract (excluding `model.props.*`, an intentionally dynamic
+passthrough, and Scriban standard-library calls like `string.capitalize`) — caught its own regex bug
+(matching the plain markdown table header `"| Property | Value |"` as if it were a pipe-transform call)
+before it could hide a real one.
+
+**Verified empirically, not assumed, since guessing about a third-party library's behavior would violate
+this file's own bar**: whether `TemplateFunctions.ImportInto`'s `ScriptObject.Import` calls silently
+overwrite an existing key of the same name. Wrote a disposable Scriban 7.2.6 probe project rather than
+guess — confirmed `Import` is **first-registration-wins**, not last-write-wins, regardless of which side
+(host or `ImportInto`) registers first. A host that wants to override one of the four shared functions
+must register its own version *before* calling `ImportInto`; calling `ImportInto` first locks in the
+shared function for that name instead. Documented precisely on `ImportInto`'s XML doc remarks and locked
+in with tests in both orderings — this was previously unstated and the natural (wrong) assumption is
+"whoever's registered last wins."
+
+`ArgumentNullException`/`ArgumentException` guards were added at the library's actual public entry points
+(`PopulateSharedFields`, `BuildModel`, `ToTemplateResource`, `ImportInto`, `RegionDisplayNames.Configure`)
+for a genuinely invalid caller argument (a null target/resource/globals, a null/empty armType) — but
+deliberately NOT for ordinary missing resource data (a null `Id`, an absent/`Undefined` `Properties`/
+`Sku`, no `IdentityType`, empty strings, even a malformed shape like `Properties` being a JSON string
+instead of an object): all of that stays non-throwing, degrading to `null`/an empty object/a documented
+fallback, exactly as before. The distinction — caller error vs. ordinary missing data — is the same
+system-boundary-validation principle this repo already applies elsewhere, just now made explicit for a
+library other repos actually call into.
+
+Net result of the whole extraction + two review rounds: 74 tests in the new library alone (up from 0
+direct tests for `ScribanModelBuilder`/`TemplateRenderer`/`PortalFriendlyLabels` before this work), Core
+untouched by either refinement round, the full 144-template catalog byte-identical throughout every step,
+and the new library still depending on nothing but Scriban. Still an in-repo `ProjectReference`, not yet
+published as a NuGet package (deliberately deferred) — see the PR this all landed on (`fix/todo-row-
+example-leak`, not yet merged to `master` as of this writing) for the actual commit-by-commit history.
+
+## A stuck CI step needs its own timeout, not just the job's default (2026-08-18)
+
+Live-caught: the "Install Playwright browser (Chromium)" CI step hung for 13+ minutes on what turned out
+to be transient runner/network flakiness — completely unrelated to the commit that happened to be running
+(confirmed by cancelling and immediately retrying the exact same commit: the retry passed in under 2
+minutes). Without an explicit `timeout-minutes` on that step, a hang like this falls back to the *job's*
+timeout, which defaults to 360 minutes on GitHub Actions if never set — meaning an unlucky hang could
+silently burn CI minutes for hours before anyone happened to notice and cancel it by hand. Added
+`timeout-minutes: 3` to that step specifically (its real observed range across recent runs was 28s-1m53s,
+browser-cache-dependent) — comfortably above normal, short enough that a genuine hang fails fast. The job
+as a whole still has no `timeout-minutes` of its own, so any *other* step hanging would still fall back to
+the 360-minute default; worth the same treatment if it ever happens again.

@@ -95,6 +95,14 @@ resolution actually works, including several real mismatches it caught along the
 label differing from the portal only in casing; two labels that confidently matched the wrong property
 on a single coincidental word).
 
+The actual template-*rendering* runtime — turning a `.sbn` file plus an ARM resource into rendered
+Markdown — lives in its own standalone project, [`src/AzResourceDetails.Templating`](src/AzResourceDetails.Templating),
+not in this repo's own `Core`/`Infrastructure` split. It depends on nothing but
+[Scriban](https://github.com/scriban/scriban) — no Azure SDK, no Playwright, no reference to this
+repo's filesystem layout — specifically so it can be consumed by another renderer (see AGENT.md's
+`AzToMd` sections) without dragging in anything downloader-specific. This repo's own
+`--generate-templates` step is one consumer of it, not the only one it's designed for.
+
 ## Config: `config/resource-types.json`
 
 **159 entries, spanning storage, compute, networking, databases, security/identity, monitoring, web/app hosting, containers, messaging, AI/cognitive services, analytics/IoT, and desktop virtualization** — covering every armType `config/resource-abbreviations.json` lists (Microsoft's own abbreviations table), minus the entries deliberately excluded below. Cost tier (`Free`/`Low`/`Medium`/`High`/`VeryHigh`) is derived purely from each entry's real, sourced Azure cost — see "Genuinely expensive" below for the `VeryHigh` entries specifically.
