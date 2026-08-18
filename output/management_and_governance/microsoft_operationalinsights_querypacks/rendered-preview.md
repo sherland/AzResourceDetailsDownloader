@@ -2,7 +2,7 @@
 
 | Property | Value |
 |---|---|
-| **Name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "qpdn2pzyb4" --> *Not available from captured ARM metadata.* |
+| **Name** | qpdn2pzyb4 |
 | **Resource type** | microsoft.operationalinsights/querypacks |
 | **Location** | Norway East |
 | **Location ID** | norwayeast |

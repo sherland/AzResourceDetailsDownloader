@@ -15,4 +15,4 @@
 | **Replication** | {{ model.storage_replication_label }} |
 | **Account kind** | {{ model.storage_account_kind_label }} |
 | **Provisioning state** | {{ model.props.provisioningstate }} <sub>(as of last sync)</sub> |
-| **Created** | {{ model.props.keycreationtime.key1 | portal_timestamp }} |
+| **Created** | {{ model.props.creationtime | portal_timestamp }} |

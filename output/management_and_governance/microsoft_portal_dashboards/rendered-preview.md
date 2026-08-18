@@ -2,7 +2,7 @@
 
 | Property | Value |
 |---|---|
-| **Name** | <!-- TODO (Unresolved): composite/derived — no single backing property (see NonTraceableLabels comments) Captured example: "dashm4vvt9ry (ARDL Dashboard)" --> *Not available from captured ARM metadata.* |
+| **Name** | <!-- TODO (NeedsReview): Portal value "dashm4vvt9ry (ARDL Dashboard)" starts with the resource's own name ("dashm4vvt9ry") but carries extra trailing text this capture can't trace (e.g. a friendly display title) — verify by hand. Captured example: "dashm4vvt9ry (ARDL Dashboard)" --> *Not available from captured ARM metadata.* |
 | **Resource type** | Microsoft.Portal/dashboards |
 | **Location** | Norway East |
 | **Location ID** | norwayeast |
