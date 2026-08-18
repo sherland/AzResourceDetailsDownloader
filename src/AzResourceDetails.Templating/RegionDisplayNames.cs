@@ -1,26 +1,38 @@
+using System.Text.Json;
+
 namespace AzResourceDetails.Templating;
 
-// The authoritative Azure region code -> portal display name map ("norwayeast" -> "Norway East"),
-// e.g. from config/azure-locations.json (see fetch-azure-reference-data.ps1) in
-// AzResourceDetailsDownloader. Deliberately does NOT load that file itself — this library has no
-// filesystem or repository-layout knowledge of its own (see the class comment on
-// AzResourceDetails.Templating.csproj's ItemGroup), so a host application resolves its own
-// reference-data file and calls Configure once at startup. Before Configure is called, every
-// lookup just misses — the same "no lookup available, treat as unverified" behavior a missing file
-// produced before this became an explicit seam, so a host that forgets to call Configure degrades
-// gracefully rather than throwing.
+// The authoritative Azure region code -> portal display name map ("norwayeast" -> "Norway East").
+// Region display names are effectively permanent once a region exists — the only way this data
+// goes stale is a BRAND NEW region not yet in whatever snapshot is loaded, never a wrong answer for
+// an existing one — so shipping a baked-in default (embedded at build time from
+// AzResourceDetailsDownloader's own config/azure-locations.json, refreshed periodically via
+// fetch-azure-reference-data.ps1) gives every consumer correct, consistent portal-matching text out
+// of the box, with no host-side wiring required. Configure remains available for a consumer that
+// wants to override it entirely — e.g. with a fresher fetch, without waiting on a new package
+// version of this library.
 public static class RegionDisplayNames
 {
-    private static IReadOnlyDictionary<string, string> _map =
-        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+    private static IReadOnlyDictionary<string, string> _map = LoadEmbeddedDefault();
 
     /// <summary>
-    /// Supplies the region-code -&gt; display-name table this library uses for
-    /// <c>region_display_name</c>/<see cref="TryGetDisplayName"/>. Call once at host startup;
-    /// safe to call again (e.g. in tests) to replace the table entirely.
+    /// Replaces the region-code -&gt; display-name table this library uses for
+    /// <c>region_display_name</c>/<see cref="TryGetDisplayName"/>. Not required for correct
+    /// out-of-box behavior (see the embedded default this class ships with) — only needed to
+    /// override it, e.g. with data fresher than whatever was embedded at build time. Safe to call
+    /// more than once; the most recent call wins. Not thread-safe against concurrent
+    /// <see cref="TryGetDisplayName"/> calls on another thread — call this during host startup,
+    /// before any rendering begins, the same way any other one-time configuration would be.
     /// </summary>
     public static void Configure(IReadOnlyDictionary<string, string> regionDisplayNamesByCode) =>
         _map = regionDisplayNamesByCode;
+
+    /// <summary>
+    /// Restores the table embedded in this assembly, undoing any previous <see cref="Configure"/>
+    /// call. Mainly useful for tests; a host has no other reason to call this unless it wants to
+    /// deliberately revert to the shipped default.
+    /// </summary>
+    public static void ResetToEmbeddedDefault() => Configure(LoadEmbeddedDefault());
 
     public static bool TryGetDisplayName(string regionCode, out string displayName)
     {
@@ -31,5 +43,41 @@ public static class RegionDisplayNames
         }
         displayName = "";
         return false;
+    }
+
+    // "AzResourceDetails.Templating.azure-locations.json" is set explicitly via LogicalName in the
+    // csproj rather than relied upon as an SDK-computed default, so this string and the actual
+    // embedded name can never silently drift apart.
+    private static IReadOnlyDictionary<string, string> LoadEmbeddedDefault()
+    {
+        try
+        {
+            using var stream = typeof(RegionDisplayNames).Assembly
+                .GetManifestResourceStream("AzResourceDetails.Templating.azure-locations.json");
+            if (stream is null)
+            {
+                return new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            }
+
+            using var doc = JsonDocument.Parse(stream);
+            var map = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var entry in doc.RootElement.GetProperty("entries").EnumerateArray())
+            {
+                var name = entry.GetProperty("name").GetString();
+                var displayName = entry.GetProperty("displayName").GetString();
+                if (name is { Length: > 0 } && displayName is { Length: > 0 })
+                {
+                    map[name] = displayName;
+                }
+            }
+            return map;
+        }
+        catch
+        {
+            // Best-effort — a malformed/missing embedded resource shouldn't break every resolution
+            // that touches Location, just fall back to "no lookup available" the same as before
+            // this default existed.
+            return new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
     }
 }

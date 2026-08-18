@@ -20,12 +20,25 @@
     look anything up on disk. That's also what keeps it eligible for NuGet packaging later without
     the repo-layout assumptions a downloader-specific project would carry.
 
-    RegionDisplayNames' region-code -> display-name table is deliberately NOT loaded from disk by
-    this project (see RegionDisplayNames.Configure) for the same reason: only a host application
-    knows where its own reference data lives.
+    RegionDisplayNames ships a default region-code -> display-name table baked in at build time
+    (below) rather than reading any file at RUNTIME — region display names are near-permanent
+    reference data (see RegionDisplayNames' own class comment), so embedding a snapshot gives every
+    consumer correct behavior out of the box. RegionDisplayNames.Configure remains available for a
+    host that wants to override it entirely, e.g. with a fresher fetch.
   -->
   <ItemGroup>
     <PackageReference Include="Scriban" Version="7.2.6" />
+  </ItemGroup>
+
+  <!-- Embeds AzResourceDetailsDownloader's own fetched region-name reference data (see
+       fetch-azure-reference-data.ps1) directly from its one canonical location — not a duplicated
+       copy — so refreshing that file and rebuilding this project is all it takes to update the
+       embedded default; there's nothing else to keep in sync. LogicalName is set explicitly so the
+       lookup name in RegionDisplayNames.LoadEmbeddedDefault can never silently drift from the SDK's
+       own (undocumented, Link-based) default naming convention. -->
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\config\azure-locations.json"
+                       LogicalName="AzResourceDetails.Templating.azure-locations.json" />
   </ItemGroup>
 
   <!-- Package-friendly metadata, kept ready for a future `dotnet pack` even though nothing is
