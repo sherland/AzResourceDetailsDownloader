@@ -22,8 +22,8 @@
     object itself.
   -->
   <ItemGroup>
-    <PackageReference Include="Azure.Core" Version="1.62.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.12" />
+    <PackageReference Include="Azure.Core" Version="1.63.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.14" />
   </ItemGroup>
 
   <ItemGroup>
